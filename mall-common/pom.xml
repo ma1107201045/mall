@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.lingyi</groupId>
+        <artifactId>mall</artifactId>
+        <version>${revision}</version>
+    </parent>
+    <artifactId>mall-common</artifactId>
+    <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
+    <modules>
+        <module>mall-common-bean</module>
+        <module>mall-common-openapi</module>
+        <module>mall-common-util</module>
+    </modules>
+    <properties>
+        <hutool-all.version>5.8.11</hutool-all.version>
+        <springdoc-openapi-ui.version>1.6.13</springdoc-openapi-ui.version>
+        <knife4j-spring-boot-starter.version>4.1.0</knife4j-spring-boot-starter.version>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool-all.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc-openapi-ui.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+                <version>${knife4j-spring-boot-starter.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
