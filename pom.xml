@@ -9,7 +9,7 @@
     <description>This is mall project</description>
     <modules>
         <module>mall-api</module>
-        <module>mall-business</module>
+        <module>mall-biz</module>
         <module>mall-common</module>
         <module>mall-gateway</module>
     </modules>

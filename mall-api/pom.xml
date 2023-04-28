@@ -9,4 +9,8 @@
     <artifactId>mall-api</artifactId>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
+
+    <modules>
+        <module>mall-api-order</module>
+    </modules>
 </project>
