@@ -56,7 +56,7 @@ public class MbsMenu extends BaseIsDeleteEntity {
      * 菜单顺序
      */
     @Column(name = "sort", columnDefinition = "INT UNSIGNED not null")
-    private Long sort;
+    private Integer sort;
 
     /**
      * 备注

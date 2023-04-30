@@ -12,7 +12,7 @@
     <modules>
         <module>mall-common-bean</module>
         <module>mall-common-constant</module>
-        <module>mall-common-dao</module>
+        <module>mall-common-fill</module>
         <module>mall-common-swagger</module>
         <module>mall-common-util</module>
     </modules>

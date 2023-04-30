@@ -32,7 +32,7 @@ public abstract class BaseIdEntity implements Serializable {
      */
     @Id
     @GeneratedValue(generator = "id")
-    @GenericGenerator(name = "id", strategy = "com.lingyi.mall.common.dao.jpa.generator.CustomIdentifierGenerator")
+    @GenericGenerator(name = "id", strategy = "com.lingyi.mall.common.fill.jpa.generator.SnowflakeIdentifierGenerator")
     @Column(name = "id", length = 20)
     private Long id;
 

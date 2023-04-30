@@ -40,8 +40,8 @@ public class MbsRole extends BaseIsDeleteEntity {
     /**
      * 顺序
      */
-    @Column(columnDefinition = "INT UNSIGNED not null")
-    private Long sort;
+    @Column(name = "sort", columnDefinition = "INT UNSIGNED not null")
+    private Integer sort;
 
     /**
      * 备注
@@ -53,8 +53,6 @@ public class MbsRole extends BaseIsDeleteEntity {
      * 菜单集
      */
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    @ToString.Exclude
     private List<MbsMenu> mbsMenus;
 
     @Override

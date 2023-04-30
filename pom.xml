@@ -36,7 +36,7 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>mall-common-dao</artifactId>
+                <artifactId>mall-common-fill</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

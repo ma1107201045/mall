@@ -15,7 +15,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-bean</artifactId>
+            <artifactId>mall-common-fill</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>

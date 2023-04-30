@@ -1,5 +1,7 @@
 package com.lingyi.mall.biz.system;
 
+import cn.hutool.core.math.MathUtil;
+import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.biz.system.entity.MbsRole;
 import com.lingyi.mall.biz.system.repository.MbsRoleRepository;
 import com.lingyi.mall.biz.system.repository.MbsUserRepository;
@@ -23,9 +25,13 @@ public class MallBizSystemApplicationTests {
     @Autowired
     private MbsRoleRepository mbsRoleRepository;
 
+
     @Test
     public void testRole() {
         MbsRole mbsRole = new MbsRole();
-        System.out.println(mbsRoleRepository.save(mbsRole));
+        mbsRole.setIsEnable(1);
+        mbsRole.setSort(Math.abs(RandomUtil.randomInt()));
+        mbsRole = mbsRoleRepository.save(mbsRole);
+        System.out.println(mbsRole);
     }
 }
