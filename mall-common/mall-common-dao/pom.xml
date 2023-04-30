@@ -9,7 +9,6 @@
         <version>${revision}</version>
     </parent>
     <artifactId>mall-common-dao</artifactId>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

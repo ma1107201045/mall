@@ -7,5 +7,5 @@
         <version>${revision}</version>
     </parent>
     <name>${project.artifactId}</name>
-    <artifactId>mall-api-order</artifactId>
+    <artifactId>mall-api-system</artifactId>
 </project>

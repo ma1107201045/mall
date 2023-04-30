@@ -18,7 +18,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring-boot-dependencies.version>3.0.0</spring-boot-dependencies.version>
+        <spring-boot-dependencies.version>3.0.6</spring-boot-dependencies.version>
         <spring-cloud-dependencies.version>2022.0.2</spring-cloud-dependencies.version>
         <spring-cloud-alibaba-dependencies.version>2022.0.0.0-RC2</spring-cloud-alibaba-dependencies.version>
     </properties>
@@ -41,7 +41,7 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>mall-common-openapi</artifactId>
+                <artifactId>mall-common-swagger</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -73,5 +73,12 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 
 </project>

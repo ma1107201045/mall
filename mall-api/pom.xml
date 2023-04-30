@@ -11,6 +11,6 @@
     <name>${project.artifactId}</name>
 
     <modules>
-        <module>mall-api-order</module>
+        <module>mall-api-system</module>
     </modules>
 </project>

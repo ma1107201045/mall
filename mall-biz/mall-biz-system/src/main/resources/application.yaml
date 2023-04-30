@@ -1,0 +1,16 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: mall-biz-system
+  jpa:
+    generate-ddl: true
+    database: mysql
+    show-sql: true
+    openInView: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://rm-2ze09g9o0bb02q5r54o.mysql.rds.aliyuncs.com:3306/mall?serverTimezone=GMT%2B8
+    username: jinbihu_shop
+    password: Jinbihu_2023
+

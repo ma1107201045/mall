@@ -1,8 +1,12 @@
 package com.lingyi.mall.common.bean.entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.MappedSuperclass;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import java.io.Serial;
+import java.util.Objects;
 
 /**
  * @author maweiyan
@@ -10,6 +14,11 @@ import java.io.Serial;
  * @datetime 2023/4/30 13:49
  * @description
  */
+@Getter
+@Setter
+@ToString(callSuper = true)
+@RequiredArgsConstructor
+@MappedSuperclass
 public abstract class BaseIsDeleteEntity extends BaseCommonEntity {
     @Serial
     private static final long serialVersionUID = -2047585741010388531L;
@@ -20,4 +29,26 @@ public abstract class BaseIsDeleteEntity extends BaseCommonEntity {
      */
     @Column(length = 4)
     private Integer isDelete;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        BaseIsDeleteEntity that = (BaseIsDeleteEntity) o;
+        return Objects.equals(isDelete, that.isDelete);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (isDelete != null ? isDelete.hashCode() : 0);
+        return result;
+    }
 }

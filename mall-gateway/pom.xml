@@ -12,7 +12,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-openapi</artifactId>
+            <artifactId>mall-common-swagger</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
