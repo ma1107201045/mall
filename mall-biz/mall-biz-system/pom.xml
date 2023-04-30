@@ -9,7 +9,7 @@
         <version>${revision}</version>
     </parent>
     <name>${project.artifactId}</name>
-    <artifactId>mall-biz-order</artifactId>
+    <artifactId>mall-biz-system</artifactId>
     <build>
         <plugins>
             <plugin>

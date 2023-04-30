@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
     <modules>
-        <module>mall-biz-order</module>
+        <module>mall-biz-system</module>
     </modules>
     <dependencies>
         <dependency>

@@ -11,16 +11,30 @@
     <name>${project.artifactId}</name>
     <modules>
         <module>mall-common-bean</module>
+        <module>mall-common-constant</module>
+        <module>mall-common-dao</module>
         <module>mall-common-openapi</module>
         <module>mall-common-util</module>
     </modules>
     <properties>
+        <mybatis-plus-boot-starter.version>3.5.3.1</mybatis-plus-boot-starter.version>
+        <mybatis-flex-spring-boot-starter.version>1.2.0</mybatis-flex-spring-boot-starter.version>
         <hutool-all.version>5.8.11</hutool-all.version>
         <springdoc-openapi-ui.version>1.6.13</springdoc-openapi-ui.version>
-        <knife4j-spring-boot-starter.version>4.1.0</knife4j-spring-boot-starter.version>
+        <knife4j-openapi3-jakarta-spring-boot-starte.version>4.1.0</knife4j-openapi3-jakarta-spring-boot-starte.version>
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mybatis-flex</groupId>
+                <artifactId>mybatis-flex-spring-boot-starter</artifactId>
+                <version>${mybatis-flex-spring-boot-starter.version}</version>
+            </dependency>
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
@@ -34,8 +48,15 @@
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
-                <version>${knife4j-spring-boot-starter.version}</version>
+                <version>${knife4j-openapi3-jakarta-spring-boot-starte.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 </project>

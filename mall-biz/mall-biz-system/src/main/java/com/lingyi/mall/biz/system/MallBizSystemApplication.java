@@ -1,4 +1,4 @@
-package com.lingyi.mall.biz.order;
+package com.lingyi.mall.biz.system;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,5 +9,5 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @description 订单服务
  */
 @SpringBootApplication
-public class MallBizOrderApplication {
+public class MallBizSystemApplication {
 }
