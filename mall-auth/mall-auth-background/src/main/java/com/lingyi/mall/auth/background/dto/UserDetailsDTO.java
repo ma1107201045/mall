@@ -11,16 +11,16 @@ import lombok.Data;
  * @datetime 2023/5/1 17:55
  * @description
  */
-@Schema(name = "登录入参", description = "登录入参")
+@Schema(description = "登录入参")
 @Data
 public class UserDetailsDTO {
 
-    @Schema(name = "用户名", requiredMode = Schema.RequiredMode.REQUIRED, example = "zhangsan")
+    @Schema(description = "用户名", requiredMode = Schema.RequiredMode.REQUIRED, example = "zhangsan")
     @NotBlank(message = "用户名不能为空")
-    @Size(min = 6, max = 20, message = "用户名长度只能1到20之间")
+    @Size(min = 6, max = 20, message = "用户名长度只能6到20之间")
     private String username;
 
-    @Schema(name = "密码", requiredMode = Schema.RequiredMode.REQUIRED, example = "123456")
+    @Schema(description = "密码", requiredMode = Schema.RequiredMode.REQUIRED, example = "123456")
     @NotBlank(message = "密码不能为空")
     @Size(min = 6, max = 20, message = "密码长度只能6到20之间")
     private String password;

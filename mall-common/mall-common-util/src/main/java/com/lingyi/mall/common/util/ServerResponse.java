@@ -1,6 +1,7 @@
 package com.lingyi.mall.common.util;
 
 import com.lingyi.mall.common.enums.BaseResponseEnum;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -13,6 +14,7 @@ import java.io.Serializable;
  * @datetime 2023/05/01 18:52
  * @description
  */
+@Schema(description = "统一出参")
 @Data
 @AllArgsConstructor
 public class ServerResponse<T> implements Serializable {
@@ -21,10 +23,13 @@ public class ServerResponse<T> implements Serializable {
     @Serial
     private static final long serialVersionUID = 8505044737530270464L;
 
+    @Schema(description = "状态码", example = "200")
     private Integer code;
 
+    @Schema(description = "msg", example = "成功")
     private String msg;
 
+    @Schema(description = "数据", example = "{} or []")
     private T data;
 
 

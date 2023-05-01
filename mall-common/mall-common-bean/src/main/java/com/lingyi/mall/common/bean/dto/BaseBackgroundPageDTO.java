@@ -17,12 +17,12 @@ public class BaseBackgroundPageDTO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -7930591841165119678L;
-    @Schema(name = "页码", requiredMode = Schema.RequiredMode.NOT_REQUIRED, defaultValue = "1", example = "1")
+    @Schema(description = "页码", requiredMode = Schema.RequiredMode.NOT_REQUIRED, defaultValue = "1", example = "1")
     @Min(value = 1L, message = "页码最小值有误")
     @Max(value = Long.MAX_VALUE, message = "页码最大值有误")
     private Long currentPage;
 
-    @Schema(name = "页数", requiredMode = Schema.RequiredMode.NOT_REQUIRED, defaultValue = "10", example = "10")
+    @Schema(description = "页数", requiredMode = Schema.RequiredMode.NOT_REQUIRED, defaultValue = "10", example = "10")
     @Min(value = 1L, message = "页数最小值有误")
     @Max(value = Long.MAX_VALUE, message = "页数最大值有误")
     private Long pageSize;

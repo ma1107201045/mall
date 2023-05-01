@@ -15,6 +15,6 @@ public class BaseSizeVO implements Serializable {
     @Serial
     private static final long serialVersionUID = 2921743378145832753L;
 
-    @Schema(name = "总记录数")
+    @Schema(description = "总记录数")
     private Long size;
 }
