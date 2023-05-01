@@ -1,44 +1,47 @@
 package com.lingyi.mall.biz.system.entity;
 
 import com.lingyi.mall.common.bean.entity.BaseCommonEntity;
-import com.lingyi.mall.common.bean.entity.BaseIsDeleteEntity;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serial;
-import java.time.Instant;
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
  * @datetime 2023/4/30 22:43
- * @description
+ * @description 系统管理-用户角色中间表
  */
 @Getter
 @Setter
+@ToString(callSuper = true)
+@RequiredArgsConstructor
 @Entity
 @Table(name = "mbs_user_role")
-public class MbsUserRole extends BaseCommonEntity {
-
+public class MbsUserRole extends BaseCommonEntity implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 8014384457001360009L;
+    private static final long serialVersionUID = 506747689975729762L;
+
     /**
      * 用户id
      */
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
-    private MbsUser user;
+    @ToString.Exclude
+    private MbsUser mbsUser;
     /**
      * 角色id
      */
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "role_id", nullable = false)
-    private MbsRole role;
+    @ToString.Exclude
+    private MbsRole mbsRole;
 
     @Override
     public boolean equals(Object o) {
@@ -52,17 +55,17 @@ public class MbsUserRole extends BaseCommonEntity {
             return false;
         }
         MbsUserRole that = (MbsUserRole) o;
-        if (!Objects.equals(user, that.user)) {
+        if (!Objects.equals(mbsUser, that.mbsUser)) {
             return false;
         }
-        return Objects.equals(role, that.role);
+        return Objects.equals(mbsRole, that.mbsRole);
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (user != null ? user.hashCode() : 0);
-        result = 31 * result + (role != null ? role.hashCode() : 0);
+        result = 31 * result + (mbsUser != null ? mbsUser.hashCode() : 0);
+        result = 31 * result + (mbsRole != null ? mbsRole.hashCode() : 0);
         return result;
     }
 }

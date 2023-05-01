@@ -1,32 +1,36 @@
 package com.lingyi.mall.biz.system.entity;
 
 import com.lingyi.mall.common.bean.entity.BaseIsDeleteEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.io.Serial;
+import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
  * @datetime 2023/4/30 22:43
- * @description
+ * @description 系统管理-菜单表
  */
 @Getter
 @Setter
 @ToString(callSuper = true)
 @RequiredArgsConstructor
+@DynamicInsert
 @Entity
 @Table(name = "mbs_menu")
-public class MbsMenu extends BaseIsDeleteEntity {
+public class MbsMenu extends BaseIsDeleteEntity implements Serializable {
+
+
     @Serial
-    private static final long serialVersionUID = -5158905897315905589L;
+    private static final long serialVersionUID = -6881064204751732279L;
 
     /**
      * 菜单名称
@@ -55,7 +59,7 @@ public class MbsMenu extends BaseIsDeleteEntity {
     /**
      * 菜单顺序
      */
-    @Column(name = "sort", columnDefinition = "INT UNSIGNED not null")
+    @Column(name = "sort", length = 11)
     private Integer sort;
 
     /**
@@ -67,7 +71,7 @@ public class MbsMenu extends BaseIsDeleteEntity {
     /**
      * 是否启用 1 是 0 否
      */
-    @Column(name = "is_enable", columnDefinition = "TINYINT UNSIGNED not null")
+    @Column(name = "is_enable", length = 4)
     private Integer isEnable;
 
     /**
@@ -94,6 +98,14 @@ public class MbsMenu extends BaseIsDeleteEntity {
     @Column(name = "permission", length = 100)
     private String permission;
 
+    /**
+     * 角色集
+     */
+    @ManyToMany
+    @JoinTable(name = "mbs_role_menu", joinColumns = @JoinColumn(name = "menu_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @ToString.Exclude
+    private List<MbsRole> mbsRoles;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -105,9 +117,7 @@ public class MbsMenu extends BaseIsDeleteEntity {
         if (!super.equals(o)) {
             return false;
         }
-
         MbsMenu mbsMenu = (MbsMenu) o;
-
         if (!Objects.equals(name, mbsMenu.name)) {
             return false;
         }
@@ -138,7 +148,10 @@ public class MbsMenu extends BaseIsDeleteEntity {
         if (!Objects.equals(componentName, mbsMenu.componentName)) {
             return false;
         }
-        return Objects.equals(permission, mbsMenu.permission);
+        if (!Objects.equals(permission, mbsMenu.permission)) {
+            return false;
+        }
+        return Objects.equals(mbsRoles, mbsMenu.mbsRoles);
     }
 
     @Override
@@ -155,6 +168,7 @@ public class MbsMenu extends BaseIsDeleteEntity {
         result = 31 * result + (componentPath != null ? componentPath.hashCode() : 0);
         result = 31 * result + (componentName != null ? componentName.hashCode() : 0);
         result = 31 * result + (permission != null ? permission.hashCode() : 0);
+        result = 31 * result + (mbsRoles != null ? mbsRoles.hashCode() : 0);
         return result;
     }
 }

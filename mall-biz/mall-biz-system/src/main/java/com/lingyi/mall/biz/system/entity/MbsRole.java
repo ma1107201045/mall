@@ -3,10 +3,13 @@ package com.lingyi.mall.biz.system.entity;
 import com.lingyi.mall.common.bean.entity.BaseIsDeleteEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.io.Serial;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,17 +17,19 @@ import java.util.Objects;
  * @author maweiyan
  * @email 1107201045@qq.com
  * @datetime 2023/4/30 22:43
- * @description
+ * @description 系统管理-角色表
  */
 @Getter
 @Setter
 @ToString(callSuper = true)
+@RequiredArgsConstructor
+@DynamicInsert
 @Entity
 @Table(name = "mbs_role")
-public class MbsRole extends BaseIsDeleteEntity {
+public class MbsRole extends BaseIsDeleteEntity implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 1102684027983288780L;
+    private static final long serialVersionUID = -5280755884593902334L;
     /**
      * 角色名称
      */
@@ -34,13 +39,13 @@ public class MbsRole extends BaseIsDeleteEntity {
     /**
      * 是否启用 1 是 0 否
      */
-    @Column(name = "is_enable", columnDefinition = "TINYINT UNSIGNED not null")
+    @Column(name = "is_enable", length = 4)
     private Integer isEnable;
 
     /**
      * 顺序
      */
-    @Column(name = "sort", columnDefinition = "INT UNSIGNED not null")
+    @Column(name = "sort", length = 11)
     private Integer sort;
 
     /**
@@ -50,9 +55,18 @@ public class MbsRole extends BaseIsDeleteEntity {
     private String remark;
 
     /**
+     * 用户集
+     */
+    @ManyToMany
+    @JoinTable(name = "mbs_user_role", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @ToString.Exclude
+    private List<MbsUser> mbsUsers;
+
+    /**
      * 菜单集
      */
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "mbsRoles")
+    @ToString.Exclude
     private List<MbsMenu> mbsMenus;
 
     @Override

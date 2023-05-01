@@ -20,15 +20,12 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @MappedSuperclass
 public abstract class BaseIsDeleteEntity extends BaseCommonEntity {
-    @Serial
-    private static final long serialVersionUID = -2047585741010388531L;
-
 
     /**
      * 是否删除 1 是 0 否
      */
-    @Column(length = 4)
-    private Integer isDelete;
+    @Column(name = "is_delete", length = 4)
+    protected Integer isDelete;
 
     @Override
     public boolean equals(Object o) {

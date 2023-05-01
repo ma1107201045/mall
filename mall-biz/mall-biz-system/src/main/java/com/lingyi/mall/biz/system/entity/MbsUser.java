@@ -4,9 +4,13 @@ import com.lingyi.mall.common.bean.entity.BaseIsDeleteEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -15,16 +19,19 @@ import java.util.Objects;
  * @author maweiyan
  * @email 1107201045@qq.com
  * @datetime 2023/4/30 22:43
- * @description
+ * @description 系统管理-用户表
  */
 @Getter
 @Setter
+@ToString(callSuper = true)
+@RequiredArgsConstructor
+@DynamicInsert
 @Entity
 @Table(name = "mbs_user")
-public class MbsUser extends BaseIsDeleteEntity {
-    @Serial
-    private static final long serialVersionUID = -6359019185255171156L;
+public class MbsUser extends BaseIsDeleteEntity implements Serializable {
 
+    @Serial
+    private static final long serialVersionUID = 5771438753938667975L;
     /**
      * 用户名称
      */
@@ -46,7 +53,7 @@ public class MbsUser extends BaseIsDeleteEntity {
     /**
      * 性别 1 男 2 女
      */
-    @Column(name = "sex", columnDefinition = "TINYINT UNSIGNED")
+    @Column(name = "sex", length = 4)
     private Integer sex;
 
     /**
@@ -90,21 +97,20 @@ public class MbsUser extends BaseIsDeleteEntity {
     /**
      * 是否启用 1 是 0 否
      */
-    @Column(name = "is_enable", columnDefinition = "TINYINT UNSIGNED not null")
+    @Column(name = "is_enable", nullable = false, length = 4)
     private Integer isEnable;
 
     /**
      * 备注
      */
-    @Size(max = 255)
     @Column(name = "remark")
     private String remark;
 
     /**
      * 角色集
      */
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "mbsUsers")
+    @ToString.Exclude
     private List<MbsRole> mbsRoles;
 
 

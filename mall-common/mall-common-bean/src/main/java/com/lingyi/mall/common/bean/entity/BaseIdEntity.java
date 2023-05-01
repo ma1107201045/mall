@@ -23,18 +23,16 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @MappedSuperclass
-public abstract class BaseIdEntity implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 3154728442401869777L;
+public abstract class BaseIdEntity {
 
     /**
      * 主键id
      */
     @Id
-    @GeneratedValue(generator = "id")
-    @GenericGenerator(name = "id", strategy = "com.lingyi.mall.common.fill.jpa.generator.SnowflakeIdentifierGenerator")
-    @Column(name = "id", length = 20)
-    private Long id;
+    @GeneratedValue(generator = "SnowflakeIdentifierGenerator")
+    @GenericGenerator(name = "SnowflakeIdentifierGenerator", strategy = "com.lingyi.mall.common.fill.jpa.generator.SnowflakeIdentifierGenerator")
+    @Column(name = "id", nullable = false, length = 20)
+    protected Long id;
 
     @Override
     public boolean equals(Object o) {

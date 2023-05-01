@@ -11,7 +11,7 @@
  Target Server Version : 50739 (5.7.39-log)
  File Encoding         : 65001
 
- Date: 30/04/2023 15:38:45
+ Date: 01/05/2023 12:45:16
 */
 
 SET NAMES utf8mb4;
@@ -38,13 +38,9 @@ CREATE TABLE `mbs_menu`  (
   `create_date_time` datetime NOT NULL COMMENT '创建时间',
   `last_modify_by` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '最后修改人',
   `last_modify_date_time` datetime NOT NULL COMMENT '最后修改时间',
-  `is_delete` tinyint(4) UNSIGNED NOT NULL COMMENT '是否删除 1 是 0 否',
+  `is_delete` tinyint(4) UNSIGNED NULL DEFAULT NULL COMMENT '是否删除 1 是 0 否',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统管理-菜单表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of mbs_menu
--- ----------------------------
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统管理-菜单表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for mbs_role
@@ -60,13 +56,9 @@ CREATE TABLE `mbs_role`  (
   `create_date_time` datetime NOT NULL COMMENT '创建时间',
   `last_modify_by` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '最后修改人',
   `last_modify_date_time` datetime NOT NULL COMMENT '最后修改时间',
-  `is_delete` tinyint(4) UNSIGNED NOT NULL COMMENT '是否删除 1是 0 否',
+  `is_delete` tinyint(4) UNSIGNED NULL DEFAULT 0 COMMENT '是否删除 1是 0 否',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统管理-角色表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of mbs_role
--- ----------------------------
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统管理-角色表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for mbs_role_menu
@@ -81,12 +73,11 @@ CREATE TABLE `mbs_role_menu`  (
   `last_modify_by` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '最后修改人',
   `last_modify_date_time` datetime NOT NULL COMMENT '最后修改时间',
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `uk_role_id_menu_id`(`role_id`, `menu_id`) USING BTREE COMMENT '角色id和菜单id唯一索引'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统管理-角色菜单中间表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of mbs_role_menu
--- ----------------------------
+  INDEX `fk_menu_id`(`menu_id`) USING BTREE COMMENT '外键按钮id索引',
+  INDEX `fk_role_id2`(`role_id`) USING BTREE COMMENT '外键角色id索引',
+  CONSTRAINT `fk_menu_id` FOREIGN KEY (`menu_id`) REFERENCES `mbs_menu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_role_id2` FOREIGN KEY (`role_id`) REFERENCES `mbs_role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统管理-角色菜单中间表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for mbs_user
@@ -110,13 +101,9 @@ CREATE TABLE `mbs_user`  (
   `create_date_time` datetime NOT NULL COMMENT '创建时间',
   `last_modify_by` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '最后修改人',
   `last_modify_date_time` datetime NOT NULL COMMENT '最后修改时间',
-  `is_delete` tinyint(4) UNSIGNED NOT NULL COMMENT '是否删除 1 是 0 否',
+  `is_delete` tinyint(4) UNSIGNED NULL DEFAULT 0 COMMENT '是否删除 1 是 0 否',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统管理-用户表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of mbs_user
--- ----------------------------
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统管理-用户表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for mbs_user_role
@@ -131,11 +118,10 @@ CREATE TABLE `mbs_user_role`  (
   `last_modify_by` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '最后修改人',
   `last_modify_date_time` datetime NOT NULL COMMENT '最后修改时间',
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `uk_user_id_role_id`(`user_id`, `role_id`) USING BTREE COMMENT '用户id和角色id唯一索引'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统管理-用户角色中间表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of mbs_user_role
--- ----------------------------
+  INDEX `fk_user_id`(`user_id`) USING BTREE COMMENT '外键用户id索引',
+  INDEX `fk_role_id`(`role_id`) USING BTREE COMMENT '外键角色id索引',
+  CONSTRAINT `fk_role_id` FOREIGN KEY (`role_id`) REFERENCES `mbs_role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `mbs_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统管理-用户角色中间表' ROW_FORMAT = DYNAMIC;
 
 SET FOREIGN_KEY_CHECKS = 1;

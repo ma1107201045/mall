@@ -13,8 +13,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @datetime 2023/4/28 15:05
  * @description 订单服务
  */
-@SpringBootApplication(scanBasePackages = "com.lingyi.mall")
 @EnableJpaAuditing
+@SpringBootApplication(scanBasePackages = "com.lingyi.mall")
 public class MallBizSystemApplication {
 
     public static void main(String[] args) {

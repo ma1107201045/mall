@@ -29,32 +29,31 @@ import java.util.Objects;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseCommonEntity extends BaseIdEntity {
-    @Serial
-    private static final long serialVersionUID = 1527566468186021632L;
+
     /**
      * 创建人
      */
     @CreatedBy
-    @Column(name = "create_by", length = 10)
-    private String createBy;
+    @Column(name = "create_by", nullable = false, length = 10)
+    protected String createBy;
     /**
      * 创建时间
      */
     @CreatedDate
-    @Column(name = "create_date_time")
-    private LocalDateTime createDateTime;
+    @Column(name = "create_date_time", nullable = false)
+    protected LocalDateTime createDateTime;
     /**
      * 最后修改人
      */
     @LastModifiedBy
-    @Column(name = "last_modify_by", length = 10)
-    private String lastModifyBy;
+    @Column(name = "last_modify_by", nullable = false, length = 10)
+    protected String lastModifyBy;
     /**
      * 最后修改时间
      */
     @LastModifiedDate
-    @Column(name = "last_modify_date_time")
-    private LocalDateTime lastModifyDateTime;
+    @Column(name = "last_modify_date_time", nullable = false)
+    protected LocalDateTime lastModifyDateTime;
 
     @Override
     public boolean equals(Object o) {

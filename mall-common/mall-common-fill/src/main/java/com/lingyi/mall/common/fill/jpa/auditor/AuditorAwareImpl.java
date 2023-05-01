@@ -12,7 +12,6 @@ import java.util.Optional;
  * @datetime 2023/5/1 3:05
  * @description
  */
-
 @Component
 public class AuditorAwareImpl implements AuditorAware<String> {
 
