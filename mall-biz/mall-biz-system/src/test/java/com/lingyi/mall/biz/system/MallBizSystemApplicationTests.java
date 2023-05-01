@@ -1,6 +1,5 @@
 package com.lingyi.mall.biz.system;
 
-import cn.hutool.core.math.MathUtil;
 import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.biz.system.entity.MbsRole;
 import com.lingyi.mall.biz.system.entity.MbsUser;

@@ -12,9 +12,13 @@
     <modules>
         <module>mall-common-bean</module>
         <module>mall-common-constant</module>
+        <module>mall-common-enums</module>
+        <module>mall-common-exception</module>
         <module>mall-common-fill</module>
+        <module>mall-common-security</module>
         <module>mall-common-swagger</module>
         <module>mall-common-util</module>
+        <module>mall-common-web</module>
     </modules>
     <properties>
         <mybatis-plus-boot-starter.version>3.5.3.1</mybatis-plus-boot-starter.version>

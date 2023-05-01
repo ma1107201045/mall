@@ -31,8 +31,9 @@ import java.util.Date;
  * 参考：<a href="http://www.cnblogs.com/relucent/p/4955340.html">...</a><br>
  * 关于长度是18还是19的问题见：<a href="https://blog.csdn.net/unifirst/article/details/80408050">...</a>
  *
- * @author mwy
- * @datetime 2022/7/18 19:09
+ * @author maweiyan
+ * @email 1107201045@qq.com
+ * @datetime 2023/04/30 0:58
  * @description
  */
 public class Snowflake implements Serializable {

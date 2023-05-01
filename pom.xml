@@ -9,6 +9,7 @@
     <description>This is mall project</description>
     <modules>
         <module>mall-api</module>
+        <module>mall-auth</module>
         <module>mall-biz</module>
         <module>mall-common</module>
         <module>mall-gateway</module>
@@ -36,7 +37,22 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
+                <artifactId>mall-common-enums</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>mall-common-exception</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>mall-common-fill</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>mall-common-security</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -49,7 +65,11 @@
                 <artifactId>mall-common-util</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>mall-common-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>

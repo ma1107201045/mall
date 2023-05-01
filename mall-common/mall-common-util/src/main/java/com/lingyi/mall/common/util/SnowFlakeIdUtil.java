@@ -11,8 +11,9 @@ import java.time.ZoneOffset;
 import java.util.Arrays;
 
 /**
- * @author mwy
- * @datetime 2022/10/17 0:58
+ * @author maweiyan
+ * @email 1107201045@qq.com
+ * @datetime 2023/04/30 0:58
  * @description
  */
 public final class SnowFlakeIdUtil {

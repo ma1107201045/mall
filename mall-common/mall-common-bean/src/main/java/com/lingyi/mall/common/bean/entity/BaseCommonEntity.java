@@ -34,7 +34,7 @@ public abstract class BaseCommonEntity extends BaseIdEntity {
      * 创建人
      */
     @CreatedBy
-    @Column(name = "create_by", nullable = false, length = 10)
+    @Column(name = "create_by", nullable = false, length = 20)
     protected String createBy;
     /**
      * 创建时间
@@ -46,7 +46,7 @@ public abstract class BaseCommonEntity extends BaseIdEntity {
      * 最后修改人
      */
     @LastModifiedBy
-    @Column(name = "last_modify_by", nullable = false, length = 10)
+    @Column(name = "last_modify_by", nullable = false, length = 20)
     protected String lastModifyBy;
     /**
      * 最后修改时间

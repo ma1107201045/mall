@@ -35,19 +35,19 @@ public class MbsUser extends BaseIsDeleteEntity implements Serializable {
     /**
      * 用户名称
      */
-    @Column(name = "user_name", nullable = false, length = 10)
+    @Column(name = "user_name", nullable = false, length = 20)
     private String userName;
 
     /**
      * 真实姓名
      */
-    @Column(name = "real_name", length = 10)
+    @Column(name = "real_name", length = 20)
     private String realName;
 
     /**
      * 昵称
      */
-    @Column(name = "nickname", length = 10)
+    @Column(name = "nickname", length = 20)
     private String nickname;
 
     /**
