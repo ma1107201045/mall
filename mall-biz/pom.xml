@@ -9,6 +9,7 @@
     <artifactId>mall-biz</artifactId>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
+    <description>电商项目-业务服务父工程</description>
     <modules>
         <module>mall-biz-system</module>
     </modules>

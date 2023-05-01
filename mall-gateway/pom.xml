@@ -8,7 +8,7 @@
     </parent>
     <artifactId>mall-gateway</artifactId>
     <name>${project.artifactId}</name>
-
+    <description>电商项目-网关服务</description>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>

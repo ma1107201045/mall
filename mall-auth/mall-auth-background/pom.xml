@@ -9,6 +9,4 @@
         <version>${revision}</version>
     </parent>
     <artifactId>mall-auth-background</artifactId>
-
-
 </project>

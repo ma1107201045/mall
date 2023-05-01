@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @datetime 2023/5/1 17:10
  * @description
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.lingyi.mall")
 public class MallAuthBackgroundApplication {
 
     public static void main(String[] args) {

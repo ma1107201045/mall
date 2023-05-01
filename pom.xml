@@ -6,13 +6,14 @@
     <version>${revision}</version>
     <packaging>pom</packaging>
     <name>mall</name>
-    <description>This is mall project</description>
+    <description>电商项目父工程</description>
     <modules>
         <module>mall-api</module>
         <module>mall-auth</module>
         <module>mall-biz</module>
         <module>mall-common</module>
         <module>mall-gateway</module>
+        <module>mall-common/mall-common-redis</module>
     </modules>
     <properties>
         <revision>0.0.1</revision>
@@ -48,6 +49,11 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>mall-common-fill</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>mall-common-redis</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -100,5 +106,4 @@
             <optional>true</optional>
         </dependency>
     </dependencies>
-
 </project>

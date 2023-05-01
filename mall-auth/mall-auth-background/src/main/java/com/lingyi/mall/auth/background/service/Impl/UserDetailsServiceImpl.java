@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  * @datetime 2023/5/1 17:54
  * @description
  */
-@Service
+//@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

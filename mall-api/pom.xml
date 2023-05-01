@@ -9,6 +9,7 @@
     <artifactId>mall-api</artifactId>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
+    <description>电商项目-API父工程</description>
 
     <modules>
         <module>mall-api-system</module>

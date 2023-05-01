@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.web.hendler;
+package com.lingyi.mall.common.web.handler;
 
 import com.lingyi.mall.common.enums.BaseResponseEnum;
 import com.lingyi.mall.common.exception.BizException;
@@ -24,7 +24,7 @@ import java.util.Set;
  * @author maweiyan
  * @email 1107201045@qq.com
  * @datetime 2023/05/01 18:52
- * @description
+ * @description 全局异常处理器
  */
 @Slf4j
 @RestControllerAdvice
