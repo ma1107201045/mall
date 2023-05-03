@@ -13,12 +13,12 @@ import lombok.Data;
  */
 @Schema(description = "登录入参")
 @Data
-public class UserDetailsDTO {
+public class UserAuthDTO {
 
     @Schema(description = "用户名", requiredMode = Schema.RequiredMode.REQUIRED, example = "zhangsan")
     @NotBlank(message = "用户名不能为空")
     @Size(min = 6, max = 20, message = "用户名长度只能6到20之间")
-    private String username;
+    private String userName;
 
     @Schema(description = "密码", requiredMode = Schema.RequiredMode.REQUIRED, example = "123456")
     @NotBlank(message = "密码不能为空")
