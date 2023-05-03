@@ -10,8 +10,21 @@
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
     <description>电商项目-API父工程</description>
-
     <modules>
         <module>mall-api-system</module>
     </modules>
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>mall-common-fill</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>mall-common-exception</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+    </dependencies>
 </project>

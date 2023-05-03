@@ -1,11 +1,9 @@
-package com.lingyi.mall.biz.system.entity;
+package com.lingyi.mall.api.system.entity;
 
 import com.lingyi.mall.common.bean.entity.BaseCommonEntity;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -20,7 +18,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString(callSuper = true)
-@RequiredArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
 @Entity
 @Table(name = "mbs_user_role")
 public class MbsUserRole extends BaseCommonEntity implements Serializable {

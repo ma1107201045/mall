@@ -1,18 +1,12 @@
-package com.lingyi.mall.biz.system.entity;
+package com.lingyi.mall.api.system.entity;
 
 import com.lingyi.mall.common.bean.entity.BaseCommonEntity;
-import com.lingyi.mall.common.bean.entity.BaseIsDeleteEntity;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.Objects;
 
 /**
@@ -24,7 +18,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString(callSuper = true)
-@RequiredArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
 @Entity
 @Table(name = "mbs_role_menu")
 public class MbsRoleMenu extends BaseCommonEntity implements Serializable {

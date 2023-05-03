@@ -10,6 +10,12 @@
     </parent>
     <name>${project.artifactId}</name>
     <artifactId>mall-biz-system</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>mall-api-system</artifactId>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>

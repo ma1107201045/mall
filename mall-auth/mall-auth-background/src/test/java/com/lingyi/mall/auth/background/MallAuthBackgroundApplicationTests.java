@@ -1,9 +1,11 @@
 package com.lingyi.mall.auth.background;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 /**
  * @author maweiyan
@@ -14,8 +16,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class MallAuthBackgroundApplicationTests {
 
+
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+
+
     @Test
     void test01() {
-
+        stringRedisTemplate.opsForValue().set("TEST", "马龙非");
     }
 }

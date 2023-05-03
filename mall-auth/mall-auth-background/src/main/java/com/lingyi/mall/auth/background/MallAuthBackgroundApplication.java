@@ -12,9 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
  * @datetime 2023/5/1 17:10
  * @description
  */
-
-@EnableWebSecurity
-@EnableMethodSecurity
 @SpringBootApplication(scanBasePackages = "com.lingyi.mall")
 public class MallAuthBackgroundApplication {
 

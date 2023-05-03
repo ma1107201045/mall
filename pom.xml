@@ -28,6 +28,11 @@
         <dependencies>
             <dependency>
                 <groupId>${project.groupId}</groupId>
+                <artifactId>mall-api-system</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>mall-common-bean</artifactId>
                 <version>${project.version}</version>
             </dependency>

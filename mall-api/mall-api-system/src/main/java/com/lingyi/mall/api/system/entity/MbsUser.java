@@ -1,12 +1,10 @@
-package com.lingyi.mall.biz.system.entity;
+package com.lingyi.mall.api.system.entity;
 
 import com.lingyi.mall.common.bean.entity.BaseIsDeleteEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.DynamicInsert;
 
 import java.io.Serial;
@@ -24,7 +22,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString(callSuper = true)
-@RequiredArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
 @DynamicInsert
 @Entity
 @Table(name = "mbs_user")

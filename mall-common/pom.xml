@@ -25,6 +25,7 @@
         <mybatis-plus-boot-starter.version>3.5.3.1</mybatis-plus-boot-starter.version>
         <mybatis-flex-spring-boot-starter.version>1.2.0</mybatis-flex-spring-boot-starter.version>
         <hutool-all.version>5.8.11</hutool-all.version>
+        <fastjson2.verson>2.0.25</fastjson2.verson>
         <springdoc-openapi-starter-webmvc-ui.version>2.0.4</springdoc-openapi-starter-webmvc-ui.version>
         <springdoc-openapi-starter-webflux-ui.version>2.0.4</springdoc-openapi-starter-webflux-ui.version>
         <knife4j-openapi3-jakarta-spring-boot-starte.version>4.1.0</knife4j-openapi3-jakarta-spring-boot-starte.version>
@@ -45,6 +46,11 @@
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool-all.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson2.verson}</version>
             </dependency>
             <dependency>
                 <groupId>org.springdoc</groupId>

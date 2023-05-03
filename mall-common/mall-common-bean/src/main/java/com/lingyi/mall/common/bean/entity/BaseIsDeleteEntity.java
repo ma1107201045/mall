@@ -3,6 +3,7 @@ package com.lingyi.mall.common.bean.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.Hibernate;
 
 import java.io.Serial;
@@ -17,7 +18,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString(callSuper = true)
-@RequiredArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
 @MappedSuperclass
 public abstract class BaseIsDeleteEntity extends BaseCommonEntity {
 

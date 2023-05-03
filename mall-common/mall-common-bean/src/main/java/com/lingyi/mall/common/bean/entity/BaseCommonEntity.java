@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.Hibernate;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -25,7 +26,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString(callSuper = true)
-@RequiredArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseCommonEntity extends BaseIdEntity {

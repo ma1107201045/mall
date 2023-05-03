@@ -1,11 +1,9 @@
-package com.lingyi.mall.biz.system.entity;
+package com.lingyi.mall.api.system.entity;
 
 import com.lingyi.mall.common.bean.entity.BaseIsDeleteEntity;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.DynamicInsert;
 
 import java.io.Serial;
@@ -22,12 +20,12 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString(callSuper = true)
-@RequiredArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
 @DynamicInsert
 @Entity
 @Table(name = "mbs_menu")
 public class MbsMenu extends BaseIsDeleteEntity implements Serializable {
-
 
     @Serial
     private static final long serialVersionUID = -6881064204751732279L;

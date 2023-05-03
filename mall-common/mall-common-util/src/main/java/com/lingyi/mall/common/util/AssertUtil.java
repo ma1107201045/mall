@@ -31,10 +31,20 @@ public final class AssertUtil {
         isTrue(ObjUtil.isNotNull(object), failEnum);
     }
 
+    public static void notNull(Object object, RuntimeException exception) {
+        isTrue(ObjUtil.isNotNull(object), exception);
+    }
+
     public static void isTrue(boolean flag, BaseFailEnum failEnum) {
         if (!flag) {
             Object[] objects = getEnumMethodReturnValues(failEnum);
             throw new BizException((Integer) objects[0], (String) objects[1]);
+        }
+    }
+
+    public static void isTrue(boolean flag, RuntimeException exception) {
+        if (!flag) {
+            throw exception;
         }
     }
 

@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -21,7 +22,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
 @MappedSuperclass
 public abstract class BaseIdEntity {
 
