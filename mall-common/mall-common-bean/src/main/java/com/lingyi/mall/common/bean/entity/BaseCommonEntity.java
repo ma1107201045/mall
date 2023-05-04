@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.*;
+import lombok.experimental.FieldNameConstants;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.Hibernate;
 import org.springframework.data.annotation.CreatedBy;
@@ -28,6 +29,7 @@ import java.util.Objects;
 @ToString(callSuper = true)
 @NoArgsConstructor
 @SuperBuilder
+@FieldNameConstants
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseCommonEntity extends BaseIdEntity {

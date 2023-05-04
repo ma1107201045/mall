@@ -13,7 +13,6 @@
         <module>mall-biz</module>
         <module>mall-common</module>
         <module>mall-gateway</module>
-        <module>mall-common/mall-common-redis</module>
     </modules>
     <properties>
         <revision>0.0.1</revision>

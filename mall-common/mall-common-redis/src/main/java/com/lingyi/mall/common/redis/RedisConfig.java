@@ -22,6 +22,18 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @Configuration(proxyBeanMethods = false)
 public class RedisConfig {
 
+    /**
+     * Jackson2JsonRedisSerialize
+     *
+     * @return RedisSerializer
+     */
+    @Bean
+    public RedisSerializer<Object> redisSerializer() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        return new Jackson2JsonRedisSerializer<>(objectMapper, Object.class);
+    }
+
 
     /**
      * redis序列化配置
@@ -30,37 +42,35 @@ public class RedisConfig {
      * @return RedisTemplate
      */
     @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory, RedisSerializer<Object> redisSerializer) {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         //设置连接工厂
         redisTemplate.setConnectionFactory(redisConnectionFactory);
-        // 使用Jackson2JsonRedisSerialize 替换默认序列化
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(objectMapper, Object.class);
-
         // 设置value的序列化规则和 key的序列化规则
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
-        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
+        redisTemplate.setValueSerializer(redisSerializer);
+        redisTemplate.setHashValueSerializer(redisSerializer);
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
     }
 
+    /**
+     * stringRedisTemplate序列化配置
+     *
+     * @param redisConnectionFactory jedis连接工厂
+     * @return RedisTemplate
+     */
     @Bean
-    public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
+    public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory redisConnectionFactory, RedisSerializer<Object> redisSerializer) {
         StringRedisTemplate stringRedisTemplate = new StringRedisTemplate();
         stringRedisTemplate.setConnectionFactory(redisConnectionFactory);
         // 使用Jackson2JsonRedisSerialize 替换默认序列化
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(objectMapper, Object.class);
         // 设置value的序列化规则和 key的序列化规则
         stringRedisTemplate.setKeySerializer(new StringRedisSerializer());
         stringRedisTemplate.setHashKeySerializer(new StringRedisSerializer());
-        stringRedisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
-        stringRedisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
+        stringRedisTemplate.setValueSerializer(redisSerializer);
+        stringRedisTemplate.setHashValueSerializer(redisSerializer);
         stringRedisTemplate.afterPropertiesSet();
         return stringRedisTemplate;
     }

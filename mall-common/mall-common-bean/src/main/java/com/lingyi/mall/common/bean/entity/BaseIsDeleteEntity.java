@@ -3,6 +3,7 @@ package com.lingyi.mall.common.bean.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import lombok.*;
+import lombok.experimental.FieldNameConstants;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.Hibernate;
 
@@ -20,6 +21,7 @@ import java.util.Objects;
 @ToString(callSuper = true)
 @NoArgsConstructor
 @SuperBuilder
+@FieldNameConstants
 @MappedSuperclass
 public abstract class BaseIsDeleteEntity extends BaseCommonEntity {
 

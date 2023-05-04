@@ -2,7 +2,7 @@ package com.lingyi.mall.auth.background.service.Impl;
 
 import cn.hutool.core.collection.CollUtil;
 import com.lingyi.mall.api.system.consumer.MbsUserFeignConsumer;
-import com.lingyi.mall.api.system.vo.MbsUserAndPermissionsVO;
+import com.lingyi.mall.api.system.vo.MbsUserVO;
 import com.lingyi.mall.auth.background.enums.MabFailEnum;
 import com.lingyi.mall.common.util.AssertUtil;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +30,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        MbsUserAndPermissionsVO vo = mbsUserFeignConsumer.getUserAndPermissionByUserName(username);
+        MbsUserVO vo = mbsUserFeignConsumer.getByUserName(username);
         AssertUtil.notNull(vo, new UsernameNotFoundException(MabFailEnum.USER_NAME_NOT_FOUND_ERROR.getMsg()));
         return new User(username, vo.getPassword(), CollUtil.newArrayList(new SimpleGrantedAuthority("admin")));
     }

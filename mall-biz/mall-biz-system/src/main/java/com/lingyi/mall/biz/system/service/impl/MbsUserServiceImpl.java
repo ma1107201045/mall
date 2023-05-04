@@ -1,11 +1,18 @@
 package com.lingyi.mall.biz.system.service.impl;
 
-import com.lingyi.mall.api.system.vo.MbsUserAndPermissionsVO;
+import com.lingyi.mall.api.system.entity.MbsRole;
+import com.lingyi.mall.api.system.entity.MbsUser;
+import com.lingyi.mall.api.system.vo.MbsUserVO;
 import com.lingyi.mall.biz.system.repository.MbsRoleRepository;
 import com.lingyi.mall.biz.system.repository.MbsUserRepository;
 import com.lingyi.mall.biz.system.service.MbsUserService;
+import com.lingyi.mall.common.bean.dto.BaseBackgroundPageDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.*;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @Author: maweiyan
@@ -21,10 +28,35 @@ public class MbsUserServiceImpl implements MbsUserService {
 
     private final MbsRoleRepository mbsRoleRepository;
 
+    @Override
+    public void add(MbsUser mbsUser) {
+        mbsUserRepository.save(mbsUser);
+    }
 
     @Override
-    public MbsUserAndPermissionsVO getUserAndPermissionsByUserName(String userName) {
+    public void removeByIds(Iterable<Long> ids) {
+        mbsUserRepository.deleteAllById(ids);
+    }
 
-        return null;
+    @Override
+    public void editById(MbsUser mbsUser) {
+        mbsUserRepository.save(mbsUser);
+    }
+
+    @Override
+    public MbsUser findById(Long id) {
+        return mbsUserRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Page<MbsUser> findByPageAndCondition(Pageable pageable, MbsUser mbsUser) {
+        return mbsUserRepository.findAll(Example.of(mbsUser), pageable);
+    }
+
+    @Override
+    public MbsUserVO getByUserName(String userName) {
+        MbsUser mbsUser = mbsUserRepository.findOne(Example.of(MbsUser.builder().userName(userName).build())).orElseThrow();
+        List<MbsRole> mbsRoles = mbsRoleRepository.findAllById(mbsUser.getMbsRoles().stream().map(MbsRole::getId).toList());
+        return MbsUserVO.of(mbsUser, mbsRoles);
     }
 }

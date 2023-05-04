@@ -16,6 +16,7 @@
         <module>mall-common-enums</module>
         <module>mall-common-exception</module>
         <module>mall-common-fill</module>
+        <module>mall-common-redis</module>
         <module>mall-common-security</module>
         <module>mall-common-swagger</module>
         <module>mall-common-util</module>

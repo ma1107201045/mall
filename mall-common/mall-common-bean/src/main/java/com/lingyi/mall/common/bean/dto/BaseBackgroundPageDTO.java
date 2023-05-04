@@ -3,6 +3,7 @@ package com.lingyi.mall.common.bean.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -13,6 +14,7 @@ import java.io.Serializable;
  * @datetime 2023/4/30 13:52
  * @description
  */
+@Data
 public class BaseBackgroundPageDTO implements Serializable {
 
     @Serial

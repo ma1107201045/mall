@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import lombok.*;
+import lombok.experimental.FieldNameConstants;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.GenericGenerator;
@@ -24,6 +25,7 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @SuperBuilder
+@FieldNameConstants
 @MappedSuperclass
 public abstract class BaseIdEntity {
 
@@ -34,7 +36,7 @@ public abstract class BaseIdEntity {
     @GeneratedValue(generator = "SnowflakeIdentifierGenerator")
     @GenericGenerator(name = "SnowflakeIdentifierGenerator", strategy = "com.lingyi.mall.common.fill.jpa.generator.SnowflakeIdentifierGenerator")
     @Column(name = "id", nullable = false, length = 20)
-    protected Long id;
+    private Long id;
 
     @Override
     public boolean equals(Object o) {
