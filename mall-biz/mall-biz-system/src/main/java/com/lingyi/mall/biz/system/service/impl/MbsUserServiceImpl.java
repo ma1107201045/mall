@@ -6,13 +6,14 @@ import com.lingyi.mall.api.system.vo.MbsUserVO;
 import com.lingyi.mall.biz.system.repository.MbsRoleRepository;
 import com.lingyi.mall.biz.system.repository.MbsUserRepository;
 import com.lingyi.mall.biz.system.service.MbsUserService;
-import com.lingyi.mall.common.bean.dto.BaseBackgroundPageDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.*;
-import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Author: maweiyan

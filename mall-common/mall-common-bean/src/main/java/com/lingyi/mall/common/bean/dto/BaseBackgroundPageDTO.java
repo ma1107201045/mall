@@ -14,11 +14,13 @@ import java.io.Serializable;
  * @datetime 2023/4/30 13:52
  * @description
  */
+@Schema(description = "后台分页信息")
 @Data
 public class BaseBackgroundPageDTO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -7930591841165119678L;
+
     @Schema(description = "页码", requiredMode = Schema.RequiredMode.NOT_REQUIRED, defaultValue = "1", example = "1")
     @Min(value = 1L, message = "页码最小值有误")
     @Max(value = Long.MAX_VALUE, message = "页码最大值有误")

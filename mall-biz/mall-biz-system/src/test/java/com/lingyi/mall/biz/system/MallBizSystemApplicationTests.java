@@ -1,9 +1,9 @@
 package com.lingyi.mall.biz.system;
 
 import cn.hutool.core.util.RandomUtil;
-import com.lingyi.mall.biz.system.entity.MbsRole;
-import com.lingyi.mall.biz.system.entity.MbsUser;
-import com.lingyi.mall.biz.system.entity.MbsUserRole;
+import com.lingyi.mall.api.system.entity.MbsRole;
+import com.lingyi.mall.api.system.entity.MbsUser;
+import com.lingyi.mall.api.system.entity.MbsUserRole;
 import com.lingyi.mall.biz.system.repository.MbsRoleRepository;
 import com.lingyi.mall.biz.system.repository.MbsUserRepository;
 import com.lingyi.mall.biz.system.repository.MbsUserRoleRepository;

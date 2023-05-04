@@ -1,13 +1,13 @@
 package com.lingyi.mall.biz.system.repository;
 
-import com.lingyi.mall.biz.system.entity.MbsMenu;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import com.lingyi.mall.api.system.entity.MbsMenu;
+import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
+
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
  * @datetime 2023/4/30 22:43
  * @description
  */
-public interface MbsMenuRepository extends JpaRepository<MbsMenu, Long>, JpaSpecificationExecutor<MbsMenu> {
+public interface MbsMenuRepository extends JpaRepositoryImplementation<MbsMenu, Long> {
 }

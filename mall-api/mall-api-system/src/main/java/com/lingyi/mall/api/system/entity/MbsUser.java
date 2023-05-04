@@ -4,6 +4,7 @@ import com.lingyi.mall.common.bean.entity.BaseIsDeleteEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import lombok.experimental.FieldNameConstants;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.DynamicInsert;
 
@@ -24,6 +25,7 @@ import java.util.Objects;
 @ToString(callSuper = true)
 @NoArgsConstructor
 @SuperBuilder
+@FieldNameConstants
 @DynamicInsert
 @Entity
 @Table(name = "mbs_user")

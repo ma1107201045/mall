@@ -3,6 +3,7 @@ package com.lingyi.mall.common.bean.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -13,6 +14,8 @@ import java.io.Serializable;
  * @datetime 2023/4/30 13:55
  * @description
  */
+@Schema(description = "前台分页信息")
+@Data
 public class BaseForegroundPageDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = -1740204284407483348L;
