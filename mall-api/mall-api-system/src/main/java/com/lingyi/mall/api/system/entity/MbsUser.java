@@ -7,6 +7,7 @@ import lombok.*;
 import lombok.experimental.FieldNameConstants;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -23,10 +24,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString(callSuper = true)
-@NoArgsConstructor
-@SuperBuilder
-@FieldNameConstants
 @DynamicInsert
+@DynamicUpdate
 @Entity
 @Table(name = "mbs_user")
 public class MbsUser extends BaseIsDeleteEntity implements Serializable {

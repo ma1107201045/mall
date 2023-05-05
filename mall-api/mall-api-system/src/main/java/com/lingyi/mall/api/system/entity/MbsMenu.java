@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -20,9 +21,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString(callSuper = true)
-@NoArgsConstructor
-@SuperBuilder
 @DynamicInsert
+@DynamicUpdate
 @Entity
 @Table(name = "mbs_menu")
 public class MbsMenu extends BaseIsDeleteEntity implements Serializable {

@@ -4,6 +4,8 @@ import com.lingyi.mall.common.bean.entity.BaseCommonEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -18,8 +20,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString(callSuper = true)
-@NoArgsConstructor
-@SuperBuilder
+@DynamicInsert
+@DynamicUpdate
 @Entity
 @Table(name = "mbs_user_role")
 public class MbsUserRole extends BaseCommonEntity implements Serializable {

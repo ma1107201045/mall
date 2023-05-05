@@ -1,6 +1,7 @@
 package com.lingyi.mall.biz.system.service;
 
 import com.lingyi.mall.api.system.entity.MbsUser;
+import com.lingyi.mall.api.system.enums.MbsMenuType;
 import com.lingyi.mall.api.system.vo.MbsUserVO;
 import com.lingyi.mall.common.util.BaseService;
 
@@ -14,10 +15,11 @@ public interface MbsUserService extends BaseService<MbsUser, Long> {
 
 
     /**
-     * 按照用户名称查询用户信息以及权限
+     * 按照用户名称和按钮类型查询用户信息以及菜单信息
      *
-     * @param userName 用户名称
+     * @param userName    用户名称
+     * @param mbsMenuType 菜单类型
      * @return 用户信息
      */
-    MbsUserVO getByUserName(String userName);
+    MbsUserVO findOneByUserNameAndMenuType(String userName, MbsMenuType mbsMenuType);
 }

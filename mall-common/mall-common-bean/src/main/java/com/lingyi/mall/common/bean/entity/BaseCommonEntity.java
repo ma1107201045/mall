@@ -27,9 +27,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString(callSuper = true)
-@NoArgsConstructor
-@SuperBuilder
-@FieldNameConstants
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseCommonEntity extends BaseIdEntity {

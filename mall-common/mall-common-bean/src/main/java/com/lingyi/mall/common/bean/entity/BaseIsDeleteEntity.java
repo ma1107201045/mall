@@ -19,9 +19,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString(callSuper = true)
-@NoArgsConstructor
-@SuperBuilder
-@FieldNameConstants
 @MappedSuperclass
 public abstract class BaseIsDeleteEntity extends BaseCommonEntity {
 

@@ -1,8 +1,7 @@
 package com.lingyi.mall.common.util;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.lingyi.mall.common.bean.entity.BaseIdEntity;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 /**
  * @author maweiyan
@@ -20,7 +19,7 @@ public interface BaseService<T extends BaseIdEntity, ID> {
 
     T findById(ID id);
 
-    Page<T> findByPageAndCondition(Pageable pageable, T t);
+    IPage<T> findListPageAndCondition(IPage<T> iPage, T t);
 
 
 }
