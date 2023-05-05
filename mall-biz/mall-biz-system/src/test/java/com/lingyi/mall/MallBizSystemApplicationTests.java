@@ -1,9 +1,10 @@
-package com.lingyi.mall.biz.system;
+package com.lingyi.mall;
 
 import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.api.system.entity.MbsRole;
 import com.lingyi.mall.api.system.entity.MbsUser;
 import com.lingyi.mall.api.system.entity.MbsUserRole;
+import com.lingyi.mall.biz.system.mapper.MbsUserMapper;
 import com.lingyi.mall.biz.system.repository.MbsRoleRepository;
 import com.lingyi.mall.biz.system.repository.MbsUserRepository;
 import com.lingyi.mall.biz.system.repository.MbsUserRoleRepository;
@@ -72,6 +73,13 @@ public class MallBizSystemApplicationTests {
         mbsUserRole.setMbsRole(mbsRole);
         mbsUserRole = mbsUserRoleRepository.save(mbsUserRole);
         System.out.println(mbsUserRole);
+    }
 
+    @Autowired
+    private MbsUserMapper mbsUserMapper;
+
+    @Test
+    public void testUserOfMybatis() {
+        System.out.println(mbsUserMapper);
     }
 }

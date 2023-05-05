@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @DateTime: 2023/5/3 19:10
  * @Description:
  */
-@Tag(name = "用户", description = "用户")
+@Tag(name = "系统管理-用户", description = "系统管理-用户")
 @RequestMapping("/mbs/user")
 @RestController
 @RequiredArgsConstructor
