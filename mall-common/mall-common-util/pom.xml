@@ -19,7 +19,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-exception</artifactId>
+            <artifactId>mall-common-enums</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>

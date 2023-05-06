@@ -20,7 +20,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-exception</artifactId>
+            <artifactId>mall-common-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

@@ -2,7 +2,6 @@ package com.lingyi.mall.common.util;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.lingyi.mall.common.bean.entity.BaseIdEntity;
-import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * @author maweiyan

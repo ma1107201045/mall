@@ -21,6 +21,6 @@ public interface MbsUserFeign {
      * @param userName 用户名称
      * @return 用户信息
      */
-    @GetMapping("/mbs/user")
+    @GetMapping("/provider/mbs/users")
     ServerResponse<MbsUserVO> getUserAndPermissionsByUserName(String userName);
 }

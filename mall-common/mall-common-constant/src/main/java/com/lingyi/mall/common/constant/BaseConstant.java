@@ -7,7 +7,7 @@ package com.lingyi.mall.common.constant;
  * @description
  */
 public class BaseConstant {
-    public static final String REQUEST_ID = "requestId";
+    public static final String TRACK_ID = "trackId";
     public static final String REQUEST_ID_PREFIX = "CONSUMER_";
     public static final long DATACENTER_ID = 0L;
     public static final long WORKER_ID = 0L;
@@ -15,7 +15,7 @@ public class BaseConstant {
     public static final String CREATE_DATE_TIME = "createDateTime";
     public static final String MODIFY_DATE_TIME = "modifyDateTime";
     public static final String CODE_GET_METHOD_NAME = "getCode";
-    public static final String MSG_GET_METHOD_NAME = "getMsg";
+    public static final String MESSAGE_GET_METHOD_NAME = "getMessage";
 
     private BaseConstant() {
 

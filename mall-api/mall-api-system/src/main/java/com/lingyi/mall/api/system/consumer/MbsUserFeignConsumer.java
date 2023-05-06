@@ -3,8 +3,9 @@ package com.lingyi.mall.api.system.consumer;
 import com.alibaba.fastjson2.JSON;
 import com.lingyi.mall.api.system.MbsUserFeign;
 import com.lingyi.mall.api.system.vo.MbsUserVO;
-import com.lingyi.mall.common.exception.OpenFeignException;
+
 import com.lingyi.mall.common.util.ServerResponse;
+import com.lingyi.mall.common.util.exception.OpenFeignException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,6 @@ public class MbsUserFeignConsumer {
         if (response.getIsSuccess()) {
             return JSON.to(MbsUserVO.class, response.getData());
         }
-        throw new OpenFeignException(response.getCode(), response.getMsg());
+        throw new OpenFeignException(response.getBizCode(), response.getMessage());
     }
 }

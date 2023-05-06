@@ -1,6 +1,7 @@
 package com.lingyi.mall.api.system.entity;
 
 import com.lingyi.mall.common.bean.entity.BaseIsDeleteEntity;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -21,6 +22,7 @@ import java.util.Objects;
  * @datetime 2023/4/30 22:43
  * @description 系统管理-用户表
  */
+@Schema(description = "用户")
 @Getter
 @Setter
 @ToString(callSuper = true)
@@ -32,83 +34,70 @@ public class MbsUser extends BaseIsDeleteEntity implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 5771438753938667975L;
-    /**
-     * 用户名称
-     */
+
+    @Schema(description = "用户名称", requiredMode = Schema.RequiredMode.REQUIRED)
     @Column(name = "user_name", nullable = false, length = 20)
     private String userName;
 
-    /**
-     * 真实姓名
-     */
+
+    @Schema(description = "用户名称")
     @Column(name = "real_name", length = 20)
     private String realName;
 
-    /**
-     * 昵称
-     */
+
+    @Schema(description = "昵称")
     @Column(name = "nickname", length = 20)
     private String nickname;
 
-    /**
-     * 性别 1 男 2 女
-     */
+
+    @Schema(description = "性别 1 男 2 女")
     @Column(name = "sex", length = 4)
     private Integer sex;
 
-    /**
-     * 密码
-     */
+
+    @Schema(description = "密码", requiredMode = Schema.RequiredMode.REQUIRED)
     @Column(name = "password", nullable = false, length = 200)
     private String password;
 
-    /**
-     * 头像
-     */
+
+    @Schema(description = "头像")
     @Column(name = "head_portrait", length = 100)
     private String headPortrait;
 
-    /**
-     * 邮箱
-     */
+
+    @Schema(description = "邮箱")
     @Size(max = 20)
     @Column(name = "email", length = 20)
     private String email;
 
-    /**
-     * 手机号
-     */
+
+    @Schema(description = "手机号")
     @Column(name = "phone_number", length = 11)
     private String phoneNumber;
 
-    /**
-     * 最后登录IP
-     */
+
+    @Schema(description = "最后登录IP", hidden = true)
     @Size(max = 30)
     @Column(name = "last_login_ip", length = 30)
     private String lastLoginIp;
 
-    /**
-     * 最后登录时间
-     */
+
+    @Schema(description = "最后登录时间", hidden = true)
     @Column(name = "last_login_date_time")
     private LocalDateTime lastLoginDateTime;
 
-    /**
-     * 是否启用 1 是 0 否
-     */
+
+    @Schema(description = "是否启用 1 是 0 否", requiredMode = Schema.RequiredMode.REQUIRED)
     @Column(name = "is_enable", nullable = false, length = 4)
     private Integer isEnable;
 
-    /**
-     * 备注
-     */
+
+    @Schema(description = "备注")
     @Column(name = "remark")
     private String remark;
 
-    /**
-     * 角色集
-     */
+
+    @Schema(description = "角色集", hidden = true)
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "mbsUsers")
     @ToString.Exclude
     private List<MbsRole> mbsRoles;

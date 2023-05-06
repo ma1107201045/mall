@@ -1,12 +1,12 @@
 package com.lingyi.mall.common.web.handler;
 
-import com.lingyi.mall.common.enums.BaseResponseEnum;
-import com.lingyi.mall.common.exception.BizException;
-import com.lingyi.mall.common.exception.OpenFeignException;
 import com.lingyi.mall.common.util.ServerResponse;
+import com.lingyi.mall.common.util.exception.BizException;
+import com.lingyi.mall.common.util.exception.OpenFeignException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -31,34 +31,38 @@ import java.util.Set;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    @ResponseStatus
+    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
     public ServerResponse<String> httpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e) {
-        log.error("HttpRequestMethodNotSupportedException：{}", e.getMessage(), e);
-        return ServerResponse.fail(BaseResponseEnum.REQUEST_METHOD_ERROR);
+        log.error("HttpRequestMethodNotSupportedException：", e);
+        return ServerResponse.fail(HttpStatus.METHOD_NOT_ALLOWED.value(), HttpStatus.METHOD_NOT_ALLOWED.value(),
+                HttpStatus.METHOD_NOT_ALLOWED.getReasonPhrase());
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ServerResponse<Void> paramsEx(ConstraintViolationException e) {
-        log.error("ConstraintViolationException：{}", e.getMessage());
+        log.error("ConstraintViolationException：", e);
         Set<ConstraintViolation<?>> constraintViolations = e.getConstraintViolations();
-        return ServerResponse.fail(BaseResponseEnum.PARAMETER_ERROR.getCode(), constraintViolations.stream()
+        return ServerResponse.fail(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.value(), constraintViolations.stream()
                 .map(ConstraintViolation::getMessage)
                 .toList().toString());
     }
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ServerResponse<Void> paramsEx(MethodArgumentNotValidException e) {
-        log.error("MethodArgumentNotValidException：{}", e.getMessage());
+        log.error("MethodArgumentNotValidException：", e);
         List<ObjectError> objectErrors = e.getBindingResult().getAllErrors();
-        return ServerResponse.fail(BaseResponseEnum.PARAMETER_ERROR.getCode(), objectErrors.stream()
+        return ServerResponse.fail(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.value(), objectErrors.stream()
                 .map(ObjectError::getDefaultMessage)
                 .toList().toString());
     }
 
     @ExceptionHandler(value = MissingPathVariableException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ServerResponse<Void> missHeaderEx(MissingPathVariableException e) {
-        log.error("MissingPathVariableException：{}", e.getMessage(), e);
-        return ServerResponse.fail(BaseResponseEnum.PARAMETER_ERROR.getCode(), "请求路径参数" + e.getVariableName() + "不能为空");
+        log.error("MissingPathVariableException：", e);
+        return ServerResponse.fail(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.value(), "请求路径参数" + e.getVariableName() + "不能为空");
     }
 
 
@@ -69,46 +73,56 @@ public class GlobalExceptionHandler {
 //    }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ServerResponse<Void> missingServletRequestParameterException(MissingServletRequestParameterException e) {
-        log.error("MissingServletRequestParameterException：{}", e.getMessage(), e);
-        return ServerResponse.fail(BaseResponseEnum.PARAMETER_ERROR.getCode(), "请求体参数" + e.getParameterName() + "不能为空");
+        log.error("MissingServletRequestParameterException：", e);
+        return ServerResponse.fail(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.value(), "请求体参数" + e.getParameterName() + "不能为空");
     }
 
     @ExceptionHandler(SocketTimeoutException.class)
+    @ResponseStatus(HttpStatus.REQUEST_TIMEOUT)
     public ServerResponse<Void> socketTimeoutException(SocketTimeoutException e) {
-        log.error("SocketTimeoutException：{}", e.getMessage(), e);
-        return ServerResponse.fail(BaseResponseEnum.SERVER_CONNECT_TIMEOUT);
+        log.error("SocketTimeoutException：", e);
+        return ServerResponse.fail(HttpStatus.REQUEST_TIMEOUT.value(), HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase());
     }
 
 
     @ExceptionHandler(OpenFeignException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ServerResponse<Void> openFeignException(OpenFeignException e) {
-        log.error("OpenFeignException：{}", e.getMessage(), e);
-        return ServerResponse.fail(e.getCode(), e.getMessage());
+        log.error("OpenFeignException：", e);
+        return ServerResponse.fail(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getBizCode(), e.getMessage());
     }
 
     @ExceptionHandler(BizException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ServerResponse<Void> bizException(BizException e) {
-        log.error("BizException：{}", e.getMessage(), e);
-        return ServerResponse.fail(e.getCode(), e.getMessage());
+        log.error("BizException：", e);
+        return ServerResponse.fail(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getBizCode(), e.getMessage());
     }
 
     @ExceptionHandler(RuntimeException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ServerResponse<Void> runtimeException(RuntimeException re) {
-        log.error("RuntimeException：{}", re.getMessage(), re);
-        return ServerResponse.fail(BaseResponseEnum.SERVER_ERROR);
+        log.error("RuntimeException：", re);
+        return ServerResponse.fail(HttpStatus.INTERNAL_SERVER_ERROR.value(), HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
     }
 
     @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ServerResponse<Void> exception(Exception e) {
-        log.error("Exception：{}", e.getMessage(), e);
-        return ServerResponse.fail(BaseResponseEnum.UNKNOWN_ERROR);
+        log.error("Exception：", e);
+        return ServerResponse.fail(HttpStatus.INTERNAL_SERVER_ERROR.value(), HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
     }
 
     @ExceptionHandler(Throwable.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ServerResponse<Void> throwable(Throwable t) {
-        log.error("Throwable：{}", t.getMessage(), t);
-        return ServerResponse.fail(BaseResponseEnum.UNKNOWN_ERROR);
+        log.error("Throwable", t);
+        return ServerResponse.fail(HttpStatus.INTERNAL_SERVER_ERROR.value(), HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
     }
 
 }

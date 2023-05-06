@@ -1,5 +1,6 @@
 package com.lingyi.mall.common.bean.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
@@ -31,27 +32,26 @@ import java.util.Objects;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseCommonEntity extends BaseIdEntity {
 
-    /**
-     * 创建人
-     */
+
+    @Schema(description = "创建人", hidden = true)
     @CreatedBy
-    @Column(name = "create_by", nullable = false, length = 20)
+    @Column(name = "create_by", nullable = false, length = 20, updatable = false)
     protected String createBy;
-    /**
-     * 创建时间
-     */
+
+
+    @Schema(description = "创建时间", hidden = true)
     @CreatedDate
-    @Column(name = "create_date_time", nullable = false)
+    @Column(name = "create_date_time", nullable = false, updatable = false)
     protected LocalDateTime createDateTime;
-    /**
-     * 最后修改人
-     */
+
+
+    @Schema(description = "最后修改人", hidden = true)
     @LastModifiedBy
     @Column(name = "last_modify_by", nullable = false, length = 20)
     protected String lastModifyBy;
-    /**
-     * 最后修改时间
-     */
+
+
+    @Schema(description = "最后修改时间", hidden = true)
     @LastModifiedDate
     @Column(name = "last_modify_date_time", nullable = false)
     protected LocalDateTime lastModifyDateTime;

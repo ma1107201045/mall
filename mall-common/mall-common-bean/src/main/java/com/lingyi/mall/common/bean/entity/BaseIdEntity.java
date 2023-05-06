@@ -1,5 +1,6 @@
 package com.lingyi.mall.common.bean.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -29,9 +30,8 @@ import java.util.Objects;
 @MappedSuperclass
 public abstract class BaseIdEntity {
 
-    /**
-     * 主键id
-     */
+
+    @Schema(description = "主键id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     @Id
     @GeneratedValue(generator = "SnowflakeIdentifierGenerator")
     @GenericGenerator(name = "SnowflakeIdentifierGenerator", strategy = "com.lingyi.mall.common.fill.jpa.generator.SnowflakeIdentifierGenerator")

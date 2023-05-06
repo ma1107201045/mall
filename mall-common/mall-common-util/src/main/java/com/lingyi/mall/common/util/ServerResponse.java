@@ -1,10 +1,10 @@
 package com.lingyi.mall.common.util;
 
-import com.lingyi.mall.common.enums.BaseResponseEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.http.HttpStatus;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -24,36 +24,37 @@ public class ServerResponse<T> implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 8505044737530270464L;
-    @Schema(description = "是否成功标志（tue 成功 false 失败）", example = "true")
-    private Boolean isSuccess;
 
     @Schema(description = "状态码", example = "200")
     private Integer code;
 
-    @Schema(description = "msg", example = "成功")
-    private String msg;
+    @Schema(description = "成功标志（tue 成功 false 失败）", example = "true")
+    private Boolean isSuccess;
 
-    @Schema(description = "数据", example = "{} or []")
+    @Schema(description = "业务码", example = "1001")
+    private Integer bizCode;
+
+    @Schema(description = "信息", example = "成功")
+    private String message;
+
+    @Schema(description = "数据", example = "对象 or 数组")
     private T data;
 
 
     public static <T> ServerResponse<T> success(T data) {
-        return new ServerResponse<>(true, BaseResponseEnum.SUCCESS.getCode(), BaseResponseEnum.SUCCESS.getMsg(), data);
+        return new ServerResponse<>(HttpStatus.OK.value(), true, HttpStatus.OK.value(), HttpStatus.OK.getReasonPhrase(), data);
     }
 
     public static <T> ServerResponse<T> success() {
         return success(null);
     }
 
-    public static <T> ServerResponse<T> fail(Integer code, String msg) {
-        return new ServerResponse<>(false, code, msg, null);
-    }
-
-    public static <T> ServerResponse<T> fail(BaseResponseEnum response) {
-        return fail(response.getCode(), response.getMsg());
+    public static <T> ServerResponse<T> fail(Integer code, Integer bizCode, String message) {
+        return new ServerResponse<>(code, false, bizCode, message, null);
     }
 
     public static <T> ServerResponse<T> fail() {
-        return fail(BaseResponseEnum.FAIL);
+        return new ServerResponse<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), false, HttpStatus.INTERNAL_SERVER_ERROR.value(), HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), null);
     }
+
 }

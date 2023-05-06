@@ -1,5 +1,6 @@
 package com.lingyi.mall.common.bean.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import lombok.*;
@@ -22,9 +23,8 @@ import java.util.Objects;
 @MappedSuperclass
 public abstract class BaseIsDeleteEntity extends BaseCommonEntity {
 
-    /**
-     * 是否删除 1 是 0 否
-     */
+
+    @Schema(description = "是否删除 1 是 0 否", hidden = true)
     @Column(name = "is_delete", length = 4)
     protected Integer isDelete;
 

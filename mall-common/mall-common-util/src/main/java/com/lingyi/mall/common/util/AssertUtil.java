@@ -6,9 +6,9 @@ import cn.hutool.core.util.ObjUtil;
 import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.common.constant.BaseConstant;
 import com.lingyi.mall.common.enums.BaseFailEnum;
-import com.lingyi.mall.common.enums.BaseResponseEnum;
-import com.lingyi.mall.common.exception.BizException;
+import com.lingyi.mall.common.util.exception.BizException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 
 /**
  * @author maweiyan
@@ -105,15 +105,15 @@ public final class AssertUtil {
         try {
             Class<?> clazz = failEnum.getClass();
             Object code = clazz.getMethod(BaseConstant.CODE_GET_METHOD_NAME).invoke(failEnum);
-            Object msg = clazz.getMethod(BaseConstant.MSG_GET_METHOD_NAME).invoke(failEnum);
-            if (code instanceof Integer && msg instanceof String) {
+            Object message = clazz.getMethod(BaseConstant.MESSAGE_GET_METHOD_NAME).invoke(failEnum);
+            if (code instanceof Integer && message instanceof String) {
                 objects[0] = code;
-                objects[1] = msg;
+                objects[1] = message;
             }
         } catch (Exception e) {
             log.error("未知异常", e);
-            objects[0] = BaseResponseEnum.FAIL.getCode();
-            objects[1] = BaseResponseEnum.FAIL.getMsg();
+            objects[0] = HttpStatus.INTERNAL_SERVER_ERROR.value();
+            objects[1] = HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase();
         }
         return objects;
     }
