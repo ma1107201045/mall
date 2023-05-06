@@ -51,7 +51,7 @@ public final class SnowFlakeIdUtil {
         if (!NetUtil.isInnerIP(localhostStr)) {
             return BaseConstant.WORKER_ID;
         }
-        return Arrays.stream(localhostStr.split(BaseConstant.DELIMITER)).mapToLong(Long::parseLong).sum();
+        return Arrays.stream(localhostStr.split(BaseConstant.POINT_DELIMITER)).mapToLong(Long::parseLong).sum();
     }
 
 

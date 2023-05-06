@@ -5,6 +5,7 @@ import com.lingyi.mall.api.system.vo.MbsUserVO;
 import com.lingyi.mall.common.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @Author: maweiyan
@@ -21,6 +22,6 @@ public interface MbsUserFeign {
      * @param userName 用户名称
      * @return 用户信息
      */
-    @GetMapping("/provider/mbs/users")
-    ServerResponse<MbsUserVO> getUserAndPermissionsByUserName(String userName);
+    @GetMapping("/mbs/users/provider")
+    ServerResponse<MbsUserVO> getByUserName(@RequestParam(name = "userName") String userName);
 }

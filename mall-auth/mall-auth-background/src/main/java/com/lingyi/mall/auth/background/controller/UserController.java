@@ -33,8 +33,8 @@ public class UserController {
 
     @Operation(summary = "登录", description = "登录")
     @PostMapping("/login")
-    public ServerResponse<Void> login(@Validated @RequestBody UserAuthDTO userDetailsDTO) throws ServletException, IOException {
-        userService.login(userDetailsDTO);
+    public ServerResponse<Void> login(@Validated @RequestBody UserAuthDTO userAuthDTO) throws ServletException, IOException {
+        userService.login(userAuthDTO);
         return ServerResponse.success();
     }
 
@@ -49,7 +49,6 @@ public class UserController {
     @GetMapping("/test")
     public ServerResponse<Void> test() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
         return ServerResponse.success();
     }
 }

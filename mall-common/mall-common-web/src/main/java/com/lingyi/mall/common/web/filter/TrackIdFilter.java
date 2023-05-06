@@ -27,7 +27,7 @@ public class TrackIdFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
         String requestId = request.getHeader(BaseConstant.TRACK_ID);
-        MDC.put(BaseConstant.TRACK_ID, StrUtil.isBlank(requestId) ? IdUtil.fastSimpleUUID().toUpperCase(Locale.ROOT) : BaseConstant.REQUEST_ID_PREFIX + requestId);
+        MDC.put(BaseConstant.TRACK_ID, StrUtil.isBlank(requestId) ? IdUtil.fastSimpleUUID().toUpperCase(Locale.ROOT) : BaseConstant.TRACK_ID_PREFIX + requestId);
         filterChain.doFilter(request, response);
         MDC.remove(BaseConstant.TRACK_ID);
     }
