@@ -1,4 +1,4 @@
-package com.lingyi.mall.auth.background.config;
+package com.lingyi.mall.common.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

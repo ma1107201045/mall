@@ -11,8 +11,6 @@ import com.lingyi.mall.common.util.PageParam;
 import com.lingyi.mall.common.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
-import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -29,7 +27,7 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 @RequestMapping("/mbs/users")
 @RestController
-public class MbsUserController implements BaseController<MbsUser, Long> {
+public class MbsUserController {
 
     private final MbsUserService mbsUserService;
 
@@ -40,8 +38,7 @@ public class MbsUserController implements BaseController<MbsUser, Long> {
         return ServerResponse.success();
     }
 
-    @Operation(summary = "删除/批量删除", description = "删除/批量删除用户")
-    @Parameter(description = "主键id集", in = ParameterIn.PATH)
+    @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
     public ServerResponse<Void> removeByIds(@PathVariable Iterable<Long> ids) {
         mbsUserService.removeByIds(ids);
@@ -49,7 +46,6 @@ public class MbsUserController implements BaseController<MbsUser, Long> {
     }
 
     @Operation(summary = "更新", description = "更新用户")
-    @Parameter(name = "主键id", in = ParameterIn.PATH, description = "id")
     @PutMapping("/{id}")
     public ServerResponse<Void> updateById(@PathVariable Long id, @RequestBody MbsUser mbsUser) {
         mbsUser.setId(id);
@@ -57,15 +53,14 @@ public class MbsUserController implements BaseController<MbsUser, Long> {
         return ServerResponse.success();
     }
 
-    @Operation(summary = "查询单条", description = "查询单条用户")
-    @Parameter(name = "主键id", in = ParameterIn.PATH, description = "id")
+    @Operation(summary = "查询", description = "查询用户")
     @GetMapping("/{id}")
     public ServerResponse<MbsUser> getById(@PathVariable Long id) {
         MbsUser mbsUser = mbsUserService.findById(id);
         return ServerResponse.success(mbsUser);
     }
 
-    @Operation(summary = "查询多条", description = "查询多条用户")
+    @Operation(summary = "查询列表", description = "查询列表用户")
     @GetMapping
     public ServerResponse<IPage<MbsUser>> getListPageAndCondition(PageParam pageParam, MbsUser mbsUser) {
         IPage<MbsUser> ipage = mbsUserService.findListPageAndCondition(new Page<>(pageParam.getCurrentPage(), pageParam.getPageSize()), mbsUser);
@@ -74,7 +69,6 @@ public class MbsUserController implements BaseController<MbsUser, Long> {
 
 
     @Operation(summary = "查询用户信息[provider]", description = "按照用户名称查询[provider]")
-    @Parameter(description = "用户名称", required = true, example = "zhangsan")
     @GetMapping("/provider")
     public ServerResponse<MbsUserVO> getByUserName(String userName) {
         MbsUserVO mbsUserVO = mbsUserService.findOneByUserNameAndMenuType(userName, MbsMenuType.BUTTON);
