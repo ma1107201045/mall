@@ -40,9 +40,9 @@ public class MbsUserServiceImpl implements MbsUserService {
 
     @Override
     public void add(MbsUser mbsUser) {
-        MbsUserVO mbsUserVO = mbsUserMapper.selectByUserName(mbsUser.getUserName());
+        Long id = mbsUserMapper.selectIdByUserName(mbsUser.getUserName());
         //判断用户名称是否唯一
-        AssertUtil.isNull(mbsUserVO, MbsFailEnum.USER_NAME_EXIST_ERROR);
+        AssertUtil.isNull(id, MbsFailEnum.USER_NAME_EXIST_ERROR);
         //密码加密
         String encodePassword = passwordEncoder.encode(mbsUser.getPassword());
         mbsUser.setPassword(encodePassword);

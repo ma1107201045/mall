@@ -1,10 +1,8 @@
 package com.lingyi.mall.biz.system.mapper;
 
 import com.lingyi.mall.api.system.entity.MbsUser;
-import com.lingyi.mall.api.system.vo.MbsMenuVO;
 import com.lingyi.mall.api.system.vo.MbsUserVO;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -34,9 +32,18 @@ public interface MbsUserMapper {
 
 
     /**
+     * 按照用户名称查询id
+     *
+     * @param userName 用户名称
+     * @return Long
+     */
+    Long selectIdByUserName(String userName);
+
+
+    /**
      * 按照用户名称查询
      *
-     * @param userName 用户名
+     * @param userName 用户名称
      * @return MbsUserVO
      */
     MbsUserVO selectByUserName(String userName);

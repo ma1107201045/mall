@@ -51,6 +51,11 @@
         <result column="mu_password" property="password"/>
         <result column="mu_is_enable" property="isEnable"/>
     </resultMap>
+    <select id="selectIdByUserName" resultType="java.lang.Long">
+        SELECT id
+        FROM mbs_user
+        WHERE user_name = #{userName}
+    </select>
     <select id="selectByUserName" resultMap="SelectByUserNameMap">
         SELECT mu.id                   mu_id,
                mu.user_name            mu_user_name,
@@ -68,4 +73,5 @@
         FROM mbs_user mu
         WHERE mu.user_name = #{userName}
     </select>
+
 </mapper>
