@@ -1,7 +1,8 @@
 package com.lingyi.mall.common.util;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.lingyi.mall.common.bean.entity.BaseIdEntity;
+
+import java.util.List;
 
 /**
  * @author maweiyan
@@ -19,5 +20,5 @@ public interface BaseController<T extends BaseIdEntity, ID> {
 
     ServerResponse<T> getById(ID id);
 
-    ServerResponse<IPage<T>> getListPageAndCondition(PageParam pageParam, T t);
+    ServerResponse<List<T>> getListPageAndCondition(PageParam pageParam, T t);
 }
