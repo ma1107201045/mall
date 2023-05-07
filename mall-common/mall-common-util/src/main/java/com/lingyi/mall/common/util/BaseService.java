@@ -1,8 +1,7 @@
 package com.lingyi.mall.common.util;
 
 
-import com.lingyi.mall.common.bean.entity.BaseIdEntity;
-
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,7 +10,7 @@ import java.util.List;
  * @datetime 2023/5/4 17:08
  * @description
  */
-public interface BaseService<T extends BaseIdEntity, ID> {
+public interface BaseService<T extends Serializable, ID> {
 
     /**
      * 添加

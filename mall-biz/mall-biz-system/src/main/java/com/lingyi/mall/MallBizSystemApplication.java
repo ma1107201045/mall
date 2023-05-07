@@ -1,6 +1,5 @@
 package com.lingyi.mall;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -12,7 +11,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @description 系统管理服务
  */
 @EnableFeignClients
-@MapperScan("com.lingyi.mall.biz.system.mapper")
 @SpringBootApplication
 public class MallBizSystemApplication {
     public static void main(String[] args) {

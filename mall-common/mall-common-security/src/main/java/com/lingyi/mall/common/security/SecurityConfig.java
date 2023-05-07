@@ -29,7 +29,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, TrackIdFilter trackIdFilter) throws Exception {
-        return http.addFilterBefore(trackIdFilter, AuthorizationFilter.class)
+        return http.addFilterBefore(trackIdFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests()
                 .requestMatchers("/mbs/users/provider").permitAll()
                 .requestMatchers(HttpMethod.GET, "/webjars/**").permitAll()
