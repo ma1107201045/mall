@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.intercept.AuthorizationFilter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.io.PrintWriter;
@@ -28,7 +29,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, TrackIdFilter trackIdFilter) throws Exception {
-        return http.addFilterBefore(trackIdFilter, UsernamePasswordAuthenticationFilter.class)
+        return http.addFilterBefore(trackIdFilter, AuthorizationFilter.class)
                 .authorizeHttpRequests()
                 .requestMatchers("/mbs/users/provider").permitAll()
                 .requestMatchers(HttpMethod.GET, "/webjars/**").permitAll()

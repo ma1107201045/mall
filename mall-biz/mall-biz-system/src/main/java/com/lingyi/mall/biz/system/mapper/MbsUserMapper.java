@@ -1,10 +1,10 @@
 package com.lingyi.mall.biz.system.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.lingyi.mall.api.system.entity.MbsUser;
 import com.lingyi.mall.api.system.vo.MbsUserVO;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @author maweiyan
@@ -12,10 +12,10 @@ import org.apache.ibatis.annotations.Param;
  * @datetime 2023/5/5 14:52
  * @description
  */
-public interface MbsUserMapper extends BaseMapper<MbsUser> {
+public interface MbsUserMapper {
     MbsUser selectById(Long id);
 
-    IPage<MbsUser> selectListByPageAndCondition(@Param("page") IPage<MbsUser> iPage, @Param("mbsUser") MbsUser mbsUser);
+    List<MbsUser> selectListByPageAndCondition(MbsUser mbsUser);
 
-    MbsUserVO selectOneByUserNameAndMenuType(@Param("userName") String userName, @Param("menuType") Integer menuType);
+    MbsUserVO selectByUserNameAndMenuType(@Param("userName") String userName, @Param("menuType") Integer menuType);
 }

@@ -24,4 +24,3 @@ spring:
       connectTimeout: 2000
       client-type: lettuce
       database: 1
-

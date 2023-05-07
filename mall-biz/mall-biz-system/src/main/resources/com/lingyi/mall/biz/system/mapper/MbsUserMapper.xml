@@ -28,7 +28,7 @@
     </sql>
     <sql id="Base_Condition">
         <if test="mbsUser.userName!=null and mbsUser.userName!=''">
-            AND user_name LIKE CONCAT('%',#{mbsUser.userName,jdbcType=VARCHAR},'%')
+            AND user_name LIKE CONCAT('%',#{userName,jdbcType=VARCHAR},'%')
         </if>
     </sql>
     <select id="selectById" resultMap="BaseResultMap">
@@ -47,7 +47,7 @@
         </where>
     </select>
 
-    <resultMap id="SelectOneByUserNameAndMenuTypeMap" type="com.lingyi.mall.api.system.vo.MbsUserVO">
+    <resultMap id="SelectByUserNameAndMenuTypeMap" type="com.lingyi.mall.api.system.vo.MbsUserVO">
         <id column="mu_id" property="userId"/>
         <result column="mu_password" property="password"/>
         <result column="mu_is_enable" property="isEnable"/>
@@ -57,7 +57,7 @@
         </collection>
     </resultMap>
 
-    <select id="selectOneByUserNameAndMenuType" resultMap="SelectOneByUserNameAndMenuTypeMap">
+    <select id="selectByUserNameAndMenuType" resultMap="SelectByUserNameAndMenuTypeMap">
         SELECT mu.id                   mu_id,
                mu.user_name            mu_user_name,
                mu.real_name            mu_real_name,

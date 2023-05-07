@@ -1,14 +1,17 @@
 package com.lingyi.mall.biz.system.service.impl;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.api.system.entity.MbsUser;
 import com.lingyi.mall.api.system.enums.MbsMenuType;
 import com.lingyi.mall.api.system.vo.MbsUserVO;
 import com.lingyi.mall.biz.system.mapper.MbsUserMapper;
 import com.lingyi.mall.biz.system.repository.MbsUserRepository;
 import com.lingyi.mall.biz.system.service.MbsUserService;
+import com.lingyi.mall.common.util.PageParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @Author: maweiyan
@@ -45,12 +48,13 @@ public class MbsUserServiceImpl implements MbsUserService {
     }
 
     @Override
-    public IPage<MbsUser> findListPageAndCondition(IPage<MbsUser> iPage, MbsUser mbsUser) {
-        return mbsUserMapper.selectListByPageAndCondition(iPage, mbsUser);
+    public List<MbsUser> findListByPageAndCondition(PageParam pageParam, MbsUser mbsUser) {
+        PageHelper.startPage(pageParam.getCurrentPage(), pageParam.getPageSize());
+        return mbsUserMapper.selectListByPageAndCondition(mbsUser);
     }
 
     @Override
     public MbsUserVO findOneByUserNameAndMenuType(String userName, MbsMenuType mbsMenuType) {
-        return mbsUserMapper.selectOneByUserNameAndMenuType(userName, mbsMenuType.getCode());
+        return mbsUserMapper.selectByUserNameAndMenuType(userName, mbsMenuType.getCode());
     }
 }

@@ -1,7 +1,9 @@
 package com.lingyi.mall.common.util;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
+
 import com.lingyi.mall.common.bean.entity.BaseIdEntity;
+
+import java.util.List;
 
 /**
  * @author maweiyan
@@ -11,15 +13,43 @@ import com.lingyi.mall.common.bean.entity.BaseIdEntity;
  */
 public interface BaseService<T extends BaseIdEntity, ID> {
 
+    /**
+     * 添加
+     *
+     * @param t t
+     */
     void add(T t);
 
+    /**
+     * 批量删除
+     *
+     * @param ids ids
+     */
     void removeByIds(Iterable<ID> ids);
 
+    /**
+     * 修改
+     *
+     * @param t t
+     */
     void editById(T t);
 
+    /**
+     * 查找
+     *
+     * @param id id
+     * @return t
+     */
     T findById(ID id);
 
-    IPage<T> findListPageAndCondition(IPage<T> iPage, T t);
+    /**
+     * 查找列表
+     *
+     * @param pageParam 分页信息
+     * @param t         t
+     * @return List<T>
+     */
+    List<T> findListByPageAndCondition(PageParam pageParam, T t);
 
 
 }
