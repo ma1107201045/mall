@@ -24,6 +24,6 @@ public class MbsUserVO implements Serializable {
 
     private Integer isEnable;
 
-    private List<MbsMenuVO> mbsMenuVOS;
+    private List<MbsMenuVO> mbsMenuVOList;
 
 }

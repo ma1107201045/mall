@@ -17,9 +17,9 @@ public interface MbsUserService extends BaseService<MbsUser, Long> {
     /**
      * 按照用户名称和按钮类型查询用户信息以及菜单信息
      *
-     * @param userName    用户名称
-     * @param mbsMenuType 菜单类型
-     * @return 用户信息
+     * @param userName 用户名称
+     * @param menuType 菜单类型
+     * @return MbsUserVO
      */
-    MbsUserVO findOneByUserNameAndMenuType(String userName, MbsMenuType mbsMenuType);
+    MbsUserVO findUserAndMenu(String userName, MbsMenuType menuType);
 }

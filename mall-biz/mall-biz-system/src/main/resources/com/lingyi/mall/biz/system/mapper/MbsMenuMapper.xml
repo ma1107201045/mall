@@ -3,4 +3,41 @@
 <mapper namespace="com.lingyi.mall.biz.system.mapper.MbsMenuMapper">
 
 
+    <sql id="Select_List_Column">
+        mm.id             mm_id,
+        mm.name           mm_name,
+        mm.type           mm_type,
+        mm.parent_id      mm_parent_id,
+        mm.icon           mm_icon,
+        mm.sort           mm_sort,
+        mm.remark         mm_remark,
+        mm.is_enable      mm_is_enable,
+        mm.path           mm_path,
+        mm.component_path mm_component_path,
+        mm.component_name mm_component_name,
+        mm.permission     mm_permission
+    </sql>
+    <resultMap id="SelectListByTypeMap" type="com.lingyi.mall.api.system.vo.MbsMenuVO">
+        <id column="mm_id" property="menuId"/>
+        <result column="mu_permission" property="permission"/>
+    </resultMap>
+
+    <select id="selectListByType" resultMap="SelectListByTypeMap">
+        SELECT
+        <include refid="Select_List_Column"/>
+        FROM mbs_menu mm
+        WHERE mm.type = #{type}
+    </select>
+
+    <select id="selectListByTypeAndUserId" resultMap="SelectListByTypeMap">
+        SELECT
+        <include refid="Select_List_Column"/>
+        FROM mbs_menu mm
+        INNER JOIN mbs_role_menu mrm ON mm.id = mrm.menu_id
+        INNER JOIN mbs_user_role mur ON mur.role_id = mrm.role_id
+        WHERE mm.type = #{type}
+        AND mur.user_id = #{userId}
+        GROUP BY mm.id
+    </select>
+
 </mapper>
