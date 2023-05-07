@@ -31,11 +31,12 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http, TrackIdFilter trackIdFilter) throws Exception {
         return http.addFilterBefore(trackIdFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests()
-                .requestMatchers("/*/*/provider/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/webjars/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/doc.html").permitAll()
                 .requestMatchers(HttpMethod.GET, "/v3/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/favicon.ico").permitAll()
+                .requestMatchers(HttpMethod.GET, "/mab/captcha").permitAll()
+                .requestMatchers("/*/*/provider/**").permitAll()
                 .anyRequest().authenticated().and()
                 .formLogin().successHandler((request, response, authentication) -> {
                     response.setContentType("application/json;charset=utf-8");

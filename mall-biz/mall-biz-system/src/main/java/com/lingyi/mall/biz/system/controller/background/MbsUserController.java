@@ -22,7 +22,7 @@ import java.util.List;
  * @DateTime: 2023/5/3 19:10
  * @Description:
  */
-@Tag(name = "系统管理-用户", description = "系统管理-用户")
+@Tag(name = "后台【系统管理服务-用户】", description = "后台【系统管理服务-用户】")
 @RequiredArgsConstructor
 @Validated
 @RequestMapping("/mbs/users")

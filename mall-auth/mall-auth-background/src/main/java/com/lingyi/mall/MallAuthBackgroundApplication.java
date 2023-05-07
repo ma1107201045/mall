@@ -2,6 +2,8 @@ package com.lingyi.mall;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
@@ -11,6 +13,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @description
  */
 @EnableFeignClients
+@ConfigurationPropertiesScan
 @SpringBootApplication
 public class MallAuthBackgroundApplication {
 

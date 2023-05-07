@@ -63,7 +63,7 @@ public class Role extends BaseIsDeleteEntity implements Serializable {
     /**
      * 菜单集
      */
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "mbsRoles")
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "roles")
     @ToString.Exclude
     private List<Menu> menus;
 
