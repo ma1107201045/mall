@@ -3,10 +3,12 @@ package com.lingyi.mall.api.system.entity;
 import com.lingyi.mall.common.bean.entity.BaseIsDeleteEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.*;
-import lombok.experimental.FieldNameConstants;
-import lombok.experimental.SuperBuilder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -36,11 +38,14 @@ public class MbsUser extends BaseIsDeleteEntity implements Serializable {
     private static final long serialVersionUID = 5771438753938667975L;
 
     @Schema(description = "用户名称", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotBlank(message = "用户名称不能为空")
+    @Size(min = 1, max = 20, message = "用户名称长度只能在1到20之间")
     @Column(name = "user_name", nullable = false, length = 20)
     private String userName;
 
 
-    @Schema(description = "用户名称")
+    @Schema(description = "真实姓名")
+    @Size(min = 1, max = 20, message = "真实姓名长度只能在1到20之间")
     @Column(name = "real_name", length = 20)
     private String realName;
 
@@ -56,6 +61,7 @@ public class MbsUser extends BaseIsDeleteEntity implements Serializable {
 
 
     @Schema(description = "密码", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotBlank(message = "密码不能为空")
     @Column(name = "password", nullable = false, length = 200)
     private String password;
 
@@ -76,18 +82,19 @@ public class MbsUser extends BaseIsDeleteEntity implements Serializable {
     private String phoneNumber;
 
 
-    @Schema(description = "最后登录IP", hidden = true)
+    @Schema(description = "最后登录IP")
     @Size(max = 30)
     @Column(name = "last_login_ip", length = 30)
     private String lastLoginIp;
 
 
-    @Schema(description = "最后登录时间", hidden = true)
+    @Schema(description = "最后登录时间")
     @Column(name = "last_login_date_time")
     private LocalDateTime lastLoginDateTime;
 
 
     @Schema(description = "是否启用 1 是 0 否", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotNull(message = "是否启用不能为空")
     @Column(name = "is_enable", nullable = false, length = 4)
     private Integer isEnable;
 

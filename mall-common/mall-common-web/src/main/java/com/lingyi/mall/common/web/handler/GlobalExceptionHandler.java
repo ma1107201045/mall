@@ -11,6 +11,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingPathVariableException;
+import org.springframework.web.bind.MissingRequestHeaderException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -66,11 +67,11 @@ public class GlobalExceptionHandler {
     }
 
 
-//    @ExceptionHandler(value = MissingRequestHeaderException.class)
-//    public ServerResponse<Void> missHeaderEx(MissingRequestHeaderException e) {
-//        log.error("MissingRequestHeaderException：{}", e.getMessage(), e);
-//        return ServerResponse.fail("请求头参数" + e.getHeaderName() + "不能为空");
-//    }
+    @ExceptionHandler(value = MissingRequestHeaderException.class)
+    public ServerResponse<Void> missHeaderEx(MissingRequestHeaderException e) {
+        log.error("MissingPathVariableException：{}", e.getMessage(), e);
+        return ServerResponse.fail(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.value(), "请求头参数" + e.getHeaderName() + "不能为空");
+    }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

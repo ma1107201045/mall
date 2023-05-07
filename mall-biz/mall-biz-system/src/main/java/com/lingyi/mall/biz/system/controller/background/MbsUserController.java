@@ -8,6 +8,8 @@ import com.lingyi.mall.common.util.PageParam;
 import com.lingyi.mall.common.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +33,7 @@ public class MbsUserController {
 
     @Operation(summary = "保存", description = "保存")
     @PostMapping
-    public ServerResponse<Void> save(@RequestBody MbsUser mbsUser) {
+    public ServerResponse<Void> save(@Valid @RequestBody MbsUser mbsUser) {
         mbsUserService.add(mbsUser);
         return ServerResponse.success();
     }
@@ -45,7 +47,7 @@ public class MbsUserController {
 
     @Operation(summary = "更新", description = "更新")
     @PutMapping("/{id}")
-    public ServerResponse<Void> updateById(@PathVariable Long id, @RequestBody MbsUser mbsUser) {
+    public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody MbsUser mbsUser) {
         mbsUser.setId(id);
         mbsUserService.editById(mbsUser);
         return ServerResponse.success();
@@ -60,15 +62,15 @@ public class MbsUserController {
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
-    public ServerResponse<List<MbsUser>> getListByPageAndCondition(PageParam pageParam, MbsUser mbsUser) {
+    public ServerResponse<List<MbsUser>> getListByPageAndCondition(@Valid PageParam pageParam, @Valid MbsUser mbsUser) {
         List<MbsUser> mbsUsers = mbsUserService.findListByPageAndCondition(pageParam, mbsUser);
         return ServerResponse.success(mbsUsers);
     }
 
 
-    @Operation(summary = "查询用户[provider]", description = "按照用户名称查询[provider]")
+    @Operation(summary = "查询用户和权限[provider]", description = "按照用户名称查询用户和权限")
     @GetMapping("/provider/menus")
-    public ServerResponse<MbsUserVO> getUserAndMenuByUserName(String userName) {
+    public ServerResponse<MbsUserVO> getUserAndMenuByUserName(@NotBlank(message = "用户名称不能为空") String userName) {
         MbsUserVO mbsUserVO = mbsUserService.findUserAndMenuByUserNameAndMenuType(userName, MbsMenuType.BUTTON);
         return ServerResponse.success(mbsUserVO);
     }

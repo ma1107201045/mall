@@ -19,12 +19,10 @@ import java.util.Objects;
  */
 @Getter
 @Setter
-@ToString(callSuper = true)
 @MappedSuperclass
 public abstract class BaseIsDeleteEntity extends BaseCommonEntity {
 
 
-    @Schema(description = "是否删除 1 是 0 否", hidden = true)
     @Column(name = "is_delete", length = 4)
     protected Integer isDelete;
 

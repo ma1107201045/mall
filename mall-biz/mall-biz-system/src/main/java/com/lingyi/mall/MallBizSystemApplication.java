@@ -3,6 +3,7 @@ package com.lingyi.mall;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 /**
  * @author maweiyan
@@ -11,6 +12,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @description 系统管理服务
  */
 @EnableFeignClients
+@EnableJpaAuditing
 @SpringBootApplication
 public class MallBizSystemApplication {
     public static void main(String[] args) {

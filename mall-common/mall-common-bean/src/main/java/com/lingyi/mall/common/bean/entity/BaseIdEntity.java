@@ -23,15 +23,10 @@ import java.util.Objects;
  */
 @Getter
 @Setter
-@ToString
-@NoArgsConstructor
-@SuperBuilder
-@FieldNameConstants
 @MappedSuperclass
 public abstract class BaseIdEntity {
 
 
-    @Schema(description = "主键id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     @Id
     @GeneratedValue(generator = "SnowflakeIdentifierGenerator")
     @GenericGenerator(name = "SnowflakeIdentifierGenerator", strategy = "com.lingyi.mall.common.fill.jpa.generator.SnowflakeIdentifierGenerator")

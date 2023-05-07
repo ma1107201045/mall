@@ -32,9 +32,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        //查询用户信息和菜单权限
         MbsUserVO vo = mbsUserFeignConsumer.getUserAndMenuByUserName(username);
-        AssertUtil.notNull(vo, new UsernameNotFoundException(MabFailEnum.USER_NAME_NOT_FOUND_ERROR.getMsg()));
-        List<String> permissions = vo.getMbsMenuVOList().stream().map(MbsMenuVO::getPermission).toList();
+        //校验用用户信息
+        AssertUtil.notNull(vo, new UsernameNotFoundException(MabFailEnum.USER_NAME_NOT_EXIST_ERROR.getMessage()));
+        //获取菜单权限中的权限标识
+        List<String> permissions = vo.getMbsMenuVOList()
+                .stream()
+                .map(MbsMenuVO::getPermission)
+                .toList();
+        //返回User
         return new User(username, vo.getPassword(), CollUtil.newArrayList(CustomizeGrantedAuthority.of(permissions)));
     }
 }

@@ -24,34 +24,27 @@ import java.util.Objects;
  * @datetime 2023/4/30 13:44
  * @description
  */
-
 @Getter
 @Setter
-@ToString(callSuper = true)
-@MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
+@MappedSuperclass
 public abstract class BaseCommonEntity extends BaseIdEntity {
 
 
-    @Schema(description = "创建人", hidden = true)
     @CreatedBy
     @Column(name = "create_by", nullable = false, length = 20, updatable = false)
     protected String createBy;
 
 
-    @Schema(description = "创建时间", hidden = true)
     @CreatedDate
     @Column(name = "create_date_time", nullable = false, updatable = false)
     protected LocalDateTime createDateTime;
 
-
-    @Schema(description = "最后修改人", hidden = true)
     @LastModifiedBy
     @Column(name = "last_modify_by", nullable = false, length = 20)
     protected String lastModifyBy;
 
 
-    @Schema(description = "最后修改时间", hidden = true)
     @LastModifiedDate
     @Column(name = "last_modify_date_time", nullable = false)
     protected LocalDateTime lastModifyDateTime;

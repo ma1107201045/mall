@@ -17,6 +17,7 @@ public class BaseConstant {
     public static final String MODIFY_DATE_TIME = "modifyDateTime";
     public static final String CODE_GET_METHOD_NAME = "getCode";
     public static final String MESSAGE_GET_METHOD_NAME = "getMessage";
+    public static final String UNKNOWN = "unknown";
 
     private BaseConstant() {
 

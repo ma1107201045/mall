@@ -1,4 +1,4 @@
-package com.lingyi.mall.auth.background.enums;
+package com.lingyi.mall.api.system.enums;
 
 import com.lingyi.mall.common.enums.BaseFailEnum;
 import lombok.Getter;
@@ -7,22 +7,20 @@ import lombok.RequiredArgsConstructor;
 /**
  * @Author: maweiyan
  * @Email 1107201045@qq.com
- * @DateTime: 2023/5/3 21:15
+ * @DateTime: 2023/5/7 17:27
  * @Description:
  */
 @Getter
 @RequiredArgsConstructor
-public enum MabFailEnum implements BaseFailEnum {
+public enum MbsFailEnum implements BaseFailEnum {
+
     /**
      *
      */
-    USER_NAME_NOT_EXIST_ERROR(8001, "用户名称不存在");
-
-
+    USER_NAME_EXIST_ERROR(8002, "用户名称已存在");
 
 
     private final Integer code;
 
     private final String message;
-
 }
