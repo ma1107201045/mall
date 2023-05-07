@@ -33,46 +33,46 @@ public class MallBizSystemApplicationTests {
 
     @Test
     public void testUser() {
-        User mbsUser = new User();
-        mbsUser.setUserName("1111");
-        mbsUser.setPassword("111");
-        mbsUser.setIsEnable(1);
-        mbsUser = mbsUserRepository.save(mbsUser);
-        System.out.println(mbsUser);
+        User user = new User();
+        user.setUserName("1111");
+        user.setPassword("111");
+        user.setIsEnable(1);
+        user = mbsUserRepository.save(user);
+        System.out.println(user);
     }
 
     @Test
     public void testRole() {
-        Role mbsRole = new Role();
-        mbsRole.setIsEnable(1);
-        mbsRole.setSort(Math.abs(RandomUtil.randomInt()));
-        mbsRole.setIsDelete(1);
-        mbsRole = mbsRoleRepository.save(mbsRole);
-        System.out.println(mbsRole);
+        Role role = new Role();
+        role.setIsEnable(1);
+        role.setSort(Math.abs(RandomUtil.randomInt()));
+        role.setIsDelete(1);
+        role = mbsRoleRepository.save(role);
+        System.out.println(role);
     }
 
 
     @Test
     public void testUserRole() {
-        User mbsUser = new User();
-        mbsUser.setUserName("1111");
-        mbsUser.setPassword("111");
-        mbsUser.setIsEnable(1);
-        mbsUser = mbsUserRepository.save(mbsUser);
-        System.out.println(mbsUser);
+        User user = new User();
+        user.setUserName("1111");
+        user.setPassword("111");
+        user.setIsEnable(1);
+        user = mbsUserRepository.save(user);
+        System.out.println(user);
 
-        Role mbsRole = new Role();
-        mbsRole.setIsEnable(1);
-        mbsRole.setSort(Math.abs(RandomUtil.randomInt()));
-        mbsRole.setIsDelete(1);
-        mbsRole = mbsRoleRepository.save(mbsRole);
-        System.out.println(mbsRole);
+        Role role = new Role();
+        role.setIsEnable(1);
+        role.setSort(Math.abs(RandomUtil.randomInt()));
+        role.setIsDelete(1);
+        role = mbsRoleRepository.save(role);
+        System.out.println(role);
 
-        UserRole mbsUserRole = new UserRole();
-        mbsUserRole.setMbsUser(mbsUser);
-        mbsUserRole.setMbsRole(mbsRole);
-        mbsUserRole = mbsUserRoleRepository.save(mbsUserRole);
-        System.out.println(mbsUserRole);
+        UserRole userRole = new UserRole();
+        userRole.setUser(user);
+        userRole.setRole(role);
+        userRole = mbsUserRoleRepository.save(userRole);
+        System.out.println(userRole);
     }
 
     @Autowired
