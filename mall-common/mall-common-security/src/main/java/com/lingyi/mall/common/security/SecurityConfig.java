@@ -31,7 +31,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http, TrackIdFilter trackIdFilter) throws Exception {
         return http.addFilterBefore(trackIdFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests()
-                .requestMatchers("/mbs/users/provider").permitAll()
+                .requestMatchers("/*/*/provider/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/webjars/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/doc.html").permitAll()
                 .requestMatchers(HttpMethod.GET, "/v3/**").permitAll()

@@ -46,7 +46,12 @@
             <include refid="Base_Condition"/>
         </where>
     </select>
-    <select id="selectByUserName" resultType="com.lingyi.mall.api.system.vo.MbsUserVO">
+    <resultMap id="SelectByUserNameMap" type="com.lingyi.mall.api.system.vo.MbsUserVO">
+        <id column="mu_id" property="userId"/>
+        <result column="mu_password" property="password"/>
+        <result column="mu_is_enable" property="isEnable"/>
+    </resultMap>
+    <select id="selectByUserName" resultMap="SelectByUserNameMap">
         SELECT mu.id                   mu_id,
                mu.user_name            mu_user_name,
                mu.real_name            mu_real_name,
@@ -62,31 +67,5 @@
                mu.remark               mu_remark
         FROM mbs_user mu
         WHERE mu.user_name = #{userName}
-    </select>
-    <resultMap id="SelectByUserNameAndMenuTypeMap" type="com.lingyi.mall.api.system.vo.MbsMenuVO">
-        <id column="mm_id" property="menuId"/>
-        <result column="mu_permission" property="permission"/>
-    </resultMap>
-
-    <select id="selectByUserNameAndMenuType" resultMap="SelectByUserNameAndMenuTypeMap">
-        SELECT mm.id             mm_id,
-               mm.name           mm_name,
-               mm.type           mm_type,
-               mm.parent_id      mm_parent_id,
-               mm.icon           mm_icon,
-               mm.sort           mm_sort,
-               mm.remark         mm_remark,
-               mm.is_enable      mm_is_enable,
-               mm.path           mm_path,
-               mm.component_path mm_component_path,
-               mm.component_name mm_component_name,
-               mm.permission     mm_permission
-        FROM mbs_user mu
-                 INNER JOIN mbs_user_role mur ON mur.user_id = mu.id
-                 INNER JOIN mbs_role_menu mrm ON mrm.role_id = mur.role_id
-                 INNER JOIN mbs_menu mm ON mm.id = mrm.menu_id
-        WHERE mu.user_name = #{userName}
-          AND mm.type = #{menuType}
-        GROUP BY mm.id
     </select>
 </mapper>

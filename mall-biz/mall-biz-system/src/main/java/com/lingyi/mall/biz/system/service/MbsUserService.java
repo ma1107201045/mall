@@ -21,5 +21,5 @@ public interface MbsUserService extends BaseService<MbsUser, Long> {
      * @param menuType 菜单类型
      * @return MbsUserVO
      */
-    MbsUserVO findUserAndMenu(String userName, MbsMenuType menuType);
+    MbsUserVO findUserAndMenuByUserNameAndMenuType(String userName, MbsMenuType menuType);
 }

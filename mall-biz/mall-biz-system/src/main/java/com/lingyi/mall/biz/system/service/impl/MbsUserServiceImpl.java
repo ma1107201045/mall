@@ -60,11 +60,10 @@ public class MbsUserServiceImpl implements MbsUserService {
     }
 
     @Override
-    public MbsUserVO findUserAndMenu(String userName, MbsMenuType mbsMenuType) {
+    public MbsUserVO findUserAndMenuByUserNameAndMenuType(String userName, MbsMenuType mbsMenuType) {
         MbsUserVO mbsUserVO = mbsUserMapper.selectByUserName(userName);
         if (ObjUtil.isNotNull(mbsUserVO)) {
-            List<MbsMenuVO> mbsMenuVOList = MbsConstant.USER_NAME_ADMIN.equals(userName) ? mbsMenuService.findListByType(mbsMenuType) :
-                    mbsMenuService.findListByTypeAndUserId(mbsMenuType, mbsUserVO.getUserId());
+            List<MbsMenuVO> mbsMenuVOList = MbsConstant.USER_NAME_ADMIN.equals(userName) ? mbsMenuService.findListByType(mbsMenuType) : mbsMenuService.findListByTypeAndUserId(mbsMenuType, mbsUserVO.getUserId());
             mbsUserVO.setMbsMenuVOList(mbsMenuVOList);
         }
         return mbsUserVO;

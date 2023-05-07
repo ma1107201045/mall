@@ -67,9 +67,9 @@ public class MbsUserController {
 
 
     @Operation(summary = "查询用户[provider]", description = "按照用户名称查询[provider]")
-    @GetMapping("/provider")
-    public ServerResponse<MbsUserVO> getByUserName(String userName) {
-        MbsUserVO mbsUserVO = mbsUserService.findOneByUserNameAndMenuType(userName, MbsMenuType.BUTTON);
+    @GetMapping("/provider/menus")
+    public ServerResponse<MbsUserVO> getUserAndMenuByUserName(String userName) {
+        MbsUserVO mbsUserVO = mbsUserService.findUserAndMenuByUserNameAndMenuType(userName, MbsMenuType.BUTTON);
         return ServerResponse.success(mbsUserVO);
     }
 }

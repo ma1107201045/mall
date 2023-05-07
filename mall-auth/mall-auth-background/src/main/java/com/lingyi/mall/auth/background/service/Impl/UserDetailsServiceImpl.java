@@ -32,9 +32,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        MbsUserVO vo = mbsUserFeignConsumer.getByUserName(username);
+        MbsUserVO vo = mbsUserFeignConsumer.getUserAndMenuByUserName(username);
         AssertUtil.notNull(vo, new UsernameNotFoundException(MabFailEnum.USER_NAME_NOT_FOUND_ERROR.getMsg()));
-        List<String> permissions = vo.getMbsMenuVOS().stream().map(MbsMenuVO::getPermission).toList();
+        List<String> permissions = vo.getMbsMenuVOList().stream().map(MbsMenuVO::getPermission).toList();
         return new User(username, vo.getPassword(), CollUtil.newArrayList(CustomizeGrantedAuthority.of(permissions)));
     }
 }
