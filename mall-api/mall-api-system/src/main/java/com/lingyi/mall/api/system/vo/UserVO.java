@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Schema(description = "用户")
 @Data
-public class MbsUserVO implements Serializable {
+public class UserVO implements Serializable {
     @Serial
     private static final long serialVersionUID = 1243838317263367362L;
 
@@ -30,6 +30,6 @@ public class MbsUserVO implements Serializable {
     private Integer isEnable;
 
     @Schema(description = "菜单列表")
-    private List<MbsMenuVO> mbsMenuVOList;
+    private List<MenuVO> menuVOList;
 
 }

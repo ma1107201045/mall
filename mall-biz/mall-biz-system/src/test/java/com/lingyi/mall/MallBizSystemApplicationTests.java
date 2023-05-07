@@ -1,9 +1,9 @@
 package com.lingyi.mall;
 
 import cn.hutool.core.util.RandomUtil;
-import com.lingyi.mall.api.system.entity.MbsRole;
-import com.lingyi.mall.api.system.entity.MbsUser;
-import com.lingyi.mall.api.system.entity.MbsUserRole;
+import com.lingyi.mall.api.system.entity.Role;
+import com.lingyi.mall.api.system.entity.User;
+import com.lingyi.mall.api.system.entity.UserRole;
 import com.lingyi.mall.biz.system.mapper.MbsUserMapper;
 import com.lingyi.mall.biz.system.repository.MbsRoleRepository;
 import com.lingyi.mall.biz.system.repository.MbsUserRepository;
@@ -33,7 +33,7 @@ public class MallBizSystemApplicationTests {
 
     @Test
     public void testUser() {
-        MbsUser mbsUser = new MbsUser();
+        User mbsUser = new User();
         mbsUser.setUserName("1111");
         mbsUser.setPassword("111");
         mbsUser.setIsEnable(1);
@@ -43,7 +43,7 @@ public class MallBizSystemApplicationTests {
 
     @Test
     public void testRole() {
-        MbsRole mbsRole = new MbsRole();
+        Role mbsRole = new Role();
         mbsRole.setIsEnable(1);
         mbsRole.setSort(Math.abs(RandomUtil.randomInt()));
         mbsRole.setIsDelete(1);
@@ -54,21 +54,21 @@ public class MallBizSystemApplicationTests {
 
     @Test
     public void testUserRole() {
-        MbsUser mbsUser = new MbsUser();
+        User mbsUser = new User();
         mbsUser.setUserName("1111");
         mbsUser.setPassword("111");
         mbsUser.setIsEnable(1);
         mbsUser = mbsUserRepository.save(mbsUser);
         System.out.println(mbsUser);
 
-        MbsRole mbsRole = new MbsRole();
+        Role mbsRole = new Role();
         mbsRole.setIsEnable(1);
         mbsRole.setSort(Math.abs(RandomUtil.randomInt()));
         mbsRole.setIsDelete(1);
         mbsRole = mbsRoleRepository.save(mbsRole);
         System.out.println(mbsRole);
 
-        MbsUserRole mbsUserRole = new MbsUserRole();
+        UserRole mbsUserRole = new UserRole();
         mbsUserRole.setMbsUser(mbsUser);
         mbsUserRole.setMbsRole(mbsRole);
         mbsUserRole = mbsUserRoleRepository.save(mbsUserRole);

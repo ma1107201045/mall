@@ -2,7 +2,7 @@ package com.lingyi.mall.api.system.consumer;
 
 import com.alibaba.fastjson2.JSON;
 import com.lingyi.mall.api.system.MbsUserFeign;
-import com.lingyi.mall.api.system.vo.MbsUserVO;
+import com.lingyi.mall.api.system.vo.UserVO;
 
 import com.lingyi.mall.common.util.ServerResponse;
 import com.lingyi.mall.common.util.exception.OpenFeignException;
@@ -21,10 +21,10 @@ public class MbsUserFeignConsumer {
 
     private final MbsUserFeign mbsUserFeign;
 
-    public MbsUserVO getUserAndMenuByUserName(String userName) {
-        ServerResponse<MbsUserVO> response = mbsUserFeign.getUserAndMenuByUserName(userName);
+    public UserVO getUserAndMenuByUserName(String userName) {
+        ServerResponse<UserVO> response = mbsUserFeign.getUserAndMenuByUserName(userName);
         if (response.getIsSuccess()) {
-            return JSON.to(MbsUserVO.class, response.getData());
+            return JSON.to(UserVO.class, response.getData());
         }
         throw new OpenFeignException(response.getBizCode(), response.getMessage());
     }

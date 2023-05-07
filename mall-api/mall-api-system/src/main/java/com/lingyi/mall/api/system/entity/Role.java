@@ -3,7 +3,6 @@ package com.lingyi.mall.api.system.entity;
 import com.lingyi.mall.common.bean.entity.BaseIsDeleteEntity;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -25,7 +24,7 @@ import java.util.Objects;
 @DynamicUpdate
 @Entity
 @Table(name = "mbs_role")
-public class MbsRole extends BaseIsDeleteEntity implements Serializable {
+public class Role extends BaseIsDeleteEntity implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -5280755884593902334L;
@@ -59,14 +58,14 @@ public class MbsRole extends BaseIsDeleteEntity implements Serializable {
     @ManyToMany
     @JoinTable(name = "mbs_user_role", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
     @ToString.Exclude
-    private List<MbsUser> mbsUsers;
+    private List<User> users;
 
     /**
      * 菜单集
      */
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "mbsRoles")
     @ToString.Exclude
-    private List<MbsMenu> mbsMenus;
+    private List<Menu> menus;
 
     @Override
     public boolean equals(Object o) {
@@ -80,21 +79,24 @@ public class MbsRole extends BaseIsDeleteEntity implements Serializable {
             return false;
         }
 
-        MbsRole mbsRole = (MbsRole) o;
+        Role role = (Role) o;
 
-        if (!Objects.equals(name, mbsRole.name)) {
+        if (!Objects.equals(name, role.name)) {
             return false;
         }
-        if (!Objects.equals(isEnable, mbsRole.isEnable)) {
+        if (!Objects.equals(isEnable, role.isEnable)) {
             return false;
         }
-        if (!Objects.equals(sort, mbsRole.sort)) {
+        if (!Objects.equals(sort, role.sort)) {
             return false;
         }
-        if (!Objects.equals(remark, mbsRole.remark)) {
+        if (!Objects.equals(remark, role.remark)) {
             return false;
         }
-        return Objects.equals(mbsMenus, mbsRole.mbsMenus);
+        if (!Objects.equals(users, role.users)) {
+            return false;
+        }
+        return Objects.equals(menus, role.menus);
     }
 
     @Override
@@ -104,7 +106,8 @@ public class MbsRole extends BaseIsDeleteEntity implements Serializable {
         result = 31 * result + (isEnable != null ? isEnable.hashCode() : 0);
         result = 31 * result + (sort != null ? sort.hashCode() : 0);
         result = 31 * result + (remark != null ? remark.hashCode() : 0);
-        result = 31 * result + (mbsMenus != null ? mbsMenus.hashCode() : 0);
+        result = 31 * result + (users != null ? users.hashCode() : 0);
+        result = 31 * result + (menus != null ? menus.hashCode() : 0);
         return result;
     }
 }

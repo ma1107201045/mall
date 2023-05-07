@@ -32,7 +32,7 @@ import java.util.Objects;
 @DynamicUpdate
 @Entity
 @Table(name = "mbs_user")
-public class MbsUser extends BaseIsDeleteEntity implements Serializable {
+public class User extends BaseIsDeleteEntity implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 5771438753938667975L;
@@ -105,9 +105,9 @@ public class MbsUser extends BaseIsDeleteEntity implements Serializable {
 
 
     @Schema(description = "角色集", hidden = true)
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "mbsUsers")
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "users")
     @ToString.Exclude
-    private List<MbsRole> mbsRoles;
+    private List<Role> roles;
 
 
     @Override
@@ -122,45 +122,45 @@ public class MbsUser extends BaseIsDeleteEntity implements Serializable {
             return false;
         }
 
-        MbsUser mbsUser = (MbsUser) o;
+        User user = (User) o;
 
-        if (!Objects.equals(userName, mbsUser.userName)) {
+        if (!Objects.equals(userName, user.userName)) {
             return false;
         }
-        if (!Objects.equals(realName, mbsUser.realName)) {
+        if (!Objects.equals(realName, user.realName)) {
             return false;
         }
-        if (!Objects.equals(nickname, mbsUser.nickname)) {
+        if (!Objects.equals(nickname, user.nickname)) {
             return false;
         }
-        if (!Objects.equals(sex, mbsUser.sex)) {
+        if (!Objects.equals(sex, user.sex)) {
             return false;
         }
-        if (!Objects.equals(password, mbsUser.password)) {
+        if (!Objects.equals(password, user.password)) {
             return false;
         }
-        if (!Objects.equals(headPortrait, mbsUser.headPortrait)) {
+        if (!Objects.equals(headPortrait, user.headPortrait)) {
             return false;
         }
-        if (!Objects.equals(email, mbsUser.email)) {
+        if (!Objects.equals(email, user.email)) {
             return false;
         }
-        if (!Objects.equals(phoneNumber, mbsUser.phoneNumber)) {
+        if (!Objects.equals(phoneNumber, user.phoneNumber)) {
             return false;
         }
-        if (!Objects.equals(lastLoginIp, mbsUser.lastLoginIp)) {
+        if (!Objects.equals(lastLoginIp, user.lastLoginIp)) {
             return false;
         }
-        if (!Objects.equals(lastLoginDateTime, mbsUser.lastLoginDateTime)) {
+        if (!Objects.equals(lastLoginDateTime, user.lastLoginDateTime)) {
             return false;
         }
-        if (!Objects.equals(isEnable, mbsUser.isEnable)) {
+        if (!Objects.equals(isEnable, user.isEnable)) {
             return false;
         }
-        if (!Objects.equals(remark, mbsUser.remark)) {
+        if (!Objects.equals(remark, user.remark)) {
             return false;
         }
-        return Objects.equals(mbsRoles, mbsUser.mbsRoles);
+        return Objects.equals(roles, user.roles);
     }
 
     @Override
@@ -178,7 +178,7 @@ public class MbsUser extends BaseIsDeleteEntity implements Serializable {
         result = 31 * result + (lastLoginDateTime != null ? lastLoginDateTime.hashCode() : 0);
         result = 31 * result + (isEnable != null ? isEnable.hashCode() : 0);
         result = 31 * result + (remark != null ? remark.hashCode() : 0);
-        result = 31 * result + (mbsRoles != null ? mbsRoles.hashCode() : 0);
+        result = 31 * result + (roles != null ? roles.hashCode() : 0);
         return result;
     }
 }

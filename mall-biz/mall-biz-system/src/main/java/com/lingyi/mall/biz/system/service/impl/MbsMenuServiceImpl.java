@@ -1,12 +1,10 @@
 package com.lingyi.mall.biz.system.service.impl;
 
-import com.lingyi.mall.api.system.entity.MbsMenu;
+import com.lingyi.mall.api.system.entity.Menu;
 import com.lingyi.mall.api.system.enums.MbsMenuType;
-import com.lingyi.mall.api.system.vo.MbsMenuVO;
+import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.biz.system.mapper.MbsMenuMapper;
-import com.lingyi.mall.biz.system.mapper.MbsUserMapper;
 import com.lingyi.mall.biz.system.repository.MbsMenuRepository;
-import com.lingyi.mall.biz.system.repository.MbsUserRepository;
 import com.lingyi.mall.biz.system.service.MbsMenuService;
 import com.lingyi.mall.common.util.PageParam;
 import lombok.RequiredArgsConstructor;
@@ -29,8 +27,8 @@ public class MbsMenuServiceImpl implements MbsMenuService {
     private final MbsMenuMapper mbsMenuMapper;
 
     @Override
-    public void add(MbsMenu mbsMenu) {
-        mbsMenuRepository.save(mbsMenu);
+    public void add(Menu menu) {
+        mbsMenuRepository.save(menu);
     }
 
     @Override
@@ -39,27 +37,27 @@ public class MbsMenuServiceImpl implements MbsMenuService {
     }
 
     @Override
-    public void editById(MbsMenu mbsMenu) {
-        mbsMenuRepository.save(mbsMenu);
+    public void editById(Menu menu) {
+        mbsMenuRepository.save(menu);
     }
 
     @Override
-    public MbsMenu findById(Long aLong) {
+    public Menu findById(Long id) {
         return null;
     }
 
     @Override
-    public List<MbsMenu> findListByPageAndCondition(PageParam pageParam, MbsMenu mbsMenu) {
+    public List<Menu> findListByPageAndCondition(PageParam pageParam, Menu menu) {
         return null;
     }
 
     @Override
-    public List<MbsMenuVO> findListByType(MbsMenuType mbsMenuType) {
+    public List<MenuVO> findListByType(MbsMenuType mbsMenuType) {
         return mbsMenuMapper.selectListByType(mbsMenuType.getCode());
     }
 
     @Override
-    public List<MbsMenuVO> findListByTypeAndUserId(MbsMenuType mbsMenuType, Long userId) {
+    public List<MenuVO> findListByTypeAndUserId(MbsMenuType mbsMenuType, Long userId) {
         return mbsMenuMapper.selectListByTypeAndUserId(mbsMenuType.getCode(), userId);
     }
 }

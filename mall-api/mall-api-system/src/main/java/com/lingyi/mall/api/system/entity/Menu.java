@@ -3,7 +3,6 @@ package com.lingyi.mall.api.system.entity;
 import com.lingyi.mall.common.bean.entity.BaseIsDeleteEntity;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -25,7 +24,7 @@ import java.util.Objects;
 @DynamicUpdate
 @Entity
 @Table(name = "mbs_menu")
-public class MbsMenu extends BaseIsDeleteEntity implements Serializable {
+public class Menu extends BaseIsDeleteEntity implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -6881064204751732279L;
@@ -102,7 +101,7 @@ public class MbsMenu extends BaseIsDeleteEntity implements Serializable {
     @ManyToMany
     @JoinTable(name = "mbs_role_menu", joinColumns = @JoinColumn(name = "menu_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     @ToString.Exclude
-    private List<MbsRole> mbsRoles;
+    private List<Role> roles;
 
     @Override
     public boolean equals(Object o) {
@@ -115,7 +114,7 @@ public class MbsMenu extends BaseIsDeleteEntity implements Serializable {
         if (!super.equals(o)) {
             return false;
         }
-        MbsMenu mbsMenu = (MbsMenu) o;
+        Menu mbsMenu = (Menu) o;
         if (!Objects.equals(name, mbsMenu.name)) {
             return false;
         }
@@ -149,7 +148,7 @@ public class MbsMenu extends BaseIsDeleteEntity implements Serializable {
         if (!Objects.equals(permission, mbsMenu.permission)) {
             return false;
         }
-        return Objects.equals(mbsRoles, mbsMenu.mbsRoles);
+        return Objects.equals(roles, mbsMenu.roles);
     }
 
     @Override
@@ -166,7 +165,7 @@ public class MbsMenu extends BaseIsDeleteEntity implements Serializable {
         result = 31 * result + (componentPath != null ? componentPath.hashCode() : 0);
         result = 31 * result + (componentName != null ? componentName.hashCode() : 0);
         result = 31 * result + (permission != null ? permission.hashCode() : 0);
-        result = 31 * result + (mbsRoles != null ? mbsRoles.hashCode() : 0);
+        result = 31 * result + (roles != null ? roles.hashCode() : 0);
         return result;
     }
 }

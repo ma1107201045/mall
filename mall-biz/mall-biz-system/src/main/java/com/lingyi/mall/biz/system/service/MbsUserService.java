@@ -1,8 +1,8 @@
 package com.lingyi.mall.biz.system.service;
 
-import com.lingyi.mall.api.system.entity.MbsUser;
+import com.lingyi.mall.api.system.entity.User;
 import com.lingyi.mall.api.system.enums.MbsMenuType;
-import com.lingyi.mall.api.system.vo.MbsUserVO;
+import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.common.util.BaseService;
 
 /**
@@ -11,7 +11,7 @@ import com.lingyi.mall.common.util.BaseService;
  * @datetime 2023/5/4 17:28
  * @description
  */
-public interface MbsUserService extends BaseService<MbsUser, Long> {
+public interface MbsUserService extends BaseService<User, Long> {
 
 
     /**
@@ -21,5 +21,5 @@ public interface MbsUserService extends BaseService<MbsUser, Long> {
      * @param menuType 菜单类型
      * @return MbsUserVO
      */
-    MbsUserVO findUserAndMenuByUserNameAndMenuType(String userName, MbsMenuType menuType);
+    UserVO findUserAndMenuByUserNameAndMenuType(String userName, MbsMenuType menuType);
 }

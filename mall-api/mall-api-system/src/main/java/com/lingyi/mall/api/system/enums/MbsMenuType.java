@@ -28,5 +28,5 @@ public enum MbsMenuType {
 
     private final Integer code;
 
-    private final String msg;
+    private final String message;
 }

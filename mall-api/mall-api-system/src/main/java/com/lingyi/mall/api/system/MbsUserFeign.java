@@ -1,7 +1,7 @@
 package com.lingyi.mall.api.system;
 
 import com.lingyi.mall.api.system.fallbackfactory.MbsUserFeignFallbackFactory;
-import com.lingyi.mall.api.system.vo.MbsUserVO;
+import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.common.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,5 +23,5 @@ public interface MbsUserFeign {
      * @return 用户信息
      */
     @GetMapping("/mbs/users/provider/menus")
-    ServerResponse<MbsUserVO> getUserAndMenuByUserName(@RequestParam(name = "userName") String userName);
+    ServerResponse<UserVO> getUserAndMenuByUserName(@RequestParam(name = "userName") String userName);
 }

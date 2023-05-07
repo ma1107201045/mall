@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.system.repository;
 
 
-import com.lingyi.mall.api.system.entity.MbsUserRole;
+import com.lingyi.mall.api.system.entity.UserRole;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 
 /**
@@ -10,5 +10,5 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryImplementati
  * @datetime 2023/4/30 22:43
  * @description
  */
-public interface MbsUserRoleRepository extends JpaRepositoryImplementation<MbsUserRole, Long> {
+public interface MbsUserRoleRepository extends JpaRepositoryImplementation<UserRole, Long> {
 }

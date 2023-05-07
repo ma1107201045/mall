@@ -17,7 +17,7 @@
         mm.component_name mm_component_name,
         mm.permission     mm_permission
     </sql>
-    <resultMap id="SelectListByTypeMap" type="com.lingyi.mall.api.system.vo.MbsMenuVO">
+    <resultMap id="SelectListByTypeMap" type="com.lingyi.mall.api.system.vo.MenuVO">
         <id column="mm_id" property="menuId"/>
         <result column="mu_permission" property="permission"/>
     </resultMap>

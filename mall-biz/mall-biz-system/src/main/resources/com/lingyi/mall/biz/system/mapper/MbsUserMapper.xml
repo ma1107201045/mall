@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lingyi.mall.biz.system.mapper.MbsUserMapper">
-    <resultMap id="BaseResultMap" type="com.lingyi.mall.api.system.entity.MbsUser">
+    <resultMap id="BaseResultMap" type="com.lingyi.mall.api.system.entity.User">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="user_name" jdbcType="VARCHAR" property="userName"/>
         <result column="real_name" jdbcType="VARCHAR" property="realName"/>
@@ -46,7 +46,7 @@
             <include refid="Base_Condition"/>
         </where>
     </select>
-    <resultMap id="SelectByUserNameMap" type="com.lingyi.mall.api.system.vo.MbsUserVO">
+    <resultMap id="SelectByUserNameMap" type="com.lingyi.mall.api.system.vo.UserVO">
         <id column="mu_id" property="userId"/>
         <result column="mu_password" property="password"/>
         <result column="mu_is_enable" property="isEnable"/>

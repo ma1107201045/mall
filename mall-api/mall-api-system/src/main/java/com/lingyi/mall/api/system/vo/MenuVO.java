@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 @Schema(description = "菜单")
 @Data
-public class MbsMenuVO implements Serializable {
+public class MenuVO implements Serializable {
     @Serial
     private static final long serialVersionUID = -7753690884211490825L;
 

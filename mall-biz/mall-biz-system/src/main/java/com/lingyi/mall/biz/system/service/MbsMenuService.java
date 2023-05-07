@@ -1,8 +1,8 @@
 package com.lingyi.mall.biz.system.service;
 
-import com.lingyi.mall.api.system.entity.MbsMenu;
+import com.lingyi.mall.api.system.entity.Menu;
 import com.lingyi.mall.api.system.enums.MbsMenuType;
-import com.lingyi.mall.api.system.vo.MbsMenuVO;
+import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.common.util.BaseService;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
  * @DateTime: 2023/5/7 15:28
  * @Description:
  */
-public interface MbsMenuService extends BaseService<MbsMenu, Long> {
+public interface MbsMenuService extends BaseService<Menu, Long> {
 
     /**
      * 按照类型查询
@@ -21,7 +21,7 @@ public interface MbsMenuService extends BaseService<MbsMenu, Long> {
      * @param mbsMenuType 菜单类型
      * @return List<MbsMenuVO>
      */
-    List<MbsMenuVO> findListByType(MbsMenuType mbsMenuType);
+    List<MenuVO> findListByType(MbsMenuType mbsMenuType);
 
     /**
      * 按照用户名称和菜单类型查询
@@ -30,5 +30,5 @@ public interface MbsMenuService extends BaseService<MbsMenu, Long> {
      * @param userId      用户id
      * @return List<MbsMenuVO>
      */
-    List<MbsMenuVO> findListByTypeAndUserId(MbsMenuType mbsMenuType, Long userId);
+    List<MenuVO> findListByTypeAndUserId(MbsMenuType mbsMenuType, Long userId);
 }

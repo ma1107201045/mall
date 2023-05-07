@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.system.repository;
 
-import com.lingyi.mall.api.system.entity.MbsRoleMenu;
+import com.lingyi.mall.api.system.entity.RoleMenu;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 
 /**
@@ -9,5 +9,5 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryImplementati
  * @datetime 2023/4/30 22:43
  * @description
  */
-public interface MbsRoleMenuRepository extends JpaRepositoryImplementation<MbsRoleMenu, Long> {
+public interface MbsRoleMenuRepository extends JpaRepositoryImplementation<RoleMenu, Long> {
 }

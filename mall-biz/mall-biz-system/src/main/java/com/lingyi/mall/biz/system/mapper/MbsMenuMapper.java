@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.system.mapper;
 
-import com.lingyi.mall.api.system.vo.MbsMenuVO;
+import com.lingyi.mall.api.system.vo.MenuVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -20,7 +20,7 @@ public interface MbsMenuMapper {
      * @param type 按钮类型
      * @return List<MbsMenuVO>
      */
-    List<MbsMenuVO> selectListByType(Integer type);
+    List<MenuVO> selectListByType(Integer type);
 
     /**
      * 按照用户名称和菜单类型查询
@@ -29,5 +29,5 @@ public interface MbsMenuMapper {
      * @param userId 用户id
      * @return List<MbsMenuVO>
      */
-    List<MbsMenuVO> selectListByTypeAndUserId(@Param("type") Integer type, @Param("userId") Long userId);
+    List<MenuVO> selectListByTypeAndUserId(@Param("type") Integer type, @Param("userId") Long userId);
 }

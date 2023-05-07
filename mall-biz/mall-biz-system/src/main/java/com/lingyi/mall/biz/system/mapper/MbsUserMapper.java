@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.system.mapper;
 
-import com.lingyi.mall.api.system.entity.MbsUser;
-import com.lingyi.mall.api.system.vo.MbsUserVO;
+import com.lingyi.mall.api.system.entity.User;
+import com.lingyi.mall.api.system.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -20,7 +20,7 @@ public interface MbsUserMapper {
      * @param id id
      * @return MbsUser
      */
-    MbsUser selectById(Long id);
+    User selectById(Long id);
 
     /**
      * 按照分页信息和条件查询
@@ -28,7 +28,7 @@ public interface MbsUserMapper {
      * @param mbsUser 用户信息
      * @return List<MbsUser>
      */
-    List<MbsUser> selectListByPageAndCondition(MbsUser mbsUser);
+    List<User> selectListByPageAndCondition(User mbsUser);
 
 
     /**
@@ -46,7 +46,7 @@ public interface MbsUserMapper {
      * @param userName 用户名称
      * @return MbsUserVO
      */
-    MbsUserVO selectByUserName(String userName);
+    UserVO selectByUserName(String userName);
 
 
 }
