@@ -1,5 +1,8 @@
 package com.lingyi.mall.common.security;
 
+import com.lingyi.mall.common.security.handler.JsonAuthenticationFailureHandler;
+import com.lingyi.mall.common.security.handler.JsonAuthenticationSuccessHandler;
+import com.lingyi.mall.common.security.handler.JsonLogoutSuccessHandler;
 import com.lingyi.mall.common.web.filter.TrackIdFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,10 +11,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.access.intercept.AuthorizationFilter;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import java.io.PrintWriter;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 /**
  * @author maweiyan
@@ -28,28 +31,32 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, TrackIdFilter trackIdFilter) throws Exception {
+    public AuthenticationSuccessHandler authenticationSuccessHandler() {
+        return new JsonAuthenticationSuccessHandler();
+    }
+
+    @Bean
+    public AuthenticationFailureHandler authenticationFailureHandler() {
+        return new JsonAuthenticationFailureHandler();
+    }
+
+    @Bean
+    public LogoutSuccessHandler logoutSuccessHandler() {
+        return new JsonLogoutSuccessHandler();
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, TrackIdFilter trackIdFilter,
+                                                   AuthenticationSuccessHandler authenticationSuccessHandler,
+                                                   AuthenticationFailureHandler authenticationFailureHandler,
+                                                   LogoutSuccessHandler logoutSuccessHandler) throws Exception {
         return http.addFilterBefore(trackIdFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests()
-                .requestMatchers(HttpMethod.GET, "/webjars/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/doc.html").permitAll()
-                .requestMatchers(HttpMethod.GET, "/v3/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/favicon.ico").permitAll()
-                .requestMatchers(HttpMethod.GET, "/mab/captcha").permitAll()
+                .requestMatchers(HttpMethod.GET, "/doc.html", "/webjars/**", "/v3/**", "/favicon.ico", "/mab/captcha", "/*/*/provider/**").permitAll()
                 .requestMatchers("/*/*/provider/**").permitAll()
                 .anyRequest().authenticated().and()
-                .formLogin().successHandler((request, response, authentication) -> {
-                    response.setContentType("application/json;charset=utf-8");
-                    PrintWriter writer = response.getWriter();
-                    writer.write("登录成功");
-                    writer.flush();
-                }).and()
-                .logout().logoutSuccessHandler((request, response, authentication) -> {
-                    response.setContentType("application/json;charset=utf-8");
-                    PrintWriter writer = response.getWriter();
-                    writer.write("注销成功");
-                    writer.flush();
-                }).and()
+                .formLogin().successHandler(authenticationSuccessHandler).failureHandler(authenticationFailureHandler).and()
+                .logout().logoutSuccessHandler(logoutSuccessHandler).and()
                 .csrf().disable()
                 .build();
     }

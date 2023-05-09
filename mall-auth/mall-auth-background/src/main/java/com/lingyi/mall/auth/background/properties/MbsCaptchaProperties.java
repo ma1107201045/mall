@@ -1,4 +1,4 @@
-package com.lingyi.mall.auth.background.propertis;
+package com.lingyi.mall.auth.background.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

@@ -1,13 +1,11 @@
 package com.lingyi.mall.auth.background.service.Impl;
 
-import cn.hutool.core.collection.CollUtil;
 import com.lingyi.mall.api.system.consumer.MbsUserFeignConsumer;
-import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.auth.background.enums.MabFailEnum;
-import com.lingyi.mall.common.security.CustomizeGrantedAuthority;
 import com.lingyi.mall.common.util.AssertUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -35,15 +33,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         //校验用用户信息
         AssertUtil.notNull(userVO, new UsernameNotFoundException(MabFailEnum.USER_NAME_NOT_EXIST_ERROR.getMessage()));
         //获取菜单权限中的权限标识
-        List<String> permissions = userVO.getMenuVOList()
+        List<SimpleGrantedAuthority> simpleGrantedAuthorities = userVO.getMenuVOList()
                 .stream()
-                .map(MenuVO::getPermission)
+                .map(menuVO -> new SimpleGrantedAuthority(menuVO.getPermission()))
                 .toList();
         //返回User
         return User.builder()
                 .username(username)
                 .password(userVO.getPassword())
-                .authorities(CollUtil.newArrayList(CustomizeGrantedAuthority.of(permissions)))
+                .authorities(simpleGrantedAuthorities)
                 .build();
     }
 }
