@@ -1,7 +1,7 @@
 ﻿package com.lingyi.mall.biz.system.provider.background;
 
-import com.lingyi.mall.api.system.feign.MbsUserFeign;
 import com.lingyi.mall.api.system.enums.MbsMenuType;
+import com.lingyi.mall.api.system.feign.MbsUserFeign;
 import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.biz.system.service.MbsUserService;
 import com.lingyi.mall.common.util.ServerResponse;
@@ -10,7 +10,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "后台【系统管理服务-用户-Provider】", description = "后台【系统管理服务-用户-Provider】")
 @RequiredArgsConstructor
 @Validated
-@RequestMapping("/mbs/provider/users")
 @RestController
 public class MbsUserFeignProvider implements MbsUserFeign {
 

@@ -22,6 +22,6 @@ public interface MbsUserFeign {
      * @param userName 用户名称
      * @return 用户信息
      */
-    @GetMapping("/mbs/users/provider/menus")
+    @GetMapping("/mbs/provider/users/menus")
     ServerResponse<UserVO> getUserAndMenuByUserName(@RequestParam(name = "userName") String userName);
 }
