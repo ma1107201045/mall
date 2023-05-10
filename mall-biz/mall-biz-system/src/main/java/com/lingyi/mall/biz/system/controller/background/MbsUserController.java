@@ -1,15 +1,12 @@
 package com.lingyi.mall.biz.system.controller.background;
 
 import com.lingyi.mall.api.system.entity.User;
-import com.lingyi.mall.api.system.enums.MbsMenuType;
-import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.biz.system.service.MbsUserService;
 import com.lingyi.mall.common.util.PageParam;
 import com.lingyi.mall.common.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -67,11 +64,4 @@ public class MbsUserController {
         return ServerResponse.success(users);
     }
 
-
-    @Operation(summary = "查询用户和权限[provider]", description = "按照用户名称查询用户和权限")
-    @GetMapping("/provider/menus")
-    public ServerResponse<UserVO> getUserAndMenuByUserName(@NotBlank(message = "用户名称不能为空") String userName) {
-        UserVO userVO = mbsUserService.findUserAndMenuByUserNameAndMenuType(userName, MbsMenuType.BUTTON);
-        return ServerResponse.success(userVO);
-    }
 }

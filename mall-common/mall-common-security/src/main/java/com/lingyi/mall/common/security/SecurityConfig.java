@@ -4,7 +4,6 @@ import com.lingyi.mall.common.security.handler.*;
 import com.lingyi.mall.common.web.filter.TrackIdFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,6 +25,10 @@ import org.springframework.web.filter.OncePerRequestFilter;
  */
 @Configuration(proxyBeanMethods = false)
 public class SecurityConfig {
+
+
+    public static final String LOGIN_PROCESSING_URL = "/mab/login";
+    public static final String LOGOUT_URL = "/mab/logout";
 
     @Bean
     public OncePerRequestFilter oncePerRequestFilter() {
@@ -64,13 +67,6 @@ public class SecurityConfig {
 
 
     @Bean
-    public ReloadableResourceBundleMessageSource reloadableResourceBundleMessageSource() {
-        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("classpath:messages_zh_CN");
-        return messageSource;
-    }
-
-    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, OncePerRequestFilter oncePerRequestFilter,
                                                    AuthenticationSuccessHandler authenticationSuccessHandler,
                                                    AuthenticationFailureHandler authenticationFailureHandler,
@@ -78,11 +74,11 @@ public class SecurityConfig {
                                                    AuthenticationEntryPoint authenticationEntryPoint,
                                                    AccessDeniedHandler accessDeniedHandler) throws Exception {
         return http.addFilterBefore(oncePerRequestFilter, UsernamePasswordAuthenticationFilter.class)
-                .formLogin().successHandler(authenticationSuccessHandler).failureHandler(authenticationFailureHandler).and()
-                .logout().logoutSuccessHandler(logoutSuccessHandler).and()
+                .formLogin().loginProcessingUrl(LOGIN_PROCESSING_URL).successHandler(authenticationSuccessHandler).failureHandler(authenticationFailureHandler).and()
+                .logout().logoutUrl(LOGOUT_URL).logoutSuccessHandler(logoutSuccessHandler).and()
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.GET, "/doc.html", "/webjars/**", "/v3/**", "/favicon.ico", "/mab/captcha", "/*/*/provider/**").permitAll()
-                .requestMatchers("/*/*/provider/**").permitAll().anyRequest().authenticated().and()
+                .requestMatchers("/*/provider/**").permitAll().anyRequest().authenticated().and()
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).accessDeniedHandler(accessDeniedHandler).and()
                 .csrf().disable()
                 .build();
