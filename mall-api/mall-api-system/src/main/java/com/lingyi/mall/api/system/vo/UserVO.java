@@ -32,7 +32,7 @@ public class UserVO implements Serializable {
     @Schema(description = "是否启用 1 是 0 否")
     private Integer isEnable;
 
-    @Schema(description = "菜单列表")
-    private List<MenuVO> menuVOList;
+    @Schema(description = "按钮权限标识集")
+    private List<String> permissions;
 
 }

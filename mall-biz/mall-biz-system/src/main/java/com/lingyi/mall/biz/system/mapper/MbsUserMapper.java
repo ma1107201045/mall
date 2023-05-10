@@ -1,8 +1,10 @@
 package com.lingyi.mall.biz.system.mapper;
 
 import com.lingyi.mall.api.system.entity.User;
+import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.api.system.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -47,6 +49,27 @@ public interface MbsUserMapper {
      * @return MbsUserVO
      */
     UserVO selectByUserName(String userName);
+
+
+    /**
+     * 按照用户id菜单类型查询按钮权限标识
+     *
+     * @param userId   用户id
+     * @param menuType 按钮类型
+     * @return MenuVO
+     */
+    List<String> selectPermissionsByUserIdAndMenuType(@Param("userId") Long userId, @Param("menuType") Integer menuType);
+
+
+    /**
+     * 按照用户id菜单类型集和菜单父级id查询菜单列表
+     *
+     * @param userName     用户名称
+     * @param menuTypes    按钮类型集
+     * @param menuParentId 菜单父级id
+     * @return List<MenuTreeVO>
+     */
+    List<MenuVO> selectMenusByUserNameAndMenuTypesAndMenuParentId(@Param("userName") String userName, @Param("menuTypes") List<Integer> menuTypes, @Param("menuParentId") Long menuParentId);
 
 
 }

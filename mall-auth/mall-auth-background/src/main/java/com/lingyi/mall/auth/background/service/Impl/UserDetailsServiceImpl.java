@@ -29,14 +29,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        //校验用户名称
+        AssertUtil.notBlack(username, new UsernameNotFoundException(MabFailEnum.USER_NAME_NOT_NULL_ERROR.getMessage()));
         //查询用户信息和菜单权限
         UserVO userVO = mbsUserFeignConsumer.getUserAndMenuByUserName(username);
         //校验用用户信息
-        AssertUtil.notNull(userVO, new UsernameNotFoundException(MabFailEnum.USER_NAME_NOT_EXIST_ERROR.getMessage()));
+        AssertUtil.notNull(userVO, new UsernameNotFoundException(MabFailEnum.USER_NAME_NOT_FOUND_ERROR.getMessage()));
         //获取菜单权限中的权限标识
-        List<SimpleGrantedAuthority> simpleGrantedAuthorities = userVO.getMenuVOList()
-                .stream()
-                .map(menuVO -> new SimpleGrantedAuthority(menuVO.getPermission()))
+        List<SimpleGrantedAuthority> simpleGrantedAuthorities = userVO.getPermissions().stream()
+                .map(SimpleGrantedAuthority::new)
                 .toList();
         //返回User
         return User.builder()

@@ -22,7 +22,7 @@ public class MbsUserFeignConsumer {
     private final MbsUserFeign mbsUserFeign;
 
     public UserVO getUserAndMenuByUserName(String userName) {
-        ServerResponse<UserVO> response = mbsUserFeign.getUserAndMenuByUserName(userName);
+        ServerResponse<UserVO> response = mbsUserFeign.getUserAndButtonByUserName(userName);
         if (response.getIsSuccess()) {
             return JSON.to(UserVO.class, response.getData());
         }

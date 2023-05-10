@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author maweiyan
@@ -17,10 +18,19 @@ import java.io.Serializable;
 public class MenuVO implements Serializable {
     @Serial
     private static final long serialVersionUID = -7753690884211490825L;
-
+    
     @Schema(description = "菜单id")
     private Long menuId;
 
-    @Schema(description = "权限标识")
-    private String permission;
+    @Schema(description = "菜单名称")
+    private Long name;
+
+    @Schema(description = "菜单图标")
+    private Long icon;
+
+    @Schema(description = "路由地址")
+    private Long path;
+
+    @Schema(description = "菜单树子级")
+    private List<MenuVO> menuVOList;
 }

@@ -1,11 +1,14 @@
 package com.lingyi.mall.api.system.feign;
 
 import com.lingyi.mall.api.system.fallbackfactory.MbsUserFeignFallbackFactory;
+import com.lingyi.mall.api.system.vo.MenuTreeVO;
 import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.common.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 /**
  * @Author: maweiyan
@@ -17,11 +20,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface MbsUserFeign {
 
     /**
-     * 按照用户名称查询用户信息
+     * 按照用户名称查询用户信息和按钮权限标识
+     *
+     * @param userName 用户名称
+     * @return 用户信息
+     */
+    @GetMapping("/mbs/provider/users/buttons")
+    ServerResponse<UserVO> getUserAndButtonByUserName(@RequestParam(name = "userName") String userName);
+
+
+    /**
+     * 按照用户名称查询用户信息和菜单
      *
      * @param userName 用户名称
      * @return 用户信息
      */
     @GetMapping("/mbs/provider/users/menus")
-    ServerResponse<UserVO> getUserAndMenuByUserName(@RequestParam(name = "userName") String userName);
+    ServerResponse<List<MenuTreeVO>> getDirectoryAndMenuByUserName(@RequestParam(name = "userName") String userName);
 }

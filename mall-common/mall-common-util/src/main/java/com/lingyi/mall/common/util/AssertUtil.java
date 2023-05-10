@@ -80,6 +80,11 @@ public final class AssertUtil {
         return t;
     }
 
+    public static <T extends CharSequence> T notBlack(T t, RuntimeException exception) {
+        isTrue(StrUtil.isNotBlank(t), exception);
+        return t;
+    }
+
     public static <T> T[] isEmpty(T[] t, BaseFailEnum failEnum) {
         isTrue(ArrayUtil.isEmpty(t), failEnum);
         return t;

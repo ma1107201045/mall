@@ -1,7 +1,6 @@
 package com.lingyi.mall.biz.system.service.impl;
 
 import com.lingyi.mall.api.system.entity.Menu;
-import com.lingyi.mall.api.system.enums.MbsMenuType;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.biz.system.mapper.MbsMenuMapper;
 import com.lingyi.mall.biz.system.repository.MbsMenuRepository;
@@ -51,13 +50,22 @@ public class MbsMenuServiceImpl implements MbsMenuService {
         return null;
     }
 
+
     @Override
-    public List<MenuVO> findListByType(MbsMenuType mbsMenuType) {
-        return mbsMenuMapper.selectListByType(mbsMenuType.getCode());
+    public List<MenuVO> findTreeByParentId(Long parentId) {
+        List<MenuVO> menuVOList = mbsMenuMapper.selectListParentId(parentId);
+        menuVOList.forEach(menuTreeVO -> menuTreeVO.setMenuVOList(findTreeByParentId(menuTreeVO.getMenuId())));
+        return menuVOList;
     }
 
     @Override
-    public List<MenuVO> findListByTypeAndUserId(MbsMenuType mbsMenuType, Long userId) {
-        return mbsMenuMapper.selectListByTypeAndUserId(mbsMenuType.getCode(), userId);
+    public List<String> findPermissionsByType(Integer type) {
+        return mbsMenuMapper.selectPermissionsByType(type);
     }
+
+    @Override
+    public List<MenuVO> findListByTypesAndParentId(List<Integer> types, Long parentId) {
+        return mbsMenuMapper.selectListByTypesAndParentId(types, parentId);
+    }
+
 }

@@ -1,7 +1,6 @@
 package com.lingyi.mall.biz.system.service;
 
 import com.lingyi.mall.api.system.entity.Menu;
-import com.lingyi.mall.api.system.enums.MbsMenuType;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.common.util.BaseService;
 
@@ -16,19 +15,28 @@ import java.util.List;
 public interface MbsMenuService extends BaseService<Menu, Long> {
 
     /**
-     * 按照类型查询
+     * 通过父级id查询
      *
-     * @param mbsMenuType 菜单类型
-     * @return List<MbsMenuVO>
+     * @param parentId 父级id
+     * @return List<MenuTreeVO>
      */
-    List<MenuVO> findListByType(MbsMenuType mbsMenuType);
+    List<MenuVO> findTreeByParentId(Long parentId);
 
     /**
-     * 按照用户名称和菜单类型查询
+     * 按照菜单类型查询
      *
-     * @param mbsMenuType 菜单类型
-     * @param userId      用户id
-     * @return List<MbsMenuVO>
+     * @param type 按钮类型
+     * @return List<String>
      */
-    List<MenuVO> findListByTypeAndUserId(MbsMenuType mbsMenuType, Long userId);
+    List<String> findPermissionsByType(Integer type);
+
+
+    /**
+     * 按照菜单类型集和菜单上级id查询
+     *
+     * @param types    菜单类型集
+     * @param parentId 菜单父级id
+     * @return List<MenuTreeVO>
+     */
+    List<MenuVO> findListByTypesAndParentId(List<Integer> types, Long parentId);
 }

@@ -16,9 +16,9 @@ public enum MabFailEnum implements BaseFailEnum {
     /**
      *
      */
-    USER_NAME_NOT_EXIST_ERROR(8001, "用户名称不存在");
+    USER_NAME_NOT_NULL_ERROR(8001, "用户名称不能为空"),
 
-
+    USER_NAME_NOT_FOUND_ERROR(8001, "用户名称不存在");
 
 
     private final Integer code;

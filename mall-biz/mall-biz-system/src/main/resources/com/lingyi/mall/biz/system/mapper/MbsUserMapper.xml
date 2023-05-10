@@ -75,4 +75,34 @@
         WHERE mu.user_name = #{userName}
     </select>
 
+    <select id="selectPermissionsByUserIdAndMenuType" resultType="java.lang.String">
+        SELECT mm.permission
+        FROM mbs_user_role mur
+                 INNER JOIN mbs_role_menu mrm ON mrm.menu_id = mur.role_id
+                 INNER JOIN mbs_menu mm ON mm.id = mrm.menu_id
+        WHERE mur.user_id = #{userId}
+          AND mm.type = #{menuType}
+        GROUP BY mm.id
+    </select>
+    <resultMap id="SelectMenusByUserNameAndMenuTypesAndMenuParentIdMap" type="com.lingyi.mall.api.system.vo.MenuVO">
+        <id column="id" property="menuId"/>
+        <result column="name" property="name"/>
+        <result column="icon" property="icon"/>
+        <result column="path" property="path"/>
+    </resultMap>
+    <select id="selectMenusByUserNameAndMenuTypesAndMenuParentId"
+            resultMap="SelectMenusByUserNameAndMenuTypesAndMenuParentIdMap">
+        SELECT mm.id mm.name ,mm.icon ,mm.path,
+        FROM mbs_user mu INNER JOIN
+        mbs_user_role mur ON mur.user_id=mu.id
+        INNER JOIN mbs_role_menu mrm ON mrm.menu_id = mur.role_id
+        INNER JOIN mbs_menu mm ON mm.id = mrm.menu_id
+        WHERE mm.type IN
+        <foreach collection="menuTypes" item="menuType" open="(" separator="," close=")">
+            #{menuType}
+        </foreach>
+        AND mm.parent_id = #{parentId}
+        AND mu.user_name = #{userName}
+        GROUP BY mm.id
+    </select>
 </mapper>
