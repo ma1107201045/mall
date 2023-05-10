@@ -18,7 +18,7 @@ import java.util.List;
 public class MenuVO implements Serializable {
     @Serial
     private static final long serialVersionUID = -7753690884211490825L;
-    
+
     @Schema(description = "菜单id")
     private Long menuId;
 
@@ -31,6 +31,6 @@ public class MenuVO implements Serializable {
     @Schema(description = "路由地址")
     private Long path;
 
-    @Schema(description = "菜单树子级")
+    @Schema(description = "菜单子级")
     private List<MenuVO> menuVOList;
 }

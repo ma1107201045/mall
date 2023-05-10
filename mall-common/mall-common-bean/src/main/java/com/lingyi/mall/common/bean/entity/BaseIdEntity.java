@@ -1,18 +1,13 @@
 package com.lingyi.mall.common.bean.entity;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import lombok.*;
-import lombok.experimental.FieldNameConstants;
-import lombok.experimental.SuperBuilder;
-import org.hibernate.Hibernate;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.util.Objects;
 
 /**

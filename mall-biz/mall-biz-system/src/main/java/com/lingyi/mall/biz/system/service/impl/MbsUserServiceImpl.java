@@ -47,6 +47,7 @@ public class MbsUserServiceImpl implements MbsUserService {
         AssertUtil.isNull(id, MbsFailEnum.USER_NAME_EXIST_ERROR);
         //密码加密
         String encodePassword = passwordEncoder.encode(user.getPassword());
+        //设置加密密码
         user.setPassword(encodePassword);
         //保存
         mbsUserRepository.save(user);
@@ -74,15 +75,15 @@ public class MbsUserServiceImpl implements MbsUserService {
     }
 
     @Override
-    public UserVO findUserAndPermissionsByUserName(String userName) {
+    public UserVO findUserAndMenuPermissionsByUserName(String userName) {
         UserVO userVO = mbsUserMapper.selectByUserName(userName);
         if (ObjUtil.isNull(userVO)) {
             return userVO;
         }
-        Integer type = MbsMenuType.BUTTON.getCode();
         List<String> permissions;
+        Integer type = MbsMenuType.BUTTON.getCode();
         if (!MbsConstant.USER_NAME_ADMIN.equals(userName)) {
-            permissions = mbsUserMapper.selectPermissionsByUserIdAndMenuType(userVO.getUserId(), type);
+            permissions = mbsUserMapper.selectMenuPermissionsByUserIdAndMenuType(userVO.getUserId(), type);
         } else {
             permissions = mbsMenuService.findPermissionsByType(type);
         }
@@ -92,15 +93,15 @@ public class MbsUserServiceImpl implements MbsUserService {
 
 
     @Override
-    public List<MenuVO> findMenuTreeUserNameAndMenuParentId(String userName, Long menuParentId) {
-        List<Integer> menuTypes = CollUtil.newArrayList(MbsMenuType.DIRECTORY.getCode(), MbsMenuType.MENU.getCode());
+    public List<MenuVO> findMenuTreeByUserNameAndMenuParentId(String userName, Long menuParentId) {
         List<MenuVO> menuVOList;
+        List<Integer> menuTypes = CollUtil.newArrayList(MbsMenuType.DIRECTORY.getCode(), MbsMenuType.MENU.getCode());
         if (!MbsConstant.USER_NAME_ADMIN.equals(userName)) {
             menuVOList = mbsUserMapper.selectMenusByUserNameAndMenuTypesAndMenuParentId(userName, menuTypes, menuParentId);
         } else {
             menuVOList = mbsMenuService.findListByTypesAndParentId(menuTypes, menuParentId);
         }
-        menuVOList.forEach(menuTreeVO -> menuTreeVO.setMenuVOList(findMenuTreeUserNameAndMenuParentId(userName, menuParentId)));
+        menuVOList.forEach(menuTreeVO -> menuTreeVO.setMenuVOList(findMenuTreeByUserNameAndMenuParentId(userName, menuParentId)));
         return menuVOList;
     }
 

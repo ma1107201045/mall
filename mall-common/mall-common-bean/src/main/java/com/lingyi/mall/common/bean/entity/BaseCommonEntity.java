@@ -1,20 +1,16 @@
 package com.lingyi.mall.common.bean.entity;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
-import lombok.*;
-import lombok.experimental.FieldNameConstants;
-import lombok.experimental.SuperBuilder;
-import org.hibernate.Hibernate;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.io.Serial;
 import java.time.LocalDateTime;
 import java.util.Objects;
 

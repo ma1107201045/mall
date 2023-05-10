@@ -26,7 +26,7 @@ public interface MbsUserFeign {
      * @return 用户信息
      */
     @GetMapping("/mbs/provider/users/permissions")
-    ServerResponse<UserVO> getUserAndPermissionsByUserName(@RequestParam(name = "userName") String userName);
+    ServerResponse<UserVO> getUserAndMenuPermissionsByUserName(@RequestParam(name = "userName") String userName);
 
 
     /**
@@ -35,6 +35,6 @@ public interface MbsUserFeign {
      * @param userName 用户名称
      * @return 用户信息
      */
-    @GetMapping("/mbs/provider/users/menus")
-    ServerResponse<List<MenuVO>> getDirectoryAndMenuByUserName(@RequestParam(name = "userName") String userName);
+    @GetMapping("/mbs/provider/users/menu-tree")
+    ServerResponse<List<MenuVO>> getMenuTreeByUserName(@RequestParam(name = "userName") String userName);
 }

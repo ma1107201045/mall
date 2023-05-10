@@ -17,12 +17,12 @@ public interface MbsUserService extends BaseService<User, Long> {
 
 
     /**
-     * 按照用户名称查询用户信息以及权限标识
+     * 按照用户名称查询用户信息以及菜单权限标识
      *
      * @param userName 用户名称
      * @return MbsUserVO
      */
-    UserVO findUserAndPermissionsByUserName(String userName);
+    UserVO findUserAndMenuPermissionsByUserName(String userName);
 
 
     /**
@@ -32,7 +32,7 @@ public interface MbsUserService extends BaseService<User, Long> {
      * @param menuParentId 菜单父级id
      * @return List<MenuTreeVO>
      */
-    List<MenuVO> findMenuTreeUserNameAndMenuParentId(String userName, Long menuParentId);
+    List<MenuVO> findMenuTreeByUserNameAndMenuParentId(String userName, Long menuParentId);
 
 
 }

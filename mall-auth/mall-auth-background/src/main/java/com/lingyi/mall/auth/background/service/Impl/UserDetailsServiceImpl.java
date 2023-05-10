@@ -32,7 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         //校验用户名称
         AssertUtil.notBlack(username, new UsernameNotFoundException(MabFailEnum.USER_NAME_NOT_NULL_ERROR.getMessage()));
         //查询用户信息和菜单权限
-        UserVO userVO = mbsUserFeignConsumer.getUserAndPermissionsByUserName(username);
+        UserVO userVO = mbsUserFeignConsumer.getUserAndMenuPermissionsByUserName(username);
         //校验用用户信息
         AssertUtil.notNull(userVO, new UsernameNotFoundException(MabFailEnum.USER_NAME_NOT_FOUND_ERROR.getMessage()));
         //获取菜单权限中的权限标识

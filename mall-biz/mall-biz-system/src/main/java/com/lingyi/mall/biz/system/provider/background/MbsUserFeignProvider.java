@@ -29,15 +29,15 @@ public class MbsUserFeignProvider implements MbsUserFeign {
 
     @Operation(summary = "查询用户和权限标识", description = "查询用户和权限标识")
     @Override
-    public ServerResponse<UserVO> getUserAndPermissionsByUserName(String userName) {
-        UserVO userVO = mbsUserService.findUserAndPermissionsByUserName(userName);
+    public ServerResponse<UserVO> getUserAndMenuPermissionsByUserName(String userName) {
+        UserVO userVO = mbsUserService.findUserAndMenuPermissionsByUserName(userName);
         return ServerResponse.success(userVO);
     }
 
-    @Operation(summary = "查询用户菜单树", description = "查询用户菜单树")
+    @Operation(summary = "查询菜单树", description = "查询菜单树")
     @Override
-    public ServerResponse<List<MenuVO>> getDirectoryAndMenuByUserName(String userName) {
-        List<MenuVO> menuVoList = mbsUserService.findMenuTreeUserNameAndMenuParentId(userName, MbsConstant.MENU_ROOT_ID);
+    public ServerResponse<List<MenuVO>> getMenuTreeByUserName(String userName) {
+        List<MenuVO> menuVoList = mbsUserService.findMenuTreeByUserNameAndMenuParentId(userName, MbsConstant.MENU_ROOT_ID);
         return ServerResponse.success(menuVoList);
     }
 

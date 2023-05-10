@@ -75,7 +75,7 @@
         WHERE mu.user_name = #{userName}
     </select>
 
-    <select id="selectPermissionsByUserIdAndMenuType" resultType="java.lang.String">
+    <select id="selectMenuPermissionsByUserIdAndMenuType" resultType="java.lang.String">
         SELECT mm.permission
         FROM mbs_user_role mur
                  INNER JOIN mbs_role_menu mrm ON mrm.menu_id = mur.role_id

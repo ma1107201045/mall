@@ -58,7 +58,7 @@ public interface MbsUserMapper {
      * @param menuType 按钮类型
      * @return MenuVO
      */
-    List<String> selectPermissionsByUserIdAndMenuType(@Param("userId") Long userId, @Param("menuType") Integer menuType);
+    List<String> selectMenuPermissionsByUserIdAndMenuType(@Param("userId") Long userId, @Param("menuType") Integer menuType);
 
 
     /**
