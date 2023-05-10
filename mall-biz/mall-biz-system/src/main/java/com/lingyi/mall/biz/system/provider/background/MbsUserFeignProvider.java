@@ -1,5 +1,6 @@
 ﻿package com.lingyi.mall.biz.system.provider.background;
 
+import com.lingyi.mall.api.system.feign.MbsUserFeign;
 import com.lingyi.mall.api.system.enums.MbsMenuType;
 import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.biz.system.service.MbsUserService;
@@ -9,7 +10,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,17 +19,17 @@ import org.springframework.web.bind.annotation.RestController;
  * @datetime 2023/5/10 17:48
  * @description
  */
-@Tag(name = "后台【系统管理服务-用户】", description = "后台【系统管理服务-用户-Provider】")
+@Tag(name = "后台【系统管理服务-用户-Provider】", description = "后台【系统管理服务-用户-Provider】")
 @RequiredArgsConstructor
 @Validated
 @RequestMapping("/mbs/provider/users")
 @RestController
-public class MbsUserFeignProvider {
+public class MbsUserFeignProvider implements MbsUserFeign {
 
     private final MbsUserService mbsUserService;
 
     @Operation(summary = "查询用户和权限", description = "按照用户名称查询用户和权限")
-    @GetMapping("/menus")
+    @Override
     public ServerResponse<UserVO> getUserAndMenuByUserName(@NotBlank(message = "用户名称不能为空") String userName) {
         UserVO userVO = mbsUserService.findUserAndMenuByUserNameAndMenuType(userName, MbsMenuType.BUTTON);
         return ServerResponse.success(userVO);

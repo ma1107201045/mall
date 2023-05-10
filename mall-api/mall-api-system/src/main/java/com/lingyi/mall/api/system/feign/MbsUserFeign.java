@@ -1,4 +1,4 @@
-package com.lingyi.mall.api.system;
+package com.lingyi.mall.api.system.feign;
 
 import com.lingyi.mall.api.system.fallbackfactory.MbsUserFeignFallbackFactory;
 import com.lingyi.mall.api.system.vo.UserVO;

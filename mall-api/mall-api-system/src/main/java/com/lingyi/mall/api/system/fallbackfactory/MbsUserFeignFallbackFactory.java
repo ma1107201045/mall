@@ -1,6 +1,6 @@
 package com.lingyi.mall.api.system.fallbackfactory;
 
-import com.lingyi.mall.api.system.MbsUserFeign;
+import com.lingyi.mall.api.system.feign.MbsUserFeign;
 import org.springframework.cloud.openfeign.FallbackFactory;
 
 /**
