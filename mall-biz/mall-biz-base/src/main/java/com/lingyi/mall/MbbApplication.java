@@ -14,9 +14,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableFeignClients
 @EnableJpaAuditing
 @SpringBootApplication
-public class MallBizBaseApplication {
+public class MbbApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MallBizBaseApplication.class, args);
+        SpringApplication.run(MbbApplication.class, args);
     }
 }
