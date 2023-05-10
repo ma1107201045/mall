@@ -48,6 +48,7 @@
     </select>
     <resultMap id="SelectByUserNameMap" type="com.lingyi.mall.api.system.vo.UserVO">
         <id column="mu_id" property="userId"/>
+        <result column="mu_user_name" property="userName"/>
         <result column="mu_password" property="password"/>
         <result column="mu_is_enable" property="isEnable"/>
     </resultMap>

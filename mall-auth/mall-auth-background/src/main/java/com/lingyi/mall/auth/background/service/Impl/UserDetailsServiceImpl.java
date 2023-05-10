@@ -3,6 +3,7 @@ package com.lingyi.mall.auth.background.service.Impl;
 import com.lingyi.mall.api.system.consumer.MbsUserFeignConsumer;
 import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.auth.background.enums.MabFailEnum;
+import com.lingyi.mall.common.enums.YNEnum;
 import com.lingyi.mall.common.util.AssertUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -39,9 +40,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .toList();
         //返回User
         return User.builder()
-                .username(username)
+                .username(userVO.getUserName())
                 .password(userVO.getPassword())
                 .authorities(simpleGrantedAuthorities)
+                .disabled(YNEnum.N.getCode().equals(userVO.getIsEnable()))
                 .build();
     }
 }

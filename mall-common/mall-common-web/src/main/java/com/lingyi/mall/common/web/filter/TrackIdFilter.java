@@ -21,7 +21,6 @@ import java.util.Locale;
  * @datetime 2023/5/6 16:39
  * @description
  */
-@Component
 public class TrackIdFilter extends OncePerRequestFilter {
 
     @Override

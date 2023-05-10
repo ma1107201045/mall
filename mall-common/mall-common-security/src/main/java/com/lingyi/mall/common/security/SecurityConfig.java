@@ -1,20 +1,22 @@
 package com.lingyi.mall.common.security;
 
-import com.lingyi.mall.common.security.handler.JsonAuthenticationFailureHandler;
-import com.lingyi.mall.common.security.handler.JsonAuthenticationSuccessHandler;
-import com.lingyi.mall.common.security.handler.JsonLogoutSuccessHandler;
+import com.lingyi.mall.common.security.handler.*;
 import com.lingyi.mall.common.web.filter.TrackIdFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 /**
  * @author maweiyan
@@ -24,6 +26,11 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
  */
 @Configuration(proxyBeanMethods = false)
 public class SecurityConfig {
+
+    @Bean
+    public OncePerRequestFilter oncePerRequestFilter() {
+        return new TrackIdFilter();
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -46,17 +53,37 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, TrackIdFilter trackIdFilter,
+    public AuthenticationEntryPoint authenticationEntryPoint() {
+        return new JsonAuthenticationEntryPoint();
+    }
+
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler() {
+        return new JsonAccessDeniedHandler();
+    }
+
+
+    @Bean
+    public ReloadableResourceBundleMessageSource reloadableResourceBundleMessageSource() {
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasename("classpath:messages_zh_CN");
+        return messageSource;
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, OncePerRequestFilter oncePerRequestFilter,
                                                    AuthenticationSuccessHandler authenticationSuccessHandler,
                                                    AuthenticationFailureHandler authenticationFailureHandler,
-                                                   LogoutSuccessHandler logoutSuccessHandler) throws Exception {
-        return http.addFilterBefore(trackIdFilter, UsernamePasswordAuthenticationFilter.class)
-                .authorizeHttpRequests()
-                .requestMatchers(HttpMethod.GET, "/doc.html", "/webjars/**", "/v3/**", "/favicon.ico", "/mab/captcha", "/*/*/provider/**").permitAll()
-                .requestMatchers("/*/*/provider/**").permitAll()
-                .anyRequest().authenticated().and()
+                                                   LogoutSuccessHandler logoutSuccessHandler,
+                                                   AuthenticationEntryPoint authenticationEntryPoint,
+                                                   AccessDeniedHandler accessDeniedHandler) throws Exception {
+        return http.addFilterBefore(oncePerRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .formLogin().successHandler(authenticationSuccessHandler).failureHandler(authenticationFailureHandler).and()
                 .logout().logoutSuccessHandler(logoutSuccessHandler).and()
+                .authorizeHttpRequests()
+                .requestMatchers(HttpMethod.GET, "/doc.html", "/webjars/**", "/v3/**", "/favicon.ico", "/mab/captcha", "/*/*/provider/**").permitAll()
+                .requestMatchers("/*/*/provider/**").permitAll().anyRequest().authenticated().and()
+                .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).accessDeniedHandler(accessDeniedHandler).and()
                 .csrf().disable()
                 .build();
     }

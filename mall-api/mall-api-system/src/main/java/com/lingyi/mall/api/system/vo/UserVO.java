@@ -23,6 +23,9 @@ public class UserVO implements Serializable {
     @Schema(description = "用户id")
     private Long userId;
 
+    @Schema(description = "用户名称")
+    private String userName;
+
     @Schema(description = "密码")
     private String password;
 
