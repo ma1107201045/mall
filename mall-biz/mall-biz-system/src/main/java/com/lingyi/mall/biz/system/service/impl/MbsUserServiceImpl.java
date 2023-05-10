@@ -3,12 +3,12 @@ package com.lingyi.mall.biz.system.service.impl;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjUtil;
 import com.github.pagehelper.PageHelper;
+import com.lingyi.mall.api.system.constant.MbsConstant;
 import com.lingyi.mall.api.system.entity.User;
 import com.lingyi.mall.api.system.enums.MbsFailEnum;
 import com.lingyi.mall.api.system.enums.MbsMenuType;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.api.system.vo.UserVO;
-import com.lingyi.mall.biz.system.constant.MbsConstant;
 import com.lingyi.mall.biz.system.mapper.MbsUserMapper;
 import com.lingyi.mall.biz.system.repository.MbsUserRepository;
 import com.lingyi.mall.biz.system.service.MbsMenuService;
@@ -74,7 +74,7 @@ public class MbsUserServiceImpl implements MbsUserService {
     }
 
     @Override
-    public UserVO findUserAndButtonByUserName(String userName) {
+    public UserVO findUserAndPermissionsByUserName(String userName) {
         UserVO userVO = mbsUserMapper.selectByUserName(userName);
         if (ObjUtil.isNull(userVO)) {
             return userVO;

@@ -17,12 +17,12 @@ public interface MbsUserService extends BaseService<User, Long> {
 
 
     /**
-     * 按照用户名称查询用户信息以及按钮权限标识
+     * 按照用户名称查询用户信息以及权限标识
      *
      * @param userName 用户名称
      * @return MbsUserVO
      */
-    UserVO findUserAndButtonByUserName(String userName);
+    UserVO findUserAndPermissionsByUserName(String userName);
 
 
     /**

@@ -1,4 +1,4 @@
-package com.lingyi.mall.biz.system.constant;
+package com.lingyi.mall.api.system.constant;
 
 /**
  * @Author: maweiyan
@@ -13,4 +13,6 @@ public class MbsConstant {
     }
 
     public static final String USER_NAME_ADMIN = "admin";
+
+    public static final Long MENU_ROOT_ID = -1L;
 }

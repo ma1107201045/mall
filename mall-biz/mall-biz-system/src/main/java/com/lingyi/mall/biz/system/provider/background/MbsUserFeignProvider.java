@@ -1,7 +1,8 @@
 package com.lingyi.mall.biz.system.provider.background;
 
+import com.lingyi.mall.api.system.constant.MbsConstant;
 import com.lingyi.mall.api.system.feign.MbsUserFeign;
-import com.lingyi.mall.api.system.vo.MenuTreeVO;
+import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.biz.system.service.MbsUserService;
 import com.lingyi.mall.common.util.ServerResponse;
@@ -26,18 +27,18 @@ public class MbsUserFeignProvider implements MbsUserFeign {
     private final MbsUserService mbsUserService;
 
 
-    @Operation(summary = "查询用户和按钮权限标识", description = "查询用户和按钮权限标识")
+    @Operation(summary = "查询用户和权限标识", description = "查询用户和权限标识")
     @Override
-    public ServerResponse<UserVO> getUserAndButtonByUserName(String userName) {
-        UserVO userVO = mbsUserService.findUserAndButtonByUserName(userName);
+    public ServerResponse<UserVO> getUserAndPermissionsByUserName(String userName) {
+        UserVO userVO = mbsUserService.findUserAndPermissionsByUserName(userName);
         return ServerResponse.success(userVO);
     }
 
-    @Operation(summary = "查询用户菜单", description = "查询用户菜单")
+    @Operation(summary = "查询用户菜单树", description = "查询用户菜单树")
     @Override
-    public ServerResponse<List<MenuTreeVO>> getDirectoryAndMenuByUserName(String userName) {
-
-        return ServerResponse.success(null);
+    public ServerResponse<List<MenuVO>> getDirectoryAndMenuByUserName(String userName) {
+        List<MenuVO> menuVoList = mbsUserService.findMenuTreeUserNameAndMenuParentId(userName, MbsConstant.MENU_ROOT_ID);
+        return ServerResponse.success(menuVoList);
     }
 
 }

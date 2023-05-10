@@ -78,7 +78,7 @@ public class SecurityConfig {
                 .logout().logoutUrl(LOGOUT_URL).logoutSuccessHandler(logoutSuccessHandler).and()
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.GET, "/doc.html", "/webjars/**", "/v3/**", "/favicon.ico", "/mab/captcha", "/*/*/provider/**").permitAll()
-                .requestMatchers("/*/provider/**").permitAll().anyRequest().authenticated().and()
+                .requestMatchers("/mbs/provider/users/permissions").permitAll().anyRequest().authenticated().and()
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).accessDeniedHandler(accessDeniedHandler).and()
                 .csrf().disable()
                 .build();
