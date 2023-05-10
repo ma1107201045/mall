@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
  * @Author: maweiyan
  * @Email 1107201045@qq.com
  * @DateTime: 2023/5/10 20:17
- * @Description:
+ * @Description: 基础服务
  */
 @EnableFeignClients
 @EnableJpaAuditing
