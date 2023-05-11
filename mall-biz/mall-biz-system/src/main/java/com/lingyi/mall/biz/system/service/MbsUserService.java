@@ -3,7 +3,7 @@ package com.lingyi.mall.biz.system.service;
 import com.lingyi.mall.api.system.entity.User;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.api.system.vo.UserVO;
-import com.lingyi.mall.common.util.BaseService;
+import com.lingyi.mall.common.bean.util.BaseService;
 
 import java.util.List;
 

@@ -3,7 +3,7 @@ package com.lingyi.mall.biz.system.controller.background;
 import com.lingyi.mall.api.system.entity.User;
 import com.lingyi.mall.biz.system.service.MbsUserService;
 import com.lingyi.mall.common.bean.dto.BaseBackgroundPageDTO;
-import com.lingyi.mall.common.util.ServerResponse;
+import com.lingyi.mall.common.bean.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -30,6 +30,7 @@ public class MbsUserController {
 
     @Operation(summary = "保存", description = "保存")
     @PostMapping
+//    @PreAuthorize("111")
     public ServerResponse<Void> save(@Valid @RequestBody User user) {
         mbsUserService.add(user);
         return ServerResponse.success();

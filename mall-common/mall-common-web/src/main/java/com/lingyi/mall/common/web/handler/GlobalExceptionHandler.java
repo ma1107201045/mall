@@ -1,6 +1,6 @@
 package com.lingyi.mall.common.web.handler;
 
-import com.lingyi.mall.common.util.ServerResponse;
+import com.lingyi.mall.common.bean.util.ServerResponse;
 import com.lingyi.mall.common.bean.exception.BizException;
 import com.lingyi.mall.common.bean.exception.OpenFeignException;
 import jakarta.validation.ConstraintViolation;

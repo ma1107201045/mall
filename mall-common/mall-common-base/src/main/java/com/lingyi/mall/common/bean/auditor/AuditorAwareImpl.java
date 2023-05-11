@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.fill.jpa.auditor;
+package com.lingyi.mall.common.bean.auditor;
 
 import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.common.bean.constant.BaseConstant;

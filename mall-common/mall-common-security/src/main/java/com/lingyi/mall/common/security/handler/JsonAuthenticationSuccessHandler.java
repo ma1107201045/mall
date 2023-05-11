@@ -1,7 +1,7 @@
 package com.lingyi.mall.common.security.handler;
 
 import com.alibaba.fastjson2.JSON;
-import com.lingyi.mall.common.util.ServerResponse;
+import com.lingyi.mall.common.bean.util.ServerResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.MediaType;

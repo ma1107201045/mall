@@ -5,7 +5,7 @@ import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.biz.system.mapper.MbsMenuMapper;
 import com.lingyi.mall.biz.system.repository.MbsMenuRepository;
 import com.lingyi.mall.biz.system.service.MbsMenuService;
-import com.lingyi.mall.common.util.PageParam;
+import com.lingyi.mall.common.bean.dto.BaseBackgroundPageDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -46,7 +46,7 @@ public class MbsMenuServiceImpl implements MbsMenuService {
     }
 
     @Override
-    public List<Menu> findListByPageAndCondition(PageParam pageParam, Menu menu) {
+    public List<Menu> findListByPageAndCondition(BaseBackgroundPageDTO baseBackgroundPageDTO, Menu menu) {
         return null;
     }
 

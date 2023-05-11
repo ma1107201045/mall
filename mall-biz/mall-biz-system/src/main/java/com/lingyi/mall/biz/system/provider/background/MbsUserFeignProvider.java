@@ -5,7 +5,7 @@ import com.lingyi.mall.api.system.feign.MbsUserFeign;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.biz.system.service.MbsUserService;
-import com.lingyi.mall.common.util.ServerResponse;
+import com.lingyi.mall.common.bean.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

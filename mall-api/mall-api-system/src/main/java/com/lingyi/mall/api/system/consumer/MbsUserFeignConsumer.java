@@ -4,7 +4,7 @@ import com.alibaba.fastjson2.JSON;
 import com.lingyi.mall.api.system.feign.MbsUserFeign;
 import com.lingyi.mall.api.system.vo.UserVO;
 
-import com.lingyi.mall.common.util.ServerResponse;
+import com.lingyi.mall.common.bean.util.ServerResponse;
 import com.lingyi.mall.common.bean.exception.OpenFeignException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

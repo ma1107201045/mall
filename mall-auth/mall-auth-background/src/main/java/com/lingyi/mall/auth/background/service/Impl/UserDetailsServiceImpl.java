@@ -4,7 +4,7 @@ import com.lingyi.mall.api.system.consumer.MbsUserFeignConsumer;
 import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.auth.background.enums.MabFailEnum;
 import com.lingyi.mall.common.bean.enums.YNEnum;
-import com.lingyi.mall.common.util.AssertUtil;
+import com.lingyi.mall.common.bean.util.AssertUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;

@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.util;
+package com.lingyi.mall.common.bean.util;
 
 
 import com.lingyi.mall.common.bean.dto.BaseBackgroundPageDTO;
