@@ -24,7 +24,7 @@ public abstract class BaseIdEntity {
 
     @Id
     @GeneratedValue(generator = "SnowflakeIdentifierGenerator")
-    @GenericGenerator(name = "SnowflakeIdentifierGenerator", strategy = "com.lingyi.mall.common.fill.jpa.generator.SnowflakeIdentifierGenerator")
+    @GenericGenerator(name = "SnowflakeIdentifierGenerator", strategy = "com.lingyi.mall.common.bean.generator.SnowflakeIdentifierGenerator")
     @Column(name = "id", nullable = false, length = 20)
     private Long id;
 
