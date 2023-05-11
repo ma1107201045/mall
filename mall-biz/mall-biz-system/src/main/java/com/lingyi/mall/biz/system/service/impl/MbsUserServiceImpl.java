@@ -13,8 +13,8 @@ import com.lingyi.mall.biz.system.mapper.MbsUserMapper;
 import com.lingyi.mall.biz.system.repository.MbsUserRepository;
 import com.lingyi.mall.biz.system.service.MbsMenuService;
 import com.lingyi.mall.biz.system.service.MbsUserService;
+import com.lingyi.mall.common.bean.dto.BaseBackgroundPageDTO;
 import com.lingyi.mall.common.util.AssertUtil;
-import com.lingyi.mall.common.util.PageParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -69,9 +69,9 @@ public class MbsUserServiceImpl implements MbsUserService {
     }
 
     @Override
-    public List<User> findListByPageAndCondition(PageParam pageParam, User mbsUser) {
-        PageHelper.startPage(pageParam.getCurrentPage(), pageParam.getPageSize());
-        return mbsUserMapper.selectListByPageAndCondition(mbsUser);
+    public List<User> findListByPageAndCondition(BaseBackgroundPageDTO dto, User user) {
+        PageHelper.startPage(dto.getCurrentPage(), dto.getPageSize());
+        return mbsUserMapper.selectListByPageAndCondition(user);
     }
 
     @Override

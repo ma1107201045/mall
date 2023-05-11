@@ -1,6 +1,6 @@
 package com.lingyi.mall.common.web.config;
 
-import com.lingyi.mall.common.constant.BaseConstant;
+import com.lingyi.mall.common.bean.constant.BaseConstant;
 import feign.Logger;
 import feign.RequestInterceptor;
 import org.slf4j.MDC;

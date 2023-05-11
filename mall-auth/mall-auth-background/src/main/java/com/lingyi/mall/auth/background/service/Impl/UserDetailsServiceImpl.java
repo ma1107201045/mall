@@ -3,7 +3,7 @@ package com.lingyi.mall.auth.background.service.Impl;
 import com.lingyi.mall.api.system.consumer.MbsUserFeignConsumer;
 import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.auth.background.enums.MabFailEnum;
-import com.lingyi.mall.common.enums.YNEnum;
+import com.lingyi.mall.common.bean.enums.YNEnum;
 import com.lingyi.mall.common.util.AssertUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ import java.util.List;
  * @datetime 2023/5/1 17:54
  * @description
  */
-@Component
+@Service
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 

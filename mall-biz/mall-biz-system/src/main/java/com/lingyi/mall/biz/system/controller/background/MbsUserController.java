@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.system.controller.background;
 
 import com.lingyi.mall.api.system.entity.User;
 import com.lingyi.mall.biz.system.service.MbsUserService;
-import com.lingyi.mall.common.util.PageParam;
+import com.lingyi.mall.common.bean.dto.BaseBackgroundPageDTO;
 import com.lingyi.mall.common.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -59,8 +59,8 @@ public class MbsUserController {
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
-    public ServerResponse<List<User>> getListByPageAndCondition(@Valid PageParam pageParam, @Valid User user) {
-        List<User> users = mbsUserService.findListByPageAndCondition(pageParam, user);
+    public ServerResponse<List<User>> getListByPageAndCondition(@Valid BaseBackgroundPageDTO dto, @Valid User user) {
+        List<User> users = mbsUserService.findListByPageAndCondition(dto, user);
         return ServerResponse.success(users);
     }
 

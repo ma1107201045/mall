@@ -1,12 +1,7 @@
 package com.lingyi.mall.common.fill.jpa.auditor;
 
-import cn.hutool.core.util.ObjUtil;
-import cn.hutool.core.util.ReferenceUtil;
-import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
-import com.lingyi.mall.common.bean.entity.BaseCommonEntity;
-import com.lingyi.mall.common.constant.BaseConstant;
-import lombok.extern.slf4j.Slf4j;
+import com.lingyi.mall.common.bean.constant.BaseConstant;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.Authentication;

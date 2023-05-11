@@ -1,6 +1,8 @@
 package com.lingyi.mall.common.util;
 
 
+import com.lingyi.mall.common.bean.dto.BaseBackgroundPageDTO;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -44,11 +46,11 @@ public interface BaseService<T extends Serializable, ID> {
     /**
      * 查找列表
      *
-     * @param pageParam 分页信息
-     * @param t         t
+     * @param baseBackgroundPageDTO 分页信息
+     * @param t                     t
      * @return List<T>
      */
-    List<T> findListByPageAndCondition(PageParam pageParam, T t);
+    List<T> findListByPageAndCondition(BaseBackgroundPageDTO baseBackgroundPageDTO, T t);
 
 
 }

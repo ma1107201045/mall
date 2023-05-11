@@ -11,9 +11,7 @@
     <name>${project.artifactId}</name>
     <description>电商项目-公共模块父工程</description>
     <modules>
-        <module>mall-common-bean</module>
-        <module>mall-common-constant</module>
-        <module>mall-common-enums</module>
+        <module>mall-common-base</module>
         <module>mall-common-fill</module>
         <module>mall-common-redis</module>
         <module>mall-common-security</module>

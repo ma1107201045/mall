@@ -1,6 +1,6 @@
 package com.lingyi.mall.auth.background.enums;
 
-import com.lingyi.mall.common.enums.BaseFailEnum;
+import com.lingyi.mall.common.bean.enums.BaseFailEnum;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

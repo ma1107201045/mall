@@ -4,7 +4,7 @@ import cn.hutool.core.lang.Singleton;
 import cn.hutool.core.net.NetUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
-import com.lingyi.mall.common.constant.BaseConstant;
+import com.lingyi.mall.common.bean.constant.BaseConstant;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
