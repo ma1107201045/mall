@@ -1,5 +1,6 @@
 package com.lingyi.mall.api.system.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lingyi.mall.common.bean.entity.BaseIsDeleteEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
@@ -51,6 +52,7 @@ public class User extends BaseIsDeleteEntity implements Serializable {
 
 
     @Schema(description = "昵称")
+    @JsonIgnore
     @Column(name = "nickname", length = 20)
     private String nickname;
 

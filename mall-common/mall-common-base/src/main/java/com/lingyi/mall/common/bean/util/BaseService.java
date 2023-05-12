@@ -31,7 +31,7 @@ public interface BaseService<DTO extends Serializable, PARAM extends Serializabl
     /**
      * 修改
      *
-     * @param w w
+     * @param dto dto
      */
     void editById(DTO dto);
 
@@ -47,7 +47,8 @@ public interface BaseService<DTO extends Serializable, PARAM extends Serializabl
      * 查找列表
      *
      * @param basePageDTO 分页信息
-     * @return List<T>
+     * @param param       查找参数
+     * @return List<VO>
      */
     List<VO> findListByPageAndParam(BasePageParam basePageDTO, PARAM param);
 

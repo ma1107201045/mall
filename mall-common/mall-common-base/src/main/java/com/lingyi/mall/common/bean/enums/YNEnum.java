@@ -13,6 +13,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum YNEnum {
 
+    /**
+     *
+     */
     Y(1), N(0);
 
     private final Integer code;

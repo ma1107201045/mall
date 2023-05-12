@@ -25,14 +25,14 @@
     component_name, permission, create_by, create_date_time, last_modify_by, last_modify_date_time,
     is_delete
     </sql>
-    <select id="selectListParentId" resultType="com.lingyi.mall.api.system.vo.MenuVO">
+    <select id="selectListByParentId" resultType="com.lingyi.mall.api.system.vo.MenuVO">
         SELECT
         <include refid="Base_Column_List"/>
         FROM mbs_menu
         WHERE
         AND parent_id = #{parentId}
     </select>
-    <select id="selectPermissionsByType" resultType="java.lang.String">
+    <select id="selectPermissionByType" resultType="java.lang.String">
         SELECT permission
         FROM mbs_menu
         WHERE type = #{type}
@@ -40,13 +40,13 @@
 
     <select id="selectListByTypesAndParentId"
             resultMap="com.lingyi.mall.biz.system.mapper.MbsUserMapper.SelectMenusByUserNameAndMenuTypesAndMenuParentIdMap">
-        SELECT mm.id mm.name ,mm.icon ,mm.path,
-        FROM mbs_menu mm
-        WHERE mm.type IN
+        SELECT id, name, icon, path
+        FROM mbs_menu
+        WHERE type IN
         <foreach collection="types" item="type" open="(" separator="," close=")">
             #{type}
         </foreach>
-        AND mm.parent_id = #{parentId}
+        AND parent_id = #{parentId}
     </select>
 
 </mapper>

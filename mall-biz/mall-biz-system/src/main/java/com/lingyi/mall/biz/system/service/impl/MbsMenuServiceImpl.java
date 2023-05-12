@@ -53,14 +53,14 @@ public class MbsMenuServiceImpl implements MbsMenuService {
 
     @Override
     public List<MenuVO> findTreeByParentId(Long parentId) {
-        List<MenuVO> menuVOList = mbsMenuMapper.selectListParentId(parentId);
+        List<MenuVO> menuVOList = mbsMenuMapper.selectListByParentId(parentId);
         menuVOList.forEach(menuTreeVO -> menuTreeVO.setMenuVOList(findTreeByParentId(menuTreeVO.getMenuId())));
         return menuVOList;
     }
 
     @Override
-    public List<String> findPermissionsByType(Integer type) {
-        return mbsMenuMapper.selectPermissionsByType(type);
+    public List<String> findPermissionByType(Integer type) {
+        return mbsMenuMapper.selectPermissionByType(type);
     }
 
     @Override

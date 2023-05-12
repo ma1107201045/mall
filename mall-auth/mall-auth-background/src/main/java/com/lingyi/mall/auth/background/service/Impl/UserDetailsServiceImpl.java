@@ -3,6 +3,7 @@ package com.lingyi.mall.auth.background.service.Impl;
 import com.lingyi.mall.api.system.consumer.MbsUserFeignConsumer;
 import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.auth.background.enums.MabFailEnum;
+import com.lingyi.mall.common.bean.entity.UserDetailsEntity;
 import com.lingyi.mall.common.bean.enums.YNEnum;
 import com.lingyi.mall.common.bean.util.AssertUtil;
 import lombok.RequiredArgsConstructor;
@@ -40,11 +41,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .map(SimpleGrantedAuthority::new)
                 .toList();
         //返回User
-        return User.builder()
-                .username(userVO.getUserName())
-                .password(userVO.getPassword())
+        return UserDetailsEntity.builder()
                 .authorities(simpleGrantedAuthorities)
-                .disabled(YNEnum.N.getCode().equals(userVO.getIsEnable()))
+                .password(userVO.getPassword())
+                .username(userVO.getUserName())
+                .accountNonExpired(true)
+                .accountNonLocked(true)
+                .credentialsNonExpired(true)
+                .enabled(YNEnum.Y.getCode().equals(userVO.getIsEnable()))
+                .userId(userVO.getUserId())
                 .build();
     }
 }

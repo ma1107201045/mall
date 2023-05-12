@@ -21,7 +21,7 @@ public interface MbsMenuMapper {
      * @param parentId 父级id
      * @return List<MenuTreeVO>
      */
-    List<MenuVO> selectListParentId(@Param("parentId") Long parentId);
+    List<MenuVO> selectListByParentId(@Param("parentId") Long parentId);
 
     /**
      * 查询按钮权限标识集
@@ -29,7 +29,7 @@ public interface MbsMenuMapper {
      * @param type 按钮类型
      * @return List<String>
      */
-    List<String> selectPermissionsByType(@Param("type") Integer type);
+    List<String> selectPermissionByType(@Param("type") Integer type);
 
 
     /**

@@ -7,6 +7,8 @@ package com.lingyi.mall.common.bean.constant;
  * @description
  */
 public class BaseConstant {
+
+    public static final String COOKIE = "cookie";
     public static final String TRACK_ID = "trackId";
     public static final String TRACK_ID_PREFIX = "PROVIDER_";
     public static final long DATACENTER_ID = 0L;

@@ -22,10 +22,10 @@ import java.util.List;
  * @Description:
  */
 @Tag(name = "后台【系统管理服务-用户】", description = "后台【系统管理服务-用户】")
-@RequiredArgsConstructor
 @Validated
 @RequestMapping("/mbs/users")
 @RestController
+@RequiredArgsConstructor
 public class MbsUserController {
 
     private final MbsUserService mbsUserService;

@@ -2,6 +2,8 @@ package com.lingyi.mall.common.bean.auditor;
 
 import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.common.bean.constant.BaseConstant;
+import com.lingyi.mall.common.bean.entity.UserDetailsEntity;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.Authentication;
@@ -27,8 +29,8 @@ public class AuditorAwareImpl implements AuditorAware<String> {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication.isAuthenticated()) {
             Object principal = authentication.getPrincipal();
-            if (principal instanceof User user) {
-                username = user.getUsername();
+            if (principal instanceof UserDetailsEntity userDetailsEntity) {
+                username = userDetailsEntity.getUsername();
             }
         } else {
             username = BaseConstant.UNKNOWN;

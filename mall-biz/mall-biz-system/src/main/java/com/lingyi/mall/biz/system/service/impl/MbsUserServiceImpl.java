@@ -86,7 +86,7 @@ public class MbsUserServiceImpl implements MbsUserService {
         if (!MbsConstant.USER_NAME_ADMIN.equals(userName)) {
             permissions = mbsUserMapper.selectMenuPermissionsByUserIdAndMenuType(userVO.getUserId(), type);
         } else {
-            permissions = mbsMenuService.findPermissionsByType(type);
+            permissions = mbsMenuService.findPermissionByType(type);
         }
         userVO.setPermissions(permissions);
         return userVO;
