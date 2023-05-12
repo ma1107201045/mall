@@ -27,7 +27,7 @@
     last_modify_by, last_modify_date_time, is_delete
     </sql>
     <sql id="Base_Condition">
-        <if test="mbsUser.userName!=null and mbsUser.userName!=''">
+        <if test="userName!=null and userName!=''">
             AND user_name LIKE CONCAT('%',#{userName,jdbcType=VARCHAR},'%')
         </if>
     </sql>
@@ -38,7 +38,7 @@
         WHERE id=#{id,jdbcType=BIGINT}
     </select>
 
-    <select id="selectListByPageAndCondition" resultMap="BaseResultMap">
+    <select id="selectListByParam" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
         FROM mbs_user

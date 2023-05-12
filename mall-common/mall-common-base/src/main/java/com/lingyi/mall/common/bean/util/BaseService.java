@@ -1,7 +1,7 @@
 package com.lingyi.mall.common.bean.util;
 
 
-import com.lingyi.mall.common.bean.dto.BaseBackgroundPageDTO;
+import com.lingyi.mall.common.bean.param.BasePageParam;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,14 +12,14 @@ import java.util.List;
  * @datetime 2023/5/4 17:08
  * @description
  */
-public interface BaseService<T extends Serializable, ID> {
+public interface BaseService<DTO extends Serializable, PARAM extends Serializable, VO extends Serializable, ID extends Serializable> {
 
     /**
      * 添加
      *
-     * @param t t
+     * @param dto dto
      */
-    void add(T t);
+    void add(DTO dto);
 
     /**
      * 批量删除
@@ -31,9 +31,9 @@ public interface BaseService<T extends Serializable, ID> {
     /**
      * 修改
      *
-     * @param t t
+     * @param w w
      */
-    void editById(T t);
+    void editById(DTO dto);
 
     /**
      * 查找
@@ -41,16 +41,15 @@ public interface BaseService<T extends Serializable, ID> {
      * @param id id
      * @return t
      */
-    T findById(ID id);
+    VO findById(ID id);
 
     /**
      * 查找列表
      *
-     * @param baseBackgroundPageDTO 分页信息
-     * @param t                     t
+     * @param basePageDTO 分页信息
      * @return List<T>
      */
-    List<T> findListByPageAndCondition(BaseBackgroundPageDTO baseBackgroundPageDTO, T t);
+    List<VO> findListByPageAndParam(BasePageParam basePageDTO, PARAM param);
 
 
 }

@@ -5,6 +5,8 @@ import com.lingyi.mall.common.web.filter.TrackIdFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -78,7 +80,8 @@ public class SecurityConfig {
                 .logout().logoutUrl(LOGOUT_URL).logoutSuccessHandler(logoutSuccessHandler).and()
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.GET, "/doc.html", "/webjars/**", "/v3/**", "/favicon.ico", "/mab/captcha", "/*/*/provider/**").permitAll()
-                .requestMatchers("/mbs/provider/users/permissions").permitAll().anyRequest().authenticated().and()
+                .requestMatchers("/mbs/provider/users/permissions").permitAll()
+                .anyRequest().authenticated().and()
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).accessDeniedHandler(accessDeniedHandler).and()
                 .csrf().disable()
                 .build();

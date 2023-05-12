@@ -7,13 +7,14 @@ import com.lingyi.mall.api.system.constant.MbsConstant;
 import com.lingyi.mall.api.system.entity.User;
 import com.lingyi.mall.api.system.enums.MbsFailEnum;
 import com.lingyi.mall.api.system.enums.MbsMenuType;
+import com.lingyi.mall.api.system.param.UserParam;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.biz.system.mapper.MbsUserMapper;
 import com.lingyi.mall.biz.system.repository.MbsUserRepository;
 import com.lingyi.mall.biz.system.service.MbsMenuService;
 import com.lingyi.mall.biz.system.service.MbsUserService;
-import com.lingyi.mall.common.bean.dto.BaseBackgroundPageDTO;
+import com.lingyi.mall.common.bean.param.BasePageParam;
 import com.lingyi.mall.common.bean.util.AssertUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -69,9 +70,9 @@ public class MbsUserServiceImpl implements MbsUserService {
     }
 
     @Override
-    public List<User> findListByPageAndCondition(BaseBackgroundPageDTO dto, User user) {
-        PageHelper.startPage(dto.getCurrentPage(), dto.getPageSize());
-        return mbsUserMapper.selectListByPageAndCondition(user);
+    public List<User> findListByPageAndParam(BasePageParam basePageParam, UserParam userParam) {
+        PageHelper.startPage(basePageParam.getCurrentPage(), basePageParam.getPageSize());
+        return mbsUserMapper.selectListByParam(userParam);
     }
 
     @Override

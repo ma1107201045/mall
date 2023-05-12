@@ -1,8 +1,10 @@
 package com.lingyi.mall.biz.system.mapper;
 
 import com.lingyi.mall.api.system.entity.User;
+import com.lingyi.mall.api.system.param.UserParam;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.api.system.vo.UserVO;
+import com.lingyi.mall.common.bean.param.BasePageParam;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,10 +29,10 @@ public interface MbsUserMapper {
     /**
      * 按照分页信息和条件查询
      *
-     * @param mbsUser 用户信息
+     * @param userParam 用户信息
      * @return List<MbsUser>
      */
-    List<User> selectListByPageAndCondition(User mbsUser);
+    List<User> selectListByParam(UserParam userParam);
 
 
     /**

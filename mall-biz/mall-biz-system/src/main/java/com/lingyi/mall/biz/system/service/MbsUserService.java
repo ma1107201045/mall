@@ -1,6 +1,7 @@
 package com.lingyi.mall.biz.system.service;
 
 import com.lingyi.mall.api.system.entity.User;
+import com.lingyi.mall.api.system.param.UserParam;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.common.bean.util.BaseService;
@@ -13,7 +14,7 @@ import java.util.List;
  * @datetime 2023/5/4 17:28
  * @description
  */
-public interface MbsUserService extends BaseService<User, Long> {
+public interface MbsUserService extends BaseService<User, UserParam, User, Long> {
 
 
     /**
