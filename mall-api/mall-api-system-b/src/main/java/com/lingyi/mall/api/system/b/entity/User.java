@@ -52,7 +52,6 @@ public class User extends BaseIsDeleteEntity implements Serializable {
 
 
     @Schema(description = "昵称")
-    @JsonIgnore
     @Column(name = "nickname", length = 20)
     private String nickname;
 
@@ -63,6 +62,7 @@ public class User extends BaseIsDeleteEntity implements Serializable {
 
 
     @Schema(description = "密码", requiredMode = Schema.RequiredMode.REQUIRED)
+    @JsonIgnore
     @NotBlank(message = "密码不能为空")
     @Column(name = "password", nullable = false, length = 200)
     private String password;

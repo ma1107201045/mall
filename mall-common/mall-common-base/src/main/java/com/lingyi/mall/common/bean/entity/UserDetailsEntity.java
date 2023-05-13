@@ -1,5 +1,6 @@
 package com.lingyi.mall.common.bean.entity;
 
+import com.alibaba.fastjson2.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import org.springframework.security.core.GrantedAuthority;
@@ -40,7 +41,7 @@ public class UserDetailsEntity implements UserDetails {
         return authorities;
     }
 
-    @JsonIgnore
+    @JSONField(serialize = false)
     @Override
     public String getPassword() {
         return password;

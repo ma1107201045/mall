@@ -1,14 +1,13 @@
-package com.lingyi.mall.auth.background.service.Impl;
+package com.lingyi.mall.common.security.b.service.impl;
 
 import com.lingyi.mall.api.system.b.consumer.MbsUserFeignConsumer;
 import com.lingyi.mall.api.system.b.vo.UserVO;
-import com.lingyi.mall.auth.background.enums.MabFailEnum;
 import com.lingyi.mall.common.bean.entity.UserDetailsEntity;
 import com.lingyi.mall.common.bean.enums.YNEnum;
 import com.lingyi.mall.common.bean.util.AssertUtil;
+import com.lingyi.mall.common.security.b.enums.McsFailEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -31,11 +30,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         //校验用户名称
-        AssertUtil.notBlack(username, new UsernameNotFoundException(MabFailEnum.USER_NAME_NOT_NULL_ERROR.getMessage()));
+        AssertUtil.notBlack(username, new UsernameNotFoundException(McsFailEnum.USER_NAME_NOT_NULL_ERROR.getMessage()));
         //查询用户信息和菜单权限
         UserVO userVO = mbsUserFeignConsumer.getUserAndMenuPermissionsByUserName(username);
         //校验用用户信息
-        AssertUtil.notNull(userVO, new UsernameNotFoundException(MabFailEnum.USER_NAME_NOT_FOUND_ERROR.getMessage()));
+        AssertUtil.notNull(userVO, new UsernameNotFoundException(McsFailEnum.USER_NAME_NOT_FOUND_ERROR.getMessage()));
         //获取菜单权限中的权限标识
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = userVO.getPermissions().stream()
                 .map(SimpleGrantedAuthority::new)

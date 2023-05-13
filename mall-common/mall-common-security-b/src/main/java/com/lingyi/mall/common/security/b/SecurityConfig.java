@@ -1,11 +1,13 @@
 package com.lingyi.mall.common.security.b;
 
+import com.lingyi.mall.common.bean.constant.SecurityBaseConstant;
 import com.lingyi.mall.common.security.b.handler.*;
 import com.lingyi.mall.common.web.filter.TrackIdFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -17,6 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
@@ -25,10 +28,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
  */
 @Configuration(proxyBeanMethods = false)
 public class SecurityConfig {
-
-
     public static final String LOGIN_PROCESSING_URL = "/mab/login";
     public static final String LOGOUT_URL = "/mab/logout";
+    public static final String REMEMBER_ME_KEY = "199726ma.";
 
     @Bean
     public OncePerRequestFilter oncePerRequestFilter() {
@@ -74,10 +76,20 @@ public class SecurityConfig {
                                                    AuthenticationEntryPoint authenticationEntryPoint,
                                                    AccessDeniedHandler accessDeniedHandler) throws Exception {
         return http.addFilterBefore(oncePerRequestFilter, UsernamePasswordAuthenticationFilter.class)
-                .formLogin().loginProcessingUrl(LOGIN_PROCESSING_URL).successHandler(authenticationSuccessHandler).failureHandler(authenticationFailureHandler).and()
+                .authorizeHttpRequests().requestMatchers(HttpMethod.GET, "/doc.html", "/webjars/**", "/v3/**", "/favicon.ico", "/mab/captcha", "/mbs/b/provider/users/permissions").permitAll()
+                .anyRequest().authenticated().and()
+                .formLogin().loginProcessingUrl(LOGIN_PROCESSING_URL)
+                .usernameParameter(SecurityBaseConstant.USERNAME_PARAMETER)
+                .successHandler(authenticationSuccessHandler)
+                .failureHandler(authenticationFailureHandler).and()
                 .logout().logoutUrl(LOGOUT_URL).logoutSuccessHandler(logoutSuccessHandler).and()
-                .authorizeHttpRequests().requestMatchers(HttpMethod.GET, "/doc.html", "/webjars/**", "/v3/**", "/favicon.ico", "/mab/captcha", "/mbs/b/provider/users/permissions").permitAll().anyRequest().authenticated().and()
-                .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).accessDeniedHandler(accessDeniedHandler).and()
+                .rememberMe().key(REMEMBER_ME_KEY)
+                .rememberMeParameter(SecurityBaseConstant.REMEMBER_ME_PARAMETER).
+                rememberMeCookieName(SecurityBaseConstant.REMEMBER_ME_COOKIE_NAME).and()
+                .exceptionHandling()
+                .authenticationEntryPoint(authenticationEntryPoint)
+                .accessDeniedHandler(accessDeniedHandler).and()
+                .cors().disable()
                 .csrf().disable()
                 .build();
     }
