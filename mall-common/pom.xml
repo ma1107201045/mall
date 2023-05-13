@@ -14,10 +14,11 @@
         <module>mall-common-base</module>
         <module>mall-common-jar</module>
         <module>mall-common-redis</module>
-        <module>mall-common-security</module>
+        <module>mall-common-security-b</module>
+        <module>mall-common-security-f</module>
+        <module>mall-common-security-m</module>
         <module>mall-common-util</module>
         <module>mall-common-web</module>
-
     </modules>
     <properties>
         <mybatis-spring-boot-starter.version>3.0.1</mybatis-spring-boot-starter.version>

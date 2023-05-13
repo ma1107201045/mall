@@ -1,7 +1,7 @@
 package com.lingyi.mall.auth.background.service.Impl;
 
-import com.lingyi.mall.api.system.consumer.MbsUserFeignConsumer;
-import com.lingyi.mall.api.system.vo.UserVO;
+import com.lingyi.mall.api.system.b.consumer.MbsUserFeignConsumer;
+import com.lingyi.mall.api.system.b.vo.UserVO;
 import com.lingyi.mall.auth.background.enums.MabFailEnum;
 import com.lingyi.mall.common.bean.entity.UserDetailsEntity;
 import com.lingyi.mall.common.bean.enums.YNEnum;

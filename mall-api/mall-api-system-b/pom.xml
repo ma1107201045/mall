@@ -1,0 +1,11 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.lingyi</groupId>
+        <artifactId>mall-api</artifactId>
+        <version>${revision}</version>
+    </parent>
+    <name>${project.artifactId}</name>
+    <artifactId>mall-api-system-b</artifactId>
+</project>

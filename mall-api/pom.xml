@@ -11,7 +11,7 @@
     <name>${project.artifactId}</name>
     <description>电商项目-API父工程</description>
     <modules>
-        <module>mall-api-system</module>
+        <module>mall-api-system-b</module>
     </modules>
     <dependencies>
         <dependency>

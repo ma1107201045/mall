@@ -27,7 +27,7 @@
         <dependencies>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>mall-api-system</artifactId>
+                <artifactId>mall-api-system-b</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -47,7 +47,17 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>mall-common-security</artifactId>
+                <artifactId>mall-common-security-b</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>mall-common-security-f</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>mall-common-security-m</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

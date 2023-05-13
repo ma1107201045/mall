@@ -5,14 +5,22 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.lingyi</groupId>
-        <artifactId>mall-auth</artifactId>
+        <artifactId>mall-common</artifactId>
         <version>${revision}</version>
     </parent>
-    <artifactId>mall-auth-background</artifactId>
+    <artifactId>mall-common-security-b</artifactId>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-api-system-b</artifactId>
+            <artifactId>mall-common-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
         </dependency>
     </dependencies>
 </project>

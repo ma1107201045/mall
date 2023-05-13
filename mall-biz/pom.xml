@@ -11,8 +11,8 @@
     <name>${project.artifactId}</name>
     <description>电商项目-业务服务父工程</description>
     <modules>
-        <module>mall-biz-base</module>
-        <module>mall-biz-system</module>
+        <module>mall-biz-base-b</module>
+        <module>mall-biz-system-b</module>
     </modules>
     <dependencies>
         <dependency>
@@ -21,7 +21,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-security</artifactId>
+            <artifactId>mall-common-security-b</artifactId>
         </dependency>
         <dependency>
             <groupId>com.mysql</groupId>
