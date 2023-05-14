@@ -1,9 +1,11 @@
 package com.lingyi.mall.biz.system.b.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjUtil;
 import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.api.system.b.constant.MbsConstant;
+import com.lingyi.mall.api.system.b.dto.UserDTO;
 import com.lingyi.mall.api.system.b.entity.User;
 import com.lingyi.mall.api.system.b.enums.MbsFailEnum;
 import com.lingyi.mall.api.system.b.enums.MbsMenuType;
@@ -13,6 +15,7 @@ import com.lingyi.mall.api.system.b.vo.UserVO;
 import com.lingyi.mall.biz.system.b.mapper.MbsUserMapper;
 import com.lingyi.mall.biz.system.b.repository.MbsUserRepository;
 import com.lingyi.mall.biz.system.b.service.MbsMenuService;
+import com.lingyi.mall.biz.system.b.service.MbsUserRoleService;
 import com.lingyi.mall.biz.system.b.service.MbsUserService;
 import com.lingyi.mall.common.bean.param.BasePageParam;
 import com.lingyi.mall.common.bean.util.AssertUtil;
@@ -32,24 +35,29 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MbsUserServiceImpl implements MbsUserService {
 
+    private final PasswordEncoder passwordEncoder;
+
     private final MbsUserRepository mbsUserRepository;
 
     private final MbsUserMapper mbsUserMapper;
 
+    private final MbsUserRoleService mbsUserRoleService;
+
     private final MbsMenuService mbsMenuService;
 
-    private final PasswordEncoder passwordEncoder;
 
     @Override
-    public void add(User user) {
+    public void add(UserDTO userDTO) {
         //通过用户名称获取用户id
-        Long id = mbsUserMapper.selectIdByUserName(user.getUserName());
+        Long id = mbsUserMapper.selectIdByUserName(userDTO.getUserName());
         //判断用户名称是否唯一
         AssertUtil.isNull(id, MbsFailEnum.USER_NAME_EXIST_ERROR);
         //密码加密
-        String encodePassword = passwordEncoder.encode(user.getPassword());
+        String encodePassword = passwordEncoder.encode(userDTO.getPassword());
         //设置加密密码
-        user.setPassword(encodePassword);
+        userDTO.setPassword(encodePassword);
+        //转换
+        User user = BeanUtil.copyProperties(userDTO, User.class);
         //保存
         mbsUserRepository.save(user);
     }
@@ -60,17 +68,19 @@ public class MbsUserServiceImpl implements MbsUserService {
     }
 
     @Override
-    public void editById(User user) {
+    public void editById(UserDTO userDTO) {
+        //转换
+        User user = BeanUtil.copyProperties(userDTO, User.class);
         mbsUserRepository.save(user);
     }
 
     @Override
-    public User findById(Long id) {
+    public UserVO findById(Long id) {
         return mbsUserMapper.selectById(id);
     }
 
     @Override
-    public List<User> findListByPageAndParam(BasePageParam basePageParam, UserParam userParam) {
+    public List<UserVO> findListByPageAndParam(BasePageParam basePageParam, UserParam userParam) {
         PageHelper.startPage(basePageParam.getCurrentPage(), basePageParam.getPageSize());
         return mbsUserMapper.selectListByParam(userParam);
     }

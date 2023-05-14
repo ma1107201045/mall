@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @datetime 2023/5/12 11:19
  * @description
  */
-@Schema(description = "用户param")
+@Schema(description = "用户")
 @Data
 public class UserParam implements Serializable {
 

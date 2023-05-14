@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.system.b.service;
 
+import com.lingyi.mall.api.system.b.dto.UserDTO;
 import com.lingyi.mall.api.system.b.entity.User;
 import com.lingyi.mall.api.system.b.param.UserParam;
 import com.lingyi.mall.api.system.b.vo.MenuVO;
@@ -14,7 +15,7 @@ import java.util.List;
  * @datetime 2023/5/4 17:28
  * @description
  */
-public interface MbsUserService extends BaseService<User, UserParam, User, Long> {
+public interface MbsUserService extends BaseService<UserDTO, UserParam, UserVO, Long> {
 
 
     /**

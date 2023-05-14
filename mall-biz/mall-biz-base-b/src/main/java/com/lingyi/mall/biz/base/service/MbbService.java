@@ -20,4 +20,11 @@ public interface MbbService {
      * @return 菜单树
      */
     List<MenuVO> findMenuTreeByUserId(String userName);
+
+    /**
+     * 按照用户id更改用户信息
+     *
+     * @param userId 用户id
+     */
+    void editUserByUserId(Long userId);
 }

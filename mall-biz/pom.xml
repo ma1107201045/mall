@@ -13,6 +13,7 @@
     <modules>
         <module>mall-biz-base-b</module>
         <module>mall-biz-system-b</module>
+        <module>mall-biz-member-f</module>
     </modules>
     <dependencies>
         <dependency>

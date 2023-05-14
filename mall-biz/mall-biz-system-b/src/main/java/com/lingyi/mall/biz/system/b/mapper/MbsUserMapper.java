@@ -21,17 +21,17 @@ public interface MbsUserMapper {
      * 通过id查询
      *
      * @param id id
-     * @return MbsUser
+     * @return UserVO
      */
-    User selectById(Long id);
+    UserVO selectById(Long id);
 
     /**
      * 按照分页信息和条件查询
      *
      * @param userParam 用户信息
-     * @return List<MbsUser>
+     * @return List<UserVO>
      */
-    List<User> selectListByParam(UserParam userParam);
+    List<UserVO> selectListByParam(UserParam userParam);
 
 
     /**
