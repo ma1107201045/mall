@@ -23,7 +23,17 @@ spring:
       password: jinbihu2023
       client-type: lettuce
       database: 1
-
+# springdoc-openapi项目配置
+springdoc:
+  swagger-ui:
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: '认证授权服务【后台】'
+      paths-to-match: '/**'
+      packages-to-scan: com.lingyi.mall.auth.background.controller
 
 
 

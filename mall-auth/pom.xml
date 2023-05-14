@@ -14,15 +14,13 @@
     <description>电商项目-认证服务父工程</description>
     <modules>
         <module>mall-auth-background</module>
+        <module>mall-auth-foreground</module>
+        <module>mall-auth-merchant</module>
     </modules>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>mall-common-redis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-security-b</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>

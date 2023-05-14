@@ -1,6 +1,5 @@
 package com.lingyi.mall.biz.base.controller;
 
-import com.lingyi.mall.api.system.b.entity.User;
 import com.lingyi.mall.api.system.b.vo.MenuVO;
 import com.lingyi.mall.biz.base.service.MbbService;
 import com.lingyi.mall.common.bean.util.AuthenticatorUtil;

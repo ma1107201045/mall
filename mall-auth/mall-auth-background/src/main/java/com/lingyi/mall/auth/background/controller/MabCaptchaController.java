@@ -21,7 +21,7 @@ import java.io.OutputStream;
  * @datetime 2023/5/1 17:53
  * @description 用户认证controller
  */
-@Tag(name = "后台【认证服务-验证码】", description = "后台【认证服务-验证码】")
+@Tag(name = "获取验证码", description = "获取验证码")
 @Controller
 @RequestMapping("/mab/captcha")
 @RequiredArgsConstructor

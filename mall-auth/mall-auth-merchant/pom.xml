@@ -8,11 +8,11 @@
         <artifactId>mall-auth</artifactId>
         <version>${revision}</version>
     </parent>
-    <artifactId>mall-auth-background</artifactId>
+    <artifactId>mall-auth-merchant</artifactId>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-security-b</artifactId>
+            <artifactId>mall-common-security-m</artifactId>
         </dependency>
     </dependencies>
 </project>
