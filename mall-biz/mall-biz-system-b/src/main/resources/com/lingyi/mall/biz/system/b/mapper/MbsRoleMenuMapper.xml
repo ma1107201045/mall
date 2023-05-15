@@ -2,5 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lingyi.mall.biz.system.b.mapper.MbsRoleMenuMapper">
 
-
+    <resultMap id="BaseResultMap" type="com.lingyi.mall.api.system.b.vo.RoleMenuVO">
+        <id column="id" jdbcType="BIGINT" property="roleMenuId"/>
+        <result column="role_id" jdbcType="BIGINT" property="roleId"/>
+        <result column="menu_id" jdbcType="BIGINT" property="menuId"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="create_date_time" jdbcType="TIMESTAMP" property="createDateTime"/>
+        <result column="last_modify_by" jdbcType="VARCHAR" property="lastModifyBy"/>
+        <result column="last_modify_date_time" jdbcType="TIMESTAMP" property="lastModifyDateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, role_id, menu_id, create_by, create_date_time, last_modify_by, last_modify_date_time
+    </sql>
+    <sql id="Base_Condition">
+        <if test="userName!=null and userName!=''">
+            AND user_name LIKE CONCAT('%',#{userName,jdbcType=VARCHAR},'%')
+        </if>
+    </sql>
+    <select id="selectById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from mbs_role_menu
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectListByParam" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM mbs_role_menu
+        <where>
+            <include refid="Base_Condition"/>
+        </where>
+    </select>
 </mapper>

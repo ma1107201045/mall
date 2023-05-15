@@ -52,4 +52,17 @@ public class MbsUserRoleServiceImpl implements MbsUserRoleService {
         PageHelper.startPage(basePageDTO.getCurrentPage(), basePageDTO.getPageSize());
         return mbsUserRoleMapper.selectListByParam(userRoleParam);
     }
+
+    @Override
+    public void saveList(Long userId, List<Long> roleIds) {
+        List<UserRole> userRoles = roleIds.stream()
+                .map(roleId -> UserRole.of(userId, roleId))
+                .toList();
+        mbsUserRoleRepository.saveAll(userRoles);
+    }
+
+    @Override
+    public void removeByUserId(Long userId) {
+
+    }
 }

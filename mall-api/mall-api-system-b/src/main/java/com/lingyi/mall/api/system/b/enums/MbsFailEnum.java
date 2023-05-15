@@ -17,6 +17,8 @@ public enum MbsFailEnum implements BaseFailEnum {
     /**
      *
      */
+    USER_ID_NULL_ERROR(8001, "用户id不能为空"),
+
     USER_NAME_EXIST_ERROR(8002, "用户名称已存在");
 
 

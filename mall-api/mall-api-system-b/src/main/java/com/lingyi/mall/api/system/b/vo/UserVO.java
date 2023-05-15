@@ -73,9 +73,6 @@ public class UserVO implements Serializable {
     @Schema(description = "备注")
     private String remark;
 
-    @Schema(description = "角色id集")
-    private List<Long> roleIds;
-
     @Schema(description = "创建人")
     private String createBy;
 
@@ -90,6 +87,9 @@ public class UserVO implements Serializable {
 
     @Schema(description = "是否删除 1是 0否")
     private Integer isDelete;
+
+    @Schema(description = "角色id集")
+    private List<Long> roleIds;
 
     @Schema(description = "按钮权限标识集")
     private List<String> permissions;

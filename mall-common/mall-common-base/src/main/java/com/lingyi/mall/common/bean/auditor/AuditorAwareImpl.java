@@ -1,5 +1,6 @@
 package com.lingyi.mall.common.bean.auditor;
 
+import cn.hutool.core.util.ObjUtil;
 import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.common.bean.constant.BaseConstant;
 import com.lingyi.mall.common.bean.entity.UserDetailsEntity;
@@ -11,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -27,7 +29,7 @@ public class AuditorAwareImpl implements AuditorAware<String> {
     public Optional<String> getCurrentAuditor() {
         String username = StrUtil.EMPTY;
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication.isAuthenticated()) {
+        if (Objects.nonNull(authentication) && authentication.isAuthenticated()) {
             Object principal = authentication.getPrincipal();
             if (principal instanceof UserDetailsEntity userDetailsEntity) {
                 username = userDetailsEntity.getUsername();

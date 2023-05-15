@@ -7,6 +7,7 @@ import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.api.system.b.constant.MbsConstant;
 import com.lingyi.mall.api.system.b.dto.UserDTO;
 import com.lingyi.mall.api.system.b.entity.User;
+import com.lingyi.mall.api.system.b.entity.UserRole;
 import com.lingyi.mall.api.system.b.enums.MbsFailEnum;
 import com.lingyi.mall.api.system.b.enums.MbsMenuType;
 import com.lingyi.mall.api.system.b.param.UserParam;
@@ -22,8 +23,12 @@ import com.lingyi.mall.common.bean.util.AssertUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @Author: maweiyan
@@ -47,10 +52,11 @@ public class MbsUserServiceImpl implements MbsUserService {
 
 
     @Override
+    @Transactional
     public void add(UserDTO userDTO) {
         //通过用户名称获取用户id
         Long id = mbsUserMapper.selectIdByUserName(userDTO.getUserName());
-        //判断用户名称是否唯一
+        //判断用户名称不存在
         AssertUtil.isNull(id, MbsFailEnum.USER_NAME_EXIST_ERROR);
         //密码加密
         String encodePassword = passwordEncoder.encode(userDTO.getPassword());
@@ -60,6 +66,8 @@ public class MbsUserServiceImpl implements MbsUserService {
         User user = BeanUtil.copyProperties(userDTO, User.class);
         //保存
         mbsUserRepository.save(user);
+        //保存用户角色信息
+        mbsUserRoleService.saveList(user.getId(), userDTO.getRoleIds());
     }
 
     @Override
@@ -68,10 +76,30 @@ public class MbsUserServiceImpl implements MbsUserService {
     }
 
     @Override
+    @Transactional
     public void editById(UserDTO userDTO) {
+        Long userId = userDTO.getUserId();
+        //断言userId不为空
+        AssertUtil.notNull(userId, MbsFailEnum.USER_ID_NULL_ERROR);
+
+        //通过用户名称获取用户id
+        Long id = mbsUserMapper.selectIdByUserName(userDTO.getUserName());
+        boolean result = Objects.nonNull(id) && !Objects.equals(id, userId);
+        //判断用户名称不存在
+        AssertUtil.isFalse(result, MbsFailEnum.USER_NAME_EXIST_ERROR);
+        //密码加密
+        String encodePassword = passwordEncoder.encode(userDTO.getPassword());
+        //设置加密密码
+        userDTO.setPassword(encodePassword);
         //转换
         User user = BeanUtil.copyProperties(userDTO, User.class);
+        user.setId(userDTO.getUserId());
+        //更新
         mbsUserRepository.save(user);
+        //删除用户角色集
+        mbsUserRoleService.removeByUserId(userId);
+        //保存用户角色信息
+        mbsUserRoleService.saveList(userId, userDTO.getRoleIds());
     }
 
     @Override
