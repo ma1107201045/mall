@@ -93,7 +93,7 @@ public class MbsUserServiceImpl implements MbsUserService {
         String encodePassword = passwordEncoder.encode(userDTO.getPassword());
         //设置加密密码
         userDTO.setPassword(encodePassword);
-        //转换
+        //DTO转换Entity
         User user = BeanUtil.copyProperties(userDTO, User.class);
         user.setId(userDTO.getUserId());
         //更新
