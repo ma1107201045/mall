@@ -114,7 +114,7 @@ public class User extends BaseIsDeleteEntity implements Serializable {
     /**
      * 角色集
      */
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "users")
+    @ManyToMany(mappedBy = "users")
     @ToString.Exclude
     private List<Role> roles;
 

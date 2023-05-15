@@ -24,4 +24,9 @@ public class MbbServiceImpl implements MbbService {
     public List<MenuVO> findMenuTreeByUserId(String userName) {
         return mbsUserFeignConsumer.getMenuTreeByUserName(userName);
     }
+
+    @Override
+    public void editUserByUserId(Long userId) {
+
+    }
 }

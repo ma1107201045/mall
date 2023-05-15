@@ -32,5 +32,5 @@ public class MenuVO implements Serializable {
     private Long path;
 
     @Schema(description = "菜单子级")
-    private List<MenuVO> menuVOList;
+    private List<MenuVO> menus;
 }

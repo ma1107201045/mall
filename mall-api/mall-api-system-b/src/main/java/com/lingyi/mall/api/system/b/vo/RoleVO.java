@@ -52,5 +52,5 @@ public class RoleVO implements Serializable {
     private Integer isDelete;
 
     @Schema(description = "菜单id集")
-    private List<Long> menus;
+    private List<Long> menuIds;
 }

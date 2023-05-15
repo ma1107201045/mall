@@ -54,7 +54,7 @@ public class MbsMenuServiceImpl implements MbsMenuService {
     @Override
     public List<MenuVO> findTreeByParentId(Long parentId) {
         List<MenuVO> menuVOList = mbsMenuMapper.selectListByParentId(parentId);
-        menuVOList.forEach(menuTreeVO -> menuTreeVO.setMenuVOList(findTreeByParentId(menuTreeVO.getMenuId())));
+        menuVOList.forEach(menuTreeVO -> menuTreeVO.setMenus(findTreeByParentId(menuTreeVO.getMenuId())));
         return menuVOList;
     }
 

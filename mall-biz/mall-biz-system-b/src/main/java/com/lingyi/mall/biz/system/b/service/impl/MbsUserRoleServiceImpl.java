@@ -63,6 +63,6 @@ public class MbsUserRoleServiceImpl implements MbsUserRoleService {
 
     @Override
     public void removeByUserId(Long userId) {
-
+        mbsUserRoleRepository.deleteByUserId(userId);
     }
 }

@@ -1,6 +1,5 @@
 package com.lingyi.mall.biz.system.b;
 
-import cn.hutool.core.util.CharUtil;
 import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.MallBizSystemApplicationTests;
 import com.lingyi.mall.api.system.b.entity.User;
@@ -11,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.Optional;
 
 /**
  * @author maweiyan
@@ -42,7 +43,7 @@ public class MbsUserTests implements MallBizSystemApplicationTests {
     @Test
     public void testUserRemove() {
         User user = new User();
-        user.setId(5312110204629248L);
+        user.setPassword("11");
         mbsUserRepository.delete(user);
         System.out.println("删除成功");
     }
@@ -57,5 +58,12 @@ public class MbsUserTests implements MallBizSystemApplicationTests {
         user = mbsUserRepository.save(user);
         System.out.println(user);
     }
+
+    @Test
+    public void testUserGet() {
+        Optional<User> userOptional = mbsUserRepository.findById(5308839368929536L);
+        System.out.println(userOptional.orElse(new User()));
+    }
+
 
 }

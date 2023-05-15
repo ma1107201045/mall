@@ -52,7 +52,7 @@ public class MbsUserServiceImpl implements MbsUserService {
 
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void add(UserDTO userDTO) {
         //通过用户名称获取用户id
         Long id = mbsUserMapper.selectIdByUserName(userDTO.getUserName());
@@ -76,8 +76,9 @@ public class MbsUserServiceImpl implements MbsUserService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void editById(UserDTO userDTO) {
+        //获取用户id
         Long userId = userDTO.getUserId();
         //断言userId不为空
         AssertUtil.notNull(userId, MbsFailEnum.USER_ID_NULL_ERROR);
@@ -85,6 +86,7 @@ public class MbsUserServiceImpl implements MbsUserService {
         //通过用户名称获取用户id
         Long id = mbsUserMapper.selectIdByUserName(userDTO.getUserName());
         boolean result = Objects.nonNull(id) && !Objects.equals(id, userId);
+
         //判断用户名称不存在
         AssertUtil.isFalse(result, MbsFailEnum.USER_NAME_EXIST_ERROR);
         //密码加密
@@ -140,7 +142,7 @@ public class MbsUserServiceImpl implements MbsUserService {
         } else {
             menuVOList = mbsMenuService.findListByTypesAndParentId(menuTypes, menuParentId);
         }
-        menuVOList.forEach(menuTreeVO -> menuTreeVO.setMenuVOList(findMenuTreeByUserNameAndMenuParentId(userName, menuParentId)));
+        menuVOList.forEach(menuTreeVO -> menuTreeVO.setMenus(findMenuTreeByUserNameAndMenuParentId(userName, menuParentId)));
         return menuVOList;
     }
 
