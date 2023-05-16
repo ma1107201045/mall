@@ -21,7 +21,7 @@ public interface MbsUserRoleService extends BaseService<UserRole, UserRoleParam,
      * @param userId  用户id
      * @param roleIds 角色id集
      */
-    void saveList(Long userId, List<Long> roleIds);
+    void addList(Long userId, List<Long> roleIds);
 
 
     /**

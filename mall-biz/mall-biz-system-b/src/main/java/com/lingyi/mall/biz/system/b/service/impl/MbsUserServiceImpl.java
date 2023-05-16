@@ -67,7 +67,7 @@ public class MbsUserServiceImpl implements MbsUserService {
         //保存
         mbsUserRepository.save(user);
         //保存用户角色信息
-        mbsUserRoleService.saveList(user.getId(), userDTO.getRoleIds());
+        mbsUserRoleService.addList(user.getId(), userDTO.getRoleIds());
     }
 
     @Override
@@ -101,7 +101,7 @@ public class MbsUserServiceImpl implements MbsUserService {
         //删除用户角色集
         mbsUserRoleService.removeByUserId(userId);
         //保存用户角色信息
-        mbsUserRoleService.saveList(userId, userDTO.getRoleIds());
+        mbsUserRoleService.addList(userId, userDTO.getRoleIds());
     }
 
     @Override

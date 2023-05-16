@@ -54,7 +54,7 @@ public class MbsUserRoleServiceImpl implements MbsUserRoleService {
     }
 
     @Override
-    public void saveList(Long userId, List<Long> roleIds) {
+    public void addList(Long userId, List<Long> roleIds) {
         List<UserRole> userRoles = roleIds.stream()
                 .map(roleId -> UserRole.of(userId, roleId))
                 .toList();
