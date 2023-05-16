@@ -41,7 +41,7 @@ public class Role extends BaseIsDeleteEntity implements Serializable {
     private Integer isEnable;
 
     /**
-     * 顺序
+     * 角色顺序
      */
     @Column(name = "sort", length = 11)
     private Integer sort;

@@ -1,7 +1,9 @@
 package com.lingyi.mall.biz.system.b.service;
 
+import com.lingyi.mall.api.system.b.dto.MenuDTO;
 import com.lingyi.mall.api.system.b.entity.Menu;
 import com.lingyi.mall.api.system.b.entity.User;
+import com.lingyi.mall.api.system.b.param.MenuParam;
 import com.lingyi.mall.api.system.b.vo.MenuVO;
 import com.lingyi.mall.common.bean.util.BaseService;
 
@@ -13,7 +15,7 @@ import java.util.List;
  * @DateTime: 2023/5/7 15:28
  * @Description:
  */
-public interface MbsMenuService extends BaseService<Menu, Menu, Menu, Long> {
+public interface MbsMenuService extends BaseService<MenuDTO, MenuParam, MenuVO, Long> {
 
     /**
      * 通过父级id查询

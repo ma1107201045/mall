@@ -16,12 +16,21 @@ import java.util.List;
 public interface MbsMenuMapper {
 
     /**
+     * 按照id查询菜单类型
+     *
+     * @param id id
+     * @return Integer
+     */
+    Integer selectTypeById(Long id);
+
+
+    /**
      * 按照父级id查询
      *
      * @param parentId 父级id
      * @return List<MenuTreeVO>
      */
-    List<MenuVO> selectListByParentId(@Param("parentId") Long parentId);
+    List<MenuVO> selectListByParentId(Long parentId);
 
     /**
      * 查询按钮权限标识集
@@ -29,7 +38,7 @@ public interface MbsMenuMapper {
      * @param type 按钮类型
      * @return List<String>
      */
-    List<String> selectPermissionByType(@Param("type") Integer type);
+    List<String> selectPermissionByType(Integer type);
 
 
     /**

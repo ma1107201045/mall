@@ -5,6 +5,8 @@ import com.lingyi.mall.api.system.b.param.RoleMenuParma;
 import com.lingyi.mall.api.system.b.vo.RoleMenuVO;
 import com.lingyi.mall.common.bean.util.BaseService;
 
+import java.util.List;
+
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
@@ -12,4 +14,12 @@ import com.lingyi.mall.common.bean.util.BaseService;
  * @description
  */
 public interface MbsRoleMenuService extends BaseService<RoleMenuDTO, RoleMenuParma, RoleMenuVO, Long> {
+
+    /**
+     * 保存多条
+     *
+     * @param roleId  角色id
+     * @param menuIds 菜单id集
+     */
+    void saveList(Long roleId, List<Long> menuIds);
 }

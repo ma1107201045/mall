@@ -70,11 +70,11 @@ public class UserRole extends BaseCommonEntity implements Serializable {
     }
 
     public static UserRole of(Long userId, Long roleId) {
-        UserRole userRole = new UserRole();
         User newUser = new User();
         newUser.setId(userId);
         Role newRole = new Role();
         newRole.setId(roleId);
+        UserRole userRole = new UserRole();
         userRole.setUser(newUser);
         userRole.setRole(newRole);
         return userRole;

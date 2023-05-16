@@ -50,7 +50,7 @@ public class Menu extends BaseIsDeleteEntity implements Serializable {
     /**
      * 菜单图标
      */
-    @Column(name = "icon", nullable = false, length = 50)
+    @Column(name = "icon", length = 50)
     private String icon;
 
     /**
@@ -59,11 +59,6 @@ public class Menu extends BaseIsDeleteEntity implements Serializable {
     @Column(name = "sort", length = 11)
     private Integer sort;
 
-    /**
-     * 备注
-     */
-    @Column(name = "remark")
-    private String remark;
 
     /**
      * 是否启用 1 是 0 否
@@ -90,11 +85,16 @@ public class Menu extends BaseIsDeleteEntity implements Serializable {
     private String componentName;
 
     /**
-     * 组件名称权限标识
+     * 按钮权限标识
      */
     @Column(name = "permission", length = 100)
     private String permission;
 
+    /**
+     * 备注
+     */
+    @Column(name = "remark")
+    private String remark;
     /**
      * 角色集
      */

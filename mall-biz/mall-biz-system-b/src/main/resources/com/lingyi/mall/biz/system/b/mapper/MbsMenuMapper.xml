@@ -25,6 +25,11 @@
     component_name, permission, create_by, create_date_time, last_modify_by, last_modify_date_time,
     is_delete
     </sql>
+    <select id="selectTypeById" resultType="java.lang.Integer">
+        SELECT type
+        FROM mbs_menu
+        WHERE id = #{id}
+    </select>
     <select id="selectListByParentId" resultType="com.lingyi.mall.api.system.b.vo.MenuVO">
         SELECT
         <include refid="Base_Column_List"/>
@@ -48,5 +53,6 @@
         </foreach>
         AND parent_id = #{parentId}
     </select>
+
 
 </mapper>

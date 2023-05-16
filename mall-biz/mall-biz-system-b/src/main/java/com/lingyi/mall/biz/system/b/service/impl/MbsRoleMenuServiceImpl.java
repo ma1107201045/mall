@@ -1,6 +1,8 @@
 package com.lingyi.mall.biz.system.b.service.impl;
 
 import com.lingyi.mall.api.system.b.dto.RoleMenuDTO;
+import com.lingyi.mall.api.system.b.entity.RoleMenu;
+import com.lingyi.mall.api.system.b.entity.UserRole;
 import com.lingyi.mall.api.system.b.param.RoleMenuParma;
 import com.lingyi.mall.api.system.b.vo.RoleMenuVO;
 import com.lingyi.mall.biz.system.b.mapper.MbsRoleMenuMapper;
@@ -22,11 +24,11 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class MbsRoleMenuServiceImpl implements MbsRoleMenuService {
+
     private final MbsRoleMenuRepository mbsRoleMenuRepository;
 
     private final MbsRoleMenuMapper mbsRoleMenuMapper;
 
-    private final MbsMenuService mbsMenuService;
 
     @Override
     public void add(RoleMenuDTO roleMenuDTO) {
@@ -51,5 +53,13 @@ public class MbsRoleMenuServiceImpl implements MbsRoleMenuService {
     @Override
     public List<RoleMenuVO> findListByPageAndParam(BasePageParam basePageDTO, RoleMenuParma roleMenuParma) {
         return null;
+    }
+
+    @Override
+    public void saveList(Long roleId, List<Long> menuIds) {
+        List<RoleMenu> roleMenus = menuIds.stream()
+                .map(menuId -> RoleMenu.of(roleId, menuId))
+                .toList();
+        mbsRoleMenuRepository.saveAll(roleMenus);
     }
 }

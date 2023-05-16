@@ -68,4 +68,15 @@ public class RoleMenu extends BaseCommonEntity implements Serializable {
         result = 31 * result + (menu != null ? menu.hashCode() : 0);
         return result;
     }
+
+    public static RoleMenu of(Long roleId, Long menuId) {
+        Role newRole = new Role();
+        newRole.setId(roleId);
+        Menu newMenu = new Menu();
+        newMenu.setId(menuId);
+        RoleMenu roleMenu = new RoleMenu();
+        roleMenu.setRole(newRole);
+        roleMenu.setMenu(newMenu);
+        return roleMenu;
+    }
 }
