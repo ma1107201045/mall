@@ -30,7 +30,7 @@
         FROM mbs_menu
         WHERE id = #{id}
     </select>
-    <select id="selectListById" resultMap="BaseResultMap">
+    <select id="selectById" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
         FROM mbs_menu

@@ -47,4 +47,8 @@ public class BasePageParam implements Serializable {
     public String getSort() {
         return sortField + BaseConstant.SPACE_CHAR + sortDirection;
     }
+
+    public static BasePageParam getEmpty() {
+        return new BasePageParam();
+    }
 }

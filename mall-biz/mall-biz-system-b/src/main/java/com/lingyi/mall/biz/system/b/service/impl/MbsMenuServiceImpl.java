@@ -4,7 +4,6 @@ import cn.hutool.core.bean.BeanUtil;
 import com.lingyi.mall.api.system.b.constant.MbsConstant;
 import com.lingyi.mall.api.system.b.dto.MenuDTO;
 import com.lingyi.mall.api.system.b.entity.Menu;
-import com.lingyi.mall.api.system.b.entity.User;
 import com.lingyi.mall.api.system.b.enums.MbsFailEnum;
 import com.lingyi.mall.api.system.b.enums.MbsMenuType;
 import com.lingyi.mall.api.system.b.param.MenuParam;
@@ -65,7 +64,7 @@ public class MbsMenuServiceImpl implements MbsMenuService {
 
     @Override
     public MenuVO findById(Long id) {
-        return null;
+        return mbsMenuMapper.selectById(id);
     }
 
     @Override
@@ -76,9 +75,9 @@ public class MbsMenuServiceImpl implements MbsMenuService {
 
     @Override
     public List<MenuVO> findTreeByParentId(Long parentId) {
-        List<MenuVO> menuVOList = mbsMenuMapper.selectListByParentId(parentId);
-        menuVOList.forEach(menuTreeVO -> menuTreeVO.setMenus(findTreeByParentId(menuTreeVO.getMenuId())));
-        return menuVOList;
+        List<MenuVO> menus = mbsMenuMapper.selectListByParentId(parentId);
+        menus.forEach(menu -> menu.setMenus(findTreeByParentId(menu.getId())));
+        return menus;
     }
 
     @Override

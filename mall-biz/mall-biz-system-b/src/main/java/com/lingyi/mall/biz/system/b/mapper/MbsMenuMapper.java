@@ -27,9 +27,9 @@ public interface MbsMenuMapper {
      * 按照id查询
      *
      * @param id id
-     * @return List<MenuVO>
+     * @return MenuVO
      */
-    List<MenuVO> selectListById(Long id);
+    MenuVO selectById(Long id);
 
 
     /**
