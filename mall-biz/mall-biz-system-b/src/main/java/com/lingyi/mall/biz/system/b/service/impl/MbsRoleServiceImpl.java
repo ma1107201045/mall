@@ -16,6 +16,7 @@ import com.lingyi.mall.common.bean.param.BasePageParam;
 import com.lingyi.mall.common.bean.util.AssertUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -36,6 +37,7 @@ public class MbsRoleServiceImpl implements MbsRoleService {
     private final MbsRoleMenuService mbsRoleMenuService;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void add(RoleDTO roleDTO) {
         //转换
         Role role = BeanUtil.copyProperties(roleDTO, Role.class);
@@ -52,6 +54,7 @@ public class MbsRoleServiceImpl implements MbsRoleService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void editById(RoleDTO roleDTO) {
         //断言menuId不为空
         AssertUtil.notNull(roleDTO.getRoleId(), MbsFailEnum.ROLE_ID_NULL_ERROR);
