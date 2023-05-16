@@ -1,10 +1,5 @@
 package com.lingyi.mall.biz.system.b.service;
 
-import com.lingyi.mall.api.system.b.dto.RoleMenuDTO;
-import com.lingyi.mall.api.system.b.param.RoleMenuParma;
-import com.lingyi.mall.api.system.b.vo.RoleMenuVO;
-import com.lingyi.mall.common.bean.util.BaseService;
-
 import java.util.List;
 
 /**
