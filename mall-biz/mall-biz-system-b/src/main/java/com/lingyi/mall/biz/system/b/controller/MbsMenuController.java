@@ -1,5 +1,7 @@
 package com.lingyi.mall.biz.system.b.controller;
 
+import com.github.xiaoymin.knife4j.annotations.ApiSort;
+import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.lingyi.mall.api.system.b.constant.MbsConstant;
 import com.lingyi.mall.api.system.b.dto.MenuDTO;
 import com.lingyi.mall.api.system.b.param.MenuParam;
@@ -23,7 +25,8 @@ import java.util.List;
  * @DateTime: 2023/5/16 21:18
  * @Description:
  */
-@Tag(name = "后台【系统管理服务-菜单】", description = "后台【系统管理服务-菜单】")
+@Tag(name = "【系统管理服务-菜单】", description = "【系统管理服务-菜单】")
+@ApiSupport(order = 3, author = "maweiyan")
 @RequestMapping("/mbs/b/menus")
 @RestController
 @RequiredArgsConstructor

@@ -1,5 +1,7 @@
 package com.lingyi.mall.biz.system.b.controller;
 
+import com.github.xiaoymin.knife4j.annotations.ApiSort;
+import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.lingyi.mall.api.system.b.dto.RoleDTO;
 import com.lingyi.mall.api.system.b.param.RoleParam;
 import com.lingyi.mall.api.system.b.vo.RoleVO;
@@ -22,7 +24,8 @@ import java.util.List;
  * @DateTime: 2023/5/16 21:18
  * @Description:
  */
-@Tag(name = "后台【系统管理服务-角色】", description = "后台【系统管理服务-角色】")
+@Tag(name = "【系统管理服务-角色】", description = "【系统管理服务-角色】")
+@ApiSupport(order = 2, author = "maweiyan")
 @RequestMapping("/mbs/b/roles")
 @RestController
 @RequiredArgsConstructor

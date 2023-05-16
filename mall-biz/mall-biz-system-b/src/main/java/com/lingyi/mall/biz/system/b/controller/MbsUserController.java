@@ -1,5 +1,7 @@
 package com.lingyi.mall.biz.system.b.controller;
 
+import com.github.xiaoymin.knife4j.annotations.ApiSort;
+import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.lingyi.mall.api.system.b.dto.UserDTO;
 import com.lingyi.mall.api.system.b.entity.User;
 import com.lingyi.mall.api.system.b.param.UserParam;
@@ -25,7 +27,8 @@ import java.util.List;
  * @DateTime: 2023/5/3 19:10
  * @Description:
  */
-@Tag(name = "后台【系统管理服务-用户】", description = "后台【系统管理服务-用户】")
+@Tag(name = "【系统管理服务-用户】", description = "【系统管理服务-用户】")
+@ApiSupport(order = 1, author = "maweiyan")
 @RequestMapping("/mbs/b/users")
 @RestController
 @RequiredArgsConstructor

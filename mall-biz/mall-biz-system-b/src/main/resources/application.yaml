@@ -24,3 +24,12 @@ spring:
       password: jinbihu2023
       client-type: lettuce
       database: 1
+# springdoc-openapi项目配置
+springdoc:
+  swagger-ui:
+    tags-sorter: alpha
+    operations-sorter: alpha
+  group-configs:
+    - group: '系统管理服务【后台】'
+      paths-to-match: '/**'
+      packages-to-scan: com.lingyi.mall.biz.system.b.controller
