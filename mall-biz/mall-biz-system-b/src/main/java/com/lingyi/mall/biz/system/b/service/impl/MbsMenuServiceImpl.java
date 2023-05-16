@@ -58,7 +58,7 @@ public class MbsMenuServiceImpl implements MbsMenuService {
         verifyData(menuDTO, true);
         //DTO转换Entity
         Menu menu = BeanUtil.copyProperties(menuDTO, Menu.class);
-        menu.setId(menuDTO.getMenuId());
+        menu.setId(menuDTO.getId());
         //更新
         mbsMenuRepository.save(menu);
     }
@@ -111,7 +111,7 @@ public class MbsMenuServiceImpl implements MbsMenuService {
         AssertUtil.isTrue(result03, MbsFailEnum.MENU_BUTTON_PARENT_ERROR);
         if (isEdit) {
             //断言menuId不为空
-            AssertUtil.notNull(menuDTO.getMenuId(), MbsFailEnum.MENU_ID_NULL_ERROR);
+            AssertUtil.notNull(menuDTO.getId(), MbsFailEnum.MENU_ID_NULL_ERROR);
         }
     }
 

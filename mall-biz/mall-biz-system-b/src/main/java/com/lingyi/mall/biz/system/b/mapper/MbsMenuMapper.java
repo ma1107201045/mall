@@ -23,6 +23,14 @@ public interface MbsMenuMapper {
      */
     Integer selectTypeById(Long id);
 
+    /**
+     * 按照id查询
+     *
+     * @param id id
+     * @return List<MenuVO>
+     */
+    List<MenuVO> selectListById(Long id);
+
 
     /**
      * 按照父级id查询

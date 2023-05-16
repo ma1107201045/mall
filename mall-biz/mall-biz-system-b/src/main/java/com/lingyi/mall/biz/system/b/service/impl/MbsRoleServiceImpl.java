@@ -56,15 +56,17 @@ public class MbsRoleServiceImpl implements MbsRoleService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void editById(RoleDTO roleDTO) {
+        Long id = roleDTO.getId();
         //断言menuId不为空
-        AssertUtil.notNull(roleDTO.getRoleId(), MbsFailEnum.ROLE_ID_NULL_ERROR);
+        AssertUtil.notNull(id, MbsFailEnum.ROLE_ID_NULL_ERROR);
         //转换
         Role role = BeanUtil.copyProperties(roleDTO, Role.class);
-        role.setId(roleDTO.getRoleId());
         //保存
         mbsRoleRepository.save(role);
+        //删除角色菜单集
+        mbsRoleMenuService.removeByRoleId(id);
         //保存角色菜单信息
-        mbsRoleMenuService.saveList(role.getId(), roleDTO.getMenuIds());
+        mbsRoleMenuService.saveList(id, roleDTO.getMenuIds());
     }
 
     @Override
@@ -74,7 +76,7 @@ public class MbsRoleServiceImpl implements MbsRoleService {
 
     @Override
     public List<RoleVO> findListByPageAndParam(BasePageParam basePageParam, RoleParam roleParam) {
-        PageHelper.startPage(basePageParam.getCurrentPage(), basePageParam.getPageSize());
+        PageHelper.startPage(basePageParam.getCurrentPage(), basePageParam.getPageSize(), basePageParam.getSort());
         return mbsRoleMapper.selectListByParam(roleParam);
     }
 }

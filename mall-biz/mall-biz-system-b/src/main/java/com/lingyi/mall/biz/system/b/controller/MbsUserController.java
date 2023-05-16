@@ -26,7 +26,6 @@ import java.util.List;
  * @Description:
  */
 @Tag(name = "后台【系统管理服务-用户】", description = "后台【系统管理服务-用户】")
-@Validated
 @RequestMapping("/mbs/b/users")
 @RestController
 @RequiredArgsConstructor
@@ -54,7 +53,7 @@ public class MbsUserController {
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('mbs:user:update')")
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody UserDTO userDTO) {
-        userDTO.setUserId(id);
+        userDTO.setId(id);
         mbsUserService.editById(userDTO);
         return ServerResponse.success();
     }

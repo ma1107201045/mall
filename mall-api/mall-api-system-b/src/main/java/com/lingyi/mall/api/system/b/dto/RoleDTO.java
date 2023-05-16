@@ -24,7 +24,7 @@ public class RoleDTO implements Serializable {
     private static final long serialVersionUID = -7189349120052738779L;
 
     @Schema(description = "角色id")
-    private Long roleId;
+    private Long id;
 
     @Schema(description = "角色名称")
     @NotBlank(message = "角色名称不能为空")

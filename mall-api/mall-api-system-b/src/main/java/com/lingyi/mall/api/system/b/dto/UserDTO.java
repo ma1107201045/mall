@@ -22,7 +22,7 @@ public class UserDTO implements Serializable {
     private static final long serialVersionUID = -3590238359696349969L;
 
     @Schema(description = "用户id")
-    private Long userId;
+    private Long id;
 
     @Schema(description = "用户名称", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank(message = "用户名称不能为空")

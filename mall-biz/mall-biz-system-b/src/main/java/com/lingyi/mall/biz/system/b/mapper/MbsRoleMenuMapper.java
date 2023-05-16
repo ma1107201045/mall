@@ -1,10 +1,6 @@
 package com.lingyi.mall.biz.system.b.mapper;
 
-import com.lingyi.mall.api.system.b.param.RoleParam;
-import com.lingyi.mall.api.system.b.vo.RoleMenuVO;
 import org.apache.ibatis.annotations.Mapper;
-
-import java.util.List;
 
 /**
  * @author maweiyan
@@ -15,7 +11,4 @@ import java.util.List;
 @Mapper
 public interface MbsRoleMenuMapper {
 
-    RoleMenuVO selectById(Long id);
-
-    List<RoleMenuVO> selectListByParam(RoleParam roleParam);
 }

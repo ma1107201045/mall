@@ -79,13 +79,13 @@ public class MbsUserServiceImpl implements MbsUserService {
     @Transactional(rollbackFor = Exception.class)
     public void editById(UserDTO userDTO) {
         //获取用户id
-        Long userId = userDTO.getUserId();
+        Long id = userDTO.getId();
         //断言userId不为空
-        AssertUtil.notNull(userId, MbsFailEnum.USER_ID_NULL_ERROR);
+        AssertUtil.notNull(id, MbsFailEnum.USER_ID_NULL_ERROR);
 
         //通过用户名称获取用户id
-        Long id = mbsUserMapper.selectIdByUserName(userDTO.getUserName());
-        boolean result = Objects.nonNull(id) && !Objects.equals(id, userId);
+        Long newId = mbsUserMapper.selectIdByUserName(userDTO.getUserName());
+        boolean result = Objects.nonNull(id) && !Objects.equals(id, newId);
 
         //判断用户名称不存在
         AssertUtil.isFalse(result, MbsFailEnum.USER_NAME_EXIST_ERROR);
@@ -95,13 +95,12 @@ public class MbsUserServiceImpl implements MbsUserService {
         userDTO.setPassword(encodePassword);
         //DTO转换Entity
         User user = BeanUtil.copyProperties(userDTO, User.class);
-        user.setId(userDTO.getUserId());
         //更新
         mbsUserRepository.save(user);
         //删除用户角色集
-        mbsUserRoleService.removeByUserId(userId);
+        mbsUserRoleService.removeByUserId(id);
         //保存用户角色信息
-        mbsUserRoleService.addList(userId, userDTO.getRoleIds());
+        mbsUserRoleService.addList(id, userDTO.getRoleIds());
     }
 
     @Override
@@ -111,7 +110,7 @@ public class MbsUserServiceImpl implements MbsUserService {
 
     @Override
     public List<UserVO> findListByPageAndParam(BasePageParam basePageParam, UserParam userParam) {
-        PageHelper.startPage(basePageParam.getCurrentPage(), basePageParam.getPageSize());
+        PageHelper.startPage(basePageParam.getCurrentPage(), basePageParam.getPageSize(), basePageParam.getSort());
         return mbsUserMapper.selectListByParam(userParam);
     }
 

@@ -23,7 +23,7 @@ public class MenuDTO implements Serializable {
     private static final long serialVersionUID = -8275831585548688615L;
 
     @Schema(description = "菜单id")
-    private Long menuId;
+    private Long id;
 
     @Schema(description = "菜单名称", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank(message = "菜单名称不能为空")

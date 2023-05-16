@@ -13,7 +13,7 @@ import java.util.List;
  * @datetime 2023/5/15 14:30
  * @description
  */
-public interface MbsRoleMenuService extends BaseService<RoleMenuDTO, RoleMenuParma, RoleMenuVO, Long> {
+public interface MbsRoleMenuService  {
 
     /**
      * 保存多条
@@ -22,4 +22,12 @@ public interface MbsRoleMenuService extends BaseService<RoleMenuDTO, RoleMenuPar
      * @param menuIds 菜单id集
      */
     void saveList(Long roleId, List<Long> menuIds);
+
+
+    /**
+     * 按照角色id删除角色菜单
+     *
+     * @param roleId 角色id
+     */
+    void removeByRoleId(Long roleId);
 }

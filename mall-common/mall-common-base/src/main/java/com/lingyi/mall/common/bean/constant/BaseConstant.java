@@ -1,8 +1,5 @@
 package com.lingyi.mall.common.bean.constant;
 
-import cn.hutool.core.util.CharUtil;
-import cn.hutool.core.util.StrUtil;
-
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
@@ -22,6 +19,8 @@ public class BaseConstant {
     public static final String UNKNOWN = "unknown";
     public static final String EQUAL_SIGN_CHAR = "=";
     public static final String SEMICOLON_CHAR = ";";
+
+    public static final String SPACE_CHAR = " ";
 
     private BaseConstant() {
 

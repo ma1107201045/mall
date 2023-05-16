@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lingyi.mall.biz.system.b.mapper.MbsUserRoleMapper">
-    <resultMap id="BaseResultMap" type="com.lingyi.mall.api.system.b.vo.UserRoleVO">
-        <id column="id" jdbcType="BIGINT" property="userRoleId"/>
+    <resultMap id="BaseResultMap" type="com.lingyi.mall.api.system.b.entity.UserRole">
+        <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="user_id" jdbcType="BIGINT" property="userId"/>
         <result column="role_id" jdbcType="BIGINT" property="roleId"/>
         <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
@@ -13,26 +13,4 @@
     <sql id="Base_Column_List">
         id, user_id, role_id, create_by, create_date_time, last_modify_by, last_modify_date_time
     </sql>
-    <sql id="Base_Condition">
-        <if test="userId!=null">
-            AND user_id =#{userId,jdbcType=BIGINT}
-        </if>
-        <if test="roleId!=null">
-            AND role_id =#{roleId,jdbcType=BIGINT}
-        </if>
-    </sql>
-    <select id="selectById" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from mbs_user_role
-        where id = #{id,jdbcType=BIGINT}
-    </select>
-    <select id="selectListByParam" resultMap="BaseResultMap">
-        SELECT
-        <include refid="Base_Column_List"/>
-        FROM mbs_user_role
-        <where>
-            <include refid="Base_Condition"/>
-        </where>
-    </select>
 </mapper>
