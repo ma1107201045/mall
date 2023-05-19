@@ -1,6 +1,6 @@
 package com.lingyi.mall.api.system.b.entity;
 
-import com.lingyi.mall.common.bean.entity.BaseIsDeleteEntity;
+import com.lingyi.mall.common.base.entity.BaseIsDeleteEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
@@ -20,8 +20,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString(callSuper = true)
-@DynamicInsert
-@DynamicUpdate
 @Entity
 @Table(name = "mbs_menu")
 public class Menu extends BaseIsDeleteEntity implements Serializable {

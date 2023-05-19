@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.bean.entity;
+package com.lingyi.mall.common.base.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -24,7 +24,7 @@ public abstract class BaseIdEntity {
 
     @Id
     @GeneratedValue(generator = "SnowflakeIdentifierGenerator")
-    @GenericGenerator(name = "SnowflakeIdentifierGenerator", strategy = "com.lingyi.mall.common.bean.generator.SnowflakeIdentifierGenerator")
+    @GenericGenerator(name = "SnowflakeIdentifierGenerator", strategy = "com.lingyi.mall.common.base.jpa.generator.SnowflakeIdentifierGenerator")
     @Column(name = "id", nullable = false, length = 20)
     private Long id;
 

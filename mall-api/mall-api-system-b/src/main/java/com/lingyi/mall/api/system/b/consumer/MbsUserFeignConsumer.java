@@ -5,8 +5,8 @@ import com.lingyi.mall.api.system.b.feign.MbsUserFeign;
 import com.lingyi.mall.api.system.b.vo.MenuVO;
 import com.lingyi.mall.api.system.b.vo.UserVO;
 
-import com.lingyi.mall.common.bean.util.ServerResponse;
-import com.lingyi.mall.common.bean.exception.OpenFeignException;
+import com.lingyi.mall.common.base.util.ServerResponse;
+import com.lingyi.mall.common.base.exception.OpenFeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

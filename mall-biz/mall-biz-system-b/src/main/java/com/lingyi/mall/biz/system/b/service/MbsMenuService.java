@@ -1,11 +1,9 @@
 package com.lingyi.mall.biz.system.b.service;
 
 import com.lingyi.mall.api.system.b.dto.MenuDTO;
-import com.lingyi.mall.api.system.b.entity.Menu;
-import com.lingyi.mall.api.system.b.entity.User;
 import com.lingyi.mall.api.system.b.param.MenuParam;
 import com.lingyi.mall.api.system.b.vo.MenuVO;
-import com.lingyi.mall.common.bean.util.BaseService;
+import com.lingyi.mall.common.base.util.BaseService;
 
 import java.util.List;
 

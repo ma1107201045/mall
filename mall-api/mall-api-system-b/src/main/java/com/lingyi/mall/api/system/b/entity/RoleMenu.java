@@ -1,6 +1,6 @@
 package com.lingyi.mall.api.system.b.entity;
 
-import com.lingyi.mall.common.bean.entity.BaseCommonEntity;
+import com.lingyi.mall.common.base.entity.BaseCommonEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
@@ -19,8 +19,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString(callSuper = true)
-@DynamicInsert
-@DynamicUpdate
 @Entity
 @Table(name = "mbs_role_menu")
 public class RoleMenu extends BaseCommonEntity implements Serializable {

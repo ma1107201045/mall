@@ -1,12 +1,12 @@
-package com.lingyi.mall.common.bean.util;
+package com.lingyi.mall.common.base.util;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ObjUtil;
 import cn.hutool.core.util.StrUtil;
-import com.lingyi.mall.common.bean.constant.BaseConstant;
-import com.lingyi.mall.common.bean.enums.BaseFailEnum;
-import com.lingyi.mall.common.bean.exception.BizException;
+import com.lingyi.mall.common.base.constant.BaseConstant;
+import com.lingyi.mall.common.base.enums.BaseFailEnum;
+import com.lingyi.mall.common.base.exception.BizException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 

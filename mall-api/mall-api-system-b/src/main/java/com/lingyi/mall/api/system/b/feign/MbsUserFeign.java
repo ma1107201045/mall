@@ -3,7 +3,7 @@ package com.lingyi.mall.api.system.b.feign;
 import com.lingyi.mall.api.system.b.vo.MenuVO;
 import com.lingyi.mall.api.system.b.fallbackfactory.MbsUserFeignFallbackFactory;
 import com.lingyi.mall.api.system.b.vo.UserVO;
-import com.lingyi.mall.common.bean.util.ServerResponse;
+import com.lingyi.mall.common.base.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

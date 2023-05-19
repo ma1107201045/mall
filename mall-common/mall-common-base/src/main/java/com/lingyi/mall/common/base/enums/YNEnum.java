@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.bean.enums;
+package com.lingyi.mall.common.base.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

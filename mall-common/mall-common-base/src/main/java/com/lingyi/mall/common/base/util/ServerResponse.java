@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.bean.util;
+package com.lingyi.mall.common.base.util;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;

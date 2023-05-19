@@ -1,6 +1,6 @@
-package com.lingyi.mall.common.bean.util;
+package com.lingyi.mall.common.base.util;
 
-import com.lingyi.mall.common.bean.entity.UserDetailsEntity;
+import com.lingyi.mall.common.base.entity.UserDetailsEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 /**

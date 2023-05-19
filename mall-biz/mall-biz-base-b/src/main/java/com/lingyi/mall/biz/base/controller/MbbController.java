@@ -2,8 +2,8 @@ package com.lingyi.mall.biz.base.controller;
 
 import com.lingyi.mall.api.system.b.vo.MenuVO;
 import com.lingyi.mall.biz.base.service.MbbService;
-import com.lingyi.mall.common.bean.util.AuthenticatorUtil;
-import com.lingyi.mall.common.bean.util.ServerResponse;
+import com.lingyi.mall.common.base.util.AuthenticatorUtil;
+import com.lingyi.mall.common.base.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

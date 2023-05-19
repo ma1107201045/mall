@@ -1,7 +1,7 @@
 package com.lingyi.mall.common.security.b.handler;
 
 import com.alibaba.fastjson2.JSON;
-import com.lingyi.mall.common.bean.util.ServerResponse;
+import com.lingyi.mall.common.base.util.ServerResponse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

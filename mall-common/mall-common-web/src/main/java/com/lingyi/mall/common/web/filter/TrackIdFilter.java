@@ -2,7 +2,7 @@ package com.lingyi.mall.common.web.filter;
 
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
-import com.lingyi.mall.common.bean.constant.BaseConstant;
+import com.lingyi.mall.common.base.constant.BaseConstant;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

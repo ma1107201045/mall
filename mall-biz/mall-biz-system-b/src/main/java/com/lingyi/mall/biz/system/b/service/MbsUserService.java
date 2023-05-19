@@ -4,7 +4,7 @@ import com.lingyi.mall.api.system.b.dto.UserDTO;
 import com.lingyi.mall.api.system.b.param.UserParam;
 import com.lingyi.mall.api.system.b.vo.MenuVO;
 import com.lingyi.mall.api.system.b.vo.UserVO;
-import com.lingyi.mall.common.bean.util.BaseService;
+import com.lingyi.mall.common.base.util.BaseService;
 
 import java.util.List;
 

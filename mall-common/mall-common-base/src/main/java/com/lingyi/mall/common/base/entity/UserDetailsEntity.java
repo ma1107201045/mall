@@ -1,7 +1,6 @@
-package com.lingyi.mall.common.bean.entity;
+package com.lingyi.mall.common.base.entity;
 
 import com.alibaba.fastjson2.annotation.JSONField;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

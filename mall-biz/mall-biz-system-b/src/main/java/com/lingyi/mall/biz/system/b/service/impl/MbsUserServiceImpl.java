@@ -7,7 +7,6 @@ import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.api.system.b.constant.MbsConstant;
 import com.lingyi.mall.api.system.b.dto.UserDTO;
 import com.lingyi.mall.api.system.b.entity.User;
-import com.lingyi.mall.api.system.b.entity.UserRole;
 import com.lingyi.mall.api.system.b.enums.MbsFailEnum;
 import com.lingyi.mall.api.system.b.enums.MbsMenuType;
 import com.lingyi.mall.api.system.b.param.UserParam;
@@ -18,17 +17,15 @@ import com.lingyi.mall.biz.system.b.repository.MbsUserRepository;
 import com.lingyi.mall.biz.system.b.service.MbsMenuService;
 import com.lingyi.mall.biz.system.b.service.MbsUserRoleService;
 import com.lingyi.mall.biz.system.b.service.MbsUserService;
-import com.lingyi.mall.common.bean.param.BasePageParam;
-import com.lingyi.mall.common.bean.util.AssertUtil;
+import com.lingyi.mall.common.base.param.BasePageParam;
+import com.lingyi.mall.common.base.util.AssertUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.support.TransactionTemplate;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * @Author: maweiyan

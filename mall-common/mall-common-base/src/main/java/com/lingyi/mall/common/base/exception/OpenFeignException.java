@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.bean.exception;
+package com.lingyi.mall.common.base.exception;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
@@ -12,23 +12,23 @@ import java.io.Serial;
  * @description
  */
 @Getter
-public class BizException extends RuntimeException {
+public class OpenFeignException extends RuntimeException {
 
 
     @Serial
-    private static final long serialVersionUID = -5427223280793906864L;
+    private static final long serialVersionUID = -3612965431558240914L;
 
     private final Integer bizCode;
 
     private final String message;
 
-    public BizException(String message) {
+    public OpenFeignException(String message) {
         super(message);
         this.bizCode = HttpStatus.INTERNAL_SERVER_ERROR.value();
         this.message = message;
     }
 
-    public BizException(Integer bizCode, String message) {
+    public OpenFeignException(Integer bizCode, String message) {
         super(message);
         this.bizCode = bizCode;
         this.message = message;

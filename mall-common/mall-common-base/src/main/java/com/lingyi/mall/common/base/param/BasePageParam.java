@@ -1,6 +1,6 @@
-package com.lingyi.mall.common.bean.param;
+package com.lingyi.mall.common.base.param;
 
-import com.lingyi.mall.common.bean.constant.BaseConstant;
+import com.lingyi.mall.common.base.constant.BaseConstant;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

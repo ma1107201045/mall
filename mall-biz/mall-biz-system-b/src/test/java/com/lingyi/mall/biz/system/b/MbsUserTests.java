@@ -5,7 +5,7 @@ import com.lingyi.mall.MallBizSystemApplicationTests;
 import com.lingyi.mall.api.system.b.entity.User;
 import com.lingyi.mall.biz.system.b.mapper.MbsUserMapper;
 import com.lingyi.mall.biz.system.b.repository.MbsUserRepository;
-import com.lingyi.mall.common.bean.enums.YNEnum;
+import com.lingyi.mall.common.base.enums.YNEnum;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,5 +1,6 @@
-package com.lingyi.mall.common.bean.entity;
+package com.lingyi.mall.common.base.entity;
 
+import com.lingyi.mall.common.base.jpa.listener.CustomAuditingEntityListener;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
@@ -9,7 +10,6 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -22,8 +22,8 @@ import java.util.Objects;
  */
 @Getter
 @Setter
-@EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
+@EntityListeners(CustomAuditingEntityListener.class)
 public abstract class BaseCommonEntity extends BaseIdEntity {
 
 

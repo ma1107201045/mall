@@ -1,14 +1,12 @@
-package com.lingyi.mall.common.bean.entity;
+package com.lingyi.mall.common.base.entity;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+import com.lingyi.mall.common.base.jpa.listener.CustomAuditingEntityListener;
 import jakarta.persistence.Column;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
-import lombok.*;
-import lombok.experimental.FieldNameConstants;
-import lombok.experimental.SuperBuilder;
-import org.hibernate.Hibernate;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.io.Serial;
 import java.util.Objects;
 
 /**

@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.bean.constant;
+package com.lingyi.mall.common.base.constant;
 
 /**
  * @author maweiyan

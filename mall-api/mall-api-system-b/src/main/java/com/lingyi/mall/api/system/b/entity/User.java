@@ -1,12 +1,9 @@
 package com.lingyi.mall.api.system.b.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.lingyi.mall.common.bean.entity.BaseIsDeleteEntity;
+import com.lingyi.mall.common.base.entity.BaseIsDeleteEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

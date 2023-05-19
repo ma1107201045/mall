@@ -1,11 +1,10 @@
 package com.lingyi.mall.biz.system.b.controller;
 
-import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.lingyi.mall.api.system.b.constant.MbsConstant;
 import com.lingyi.mall.api.system.b.dto.MenuDTO;
 import com.lingyi.mall.api.system.b.vo.MenuVO;
 import com.lingyi.mall.biz.system.b.service.MbsMenuService;
-import com.lingyi.mall.common.bean.util.ServerResponse;
+import com.lingyi.mall.common.base.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
