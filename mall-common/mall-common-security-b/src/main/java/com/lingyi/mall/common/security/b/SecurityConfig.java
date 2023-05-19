@@ -75,8 +75,14 @@ public class SecurityConfig {
                                                    LogoutSuccessHandler logoutSuccessHandler,
                                                    AuthenticationEntryPoint authenticationEntryPoint,
                                                    AccessDeniedHandler accessDeniedHandler) throws Exception {
-        return http.addFilterBefore(oncePerRequestFilter, UsernamePasswordAuthenticationFilter.class)
-                .authorizeHttpRequests().requestMatchers(HttpMethod.GET, "/swagger-ui/**", "/doc.html", "/webjars/**", "/v3/**", "/favicon.ico", "/mab/captcha", "/mbs/b/provider/users/permissions").permitAll()
+        return http.addFilterBefore(oncePerRequestFilter, UsernamePasswordAuthenticationFilter.class).authorizeHttpRequests().requestMatchers(HttpMethod.GET,
+                        "/swagger-ui/**",
+                        "/doc.html",
+                        "/webjars/**",
+                        "/v3/**",
+                        "/favicon.ico",
+                        "/mab/captcha",
+                        "/mbs/b/provider/users/permissions").permitAll()
                 .anyRequest().authenticated().and()
                 .formLogin().loginProcessingUrl(LOGIN_PROCESSING_URL)
                 .usernameParameter(SecurityBaseConstant.USERNAME_PARAMETER)

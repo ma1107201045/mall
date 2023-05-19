@@ -2,6 +2,7 @@ package com.lingyi.mall.api.system.b.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -59,6 +60,7 @@ public class UserDTO implements Serializable {
 
 
     @Schema(description = "是否启用 1 是 0 否")
+    @NotNull(message = "是否启用不能为空")
     private Integer isEnable;
 
 
@@ -67,5 +69,7 @@ public class UserDTO implements Serializable {
 
 
     @Schema(description = "角色id集")
+    @NotNull(message = "角色id集不能为空")
+    @Size(min = 1, message = "角色id集不能为空")
     private List<Long> roleIds;
 }

@@ -26,7 +26,7 @@ public interface BaseService<DTO extends Serializable, PARAM extends Serializabl
      *
      * @param ids ids
      */
-    void removeByIds(Iterable<ID> ids);
+    void removeByIds(List<ID> ids);
 
     /**
      * 修改

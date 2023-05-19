@@ -46,7 +46,7 @@ public class MbsMenuServiceImpl implements MbsMenuService {
     }
 
     @Override
-    public void removeByIds(Iterable<Long> ids) {
+    public void removeByIds(List<Long> ids) {
         mbsMenuRepository.deleteAllById(ids);
     }
 

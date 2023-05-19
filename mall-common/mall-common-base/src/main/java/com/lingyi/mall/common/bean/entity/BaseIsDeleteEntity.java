@@ -23,7 +23,7 @@ import java.util.Objects;
 public abstract class BaseIsDeleteEntity extends BaseCommonEntity {
 
 
-    @Column(name = "is_delete", length = 4)
+    @Column(name = "is_delete", nullable = false, length = 4)
     protected Integer isDelete;
 
     @Override

@@ -71,7 +71,7 @@ public class MbsUserServiceImpl implements MbsUserService {
     }
 
     @Override
-    public void removeByIds(Iterable<Long> ids) {
+    public void removeByIds(List<Long> ids) {
         mbsUserRepository.deleteAllById(ids);
     }
 

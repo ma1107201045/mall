@@ -49,7 +49,7 @@ public class MbsRoleServiceImpl implements MbsRoleService {
     }
 
     @Override
-    public void removeByIds(Iterable<Long> ids) {
+    public void removeByIds(List<Long> ids) {
         mbsRoleRepository.deleteAllById(ids);
     }
 

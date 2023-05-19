@@ -41,7 +41,7 @@ public class MbsMenuController {
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
     @PreAuthorize("hasAnyAuthority('mbs:menu:remove')")
-    public ServerResponse<Void> removeByIds(@PathVariable Iterable<Long> ids) {
+    public ServerResponse<Void> removeByIds(@PathVariable List<Long> ids) {
         mbsMenuService.removeByIds(ids);
         return ServerResponse.success();
     }

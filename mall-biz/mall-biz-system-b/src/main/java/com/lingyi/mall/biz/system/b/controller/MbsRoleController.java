@@ -43,7 +43,7 @@ public class MbsRoleController {
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
     @PreAuthorize("hasAnyAuthority('mbs:role:remove')")
-    public ServerResponse<Void> removeByIds(@PathVariable Iterable<Long> ids) {
+    public ServerResponse<Void> removeByIds(@PathVariable List<Long> ids) {
         mbsRoleService.removeByIds(ids);
         return ServerResponse.success();
     }
