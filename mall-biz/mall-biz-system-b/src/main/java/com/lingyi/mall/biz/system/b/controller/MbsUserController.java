@@ -28,7 +28,6 @@ import java.util.List;
  * @Description:
  */
 @Tag(name = "【系统管理服务-用户】", description = "【系统管理服务-用户】")
-@ApiSupport(order = 1, author = "maweiyan")
 @RequestMapping("/mbs/b/users")
 @RestController
 @RequiredArgsConstructor

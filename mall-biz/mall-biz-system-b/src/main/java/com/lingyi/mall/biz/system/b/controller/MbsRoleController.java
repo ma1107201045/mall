@@ -25,7 +25,6 @@ import java.util.List;
  * @Description:
  */
 @Tag(name = "【系统管理服务-角色】", description = "【系统管理服务-角色】")
-@ApiSupport(order = 2, author = "maweiyan")
 @RequestMapping("/mbs/b/roles")
 @RestController
 @RequiredArgsConstructor

@@ -1,14 +1,10 @@
 package com.lingyi.mall.biz.system.b.controller;
 
-import com.github.xiaoymin.knife4j.annotations.ApiSort;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.lingyi.mall.api.system.b.constant.MbsConstant;
 import com.lingyi.mall.api.system.b.dto.MenuDTO;
-import com.lingyi.mall.api.system.b.param.MenuParam;
 import com.lingyi.mall.api.system.b.vo.MenuVO;
 import com.lingyi.mall.biz.system.b.service.MbsMenuService;
-import com.lingyi.mall.common.bean.constant.BaseConstant;
-import com.lingyi.mall.common.bean.param.BasePageParam;
 import com.lingyi.mall.common.bean.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -26,7 +22,6 @@ import java.util.List;
  * @Description:
  */
 @Tag(name = "【系统管理服务-菜单】", description = "【系统管理服务-菜单】")
-@ApiSupport(order = 3, author = "maweiyan")
 @RequestMapping("/mbs/b/menus")
 @RestController
 @RequiredArgsConstructor
