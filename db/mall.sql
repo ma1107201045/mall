@@ -11,7 +11,7 @@
  Target Server Version : 50739 (5.7.39-log)
  File Encoding         : 65001
 
- Date: 01/05/2023 12:45:16
+ Date: 19/05/2023 17:53:46
 */
 
 SET NAMES utf8mb4;
@@ -26,21 +26,30 @@ CREATE TABLE `mbs_menu`  (
   `name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '菜单名称',
   `type` tinyint(4) NOT NULL COMMENT '菜单类型 1目录 2 菜单 3 按钮',
   `parent_id` bigint(20) UNSIGNED NOT NULL COMMENT '父级菜单id',
-  `icon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '菜单图标',
+  `icon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '菜单图标',
   `sort` int(11) UNSIGNED NOT NULL COMMENT '菜单顺序',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '备注',
   `is_enable` tinyint(4) UNSIGNED NOT NULL COMMENT '是否启用 1 是 0 否',
   `path` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '路由地址',
   `component_path` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '组件路径',
   `component_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '组件名称',
   `permission` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '权限标识',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '备注',
   `create_by` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '创建人',
   `create_date_time` datetime NOT NULL COMMENT '创建时间',
   `last_modify_by` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '最后修改人',
   `last_modify_date_time` datetime NOT NULL COMMENT '最后修改时间',
-  `is_delete` tinyint(4) UNSIGNED NULL DEFAULT NULL COMMENT '是否删除 1 是 0 否',
+  `is_delete` tinyint(4) UNSIGNED NOT NULL COMMENT '是否删除 1 是 0 否',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统管理-菜单表' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of mbs_menu
+-- ----------------------------
+INSERT INTO `mbs_menu` VALUES (1, '', 3, 0, '', 0, 1, '', '', '', 'mbs:user:save', '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0);
+INSERT INTO `mbs_menu` VALUES (2, '', 3, 0, '', 0, 1, '', '', '', 'mbs:user:remove', '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0);
+INSERT INTO `mbs_menu` VALUES (3, '', 3, 0, '', 0, 1, '', '', '', 'mbs:user:update', '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0);
+INSERT INTO `mbs_menu` VALUES (4, '', 3, 0, '', 0, 1, '', '', '', 'mbs:user:get', '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0);
+INSERT INTO `mbs_menu` VALUES (5, '', 3, 0, '', 0, 1, '', '', '', 'mbs:user:getList', '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0);
 
 -- ----------------------------
 -- Table structure for mbs_role
@@ -48,7 +57,7 @@ CREATE TABLE `mbs_menu`  (
 DROP TABLE IF EXISTS `mbs_role`;
 CREATE TABLE `mbs_role`  (
   `id` bigint(11) UNSIGNED NOT NULL COMMENT '主键id',
-  `name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '角色名称',
+  `name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '角色名称',
   `is_enable` tinyint(4) UNSIGNED NOT NULL COMMENT '是否启用 1 是 0 否',
   `sort` int(11) UNSIGNED NOT NULL COMMENT '顺序',
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
@@ -56,9 +65,13 @@ CREATE TABLE `mbs_role`  (
   `create_date_time` datetime NOT NULL COMMENT '创建时间',
   `last_modify_by` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '最后修改人',
   `last_modify_date_time` datetime NOT NULL COMMENT '最后修改时间',
-  `is_delete` tinyint(4) UNSIGNED NULL DEFAULT 0 COMMENT '是否删除 1是 0 否',
+  `is_delete` tinyint(4) UNSIGNED NOT NULL COMMENT '是否删除 1是 0 否',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统管理-角色表' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of mbs_role
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for mbs_role_menu
@@ -80,15 +93,19 @@ CREATE TABLE `mbs_role_menu`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统管理-角色菜单中间表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
+-- Records of mbs_role_menu
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for mbs_user
 -- ----------------------------
 DROP TABLE IF EXISTS `mbs_user`;
 CREATE TABLE `mbs_user`  (
   `id` bigint(20) UNSIGNED NOT NULL COMMENT '主键id',
-  `user_name` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户名称',
-  `real_name` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '真实姓名',
-  `nickname` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '昵称',
-  `sex` tinyint(4) UNSIGNED NULL DEFAULT 3 COMMENT '性别 1 男 2 女',
+  `user_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户名称',
+  `real_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '真实姓名',
+  `nickname` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '昵称',
+  `sex` tinyint(4) UNSIGNED NULL DEFAULT NULL COMMENT '性别 1 男 2 女',
   `password` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '密码',
   `head_portrait` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '头像',
   `email` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '邮箱',
@@ -101,9 +118,15 @@ CREATE TABLE `mbs_user`  (
   `create_date_time` datetime NOT NULL COMMENT '创建时间',
   `last_modify_by` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '最后修改人',
   `last_modify_date_time` datetime NOT NULL COMMENT '最后修改时间',
-  `is_delete` tinyint(4) UNSIGNED NULL DEFAULT 0 COMMENT '是否删除 1 是 0 否',
-  PRIMARY KEY (`id`) USING BTREE
+  `is_delete` tinyint(4) UNSIGNED NOT NULL COMMENT '是否删除 1 是 0 否',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `idx_user_name`(`user_name`) USING BTREE COMMENT '用户名称唯一索引'
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统管理-用户表' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of mbs_user
+-- ----------------------------
+INSERT INTO `mbs_user` VALUES (2434570888750079, 'admin', NULL, NULL, NULL, '$2a$10$A.FiBQNVq04i4FSaBYJL8edee7hHr6uv8eDz8dd.i25NicpgZkUu2', '123232323', NULL, NULL, NULL, NULL, 1, NULL, 'admin', '2023-05-07 16:13:03', 'admin', '2023-05-19 17:03:27', 0);
 
 -- ----------------------------
 -- Table structure for mbs_user_role
@@ -123,5 +146,9 @@ CREATE TABLE `mbs_user_role`  (
   CONSTRAINT `fk_role_id` FOREIGN KEY (`role_id`) REFERENCES `mbs_role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `mbs_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统管理-用户角色中间表' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of mbs_user_role
+-- ----------------------------
 
 SET FOREIGN_KEY_CHECKS = 1;
