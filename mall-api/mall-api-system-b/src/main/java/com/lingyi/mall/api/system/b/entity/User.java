@@ -26,6 +26,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString(callSuper = true)
+@DynamicInsert
+@DynamicUpdate
 @Entity
 @Table(name = "mbs_user")
 public class User extends BaseIsDeleteEntity implements Serializable {

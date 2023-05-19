@@ -19,6 +19,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString(callSuper = true)
+@DynamicInsert
+@DynamicUpdate
 @Entity
 @Table(name = "mbs_role_menu")
 public class RoleMenu extends BaseCommonEntity implements Serializable {

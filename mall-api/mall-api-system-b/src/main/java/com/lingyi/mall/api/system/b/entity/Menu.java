@@ -20,6 +20,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString(callSuper = true)
+@DynamicInsert
+@DynamicUpdate
 @Entity
 @Table(name = "mbs_menu")
 public class Menu extends BaseIsDeleteEntity implements Serializable {
