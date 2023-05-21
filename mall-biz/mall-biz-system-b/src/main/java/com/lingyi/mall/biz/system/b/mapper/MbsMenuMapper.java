@@ -1,6 +1,9 @@
 package com.lingyi.mall.biz.system.b.mapper;
 
+import com.lingyi.mall.api.system.b.param.MenuParam;
+import com.lingyi.mall.api.system.b.param.UserParam;
 import com.lingyi.mall.api.system.b.vo.MenuVO;
+import com.lingyi.mall.api.system.b.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -24,6 +27,14 @@ public interface MbsMenuMapper {
     Integer selectTypeById(Long id);
 
     /**
+     * 按照父级id查询id集合
+     *
+     * @param parentIds 父级id集
+     * @return List<Long>
+     */
+    List<Long> selectIdsByParentIds(List<Long> parentIds);
+
+    /**
      * 按照id查询
      *
      * @param id id
@@ -31,6 +42,13 @@ public interface MbsMenuMapper {
      */
     MenuVO selectById(Long id);
 
+    /**
+     * 按照分页信息和条件查询
+     *
+     * @param menuParam 菜单信息
+     * @return List<MenuVO>
+     */
+    List<MenuVO> selectListByParam(MenuParam menuParam);
 
     /**
      * 按照父级id查询
@@ -46,7 +64,7 @@ public interface MbsMenuMapper {
      * @param type 按钮类型
      * @return List<String>
      */
-    List<String> selectPermissionByType(Integer type);
+    List<String> selectPermissionsByType(Integer type);
 
 
     /**

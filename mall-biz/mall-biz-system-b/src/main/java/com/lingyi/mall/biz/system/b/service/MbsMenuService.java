@@ -29,7 +29,7 @@ public interface MbsMenuService extends BaseService<MenuDTO, MenuParam, MenuVO, 
      * @param type 按钮类型
      * @return List<String>
      */
-    List<String> findPermissionByType(Integer type);
+    List<String> findPermissionsByType(Integer type);
 
 
     /**

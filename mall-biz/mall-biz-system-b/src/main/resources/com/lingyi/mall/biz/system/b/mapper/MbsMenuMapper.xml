@@ -25,16 +25,37 @@
     component_name, permission, create_by, create_date_time, last_modify_by, last_modify_date_time,
     is_delete
     </sql>
+    <sql id="Base_Condition">
+        <if test="name!=null and name!=''">
+            AND name LIKE CONCAT('%',#{name,jdbcType=VARCHAR},'%')
+        </if>
+    </sql>
     <select id="selectTypeById" resultType="java.lang.Integer">
         SELECT type
         FROM mbs_menu
         WHERE id = #{id}
+    </select>
+    <select id="selectIdsByParentIds" resultType="java.lang.Long">
+        SELECT id
+        FROM mbs_menu
+        WHERE parent_id in
+        <foreach collection="parentIds" item="parentId" open="(" separator="," close=")">
+            #{parentId}
+        </foreach>
     </select>
     <select id="selectById" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
         FROM mbs_menu
         WHERE id=#{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectListByParam" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM mbs_menu
+        <where>
+            <include refid="Base_Condition"/>
+        </where>
     </select>
     <select id="selectListByParentId" resultMap="BaseResultMap">
         SELECT
@@ -45,7 +66,7 @@
         ORDER BY sort
     </select>
 
-    <select id="selectPermissionByType" resultType="java.lang.String">
+    <select id="selectPermissionsByType" resultType="java.lang.String">
         SELECT permission
         FROM mbs_menu
         WHERE type = #{type}
@@ -61,6 +82,7 @@
         </foreach>
         AND parent_id = #{parentId}
     </select>
+
 
 
 </mapper>

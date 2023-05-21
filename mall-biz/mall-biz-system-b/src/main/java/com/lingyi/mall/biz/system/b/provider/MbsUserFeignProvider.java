@@ -26,7 +26,6 @@ public class MbsUserFeignProvider implements MbsUserFeign {
 
     private final MbsUserService mbsUserService;
 
-
     @Operation(summary = "查询用户和权限标识", description = "查询用户和权限标识")
     @Override
     public ServerResponse<UserVO> getUserAndMenuPermissionsByUserName(String userName) {

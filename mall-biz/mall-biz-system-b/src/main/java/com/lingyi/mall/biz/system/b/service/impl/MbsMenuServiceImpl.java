@@ -1,6 +1,8 @@
 package com.lingyi.mall.biz.system.b.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
+import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.api.system.b.constant.MbsConstant;
 import com.lingyi.mall.api.system.b.dto.MenuDTO;
 import com.lingyi.mall.api.system.b.entity.Menu;
@@ -17,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -46,8 +49,12 @@ public class MbsMenuServiceImpl implements MbsMenuService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void removeByIds(List<Long> ids) {
-        mbsMenuRepository.deleteAllById(ids);
+        if (CollUtil.isNotEmpty(ids)) {
+            mbsMenuRepository.deleteAllById(ids);
+            removeByIds(mbsMenuMapper.selectIdsByParentIds(ids));
+        }
     }
 
     @Override
@@ -57,7 +64,6 @@ public class MbsMenuServiceImpl implements MbsMenuService {
         verifyData(menuDTO, true);
         //DTO转换Entity
         Menu menu = BeanUtil.copyProperties(menuDTO, Menu.class);
-        menu.setId(menuDTO.getId());
         //更新
         mbsMenuRepository.save(menu);
     }
@@ -69,7 +75,8 @@ public class MbsMenuServiceImpl implements MbsMenuService {
 
     @Override
     public List<MenuVO> findListByPageAndParam(BasePageParam basePageParam, MenuParam menuParam) {
-        return null;
+        PageHelper.startPage(basePageParam.getCurrentPage(), basePageParam.getPageSize(), basePageParam.getSort());
+        return mbsMenuMapper.selectListByParam(menuParam);
     }
 
 
@@ -81,8 +88,8 @@ public class MbsMenuServiceImpl implements MbsMenuService {
     }
 
     @Override
-    public List<String> findPermissionByType(Integer type) {
-        return mbsMenuMapper.selectPermissionByType(type);
+    public List<String> findPermissionsByType(Integer type) {
+        return mbsMenuMapper.selectPermissionsByType(type);
     }
 
     @Override
