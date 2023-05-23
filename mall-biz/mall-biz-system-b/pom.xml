@@ -24,6 +24,12 @@
                 <version>${spring-boot-dependencies.version}</version>
                 <configuration>
                     <mainClass>com.lingyi.mall.biz.system.b.MallBizSystemApplication</mainClass>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-configuration-processor</artifactId>
+                        </exclude>
+                    </excludes>
                 </configuration>
                 <executions>
                     <execution>

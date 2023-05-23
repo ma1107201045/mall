@@ -1,7 +1,8 @@
 package com.lingyi.mall.auth.background.controller;
 
-import cn.hutool.captcha.CaptchaUtil;
-import cn.hutool.captcha.CircleCaptcha;
+import cn.hutool.captcha.ICaptcha;
+import com.lingyi.mall.auth.background.properties.MabCaptchaProperties;
+import com.lingyi.mall.auth.background.util.CaptchaUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
@@ -27,15 +28,16 @@ import java.io.OutputStream;
 @RequiredArgsConstructor
 public class MabCaptchaController {
 
+    private final MabCaptchaProperties mabCaptchaProperties;
 
     @Operation(summary = "获取验证码", description = "获取验证码")
     @GetMapping
     public void get(HttpSession session, HttpServletResponse response) throws IOException {
         response.setContentType(MediaType.IMAGE_PNG_VALUE);
-        CircleCaptcha circleCaptcha = CaptchaUtil.createCircleCaptcha(150, 50, 4, 5);
-        session.setAttribute("captcha", circleCaptcha.getCode());
+        ICaptcha captcha = CaptchaUtil.get(mabCaptchaProperties);
+        session.setAttribute(mabCaptchaProperties.getSessionAttributeName(), captcha.getCode());
         OutputStream os = response.getOutputStream();
-        circleCaptcha.write(os);
+        captcha.write(os);
         os.close();
         os.flush();
     }
