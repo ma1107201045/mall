@@ -73,12 +73,12 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>mall-common-security-back</artifactId>
+                <artifactId>mall-common-security-background</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>mall-common-security-fore</artifactId>
+                <artifactId>mall-common-security-foreground</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

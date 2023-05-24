@@ -6,7 +6,7 @@
         <artifactId>mall-common</artifactId>
         <version>${revision}</version>
     </parent>
-    <artifactId>mall-common-security-fore</artifactId>
+    <artifactId>mall-common-security-foreground</artifactId>
 
     <dependencies>
         <dependency>

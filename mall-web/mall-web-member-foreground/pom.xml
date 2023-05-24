@@ -8,16 +8,15 @@
         <artifactId>mall-web</artifactId>
         <version>${revision}</version>
     </parent>
-    <artifactId>mall-web-system-back</artifactId>
-
+    <artifactId>mall-web-member-foreground</artifactId>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-security-back</artifactId>
+            <artifactId>mall-common-security-foreground</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-biz-system</artifactId>
+            <artifactId>mall-biz-member</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
@@ -28,7 +27,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot-dependencies.version}</version>
                 <configuration>
-                    <mainClass>com.lingyi.mall.web.system.back.MallWebSystemBackApplication</mainClass>
+                    <mainClass>com.lingyi.mall.web.member.fore.MallWebMemberForeApplication</mainClass>
                     <excludes>
                         <exclude>
                             <groupId>org.springframework.boot</groupId>

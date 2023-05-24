@@ -8,7 +8,7 @@
         <artifactId>mall-common</artifactId>
         <version>${revision}</version>
     </parent>
-    <artifactId>mall-common-security-back</artifactId>
+    <artifactId>mall-common-security-background</artifactId>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
