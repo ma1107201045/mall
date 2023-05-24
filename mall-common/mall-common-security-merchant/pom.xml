@@ -6,5 +6,5 @@
         <artifactId>mall-common</artifactId>
         <version>${revision}</version>
     </parent>
-    <artifactId>mall-common-security-m</artifactId>
+    <artifactId>mall-common-security-merchant</artifactId>
 </project>

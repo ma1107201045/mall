@@ -73,17 +73,17 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>mall-common-security-b</artifactId>
+                <artifactId>mall-common-security-back</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>mall-common-security-f</artifactId>
+                <artifactId>mall-common-security-fore</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>mall-common-security-m</artifactId>
+                <artifactId>mall-common-security-merchant</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
