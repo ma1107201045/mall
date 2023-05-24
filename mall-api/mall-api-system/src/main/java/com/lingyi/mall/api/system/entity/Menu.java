@@ -56,14 +56,14 @@ public class Menu extends BaseIsDeleteEntity implements Serializable {
     /**
      * 菜单顺序
      */
-    @Column(name = "sort", length = 11)
+    @Column(name = "sort")
     private Integer sort;
 
 
     /**
      * 是否启用 1 是 0 否
      */
-    @Column(name = "is_enable", length = 4)
+    @Column(name = "is_enable")
     private Integer isEnable;
 
     /**

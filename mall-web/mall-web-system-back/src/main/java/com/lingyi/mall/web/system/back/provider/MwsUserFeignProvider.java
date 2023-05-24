@@ -1,7 +1,7 @@
 package com.lingyi.mall.web.system.back.provider;
 
-import com.lingyi.mall.api.system.constant.MbsConstant;
-import com.lingyi.mall.api.system.feign.MbsUserFeign;
+import com.lingyi.mall.biz.system.constant.MbsConstant;
+import com.lingyi.mall.api.system.feign.UserFeign;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.biz.system.service.MbsUserService;
@@ -22,7 +22,7 @@ import java.util.List;
 @Tag(name = "后台【系统管理服务-用户-Provider】", description = "后台【系统管理服务-用户-Provider】")
 @RequiredArgsConstructor
 @RestController
-public class MbsUserFeignProvider implements MbsUserFeign {
+public class MwsUserFeignProvider implements UserFeign {
 
     private final MbsUserService mbsUserService;
 

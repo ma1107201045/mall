@@ -55,7 +55,7 @@ public class User extends BaseIsDeleteEntity implements Serializable {
     /**
      * 性别 1 男 2 女
      */
-    @Column(name = "sex", length = 4)
+    @Column(name = "sex")
     private Integer sex;
 
     /**
@@ -99,7 +99,7 @@ public class User extends BaseIsDeleteEntity implements Serializable {
     /**
      * 是否启用 1 是 0 否
      */
-    @Column(name = "is_enable", nullable = false, length = 4)
+    @Column(name = "is_enable", nullable = false)
     private Integer isEnable;
 
     /**

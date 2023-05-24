@@ -1,6 +1,6 @@
 package com.lingyi.mall.common.security.b.service.impl;
 
-import com.lingyi.mall.api.system.consumer.MbsUserFeignConsumer;
+import com.lingyi.mall.api.system.consumer.UserFeignConsumer;
 import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.common.base.entity.UserDetailsEntity;
 import com.lingyi.mall.common.base.enums.YNEnum;
@@ -25,7 +25,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private final MbsUserFeignConsumer mbsUserFeignConsumer;
+    private final UserFeignConsumer mbsUserFeignConsumer;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -1,7 +1,7 @@
 package com.lingyi.mall.api.system.consumer;
 
 import com.alibaba.fastjson2.JSON;
-import com.lingyi.mall.api.system.feign.MbsUserFeign;
+import com.lingyi.mall.api.system.feign.UserFeign;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.api.system.vo.UserVO;
 
@@ -22,9 +22,9 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class MbsUserFeignConsumer {
+public class UserFeignConsumer {
 
-    private final MbsUserFeign mbsUserFeign;
+    private final UserFeign mbsUserFeign;
 
     public UserVO getUserAndMenuPermissionsByUserName(String userName) {
         log.info("入参:userName:{}", userName);

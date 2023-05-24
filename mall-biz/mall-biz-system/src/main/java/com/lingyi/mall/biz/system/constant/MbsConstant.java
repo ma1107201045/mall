@@ -1,4 +1,4 @@
-package com.lingyi.mall.api.system.constant;
+package com.lingyi.mall.biz.system.constant;
 
 /**
  * @Author: maweiyan

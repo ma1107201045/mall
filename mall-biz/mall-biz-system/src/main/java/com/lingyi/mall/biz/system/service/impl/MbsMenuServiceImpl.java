@@ -3,7 +3,7 @@ package com.lingyi.mall.biz.system.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import com.github.pagehelper.PageHelper;
-import com.lingyi.mall.api.system.constant.MbsConstant;
+import com.lingyi.mall.biz.system.constant.MbsConstant;
 import com.lingyi.mall.api.system.dto.MenuDTO;
 import com.lingyi.mall.api.system.entity.Menu;
 import com.lingyi.mall.api.system.enums.MbsFailEnum;

@@ -1,6 +1,6 @@
 package com.lingyi.mall.api.system.fallbackfactory;
 
-import com.lingyi.mall.api.system.feign.MbsUserFeign;
+import com.lingyi.mall.api.system.feign.UserFeign;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.common.base.util.ServerResponse;
@@ -14,11 +14,11 @@ import java.util.List;
  * @DateTime: 2023/5/3 20:34
  * @Description:
  */
-public class MbsUserFeignFallbackFactory implements FallbackFactory<MbsUserFeign> {
+public class UserFeignFallbackFactory implements FallbackFactory<UserFeign> {
 
     @Override
-    public MbsUserFeign create(Throwable cause) {
-        return new MbsUserFeign() {
+    public UserFeign create(Throwable cause) {
+        return new UserFeign() {
             @Override
             public ServerResponse<UserVO> getUserAndMenuPermissionsByUserName(String userName) {
                 return null;

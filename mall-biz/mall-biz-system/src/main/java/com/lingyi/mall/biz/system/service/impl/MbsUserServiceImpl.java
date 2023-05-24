@@ -4,7 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjUtil;
 import com.github.pagehelper.PageHelper;
-import com.lingyi.mall.api.system.constant.MbsConstant;
+import com.lingyi.mall.biz.system.constant.MbsConstant;
 import com.lingyi.mall.api.system.dto.UserDTO;
 import com.lingyi.mall.api.system.entity.User;
 import com.lingyi.mall.api.system.enums.MbsFailEnum;

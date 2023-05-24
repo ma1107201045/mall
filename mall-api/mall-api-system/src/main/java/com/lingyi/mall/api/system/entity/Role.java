@@ -37,7 +37,7 @@ public class Role extends BaseIsDeleteEntity implements Serializable {
     /**
      * 是否启用 1 是 0 否
      */
-    @Column(name = "is_enable", length = 4)
+    @Column(name = "is_enable")
     private Integer isEnable;
 
     /**

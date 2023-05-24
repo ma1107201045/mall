@@ -22,16 +22,16 @@ import java.util.List;
  * @Description:
  */
 @Tag(name = "【系统管理服务-角色】", description = "【系统管理服务-角色】")
-@RequestMapping("/mbs/b/roles")
+@RequestMapping("/mbs/back/roles")
 @RestController
 @RequiredArgsConstructor
-public class MbsRoleController {
+public class MwsRoleController {
 
     private final MbsRoleService mbsRoleService;
 
     @Operation(summary = "保存", description = "保存")
     @PostMapping
-    @PreAuthorize("hasAnyAuthority('mbs:role:save')")
+    @PreAuthorize("hasAnyAuthority('mws:role:save')")
     public ServerResponse<Void> save(@Valid @RequestBody RoleDTO roleDTO) {
         mbsRoleService.add(roleDTO);
         return ServerResponse.success();
@@ -39,7 +39,7 @@ public class MbsRoleController {
 
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
-    @PreAuthorize("hasAnyAuthority('mbs:role:remove')")
+    @PreAuthorize("hasAnyAuthority('mws:role:remove')")
     public ServerResponse<Void> removeByIds(@PathVariable List<Long> ids) {
         mbsRoleService.removeByIds(ids);
         return ServerResponse.success();
@@ -47,7 +47,7 @@ public class MbsRoleController {
 
     @Operation(summary = "更新", description = "更新")
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('mbs:role:update')")
+    @PreAuthorize("hasAnyAuthority('mws:role:update')")
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody RoleDTO roleDTO) {
         roleDTO.setId(id);
         mbsRoleService.editById(roleDTO);
@@ -56,7 +56,7 @@ public class MbsRoleController {
 
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('mbs:role:get')")
+    @PreAuthorize("hasAnyAuthority('mws:role:get')")
     public ServerResponse<RoleVO> getById(@PathVariable Long id) {
         RoleVO roleVO = mbsRoleService.findById(id);
         return ServerResponse.success(roleVO);
