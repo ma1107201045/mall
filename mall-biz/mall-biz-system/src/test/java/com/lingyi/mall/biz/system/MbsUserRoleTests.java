@@ -1,8 +1,6 @@
 package com.lingyi.mall.biz.system;
 
 import com.lingyi.mall.MallBizSystemApplicationTests;
-import com.lingyi.mall.api.system.b.entity.User;
-import com.lingyi.mall.api.system.b.entity.UserRole;
 import com.lingyi.mall.biz.system.repository.MbsUserRoleRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

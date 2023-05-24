@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.system;
 
 import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.MallBizSystemApplicationTests;
-import com.lingyi.mall.api.system.b.entity.User;
+import com.lingyi.mall.api.system.entity.User;
 import com.lingyi.mall.biz.system.mapper.MbsUserMapper;
 import com.lingyi.mall.biz.system.repository.MbsUserRepository;
 import com.lingyi.mall.common.base.enums.YNEnum;
