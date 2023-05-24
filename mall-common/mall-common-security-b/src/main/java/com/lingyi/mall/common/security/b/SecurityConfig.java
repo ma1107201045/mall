@@ -81,7 +81,7 @@ public class SecurityConfig {
                         "/v3/**",
                         "/favicon.ico",
                         "/mab/captcha",
-                        "/mbs/b/provider/users/permissions").permitAll()
+                        "/mws/b/provider/users/permissions").permitAll()
                 .anyRequest().authenticated().and()
                 .formLogin().loginProcessingUrl(LOGIN_PROCESSING_URL)
                 .usernameParameter(SecurityBaseConstant.USERNAME_PARAMETER)

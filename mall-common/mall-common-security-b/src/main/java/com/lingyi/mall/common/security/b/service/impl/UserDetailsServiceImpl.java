@@ -1,7 +1,7 @@
 package com.lingyi.mall.common.security.b.service.impl;
 
-import com.lingyi.mall.api.system.b.consumer.MbsUserFeignConsumer;
-import com.lingyi.mall.api.system.b.vo.UserVO;
+import com.lingyi.mall.api.system.consumer.MbsUserFeignConsumer;
+import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.common.base.entity.UserDetailsEntity;
 import com.lingyi.mall.common.base.enums.YNEnum;
 import com.lingyi.mall.common.base.util.AssertUtil;
