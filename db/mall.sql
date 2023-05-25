@@ -11,7 +11,7 @@
  Target Server Version : 50739 (5.7.39-log)
  File Encoding         : 65001
 
- Date: 24/05/2023 15:23:18
+ Date: 25/05/2023 16:37:43
 */
 
 SET NAMES utf8mb4;
@@ -35,7 +35,9 @@ CREATE TABLE `mbm_member`  (
   `is_enable` tinyint(4) UNSIGNED NOT NULL COMMENT '是否启用 1 是 0 否',
   `register_source` tinyint(4) UNSIGNED NOT NULL COMMENT '注册来源 1.Web端 2.Android端 3.IOS端 4.PC端',
   `register_data_time` datetime NOT NULL COMMENT '注册时间',
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `idx_user_name`(`user_name`) USING BTREE COMMENT '用户名称唯一索引',
+  UNIQUE INDEX `idx_phone_number`(`phone_number`) USING BTREE COMMENT '手机号码唯一索引'
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '会员管理服务-会员表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -48,24 +50,25 @@ CREATE TABLE `mbm_member`  (
 DROP TABLE IF EXISTS `mbm_member_level`;
 CREATE TABLE `mbm_member_level`  (
   `id` bigint(20) NOT NULL COMMENT '主键id',
-  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '名称',
-  `growth_point` int(11) UNSIGNED NULL DEFAULT NULL COMMENT '增长点',
-  `is_default_level` tinyint(4) UNSIGNED NULL DEFAULT NULL COMMENT '是否为默认等级：0->不是；1->是',
-  `free_freight_point` decimal(10, 2) UNSIGNED NULL DEFAULT NULL COMMENT '免运费标准',
-  `comment_growth_point` int(11) UNSIGNED NULL DEFAULT NULL COMMENT '每次评价获取的成长值',
-  `priviledge_free_freight` tinyint(1) UNSIGNED NULL DEFAULT NULL COMMENT '是否有免邮特权',
-  `priviledge_sign_in` tinyint(1) UNSIGNED NULL DEFAULT NULL COMMENT '是否有签到特权',
-  `priviledge_comment` tinyint(1) UNSIGNED NULL DEFAULT NULL COMMENT '是否有评论获奖励特权',
-  `priviledge_promotion` tinyint(1) UNSIGNED NULL DEFAULT NULL COMMENT '是否有专享活动特权',
-  `priviledge_member_price` tinyint(1) UNSIGNED NULL DEFAULT NULL COMMENT '是否有会员价格特权',
-  `priviledge_birthday` tinyint(1) UNSIGNED NULL DEFAULT NULL COMMENT '是否有生日特权',
-  `remark` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '等级名称',
+  `growth_point` int(11) UNSIGNED NOT NULL COMMENT '增长点',
+  `comment_growth_point` int(11) UNSIGNED NOT NULL COMMENT '每次评价获取的成长值',
+  `is_default_level` tinyint(4) UNSIGNED NOT NULL COMMENT '是否为默认等级：1.是 0.否',
+  `is_priviledge_free_freight` tinyint(1) UNSIGNED NOT NULL COMMENT '是否有免邮特权',
+  `is_priviledge_sign_in` tinyint(1) UNSIGNED NOT NULL COMMENT '是否有签到特权',
+  `is_priviledge_comment` tinyint(1) UNSIGNED NOT NULL COMMENT '是否有评论获奖励特权',
+  `is_priviledge_promotion` tinyint(1) UNSIGNED NOT NULL COMMENT '是否有专享活动特权',
+  `is_priviledge_member_price` tinyint(1) UNSIGNED NOT NULL COMMENT '是否有会员价格特权',
+  `is_priviledge_birthday` tinyint(1) UNSIGNED NOT NULL COMMENT '是否有生日特权',
+  `free_freight_point` decimal(15, 2) UNSIGNED NOT NULL COMMENT '免运费标准',
+  `remark` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '会员管理服务-会员等级表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mbm_member_level
 -- ----------------------------
+INSERT INTO `mbm_member_level` VALUES (1, '普通会员', 1, 20, 1, 0, 0, 0, 0, 0, 0, 199.00, '');
 
 -- ----------------------------
 -- Table structure for mbm_member_login_log
@@ -73,10 +76,11 @@ CREATE TABLE `mbm_member_level`  (
 DROP TABLE IF EXISTS `mbm_member_login_log`;
 CREATE TABLE `mbm_member_login_log`  (
   `id` bigint(20) UNSIGNED NOT NULL COMMENT '主键id',
-  `member_id` bigint(20) NULL DEFAULT NULL COMMENT '会员id',
+  `member_id` bigint(20) NOT NULL COMMENT '会员id',
+  `member_user_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '会员用户名称',
   `ip` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '登录ip',
   `city` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '登录所在城市',
-  `source` tinyint(4) UNSIGNED NULL DEFAULT NULL COMMENT '登录来源',
+  `source` tinyint(4) UNSIGNED NULL DEFAULT NULL COMMENT '登录来源 1.Web端 2.Android端 3.IOS端 4.PC端',
   `create_data_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '会员管理服务-会员登录日志表' ROW_FORMAT = Dynamic;
