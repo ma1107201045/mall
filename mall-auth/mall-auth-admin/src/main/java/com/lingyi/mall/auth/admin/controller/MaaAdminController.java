@@ -22,16 +22,16 @@ import java.io.OutputStream;
  * @datetime 2023/5/1 17:53
  * @description 用户认证controller
  */
-@Tag(name = "获取验证码", description = "获取验证码")
+@Tag(name = "admin认证", description = "验证码接口")
 @Controller
-@RequestMapping("/maa/captcha")
+@RequestMapping("/maa/admin")
 @RequiredArgsConstructor
-public class MaaCaptchaController {
+public class MaaAdminController {
 
     private final MaaCaptchaProperties mabCaptchaProperties;
 
     @Operation(summary = "获取验证码", description = "获取验证码")
-    @GetMapping
+    @GetMapping("/captcha")
     public void get(HttpSession session, HttpServletResponse response) throws IOException {
         response.setContentType(MediaType.IMAGE_PNG_VALUE);
         ICaptcha captcha = CaptchaUtil.get(mabCaptchaProperties);

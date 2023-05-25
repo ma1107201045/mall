@@ -27,8 +27,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
  */
 @Configuration(proxyBeanMethods = false)
 public class SecurityConfig {
-    public static final String LOGIN_PROCESSING_URL = "/maa/login";
-    public static final String LOGOUT_URL = "/maa/logout";
+    public static final String LOGIN_PROCESSING_URL = "/maa/admin/login";
+    public static final String LOGOUT_URL = "/maa/admin/logout";
     public static final String REMEMBER_ME_KEY = "199726ma.";
 
     @Bean

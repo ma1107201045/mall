@@ -6,16 +6,28 @@ spring:
   cloud:
     gateway:
       routes:
+        #后台admin端认证服务
         - id: mall-auth-admin
+          uri: http://localhost:7001
+          predicates:
+            - Path=/maa/admin/**
+        #前台app端认证服务
+        - id: mall-auth-app
           uri: http://localhost:8001
           predicates:
-            - Path=/maa/**
-        - id: mall-web-base-admin
+            - Path=/maa/app/**
+        #后台merchant端认证服务
+        - id: mall-auth-merchant
           uri: http://localhost:9001
+          predicates:
+            - Path=/maa/merchant/**
+
+        - id: mall-web-base-admin
+          uri: http://localhost:7002
           predicates:
             - Path=/mwb/admin/**
         - id: mall-web-system-admin
-          uri: http://localhost:9002
+          uri: http://localhost:7003
           predicates:
             - Path=/mws/admin/**
 
