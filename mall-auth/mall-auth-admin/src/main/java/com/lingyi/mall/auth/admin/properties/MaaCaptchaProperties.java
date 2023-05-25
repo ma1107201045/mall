@@ -12,17 +12,14 @@ import org.springframework.context.annotation.Configuration;
  */
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "mab.captcha")
+@ConfigurationProperties(prefix = "maa.captcha")
 public class MaaCaptchaProperties {
 
     /**
      * 验证码存到session的属性名
      */
     private String sessionAttributeName = "captcha";
-    /**
-     * 验证码干扰类型
-     */
-    private Type type = Type.LINE;
+
     /**
      * 验证码宽度
      */
@@ -36,6 +33,10 @@ public class MaaCaptchaProperties {
      * 验证码个数
      */
     private int count = 4;
+    /**
+     * 验证码干扰类型
+     */
+    private Type type = Type.LINE;
 
     /**
      * 验证码干扰类型个数

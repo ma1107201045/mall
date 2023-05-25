@@ -24,7 +24,7 @@ import java.io.OutputStream;
  */
 @Tag(name = "获取验证码", description = "获取验证码")
 @Controller
-@RequestMapping("/mab/captcha")
+@RequestMapping("/maa/captcha")
 @RequiredArgsConstructor
 public class MaaCaptchaController {
 
