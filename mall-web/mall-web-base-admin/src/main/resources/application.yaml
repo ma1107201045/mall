@@ -1,8 +1,8 @@
 server:
-  port: 9002
+  port: 9001
 spring:
   application:
-    name: mall-web-system-back
+    name: mall-web-system-admin
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     generate-ddl: true
