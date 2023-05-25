@@ -30,4 +30,8 @@ spring:
           uri: http://localhost:7003
           predicates:
             - Path=/mws/admin/**
+        - id: mall-web-member-app
+          uri: http://localhost:8002
+          predicates:
+            - Path=/mwm/admin/**
 
