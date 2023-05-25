@@ -14,8 +14,8 @@
         <module>mall-common-base</module>
         <module>mall-common-jar</module>
         <module>mall-common-redis</module>
-        <module>mall-common-security-background</module>
-        <module>mall-common-security-foreground</module>
+        <module>mall-common-security-admin</module>
+        <module>mall-common-security-app</module>
         <module>mall-common-security-merchant</module>
         <module>mall-common-util</module>
         <module>mall-common-web</module>

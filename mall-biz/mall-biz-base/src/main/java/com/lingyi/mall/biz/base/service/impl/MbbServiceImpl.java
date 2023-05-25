@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.base.service.impl;
 
-import com.lingyi.mall.api.system.consumer.UserFeignConsumer;
+import com.lingyi.mall.api.system.consumer.MbsUserFeignConsumer;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.biz.base.service.MbbService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MbbServiceImpl implements MbbService {
 
-    private final UserFeignConsumer mbsUserFeignConsumer;
+    private final MbsUserFeignConsumer mbsUserFeignConsumer;
 
     @Override
     public List<MenuVO> findMenuTreeByUserId(String userName) {

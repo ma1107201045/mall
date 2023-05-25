@@ -13,8 +13,8 @@
     <name>${project.artifactId}</name>
     <description>电商项目-认证服务父工程</description>
     <modules>
-        <module>mall-auth-background</module>
-        <module>mall-auth-foreground</module>
+        <module>mall-auth-admin</module>
+        <module>mall-auth-app</module>
         <module>mall-auth-merchant</module>
     </modules>
     <dependencies>

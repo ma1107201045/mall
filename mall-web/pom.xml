@@ -12,9 +12,9 @@
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
     <modules>
-        <module>mall-web-base-background</module>
-        <module>mall-web-member-foreground</module>
-        <module>mall-web-system-background</module>
+        <module>mall-web-base-admin</module>
+        <module>mall-web-member-app</module>
+        <module>mall-web-system-admin</module>
     </modules>
     <dependencies>
         <dependency>

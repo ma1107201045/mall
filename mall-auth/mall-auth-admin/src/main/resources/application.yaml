@@ -1,0 +1,44 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: mall-auth-admin
+  jpa:
+    generate-ddl: true
+    database: mysql
+    show-sql: true
+    openInView: true
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://rm-2ze09g9o0bb02q5r54o.mysql.rds.aliyuncs.com:3306/mall?serverTimezone=GMT%2B8
+    username: jinbihu_shop
+    password: Jinbihu_2023
+    type: com.zaxxer.hikari.HikariDataSource
+  data:
+    redis:
+      host: 182.92.64.247
+      password: jinbihu2023
+      client-type: lettuce
+      database: 1
+# springdoc-openapi项目配置
+springdoc:
+  swagger-ui:
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: '认证授权服务【后台】'
+      paths-to-match: '/**'
+      packages-to-scan: com.lingyi.mall.auth.admin.controller
+mab:
+  captcha:
+    type: shear
+
+
+
+
+
