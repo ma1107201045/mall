@@ -20,7 +20,7 @@ public interface MbbService {
      * @param userName 用户名称
      * @return 菜单树
      */
-    List<MenuVO> findMenuTreeByUserId(String userName);
+    List<MenuVO> findMenuTreeByUserName(String userName);
 
     /**
      * 按照用户id更改用户信息
