@@ -33,7 +33,7 @@ public class MemberDetailsEntity implements MemberDetails {
 
     @Override
     public String getPhoneNumber() {
-        return verificationCode;
+        return phoneNumber;
     }
 
     @Override

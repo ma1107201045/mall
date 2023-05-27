@@ -43,7 +43,7 @@ public class DaoAuthenticationProvider implements AuthenticationProvider {
         if (!memberDetails.isEnabled()) {
             throw new DisabledException(DaoAuthenticationProvider.this.messages.getMessage("AbstractUserDetailsAuthenticationProvider.disabled", "User is disabled"));
         }
-        return this.createSuccessAuthentication(memberDetails.getPhoneNumber(), authentication, memberDetails);
+        return this.createSuccessAuthentication(memberDetails, authentication, memberDetails);
     }
 
     @Override
