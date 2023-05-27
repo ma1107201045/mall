@@ -21,7 +21,9 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutSuccessEventPublishingLogoutHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 
 
 /**
@@ -55,7 +57,7 @@ public class SecurityConfig {
 
     @Bean
     public LogoutFilter logoutFilter(LogoutSuccessHandler logoutSuccessHandler) {
-        LogoutFilter logoutFilter = new LogoutFilter(logoutSuccessHandler);
+        LogoutFilter logoutFilter = new LogoutFilter(logoutSuccessHandler, new LogoutSuccessEventPublishingLogoutHandler(), new SecurityContextLogoutHandler());
         logoutFilter.setFilterProcessesUrl(LOGOUT_URL);
         return logoutFilter;
     }
@@ -105,10 +107,12 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http,
                                                    TrackIdFilter trackIdFilter,
                                                    PhoneNumberVerificationCodeAuthenticationFilter phoneNumberVerificationCodeAuthenticationFilter,
+                                                   LogoutFilter logoutFilter,
                                                    AuthenticationEntryPoint authenticationEntryPoint,
                                                    AccessDeniedHandler accessDeniedHandler) throws Exception {
         return http.addFilterBefore(trackIdFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(phoneNumberVerificationCodeAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(logoutFilter, org.springframework.security.web.authentication.logout.LogoutFilter.class)
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeHttpRequests()

@@ -9,16 +9,16 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
- * @datetime 2023/5/24 10:15
+ * @datetime 2023/5/24 10:03
  * @description
  */
 @EnableFeignClients
 @EnableJpaAuditing
 @EnableMethodSecurity
 @SpringBootApplication
-public class MallWebBaseBackApplication {
+public class MallWebMemberAppApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MallWebBaseBackApplication.class, args);
+        SpringApplication.run(MallWebMemberAppApplication.class, args);
     }
 }
