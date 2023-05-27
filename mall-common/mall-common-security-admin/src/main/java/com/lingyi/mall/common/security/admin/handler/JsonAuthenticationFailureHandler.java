@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.security.b.handler;
+package com.lingyi.mall.common.security.admin.handler;
 
 import com.alibaba.fastjson2.JSON;
 import com.lingyi.mall.common.base.util.ServerResponse;

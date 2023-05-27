@@ -1,12 +1,14 @@
-package com.lingyi.mall.common.security.b.handler;
+package com.lingyi.mall.common.security.admin.handler;
 
 import com.alibaba.fastjson2.JSON;
 import com.lingyi.mall.common.base.util.ServerResponse;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,17 +17,17 @@ import java.nio.charset.StandardCharsets;
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
- * @datetime 2023/5/8 9:11
+ * @datetime 2023/5/8 9:21
  * @description
  */
-public class JsonAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+@Slf4j
+public class JsonLogoutSuccessHandler implements LogoutSuccessHandler {
+
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
+    public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         response.setContentType(MediaType.APPLICATION_JSON.toString());
         response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
         PrintWriter writer = response.getWriter();
-        Object principal = authentication.getPrincipal();
-        writer.write(JSON.toJSONString(ServerResponse.success(principal)));
-        writer.flush();
+        writer.write(JSON.toJSONString(ServerResponse.success()));
     }
 }

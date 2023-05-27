@@ -1,7 +1,7 @@
-package com.lingyi.mall.common.security.b;
+package com.lingyi.mall.common.security.admin;
 
 import com.lingyi.mall.common.base.constant.SecurityBaseConstant;
-import com.lingyi.mall.common.security.b.handler.*;
+import com.lingyi.mall.common.security.admin.handler.*;
 import com.lingyi.mall.common.web.filter.TrackIdFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -89,8 +89,8 @@ public class SecurityConfig {
                 .failureHandler(authenticationFailureHandler).and()
                 .logout().logoutUrl(LOGOUT_URL).logoutSuccessHandler(logoutSuccessHandler).and()
                 .rememberMe().key(REMEMBER_ME_KEY)
-                .rememberMeParameter(SecurityBaseConstant.REMEMBER_ME_PARAMETER).
-                rememberMeCookieName(SecurityBaseConstant.REMEMBER_ME_COOKIE_NAME).and()
+                .rememberMeParameter(SecurityBaseConstant.REMEMBER_ME_PARAMETER)
+                .rememberMeCookieName(SecurityBaseConstant.REMEMBER_ME_COOKIE_NAME).and()
                 .exceptionHandling()
                 .authenticationEntryPoint(authenticationEntryPoint)
                 .accessDeniedHandler(accessDeniedHandler).and()

@@ -52,7 +52,7 @@ public class MemberLevel extends BaseIdEntity implements Serializable {
     /**
      * 是否为默认等级：0->不是；1->是
      */
-    @Column(name = "comment_growth_point", nullable = false)
+    @Column(name = "is_default_level", nullable = false)
     private Integer isDefaultLevel;
 
     /**

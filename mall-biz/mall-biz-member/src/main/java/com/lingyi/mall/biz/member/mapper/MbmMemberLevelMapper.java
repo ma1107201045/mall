@@ -11,5 +11,5 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryImplementati
  * @description
  */
 @Mapper
-public interface MbmMemberLevelMapper extends JpaRepositoryImplementation<MemberLevel, Long> {
+public interface MbmMemberLevelMapper {
 }

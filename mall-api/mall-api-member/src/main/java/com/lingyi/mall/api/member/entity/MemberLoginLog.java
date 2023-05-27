@@ -33,7 +33,7 @@ public class MemberLoginLog extends BaseIdEntity implements Serializable {
      * 会员id
      */
     @ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "member_id", nullable = false)
+    @JoinColumn(name = "member_id", nullable = false, foreignKey = @ForeignKey(name = "fk_member_id"))
     @ToString.Exclude
     private Member member;
 

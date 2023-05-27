@@ -34,7 +34,7 @@ public class Member extends BaseIdEntity implements Serializable {
      * 会员等级id
      */
     @ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "member_level_id", nullable = false)
+    @JoinColumn(name = "member_level_id", nullable = false, foreignKey = @ForeignKey(name = "fk_member_level_id"))
     @ToString.Exclude
     private MemberLevel memberLevel;
 

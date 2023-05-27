@@ -32,14 +32,14 @@ public class RoleMenu extends BaseCommonEntity implements Serializable {
      * 角色id
      */
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "role_id", nullable = false)
+    @JoinColumn(name = "role_id", nullable = false, foreignKey = @ForeignKey(name = "fk_role_id2"))
     @ToString.Exclude
     private Role role;
     /**
      * 菜单id
      */
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "menu_id", nullable = false)
+    @JoinColumn(name = "menu_id", nullable = false, foreignKey = @ForeignKey(name = "fk_menu_id"))
     @ToString.Exclude
     private Menu menu;
 

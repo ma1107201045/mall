@@ -12,5 +12,5 @@ import java.lang.reflect.Member;
  * @description
  */
 @Mapper
-public interface MbmMemberMapper extends JpaRepositoryImplementation<Member, Long> {
+public interface MbmMemberMapper  {
 }

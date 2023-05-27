@@ -11,5 +11,5 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryImplementati
  * @description
  */
 @Mapper
-public interface MbmMemberLoginLogMapper extends JpaRepositoryImplementation<MemberLoginLog, Long> {
+public interface MbmMemberLoginLogMapper {
 }
