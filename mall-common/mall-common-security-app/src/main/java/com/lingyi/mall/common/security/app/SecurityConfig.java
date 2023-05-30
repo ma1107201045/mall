@@ -36,8 +36,7 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 public class SecurityConfig {
     public static final String LOGIN_PROCESSING_URL = "/maa/app/login";
     public static final String LOGOUT_URL = "/maa/app/logout";
-
-
+    public static final String JWT_KEY = "199726ma.";
     @Bean
     public TrackIdFilter trackIdFilter() {
         return new TrackIdFilter();

@@ -19,6 +19,14 @@ public interface MbsUserService extends BaseService<UserDTO, UserParam, UserVO, 
 
 
     /**
+     * 更新登录时间
+     *
+     * @param id 主键id
+     */
+    void editLastLoginDateTimeById(Long id);
+
+
+    /**
      * 按照用户名称查询用户信息以及菜单权限标识
      *
      * @param userName 用户名称

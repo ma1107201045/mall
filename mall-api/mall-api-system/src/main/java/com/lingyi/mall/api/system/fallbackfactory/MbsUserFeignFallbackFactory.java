@@ -20,6 +20,11 @@ public class MbsUserFeignFallbackFactory implements FallbackFactory<MbsUserFeign
     public MbsUserFeign create(Throwable cause) {
         return new MbsUserFeign() {
             @Override
+            public ServerResponse<Void> updateLastLoginDateTimeById(Long id) {
+                return null;
+            }
+
+            @Override
             public ServerResponse<UserVO> getUserAndMenuPermissionsByUserName(String userName) {
                 return null;
             }

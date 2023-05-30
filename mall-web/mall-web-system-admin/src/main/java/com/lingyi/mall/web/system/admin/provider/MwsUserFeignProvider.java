@@ -1,5 +1,6 @@
 package com.lingyi.mall.web.system.admin.provider;
 
+import com.lingyi.mall.api.system.dto.UserDTO;
 import com.lingyi.mall.biz.system.constant.MbsConstant;
 import com.lingyi.mall.api.system.feign.MbsUserFeign;
 import com.lingyi.mall.api.system.vo.MenuVO;
@@ -25,6 +26,13 @@ import java.util.List;
 public class MwsUserFeignProvider implements MbsUserFeign {
 
     private final MbsUserService mbsUserService;
+
+    @Operation(summary = "更新用户登录时间", description = "更新用户登录时间")
+    @Override
+    public ServerResponse<Void> updateLastLoginDateTimeById(Long id) {
+        mbsUserService.editLastLoginDateTimeById(id);
+        return ServerResponse.success();
+    }
 
     @Operation(summary = "查询用户和权限标识", description = "查询用户和权限标识")
     @Override

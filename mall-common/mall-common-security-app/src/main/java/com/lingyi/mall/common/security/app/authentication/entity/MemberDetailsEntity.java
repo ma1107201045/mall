@@ -1,10 +1,12 @@
 package com.lingyi.mall.common.security.app.authentication.entity;
 
-import com.lingyi.mall.common.security.app.authentication.entity.MemberDetails;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.io.Serial;
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 /**
@@ -14,6 +16,8 @@ import java.util.Collection;
  * @Description:
  */
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class MemberDetailsEntity implements MemberDetails {
     @Serial
     private static final long serialVersionUID = -4555073638396468898L;
@@ -25,6 +29,15 @@ public class MemberDetailsEntity implements MemberDetails {
     private String phoneNumber;
 
     private boolean enabled;
+
+    private Long userId;
+
+    private String userName;
+
+    private LocalDateTime lastLoginDateTime;
+
+    private String authorization;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -45,4 +58,26 @@ public class MemberDetailsEntity implements MemberDetails {
     public boolean isEnabled() {
         return enabled;
     }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public LocalDateTime getLastLoginDateTime() {
+        return lastLoginDateTime;
+    }
+
+    public void setAuthorization(String authorization) {
+        this.authorization = authorization;
+    }
+
+    public String getAuthorization() {
+        return authorization;
+    }
+
+
 }

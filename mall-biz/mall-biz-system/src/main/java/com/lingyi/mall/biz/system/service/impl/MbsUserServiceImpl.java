@@ -19,11 +19,13 @@ import com.lingyi.mall.biz.system.service.MbsUserRoleService;
 import com.lingyi.mall.biz.system.service.MbsUserService;
 import com.lingyi.mall.common.base.param.BasePageParam;
 import com.lingyi.mall.common.base.util.AssertUtil;
+import com.lingyi.mall.common.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -60,7 +62,7 @@ public class MbsUserServiceImpl implements MbsUserService {
         //设置加密密码
         userDTO.setPassword(encodePassword);
         //转换
-        User user = BeanUtil.copyProperties(userDTO, User.class);
+        User user =  ConverterUtil.to(userDTO, User.class);
         //保存
         mbsUserRepository.save(user);
         //保存用户角色信息
@@ -91,7 +93,7 @@ public class MbsUserServiceImpl implements MbsUserService {
         //设置加密密码
         userDTO.setPassword(encodePassword);
         //DTO转换Entity
-        User user = BeanUtil.copyProperties(userDTO, User.class);
+        User user =  ConverterUtil.to(userDTO, User.class);
         //更新
         mbsUserRepository.save(user);
         //删除用户角色集
@@ -109,6 +111,16 @@ public class MbsUserServiceImpl implements MbsUserService {
     public List<UserVO> findListByPageAndParam(BasePageParam basePageParam, UserParam userParam) {
         PageHelper.startPage(basePageParam.getCurrentPage(), basePageParam.getPageSize(), basePageParam.getSort());
         return mbsUserMapper.selectListByParam(userParam);
+    }
+
+    @Override
+    public void editLastLoginDateTimeById(Long id) {
+        UserVO userVO = mbsUserMapper.selectById(id);
+        if (Objects.nonNull(userVO)) {
+            User user = ConverterUtil.to(userVO, User.class);
+            user.setLastLoginDateTime(LocalDateTime.now());
+            mbsUserRepository.save(user);
+        }
     }
 
     @Override

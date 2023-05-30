@@ -1,12 +1,12 @@
 package com.lingyi.mall.api.system.feign;
 
+import com.lingyi.mall.api.system.dto.UserDTO;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.api.system.fallbackfactory.MbsUserFeignFallbackFactory;
 import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.common.base.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,6 +18,10 @@ import java.util.List;
  */
 @FeignClient(url = "http://localhost:7003", value = "mall-web-system-admin", fallbackFactory = MbsUserFeignFallbackFactory.class)
 public interface MbsUserFeign {
+
+    @PatchMapping("/mws/admin/provider/users/{id}")
+    ServerResponse<Void> updateLastLoginDateTimeById(@PathVariable Long id);
+
 
     /**
      * 按照用户名称查询用户信息和按钮权限标识

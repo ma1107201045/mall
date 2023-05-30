@@ -1,7 +1,11 @@
 package com.lingyi.mall.common.security.app.handler;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.jwt.JWTUtil;
 import com.alibaba.fastjson2.JSON;
 import com.lingyi.mall.common.base.util.ServerResponse;
+import com.lingyi.mall.common.security.app.SecurityConfig;
+import com.lingyi.mall.common.security.app.authentication.entity.MemberDetailsEntity;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.MediaType;
@@ -24,8 +28,10 @@ public class JsonAuthenticationSuccessHandler implements AuthenticationSuccessHa
         response.setContentType(MediaType.APPLICATION_JSON.toString());
         response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
         PrintWriter writer = response.getWriter();
-        Object principal = authentication.getPrincipal();
-        writer.write(JSON.toJSONString(ServerResponse.success(principal)));
+        MemberDetailsEntity memberDetailsEntity = (MemberDetailsEntity) authentication.getPrincipal();
+        String authorization = JWTUtil.createToken(BeanUtil.beanToMap(memberDetailsEntity), SecurityConfig.JWT_KEY.getBytes(StandardCharsets.UTF_8));
+        memberDetailsEntity.setAuthorization(authorization);
+        writer.write(JSON.toJSONString(ServerResponse.success(memberDetailsEntity)));
         writer.flush();
     }
 }

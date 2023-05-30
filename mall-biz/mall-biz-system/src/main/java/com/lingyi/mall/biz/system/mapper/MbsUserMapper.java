@@ -1,6 +1,7 @@
 package com.lingyi.mall.biz.system.mapper;
 
 
+import com.lingyi.mall.api.system.entity.User;
 import com.lingyi.mall.api.system.param.UserParam;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.api.system.vo.UserVO;

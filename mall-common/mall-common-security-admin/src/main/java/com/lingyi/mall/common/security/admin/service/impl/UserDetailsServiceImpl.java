@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -39,6 +40,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = userVO.getPermissions().stream()
                 .map(SimpleGrantedAuthority::new)
                 .toList();
+        //更新用户登录时间
         //返回User
         return UserDetailsEntity.builder()
                 .authorities(simpleGrantedAuthorities)

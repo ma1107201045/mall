@@ -26,6 +26,15 @@ public class MbsUserFeignConsumer {
 
     private final MbsUserFeign mbsUserFeign;
 
+    public void updateLastLoginDateTimeById(Long id) {
+        log.info("入参:id:{}", id);
+        ServerResponse<Void> response = mbsUserFeign.updateLastLoginDateTimeById(id);
+        if (response.getIsSuccess()) {
+            log.info("出参:Void:{}", JSON.toJSONString(response.getData()));
+        }
+        throw new OpenFeignException(response.getBizCode(), response.getMessage());
+    }
+
     public UserVO getUserAndMenuPermissionsByUserName(String userName) {
         log.info("入参:userName:{}", userName);
         ServerResponse<UserVO> response = mbsUserFeign.getUserAndMenuPermissionsByUserName(userName);
