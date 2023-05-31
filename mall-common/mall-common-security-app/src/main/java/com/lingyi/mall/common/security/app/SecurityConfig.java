@@ -125,13 +125,12 @@ public class SecurityConfig {
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeHttpRequests()
-                .requestMatchers(HttpMethod.GET, "/swagger-ui/**",
+                .requestMatchers(HttpMethod.GET,
+                        "/swagger-ui/**",
                         "/doc.html",
                         "/webjars/**",
                         "/v3/**",
-                        "/favicon.ico",
-                        "/mab/captcha",
-                        "/mws/admin/provider/users/permissions").permitAll()
+                        "/favicon.ico").permitAll()
                 .anyRequest().authenticated().and()
                 .formLogin().disable()
                 .logout().disable()

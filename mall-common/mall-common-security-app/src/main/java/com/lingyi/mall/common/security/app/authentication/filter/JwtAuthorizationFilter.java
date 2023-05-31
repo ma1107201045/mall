@@ -32,33 +32,45 @@ import java.nio.charset.StandardCharsets;
  * @description
  */
 public class JwtAuthorizationFilter extends GenericFilterBean {
-
-    private static final String AUTHORIZATION_HEADER = "Authorization";
+    private static final String AUTHORIZATION = "Authorization";
     protected MessageSourceAccessor messages = SpringSecurityMessageSource.getAccessor();
-
     private final GrantedAuthoritiesMapper authoritiesMapper = new NullAuthoritiesMapper();
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-//        filterChain.doFilter(servletRequest, servletResponse);
         this.doFilter((HttpServletRequest) servletRequest, (HttpServletResponse) servletResponse, filterChain);
     }
 
     private void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        String authorization = request.getHeader(AUTHORIZATION_HEADER);
-        if (StrUtil.isBlank(authorization)) {
+        String token = request.getHeader(AUTHORIZATION);
+        if (StrUtil.isBlank(token)) {
             throw new InsufficientAuthenticationException(this.messages.getMessage("ExceptionTranslationFilter.insufficientAuthentication", "Full authentication is required to access this resource"));
         }
-        boolean result = JWTUtil.verify(authorization, SecurityConfig.JWT_KEY.getBytes(StandardCharsets.UTF_8));
-        if (!result) {
+        boolean flag;
+        try {
+            flag = JWTUtil.verify(token, SecurityConfig.JWT_KEY.getBytes(StandardCharsets.UTF_8));
+        } catch (Exception e) {
             throw new InsufficientAuthenticationException(this.messages.getMessage("ExceptionTranslationFilter.insufficientAuthentication", "Full authentication is required to access this resource"));
         }
-        JWT jwt = JWTUtil.parseToken(authorization);
-        JSONObject payloads = jwt.getPayloads();
-        MemberDetailsEntity memberDetailsEntity = payloads.toBean(MemberDetailsEntity.class);
-        SecurityContext securityContext = SecurityContextHolder.getContext();
-        PhoneNumberVerificationCodeToken phoneNumberVerificationCodeToken = new PhoneNumberVerificationCodeToken(memberDetailsEntity.getPhoneNumber(), memberDetailsEntity.getVerificationCode(), this.authoritiesMapper.mapAuthorities(memberDetailsEntity.getAuthorities()));
-        securityContext.setAuthentication(phoneNumberVerificationCodeToken);
+        if (!flag) {
+            throw new InsufficientAuthenticationException(this.messages.getMessage("ExceptionTranslationFilter.insufficientAuthentication", "Full authentication is required to access this resource"));
+        }
+        MemberDetailsEntity memberDetails = this.getMemberDetailsEntity(token);
+        this.setAuthentication(memberDetails);
         chain.doFilter(request, response);
+    }
+
+    private MemberDetailsEntity getMemberDetailsEntity(String token) {
+        JWT jwt = JWTUtil.parseToken(token);
+        JSONObject payloads = jwt.getPayloads();
+        return payloads.toBean(MemberDetailsEntity.class);
+    }
+
+    private void setAuthentication(MemberDetailsEntity memberDetailsEntity) {
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        PhoneNumberVerificationCodeToken token = new PhoneNumberVerificationCodeToken(memberDetailsEntity.getPhoneNumber(),
+                memberDetailsEntity.getVerificationCode(),
+                this.authoritiesMapper.mapAuthorities(memberDetailsEntity.getAuthorities()));
+        securityContext.setAuthentication(token);
     }
 }
