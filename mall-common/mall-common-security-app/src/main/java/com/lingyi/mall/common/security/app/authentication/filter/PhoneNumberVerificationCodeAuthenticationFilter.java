@@ -24,7 +24,7 @@ import java.io.IOException;
  * @Author: maweiyan
  * @Email 1107201045@qq.com
  * @DateTime: 2023/5/26 20:01
- * @Description: 手机号跟验证码认证
+ * @Description: 手机号+验证码认证
  */
 public class PhoneNumberVerificationCodeAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 

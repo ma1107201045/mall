@@ -2,7 +2,7 @@ package com.lingyi.mall.common.security.app;
 
 import com.lingyi.mall.common.security.app.authentication.DaoAuthenticationProvider;
 import com.lingyi.mall.common.security.app.authentication.filter.JwtAuthorizationFilter;
-import com.lingyi.mall.common.security.app.authentication.filter.LogoutFilter;
+import com.lingyi.mall.common.security.app.authentication.filter.JwtLogoutFilter;
 import com.lingyi.mall.common.security.app.authentication.service.MemberDetailsService;
 import com.lingyi.mall.common.security.app.authentication.filter.PhoneNumberVerificationCodeAuthenticationFilter;
 import com.lingyi.mall.common.security.app.handler.*;
@@ -23,6 +23,7 @@ import org.springframework.security.web.access.intercept.AuthorizationFilter;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessEventPublishingLogoutHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -58,8 +59,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public LogoutFilter logoutFilter(LogoutSuccessHandler logoutSuccessHandler) {
-        LogoutFilter logoutFilter = new LogoutFilter(logoutSuccessHandler, new LogoutSuccessEventPublishingLogoutHandler(), new SecurityContextLogoutHandler());
+    public JwtLogoutFilter logoutFilter(LogoutSuccessHandler logoutSuccessHandler) {
+        JwtLogoutFilter logoutFilter = new JwtLogoutFilter(logoutSuccessHandler, new LogoutSuccessEventPublishingLogoutHandler(), new SecurityContextLogoutHandler());
         logoutFilter.setFilterProcessesUrl(LOGOUT_URL);
         return logoutFilter;
     }
@@ -114,13 +115,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http,
                                                    TrackIdFilter trackIdFilter,
                                                    PhoneNumberVerificationCodeAuthenticationFilter phoneNumberVerificationCodeAuthenticationFilter,
-                                                   LogoutFilter logoutFilter,
+                                                   JwtLogoutFilter logoutFilter,
                                                    JwtAuthorizationFilter jwtAuthorizationFilter,
                                                    AuthenticationEntryPoint authenticationEntryPoint,
                                                    AccessDeniedHandler accessDeniedHandler) throws Exception {
         return http.addFilterBefore(trackIdFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(phoneNumberVerificationCodeAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(logoutFilter, org.springframework.security.web.authentication.logout.LogoutFilter.class)
+                .addFilterBefore(logoutFilter, LogoutFilter.class)
                 .addFilterBefore(jwtAuthorizationFilter, AuthorizationFilter.class)
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()

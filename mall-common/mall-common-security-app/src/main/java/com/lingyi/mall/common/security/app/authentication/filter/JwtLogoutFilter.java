@@ -29,19 +29,19 @@ import java.io.IOException;
  * @DateTime: 2023/5/27 11:00
  * @Description:
  */
-public class LogoutFilter extends GenericFilterBean {
+public class JwtLogoutFilter extends GenericFilterBean {
     private SecurityContextHolderStrategy securityContextHolderStrategy = SecurityContextHolder.getContextHolderStrategy();
     private RequestMatcher logoutRequestMatcher = new AntPathRequestMatcher("/maa/app/logout");
     private final LogoutHandler handler;
     private final LogoutSuccessHandler logoutSuccessHandler;
 
-    public LogoutFilter(LogoutSuccessHandler logoutSuccessHandler, LogoutHandler... handlers) {
+    public JwtLogoutFilter(LogoutSuccessHandler logoutSuccessHandler, LogoutHandler... handlers) {
         this.handler = new CompositeLogoutHandler(handlers);
         Assert.notNull(logoutSuccessHandler, "logoutSuccessHandler cannot be null");
         this.logoutSuccessHandler = logoutSuccessHandler;
     }
 
-    public LogoutFilter(String logoutSuccessUrl, LogoutHandler... handlers) {
+    public JwtLogoutFilter(String logoutSuccessUrl, LogoutHandler... handlers) {
         this.handler = new CompositeLogoutHandler(handlers);
         Assert.isTrue(!StringUtils.hasLength(logoutSuccessUrl) ||
                 UrlUtils.isValidRedirectUrl(logoutSuccessUrl), () -> logoutSuccessUrl + " isn't a valid redirect URL");
