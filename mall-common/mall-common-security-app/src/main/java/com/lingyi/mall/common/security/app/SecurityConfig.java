@@ -1,6 +1,7 @@
 package com.lingyi.mall.common.security.app;
 
 import com.lingyi.mall.common.security.app.authentication.DaoAuthenticationProvider;
+import com.lingyi.mall.common.security.app.authentication.filter.JwtAuthorizationFilter;
 import com.lingyi.mall.common.security.app.authentication.filter.LogoutFilter;
 import com.lingyi.mall.common.security.app.authentication.service.MemberDetailsService;
 import com.lingyi.mall.common.security.app.authentication.filter.PhoneNumberVerificationCodeAuthenticationFilter;
@@ -18,6 +19,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.access.intercept.AuthorizationFilter;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -37,6 +39,7 @@ public class SecurityConfig {
     public static final String LOGIN_PROCESSING_URL = "/maa/app/login";
     public static final String LOGOUT_URL = "/maa/app/logout";
     public static final String JWT_KEY = "199726ma.";
+
     @Bean
     public TrackIdFilter trackIdFilter() {
         return new TrackIdFilter();
@@ -59,6 +62,11 @@ public class SecurityConfig {
         LogoutFilter logoutFilter = new LogoutFilter(logoutSuccessHandler, new LogoutSuccessEventPublishingLogoutHandler(), new SecurityContextLogoutHandler());
         logoutFilter.setFilterProcessesUrl(LOGOUT_URL);
         return logoutFilter;
+    }
+
+    @Bean
+    public JwtAuthorizationFilter jwtAuthorizationFilter() {
+        return new JwtAuthorizationFilter();
     }
 
     @Bean
@@ -107,11 +115,13 @@ public class SecurityConfig {
                                                    TrackIdFilter trackIdFilter,
                                                    PhoneNumberVerificationCodeAuthenticationFilter phoneNumberVerificationCodeAuthenticationFilter,
                                                    LogoutFilter logoutFilter,
+                                                   JwtAuthorizationFilter jwtAuthorizationFilter,
                                                    AuthenticationEntryPoint authenticationEntryPoint,
                                                    AccessDeniedHandler accessDeniedHandler) throws Exception {
         return http.addFilterBefore(trackIdFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(phoneNumberVerificationCodeAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(logoutFilter, org.springframework.security.web.authentication.logout.LogoutFilter.class)
+                .addFilterBefore(jwtAuthorizationFilter, AuthorizationFilter.class)
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeHttpRequests()
@@ -132,16 +142,6 @@ public class SecurityConfig {
                 .csrf().disable()
                 .build();
     }
-
-//    @Bean
-//    public WebSecurityCustomizer webSecurityCustomizer() {
-//        return web -> web.ignoring().requestMatchers("doc.html",
-//                "/v3/**",
-//                "/favicon.ico",
-//                "/images/**",
-//                "/js/**",
-//                "/webjars/**");
-//    }
 
 
 }

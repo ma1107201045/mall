@@ -74,7 +74,9 @@ public class SecurityConfig {
                                                    LogoutSuccessHandler logoutSuccessHandler,
                                                    AuthenticationEntryPoint authenticationEntryPoint,
                                                    AccessDeniedHandler accessDeniedHandler) throws Exception {
-        return http.addFilterBefore(oncePerRequestFilter, UsernamePasswordAuthenticationFilter.class).authorizeHttpRequests().requestMatchers(HttpMethod.GET,
+        return http.addFilterBefore(oncePerRequestFilter, UsernamePasswordAuthenticationFilter.class)
+                .authorizeHttpRequests()
+                .requestMatchers(HttpMethod.GET,
                         "/swagger-ui/**",
                         "/doc.html",
                         "/webjars/**",

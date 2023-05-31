@@ -33,5 +33,5 @@ spring:
         - id: mall-web-member-app
           uri: http://localhost:8002
           predicates:
-            - Path=/mwm/admin/**
+            - Path=/mwm/app/**
 

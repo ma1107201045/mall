@@ -1,8 +1,8 @@
 package com.lingyi.mall.biz.member.repository;
 
+import com.lingyi.mall.api.member.entity.Member;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 
-import java.lang.reflect.Member;
 
 /**
  * @author maweiyan

@@ -9,6 +9,6 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @datetime 2023/5/25 16:13
  * @description
  */
-@FeignClient(url = "http://localhost:9002", value = "mall-web-member-app", fallbackFactory = MbmMemberFeignFallbackFactory.class)
+//@FeignClient(url = "http://localhost:9002", value = "mall-web-member-app", fallbackFactory = MbmMemberFeignFallbackFactory.class)
 public interface MbmMemberFeign {
 }
