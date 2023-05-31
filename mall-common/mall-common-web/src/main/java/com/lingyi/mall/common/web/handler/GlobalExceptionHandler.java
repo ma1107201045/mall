@@ -91,7 +91,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(AccessDeniedException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
-    public ServerResponse<Void> AccessDeniedException(AccessDeniedException exception) {
+    public ServerResponse<Void> accessDeniedException(AccessDeniedException exception) {
         log.error("AccessDeniedException：", exception);
         log.error("授权失败，错误原因:", exception);
         return ServerResponse.fail(HttpStatus.FORBIDDEN.value(), "不允许访问");
