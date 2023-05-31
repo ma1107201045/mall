@@ -1,6 +1,6 @@
 package com.lingyi.mall.common.security.app.authentication.service;
 
-import com.lingyi.mall.common.security.app.authentication.entity.MemberDetails;
+import com.lingyi.mall.common.base.entity.MemberDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 /**
@@ -16,7 +16,7 @@ public interface MemberDetailsService {
      *
      * @param phoneNumber 手机号
      * @return MemberDetails
-     * @throws UsernameNotFoundException
+     * @throws UsernameNotFoundException ..
      */
     MemberDetails loadMemberByPhoneNumber(String phoneNumber) throws UsernameNotFoundException;
 }

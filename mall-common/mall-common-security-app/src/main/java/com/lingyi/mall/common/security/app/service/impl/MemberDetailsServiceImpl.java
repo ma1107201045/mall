@@ -1,8 +1,8 @@
 package com.lingyi.mall.common.security.app.service.impl;
 
 import cn.hutool.core.util.RandomUtil;
-import com.lingyi.mall.common.security.app.authentication.entity.MemberDetails;
-import com.lingyi.mall.common.security.app.authentication.entity.MemberDetailsEntity;
+import com.lingyi.mall.common.base.entity.MemberDetails;
+import com.lingyi.mall.common.base.entity.MemberDetailsEntity;
 import com.lingyi.mall.common.security.app.authentication.service.MemberDetailsService;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 

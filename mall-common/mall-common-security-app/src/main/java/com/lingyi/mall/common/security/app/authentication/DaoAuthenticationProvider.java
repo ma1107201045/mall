@@ -1,6 +1,5 @@
 package com.lingyi.mall.common.security.app.authentication;
-
-import com.lingyi.mall.common.security.app.authentication.entity.MemberDetails;
+import com.lingyi.mall.common.base.entity.MemberDetails;
 import com.lingyi.mall.common.security.app.authentication.service.MemberDetailsService;
 import com.lingyi.mall.common.security.app.authentication.token.PhoneNumberVerificationCodeToken;
 import org.springframework.context.support.MessageSourceAccessor;

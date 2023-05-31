@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.security.app.authentication.entity;
+package com.lingyi.mall.common.base.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
