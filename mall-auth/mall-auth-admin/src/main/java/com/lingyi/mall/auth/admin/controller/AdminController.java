@@ -1,7 +1,7 @@
 package com.lingyi.mall.auth.admin.controller;
 
 import cn.hutool.captcha.ICaptcha;
-import com.lingyi.mall.auth.admin.properties.MaaCaptchaProperties;
+import com.lingyi.mall.auth.admin.properties.AdminCaptchaProperties;
 import com.lingyi.mall.auth.admin.util.CaptchaUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -24,18 +24,18 @@ import java.io.OutputStream;
  */
 @Tag(name = "admin认证", description = "验证码接口")
 @Controller
-@RequestMapping("/maa/admin")
+@RequestMapping("/admin")
 @RequiredArgsConstructor
-public class MaaAdminController {
+public class AdminController {
 
-    private final MaaCaptchaProperties mabCaptchaProperties;
+    private final AdminCaptchaProperties adminCaptchaProperties;
 
     @Operation(summary = "获取验证码", description = "获取验证码")
     @GetMapping("/captcha")
     public void get(HttpSession session, HttpServletResponse response) throws IOException {
         response.setContentType(MediaType.IMAGE_PNG_VALUE);
-        ICaptcha captcha = CaptchaUtil.get(mabCaptchaProperties);
-        session.setAttribute(mabCaptchaProperties.getSessionAttributeName(), captcha.getCode());
+        ICaptcha captcha = CaptchaUtil.get(adminCaptchaProperties);
+        session.setAttribute(adminCaptchaProperties.getSessionAttributeName(), captcha.getCode());
         OutputStream os = response.getOutputStream();
         captcha.write(os);
         os.close();
