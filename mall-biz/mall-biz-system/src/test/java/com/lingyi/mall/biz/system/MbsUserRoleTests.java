@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.system;
 
 import com.lingyi.mall.MallBizSystemApplicationTests;
-import com.lingyi.mall.biz.system.repository.MbsUserRoleRepository;
+import com.lingyi.mall.biz.system.repository.UserRoleRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +18,7 @@ public class MbsUserRoleTests implements MallBizSystemApplicationTests {
 
 
     @Autowired
-    private MbsUserRoleRepository mbsUserRoleRepository;
+    private UserRoleRepository mbsUserRoleRepository;
 
     @Test
     @Transactional(rollbackFor = Exception.class)

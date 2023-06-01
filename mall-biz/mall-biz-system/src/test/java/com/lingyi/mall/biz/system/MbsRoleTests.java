@@ -1,8 +1,8 @@
 package com.lingyi.mall.biz.system;
 
 import com.lingyi.mall.MallBizSystemApplicationTests;
-import com.lingyi.mall.biz.system.mapper.MbsRoleMapper;
-import com.lingyi.mall.biz.system.repository.MbsRoleRepository;
+import com.lingyi.mall.biz.system.mapper.RoleMapper;
+import com.lingyi.mall.biz.system.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -16,8 +16,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class MbsRoleTests implements MallBizSystemApplicationTests {
 
     @Autowired
-    private MbsRoleRepository mbsRoleRepository;
+    private RoleRepository mbsRoleRepository;
 
     @Autowired
-    private MbsRoleMapper mbsRoleMapper;
+    private RoleMapper mbsRoleMapper;
 }

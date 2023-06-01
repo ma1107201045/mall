@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -27,8 +28,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
  */
 @Configuration(proxyBeanMethods = false)
 public class SecurityConfig {
-    public static final String LOGIN_PROCESSING_URL = "/maa/admin/login";
-    public static final String LOGOUT_URL = "/maa/admin/logout";
+    public static final String LOGIN_PROCESSING_URL = "/system/admin/login";
+    public static final String LOGOUT_URL = "/system/admin/logout";
     public static final String REMEMBER_ME_KEY = "199726ma.";
 
     @Bean
@@ -75,29 +76,26 @@ public class SecurityConfig {
                                                    AuthenticationEntryPoint authenticationEntryPoint,
                                                    AccessDeniedHandler accessDeniedHandler) throws Exception {
         return http.addFilterBefore(oncePerRequestFilter, UsernamePasswordAuthenticationFilter.class)
-                .authorizeHttpRequests()
-                .requestMatchers(HttpMethod.GET,
+                .authorizeHttpRequests(authorizeHttpRequestsConfigurer -> authorizeHttpRequestsConfigurer.requestMatchers(HttpMethod.GET,
                         "/swagger-ui/**",
                         "/doc.html",
                         "/webjars/**",
                         "/v3/**",
-                        "/favicon.ico",
-                        "/mab/captcha",
-                        "/mws/admin/provider/users/permissions").permitAll()
-                .anyRequest().authenticated().and()
-                .formLogin().loginProcessingUrl(LOGIN_PROCESSING_URL)
-                .usernameParameter(SecurityBaseConstant.USERNAME_PARAMETER)
-                .successHandler(authenticationSuccessHandler)
-                .failureHandler(authenticationFailureHandler).and()
-                .logout().logoutUrl(LOGOUT_URL).logoutSuccessHandler(logoutSuccessHandler).and()
-                .rememberMe().key(REMEMBER_ME_KEY)
-                .rememberMeParameter(SecurityBaseConstant.REMEMBER_ME_PARAMETER)
-                .rememberMeCookieName(SecurityBaseConstant.REMEMBER_ME_COOKIE_NAME).and()
-                .exceptionHandling()
-                .authenticationEntryPoint(authenticationEntryPoint)
-                .accessDeniedHandler(accessDeniedHandler).and()
-                .cors().disable()
-                .csrf().disable()
+                        "/system/admin/provider/users/permissions").permitAll().anyRequest().authenticated())
+                .formLogin(formLoginConfigurer -> formLoginConfigurer.loginProcessingUrl(LOGIN_PROCESSING_URL)
+                        .usernameParameter(SecurityBaseConstant.USERNAME_PARAMETER)
+                        .successHandler(authenticationSuccessHandler)
+                        .failureHandler(authenticationFailureHandler))
+                .logout(logoutConfigurer -> logoutConfigurer.logoutUrl(LOGOUT_URL)
+                        .logoutSuccessHandler(logoutSuccessHandler))
+                .rememberMe(rememberMeConfigurer -> rememberMeConfigurer.key(REMEMBER_ME_KEY)
+                        .rememberMeParameter(SecurityBaseConstant.REMEMBER_ME_PARAMETER)
+                        .rememberMeCookieName(SecurityBaseConstant.REMEMBER_ME_COOKIE_NAME))
+                .exceptionHandling(exceptionHandlingConfigurer -> exceptionHandlingConfigurer
+                        .authenticationEntryPoint((authenticationEntryPoint))
+                        .accessDeniedHandler(accessDeniedHandler))
+                .cors(AbstractHttpConfigurer::disable)
+                .csrf(AbstractHttpConfigurer::disable)
                 .build();
     }
 

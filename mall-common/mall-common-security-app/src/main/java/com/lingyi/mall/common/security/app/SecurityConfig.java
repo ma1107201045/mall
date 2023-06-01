@@ -15,6 +15,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
@@ -37,8 +39,8 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
  */
 @Configuration(proxyBeanMethods = false)
 public class SecurityConfig {
-    public static final String LOGIN_PROCESSING_URL = "/maa/app/login";
-    public static final String LOGOUT_URL = "/maa/app/logout";
+    public static final String LOGIN_PROCESSING_URL = "/member/app/login";
+    public static final String LOGOUT_URL = "/member/app/logout";
     public static final String JWT_KEY = "199726ma.";
 
     @Bean
@@ -123,23 +125,23 @@ public class SecurityConfig {
                 .addFilterBefore(phoneNumberVerificationCodeAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(logoutFilter, LogoutFilter.class)
                 .addFilterBefore(jwtAuthorizationFilter, AuthorizationFilter.class)
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeHttpRequests()
-                .requestMatchers(HttpMethod.GET,
-                        "/swagger-ui/**",
-                        "/doc.html",
-                        "/webjars/**",
-                        "/v3/**",
-                        "/favicon.ico").permitAll()
-                .anyRequest().authenticated().and()
-                .formLogin().disable()
-                .logout().disable()
-                .exceptionHandling()
-                .authenticationEntryPoint(authenticationEntryPoint)
-                .accessDeniedHandler(accessDeniedHandler).and()
-                .cors().disable()
-                .csrf().disable()
+                .sessionManagement(sessionManagementConfigurer -> sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(authorizeHttpRequestsConfigurer -> authorizeHttpRequestsConfigurer.requestMatchers(HttpMethod.GET,
+                                "/swagger-ui/**",
+                                "/doc.html",
+                                "/webjars/**",
+                                "/v3/**",
+                                "/favicon.ico")
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated())
+                .formLogin(AbstractHttpConfigurer::disable)
+                .logout(AbstractHttpConfigurer::disable)
+                .exceptionHandling(exceptionHandlingConfigurer -> exceptionHandlingConfigurer
+                        .authenticationEntryPoint((authenticationEntryPoint))
+                        .accessDeniedHandler(accessDeniedHandler))
+                .cors(AbstractHttpConfigurer::disable)
+                .csrf(AbstractHttpConfigurer::disable)
                 .build();
     }
 

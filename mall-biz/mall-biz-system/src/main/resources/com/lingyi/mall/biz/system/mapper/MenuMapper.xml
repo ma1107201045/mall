@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lingyi.mall.biz.system.mapper.MenuMapper">
+    <resultMap id="BaseResultMap" type="com.lingyi.mall.api.system.vo.MenuVO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="type" jdbcType="TINYINT" property="type"/>
+        <result column="parent_id" jdbcType="BIGINT" property="parentId"/>
+        <result column="icon" jdbcType="VARCHAR" property="icon"/>
+        <result column="sort" jdbcType="INTEGER" property="sort"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="is_enable" jdbcType="TINYINT" property="isEnable"/>
+        <result column="path" jdbcType="VARCHAR" property="path"/>
+        <result column="component_path" jdbcType="VARCHAR" property="componentPath"/>
+        <result column="component_name" jdbcType="VARCHAR" property="componentName"/>
+        <result column="permission" jdbcType="VARCHAR" property="permission"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="create_date_time" jdbcType="TIMESTAMP" property="createDateTime"/>
+        <result column="last_modify_by" jdbcType="VARCHAR" property="lastModifyBy"/>
+        <result column="last_modify_date_time" jdbcType="TIMESTAMP" property="lastModifyDateTime"/>
+        <result column="is_delete" jdbcType="TINYINT" property="isDelete"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, `name`, `type`, parent_id, icon, sort, remark, is_enable, `path`, component_path,
+    component_name, permission, create_by, create_date_time, last_modify_by, last_modify_date_time,
+    is_delete
+    </sql>
+    <sql id="Base_Condition">
+        <if test="name!=null and name!=''">
+            AND name LIKE CONCAT('%',#{name,jdbcType=VARCHAR},'%')
+        </if>
+    </sql>
+    <select id="selectTypeById" resultType="java.lang.Integer">
+        SELECT type
+        FROM mbs_menu
+        WHERE id = #{id}
+    </select>
+    <select id="selectIdsByParentIds" resultType="java.lang.Long">
+        SELECT id
+        FROM mbs_menu
+        WHERE parent_id in
+        <foreach collection="parentIds" item="parentId" open="(" separator="," close=")">
+            #{parentId}
+        </foreach>
+    </select>
+    <select id="selectById" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM mbs_menu
+        WHERE id=#{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectListByParam" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM mbs_menu
+        <where>
+            <include refid="Base_Condition"/>
+        </where>
+    </select>
+    <select id="selectListByParentId" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM mbs_menu
+        WHERE
+        AND parent_id = #{parentId,jdbcType=BIGINT}
+        ORDER BY sort
+    </select>
+
+    <select id="selectPermissionsByType" resultType="java.lang.String">
+        SELECT permission
+        FROM mbs_menu
+        WHERE type = #{type}
+    </select>
+
+    <select id="selectListByTypesAndParentId"
+            resultMap="com.lingyi.mall.biz.system.mapper.UserMapper.SelectMenusByUserNameAndMenuTypesAndMenuParentIdMap">
+        SELECT id, name, icon, path
+        FROM mbs_menu
+        WHERE type IN
+        <foreach collection="types" item="type" open="(" separator="," close=")">
+            #{type}
+        </foreach>
+        AND parent_id = #{parentId}
+    </select>
+
+
+</mapper>

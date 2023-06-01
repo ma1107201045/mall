@@ -3,8 +3,8 @@ package com.lingyi.mall.biz.system;
 import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.MallBizSystemApplicationTests;
 import com.lingyi.mall.api.system.entity.User;
-import com.lingyi.mall.biz.system.mapper.MbsUserMapper;
-import com.lingyi.mall.biz.system.repository.MbsUserRepository;
+import com.lingyi.mall.biz.system.mapper.UserMapper;
+import com.lingyi.mall.biz.system.repository.UserRepository;
 import com.lingyi.mall.common.base.enums.YNEnum;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +25,10 @@ public class MbsUserTests implements MallBizSystemApplicationTests {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private MbsUserRepository mbsUserRepository;
+    private UserRepository mbsUserRepository;
 
     @Autowired
-    private MbsUserMapper mbsUserMapper;
+    private UserMapper mbsUserMapper;
 
     @Test
     public void testUserSave() {
