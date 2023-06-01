@@ -1,5 +1,7 @@
 package com.lingyi.mall.web.base.admin.controller;
 
+import com.lingyi.mall.api.system.dto.UserDTO;
+import com.lingyi.mall.api.system.dto.UserPartDTO;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.biz.base.service.BaseService;
 import com.lingyi.mall.common.base.util.AuthenticatorUtil;
@@ -8,6 +10,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,13 +28,21 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BaseController {
 
-    private final BaseService mbbService;
+    private final BaseService baseService;
 
-    @Operation(summary = "查询菜单", description = "查询菜单")
+    @Operation(summary = "获取菜单", description = "获取菜单")
     @GetMapping("/menu")
     public ServerResponse<List<MenuVO>> getMenu() {
         String userName = AuthenticatorUtil.getUserName();
-        List<MenuVO> menus = mbbService.findMenuTreeByUserName(userName);
+        List<MenuVO> menus = baseService.findMenuTreeByUserName(userName);
         return ServerResponse.success(menus);
+    }
+
+    @Operation(summary = "更新用户信息", description = "更新用户信息")
+    @PatchMapping("/user")
+    public ServerResponse<Void> updateUserPartById(UserPartDTO userPartDTO) {
+        Long userId = AuthenticatorUtil.getUserId();
+        baseService.editUserByUserId(userId, userPartDTO);
+        return ServerResponse.success();
     }
 }

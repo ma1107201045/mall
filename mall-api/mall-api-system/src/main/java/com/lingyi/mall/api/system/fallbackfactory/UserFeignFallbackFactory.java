@@ -1,5 +1,7 @@
 package com.lingyi.mall.api.system.fallbackfactory;
 
+import com.lingyi.mall.api.system.dto.UserDTO;
+import com.lingyi.mall.api.system.dto.UserPartDTO;
 import com.lingyi.mall.api.system.feign.UserFeign;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.api.system.vo.UserVO;
@@ -19,8 +21,10 @@ public class UserFeignFallbackFactory implements FallbackFactory<UserFeign> {
     @Override
     public UserFeign create(Throwable cause) {
         return new UserFeign() {
+
+
             @Override
-            public ServerResponse<Void> updateLastLoginDateTimeById(Long id) {
+            public ServerResponse<Void> updatePartById(Long id, UserPartDTO userPartDTO) {
                 return null;
             }
 

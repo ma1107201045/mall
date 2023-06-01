@@ -1,6 +1,8 @@
 package com.lingyi.mall.api.system.consumer;
 
 import com.alibaba.fastjson2.JSON;
+import com.lingyi.mall.api.system.dto.UserDTO;
+import com.lingyi.mall.api.system.dto.UserPartDTO;
 import com.lingyi.mall.api.system.feign.UserFeign;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.api.system.vo.UserVO;
@@ -24,11 +26,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserFeignConsumer {
 
-    private final UserFeign mbsUserFeign;
+    private final UserFeign userFeign;
 
-    public void updateLastLoginDateTimeById(Long id) {
-        log.info("入参:id:{}", id);
-        ServerResponse<Void> response = mbsUserFeign.updateLastLoginDateTimeById(id);
+    public void updatePartById(Long id, UserPartDTO userPartDTO) {
+        log.info("入参:userPartDTO:{}", userPartDTO);
+        ServerResponse<Void> response = userFeign.updatePartById(id, userPartDTO);
         if (response.getIsSuccess()) {
             log.info("出参:Void:{}", JSON.toJSONString(response.getData()));
         }
@@ -37,7 +39,7 @@ public class UserFeignConsumer {
 
     public UserVO getUserAndMenuPermissionsByUserName(String userName) {
         log.info("入参:userName:{}", userName);
-        ServerResponse<UserVO> response = mbsUserFeign.getUserAndMenuPermissionsByUserName(userName);
+        ServerResponse<UserVO> response = userFeign.getUserAndMenuPermissionsByUserName(userName);
         if (response.getIsSuccess()) {
             log.info("出参:UserVO:{}", JSON.toJSONString(response.getData()));
             return response.getData();
@@ -47,7 +49,7 @@ public class UserFeignConsumer {
 
     public List<MenuVO> getMenuTreeByUserName(String userName) {
         log.info("入参:userName:{}", userName);
-        ServerResponse<List<MenuVO>> response = mbsUserFeign.getMenuTreeByUserName(userName);
+        ServerResponse<List<MenuVO>> response = userFeign.getMenuTreeByUserName(userName);
         if (response.getIsSuccess()) {
             log.info("出参:UserVO:{}", JSON.toJSONString(response.getData()));
             return response.getData();

@@ -1,7 +1,7 @@
 package com.lingyi.mall.auth.admin.util;
 
 import cn.hutool.captcha.ICaptcha;
-import com.lingyi.mall.auth.admin.properties.AdminCaptchaProperties;
+import com.lingyi.mall.auth.admin.properties.CaptchaProperties;
 
 /**
  * @author maweiyan
@@ -16,7 +16,7 @@ public class CaptchaUtil {
      * @param properties 验证码配置信息
      * @return 验证码实例
      */
-    public static ICaptcha get(AdminCaptchaProperties properties) {
+    public static ICaptcha get(CaptchaProperties properties) {
         return switch (properties.getType()) {
             case LINE ->
                     cn.hutool.captcha.CaptchaUtil.createLineCaptcha(properties.getWidth(), properties.getHeight(), properties.getCount(), properties.getTypeCount());

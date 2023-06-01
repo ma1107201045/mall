@@ -1,6 +1,7 @@
 package com.lingyi.mall.biz.system.service;
 
 import com.lingyi.mall.api.system.dto.UserDTO;
+import com.lingyi.mall.api.system.dto.UserPartDTO;
 import com.lingyi.mall.api.system.param.UserParam;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.api.system.vo.UserVO;
@@ -19,11 +20,11 @@ public interface UserService extends BaseService<UserDTO, UserParam, UserVO, Lon
 
 
     /**
-     * 更新登录时间
+     * 更新部分信息
      *
-     * @param id 主键id
+     * @param userPartDTO ..
      */
-    void editLastLoginDateTimeById(Long id);
+    void editPartById(UserPartDTO userPartDTO);
 
 
     /**

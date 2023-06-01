@@ -39,7 +39,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = userVO.getPermissions().stream()
                 .map(SimpleGrantedAuthority::new)
                 .toList();
-        //更新用户登录时间
         //返回User
         return UserDetailsEntity.builder()
                 .authorities(simpleGrantedAuthorities)

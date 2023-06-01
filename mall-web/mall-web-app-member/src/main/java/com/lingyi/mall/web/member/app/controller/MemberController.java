@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @description
  */
 @Tag(name = "【会员服务】", description = "【会员服务】")
-@RequestMapping("/app/member/member")
+@RequestMapping("/app/member/members")
 @RestController
 @RequiredArgsConstructor
 public class MemberController {

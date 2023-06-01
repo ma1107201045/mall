@@ -1,5 +1,7 @@
 package com.lingyi.mall.web.system.admin.provider;
 
+import com.lingyi.mall.api.system.dto.UserDTO;
+import com.lingyi.mall.api.system.dto.UserPartDTO;
 import com.lingyi.mall.biz.system.constant.MbsConstant;
 import com.lingyi.mall.api.system.feign.UserFeign;
 import com.lingyi.mall.api.system.vo.MenuVO;
@@ -24,26 +26,27 @@ import java.util.List;
 @RestController
 public class UserFeignProvider implements UserFeign {
 
-    private final UserService mbsUserService;
+    private final UserService userService;
 
-    @Operation(summary = "更新用户登录时间", description = "更新用户登录时间")
+    @Operation(summary = "更新用户部分信息", description = "更新用户部分信息")
     @Override
-    public ServerResponse<Void> updateLastLoginDateTimeById(Long id) {
-        mbsUserService.editLastLoginDateTimeById(id);
+    public ServerResponse<Void> updatePartById(Long id, UserPartDTO userPartDTO) {
+        userPartDTO.setId(id);
+        userService.editPartById(userPartDTO);
         return ServerResponse.success();
     }
 
     @Operation(summary = "查询用户和权限标识", description = "查询用户和权限标识")
     @Override
     public ServerResponse<UserVO> getUserAndMenuPermissionsByUserName(String userName) {
-        UserVO userVO = mbsUserService.findUserAndMenuPermissionsByUserName(userName);
+        UserVO userVO = userService.findUserAndMenuPermissionsByUserName(userName);
         return ServerResponse.success(userVO);
     }
 
     @Operation(summary = "查询菜单树", description = "查询菜单树")
     @Override
     public ServerResponse<List<MenuVO>> getMenuTreeByUserName(String userName) {
-        List<MenuVO> menuVoList = mbsUserService.findMenuTreeByUserNameAndMenuParentId(userName, MbsConstant.MENU_ROOT_ID);
+        List<MenuVO> menuVoList = userService.findMenuTreeByUserNameAndMenuParentId(userName, MbsConstant.MENU_ROOT_ID);
         return ServerResponse.success(menuVoList);
     }
 

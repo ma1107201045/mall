@@ -1,6 +1,8 @@
 package com.lingyi.mall.biz.base.service;
 
 
+import com.lingyi.mall.api.system.dto.UserDTO;
+import com.lingyi.mall.api.system.dto.UserPartDTO;
 import com.lingyi.mall.api.system.vo.MenuVO;
 
 import java.util.List;
@@ -25,7 +27,8 @@ public interface BaseService {
     /**
      * 按照用户id更改用户信息
      *
-     * @param userId 用户id
+     * @param userId  用户id
+     * @param userPartDTO 用户信息
      */
-    void editUserByUserId(Long userId);
+    void editUserByUserId(Long userId, UserPartDTO userPartDTO);
 }

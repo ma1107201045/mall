@@ -31,9 +31,11 @@ public enum FailEnum implements BaseFailEnum {
 
     MENU_BUTTON_PARENT_ERROR(8007, "按钮父级错误"),
 
-    MENU_ID_NULL_ERROR(8008, "菜单id不能为空");
+    MENU_ID_NULL_ERROR(8008, "菜单id不能为空"),
+
+    USER_NOT_EXIST_ERROR(8009, "用户不存在");
 
     private final Integer code;
 
     private final String message;
-    }
+}

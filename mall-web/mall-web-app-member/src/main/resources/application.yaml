@@ -2,7 +2,7 @@ server:
   port: 8002
 spring:
   application:
-    name: mall-web-system-fore
+    name: mall-web-app-member
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     generate-ddl: true

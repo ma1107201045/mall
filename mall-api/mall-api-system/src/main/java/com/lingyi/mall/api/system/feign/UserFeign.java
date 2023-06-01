@@ -1,5 +1,7 @@
 package com.lingyi.mall.api.system.feign;
 
+import com.lingyi.mall.api.system.dto.UserDTO;
+import com.lingyi.mall.api.system.dto.UserPartDTO;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.api.system.fallbackfactory.UserFeignFallbackFactory;
 import com.lingyi.mall.api.system.vo.UserVO;
@@ -15,12 +17,19 @@ import java.util.List;
  * @DateTime: 2023/5/3 20:34
  * @Description:
  */
-@FeignClient(url = "http://localhost:7003", value = "mall-web-system-admin", fallbackFactory = UserFeignFallbackFactory.class)
+@FeignClient(url = "http://localhost:7003", value = "mall-web-admin-system", fallbackFactory = UserFeignFallbackFactory.class)
 public interface UserFeign {
 
-    @PatchMapping("/admin/system/provider/users/{id}")
-    ServerResponse<Void> updateLastLoginDateTimeById(@PathVariable("id") Long id);
 
+    /**
+     * 更新部分用户信息
+     *
+     * @param id          主键id
+     * @param userPartDTO ..
+     * @return ServerResponse
+     */
+    @PatchMapping("/admin/system/provider/users/{id}")
+    ServerResponse<Void> updatePartById(@PathVariable("id") Long id, @RequestBody UserPartDTO userPartDTO);
 
     /**
      * 按照用户名称查询用户信息和按钮权限标识

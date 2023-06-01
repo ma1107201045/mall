@@ -3,6 +3,7 @@ package com.lingyi.mall.biz.system.service.impl;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjUtil;
 import com.github.pagehelper.PageHelper;
+import com.lingyi.mall.api.system.dto.UserPartDTO;
 import com.lingyi.mall.biz.system.constant.MbsConstant;
 import com.lingyi.mall.api.system.dto.UserDTO;
 import com.lingyi.mall.api.system.entity.User;
@@ -61,7 +62,7 @@ public class UserServiceImpl implements UserService {
         //设置加密密码
         userDTO.setPassword(encodePassword);
         //转换
-        User user =  ConverterUtil.to(userDTO, User.class);
+        User user = ConverterUtil.to(userDTO, User.class);
         //保存
         mbsUserRepository.save(user);
         //保存用户角色信息
@@ -92,7 +93,7 @@ public class UserServiceImpl implements UserService {
         //设置加密密码
         userDTO.setPassword(encodePassword);
         //DTO转换Entity
-        User user =  ConverterUtil.to(userDTO, User.class);
+        User user = ConverterUtil.to(userDTO, User.class);
         //更新
         mbsUserRepository.save(user);
         //删除用户角色集
@@ -112,14 +113,19 @@ public class UserServiceImpl implements UserService {
         return mbsUserMapper.selectListByParam(userParam);
     }
 
+
     @Override
-    public void editLastLoginDateTimeById(Long id) {
-        UserVO userVO = mbsUserMapper.selectById(id);
-        if (Objects.nonNull(userVO)) {
-            User user = ConverterUtil.to(userVO, User.class);
-            user.setLastLoginDateTime(LocalDateTime.now());
-            mbsUserRepository.save(user);
-        }
+    public void editPartById(UserPartDTO userPartDTO) {
+        UserVO userVO = mbsUserMapper.selectById(userPartDTO.getId());
+
+        AssertUtil.notNull(userVO, FailEnum.USER_NOT_EXIST_ERROR);
+
+        User user = ConverterUtil.to(userVO, User.class);
+
+        String encodePassword = passwordEncoder.encode(userPartDTO.getPassword());
+        user.setNickname(userPartDTO.getNickname());
+        user.setPassword(encodePassword);
+        mbsUserRepository.save(user);
     }
 
     @Override

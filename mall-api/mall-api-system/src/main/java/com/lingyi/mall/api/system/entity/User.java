@@ -90,11 +90,6 @@ public class User extends BaseIsDeleteEntity implements Serializable {
     @Column(name = "last_login_ip", length = 30)
     private String lastLoginIp;
 
-    /**
-     * 最后登录时间
-     */
-    @Column(name = "last_login_date_time")
-    private LocalDateTime lastLoginDateTime;
 
     /**
      * 是否启用 1 是 0 否
@@ -157,9 +152,6 @@ public class User extends BaseIsDeleteEntity implements Serializable {
         if (!Objects.equals(lastLoginIp, user.lastLoginIp)) {
             return false;
         }
-        if (!Objects.equals(lastLoginDateTime, user.lastLoginDateTime)) {
-            return false;
-        }
         if (!Objects.equals(isEnable, user.isEnable)) {
             return false;
         }
@@ -181,7 +173,6 @@ public class User extends BaseIsDeleteEntity implements Serializable {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
         result = 31 * result + (lastLoginIp != null ? lastLoginIp.hashCode() : 0);
-        result = 31 * result + (lastLoginDateTime != null ? lastLoginDateTime.hashCode() : 0);
         result = 31 * result + (isEnable != null ? isEnable.hashCode() : 0);
         result = 31 * result + (remark != null ? remark.hashCode() : 0);
         result = 31 * result + (roles != null ? roles.hashCode() : 0);

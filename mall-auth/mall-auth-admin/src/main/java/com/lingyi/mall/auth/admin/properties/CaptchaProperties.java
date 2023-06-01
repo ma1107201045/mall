@@ -12,8 +12,8 @@ import org.springframework.context.annotation.Configuration;
  */
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "maa.captcha")
-public class AdminCaptchaProperties {
+@ConfigurationProperties(prefix = "captcha")
+public class CaptchaProperties {
 
     /**
      * 验证码存到session的属性名
