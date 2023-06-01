@@ -13,6 +13,7 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.SpringSecurityMessageSource;
@@ -31,6 +32,7 @@ import java.nio.charset.StandardCharsets;
  * @datetime 2023/5/31 9:03
  * @description
  */
+@Slf4j
 public class JwtAuthorizationFilter extends GenericFilterBean {
     private static final String AUTHORIZATION = "Authorization";
     protected MessageSourceAccessor messages = SpringSecurityMessageSource.getAccessor();
@@ -44,20 +46,25 @@ public class JwtAuthorizationFilter extends GenericFilterBean {
     private void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         String token = request.getHeader(AUTHORIZATION);
         if (StrUtil.isBlank(token)) {
-            throw new InsufficientAuthenticationException(this.messages.getMessage("ExceptionTranslationFilter.insufficientAuthentication", "Full authentication is required to access this resource"));
+            this.throwException();
         }
-        boolean flag;
+        boolean flag = false;
         try {
             flag = JWTUtil.verify(token, SecurityConfig.JWT_KEY.getBytes(StandardCharsets.UTF_8));
         } catch (Exception e) {
-            throw new InsufficientAuthenticationException(this.messages.getMessage("ExceptionTranslationFilter.insufficientAuthentication", "Full authentication is required to access this resource"));
+            log.error("Error verifying token, reason: ", e);
+            this.throwException();
         }
         if (!flag) {
-            throw new InsufficientAuthenticationException(this.messages.getMessage("ExceptionTranslationFilter.insufficientAuthentication", "Full authentication is required to access this resource"));
+            this.throwException();
         }
         MemberDetailsEntity memberDetails = this.getMemberDetailsEntity(token);
         this.setAuthentication(memberDetails);
         chain.doFilter(request, response);
+    }
+
+    private void throwException() {
+        throw new InsufficientAuthenticationException(this.messages.getMessage("ExceptionTranslationFilter.insufficientAuthentication", "Full authentication is required to access this resource"));
     }
 
     private MemberDetailsEntity getMemberDetailsEntity(String token) {
