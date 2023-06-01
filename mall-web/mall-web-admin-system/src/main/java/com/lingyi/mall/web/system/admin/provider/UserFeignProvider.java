@@ -1,8 +1,7 @@
 package com.lingyi.mall.web.system.admin.provider;
 
-import com.lingyi.mall.api.system.dto.UserDTO;
 import com.lingyi.mall.api.system.dto.UserPartDTO;
-import com.lingyi.mall.biz.system.constant.MbsConstant;
+import com.lingyi.mall.biz.system.constant.SystemConstant;
 import com.lingyi.mall.api.system.feign.UserFeign;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.api.system.vo.UserVO;
@@ -46,7 +45,7 @@ public class UserFeignProvider implements UserFeign {
     @Operation(summary = "查询菜单树", description = "查询菜单树")
     @Override
     public ServerResponse<List<MenuVO>> getMenuTreeByUserName(String userName) {
-        List<MenuVO> menuVoList = userService.findMenuTreeByUserNameAndMenuParentId(userName, MbsConstant.MENU_ROOT_ID);
+        List<MenuVO> menuVoList = userService.findMenuTreeByUserNameAndMenuParentId(userName, SystemConstant.MENU_ROOT_ID);
         return ServerResponse.success(menuVoList);
     }
 

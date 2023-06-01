@@ -4,10 +4,10 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjUtil;
 import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.api.system.dto.UserPartDTO;
-import com.lingyi.mall.biz.system.constant.MbsConstant;
+import com.lingyi.mall.biz.system.constant.SystemConstant;
 import com.lingyi.mall.api.system.dto.UserDTO;
 import com.lingyi.mall.api.system.entity.User;
-import com.lingyi.mall.api.system.enums.FailEnum;
+import com.lingyi.mall.api.system.enums.SystemFailEnum;
 import com.lingyi.mall.api.system.enums.MenuType;
 import com.lingyi.mall.api.system.param.UserParam;
 import com.lingyi.mall.api.system.vo.MenuVO;
@@ -25,7 +25,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -56,7 +55,7 @@ public class UserServiceImpl implements UserService {
         //通过用户名称获取用户id
         Long id = mbsUserMapper.selectIdByUserName(userDTO.getUserName());
         //判断用户名称不存在
-        AssertUtil.isNull(id, FailEnum.USER_NAME_EXIST_ERROR);
+        AssertUtil.isNull(id, SystemFailEnum.USER_NAME_EXIST_ERROR);
         //密码加密
         String encodePassword = passwordEncoder.encode(userDTO.getPassword());
         //设置加密密码
@@ -80,14 +79,14 @@ public class UserServiceImpl implements UserService {
         //获取用户id
         Long id = userDTO.getId();
         //断言userId不为空
-        AssertUtil.notNull(id, FailEnum.USER_ID_NULL_ERROR);
+        AssertUtil.notNull(id, SystemFailEnum.USER_ID_NULL_ERROR);
 
         //通过用户名称获取用户id
         Long newId = mbsUserMapper.selectIdByUserName(userDTO.getUserName());
         boolean result = Objects.nonNull(id) && !Objects.equals(id, newId);
 
         //判断用户名称不存在
-        AssertUtil.isFalse(result, FailEnum.USER_NAME_EXIST_ERROR);
+        AssertUtil.isFalse(result, SystemFailEnum.USER_NAME_EXIST_ERROR);
         //密码加密
         String encodePassword = passwordEncoder.encode(userDTO.getPassword());
         //设置加密密码
@@ -118,7 +117,7 @@ public class UserServiceImpl implements UserService {
     public void editPartById(UserPartDTO userPartDTO) {
         UserVO userVO = mbsUserMapper.selectById(userPartDTO.getId());
 
-        AssertUtil.notNull(userVO, FailEnum.USER_NOT_EXIST_ERROR);
+        AssertUtil.notNull(userVO, SystemFailEnum.USER_NOT_EXIST_ERROR);
 
         User user = ConverterUtil.to(userVO, User.class);
 
@@ -136,7 +135,7 @@ public class UserServiceImpl implements UserService {
         }
         List<String> permissions;
         Integer type = MenuType.BUTTON.getCode();
-        if (!MbsConstant.USER_NAME_ADMIN.equals(userName)) {
+        if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
             permissions = mbsUserMapper.selectMenuPermissionsByUserIdAndMenuType(userVO.getUserId(), type);
         } else {
             permissions = menuService.findPermissionsByType(type);
@@ -150,7 +149,7 @@ public class UserServiceImpl implements UserService {
     public List<MenuVO> findMenuTreeByUserNameAndMenuParentId(String userName, Long menuParentId) {
         List<MenuVO> menuVOList;
         List<Integer> menuTypes = CollUtil.newArrayList(MenuType.DIRECTORY.getCode(), MenuType.MENU.getCode());
-        if (!MbsConstant.USER_NAME_ADMIN.equals(userName)) {
+        if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
             menuVOList = mbsUserMapper.selectMenusByUserNameAndMenuTypesAndMenuParentId(userName, menuTypes, menuParentId);
         } else {
             menuVOList = menuService.findListByTypesAndParentId(menuTypes, menuParentId);

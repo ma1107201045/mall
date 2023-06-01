@@ -3,10 +3,10 @@ package com.lingyi.mall.biz.system.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import com.github.pagehelper.PageHelper;
-import com.lingyi.mall.biz.system.constant.MbsConstant;
+import com.lingyi.mall.biz.system.constant.SystemConstant;
 import com.lingyi.mall.api.system.dto.MenuDTO;
 import com.lingyi.mall.api.system.entity.Menu;
-import com.lingyi.mall.api.system.enums.FailEnum;
+import com.lingyi.mall.api.system.enums.SystemFailEnum;
 import com.lingyi.mall.api.system.enums.MenuType;
 import com.lingyi.mall.api.system.param.MenuParam;
 import com.lingyi.mall.api.system.vo.MenuVO;
@@ -101,22 +101,22 @@ public class MenuServiceImpl implements MenuService {
         Integer type = menuDTO.getType();
         Long parentId = menuDTO.getParentId();
         //断言目录父级parentId只能为-1
-        boolean result01 = Objects.equals(MenuType.DIRECTORY.getCode(), type) && Objects.equals(MbsConstant.MENU_ROOT_ID, parentId);
-        AssertUtil.isTrue(result01, FailEnum.MENU_DIRECTORY_PARENT_ERROR);
+        boolean result01 = Objects.equals(MenuType.DIRECTORY.getCode(), type) && Objects.equals(SystemConstant.MENU_ROOT_ID, parentId);
+        AssertUtil.isTrue(result01, SystemFailEnum.MENU_DIRECTORY_PARENT_ERROR);
         //断言菜单类型不能为空
         Integer newType = mbsMenuMapper.selectTypeById(parentId);
-        AssertUtil.notNull(newType, FailEnum.MENU_TYPE_NOT_EXIST_ERROR);
+        AssertUtil.notNull(newType, SystemFailEnum.MENU_TYPE_NOT_EXIST_ERROR);
 
         //断言菜单父级parentId对应的菜单只能为目录类型
         boolean result02 = Objects.equals(MenuType.MENU.getCode(), type) && Objects.equals(MenuType.DIRECTORY.getCode(), newType);
-        AssertUtil.isTrue(result02, FailEnum.MENU_MENU_PARENT_ERROR);
+        AssertUtil.isTrue(result02, SystemFailEnum.MENU_MENU_PARENT_ERROR);
 
         //断言按钮父级parentId对应的菜单只能为菜单类型
         boolean result03 = Objects.equals(MenuType.BUTTON.getCode(), type) && Objects.equals(MenuType.MENU.getCode(), newType);
-        AssertUtil.isTrue(result03, FailEnum.MENU_BUTTON_PARENT_ERROR);
+        AssertUtil.isTrue(result03, SystemFailEnum.MENU_BUTTON_PARENT_ERROR);
         if (isEdit) {
             //断言menuId不为空
-            AssertUtil.notNull(menuDTO.getId(), FailEnum.MENU_ID_NULL_ERROR);
+            AssertUtil.notNull(menuDTO.getId(), SystemFailEnum.MENU_ID_NULL_ERROR);
         }
     }
 

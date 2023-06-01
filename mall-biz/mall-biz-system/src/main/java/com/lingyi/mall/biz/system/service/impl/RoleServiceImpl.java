@@ -4,7 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.api.system.dto.RoleDTO;
 import com.lingyi.mall.api.system.entity.Role;
-import com.lingyi.mall.api.system.enums.FailEnum;
+import com.lingyi.mall.api.system.enums.SystemFailEnum;
 import com.lingyi.mall.api.system.param.RoleParam;
 import com.lingyi.mall.api.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.mapper.RoleMapper;
@@ -57,7 +57,7 @@ public class RoleServiceImpl implements RoleService {
     public void editById(RoleDTO roleDTO) {
         Long id = roleDTO.getId();
         //断言menuId不为空
-        AssertUtil.notNull(id, FailEnum.ROLE_ID_NULL_ERROR);
+        AssertUtil.notNull(id, SystemFailEnum.ROLE_ID_NULL_ERROR);
         //转换
         Role role = BeanUtil.copyProperties(roleDTO, Role.class);
         //保存

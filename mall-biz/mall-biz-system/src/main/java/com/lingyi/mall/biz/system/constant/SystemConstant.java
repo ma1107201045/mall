@@ -6,9 +6,9 @@ package com.lingyi.mall.biz.system.constant;
  * @DateTime: 2023/5/7 15:37
  * @Description:
  */
-public class MbsConstant {
+public class SystemConstant {
 
-    private MbsConstant() {
+    private SystemConstant() {
 
     }
 

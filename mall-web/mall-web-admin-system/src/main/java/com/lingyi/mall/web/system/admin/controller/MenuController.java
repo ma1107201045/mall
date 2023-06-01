@@ -1,6 +1,6 @@
 package com.lingyi.mall.web.system.admin.controller;
 
-import com.lingyi.mall.biz.system.constant.MbsConstant;
+import com.lingyi.mall.biz.system.constant.SystemConstant;
 import com.lingyi.mall.api.system.dto.MenuDTO;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.biz.system.service.MenuService;
@@ -65,7 +65,7 @@ public class MenuController {
     @GetMapping
     @PreAuthorize("hasAnyAuthority('mws:menu:getTree')")
     public ServerResponse<List<MenuVO>> getTree() {
-        List<MenuVO> menus = menuService.findTreeByParentId(MbsConstant.MENU_ROOT_ID);
+        List<MenuVO> menus = menuService.findTreeByParentId(SystemConstant.MENU_ROOT_ID);
         return ServerResponse.success(menus);
     }
 
