@@ -10,28 +10,28 @@ spring:
         - id: mall-auth-admin
           uri: http://localhost:7001
           predicates:
-            - Path=/maa/admin/**
+            - Path=/admin/**
         #前台app端认证服务
         - id: mall-auth-app
           uri: http://localhost:8001
           predicates:
-            - Path=/maa/app/**
+            - Path=/app/**
         #后台merchant端认证服务
         - id: mall-auth-merchant
           uri: http://localhost:9001
           predicates:
-            - Path=/maa/merchant/**
+            - Path=/merchant/**
 
         - id: mall-web-base-admin
           uri: http://localhost:7002
           predicates:
-            - Path=/mwb/admin/**
+            - Path=/admin/base/**
         - id: mall-web-system-admin
           uri: http://localhost:7003
           predicates:
-            - Path=/mws/admin/**
+            - Path=/admin/system/**
         - id: mall-web-member-app
           uri: http://localhost:8002
           predicates:
-            - Path=/mwm/app/**
+            - Path=/app/member/**
 

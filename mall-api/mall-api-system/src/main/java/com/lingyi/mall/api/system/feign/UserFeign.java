@@ -18,7 +18,7 @@ import java.util.List;
 @FeignClient(url = "http://localhost:7003", value = "mall-web-system-admin", fallbackFactory = UserFeignFallbackFactory.class)
 public interface UserFeign {
 
-    @PatchMapping("/system/admin/provider/users/{id}")
+    @PatchMapping("/admin/system/provider/users/{id}")
     ServerResponse<Void> updateLastLoginDateTimeById(@PathVariable("id") Long id);
 
 
@@ -28,7 +28,7 @@ public interface UserFeign {
      * @param userName 用户名称
      * @return 用户信息
      */
-    @GetMapping("/system/admin/provider/users/permissions")
+    @GetMapping("/admin/system/provider/users/permissions")
     ServerResponse<UserVO> getUserAndMenuPermissionsByUserName(@RequestParam(name = "userName") String userName);
 
 
@@ -38,6 +38,6 @@ public interface UserFeign {
      * @param userName 用户名称
      * @return 用户信息
      */
-    @GetMapping("/system/admin/provider/users/menu-tree")
+    @GetMapping("/admin/system/provider/users/menu-tree")
     ServerResponse<List<MenuVO>> getMenuTreeByUserName(@RequestParam(name = "userName") String userName);
 }

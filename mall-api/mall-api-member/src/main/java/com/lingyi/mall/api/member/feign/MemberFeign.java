@@ -23,6 +23,6 @@ public interface MemberFeign {
      * @param phoneNumber 手机号
      * @return 用户信息
      */
-    @GetMapping("/member/app/provider/members")
+    @GetMapping("/app/member/provider/members")
     ServerResponse<MemberVO> getByPhoneNumber(@RequestParam(name = "phoneNumber") String phoneNumber);
 }
