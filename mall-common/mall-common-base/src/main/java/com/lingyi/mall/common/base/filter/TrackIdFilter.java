@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.web.filter;
+package com.lingyi.mall.common.base.filter;
 
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;

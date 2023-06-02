@@ -17,8 +17,6 @@
         <module>mall-common-security-admin</module>
         <module>mall-common-security-app</module>
         <module>mall-common-security-merchant</module>
-        <module>mall-common-util</module>
-        <module>mall-common-web</module>
     </modules>
     <properties>
         <mybatis-spring-boot-starter.version>3.0.1</mybatis-spring-boot-starter.version>

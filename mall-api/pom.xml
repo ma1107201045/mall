@@ -24,13 +24,5 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>mall-common-jar</artifactId>
         </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-util</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-web</artifactId>
-        </dependency>
     </dependencies>
 </project>

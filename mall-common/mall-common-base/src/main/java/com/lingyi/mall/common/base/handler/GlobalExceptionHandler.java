@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.web.handler;
+package com.lingyi.mall.common.base.handler;
 
 import com.lingyi.mall.common.base.exception.BizException;
 import com.lingyi.mall.common.base.exception.OpenFeignException;

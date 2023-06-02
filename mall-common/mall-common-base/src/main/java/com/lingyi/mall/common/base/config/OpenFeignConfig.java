@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.web.config;
+package com.lingyi.mall.common.base.config;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ArrayUtil;
