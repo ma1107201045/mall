@@ -1,4 +1,4 @@
-package com.lingyi.mall.web.system.admin.controller;
+package com.lingyi.mall.web.admin.system.controller;
 
 import com.lingyi.mall.api.system.dto.RoleDTO;
 import com.lingyi.mall.api.system.param.RoleParam;

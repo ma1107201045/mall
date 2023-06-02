@@ -12,12 +12,11 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-security-app</artifactId>
+            <artifactId>mall-biz-member</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-biz-member</artifactId>
-            <version>${project.version}</version>
+            <artifactId>mall-common-security-app</artifactId>
         </dependency>
     </dependencies>
     <build>
@@ -27,7 +26,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot-dependencies.version}</version>
                 <configuration>
-                    <mainClass>com.lingyi.mall.web.member.app.MallWebMemberAppApplication</mainClass>
+                    <mainClass>com.lingyi.mall.MallWebAdminSystemApplication</mainClass>
                     <excludes>
                         <exclude>
                             <groupId>org.springframework.boot</groupId>

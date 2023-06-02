@@ -1,4 +1,4 @@
-package com.lingyi.mall.web.base.admin.controller;
+package com.lingyi.mall.web.admin.base.controller;
 
 import com.lingyi.mall.api.system.dto.UserDTO;
 import com.lingyi.mall.api.system.dto.UserPartDTO;

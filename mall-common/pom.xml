@@ -12,7 +12,6 @@
     <description>电商项目-公共模块父工程</description>
     <modules>
         <module>mall-common-base</module>
-        <module>mall-common-jar</module>
         <module>mall-common-redis</module>
         <module>mall-common-security-admin</module>
         <module>mall-common-security-app</module>

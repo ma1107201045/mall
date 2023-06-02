@@ -9,17 +9,16 @@
         <version>${revision}</version>
     </parent>
     <artifactId>mall-web-admin-system</artifactId>
-
     <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>mall-biz-system</artifactId>
+        </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>mall-common-security-admin</artifactId>
         </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>mall-biz-system</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+
     </dependencies>
     <build>
         <plugins>
@@ -28,7 +27,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot-dependencies.version}</version>
                 <configuration>
-                    <mainClass>com.lingyi.mall.web.system.admin.MallWebSystemBackApplication</mainClass>
+                    <mainClass>com.lingyi.mall.MallWebAdminSystemApplication</mainClass>
                     <excludes>
                         <exclude>
                             <groupId>org.springframework.boot</groupId>

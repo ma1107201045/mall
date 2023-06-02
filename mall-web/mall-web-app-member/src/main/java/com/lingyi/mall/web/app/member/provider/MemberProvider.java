@@ -1,4 +1,4 @@
-package com.lingyi.mall.web.member.app.provider;
+package com.lingyi.mall.web.app.member.provider;
 
 import com.lingyi.mall.api.member.feign.MemberFeign;
 import com.lingyi.mall.api.member.vo.MemberVO;

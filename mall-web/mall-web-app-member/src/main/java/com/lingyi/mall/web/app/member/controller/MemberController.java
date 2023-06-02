@@ -1,4 +1,4 @@
-package com.lingyi.mall.web.member.app.controller;
+package com.lingyi.mall.web.app.member.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

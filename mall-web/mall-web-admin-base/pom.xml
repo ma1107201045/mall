@@ -13,12 +13,11 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-security-admin</artifactId>
+            <artifactId>mall-biz-base</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-biz-base</artifactId>
-            <version>${project.version}</version>
+            <artifactId>mall-common-security-admin</artifactId>
         </dependency>
     </dependencies>
     <build>
@@ -28,7 +27,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot-dependencies.version}</version>
                 <configuration>
-                    <mainClass>com.lingyi.mall.web.base.admin.MallWebBaseBackApplication</mainClass>
+                    <mainClass>com.lingyi.mall.MallWebBaseBackApplication</mainClass>
                     <excludes>
                         <exclude>
                             <groupId>org.springframework.boot</groupId>

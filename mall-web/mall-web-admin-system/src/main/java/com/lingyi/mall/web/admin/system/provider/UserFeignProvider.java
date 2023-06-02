@@ -1,4 +1,4 @@
-package com.lingyi.mall.web.system.admin.provider;
+package com.lingyi.mall.web.admin.system.provider;
 
 import com.lingyi.mall.api.system.dto.UserPartDTO;
 import com.lingyi.mall.biz.system.constant.SystemConstant;
