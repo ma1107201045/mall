@@ -1,13 +1,13 @@
 package com.lingyi.mall.common.security.app;
 
+import com.lingyi.mall.common.base.filter.TrackIdFilter;
 import com.lingyi.mall.common.security.app.authentication.DaoAuthenticationProvider;
 import com.lingyi.mall.common.security.app.authentication.filter.JwtAuthorizationFilter;
 import com.lingyi.mall.common.security.app.authentication.filter.JwtLogoutFilter;
-import com.lingyi.mall.common.security.app.authentication.service.MemberDetailsService;
 import com.lingyi.mall.common.security.app.authentication.filter.PhoneNumberVerificationCodeAuthenticationFilter;
+import com.lingyi.mall.common.security.app.authentication.service.MemberDetailsService;
 import com.lingyi.mall.common.security.app.handler.*;
 import com.lingyi.mall.common.security.app.service.impl.MemberDetailsServiceImpl;
-import com.lingyi.mall.common.web.filter.TrackIdFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -16,7 +16,6 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
