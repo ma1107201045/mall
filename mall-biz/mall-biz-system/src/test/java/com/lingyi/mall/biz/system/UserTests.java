@@ -20,15 +20,15 @@ import java.util.Optional;
  * @description
  */
 @SpringBootTest
-public class MbsUserTests implements MallBizSystemApplicationTests {
+public class UserTests implements MallBizSystemApplicationTests {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private UserRepository mbsUserRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    private UserMapper mbsUserMapper;
+    private UserMapper userMapper;
 
     @Test
     public void testUserSave() {
@@ -36,7 +36,7 @@ public class MbsUserTests implements MallBizSystemApplicationTests {
         user.setUserName(RandomUtil.randomString(6));
         user.setPassword(passwordEncoder.encode(RandomUtil.randomString(6)));
         user.setIsEnable(YNEnum.Y.getCode());
-        user = mbsUserRepository.save(user);
+        user = userRepository.save(user);
         System.out.println(user);
     }
 
@@ -44,7 +44,7 @@ public class MbsUserTests implements MallBizSystemApplicationTests {
     public void testUserRemove() {
         User user = new User();
         user.setPassword("11");
-        mbsUserRepository.delete(user);
+        userRepository.delete(user);
         System.out.println("删除成功");
     }
 
@@ -55,13 +55,13 @@ public class MbsUserTests implements MallBizSystemApplicationTests {
         user.setUserName(RandomUtil.randomString(6));
         user.setPassword(passwordEncoder.encode(RandomUtil.randomString(6)));
         user.setIsEnable(YNEnum.Y.getCode());
-        user = mbsUserRepository.save(user);
+        user = userRepository.save(user);
         System.out.println(user);
     }
 
     @Test
     public void testUserGet() {
-        Optional<User> userOptional = mbsUserRepository.findById(5308839368929536L);
+        Optional<User> userOptional = userRepository.findById(5308839368929536L);
         System.out.println(userOptional.orElse(new User()));
     }
 

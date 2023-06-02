@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @description
  */
 @SpringBootTest
-public class MbsRoleTests implements MallBizSystemApplicationTests {
+public class RoleTests implements MallBizSystemApplicationTests {
 
     @Autowired
     private RoleRepository mbsRoleRepository;

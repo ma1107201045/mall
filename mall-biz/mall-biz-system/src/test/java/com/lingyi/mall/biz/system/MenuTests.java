@@ -10,5 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @description
  */
 @SpringBootTest
-public class MbsRoleMenuTests implements MallBizSystemApplicationTests {
+public class MenuTests implements MallBizSystemApplicationTests {
+
 }

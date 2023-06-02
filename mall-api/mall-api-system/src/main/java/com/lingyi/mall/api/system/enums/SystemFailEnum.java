@@ -17,11 +17,11 @@ public enum SystemFailEnum implements BaseFailEnum {
     /**
      *
      */
-    USER_ID_NULL_ERROR(8001, "用户id不能为空"),
+    USER_NULL_ERROR(8001, "用户不能为空"),
 
     USER_NAME_EXIST_ERROR(8002, "用户名称已存在"),
 
-    ROLE_ID_NULL_ERROR(8003, "角色id不能为空"),
+    ROLE_NULL_ERROR(8003, "角色不能为空"),
 
     MENU_DIRECTORY_PARENT_ERROR(8004, "目录父级错误"),
 
@@ -31,9 +31,8 @@ public enum SystemFailEnum implements BaseFailEnum {
 
     MENU_BUTTON_PARENT_ERROR(8007, "按钮父级错误"),
 
-    MENU_ID_NULL_ERROR(8008, "菜单id不能为空"),
+    MENU_NULL_ERROR(8008, "菜单不能为空");
 
-    USER_NOT_EXIST_ERROR(8009, "用户不存在");
 
     private final Integer code;
 

@@ -1,6 +1,7 @@
 package com.lingyi.mall.common.util;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.bean.copier.CopyOptions;
 
 import java.util.List;
 
@@ -12,12 +13,13 @@ import java.util.List;
  */
 public class ConverterUtil {
 
-
-    public static <S, T> T to(S s, Class<T> tClass, String... ignoreProperties) {
-        return BeanUtil.copyProperties(s, tClass, ignoreProperties);
+    public static <S, T> T to(S s, T t) {
+        BeanUtil.copyProperties(s, t, CopyOptions.create().setIgnoreNullValue(true));
+        return t;
     }
 
-    public static <S, T> List<T> toList(List<S> listS, Class<T> tClass, String... ignoreProperties) {
-        return listS.stream().map(s -> to(s, tClass, ignoreProperties)).toList();
+    public static <S, T> T to(S s, Class<T> tClass) {
+        return BeanUtil.copyProperties(s, tClass);
     }
+
 }

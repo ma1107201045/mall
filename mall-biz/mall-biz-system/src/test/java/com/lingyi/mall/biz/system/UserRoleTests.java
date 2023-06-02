@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @description
  */
 @SpringBootTest
-public class MbsUserRoleTests implements MallBizSystemApplicationTests {
+public class UserRoleTests implements MallBizSystemApplicationTests {
 
 
     @Autowired

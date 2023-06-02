@@ -35,9 +35,9 @@ public final class AssertUtil {
         isTrue(ObjUtil.isNotNull(object), exception);
     }
 
-    public static void isTrue(boolean flag, BaseFailEnum failEnum) {
+    public static void isTrue(boolean flag, BaseFailEnum baseFailEnum) {
         if (!flag) {
-            Object[] objects = getEnumMethodReturnValues(failEnum);
+            Object[] objects = getEnumMethodReturnValues(baseFailEnum);
             throw new BizException((Integer) objects[0], (String) objects[1]);
         }
     }
@@ -105,7 +105,7 @@ public final class AssertUtil {
         return t;
     }
 
-    private static Object[] getEnumMethodReturnValues(BaseFailEnum failEnum) {
+    public static Object[] getEnumMethodReturnValues(BaseFailEnum failEnum) {
         Object[] objects = new Object[2];
         try {
             Class<?> clazz = failEnum.getClass();
