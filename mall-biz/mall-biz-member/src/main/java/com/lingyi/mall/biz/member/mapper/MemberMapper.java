@@ -31,5 +31,11 @@ public interface MemberMapper {
      */
     List<MemberVO> selectListByParam(MemberParam memberParam);
 
+    /**
+     * 按照手机号查询
+     *
+     * @param phoneNumber 手机号
+     * @return MemberVO
+     */
     MemberVO selectByPhoneNumber(String phoneNumber);
 }

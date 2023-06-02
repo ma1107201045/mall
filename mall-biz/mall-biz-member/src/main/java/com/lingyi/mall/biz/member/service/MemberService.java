@@ -13,6 +13,12 @@ import com.lingyi.mall.common.base.util.BaseService;
  */
 public interface MemberService extends BaseService<Member, MemberParam, MemberVO, Long> {
 
+    /**
+     * 按照手机号查询
+     *
+     * @param phoneNumber 手机号
+     * @return MemberVO
+     */
 
     MemberVO findByPhoneNumber(String phoneNumber);
 
