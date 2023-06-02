@@ -1,7 +1,9 @@
 package com.lingyi.mall.biz.member.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.api.member.entity.Member;
 import com.lingyi.mall.api.member.enums.MemberFailEnum;
+import com.lingyi.mall.api.member.param.MemberParam;
 import com.lingyi.mall.api.member.vo.MemberVO;
 import com.lingyi.mall.biz.member.mapper.MemberMapper;
 import com.lingyi.mall.biz.member.repository.MemberRepository;
@@ -25,9 +27,10 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
 
+
     private final MemberRepository memberRepository;
 
-    private final MemberMapper mbmMemberMapper;
+    private final MemberMapper memberMapper;
 
     @Override
     public void add(Member member) {
@@ -51,22 +54,20 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Member findById(Long id) {
-        Optional<Member> optional = memberRepository.findById(id);
-        if (optional.isEmpty()) {
-            throw new BizException(MemberFailEnum.MEMBER_NULL_ERROR);
-        }
-        return optional.get();
+    public MemberVO findById(Long id) {
+        return memberMapper.selectById(id);
+    }
+
+    @Override
+    public List<MemberVO> findListByPageAndParam(BasePageParam pageParam, MemberParam memberParam) {
+        PageHelper.startPage(pageParam.getCurrentPage(), pageParam.getPageSize(), pageParam.getSort());
+        return memberMapper.selectListByParam(memberParam);
     }
 
     @Override
     public MemberVO findByPhoneNumber(String phoneNumber) {
-        return mbmMemberMapper.selectByPhoneNumber(phoneNumber);
+        return memberMapper.selectByPhoneNumber(phoneNumber);
     }
 
 
-    @Override
-    public List<Member> findListByPageAndParam(BasePageParam basePageDTO, Member member) {
-        return null;
-    }
 }

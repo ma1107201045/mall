@@ -46,11 +46,11 @@ public interface BaseService<DTO extends Serializable, PARAM extends Serializabl
     /**
      * 查找列表
      *
-     * @param basePageDTO 分页信息
-     * @param param       查找参数
+     * @param pageParam 分页信息
+     * @param param     查找参数
      * @return List<VO>
      */
-    List<VO> findListByPageAndParam(BasePageParam basePageDTO, PARAM param);
+    List<VO> findListByPageAndParam(BasePageParam pageParam, PARAM param);
 
 
 }

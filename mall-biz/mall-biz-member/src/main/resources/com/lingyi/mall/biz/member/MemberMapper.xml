@@ -24,12 +24,30 @@
         register_data_time
     </sql>
     <sql id="Base_Condition">
-
+        <if test="userName!=null and userName!=''">
+            AND user_name LIKE CONCAT('%',#{userName,jdbcType=VARCHAR},'%')
+        </if>
     </sql>
+    <select id="selectById" resultType="com.lingyi.mall.api.member.vo.MemberVO">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM mbm_member
+        WHERE id#{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectListByParam" resultType="com.lingyi.mall.api.member.vo.MemberVO">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM mbm_member
+        <where>
+            <include refid="Base_Condition"/>
+        </where>
+    </select>
     <select id="selectByPhoneNumber" resultType="com.lingyi.mall.api.member.vo.MemberVO">
         SELECT
         <include refid="Base_Column_List"/>
         FROM mbm_member
         WHERE phone_number=#{phoneNumber,jdbcType=VARCHAR}
     </select>
+
+
 </mapper>

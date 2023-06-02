@@ -85,8 +85,8 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<RoleVO> findListByPageAndParam(BasePageParam basePageParam, RoleParam roleParam) {
-        PageHelper.startPage(basePageParam.getCurrentPage(), basePageParam.getPageSize(), basePageParam.getSort());
+    public List<RoleVO> findListByPageAndParam(BasePageParam pageParam, RoleParam roleParam) {
+        PageHelper.startPage(pageParam.getCurrentPage(), pageParam.getPageSize(), pageParam.getSort());
         return roleMapper.selectListByParam(roleParam);
     }
 }
