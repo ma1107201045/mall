@@ -12,7 +12,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @description
  */
 @EnableFeignClients
-@ConfigurationPropertiesScan
 @SpringBootApplication
 public class MallAuthAdminApplication {
 
