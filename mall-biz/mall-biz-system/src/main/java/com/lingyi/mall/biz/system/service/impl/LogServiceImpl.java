@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.system.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.api.system.entity.Log;
-import com.lingyi.mall.api.system.enums.SystemFailEnum;
+import com.lingyi.mall.api.system.enums.SystemFail;
 import com.lingyi.mall.biz.system.mapper.LogMapper;
 import com.lingyi.mall.biz.system.repository.LogRepository;
 import com.lingyi.mall.biz.system.service.LogService;
@@ -46,7 +46,7 @@ public class LogServiceImpl implements LogService {
         Optional<Log> optional = logRepository.findById(log.getId());
         //判断日志是否为空
         if (optional.isEmpty()) {
-            throw new BizException(SystemFailEnum.LOG_NULL_ERROR);
+            throw new BizException(SystemFail.LOG_NULL_ERROR);
         }
         //获取用户
         Log newLog = optional.get();

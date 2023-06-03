@@ -6,7 +6,7 @@ import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.biz.system.constant.SystemConstant;
 import com.lingyi.mall.api.system.dto.MenuDTO;
 import com.lingyi.mall.api.system.entity.Menu;
-import com.lingyi.mall.api.system.enums.SystemFailEnum;
+import com.lingyi.mall.api.system.enums.SystemFail;
 import com.lingyi.mall.api.system.enums.MenuType;
 import com.lingyi.mall.api.system.param.MenuParam;
 import com.lingyi.mall.api.system.vo.MenuVO;
@@ -105,24 +105,24 @@ public class MenuServiceImpl implements MenuService {
         Long parentId = menuDTO.getParentId();
         //断言目录父级parentId只能为-1
         boolean result01 = Objects.equals(MenuType.DIRECTORY.getCode(), type) && Objects.equals(SystemConstant.MENU_ROOT_ID, parentId);
-        AssertUtil.isTrue(result01, SystemFailEnum.MENU_DIRECTORY_PARENT_ERROR);
+        AssertUtil.isTrue(result01, SystemFail.MENU_DIRECTORY_PARENT_ERROR);
         //断言菜单类型不能为空
         Integer newType = menuMapper.selectTypeById(parentId);
-        AssertUtil.notNull(newType, SystemFailEnum.MENU_TYPE_NOT_EXIST_ERROR);
+        AssertUtil.notNull(newType, SystemFail.MENU_TYPE_NOT_EXIST_ERROR);
 
         //断言菜单父级parentId对应的菜单只能为目录类型
         boolean result02 = Objects.equals(MenuType.MENU.getCode(), type) && Objects.equals(MenuType.DIRECTORY.getCode(), newType);
-        AssertUtil.isTrue(result02, SystemFailEnum.MENU_MENU_PARENT_ERROR);
+        AssertUtil.isTrue(result02, SystemFail.MENU_MENU_PARENT_ERROR);
 
         //断言按钮父级parentId对应的菜单只能为菜单类型
         boolean result03 = Objects.equals(MenuType.BUTTON.getCode(), type) && Objects.equals(MenuType.MENU.getCode(), newType);
-        AssertUtil.isTrue(result03, SystemFailEnum.MENU_BUTTON_PARENT_ERROR);
+        AssertUtil.isTrue(result03, SystemFail.MENU_BUTTON_PARENT_ERROR);
         Menu menu = null;
         if (isEdit) {
             Optional<Menu> optional = menuRepository.findById(menuDTO.getId());
             //判断用户是否不为空
             if (optional.isEmpty()) {
-                throw new BizException(SystemFailEnum.MENU_NULL_ERROR);
+                throw new BizException(SystemFail.MENU_NULL_ERROR);
             }
             menu = optional.get();
         }

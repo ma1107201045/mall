@@ -7,7 +7,7 @@ import com.lingyi.mall.api.system.dto.UserDTO;
 import com.lingyi.mall.api.system.dto.UserPartDTO;
 import com.lingyi.mall.api.system.entity.User;
 import com.lingyi.mall.api.system.enums.MenuType;
-import com.lingyi.mall.api.system.enums.SystemFailEnum;
+import com.lingyi.mall.api.system.enums.SystemFail;
 import com.lingyi.mall.api.system.param.UserParam;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.api.system.vo.UserVO;
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
         //通过用户名称获取用户id
         Long id = userMapper.selectIdByUserName(userDTO.getUserName());
         //判断用户名称不存在
-        AssertUtil.isNull(id, SystemFailEnum.USER_NAME_EXIST_ERROR);
+        AssertUtil.isNull(id, SystemFail.USER_NAME_EXIST_ERROR);
         //密码加密
         String encodePassword = passwordEncoder.encode(userDTO.getPassword());
         //设置加密密码
@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
         Optional<User> optional = userRepository.findById(id);
         //判断用户是否不为空
         if (optional.isEmpty()) {
-            throw new BizException(SystemFailEnum.USER_NULL_ERROR);
+            throw new BizException(SystemFail.USER_NULL_ERROR);
         }
         //获取用户
         User user = optional.get();
@@ -93,7 +93,7 @@ public class UserServiceImpl implements UserService {
         boolean result = Objects.nonNull(optional.get().getId()) && !Objects.equals(id, newId);
 
         //判断用户名称不存在
-        AssertUtil.isFalse(result, SystemFailEnum.USER_NAME_EXIST_ERROR);
+        AssertUtil.isFalse(result, SystemFail.USER_NAME_EXIST_ERROR);
         //密码加密
         String encodePassword = passwordEncoder.encode(userDTO.getPassword());
         //设置加密密码
@@ -124,7 +124,7 @@ public class UserServiceImpl implements UserService {
     public void editPartById(UserPartDTO userPartDTO) {
         UserVO userVO = userMapper.selectById(userPartDTO.getId());
 
-        AssertUtil.notNull(userVO, SystemFailEnum.USER_NULL_ERROR);
+        AssertUtil.notNull(userVO, SystemFail.USER_NULL_ERROR);
 
         User user = ConverterUtil.to(userVO, User.class);
 

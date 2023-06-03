@@ -34,7 +34,7 @@ public class Log extends BaseCommonEntity implements Serializable {
     private String title;
 
     /**
-     * 操作类型 1.增加 2.删除 3.更改 4.查询 5.其他
+     * 操作类型 1.创建 2.删除 3.更改 4.读取 5.其他
      */
     @Column(name = "operation_type")
     private Integer operationType;

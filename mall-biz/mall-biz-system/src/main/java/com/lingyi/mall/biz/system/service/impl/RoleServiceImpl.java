@@ -4,7 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.api.system.dto.RoleDTO;
 import com.lingyi.mall.api.system.entity.Role;
-import com.lingyi.mall.api.system.enums.SystemFailEnum;
+import com.lingyi.mall.api.system.enums.SystemFail;
 import com.lingyi.mall.api.system.param.RoleParam;
 import com.lingyi.mall.api.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.mapper.RoleMapper;
@@ -63,7 +63,7 @@ public class RoleServiceImpl implements RoleService {
         Optional<Role> optional = roleRepository.findById(id);
         //判断用户是否不为空
         if (optional.isEmpty()) {
-            throw new BizException(SystemFailEnum.ROLE_NULL_ERROR);
+            throw new BizException(SystemFail.ROLE_NULL_ERROR);
         }
         //获取用户
         Role role = optional.get();
