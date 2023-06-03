@@ -31,7 +31,9 @@ public enum SystemFailEnum implements BaseFailEnum {
 
     MENU_BUTTON_PARENT_ERROR(8007, "按钮父级错误"),
 
-    MENU_NULL_ERROR(8008, "菜单不能为空");
+    MENU_NULL_ERROR(8008, "菜单不能为空"),
+
+    LOG_NULL_ERROR(8009, "日志不能为空");
 
 
     private final Integer code;

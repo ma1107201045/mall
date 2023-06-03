@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lingyi.mall.biz.system.mapper.LogMapper">
+    <resultMap id="BaseResultMap" type="com.lingyi.mall.api.system.entity.Log">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="operationType" column="operation_type" jdbcType="TINYINT"/>
+        <result property="requestMethod" column="request_method" jdbcType="VARCHAR"/>
+        <result property="requestParam" column="request_param" jdbcType="VARCHAR"/>
+        <result property="responseParam" column="response_param" jdbcType="VARCHAR"/>
+        <result property="executeDuration" column="execute_duration" jdbcType="BIGINT"/>
+        <result property="clientIp" column="client_ip" jdbcType="VARCHAR"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+        <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+        <result property="createDateTime" column="create_date_time" jdbcType="TIMESTAMP"/>
+        <result property="lastModifyBy" column="last_modify_by" jdbcType="VARCHAR"/>
+        <result property="lastModifyDateTime" column="last_modify_date_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,title,operation_type,
+        request_method,request_param,response_param,
+        execute_duration,client_ip,remark,
+        create_by,create_date_time,last_modify_by,
+        last_modify_date_time
+    </sql>
+    <sql id="Base_Condition">
+        <if test="title!=null and title!=''">
+            AND title LIKE CONCAT('%',#{title,jdbcType=VARCHAR},'%')
+        </if>
+    </sql>
+    <select id="selectById" resultType="com.lingyi.mall.api.system.entity.Log">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM mbs_log
+        WHERE id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectListByParam" resultType="com.lingyi.mall.api.system.entity.Log">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM mbs_log
+        <where>
+            <include refid="Base_Condition"/>
+        </where>
+    </select>
+</mapper>
