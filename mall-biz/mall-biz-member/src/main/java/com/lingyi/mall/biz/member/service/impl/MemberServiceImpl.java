@@ -32,17 +32,17 @@ public class MemberServiceImpl implements MemberService {
     private final MemberMapper memberMapper;
 
     @Override
-    public void add(Member member) {
+    public void  create(Member member) {
         memberRepository.save(member);
     }
 
     @Override
-    public void removeByIds(List<Long> ids) {
+    public void deleteByIds(List<Long> ids) {
         memberRepository.deleteAllById(ids);
     }
 
     @Override
-    public void editById(Member member) {
+    public void updateById(Member member) {
         Optional<Member> optional = memberRepository.findById(member.getId());
         if (optional.isEmpty()) {
             throw new BizException(MemberFail.MEMBER_NULL_ERROR);
@@ -53,12 +53,12 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public MemberVO findById(Long id) {
+    public MemberVO readById(Long id) {
         return memberMapper.selectById(id);
     }
 
     @Override
-    public List<MemberVO> findListByPageAndParam(BasePageParam pageParam, MemberParam memberParam) {
+    public List<MemberVO> readListByPageAndParam(BasePageParam pageParam, MemberParam memberParam) {
         PageHelper.startPage(pageParam.getCurrentPage(), pageParam.getPageSize(), pageParam.getSort());
         return memberMapper.selectListByParam(memberParam);
     }

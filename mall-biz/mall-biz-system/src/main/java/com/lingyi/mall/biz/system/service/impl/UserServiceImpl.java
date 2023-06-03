@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void add(UserDTO userDTO) {
+    public void create(UserDTO userDTO) {
         //通过用户名称获取用户id
         Long id = userMapper.selectIdByUserName(userDTO.getUserName());
         //判断用户名称不存在

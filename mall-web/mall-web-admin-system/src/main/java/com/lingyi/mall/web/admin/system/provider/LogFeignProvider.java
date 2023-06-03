@@ -25,7 +25,7 @@ public class LogFeignProvider implements LogFeign {
     @Operation(summary = "添加", description = "添加")
     @Override
     public ServerResponse<Void> save(Log log) {
-        logService.add(log);
+        logService.create(log);
         return ServerResponse.success();
     }
 }
