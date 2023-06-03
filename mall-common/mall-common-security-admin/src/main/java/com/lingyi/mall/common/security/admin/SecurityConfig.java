@@ -81,7 +81,7 @@ public class SecurityConfig {
                         "/doc.html",
                         "/webjars/**",
                         "/v3/**",
-                        "/system/admin/provider/users/permissions").permitAll().anyRequest().authenticated())
+                        "/admin/system/provider/users/permissions").permitAll().anyRequest().authenticated())
                 .formLogin(formLoginConfigurer -> formLoginConfigurer.loginProcessingUrl(LOGIN_PROCESSING_URL)
                         .usernameParameter(SecurityBaseConstant.USERNAME_PARAMETER)
                         .successHandler(authenticationSuccessHandler)

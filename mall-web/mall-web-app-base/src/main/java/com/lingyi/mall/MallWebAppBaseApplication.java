@@ -8,15 +8,15 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
- * @datetime 2023/5/24 10:03
+ * @datetime 2023/6/3 8:51
  * @description
  */
 @EnableFeignClients
 @EnableJpaAuditing
 @SpringBootApplication
-public class MallWebAppMemberApplication {
+public class MallWebAppBaseApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MallWebAppMemberApplication.class, args);
+        SpringApplication.run(MallWebAppBaseApplication.class, args);
     }
 }

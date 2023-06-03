@@ -12,7 +12,6 @@
         <result column="email" jdbcType="VARCHAR" property="email"/>
         <result column="phone_number" jdbcType="CHAR" property="phoneNumber"/>
         <result column="last_login_ip" jdbcType="VARCHAR" property="lastLoginIp"/>
-        <result column="last_login_date_time" jdbcType="TIMESTAMP" property="lastLoginDateTime"/>
         <result column="is_enable" jdbcType="TINYINT" property="isEnable"/>
         <result column="remark" jdbcType="VARCHAR" property="remark"/>
         <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
@@ -23,7 +22,7 @@
     </resultMap>
     <sql id="Base_Column_List">
         id, user_name, real_name, nickname, sex, `password`, head_portrait, email, phone_number,
-    last_login_ip, last_login_date_time, is_enable, remark, create_by, create_date_time,
+    last_login_ip, is_enable, remark, create_by, create_date_time,
     last_modify_by, last_modify_date_time, is_delete
     </sql>
     <sql id="Base_Condition">
@@ -68,7 +67,6 @@
                mu.email                mu_email,
                mu.phone_number         mu_phone_number,
                mu.last_login_ip        mu_last_login_ip,
-               mu.last_login_date_time mu_last_login_date_time,
                mu.is_enable            mu_is_enable,
                mu.remark               mu_remark
         FROM mbs_user mu
