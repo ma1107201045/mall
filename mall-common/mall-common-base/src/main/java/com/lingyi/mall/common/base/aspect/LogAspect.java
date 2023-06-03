@@ -64,7 +64,7 @@ public class LogAspect {
     @Around("consolePointcut()")
     public Object consoleAround(ProceedingJoinPoint joinPoint) throws Throwable {
         Object returnValue = null;
-        Throwable t = null;
+        Throwable throwable = null;
         String methodName = null;
         StopWatch sw = new StopWatch();
         try {
@@ -78,12 +78,12 @@ public class LogAspect {
             returnValue = joinPoint.proceed(joinPoint.getArgs());
             return returnValue;
         } catch (Throwable e) {
-            t = e;
+            throwable = e;
             throw e;
         } finally {
             sw.stop();
             this.printResponse(returnValue);
-            this.printResult(joinPoint.getTarget().getClass().getName(), methodName, t, sw);
+            this.printResult(joinPoint.getTarget().getClass().getName(), methodName, throwable, sw);
         }
     }
 

@@ -25,9 +25,9 @@ public class BizException extends RuntimeException {
     private final String message;
 
     public BizException(BaseFail baseFailEnum) {
-        super((String) AssertUtil.getEnumMethodReturnValues(baseFailEnum)[1]);
-        this.bizCode = (Integer) AssertUtil.getEnumMethodReturnValues(baseFailEnum)[0];
-        this.message = (String) AssertUtil.getEnumMethodReturnValues(baseFailEnum)[1];
+        super((String) AssertUtil.getFailEnumValues(baseFailEnum)[1]);
+        this.bizCode = (Integer) AssertUtil.getFailEnumValues(baseFailEnum)[0];
+        this.message = (String) AssertUtil.getFailEnumValues(baseFailEnum)[1];
     }
 
     public BizException(String message) {
