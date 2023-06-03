@@ -18,18 +18,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserRoleServiceImpl implements UserRoleService {
 
-    private final UserRoleRepository mbsUserRoleRepository;
+    private final UserRoleRepository userRoleRepository;
 
     @Override
     public void addList(Long userId, List<Long> roleIds) {
         List<UserRole> userRoles = roleIds.stream()
                 .map(roleId -> UserRole.of(userId, roleId))
                 .toList();
-        mbsUserRoleRepository.saveAll(userRoles);
+        userRoleRepository.saveAll(userRoles);
     }
 
     @Override
     public void removeByUserId(Long userId) {
-        mbsUserRoleRepository.deleteByUserId(userId);
+        userRoleRepository.deleteByUserId(userId);
     }
 }

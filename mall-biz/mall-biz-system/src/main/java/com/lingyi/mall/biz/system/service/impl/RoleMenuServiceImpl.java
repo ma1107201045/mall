@@ -18,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RoleMenuServiceImpl implements RoleMenuService {
 
-    private final RoleMenuRepository mbsRoleMenuRepository;
+    private final RoleMenuRepository roleMenuRepository;
 
 
     @Override
@@ -26,11 +26,11 @@ public class RoleMenuServiceImpl implements RoleMenuService {
         List<RoleMenu> roleMenus = menuIds.stream()
                 .map(menuId -> RoleMenu.of(roleId, menuId))
                 .toList();
-        mbsRoleMenuRepository.saveAll(roleMenus);
+        roleMenuRepository.saveAll(roleMenus);
     }
 
     @Override
     public void removeByRoleId(Long roleId) {
-        mbsRoleMenuRepository.deleteByRoleId(roleId);
+        roleMenuRepository.deleteByRoleId(roleId);
     }
 }
