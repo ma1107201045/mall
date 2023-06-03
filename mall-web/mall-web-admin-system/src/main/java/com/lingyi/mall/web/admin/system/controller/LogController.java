@@ -38,7 +38,7 @@ public class LogController {
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('mws:user:get')")
     public ServerResponse<Log> getById(@PathVariable Long id) {
-        Log log = logService.findById(id);
+        Log log = logService.readById(id);
         return ServerResponse.success(log);
     }
 
@@ -46,7 +46,7 @@ public class LogController {
     @GetMapping
     @PreAuthorize("hasAnyAuthority('mws:user:getList')")
     public ServerResponse<List<Log>> getListByPageAndParam(@Valid BasePageParam basePageParam, @Valid Log log) {
-        List<Log> logs = logService.findListByPageAndParam(basePageParam, log);
+        List<Log> logs = logService.readListByPageAndParam(basePageParam, log);
         return ServerResponse.success(logs);
     }
 

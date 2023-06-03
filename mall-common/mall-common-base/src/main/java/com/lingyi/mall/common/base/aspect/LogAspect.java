@@ -5,11 +5,13 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.StopWatch;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
+import com.lingyi.mall.common.base.task.BaseAsyncTask;
 import com.lingyi.mall.common.base.util.RequestUtil;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -40,8 +42,10 @@ import java.util.stream.Collectors;
 @Slf4j
 @Aspect
 @Component
+@RequiredArgsConstructor
 public class LogAspect {
 
+    private final BaseAsyncTask baseAsyncTask;
 
     /**
      * 控制台日志切点
@@ -103,6 +107,8 @@ public class LogAspect {
             log.info("执行结果参数:{}", result);
             log.info("执行结果:{}", isSuccess);
             log.info("执行错误原因:{}", failReason);
+            //TODO 解析并且保存日志逻辑
+            baseAsyncTask.saveLog(null);
         }
     }
 
@@ -243,4 +249,5 @@ public class LogAspect {
 
         private Object paramValue;
     }
+
 }

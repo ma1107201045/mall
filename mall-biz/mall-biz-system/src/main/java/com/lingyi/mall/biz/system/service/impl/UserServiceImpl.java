@@ -71,13 +71,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void removeByIds(List<Long> ids) {
+    public void deleteByIds(List<Long> ids) {
         userRepository.deleteAllById(ids);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void editById(UserDTO userDTO) {
+    public void updateById(UserDTO userDTO) {
         Long id = userDTO.getId();
         //获取用户信息
         Optional<User> optional = userRepository.findById(id);
@@ -109,12 +109,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserVO findById(Long id) {
+    public UserVO readById(Long id) {
         return userMapper.selectById(id);
     }
 
     @Override
-    public List<UserVO> findListByPageAndParam(BasePageParam pageParam, UserParam userParam) {
+    public List<UserVO> readListByPageAndParam(BasePageParam pageParam, UserParam userParam) {
         PageHelper.startPage(pageParam.getCurrentPage(), pageParam.getPageSize(), pageParam.getSort());
         return userMapper.selectListByParam(userParam);
     }

@@ -39,7 +39,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void add(RoleDTO roleDTO) {
+    public void create(RoleDTO roleDTO) {
         //DTO转换Entity
         Role role = BeanUtil.copyProperties(roleDTO, Role.class);
         //保存
@@ -50,13 +50,13 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public void removeByIds(List<Long> ids) {
+    public void deleteByIds(List<Long> ids) {
         roleRepository.deleteAllById(ids);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void editById(RoleDTO roleDTO) {
+    public void updateById(RoleDTO roleDTO) {
         //获取id
         Long id = roleDTO.getId();
         //获取角色信息
@@ -78,12 +78,12 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public RoleVO findById(Long id) {
+    public RoleVO readById(Long id) {
         return roleMapper.selectById(id);
     }
 
     @Override
-    public List<RoleVO> findListByPageAndParam(BasePageParam pageParam, RoleParam roleParam) {
+    public List<RoleVO> readListByPageAndParam(BasePageParam pageParam, RoleParam roleParam) {
         PageHelper.startPage(pageParam.getCurrentPage(), pageParam.getPageSize(), pageParam.getSort());
         return roleMapper.selectListByParam(roleParam);
     }

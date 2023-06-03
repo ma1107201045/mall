@@ -45,7 +45,7 @@ public class UserController {
     @PreAuthorize("hasAnyAuthority('mws:user:remove')")
     @Log(title = "保存用户", operationType = OperationType.DELETE)
     public ServerResponse<Void> removeByIds(@PathVariable List<Long> ids) {
-        mbsUserService.removeByIds(ids);
+        mbsUserService.deleteByIds(ids);
         return ServerResponse.success();
     }
 
@@ -55,7 +55,7 @@ public class UserController {
     @Log(title = "保存用户", operationType = OperationType.UPDATE)
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody UserDTO userDTO) {
         userDTO.setId(id);
-        mbsUserService.editById(userDTO);
+        mbsUserService.updateById(userDTO);
         return ServerResponse.success();
     }
 
@@ -64,7 +64,7 @@ public class UserController {
     @PreAuthorize("hasAnyAuthority('mws:user:get')")
     @Log(title = "保存用户", operationType = OperationType.READ)
     public ServerResponse<UserVO> getById(@PathVariable Long id) {
-        UserVO userVO = mbsUserService.findById(id);
+        UserVO userVO = mbsUserService.readById(id);
         return ServerResponse.success(userVO);
     }
 
@@ -73,7 +73,7 @@ public class UserController {
     @PreAuthorize("hasAnyAuthority('mws:user:getList')")
     @Log(title = "保存用户", operationType = OperationType.READ)
     public ServerResponse<List<UserVO>> getListByPageAndParam(@Valid BasePageParam basePageParam, @Valid UserParam userParam) {
-        List<UserVO> userVOList = mbsUserService.findListByPageAndParam(basePageParam, userParam);
+        List<UserVO> userVOList = mbsUserService.readListByPageAndParam(basePageParam, userParam);
         return ServerResponse.success(userVOList);
     }
 

@@ -41,7 +41,7 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void add(MenuDTO menuDTO) {
+    public void create(MenuDTO menuDTO) {
         //校验数据
         verifyAndGetData(menuDTO, false);
         //DTO转换Entity
@@ -52,16 +52,16 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void removeByIds(List<Long> ids) {
+    public void deleteByIds(List<Long> ids) {
         if (CollUtil.isNotEmpty(ids)) {
             menuRepository.deleteAllById(ids);
-            removeByIds(menuMapper.selectIdsByParentIds(ids));
+            deleteByIds(menuMapper.selectIdsByParentIds(ids));
         }
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void editById(MenuDTO menuDTO) {
+    public void updateById(MenuDTO menuDTO) {
         //校验数据
         Menu menu = verifyAndGetData(menuDTO, true);
         //DTO转换Entity
@@ -71,12 +71,12 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public MenuVO findById(Long id) {
+    public MenuVO readById(Long id) {
         return menuMapper.selectById(id);
     }
 
     @Override
-    public List<MenuVO> findListByPageAndParam(BasePageParam pageParam, MenuParam menuParam) {
+    public List<MenuVO> readListByPageAndParam(BasePageParam pageParam, MenuParam menuParam) {
         PageHelper.startPage(pageParam.getCurrentPage(), pageParam.getPageSize(), pageParam.getSort());
         return menuMapper.selectListByParam(menuParam);
     }

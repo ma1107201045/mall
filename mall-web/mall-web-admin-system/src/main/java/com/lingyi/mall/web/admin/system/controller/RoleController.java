@@ -41,7 +41,7 @@ public class RoleController {
     @DeleteMapping("/{ids}")
     @PreAuthorize("hasAnyAuthority('mws:role:remove')")
     public ServerResponse<Void> removeByIds(@PathVariable List<Long> ids) {
-        mbsRoleService.removeByIds(ids);
+        mbsRoleService.deleteByIds(ids);
         return ServerResponse.success();
     }
 
@@ -50,7 +50,7 @@ public class RoleController {
     @PreAuthorize("hasAnyAuthority('mws:role:update')")
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody RoleDTO roleDTO) {
         roleDTO.setId(id);
-        mbsRoleService.editById(roleDTO);
+        mbsRoleService.updateById(roleDTO);
         return ServerResponse.success();
     }
 
@@ -58,7 +58,7 @@ public class RoleController {
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('mws:role:get')")
     public ServerResponse<RoleVO> getById(@PathVariable Long id) {
-        RoleVO roleVO = mbsRoleService.findById(id);
+        RoleVO roleVO = mbsRoleService.readById(id);
         return ServerResponse.success(roleVO);
     }
 
@@ -66,7 +66,7 @@ public class RoleController {
     @GetMapping
     @PreAuthorize("hasAnyAuthority('mbs:role:getList')")
     public ServerResponse<List<RoleVO>> getListByPageAndParam(@Valid BasePageParam basePageParam, @Valid RoleParam roleParam) {
-        List<RoleVO> roles = mbsRoleService.findListByPageAndParam(basePageParam, roleParam);
+        List<RoleVO> roles = mbsRoleService.readListByPageAndParam(basePageParam, roleParam);
         return ServerResponse.success(roles);
     }
 }

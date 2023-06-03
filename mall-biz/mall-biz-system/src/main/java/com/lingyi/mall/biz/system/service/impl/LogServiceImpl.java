@@ -31,17 +31,17 @@ public class LogServiceImpl implements LogService {
     private final LogMapper logMapper;
 
     @Override
-    public void add(Log log) {
+    public void create(Log log) {
         logRepository.save(log);
     }
 
     @Override
-    public void removeByIds(List<Long> ids) {
+    public void deleteByIds(List<Long> ids) {
         logRepository.deleteAllById(ids);
     }
 
     @Override
-    public void editById(Log log) {
+    public void updateById(Log log) {
         //获取日志信息
         Optional<Log> optional = logRepository.findById(log.getId());
         //判断日志是否为空
@@ -57,12 +57,12 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public Log findById(Long id) {
+    public Log readById(Long id) {
         return logMapper.selectById(id);
     }
 
     @Override
-    public List<Log> findListByPageAndParam(BasePageParam pageParam, Log log) {
+    public List<Log> readListByPageAndParam(BasePageParam pageParam, Log log) {
         PageHelper.startPage(pageParam.getCurrentPage(), pageParam.getPageSize(), pageParam.getSort());
         return logMapper.selectListByParam(log);
     }
