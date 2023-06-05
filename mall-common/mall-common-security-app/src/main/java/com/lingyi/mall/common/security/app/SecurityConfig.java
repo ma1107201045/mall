@@ -129,6 +129,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/swagger-ui/**", "/doc.html", "/webjars/**", "/v3/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/admin/system/logs").permitAll()
                         .requestMatchers(HttpMethod.GET, "/app/send-verification-code").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/app/member/members").permitAll()
                         .anyRequest()
                         .authenticated())
                 .formLogin(AbstractHttpConfigurer::disable)

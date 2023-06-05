@@ -99,11 +99,13 @@ public class LogAspect {
     @Around("dataBasePointcut()")
     public Object dataBaseAround(ProceedingJoinPoint joinPoint) throws Throwable {
         Object result = null;
+        boolean isSuccess = false;
         String failReason = null;
         StopWatch sw = new StopWatch();
         try {
             sw.start();
             result = joinPoint.proceed(joinPoint.getArgs());
+            isSuccess = true;
             return result;
         } catch (Throwable t) {
             failReason = t.getMessage();
@@ -115,7 +117,7 @@ public class LogAspect {
             //获取log类实例
             Object log = getInstance();
             //赋值
-            setValue(log, logAnnotation, joinPoint, result, sw.getLastTaskTimeMillis(), failReason);
+            setValue(log, logAnnotation, joinPoint, result, isSuccess, sw.getLastTaskTimeMillis(), failReason);
             //异步保存
             baseAsyncTask.saveLog(log);
         }
@@ -272,15 +274,15 @@ public class LogAspect {
         }
     }
 
-    private void setValue(Object log, Log logAnnotation, ProceedingJoinPoint joinPoint, Object result, long taskTime, String failReason) {
+    private void setValue(Object log, Log logAnnotation, ProceedingJoinPoint joinPoint, Object result, boolean isSuccess, long taskTime, String failReason) {
         ReflectUtil.setFieldValue(log, "title", logAnnotation.clientType() + "-" + logAnnotation.title());
         ReflectUtil.setFieldValue(log, "operationType", logAnnotation.operationType().getCode());
         ReflectUtil.setFieldValue(log, "callClass", joinPoint.getTarget().getClass().getName());
         ReflectUtil.setFieldValue(log, "callMethod", joinPoint.getSignature().getName());
-        ReflectUtil.setFieldValue(log, "requestParam", logAnnotation.ignoreParam() ? null : JSON.toJSONString(joinPoint.getArgs()));
+        ReflectUtil.setFieldValue(log, "requestParam", logAnnotation.ignoreParam() ? JSON.toJSONString(null) : JSON.toJSONString(joinPoint.getArgs()));
         ReflectUtil.setFieldValue(log, "responseParam", JSON.toJSONString(result));
         ReflectUtil.setFieldValue(log, "executeDuration", taskTime);
-        ReflectUtil.setFieldValue(log, "executeResult", Objects.nonNull(result) ? YN.Y.getCode() : YN.N.getCode());
+        ReflectUtil.setFieldValue(log, "executeResult", isSuccess ? YN.Y.getCode() : YN.N.getCode());
         ReflectUtil.setFieldValue(log, "failReason", failReason);
         ReflectUtil.setFieldValue(log, "clientIp", RequestUtil.getRemoteHost(((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest()));
 

@@ -33,6 +33,7 @@ public class UserFeignConsumer {
         ServerResponse<Void> response = userFeign.updatePartById(id, userPartDTO);
         if (response.getIsSuccess()) {
             log.info("出参:Void:{}", JSON.toJSONString(response.getData()));
+           return;
         }
         throw new OpenFeignException(response.getBizCode(), response.getMessage());
     }

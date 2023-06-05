@@ -11,10 +11,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author maweiyan
@@ -32,14 +29,14 @@ public class AppController {
     private final MaaAppService maaAppService;
 
     @Operation(summary = "登录", description = "登录")
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ServerResponse<AppLoginVO> login(@Valid @RequestBody AppLoginDTO appLoginDTO) {
         AppLoginVO apploginVo = maaAppService.login(appLoginDTO);
         return ServerResponse.success(apploginVo);
     }
 
     @Operation(summary = "注册", description = "注册")
-    @GetMapping("/register")
+    @PostMapping("/register")
     public ServerResponse<Void> register(@Valid @RequestBody AppRegisterDTO appRegisterDTO) {
         maaAppService.register(appRegisterDTO);
         return ServerResponse.success();

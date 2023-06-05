@@ -79,7 +79,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeHttpRequestsConfigurer -> authorizeHttpRequestsConfigurer
                         .requestMatchers(HttpMethod.GET, "/swagger-ui/**", "/doc.html", "/webjars/**", "/v3/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/admin/system/logs").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/admin/captcha").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/admin//get-captcha").permitAll()
                         .requestMatchers(HttpMethod.GET, "/admin/system/users/permissions").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(formLoginConfigurer -> formLoginConfigurer.loginProcessingUrl(LOGIN_PROCESSING_URL)

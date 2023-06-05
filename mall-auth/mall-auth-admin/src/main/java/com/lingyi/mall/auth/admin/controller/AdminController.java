@@ -33,7 +33,7 @@ public class AdminController {
     private final CaptchaProperties captchaProperties;
 
     @Operation(summary = "获取验证码", description = "获取验证码")
-    @GetMapping("/captcha")
+    @GetMapping("/get-captcha")
     @Log(title = "获取验证码", operationType = OperationType.READ, ignoreParam = true)
     public void get(HttpSession session, HttpServletResponse response) throws IOException {
         response.setContentType(MediaType.IMAGE_PNG_VALUE);
