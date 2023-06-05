@@ -27,7 +27,7 @@ public interface UserFeign {
      * @param userPartDTO ..
      * @return ServerResponse
      */
-    @PatchMapping("/admin/system/provider/users/{id}")
+    @PatchMapping("/admin/system/users/{id}")
     ServerResponse<Void> updatePartById(@PathVariable("id") Long id, @RequestBody UserPartDTO userPartDTO);
 
     /**
@@ -36,7 +36,7 @@ public interface UserFeign {
      * @param userName 用户名称
      * @return 用户信息
      */
-    @GetMapping("/admin/system/provider/users/permissions")
+    @GetMapping("/admin/system/users/permissions")
     ServerResponse<UserVO> getUserAndMenuPermissionsByUserName(@RequestParam(name = "userName") String userName);
 
 
@@ -46,6 +46,6 @@ public interface UserFeign {
      * @param userName 用户名称
      * @return 用户信息
      */
-    @GetMapping("/admin/system/provider/users/menu-tree")
+    @GetMapping("/admin/system/users/menu-tree")
     ServerResponse<List<MenuVO>> getMenuTreeByUserName(@RequestParam(name = "userName") String userName);
 }

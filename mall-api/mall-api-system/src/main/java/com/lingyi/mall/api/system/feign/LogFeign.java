@@ -22,6 +22,6 @@ public interface LogFeign {
      * @param log 。。
      * @return ServerResponse
      */
-    @PostMapping("/admin/system/provider/logs")
+    @PostMapping("/admin/system/logs")
     ServerResponse<Void> save(@RequestBody Log log);
 }

@@ -3,8 +3,11 @@ package com.lingyi.mall.common.base.aspect;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.StopWatch;
+import cn.hutool.core.util.ObjUtil;
+import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
+import com.lingyi.mall.common.base.enums.YN;
 import com.lingyi.mall.common.base.task.BaseAsyncTask;
 import com.lingyi.mall.common.base.util.RequestUtil;
 import jakarta.servlet.ServletRequest;
@@ -28,6 +31,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.List;
 import java.util.Map;
@@ -94,21 +99,25 @@ public class LogAspect {
     @Around("dataBasePointcut()")
     public Object dataBaseAround(ProceedingJoinPoint joinPoint) throws Throwable {
         Object result = null;
-        boolean isSuccess = false;
         String failReason = null;
+        StopWatch sw = new StopWatch();
         try {
+            sw.start();
             result = joinPoint.proceed(joinPoint.getArgs());
-            isSuccess = true;
             return result;
         } catch (Throwable t) {
             failReason = t.getMessage();
             throw t;
         } finally {
-            log.info("执行结果参数:{}", result);
-            log.info("执行结果:{}", isSuccess);
-            log.info("执行错误原因:{}", failReason);
-            //TODO 解析并且保存日志逻辑
-            baseAsyncTask.saveLog(null);
+            sw.stop();
+            // 获取该方法上的 Log注解
+            Log logAnnotation = ((MethodSignature) joinPoint.getSignature()).getMethod().getAnnotation(Log.class);
+            //获取log类实例
+            Object log = getInstance();
+            //赋值
+            setValue(log, logAnnotation, joinPoint, result, sw.getLastTaskTimeMillis(), failReason);
+            //异步保存
+            baseAsyncTask.saveLog(log);
         }
     }
 
@@ -250,4 +259,30 @@ public class LogAspect {
         private Object paramValue;
     }
 
+
+    private Object getInstance() {
+        Class<?> clazz;
+        try {
+            clazz = Class.forName("com.lingyi.mall.api.system.entity.Log");
+            Constructor<?> constructor = clazz.getDeclaredConstructor();
+            return constructor.newInstance();
+        } catch (Exception e) {
+            log.error("com.lingyi.mall.api.system.entity.Log new error");
+            return null;
+        }
+    }
+
+    private void setValue(Object log, Log logAnnotation, ProceedingJoinPoint joinPoint, Object result, long taskTime, String failReason) {
+        ReflectUtil.setFieldValue(log, "title", logAnnotation.clientType() + "-" + logAnnotation.title());
+        ReflectUtil.setFieldValue(log, "operationType", logAnnotation.operationType().getCode());
+        ReflectUtil.setFieldValue(log, "callClass", joinPoint.getTarget().getClass().getName());
+        ReflectUtil.setFieldValue(log, "callMethod", joinPoint.getSignature().getName());
+        ReflectUtil.setFieldValue(log, "requestParam", logAnnotation.ignoreParam() ? null : JSON.toJSONString(joinPoint.getArgs()));
+        ReflectUtil.setFieldValue(log, "responseParam", JSON.toJSONString(result));
+        ReflectUtil.setFieldValue(log, "executeDuration", taskTime);
+        ReflectUtil.setFieldValue(log, "executeResult", Objects.nonNull(result) ? YN.Y.getCode() : YN.N.getCode());
+        ReflectUtil.setFieldValue(log, "failReason", failReason);
+        ReflectUtil.setFieldValue(log, "clientIp", RequestUtil.getRemoteHost(((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest()));
+
+    }
 }

@@ -125,13 +125,10 @@ public class SecurityConfig {
                 .addFilterBefore(logoutFilter, LogoutFilter.class)
                 .addFilterBefore(jwtAuthorizationFilter, AuthorizationFilter.class)
                 .sessionManagement(sessionManagementConfigurer -> sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(authorizeHttpRequestsConfigurer -> authorizeHttpRequestsConfigurer.requestMatchers(HttpMethod.GET,
-                                "/swagger-ui/**",
-                                "/doc.html",
-                                "/webjars/**",
-                                "/v3/**",
-                                "/favicon.ico")
-                        .permitAll()
+                .authorizeHttpRequests(authorizeHttpRequestsConfigurer -> authorizeHttpRequestsConfigurer
+                        .requestMatchers(HttpMethod.GET, "/swagger-ui/**", "/doc.html", "/webjars/**", "/v3/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/admin/system/logs").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/app/send-verification-code").permitAll()
                         .anyRequest()
                         .authenticated())
                 .formLogin(AbstractHttpConfigurer::disable)

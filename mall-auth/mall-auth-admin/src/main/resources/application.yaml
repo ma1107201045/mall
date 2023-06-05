@@ -3,6 +3,8 @@ server:
 spring:
   application:
     name: mall-auth-admin
+  main:
+    allow-bean-definition-overriding: true
   jpa:
     generate-ddl: true
     database: mysql
