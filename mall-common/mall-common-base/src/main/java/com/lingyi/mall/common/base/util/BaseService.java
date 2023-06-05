@@ -19,21 +19,21 @@ public interface BaseService<DTO extends Serializable, PARAM extends Serializabl
      *
      * @param dto dto
      */
-    void add(DTO dto);
+    void create(DTO dto);
 
     /**
      * 批量删除
      *
      * @param ids ids
      */
-    void removeByIds(List<ID> ids);
+    void deleteByIds(List<ID> ids);
 
     /**
      * 修改
      *
      * @param dto dto
      */
-    void editById(DTO dto);
+    void updateById(DTO dto);
 
     /**
      * 查找
@@ -41,7 +41,7 @@ public interface BaseService<DTO extends Serializable, PARAM extends Serializabl
      * @param id id
      * @return t
      */
-    VO findById(ID id);
+    VO readById(ID id);
 
     /**
      * 查找列表
@@ -50,7 +50,7 @@ public interface BaseService<DTO extends Serializable, PARAM extends Serializabl
      * @param param     查找参数
      * @return List<VO>
      */
-    List<VO> findListByPageAndParam(BasePageParam pageParam, PARAM param);
+    List<VO> readListByPageAndParam(BasePageParam pageParam, PARAM param);
 
 
 }

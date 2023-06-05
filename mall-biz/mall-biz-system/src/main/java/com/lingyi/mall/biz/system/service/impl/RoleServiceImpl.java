@@ -4,7 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.api.system.dto.RoleDTO;
 import com.lingyi.mall.api.system.entity.Role;
-import com.lingyi.mall.api.system.enums.SystemFailEnum;
+import com.lingyi.mall.api.system.enums.SystemFail;
 import com.lingyi.mall.api.system.param.RoleParam;
 import com.lingyi.mall.api.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.mapper.RoleMapper;
@@ -39,7 +39,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void add(RoleDTO roleDTO) {
+    public void create(RoleDTO roleDTO) {
         //DTO转换Entity
         Role role = BeanUtil.copyProperties(roleDTO, Role.class);
         //保存
@@ -50,20 +50,20 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public void removeByIds(List<Long> ids) {
+    public void deleteByIds(List<Long> ids) {
         roleRepository.deleteAllById(ids);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void editById(RoleDTO roleDTO) {
+    public void updateById(RoleDTO roleDTO) {
         //获取id
         Long id = roleDTO.getId();
         //获取角色信息
         Optional<Role> optional = roleRepository.findById(id);
         //判断用户是否不为空
         if (optional.isEmpty()) {
-            throw new BizException(SystemFailEnum.ROLE_NULL_ERROR);
+            throw new BizException(SystemFail.ROLE_NULL_ERROR);
         }
         //获取用户
         Role role = optional.get();
@@ -78,12 +78,12 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public RoleVO findById(Long id) {
+    public RoleVO readById(Long id) {
         return roleMapper.selectById(id);
     }
 
     @Override
-    public List<RoleVO> findListByPageAndParam(BasePageParam pageParam, RoleParam roleParam) {
+    public List<RoleVO> readListByPageAndParam(BasePageParam pageParam, RoleParam roleParam) {
         PageHelper.startPage(pageParam.getCurrentPage(), pageParam.getPageSize(), pageParam.getSort());
         return roleMapper.selectListByParam(roleParam);
     }

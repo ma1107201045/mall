@@ -32,7 +32,7 @@ public class MenuController {
     @PostMapping
     @PreAuthorize("hasAnyAuthority('mws:menu:save')")
     public ServerResponse<Void> save(@Valid @RequestBody MenuDTO menuDTO) {
-        menuService.add(menuDTO);
+        menuService.create(menuDTO);
         return ServerResponse.success();
     }
 
@@ -40,7 +40,7 @@ public class MenuController {
     @DeleteMapping("/{ids}")
     @PreAuthorize("hasAnyAuthority('mws:menu:remove')")
     public ServerResponse<Void> removeByIds(@PathVariable List<Long> ids) {
-        menuService.removeByIds(ids);
+        menuService.deleteByIds(ids);
         return ServerResponse.success();
     }
 
@@ -49,7 +49,7 @@ public class MenuController {
     @PreAuthorize("hasAnyAuthority('mws:menu:update')")
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody MenuDTO menuDTO) {
         menuDTO.setId(id);
-        menuService.editById(menuDTO);
+        menuService.updateById(menuDTO);
         return ServerResponse.success();
     }
 
@@ -57,7 +57,7 @@ public class MenuController {
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('mws:menu:get')")
     public ServerResponse<MenuVO> getById(@PathVariable Long id) {
-        MenuVO menuVO = menuService.findById(id);
+        MenuVO menuVO = menuService.readById(id);
         return ServerResponse.success(menuVO);
     }
 

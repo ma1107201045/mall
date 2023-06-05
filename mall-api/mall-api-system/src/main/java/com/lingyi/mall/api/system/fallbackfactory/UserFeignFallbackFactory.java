@@ -1,6 +1,5 @@
 package com.lingyi.mall.api.system.fallbackfactory;
 
-import com.lingyi.mall.api.system.dto.UserDTO;
 import com.lingyi.mall.api.system.dto.UserPartDTO;
 import com.lingyi.mall.api.system.feign.UserFeign;
 import com.lingyi.mall.api.system.vo.MenuVO;

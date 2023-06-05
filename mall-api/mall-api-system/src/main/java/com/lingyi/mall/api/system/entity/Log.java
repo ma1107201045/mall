@@ -34,16 +34,22 @@ public class Log extends BaseCommonEntity implements Serializable {
     private String title;
 
     /**
-     * 操作类型 1.增加 2.删除 3.更改 4.查询 5.其他
+     * 操作类型 1.创建 2.删除 3.更改 4.读取 5.其他
      */
     @Column(name = "operation_type")
     private Integer operationType;
 
     /**
-     * 请求方法
+     * 调用类名
      */
-    @Column(name = "request_method", length = 100)
-    private String requestMethod;
+    @Column(name = "call_class", length = 100)
+    private String callClass;
+
+    /**
+     * 调用方法
+     */
+    @Column(name = "call_method", length = 100)
+    private String callMethod;
 
     /**
      * 请求参数
@@ -61,6 +67,18 @@ public class Log extends BaseCommonEntity implements Serializable {
      */
     @Column(name = "execute_duration")
     private Long executeDuration;
+
+    /**
+     * 执行结果 1 成功 0 失败
+     */
+    @Column(name = "execute_result")
+    private Integer executeResult;
+
+    /**
+     * 失败原因
+     */
+    @Column(name = "fail_reason", length = 200)
+    private String failReason;
 
     /**
      * 客户端ip

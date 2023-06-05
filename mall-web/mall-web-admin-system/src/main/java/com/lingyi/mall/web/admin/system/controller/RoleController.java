@@ -27,13 +27,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RoleController {
 
-    private final RoleService mbsRoleService;
+    private final RoleService roleService;
 
     @Operation(summary = "保存", description = "保存")
     @PostMapping
     @PreAuthorize("hasAnyAuthority('mws:role:save')")
     public ServerResponse<Void> save(@Valid @RequestBody RoleDTO roleDTO) {
-        mbsRoleService.add(roleDTO);
+        roleService.create(roleDTO);
         return ServerResponse.success();
     }
 
@@ -41,7 +41,7 @@ public class RoleController {
     @DeleteMapping("/{ids}")
     @PreAuthorize("hasAnyAuthority('mws:role:remove')")
     public ServerResponse<Void> removeByIds(@PathVariable List<Long> ids) {
-        mbsRoleService.removeByIds(ids);
+        roleService.deleteByIds(ids);
         return ServerResponse.success();
     }
 
@@ -50,7 +50,7 @@ public class RoleController {
     @PreAuthorize("hasAnyAuthority('mws:role:update')")
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody RoleDTO roleDTO) {
         roleDTO.setId(id);
-        mbsRoleService.editById(roleDTO);
+        roleService.updateById(roleDTO);
         return ServerResponse.success();
     }
 
@@ -58,7 +58,7 @@ public class RoleController {
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('mws:role:get')")
     public ServerResponse<RoleVO> getById(@PathVariable Long id) {
-        RoleVO roleVO = mbsRoleService.findById(id);
+        RoleVO roleVO = roleService.readById(id);
         return ServerResponse.success(roleVO);
     }
 
@@ -66,7 +66,7 @@ public class RoleController {
     @GetMapping
     @PreAuthorize("hasAnyAuthority('mbs:role:getList')")
     public ServerResponse<List<RoleVO>> getListByPageAndParam(@Valid BasePageParam basePageParam, @Valid RoleParam roleParam) {
-        List<RoleVO> roles = mbsRoleService.findListByPageAndParam(basePageParam, roleParam);
+        List<RoleVO> roles = roleService.readListByPageAndParam(basePageParam, roleParam);
         return ServerResponse.success(roles);
     }
 }

@@ -5,17 +5,20 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.StopWatch;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
+import com.lingyi.mall.common.base.task.BaseAsyncTask;
 import com.lingyi.mall.common.base.util.RequestUtil;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,22 +42,33 @@ import java.util.stream.Collectors;
 @Slf4j
 @Aspect
 @Component
+@RequiredArgsConstructor
 public class LogAspect {
 
+    private final BaseAsyncTask baseAsyncTask;
 
     /**
-     * 设置一个切点
+     * 控制台日志切点
      */
+    @Order(1)
     @Pointcut("execution(public com.lingyi.mall.common.base.util.ServerResponse com.lingyi.mall..*(..))")
-    private void pointcut() {
+    private void consolePointcut() {
 
 
     }
 
-    @Around("pointcut()")
-    public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
+    /**
+     * 数据库日志切点
+     */
+    @Order(2)
+    @Pointcut("@annotation(com.lingyi.mall.common.base.aspect.Log)")
+    private void dataBasePointcut() {
+    }
+
+    @Around("consolePointcut()")
+    public Object consoleAround(ProceedingJoinPoint joinPoint) throws Throwable {
         Object returnValue = null;
-        Throwable t = null;
+        Throwable throwable = null;
         String methodName = null;
         StopWatch sw = new StopWatch();
         try {
@@ -67,13 +81,34 @@ public class LogAspect {
             this.printRequest(paramDescriptionList);
             returnValue = joinPoint.proceed(joinPoint.getArgs());
             return returnValue;
-        } catch (Throwable throwable) {
-            t = throwable;
-            throw throwable;
+        } catch (Throwable e) {
+            throwable = e;
+            throw e;
         } finally {
             sw.stop();
             this.printResponse(returnValue);
-            this.printResult(joinPoint.getTarget().getClass().getName(), methodName, t, sw);
+            this.printResult(joinPoint.getTarget().getClass().getName(), methodName, throwable, sw);
+        }
+    }
+
+    @Around("dataBasePointcut()")
+    public Object dataBaseAround(ProceedingJoinPoint joinPoint) throws Throwable {
+        Object result = null;
+        boolean isSuccess = false;
+        String failReason = null;
+        try {
+            result = joinPoint.proceed(joinPoint.getArgs());
+            isSuccess = true;
+            return result;
+        } catch (Throwable t) {
+            failReason = t.getMessage();
+            throw t;
+        } finally {
+            log.info("执行结果参数:{}", result);
+            log.info("执行结果:{}", isSuccess);
+            log.info("执行错误原因:{}", failReason);
+            //TODO 解析并且保存日志逻辑
+            baseAsyncTask.saveLog(null);
         }
     }
 
@@ -214,4 +249,5 @@ public class LogAspect {
 
         private Object paramValue;
     }
+
 }

@@ -1,13 +1,12 @@
 package com.lingyi.mall.common.base.jpa.listener;
 
 import com.lingyi.mall.common.base.entity.BaseIsDeleteEntity;
-import com.lingyi.mall.common.base.enums.YNEnum;
+import com.lingyi.mall.common.base.enums.YN;
 import jakarta.annotation.Resource;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
@@ -38,7 +37,7 @@ public class CustomAuditingEntityListener {
 
     private void setIsDelete(Object target) {
         if (target instanceof BaseIsDeleteEntity baseIsDeleteEntity && Objects.isNull(baseIsDeleteEntity.getIsDelete())) {
-            baseIsDeleteEntity.setIsDelete(YNEnum.N.getCode());
+            baseIsDeleteEntity.setIsDelete(YN.N.getCode());
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.lingyi.mall.common.security.app.enums;
 
-import com.lingyi.mall.common.base.enums.BaseFailEnum;
+import com.lingyi.mall.common.base.enums.BaseFail;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Getter
 @RequiredArgsConstructor
-public enum FailEnum implements BaseFailEnum {
+public enum FailEnum implements BaseFail {
     /**
      *
      */
