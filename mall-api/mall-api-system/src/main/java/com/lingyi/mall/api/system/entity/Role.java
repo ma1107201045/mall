@@ -48,7 +48,7 @@ public class Role extends BaseIsDeleteEntity implements Serializable {
     @JoinTable(name = "ms_user_role",
             joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "user_id"),
             foreignKey = @ForeignKey(name = "fk_role_id"), inverseForeignKey = @ForeignKey(name = "fk_user_id"),
-            uniqueConstraints = {@UniqueConstraint(name = "fk_role_id", columnNames = "role_id"), @UniqueConstraint(name = "fk_user_id", columnNames = "user_id")})
+            indexes = {@Index(name = "fk_role_id", columnList = "role_id"), @Index(name = "fk_user_id", columnList = "user_id")})
     @ToString.Exclude
     private List<User> users;
 

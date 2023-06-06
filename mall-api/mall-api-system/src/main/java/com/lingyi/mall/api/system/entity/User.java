@@ -29,7 +29,7 @@ import java.util.Objects;
 @DynamicInsert
 @DynamicUpdate
 @Entity
-@Table(name = "ms_user")
+@Table(name = "ms_user", uniqueConstraints = @UniqueConstraint(name = "uk_user_name", columnNames = "user_name"))
 public class User extends BaseIsDeleteEntity implements Serializable {
 
     @Serial
