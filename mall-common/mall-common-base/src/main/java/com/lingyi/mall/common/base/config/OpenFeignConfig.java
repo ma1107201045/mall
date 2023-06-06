@@ -21,6 +21,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @Author: maweiyan
@@ -43,7 +44,7 @@ public class OpenFeignConfig {
             // 获取原请求属性
             ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
             //判空
-            if (ObjUtil.isNull(attributes)) {
+            if (Objects.isNull(attributes)) {
                 return;
             }
             // 获取原请求
