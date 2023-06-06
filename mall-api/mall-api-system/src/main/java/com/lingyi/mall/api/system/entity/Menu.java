@@ -23,83 +23,52 @@ import java.util.Objects;
 @DynamicInsert
 @DynamicUpdate
 @Entity
-@Table(name = "mbs_menu")
+@Table(name = "ms_menu")
 public class Menu extends BaseIsDeleteEntity implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -6881064204751732279L;
 
-    /**
-     * 菜单名称
-     */
-    @Column(name = "name", nullable = false, length = 20)
+    @Column(name = "name", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '菜单名称'")
     private String name;
 
-    /**
-     * 菜单类型 1目录 2 菜单 3 按钮
-     */
-    @Column(name = "type", nullable = false)
+    @Column(name = "type", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '菜单类型'")
     private Integer type;
 
-    /**
-     * 父级菜单id
-     */
-    @Column(name = "parent_id", nullable = false)
+    @Column(name = "parent_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '父级菜单id'")
     private Long parentId;
 
-    /**
-     * 菜单图标
-     */
-    @Column(name = "icon", length = 50)
+    @Column(name = "icon", columnDefinition = "VARCHAR(50) DEFAULT '' COMMENT '菜单图标'")
     private String icon;
 
-    /**
-     * 菜单顺序
-     */
-    @Column(name = "sort")
+    @Column(name = "sort", columnDefinition = "INT(11) UNSIGNED DEFAULT NULL COMMENT '菜单顺序")
     private Integer sort;
 
-
-    /**
-     * 是否启用 1 是 0 否
-     */
-    @Column(name = "is_enable")
+    @Column(name = "is_enable", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '是否启用 1 是 0 否'")
     private Integer isEnable;
 
-    /**
-     * 路由地址
-     */
-    @Column(name = "path", length = 100)
+    @Column(name = "path", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '路由地址'")
     private String path;
 
-    /**
-     * 组件路径
-     */
-    @Column(name = "component_path", length = 100)
+    @Column(name = "component_path", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '组件路径'")
     private String componentPath;
 
-    /**
-     * 组件名称
-     */
-    @Column(name = "component_name", length = 20)
+    @Column(name = "component_name", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '组件路径'")
     private String componentName;
 
-    /**
-     * 按钮权限标识
-     */
-    @Column(name = "permission", length = 100)
+    @Column(name = "permission", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '按钮权限标识'")
     private String permission;
 
-    /**
-     * 备注
-     */
-    @Column(name = "remark")
+    @Column(name = "remark", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '备注'")
     private String remark;
     /**
      * 角色集
      */
     @ManyToMany
-    @JoinTable(name = "mbs_role_menu", joinColumns = @JoinColumn(name = "menu_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "ms_role_menu",
+            joinColumns = @JoinColumn(name = "menu_id"), inverseJoinColumns = @JoinColumn(name = "role_id"),
+            foreignKey = @ForeignKey(name = "fk_menu_id"), inverseForeignKey = @ForeignKey(name = "fk_role_id2"),
+            uniqueConstraints = {@UniqueConstraint(name = "fk_menu_id", columnNames = "menu_id"), @UniqueConstraint(name = "fk_role_id2", columnNames = "role_id")})
     @ToString.Exclude
     private List<Role> roles;
 

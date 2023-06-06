@@ -1,11 +1,11 @@
 package com.lingyi.mall.common.base.entity;
 
-import com.lingyi.mall.common.base.jpa.listener.CustomAuditingEntityListener;
+import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
-import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.Persistent;
 
 import java.util.Objects;
 
@@ -20,8 +20,7 @@ import java.util.Objects;
 @MappedSuperclass
 public abstract class BaseIsDeleteEntity extends BaseCommonEntity {
 
-
-    @Column(name = "is_delete", nullable = false, length = 4)
+    @Column(name = "is_delete", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '是否删除 1是 0否'")
     protected Integer isDelete;
 
     @Override

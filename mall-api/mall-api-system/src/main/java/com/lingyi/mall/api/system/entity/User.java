@@ -29,78 +29,45 @@ import java.util.Objects;
 @DynamicInsert
 @DynamicUpdate
 @Entity
-@Table(name = "mbs_user")
+@Table(name = "ms_user")
 public class User extends BaseIsDeleteEntity implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 5771438753938667975L;
 
-    /**
-     * 用户名称
-     */
-    @Column(name = "user_name", nullable = false, length = 20)
+    @Column(name = "user_name", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '用户名称'")
     private String userName;
-    /**
-     * 真实姓名
-     */
-    @Column(name = "real_name", length = 20)
+
+    @Column(name = "real_name", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '真实姓名'")
     private String realName;
 
-    /**
-     * 昵称
-     */
-    @Column(name = "nickname", length = 20)
+    @Column(name = "nickname", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '昵称'")
     private String nickname;
 
-    /**
-     * 性别 1 男 2 女
-     */
-    @Column(name = "sex")
+    @Column(name = "sex", columnDefinition = "TINYINT(4) UNSIGNED DEFAULT NULL COMMENT '性别 1 男 2 女'")
     private Integer sex;
 
-    /**
-     * 密码
-     */
     @JsonIgnore
-    @Column(name = "password", nullable = false, length = 200)
+    @Column(name = "password", columnDefinition = "VARCHAR(100) NOT NULL COMMENT '密码'")
     private String password;
 
-    /**
-     * 头像
-     */
-    @Column(name = "head_portrait", length = 100)
+    @Column(name = "head_portrait", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '密码'")
     private String headPortrait;
 
-    /**
-     * 邮箱
-     */
     @Schema(description = "邮箱")
-    @Column(name = "email", length = 20)
+    @Column(name = "email", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '邮箱'")
     private String email;
 
-    /**
-     * 手机号
-     */
-    @Column(name = "phone_number", length = 11)
+    @Column(name = "phone_number", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '手机号'")
     private String phoneNumber;
 
-    /**
-     * 最后登录IP
-     */
-    @Column(name = "last_login_ip", length = 30)
+    @Column(name = "last_login_ip", columnDefinition = "INT(30) COMMENT '手机号'")
     private String lastLoginIp;
 
-
-    /**
-     * 是否启用 1 是 0 否
-     */
-    @Column(name = "is_enable", nullable = false)
+    @Column(name = "is_enable", columnDefinition = "TINYINT(4) NOT NULL COMMENT '是否启用 1 是 0 否'")
     private Integer isEnable;
 
-    /**
-     * 备注
-     */
-    @Column(name = "remark")
+    @Column(name = "remark", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '备注'")
     private String remark;
 
     /**

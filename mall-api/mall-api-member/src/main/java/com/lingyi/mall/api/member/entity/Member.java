@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 @DynamicInsert
 @DynamicUpdate
 @Entity
-@Table(name = "mbm_member")
+@Table(name = "mm_member")
 public class Member extends BaseIdEntity implements Serializable {
 
     @Serial

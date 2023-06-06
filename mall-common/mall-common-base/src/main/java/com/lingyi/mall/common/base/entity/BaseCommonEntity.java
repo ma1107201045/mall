@@ -28,21 +28,19 @@ public abstract class BaseCommonEntity extends BaseIdEntity {
 
 
     @CreatedBy
-    @Column(name = "create_by", nullable = false, length = 20, updatable = false)
+    @Column(name = "create_by", updatable = false, columnDefinition = "varchar(20) NOT NULL COMMENT '创建人'")
     protected String createBy;
 
-
     @CreatedDate
-    @Column(name = "create_date_time", nullable = false, updatable = false)
+    @Column(name = "create_date_time", updatable = false, columnDefinition = "datetime(6) NOT NULL COMMENT '创建时间'")
     protected LocalDateTime createDateTime;
 
     @LastModifiedBy
-    @Column(name = "last_modify_by", nullable = false, length = 20)
+    @Column(name = "last_modify_by", columnDefinition = "varchar(20) NOT NULL COMMENT '最后修改人'")
     protected String lastModifyBy;
 
-
     @LastModifiedDate
-    @Column(name = "last_modify_date_time", nullable = false)
+    @Column(name = "last_modify_date_time", columnDefinition = "datetime(6) NOT NULL COMMENT '最后修改时间'")
     protected LocalDateTime lastModifyDateTime;
 
     @Override

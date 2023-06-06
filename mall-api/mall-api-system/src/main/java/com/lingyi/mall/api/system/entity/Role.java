@@ -23,40 +23,32 @@ import java.util.Objects;
 @DynamicInsert
 @DynamicUpdate
 @Entity
-@Table(name = "mbs_role")
+@Table(name = "ms_role")
 public class Role extends BaseIsDeleteEntity implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -5280755884593902334L;
-    /**
-     * 角色名称
-     */
-    @Column(name = "name", length = 20)
+
+    @Column(name = "name", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '角色名称'")
     private String name;
 
-    /**
-     * 是否启用 1 是 0 否
-     */
-    @Column(name = "is_enable")
-    private Integer isEnable;
-
-    /**
-     * 角色顺序
-     */
-    @Column(name = "sort", length = 11)
+    @Column(name = "sort", columnDefinition = "INT(11) UNSIGNED DEFAULT NULL COMMENT '角色顺序'")
     private Integer sort;
 
-    /**
-     * 备注
-     */
-    @Column(name = "remark")
+    @Column(name = "is_enable", columnDefinition = "TINYINT(4) NOT NULL COMMENT '是否启用 1 是 0 否'")
+    private Integer isEnable;
+
+    @Column(name = "remark", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '备注'")
     private String remark;
 
     /**
      * 用户集
      */
     @ManyToMany
-    @JoinTable(name = "mbs_user_role", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @JoinTable(name = "ms_user_role",
+            joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "user_id"),
+            foreignKey = @ForeignKey(name = "fk_role_id"), inverseForeignKey = @ForeignKey(name = "fk_user_id"),
+            uniqueConstraints = {@UniqueConstraint(name = "fk_role_id", columnNames = "role_id"), @UniqueConstraint(name = "fk_user_id", columnNames = "user_id")})
     @ToString.Exclude
     private List<User> users;
 

@@ -1,8 +1,8 @@
 server:
-  port: 8002
+  port: 8003
 spring:
   application:
-    name: mall-web-app-base
+    name: mall-web-admin-member
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     generate-ddl: true
@@ -15,7 +15,7 @@ spring:
         dialect:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://rm-2ze09g9o0bb02q5r54o.mysql.rds.aliyuncs.com:3306/mall-base?serverTimezone=GMT%2B8
+    url: jdbc:mysql://rm-2ze09g9o0bb02q5r54o.mysql.rds.aliyuncs.com:3306/mall-member?serverTimezone=GMT%2B8
     username: jinbihu_shop
     password: Jinbihu_2023
   data:

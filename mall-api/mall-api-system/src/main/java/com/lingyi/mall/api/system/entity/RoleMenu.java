@@ -22,7 +22,7 @@ import java.util.Objects;
 @DynamicInsert
 @DynamicUpdate
 @Entity
-@Table(name = "mbs_role_menu")
+@Table(name = "ms_role_menu")
 public class RoleMenu extends BaseCommonEntity implements Serializable {
 
 
@@ -32,14 +32,14 @@ public class RoleMenu extends BaseCommonEntity implements Serializable {
      * 角色id
      */
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "role_id", nullable = false, foreignKey = @ForeignKey(name = "fk_role_id2"))
+    @JoinColumn(name = "role_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '角色id'")
     @ToString.Exclude
     private Role role;
     /**
      * 菜单id
      */
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "menu_id", nullable = false, foreignKey = @ForeignKey(name = "fk_menu_id"))
+    @JoinColumn(name = "menu_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '菜单id'")
     @ToString.Exclude
     private Menu menu;
 

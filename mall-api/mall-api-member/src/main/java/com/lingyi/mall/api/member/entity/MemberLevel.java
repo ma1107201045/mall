@@ -25,7 +25,7 @@ import java.io.Serializable;
 @DynamicInsert
 @DynamicUpdate
 @Entity
-@Table(name = "mbm_member_level")
+@Table(name = "mm_member_level")
 public class MemberLevel extends BaseIdEntity implements Serializable {
 
     @Serial

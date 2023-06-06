@@ -26,8 +26,8 @@ public abstract class BaseIdEntity {
     @Id
     @GeneratedValue(generator = "SnowflakeIdentifierGenerator")
     @GenericGenerator(name = "SnowflakeIdentifierGenerator", type = SnowflakeIdentifierGenerator.class)
-    @Column(name = "id", nullable = false, length = 20)
-    private Long id;
+    @Column(name = "id", columnDefinition = "BIGINT(20)  UNSIGNED NOT NULL COMMENT '主键id'")
+    protected Long id;
 
     @Override
     public boolean equals(Object o) {

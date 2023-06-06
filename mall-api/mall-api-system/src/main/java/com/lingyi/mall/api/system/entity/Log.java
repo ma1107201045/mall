@@ -1,11 +1,10 @@
 package com.lingyi.mall.api.system.entity;
 
 import com.lingyi.mall.common.base.entity.BaseCommonEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.FilterJoinTable;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -22,73 +21,42 @@ import java.io.Serializable;
 @ToString(callSuper = true)
 @DynamicInsert
 @Entity
-@Table(name = "mbs_log")
+@Table(name = "ms_log")
 public class Log extends BaseCommonEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = 3263673947812164534L;
 
-    /**
-     * 标题
-     */
-    @Column(name = "title", length = 200)
+    @Column(name = "title", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '标题'")
     private String title;
 
-    /**
-     * 操作类型 1.创建 2.删除 3.更改 4.读取 5.其他
-     */
-    @Column(name = "operation_type")
+    @Column(name = "operation_type", columnDefinition = "TINYINT(4) DEFAULT NULL COMMENT '操作类型 1.创建 2.删除 3.更改 4.读取 5.其他'")
     private Integer operationType;
 
-    /**
-     * 调用类名
-     */
-    @Column(name = "call_class", length = 100)
+    @Column(name = "call_class", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '调用类名'")
     private String callClass;
 
-    /**
-     * 调用方法
-     */
-    @Column(name = "call_method", length = 100)
+    @Column(name = "call_method", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '调用方法'")
     private String callMethod;
 
-    /**
-     * 请求参数
-     */
-    @Column(name = "request_param", length = 200)
+    @Column(name = "request_param", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '请求参数'")
     private String requestParam;
-    /**
-     * 返回参数
-     */
-    @Column(name = "response_param", length = 200)
+
+    @Column(name = "response_param", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '返回参数'")
     private String responseParam;
 
-    /**
-     * 执行时长 单位ms
-     */
-    @Column(name = "execute_duration")
+    @Column(name = "execute_duration", columnDefinition = "BIGINT(20) UNSIGNED DEFAULT NULL COMMENT '执行时长 单位ms'")
     private Long executeDuration;
 
-    /**
-     * 执行结果 1 成功 0 失败
-     */
-    @Column(name = "execute_result")
+    @Column(name = "execute_result", columnDefinition = "TINYINT(4) DEFAULT 1 COMMENT '执行结果 1 成功 0 失败'")
     private Integer executeResult;
 
-    /**
-     * 失败原因
-     */
-    @Column(name = "fail_reason", length = 200)
+    @Column(name = "fail_reason", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '失败原因'")
     private String failReason;
 
-    /**
-     * 客户端ip
-     */
-    @Column(name = "client_ip", length = 20)
+    @Column(name = "client_ip", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '客户端ip'")
     private String clientIp;
-    /**
-     * 备注
-     */
-    @Column(name = "remark", length = 200)
+
+    @Column(name = "remark", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '备注'")
     private String remark;
 
 }
