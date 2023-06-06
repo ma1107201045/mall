@@ -14,6 +14,7 @@
         <module>mall-biz-base</module>
         <module>mall-biz-member</module>
         <module>mall-biz-system</module>
+        <module>mall-biz-product</module>
     </modules>
     <dependencies>
         <dependency>

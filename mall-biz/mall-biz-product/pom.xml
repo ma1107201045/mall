@@ -3,22 +3,14 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.lingyi</groupId>
-        <artifactId>mall</artifactId>
+        <artifactId>mall-biz</artifactId>
         <version>${revision}</version>
     </parent>
-    <artifactId>mall-api</artifactId>
-    <packaging>pom</packaging>
-    <name>${project.artifactId}</name>
-    <description>电商项目-API父工程</description>
-    <modules>
-        <module>mall-api-member</module>
-        <module>mall-api-product</module>
-        <module>mall-api-system</module>
-    </modules>
+    <artifactId>mall-biz-product</artifactId>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-base</artifactId>
+            <artifactId>mall-api-product</artifactId>
         </dependency>
     </dependencies>
 </project>
