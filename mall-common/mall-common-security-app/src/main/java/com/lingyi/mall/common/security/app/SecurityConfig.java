@@ -8,6 +8,7 @@ import com.lingyi.mall.common.security.app.authentication.filter.PhoneNumberVeri
 import com.lingyi.mall.common.security.app.authentication.service.MemberDetailsService;
 import com.lingyi.mall.common.security.app.handler.*;
 import com.lingyi.mall.common.security.app.service.impl.MemberDetailsServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -79,11 +80,6 @@ public class SecurityConfig {
     @Bean
     public AuthenticationProvider authenticationProvider(MemberDetailsService memberDetailsService) {
         return new DaoAuthenticationProvider(memberDetailsService);
-    }
-
-    @Bean
-    public MemberDetailsService memberDetailsService() {
-        return new MemberDetailsServiceImpl();
     }
 
     @Bean

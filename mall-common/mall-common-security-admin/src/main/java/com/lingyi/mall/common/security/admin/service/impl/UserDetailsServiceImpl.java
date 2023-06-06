@@ -39,7 +39,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = userVO.getPermissions().stream()
                 .map(SimpleGrantedAuthority::new)
                 .toList();
-        //返回User
+        //组装UserDetailsEntity
         return UserDetailsEntity.builder()
                 .authorities(simpleGrantedAuthorities)
                 .password(userVO.getPassword())

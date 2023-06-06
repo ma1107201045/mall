@@ -34,8 +34,6 @@ public class MemberDetailsEntity implements MemberDetails {
 
     private String userName;
 
-    private LocalDateTime lastLoginDateTime;
-
     private String authorization;
 
 
@@ -67,9 +65,6 @@ public class MemberDetailsEntity implements MemberDetails {
         return userName;
     }
 
-    public LocalDateTime getLastLoginDateTime() {
-        return lastLoginDateTime;
-    }
 
     public void setAuthorization(String authorization) {
         this.authorization = authorization;

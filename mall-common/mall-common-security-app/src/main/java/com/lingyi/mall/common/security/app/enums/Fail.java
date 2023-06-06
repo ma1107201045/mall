@@ -12,13 +12,13 @@ import lombok.RequiredArgsConstructor;
  */
 @Getter
 @RequiredArgsConstructor
-public enum FailEnum implements BaseFail {
+public enum Fail implements BaseFail {
     /**
      *
      */
-    USER_NAME_NOT_NULL_ERROR(8001, "用户名称不能为空"),
+    PHONE_NUMBER_NOT_NULL_ERROR(8001, "手机号不能为空"),
 
-    USER_NAME_NOT_FOUND_ERROR(8001, "用户名称不存在");
+    PHONE_NUMBER_NOT_FOUND_ERROR(8002, "手机号不存在");
 
 
     private final Integer code;
