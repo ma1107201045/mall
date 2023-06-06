@@ -1,0 +1,14 @@
+package com.lingyi.mall.biz.member.service;
+
+import com.lingyi.mall.api.member.entity.MemberLoginLog;
+import com.lingyi.mall.api.member.vo.MemberLoginLogVO;
+import com.lingyi.mall.common.base.util.BaseService;
+
+/**
+ * @author maweiyan
+ * @email 1107201045@qq.com
+ * @datetime 2023/6/6 9:22
+ * @description
+ */
+public interface MemberLoginLogService extends BaseService<MemberLoginLog, MemberLoginLog, MemberLoginLogVO, Long> {
+}

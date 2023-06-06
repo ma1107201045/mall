@@ -53,7 +53,7 @@ public class LogServiceImpl implements LogService {
         //DTO转换Entity
         ConverterUtil.to(log, newLog);
         //更新
-        logRepository.save(log);
+        logRepository.save(newLog);
     }
 
     @Override

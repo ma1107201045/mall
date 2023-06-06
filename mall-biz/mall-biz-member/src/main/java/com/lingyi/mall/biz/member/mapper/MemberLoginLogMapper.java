@@ -1,6 +1,10 @@
 package com.lingyi.mall.biz.member.mapper;
 
+import com.lingyi.mall.api.member.entity.MemberLoginLog;
+import com.lingyi.mall.api.member.vo.MemberLoginLogVO;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * @author maweiyan
@@ -10,4 +14,11 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface MemberLoginLogMapper {
+
+
+    MemberLoginLogVO selectById(Long id);
+
+
+    List<MemberLoginLogVO> selectListByParam(MemberLoginLog memberLoginLog);
+
 }

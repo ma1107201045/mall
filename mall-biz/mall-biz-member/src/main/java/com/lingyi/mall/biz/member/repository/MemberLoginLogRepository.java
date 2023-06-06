@@ -10,4 +10,6 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryImplementati
  * @description
  */
 public interface MemberLoginLogRepository extends JpaRepositoryImplementation<MemberLoginLog, Long> {
+
+
 }

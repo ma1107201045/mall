@@ -53,7 +53,6 @@ public class MemberVO implements Serializable {
     @Schema(description = "是否启用 1 是 0 否")
     private Integer isEnable;
 
-
     @Schema(description = "注册来源 1.Web端 2.Android端 3.IOS端 4.PC端")
     private Integer registerSource;
 
