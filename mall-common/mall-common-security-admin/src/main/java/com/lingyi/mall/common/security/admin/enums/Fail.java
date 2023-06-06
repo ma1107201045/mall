@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Getter
 @RequiredArgsConstructor
-public enum FailEnum implements BaseFail {
+public enum Fail implements BaseFail {
     /**
      *
      */
