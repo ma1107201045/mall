@@ -1,4 +1,4 @@
-package com.lingyi.mall.api.system.param;
+package com.lingyi.mall.api.system.query;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 @Schema(description = "菜单")
 @Data
-public class MenuParam implements Serializable {
+public class MenuQuery implements Serializable {
     @Serial
     private static final long serialVersionUID = -2617029654030868799L;
 

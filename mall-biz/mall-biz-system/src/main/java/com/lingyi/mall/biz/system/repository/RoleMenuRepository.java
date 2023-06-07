@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.system.repository;
 
-import com.lingyi.mall.api.system.entity.RoleMenu;
+import com.lingyi.mall.api.system.entity.RoleMenuDO;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryImplementati
  * @datetime 2023/4/30 22:43
  * @description
  */
-public interface RoleMenuRepository extends JpaRepositoryImplementation<RoleMenu, Long> {
+public interface RoleMenuRepository extends JpaRepositoryImplementation<RoleMenuDO, Long> {
 
     /**
      * 按照角色id删除
@@ -19,6 +19,6 @@ public interface RoleMenuRepository extends JpaRepositoryImplementation<RoleMenu
      * @param roleId 角色id
      */
     @Modifying
-    @Query("DELETE FROM RoleMenu  WHERE role.id=?1")
+    @Query("DELETE FROM RoleMenuDO  WHERE role.id=?1")
     void deleteByRoleId(Long roleId);
 }

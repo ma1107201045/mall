@@ -1,14 +1,12 @@
 package com.lingyi.mall.api.system.consumer;
 
 import com.alibaba.fastjson2.JSON;
-import com.lingyi.mall.api.system.entity.Log;
+import com.lingyi.mall.api.system.entity.LogDO;
 import com.lingyi.mall.api.system.feign.LogFeign;
 import com.lingyi.mall.common.base.exception.OpenFeignException;
 import com.lingyi.mall.common.base.util.ServerResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,9 +22,9 @@ public class LogFeignConsumer {
 
     private final LogFeign logFeign;
 
-    public void save(Log logEntity) {
-        log.info("入参:log:{}", logEntity);
-        ServerResponse<Void> response = logFeign.save(logEntity);
+    public void save(LogDO logDO) {
+        log.info("入参:log:{}", logDO);
+        ServerResponse<Void> response = logFeign.save(logDO);
         if (response.getIsSuccess()) {
             log.info("出参:Void:{}", JSON.toJSONString(response.getData()));
             return;

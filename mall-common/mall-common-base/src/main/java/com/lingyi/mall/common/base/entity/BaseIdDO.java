@@ -20,7 +20,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @MappedSuperclass
-public abstract class BaseIdEntity {
+public abstract class BaseIdDO {
 
 
     @Id
@@ -37,7 +37,7 @@ public abstract class BaseIdEntity {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        BaseIdEntity that = (BaseIdEntity) o;
+        BaseIdDO that = (BaseIdDO) o;
         return Objects.equals(id, that.id);
     }
 

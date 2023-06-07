@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.system.service;
 
-import com.lingyi.mall.api.system.entity.Log;
+import com.lingyi.mall.api.system.entity.LogDO;
 import com.lingyi.mall.common.base.util.BaseService;
 
 /**
@@ -9,5 +9,5 @@ import com.lingyi.mall.common.base.util.BaseService;
  * @datetime 2023/6/3 9:32
  * @description
  */
-public interface LogService extends BaseService<Log, Log, Log, Long> {
+public interface LogService extends BaseService<LogDO, LogDO, LogDO, Long> {
 }

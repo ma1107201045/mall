@@ -1,14 +1,14 @@
 package com.lingyi.mall.biz.member.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.lingyi.mall.api.member.entity.MemberLoginLog;
+import com.lingyi.mall.api.member.entity.MemberLoginLogDO;
 import com.lingyi.mall.api.member.enums.MemberFail;
 import com.lingyi.mall.api.member.vo.MemberLoginLogVO;
 import com.lingyi.mall.biz.member.mapper.MemberLoginLogMapper;
 import com.lingyi.mall.biz.member.repository.MemberLoginLogRepository;
 import com.lingyi.mall.biz.member.service.MemberLoginLogService;
 import com.lingyi.mall.common.base.exception.BizException;
-import com.lingyi.mall.common.base.param.BasePageParam;
+import com.lingyi.mall.common.base.query.BasePageQuery;
 import com.lingyi.mall.common.base.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,8 +31,8 @@ public class MemberLoginLogServiceImpl implements MemberLoginLogService {
     private final MemberLoginLogMapper memberLoginLogMapper;
 
     @Override
-    public void create(MemberLoginLog memberLoginLog) {
-        memberLoginLogRepository.save(memberLoginLog);
+    public void create(MemberLoginLogDO memberLoginLogDO) {
+        memberLoginLogRepository.save(memberLoginLogDO);
     }
 
     @Override
@@ -41,19 +41,19 @@ public class MemberLoginLogServiceImpl implements MemberLoginLogService {
     }
 
     @Override
-    public void updateById(MemberLoginLog memberLoginLog) {
+    public void updateById(MemberLoginLogDO memberLoginLogDO) {
         //获取日志信息
-        Optional<MemberLoginLog> optional = memberLoginLogRepository.findById(memberLoginLog.getId());
+        Optional<MemberLoginLogDO> optional = memberLoginLogRepository.findById(memberLoginLogDO.getId());
         //判断日志是否为空
         if (optional.isEmpty()) {
             throw new BizException(MemberFail.MEMBER_LOGIN_LOG_NULL_ERROR);
         }
         //获取用户
-        MemberLoginLog newMemberLoginLog = optional.get();
+        MemberLoginLogDO newMemberLoginLogDO = optional.get();
         //DTO转换Entity
-        ConverterUtil.to(memberLoginLog, newMemberLoginLog);
+        ConverterUtil.to(memberLoginLogDO, newMemberLoginLogDO);
         //更新
-        memberLoginLogRepository.save(memberLoginLog);
+        memberLoginLogRepository.save(memberLoginLogDO);
     }
 
     @Override
@@ -62,8 +62,8 @@ public class MemberLoginLogServiceImpl implements MemberLoginLogService {
     }
 
     @Override
-    public List<MemberLoginLogVO> readListByPageAndParam(BasePageParam pageParam, MemberLoginLog memberLoginLog) {
+    public List<MemberLoginLogVO> readListByPageAndQuery(BasePageQuery pageParam, MemberLoginLogDO memberLoginLogDO) {
         PageHelper.startPage(pageParam.getCurrentPage(), pageParam.getPageSize(), pageParam.getSort());
-        return memberLoginLogMapper.selectListByParam(memberLoginLog);
+        return memberLoginLogMapper.selectListByParam(memberLoginLogDO);
     }
 }

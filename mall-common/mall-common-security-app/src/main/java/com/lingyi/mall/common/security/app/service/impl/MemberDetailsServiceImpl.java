@@ -4,7 +4,7 @@ import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
 import com.lingyi.mall.api.member.vo.MemberVO;
 import com.lingyi.mall.common.base.entity.MemberDetails;
-import com.lingyi.mall.common.base.entity.MemberDetailsEntity;
+import com.lingyi.mall.common.base.entity.MemberDetailsDO;
 import com.lingyi.mall.common.base.enums.Whether;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.security.app.authentication.service.MemberDetailsService;
@@ -40,7 +40,7 @@ public class MemberDetailsServiceImpl implements MemberDetailsService {
         //ignore
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = Collections.emptyList();
         //组装MemberDetailsEntity
-        return MemberDetailsEntity.builder()
+        return MemberDetailsDO.builder()
                 .authorities(simpleGrantedAuthorities)
                 .phoneNumber(memberVO.getPhoneNumber())
                 .verificationCode(RandomUtil.randomNumbers(6))

@@ -1,7 +1,7 @@
 package com.lingyi.mall.common.base.util;
 
-import com.lingyi.mall.common.base.entity.MemberDetailsEntity;
-import com.lingyi.mall.common.base.entity.UserDetailsEntity;
+import com.lingyi.mall.common.base.entity.MemberDetailsDO;
+import com.lingyi.mall.common.base.entity.UserDetailsDO;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
@@ -23,8 +23,8 @@ public class AuthenticatorUtil {
      *
      * @return UserDetailsEntity
      */
-    public static UserDetailsEntity getUserDetailsEntity() {
-        return (UserDetailsEntity) getPrincipal();
+    public static UserDetailsDO getUserDetailsEntity() {
+        return (UserDetailsDO) getPrincipal();
     }
 
     /**
@@ -32,8 +32,8 @@ public class AuthenticatorUtil {
      *
      * @return UserDetailsEntity
      */
-    public static MemberDetailsEntity getMemberDetailsEntity() {
-        return (MemberDetailsEntity) getPrincipal();
+    public static MemberDetailsDO getMemberDetailsEntity() {
+        return (MemberDetailsDO) getPrincipal();
     }
 
     /**
@@ -42,7 +42,7 @@ public class AuthenticatorUtil {
      * @return 用户id
      */
     public static Long getUserId() {
-        return getPrincipal() instanceof UserDetailsEntity ?
+        return getPrincipal() instanceof UserDetailsDO ?
                 getUserDetailsEntity().getUserId() :
                 getMemberDetailsEntity().getUserId();
     }
@@ -53,7 +53,7 @@ public class AuthenticatorUtil {
      * @return 用户名称
      */
     public static String getUserName() {
-        return getPrincipal() instanceof UserDetailsEntity ?
+        return getPrincipal() instanceof UserDetailsDO ?
                 getUserDetailsEntity().getUsername() :
                 getMemberDetailsEntity().getUserName();
     }

@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.base.param;
+package com.lingyi.mall.common.base.query;
 
 import com.lingyi.mall.common.base.constant.BaseConstant;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -19,7 +19,7 @@ import java.io.Serializable;
  */
 @Schema(description = "后台分页信息")
 @Data
-public class BasePageParam implements Serializable {
+public class BasePageQuery implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -7930591841165119678L;
@@ -48,7 +48,7 @@ public class BasePageParam implements Serializable {
         return sortField + BaseConstant.SPACE_CHAR + sortDirection;
     }
 
-    public static BasePageParam getEmpty() {
-        return new BasePageParam();
+    public static BasePageQuery getEmpty() {
+        return new BasePageQuery();
     }
 }

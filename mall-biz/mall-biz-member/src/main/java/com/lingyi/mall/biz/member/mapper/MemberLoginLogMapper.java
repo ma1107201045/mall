@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.member.mapper;
 
-import com.lingyi.mall.api.member.entity.MemberLoginLog;
+import com.lingyi.mall.api.member.entity.MemberLoginLogDO;
 import com.lingyi.mall.api.member.vo.MemberLoginLogVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -19,6 +19,6 @@ public interface MemberLoginLogMapper {
     MemberLoginLogVO selectById(Long id);
 
 
-    List<MemberLoginLogVO> selectListByParam(MemberLoginLog memberLoginLog);
+    List<MemberLoginLogVO> selectListByParam(MemberLoginLogDO memberLoginLogDO);
 
 }

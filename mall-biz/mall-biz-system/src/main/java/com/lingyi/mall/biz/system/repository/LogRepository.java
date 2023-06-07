@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.system.repository;
 
-import com.lingyi.mall.api.system.entity.Log;
+import com.lingyi.mall.api.system.entity.LogDO;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 
 /**
@@ -9,5 +9,5 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryImplementati
  * @datetime 2023/6/3 9:29
  * @description
  */
-public interface LogRepository extends JpaRepositoryImplementation<Log, Long> {
+public interface LogRepository extends JpaRepositoryImplementation<LogDO, Long> {
 }

@@ -24,7 +24,7 @@ import java.util.Objects;
 @Setter
 @MappedSuperclass
 @EntityListeners(CustomAuditingEntityListener.class)
-public abstract class BaseCommonEntity extends BaseIdEntity {
+public abstract class BaseCommonDO extends BaseIdDO {
 
 
     @CreatedBy
@@ -54,7 +54,7 @@ public abstract class BaseCommonEntity extends BaseIdEntity {
         if (!super.equals(o)) {
             return false;
         }
-        BaseCommonEntity that = (BaseCommonEntity) o;
+        BaseCommonDO that = (BaseCommonDO) o;
         if (!Objects.equals(createBy, that.createBy)) {
             return false;
         }

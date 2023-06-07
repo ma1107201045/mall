@@ -4,7 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTUtil;
-import com.lingyi.mall.common.base.entity.MemberDetailsEntity;
+import com.lingyi.mall.common.base.entity.MemberDetailsDO;
 import com.lingyi.mall.common.security.app.SecurityConfig;
 import com.lingyi.mall.common.security.app.authentication.token.PhoneNumberVerificationCodeToken;
 import jakarta.servlet.FilterChain;
@@ -58,7 +58,7 @@ public class JwtAuthorizationFilter extends GenericFilterBean {
         if (!flag) {
             this.throwException();
         }
-        MemberDetailsEntity memberDetails = this.getMemberDetailsEntity(token);
+        MemberDetailsDO memberDetails = this.getMemberDetailsEntity(token);
         this.setAuthentication(memberDetails);
         chain.doFilter(request, response);
     }
@@ -67,17 +67,17 @@ public class JwtAuthorizationFilter extends GenericFilterBean {
         throw new InsufficientAuthenticationException(this.messages.getMessage("ExceptionTranslationFilter.insufficientAuthentication", "Full authentication is required to access this resource"));
     }
 
-    private MemberDetailsEntity getMemberDetailsEntity(String token) {
+    private MemberDetailsDO getMemberDetailsEntity(String token) {
         JWT jwt = JWTUtil.parseToken(token);
         JSONObject payloads = jwt.getPayloads();
-        return payloads.toBean(MemberDetailsEntity.class);
+        return payloads.toBean(MemberDetailsDO.class);
     }
 
-    private void setAuthentication(MemberDetailsEntity memberDetailsEntity) {
+    private void setAuthentication(MemberDetailsDO memberDetailsDO) {
         SecurityContext securityContext = SecurityContextHolder.getContext();
-        PhoneNumberVerificationCodeToken token = new PhoneNumberVerificationCodeToken(memberDetailsEntity.getPhoneNumber(),
-                memberDetailsEntity.getVerificationCode(),
-                this.authoritiesMapper.mapAuthorities(memberDetailsEntity.getAuthorities()));
+        PhoneNumberVerificationCodeToken token = new PhoneNumberVerificationCodeToken(memberDetailsDO.getPhoneNumber(),
+                memberDetailsDO.getVerificationCode(),
+                this.authoritiesMapper.mapAuthorities(memberDetailsDO.getAuthorities()));
         securityContext.setAuthentication(token);
     }
 }

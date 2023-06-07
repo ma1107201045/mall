@@ -1,11 +1,9 @@
 package com.lingyi.mall.common.base.entity;
 
-import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.Persistent;
 
 import java.util.Objects;
 
@@ -18,7 +16,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @MappedSuperclass
-public abstract class BaseIsDeleteEntity extends BaseCommonEntity {
+public abstract class BaseIsDeleteDO extends BaseCommonDO {
 
     @Column(name = "is_delete", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '是否删除 1是 0否'")
     protected Integer isDelete;
@@ -34,7 +32,7 @@ public abstract class BaseIsDeleteEntity extends BaseCommonEntity {
         if (!super.equals(o)) {
             return false;
         }
-        BaseIsDeleteEntity that = (BaseIsDeleteEntity) o;
+        BaseIsDeleteDO that = (BaseIsDeleteDO) o;
         return Objects.equals(isDelete, that.isDelete);
     }
 

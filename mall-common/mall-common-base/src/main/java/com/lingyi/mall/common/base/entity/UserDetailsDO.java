@@ -15,7 +15,7 @@ import java.util.Collection;
  * @Description:
  */
 @Builder
-public class UserDetailsEntity implements UserDetails {
+public class UserDetailsDO implements UserDetails {
     @Serial
     private static final long serialVersionUID = 3805426958468933085L;
 

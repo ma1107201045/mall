@@ -1,6 +1,6 @@
 package com.lingyi.mall.api.system.entity;
 
-import com.lingyi.mall.common.base.entity.BaseIsDeleteEntity;
+import com.lingyi.mall.common.base.entity.BaseIsDeleteDO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
@@ -24,7 +24,7 @@ import java.util.Objects;
 @DynamicUpdate
 @Entity
 @Table(name = "ms_menu")
-public class Menu extends BaseIsDeleteEntity implements Serializable {
+public class MenuDO extends BaseIsDeleteDO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -6881064204751732279L;
@@ -70,7 +70,7 @@ public class Menu extends BaseIsDeleteEntity implements Serializable {
             foreignKey = @ForeignKey(name = "fk_menu_id"), inverseForeignKey = @ForeignKey(name = "fk_role_id2"),
             uniqueConstraints = {@UniqueConstraint(name = "fk_menu_id", columnNames = "menu_id"), @UniqueConstraint(name = "fk_role_id2", columnNames = "role_id")})
     @ToString.Exclude
-    private List<Role> roles;
+    private List<RoleDO> roleDOS;
 
     @Override
     public boolean equals(Object o) {
@@ -83,41 +83,41 @@ public class Menu extends BaseIsDeleteEntity implements Serializable {
         if (!super.equals(o)) {
             return false;
         }
-        Menu mbsMenu = (Menu) o;
-        if (!Objects.equals(name, mbsMenu.name)) {
+        MenuDO mbsMenuDO = (MenuDO) o;
+        if (!Objects.equals(name, mbsMenuDO.name)) {
             return false;
         }
-        if (!Objects.equals(type, mbsMenu.type)) {
+        if (!Objects.equals(type, mbsMenuDO.type)) {
             return false;
         }
-        if (!Objects.equals(parentId, mbsMenu.parentId)) {
+        if (!Objects.equals(parentId, mbsMenuDO.parentId)) {
             return false;
         }
-        if (!Objects.equals(icon, mbsMenu.icon)) {
+        if (!Objects.equals(icon, mbsMenuDO.icon)) {
             return false;
         }
-        if (!Objects.equals(sort, mbsMenu.sort)) {
+        if (!Objects.equals(sort, mbsMenuDO.sort)) {
             return false;
         }
-        if (!Objects.equals(remark, mbsMenu.remark)) {
+        if (!Objects.equals(remark, mbsMenuDO.remark)) {
             return false;
         }
-        if (!Objects.equals(isEnable, mbsMenu.isEnable)) {
+        if (!Objects.equals(isEnable, mbsMenuDO.isEnable)) {
             return false;
         }
-        if (!Objects.equals(path, mbsMenu.path)) {
+        if (!Objects.equals(path, mbsMenuDO.path)) {
             return false;
         }
-        if (!Objects.equals(componentPath, mbsMenu.componentPath)) {
+        if (!Objects.equals(componentPath, mbsMenuDO.componentPath)) {
             return false;
         }
-        if (!Objects.equals(componentName, mbsMenu.componentName)) {
+        if (!Objects.equals(componentName, mbsMenuDO.componentName)) {
             return false;
         }
-        if (!Objects.equals(permission, mbsMenu.permission)) {
+        if (!Objects.equals(permission, mbsMenuDO.permission)) {
             return false;
         }
-        return Objects.equals(roles, mbsMenu.roles);
+        return Objects.equals(roleDOS, mbsMenuDO.roleDOS);
     }
 
     @Override
@@ -134,7 +134,7 @@ public class Menu extends BaseIsDeleteEntity implements Serializable {
         result = 31 * result + (componentPath != null ? componentPath.hashCode() : 0);
         result = 31 * result + (componentName != null ? componentName.hashCode() : 0);
         result = 31 * result + (permission != null ? permission.hashCode() : 0);
-        result = 31 * result + (roles != null ? roles.hashCode() : 0);
+        result = 31 * result + (roleDOS != null ? roleDOS.hashCode() : 0);
         return result;
     }
 }

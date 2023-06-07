@@ -1,7 +1,7 @@
 package com.lingyi.mall.common.base.util;
 
 
-import com.lingyi.mall.common.base.param.BasePageParam;
+import com.lingyi.mall.common.base.query.BasePageQuery;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  * @datetime 2023/5/4 17:08
  * @description
  */
-public interface BaseService<DTO extends Serializable, PARAM extends Serializable, VO extends Serializable, ID extends Serializable> {
+public interface BaseService<DTO extends Serializable, QUERY extends Serializable, VO extends Serializable, ID extends Serializable> {
 
     /**
      * 添加
@@ -46,11 +46,11 @@ public interface BaseService<DTO extends Serializable, PARAM extends Serializabl
     /**
      * 查找列表
      *
-     * @param pageParam 分页信息
-     * @param param     查找参数
+     * @param pageQuery 分页信息
+     * @param query     查找参数
      * @return List<VO>
      */
-    List<VO> readListByPageAndParam(BasePageParam pageParam, PARAM param);
+    List<VO> readListByPageAndQuery(BasePageQuery pageQuery, QUERY query);
 
 
 }

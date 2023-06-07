@@ -1,13 +1,13 @@
 package com.lingyi.mall.biz.system.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.lingyi.mall.api.system.entity.Log;
+import com.lingyi.mall.api.system.entity.LogDO;
 import com.lingyi.mall.api.system.enums.SystemFail;
 import com.lingyi.mall.biz.system.mapper.LogMapper;
 import com.lingyi.mall.biz.system.repository.LogRepository;
 import com.lingyi.mall.biz.system.service.LogService;
 import com.lingyi.mall.common.base.exception.BizException;
-import com.lingyi.mall.common.base.param.BasePageParam;
+import com.lingyi.mall.common.base.query.BasePageQuery;
 import com.lingyi.mall.common.base.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,8 +31,8 @@ public class LogServiceImpl implements LogService {
     private final LogMapper logMapper;
 
     @Override
-    public void create(Log log) {
-        logRepository.save(log);
+    public void create(LogDO logDO) {
+        logRepository.save(logDO);
     }
 
     @Override
@@ -41,29 +41,29 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public void updateById(Log log) {
+    public void updateById(LogDO logDO) {
         //获取日志信息
-        Optional<Log> optional = logRepository.findById(log.getId());
+        Optional<LogDO> optional = logRepository.findById(logDO.getId());
         //判断日志是否为空
         if (optional.isEmpty()) {
             throw new BizException(SystemFail.LOG_NULL_ERROR);
         }
         //获取用户
-        Log newLog = optional.get();
+        LogDO newLogDO = optional.get();
         //DTO转换Entity
-        ConverterUtil.to(log, newLog);
+        ConverterUtil.to(logDO, newLogDO);
         //更新
-        logRepository.save(newLog);
+        logRepository.save(newLogDO);
     }
 
     @Override
-    public Log readById(Long id) {
+    public LogDO readById(Long id) {
         return logMapper.selectById(id);
     }
 
     @Override
-    public List<Log> readListByPageAndParam(BasePageParam pageParam, Log log) {
+    public List<LogDO> readListByPageAndQuery(BasePageQuery pageParam, LogDO logDO) {
         PageHelper.startPage(pageParam.getCurrentPage(), pageParam.getPageSize(), pageParam.getSort());
-        return logMapper.selectListByParam(log);
+        return logMapper.selectListByParam(logDO);
     }
 }

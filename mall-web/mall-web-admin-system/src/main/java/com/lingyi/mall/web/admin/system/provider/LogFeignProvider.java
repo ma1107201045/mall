@@ -1,6 +1,6 @@
 package com.lingyi.mall.web.admin.system.provider;
 
-import com.lingyi.mall.api.system.entity.Log;
+import com.lingyi.mall.api.system.entity.LogDO;
 import com.lingyi.mall.api.system.feign.LogFeign;
 import com.lingyi.mall.biz.system.service.LogService;
 import com.lingyi.mall.common.base.util.ServerResponse;
@@ -24,8 +24,8 @@ public class LogFeignProvider implements LogFeign {
 
     @Operation(summary = "添加", description = "添加")
     @Override
-    public ServerResponse<Void> save(Log log) {
-        logService.create(log);
+    public ServerResponse<Void> save(LogDO logDO) {
+        logService.create(logDO);
         return ServerResponse.success();
     }
 }

@@ -1,6 +1,6 @@
 package com.lingyi.mall.api.system.entity;
 
-import com.lingyi.mall.common.base.entity.BaseCommonEntity;
+import com.lingyi.mall.common.base.entity.BaseCommonDO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
@@ -23,7 +23,7 @@ import java.util.Objects;
 @DynamicUpdate
 @Entity
 @Table(name = "ms_role_menu")
-public class RoleMenu extends BaseCommonEntity implements Serializable {
+public class RoleMenuDO extends BaseCommonDO implements Serializable {
 
 
     @Serial
@@ -34,14 +34,14 @@ public class RoleMenu extends BaseCommonEntity implements Serializable {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "role_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '角色id'")
     @ToString.Exclude
-    private Role role;
+    private RoleDO roleDO;
     /**
      * 菜单id
      */
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "menu_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '菜单id'")
     @ToString.Exclude
-    private Menu menu;
+    private MenuDO menuDO;
 
     @Override
     public boolean equals(Object o) {
@@ -54,29 +54,29 @@ public class RoleMenu extends BaseCommonEntity implements Serializable {
         if (!super.equals(o)) {
             return false;
         }
-        RoleMenu that = (RoleMenu) o;
-        if (!Objects.equals(role, that.role)) {
+        RoleMenuDO that = (RoleMenuDO) o;
+        if (!Objects.equals(roleDO, that.roleDO)) {
             return false;
         }
-        return Objects.equals(menu, that.menu);
+        return Objects.equals(menuDO, that.menuDO);
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (role != null ? role.hashCode() : 0);
-        result = 31 * result + (menu != null ? menu.hashCode() : 0);
+        result = 31 * result + (roleDO != null ? roleDO.hashCode() : 0);
+        result = 31 * result + (menuDO != null ? menuDO.hashCode() : 0);
         return result;
     }
 
-    public static RoleMenu of(Long roleId, Long menuId) {
-        Role newRole = new Role();
-        newRole.setId(roleId);
-        Menu newMenu = new Menu();
-        newMenu.setId(menuId);
-        RoleMenu roleMenu = new RoleMenu();
-        roleMenu.setRole(newRole);
-        roleMenu.setMenu(newMenu);
-        return roleMenu;
+    public static RoleMenuDO of(Long roleId, Long menuId) {
+        RoleDO newRoleDO = new RoleDO();
+        newRoleDO.setId(roleId);
+        MenuDO newMenuDO = new MenuDO();
+        newMenuDO.setId(menuId);
+        RoleMenuDO roleMenuDO = new RoleMenuDO();
+        roleMenuDO.setRoleDO(newRoleDO);
+        roleMenuDO.setMenuDO(newMenuDO);
+        return roleMenuDO;
     }
 }

@@ -1,6 +1,6 @@
 package com.lingyi.mall.api.system.feign;
 
-import com.lingyi.mall.api.system.entity.Log;
+import com.lingyi.mall.api.system.entity.LogDO;
 import com.lingyi.mall.api.system.fallbackfactory.LogFeignFallbackFactory;
 import com.lingyi.mall.common.base.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -19,9 +19,9 @@ public interface LogFeign {
     /**
      * 保存
      *
-     * @param log 。。
+     * @param logDO 。。
      * @return ServerResponse
      */
     @PostMapping("/admin/system/logs")
-    ServerResponse<Void> save(@RequestBody Log log);
+    ServerResponse<Void> save(@RequestBody LogDO logDO);
 }

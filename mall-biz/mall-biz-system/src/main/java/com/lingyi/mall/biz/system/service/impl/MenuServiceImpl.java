@@ -5,16 +5,16 @@ import cn.hutool.core.collection.CollUtil;
 import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.biz.system.constant.SystemConstant;
 import com.lingyi.mall.api.system.dto.MenuDTO;
-import com.lingyi.mall.api.system.entity.Menu;
+import com.lingyi.mall.api.system.entity.MenuDO;
 import com.lingyi.mall.api.system.enums.SystemFail;
 import com.lingyi.mall.api.system.enums.MenuType;
-import com.lingyi.mall.api.system.param.MenuParam;
+import com.lingyi.mall.api.system.query.MenuQuery;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.biz.system.mapper.MenuMapper;
 import com.lingyi.mall.biz.system.repository.MenuRepository;
 import com.lingyi.mall.biz.system.service.MenuService;
 import com.lingyi.mall.common.base.exception.BizException;
-import com.lingyi.mall.common.base.param.BasePageParam;
+import com.lingyi.mall.common.base.query.BasePageQuery;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.base.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
@@ -45,9 +45,9 @@ public class MenuServiceImpl implements MenuService {
         //校验数据
         verifyAndGetData(menuDTO, false);
         //DTO转换Entity
-        Menu menu = BeanUtil.copyProperties(menuDTO, Menu.class);
+        MenuDO menuDO = BeanUtil.copyProperties(menuDTO, MenuDO.class);
         //保存
-        menuRepository.save(menu);
+        menuRepository.save(menuDO);
     }
 
     @Override
@@ -63,11 +63,11 @@ public class MenuServiceImpl implements MenuService {
     @Transactional(rollbackFor = Exception.class)
     public void updateById(MenuDTO menuDTO) {
         //校验数据
-        Menu menu = verifyAndGetData(menuDTO, true);
+        MenuDO menuDO = verifyAndGetData(menuDTO, true);
         //DTO转换Entity
-        ConverterUtil.to(menuDTO, menu);
+        ConverterUtil.to(menuDTO, menuDO);
         //更新
-        menuRepository.save(menu);
+        menuRepository.save(menuDO);
     }
 
     @Override
@@ -76,9 +76,9 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public List<MenuVO> readListByPageAndParam(BasePageParam pageParam, MenuParam menuParam) {
+    public List<MenuVO> readListByPageAndQuery(BasePageQuery pageParam, MenuQuery menuQuery) {
         PageHelper.startPage(pageParam.getCurrentPage(), pageParam.getPageSize(), pageParam.getSort());
-        return menuMapper.selectListByParam(menuParam);
+        return menuMapper.selectListByParam(menuQuery);
     }
 
 
@@ -100,7 +100,7 @@ public class MenuServiceImpl implements MenuService {
     }
 
 
-    private Menu verifyAndGetData(MenuDTO menuDTO, boolean isEdit) {
+    private MenuDO verifyAndGetData(MenuDTO menuDTO, boolean isEdit) {
         Integer type = menuDTO.getType();
         Long parentId = menuDTO.getParentId();
         //断言目录父级parentId只能为-1
@@ -117,16 +117,16 @@ public class MenuServiceImpl implements MenuService {
         //断言按钮父级parentId对应的菜单只能为菜单类型
         boolean result03 = Objects.equals(MenuType.BUTTON.getCode(), type) && Objects.equals(MenuType.MENU.getCode(), newType);
         AssertUtil.isTrue(result03, SystemFail.MENU_BUTTON_PARENT_ERROR);
-        Menu menu = null;
+        MenuDO menuDO = null;
         if (isEdit) {
-            Optional<Menu> optional = menuRepository.findById(menuDTO.getId());
+            Optional<MenuDO> optional = menuRepository.findById(menuDTO.getId());
             //判断用户是否不为空
             if (optional.isEmpty()) {
                 throw new BizException(SystemFail.MENU_NULL_ERROR);
             }
-            menu = optional.get();
+            menuDO = optional.get();
         }
-        return menu;
+        return menuDO;
     }
 
 }

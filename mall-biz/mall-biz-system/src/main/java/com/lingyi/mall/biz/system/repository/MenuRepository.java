@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.system.repository;
 
-import com.lingyi.mall.api.system.entity.Menu;
+import com.lingyi.mall.api.system.entity.MenuDO;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 
 /**
@@ -9,5 +9,5 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryImplementati
  * @datetime 2023/4/30 22:43
  * @description
  */
-public interface MenuRepository extends JpaRepositoryImplementation<Menu, Long> {
+public interface MenuRepository extends JpaRepositoryImplementation<MenuDO, Long> {
 }

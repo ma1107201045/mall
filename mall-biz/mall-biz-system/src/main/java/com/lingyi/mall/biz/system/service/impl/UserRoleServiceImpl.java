@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.system.service.impl;
 
-import com.lingyi.mall.api.system.entity.UserRole;
+import com.lingyi.mall.api.system.entity.UserRoleDO;
 import com.lingyi.mall.biz.system.repository.UserRoleRepository;
 import com.lingyi.mall.biz.system.service.UserRoleService;
 import lombok.RequiredArgsConstructor;
@@ -22,10 +22,10 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     @Override
     public void addList(Long userId, List<Long> roleIds) {
-        List<UserRole> userRoles = roleIds.stream()
-                .map(roleId -> UserRole.of(userId, roleId))
+        List<UserRoleDO> userRoleDOS = roleIds.stream()
+                .map(roleId -> UserRoleDO.of(userId, roleId))
                 .toList();
-        userRoleRepository.saveAll(userRoles);
+        userRoleRepository.saveAll(userRoleDOS);
     }
 
     @Override

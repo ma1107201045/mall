@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.system.mapper;
 
-import com.lingyi.mall.api.system.param.RoleParam;
+import com.lingyi.mall.api.system.query.RoleQuery;
 import com.lingyi.mall.api.system.vo.RoleVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -17,5 +17,5 @@ public interface RoleMapper {
 
     RoleVO selectById(Long id);
 
-    List<RoleVO> selectListByParam(RoleParam roleParam);
+    List<RoleVO> selectListByParam(RoleQuery roleQuery);
 }

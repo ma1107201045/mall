@@ -1,6 +1,6 @@
 package com.lingyi.mall.common.base.jpa.generator;
 
-import com.lingyi.mall.common.base.entity.BaseIdEntity;
+import com.lingyi.mall.common.base.entity.BaseIdDO;
 import com.lingyi.mall.common.base.util.SnowFlakeIdUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
@@ -19,8 +19,8 @@ import java.util.Objects;
 public class SnowflakeIdentifierGenerator implements IdentifierGenerator {
     @Override
     public Object generate(SharedSessionContractImplementor sharedSessionContractImplementor, Object obj) throws HibernateException {
-        if (obj instanceof BaseIdEntity baseIdEntity) {
-            return Objects.isNull(baseIdEntity.getId()) ? SnowFlakeIdUtil.nextId() : baseIdEntity.getId();
+        if (obj instanceof BaseIdDO baseIdDO) {
+            return Objects.isNull(baseIdDO.getId()) ? SnowFlakeIdUtil.nextId() : baseIdDO.getId();
         }
         return SnowFlakeIdUtil.nextId();
     }

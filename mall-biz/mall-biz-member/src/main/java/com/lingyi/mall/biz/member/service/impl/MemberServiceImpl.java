@@ -1,15 +1,15 @@
 package com.lingyi.mall.biz.member.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.lingyi.mall.api.member.entity.Member;
+import com.lingyi.mall.api.member.entity.MemberDO;
 import com.lingyi.mall.api.member.enums.MemberFail;
-import com.lingyi.mall.api.member.param.MemberParam;
+import com.lingyi.mall.api.member.query.MemberQuery;
 import com.lingyi.mall.api.member.vo.MemberVO;
 import com.lingyi.mall.biz.member.mapper.MemberMapper;
 import com.lingyi.mall.biz.member.repository.MemberRepository;
 import com.lingyi.mall.biz.member.service.MemberService;
 import com.lingyi.mall.common.base.exception.BizException;
-import com.lingyi.mall.common.base.param.BasePageParam;
+import com.lingyi.mall.common.base.query.BasePageQuery;
 import com.lingyi.mall.common.base.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,8 +32,8 @@ public class MemberServiceImpl implements MemberService {
     private final MemberMapper memberMapper;
 
     @Override
-    public void  create(Member member) {
-        memberRepository.save(member);
+    public void  create(MemberDO memberDO) {
+        memberRepository.save(memberDO);
     }
 
     @Override
@@ -42,14 +42,14 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void updateById(Member member) {
-        Optional<Member> optional = memberRepository.findById(member.getId());
+    public void updateById(MemberDO memberDO) {
+        Optional<MemberDO> optional = memberRepository.findById(memberDO.getId());
         if (optional.isEmpty()) {
             throw new BizException(MemberFail.MEMBER_NULL_ERROR);
         }
-        Member newMember = optional.get();
-        ConverterUtil.to(member, newMember);
-        memberRepository.save(newMember);
+        MemberDO newMemberDO = optional.get();
+        ConverterUtil.to(memberDO, newMemberDO);
+        memberRepository.save(newMemberDO);
     }
 
     @Override
@@ -58,9 +58,9 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public List<MemberVO> readListByPageAndParam(BasePageParam pageParam, MemberParam memberParam) {
+    public List<MemberVO> readListByPageAndQuery(BasePageQuery pageParam, MemberQuery memberQuery) {
         PageHelper.startPage(pageParam.getCurrentPage(), pageParam.getPageSize(), pageParam.getSort());
-        return memberMapper.selectListByParam(memberParam);
+        return memberMapper.selectListByParam(memberQuery);
     }
 
     @Override

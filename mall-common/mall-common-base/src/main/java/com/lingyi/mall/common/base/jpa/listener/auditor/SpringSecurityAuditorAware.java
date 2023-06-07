@@ -1,7 +1,7 @@
 package com.lingyi.mall.common.base.jpa.listener.auditor;
 
 import com.lingyi.mall.common.base.constant.BaseConstant;
-import com.lingyi.mall.common.base.entity.UserDetailsEntity;
+import com.lingyi.mall.common.base.entity.UserDetailsDO;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.Authentication;
@@ -28,8 +28,8 @@ public class SpringSecurityAuditorAware implements AuditorAware<String> {
                 .map(SecurityContext::getAuthentication)
                 .filter(Authentication::isAuthenticated)
                 .map(Authentication::getPrincipal).orElse(null);
-        return Optional.of(principal instanceof UserDetailsEntity userDetailsEntity ?
-                userDetailsEntity.getUsername() :
+        return Optional.of(principal instanceof UserDetailsDO userDetailsDO ?
+                userDetailsDO.getUsername() :
                 BaseConstant.UNKNOWN);
     }
 }

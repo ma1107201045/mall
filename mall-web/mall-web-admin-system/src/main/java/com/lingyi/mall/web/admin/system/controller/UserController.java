@@ -1,12 +1,12 @@
 package com.lingyi.mall.web.admin.system.controller;
 
 import com.lingyi.mall.api.system.dto.UserDTO;
-import com.lingyi.mall.api.system.param.UserParam;
+import com.lingyi.mall.api.system.query.UserQuery;
 import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.biz.system.service.UserService;
 import com.lingyi.mall.common.base.aspect.Log;
 import com.lingyi.mall.common.base.enums.OperationType;
-import com.lingyi.mall.common.base.param.BasePageParam;
+import com.lingyi.mall.common.base.query.BasePageQuery;
 import com.lingyi.mall.common.base.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -72,8 +72,8 @@ public class UserController {
     @GetMapping
     @PreAuthorize("hasAnyAuthority('mws:user:getList')")
     @Log(title = "保存用户", operationType = OperationType.READ)
-    public ServerResponse<List<UserVO>> getListByPageAndParam(@Valid BasePageParam basePageParam, @Valid UserParam userParam) {
-        List<UserVO> userVOList = userService.readListByPageAndParam(basePageParam, userParam);
+    public ServerResponse<List<UserVO>> getListByPageAndParam(@Valid BasePageQuery basePageQuery, @Valid UserQuery userQuery) {
+        List<UserVO> userVOList = userService.readListByPageAndQuery(basePageQuery, userQuery);
         return ServerResponse.success(userVOList);
     }
 

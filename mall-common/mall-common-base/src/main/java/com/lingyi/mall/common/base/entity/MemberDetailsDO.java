@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.io.Serial;
-import java.time.LocalDateTime;
 import java.util.Collection;
 
 /**
@@ -18,7 +17,7 @@ import java.util.Collection;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MemberDetailsEntity implements MemberDetails {
+public class MemberDetailsDO implements MemberDetails {
     @Serial
     private static final long serialVersionUID = -4555073638396468898L;
 

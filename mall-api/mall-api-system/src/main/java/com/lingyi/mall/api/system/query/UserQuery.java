@@ -1,4 +1,4 @@
-package com.lingyi.mall.api.member.param;
+package com.lingyi.mall.api.system.query;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -9,16 +9,16 @@ import java.io.Serializable;
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
- * @datetime 2023/6/2 15:53
+ * @datetime 2023/5/12 11:19
  * @description
  */
-@Schema(description = "会员")
+@Schema(description = "用户")
 @Data
-public class MemberParam implements Serializable {
+public class UserQuery implements Serializable {
+
     @Serial
-    private static final long serialVersionUID = 2889287473826593426L;
+    private static final long serialVersionUID = -6667153465937041097L;
 
     @Schema(description = "用户名称")
     private String userName;
-
 }

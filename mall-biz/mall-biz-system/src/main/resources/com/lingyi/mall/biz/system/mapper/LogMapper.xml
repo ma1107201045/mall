@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lingyi.mall.biz.system.mapper.LogMapper">
-    <resultMap id="BaseResultMap" type="com.lingyi.mall.api.system.entity.Log">
+    <resultMap id="BaseResultMap" type="com.lingyi.mall.api.system.entity.LogDO">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="title" column="title" jdbcType="VARCHAR"/>
         <result property="operationType" column="operation_type" jdbcType="TINYINT"/>
@@ -30,13 +30,13 @@
             AND title LIKE CONCAT('%',#{title,jdbcType=VARCHAR},'%')
         </if>
     </sql>
-    <select id="selectById" resultType="com.lingyi.mall.api.system.entity.Log">
+    <select id="selectById" resultType="com.lingyi.mall.api.system.entity.LogDO">
         SELECT
         <include refid="Base_Column_List"/>
         FROM mbs_log
         WHERE id = #{id,jdbcType=BIGINT}
     </select>
-    <select id="selectListByParam" resultType="com.lingyi.mall.api.system.entity.Log">
+    <select id="selectListByParam" resultType="com.lingyi.mall.api.system.entity.LogDO">
         SELECT
         <include refid="Base_Column_List"/>
         FROM mbs_log

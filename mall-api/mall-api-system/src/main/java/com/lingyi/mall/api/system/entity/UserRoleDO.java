@@ -1,6 +1,6 @@
 package com.lingyi.mall.api.system.entity;
 
-import com.lingyi.mall.common.base.entity.BaseCommonEntity;
+import com.lingyi.mall.common.base.entity.BaseCommonDO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
@@ -23,7 +23,7 @@ import java.util.Objects;
 @DynamicUpdate
 @Entity
 @Table(name = "ms_user_role")
-public class UserRole extends BaseCommonEntity implements Serializable {
+public class UserRoleDO extends BaseCommonDO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 506747689975729762L;
@@ -31,14 +31,14 @@ public class UserRole extends BaseCommonEntity implements Serializable {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '用户id'")
     @ToString.Exclude
-    private User user;
+    private UserDO userDO;
     /**
      * 角色id
      */
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "role_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '角色id'")
     @ToString.Exclude
-    private Role role;
+    private RoleDO roleDO;
 
     @Override
     public boolean equals(Object o) {
@@ -51,29 +51,29 @@ public class UserRole extends BaseCommonEntity implements Serializable {
         if (!super.equals(o)) {
             return false;
         }
-        UserRole that = (UserRole) o;
-        if (!Objects.equals(user, that.user)) {
+        UserRoleDO that = (UserRoleDO) o;
+        if (!Objects.equals(userDO, that.userDO)) {
             return false;
         }
-        return Objects.equals(role, that.role);
+        return Objects.equals(roleDO, that.roleDO);
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (user != null ? user.hashCode() : 0);
-        result = 31 * result + (role != null ? role.hashCode() : 0);
+        result = 31 * result + (userDO != null ? userDO.hashCode() : 0);
+        result = 31 * result + (roleDO != null ? roleDO.hashCode() : 0);
         return result;
     }
 
-    public static UserRole of(Long userId, Long roleId) {
-        User newUser = new User();
-        newUser.setId(userId);
-        Role newRole = new Role();
-        newRole.setId(roleId);
-        UserRole userRole = new UserRole();
-        userRole.setUser(newUser);
-        userRole.setRole(newRole);
-        return userRole;
+    public static UserRoleDO of(Long userId, Long roleId) {
+        UserDO newUserDO = new UserDO();
+        newUserDO.setId(userId);
+        RoleDO newRoleDO = new RoleDO();
+        newRoleDO.setId(roleId);
+        UserRoleDO userRoleDO = new UserRoleDO();
+        userRoleDO.setUserDO(newUserDO);
+        userRoleDO.setRoleDO(newRoleDO);
+        return userRoleDO;
     }
 }

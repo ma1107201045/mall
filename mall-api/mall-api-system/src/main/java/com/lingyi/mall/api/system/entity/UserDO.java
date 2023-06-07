@@ -1,7 +1,7 @@
 package com.lingyi.mall.api.system.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.lingyi.mall.common.base.entity.BaseIsDeleteEntity;
+import com.lingyi.mall.common.base.entity.BaseIsDeleteDO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -12,7 +12,6 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,7 +29,7 @@ import java.util.Objects;
 @DynamicUpdate
 @Entity
 @Table(name = "ms_user", uniqueConstraints = @UniqueConstraint(name = "uk_user_name", columnNames = "user_name"))
-public class User extends BaseIsDeleteEntity implements Serializable {
+public class UserDO extends BaseIsDeleteDO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 5771438753938667975L;
@@ -75,7 +74,7 @@ public class User extends BaseIsDeleteEntity implements Serializable {
      */
     @ManyToMany(mappedBy = "users")
     @ToString.Exclude
-    private List<Role> roles;
+    private List<RoleDO> roleDOS;
 
 
     @Override
@@ -90,42 +89,42 @@ public class User extends BaseIsDeleteEntity implements Serializable {
             return false;
         }
 
-        User user = (User) o;
+        UserDO userDO = (UserDO) o;
 
-        if (!Objects.equals(userName, user.userName)) {
+        if (!Objects.equals(userName, userDO.userName)) {
             return false;
         }
-        if (!Objects.equals(realName, user.realName)) {
+        if (!Objects.equals(realName, userDO.realName)) {
             return false;
         }
-        if (!Objects.equals(nickname, user.nickname)) {
+        if (!Objects.equals(nickname, userDO.nickname)) {
             return false;
         }
-        if (!Objects.equals(sex, user.sex)) {
+        if (!Objects.equals(sex, userDO.sex)) {
             return false;
         }
-        if (!Objects.equals(password, user.password)) {
+        if (!Objects.equals(password, userDO.password)) {
             return false;
         }
-        if (!Objects.equals(headPortrait, user.headPortrait)) {
+        if (!Objects.equals(headPortrait, userDO.headPortrait)) {
             return false;
         }
-        if (!Objects.equals(email, user.email)) {
+        if (!Objects.equals(email, userDO.email)) {
             return false;
         }
-        if (!Objects.equals(phoneNumber, user.phoneNumber)) {
+        if (!Objects.equals(phoneNumber, userDO.phoneNumber)) {
             return false;
         }
-        if (!Objects.equals(lastLoginIp, user.lastLoginIp)) {
+        if (!Objects.equals(lastLoginIp, userDO.lastLoginIp)) {
             return false;
         }
-        if (!Objects.equals(isEnable, user.isEnable)) {
+        if (!Objects.equals(isEnable, userDO.isEnable)) {
             return false;
         }
-        if (!Objects.equals(remark, user.remark)) {
+        if (!Objects.equals(remark, userDO.remark)) {
             return false;
         }
-        return Objects.equals(roles, user.roles);
+        return Objects.equals(roleDOS, userDO.roleDOS);
     }
 
     @Override
@@ -142,7 +141,7 @@ public class User extends BaseIsDeleteEntity implements Serializable {
         result = 31 * result + (lastLoginIp != null ? lastLoginIp.hashCode() : 0);
         result = 31 * result + (isEnable != null ? isEnable.hashCode() : 0);
         result = 31 * result + (remark != null ? remark.hashCode() : 0);
-        result = 31 * result + (roles != null ? roles.hashCode() : 0);
+        result = 31 * result + (roleDOS != null ? roleDOS.hashCode() : 0);
         return result;
     }
 }

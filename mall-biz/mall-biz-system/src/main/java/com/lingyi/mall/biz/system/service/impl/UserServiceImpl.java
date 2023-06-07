@@ -5,10 +5,10 @@ import cn.hutool.core.util.ObjUtil;
 import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.api.system.dto.UserDTO;
 import com.lingyi.mall.api.system.dto.UserPartDTO;
-import com.lingyi.mall.api.system.entity.User;
+import com.lingyi.mall.api.system.entity.UserDO;
 import com.lingyi.mall.api.system.enums.MenuType;
 import com.lingyi.mall.api.system.enums.SystemFail;
-import com.lingyi.mall.api.system.param.UserParam;
+import com.lingyi.mall.api.system.query.UserQuery;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.biz.system.constant.SystemConstant;
@@ -18,7 +18,7 @@ import com.lingyi.mall.biz.system.service.MenuService;
 import com.lingyi.mall.biz.system.service.UserRoleService;
 import com.lingyi.mall.biz.system.service.UserService;
 import com.lingyi.mall.common.base.exception.BizException;
-import com.lingyi.mall.common.base.param.BasePageParam;
+import com.lingyi.mall.common.base.query.BasePageQuery;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.base.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
@@ -63,11 +63,11 @@ public class UserServiceImpl implements UserService {
         //设置加密密码
         userDTO.setPassword(encodePassword);
         //DTO转换Entity
-        User user = ConverterUtil.to(userDTO, User.class);
+        UserDO userDO = ConverterUtil.to(userDTO, UserDO.class);
         //保存
-        userRepository.save(user);
+        userRepository.save(userDO);
         //保存用户角色信息
-        userRoleService.addList(user.getId(), userDTO.getRoleIds());
+        userRoleService.addList(userDO.getId(), userDTO.getRoleIds());
     }
 
     @Override
@@ -80,13 +80,13 @@ public class UserServiceImpl implements UserService {
     public void updateById(UserDTO userDTO) {
         Long id = userDTO.getId();
         //获取用户信息
-        Optional<User> optional = userRepository.findById(id);
+        Optional<UserDO> optional = userRepository.findById(id);
         //判断用户是否不为空
         if (optional.isEmpty()) {
             throw new BizException(SystemFail.USER_NULL_ERROR);
         }
         //获取用户
-        User user = optional.get();
+        UserDO userDO = optional.get();
 
         //校验用户名称是否相同
         Long newId = userMapper.selectIdByUserName(userDTO.getUserName());
@@ -99,9 +99,9 @@ public class UserServiceImpl implements UserService {
         //设置加密密码
         userDTO.setPassword(encodePassword);
         //DTO转换Entity
-        ConverterUtil.to(userDTO, user);
+        ConverterUtil.to(userDTO, userDO);
         //更新
-        userRepository.save(user);
+        userRepository.save(userDO);
         //删除用户角色集
         userRoleService.removeByUserId(id);
         //保存用户角色信息
@@ -114,9 +114,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserVO> readListByPageAndParam(BasePageParam pageParam, UserParam userParam) {
+    public List<UserVO> readListByPageAndQuery(BasePageQuery pageParam, UserQuery userQuery) {
         PageHelper.startPage(pageParam.getCurrentPage(), pageParam.getPageSize(), pageParam.getSort());
-        return userMapper.selectListByParam(userParam);
+        return userMapper.selectListByParam(userQuery);
     }
 
 
@@ -126,12 +126,12 @@ public class UserServiceImpl implements UserService {
 
         AssertUtil.notNull(userVO, SystemFail.USER_NULL_ERROR);
 
-        User user = ConverterUtil.to(userVO, User.class);
+        UserDO userDO = ConverterUtil.to(userVO, UserDO.class);
 
         String encodePassword = passwordEncoder.encode(userPartDTO.getPassword());
-        user.setNickname(userPartDTO.getNickname());
-        user.setPassword(encodePassword);
-        userRepository.save(user);
+        userDO.setNickname(userPartDTO.getNickname());
+        userDO.setPassword(encodePassword);
+        userRepository.save(userDO);
     }
 
     @Override

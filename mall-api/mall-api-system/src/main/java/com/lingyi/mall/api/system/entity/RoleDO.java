@@ -1,6 +1,6 @@
 package com.lingyi.mall.api.system.entity;
 
-import com.lingyi.mall.common.base.entity.BaseIsDeleteEntity;
+import com.lingyi.mall.common.base.entity.BaseIsDeleteDO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
@@ -24,7 +24,7 @@ import java.util.Objects;
 @DynamicUpdate
 @Entity
 @Table(name = "ms_role")
-public class Role extends BaseIsDeleteEntity implements Serializable {
+public class RoleDO extends BaseIsDeleteDO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -5280755884593902334L;
@@ -50,14 +50,14 @@ public class Role extends BaseIsDeleteEntity implements Serializable {
             foreignKey = @ForeignKey(name = "fk_role_id"), inverseForeignKey = @ForeignKey(name = "fk_user_id"),
             indexes = {@Index(name = "fk_role_id", columnList = "role_id"), @Index(name = "fk_user_id", columnList = "user_id")})
     @ToString.Exclude
-    private List<User> users;
+    private List<UserDO> userDOS;
 
     /**
      * 菜单集
      */
     @ManyToMany(mappedBy = "roles")
     @ToString.Exclude
-    private List<Menu> menus;
+    private List<MenuDO> menuDOS;
 
     @Override
     public boolean equals(Object o) {
@@ -71,24 +71,24 @@ public class Role extends BaseIsDeleteEntity implements Serializable {
             return false;
         }
 
-        Role role = (Role) o;
+        RoleDO roleDO = (RoleDO) o;
 
-        if (!Objects.equals(name, role.name)) {
+        if (!Objects.equals(name, roleDO.name)) {
             return false;
         }
-        if (!Objects.equals(isEnable, role.isEnable)) {
+        if (!Objects.equals(isEnable, roleDO.isEnable)) {
             return false;
         }
-        if (!Objects.equals(sort, role.sort)) {
+        if (!Objects.equals(sort, roleDO.sort)) {
             return false;
         }
-        if (!Objects.equals(remark, role.remark)) {
+        if (!Objects.equals(remark, roleDO.remark)) {
             return false;
         }
-        if (!Objects.equals(users, role.users)) {
+        if (!Objects.equals(userDOS, roleDO.userDOS)) {
             return false;
         }
-        return Objects.equals(menus, role.menus);
+        return Objects.equals(menuDOS, roleDO.menuDOS);
     }
 
     @Override
@@ -98,8 +98,8 @@ public class Role extends BaseIsDeleteEntity implements Serializable {
         result = 31 * result + (isEnable != null ? isEnable.hashCode() : 0);
         result = 31 * result + (sort != null ? sort.hashCode() : 0);
         result = 31 * result + (remark != null ? remark.hashCode() : 0);
-        result = 31 * result + (users != null ? users.hashCode() : 0);
-        result = 31 * result + (menus != null ? menus.hashCode() : 0);
+        result = 31 * result + (userDOS != null ? userDOS.hashCode() : 0);
+        result = 31 * result + (menuDOS != null ? menuDOS.hashCode() : 0);
         return result;
     }
 }

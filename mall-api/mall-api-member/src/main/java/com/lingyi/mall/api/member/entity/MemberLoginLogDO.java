@@ -1,6 +1,6 @@
 package com.lingyi.mall.api.member.entity;
 
-import com.lingyi.mall.common.base.entity.BaseIdEntity;
+import com.lingyi.mall.common.base.entity.BaseIdDO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 @DynamicUpdate
 @Entity
 @Table(name = "mm_member_login_log")
-public class MemberLoginLog extends BaseIdEntity implements Serializable {
+public class MemberLoginLogDO extends BaseIdDO implements Serializable {
     @Serial
     private static final long serialVersionUID = 7083829914819620788L;
 
@@ -35,7 +35,7 @@ public class MemberLoginLog extends BaseIdEntity implements Serializable {
     @ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "member_id", nullable = false, foreignKey = @ForeignKey(name = "fk_member_id"))
     @ToString.Exclude
-    private Member member;
+    private MemberDO memberDO;
 
     /**
      * 会员用户名称

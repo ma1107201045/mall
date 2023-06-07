@@ -1,10 +1,9 @@
 package com.lingyi.mall.api.system.entity;
 
-import com.lingyi.mall.common.base.entity.BaseCommonEntity;
+import com.lingyi.mall.common.base.entity.BaseCommonDO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.FilterJoinTable;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -22,7 +21,7 @@ import java.io.Serializable;
 @DynamicInsert
 @Entity
 @Table(name = "ms_log")
-public class Log extends BaseCommonEntity implements Serializable {
+public class LogDO extends BaseCommonDO implements Serializable {
     @Serial
     private static final long serialVersionUID = 3263673947812164534L;
 

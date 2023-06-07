@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.system.service;
 
 import com.lingyi.mall.api.system.dto.UserDTO;
 import com.lingyi.mall.api.system.dto.UserPartDTO;
-import com.lingyi.mall.api.system.param.UserParam;
+import com.lingyi.mall.api.system.query.UserQuery;
 import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.common.base.util.BaseService;
@@ -16,7 +16,7 @@ import java.util.List;
  * @datetime 2023/5/4 17:28
  * @description
  */
-public interface UserService extends BaseService<UserDTO, UserParam, UserVO, Long> {
+public interface UserService extends BaseService<UserDTO, UserQuery, UserVO, Long> {
 
 
     /**

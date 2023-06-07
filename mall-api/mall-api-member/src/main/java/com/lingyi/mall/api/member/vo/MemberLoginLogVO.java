@@ -1,10 +1,7 @@
 package com.lingyi.mall.api.member.vo;
 
-import com.lingyi.mall.api.member.entity.Member;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.*;
 import lombok.Data;
-import lombok.ToString;
 
 import java.io.Serial;
 import java.io.Serializable;

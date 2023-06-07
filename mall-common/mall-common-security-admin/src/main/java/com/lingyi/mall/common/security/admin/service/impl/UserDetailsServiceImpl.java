@@ -2,7 +2,7 @@ package com.lingyi.mall.common.security.admin.service.impl;
 
 import com.lingyi.mall.api.system.consumer.UserFeignConsumer;
 import com.lingyi.mall.api.system.vo.UserVO;
-import com.lingyi.mall.common.base.entity.UserDetailsEntity;
+import com.lingyi.mall.common.base.entity.UserDetailsDO;
 import com.lingyi.mall.common.base.enums.Whether;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.security.admin.enums.Fail;
@@ -40,7 +40,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .map(SimpleGrantedAuthority::new)
                 .toList();
         //组装UserDetailsEntity
-        return UserDetailsEntity.builder()
+        return UserDetailsDO.builder()
                 .authorities(simpleGrantedAuthorities)
                 .password(userVO.getPassword())
                 .username(userVO.getUserName())

@@ -3,7 +3,7 @@ package com.lingyi.mall.common.security.app.handler;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.jwt.JWTUtil;
 import com.alibaba.fastjson2.JSON;
-import com.lingyi.mall.common.base.entity.MemberDetailsEntity;
+import com.lingyi.mall.common.base.entity.MemberDetailsDO;
 import com.lingyi.mall.common.base.util.ServerResponse;
 import com.lingyi.mall.common.security.app.SecurityConfig;
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,10 +28,10 @@ public class JsonAuthenticationSuccessHandler implements AuthenticationSuccessHa
         response.setContentType(MediaType.APPLICATION_JSON.toString());
         response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
         PrintWriter writer = response.getWriter();
-        MemberDetailsEntity memberDetailsEntity = (MemberDetailsEntity) authentication.getPrincipal();
-        String authorization = JWTUtil.createToken(BeanUtil.beanToMap(memberDetailsEntity), SecurityConfig.JWT_KEY.getBytes(StandardCharsets.UTF_8));
-        memberDetailsEntity.setAuthorization(authorization);
-        writer.write(JSON.toJSONString(ServerResponse.success(memberDetailsEntity)));
+        MemberDetailsDO memberDetailsDO = (MemberDetailsDO) authentication.getPrincipal();
+        String authorization = JWTUtil.createToken(BeanUtil.beanToMap(memberDetailsDO), SecurityConfig.JWT_KEY.getBytes(StandardCharsets.UTF_8));
+        memberDetailsDO.setAuthorization(authorization);
+        writer.write(JSON.toJSONString(ServerResponse.success(memberDetailsDO)));
         writer.flush();
     }
 }

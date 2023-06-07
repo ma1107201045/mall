@@ -1,6 +1,6 @@
 package com.lingyi.mall.api.member.entity;
 
-import com.lingyi.mall.common.base.entity.BaseIdEntity;
+import com.lingyi.mall.common.base.entity.BaseIdDO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -26,7 +26,7 @@ import java.io.Serializable;
 @DynamicUpdate
 @Entity
 @Table(name = "mm_member_level")
-public class MemberLevel extends BaseIdEntity implements Serializable {
+public class MemberLevelDO extends BaseIdDO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1698976479509049883L;

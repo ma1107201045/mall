@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.member.repository;
 
-import com.lingyi.mall.api.member.entity.MemberLoginLog;
+import com.lingyi.mall.api.member.entity.MemberLoginLogDO;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 
 /**
@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryImplementati
  * @datetime 2023/5/25 14:40
  * @description
  */
-public interface MemberLoginLogRepository extends JpaRepositoryImplementation<MemberLoginLog, Long> {
+public interface MemberLoginLogRepository extends JpaRepositoryImplementation<MemberLoginLogDO, Long> {
 
 
 }

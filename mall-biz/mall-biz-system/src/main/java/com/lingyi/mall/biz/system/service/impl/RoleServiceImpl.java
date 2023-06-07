@@ -3,16 +3,16 @@ package com.lingyi.mall.biz.system.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.api.system.dto.RoleDTO;
-import com.lingyi.mall.api.system.entity.Role;
+import com.lingyi.mall.api.system.entity.RoleDO;
 import com.lingyi.mall.api.system.enums.SystemFail;
-import com.lingyi.mall.api.system.param.RoleParam;
+import com.lingyi.mall.api.system.query.RoleQuery;
 import com.lingyi.mall.api.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.mapper.RoleMapper;
 import com.lingyi.mall.biz.system.repository.RoleRepository;
 import com.lingyi.mall.biz.system.service.RoleMenuService;
 import com.lingyi.mall.biz.system.service.RoleService;
 import com.lingyi.mall.common.base.exception.BizException;
-import com.lingyi.mall.common.base.param.BasePageParam;
+import com.lingyi.mall.common.base.query.BasePageQuery;
 import com.lingyi.mall.common.base.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -41,11 +41,11 @@ public class RoleServiceImpl implements RoleService {
     @Transactional(rollbackFor = Exception.class)
     public void create(RoleDTO roleDTO) {
         //DTO转换Entity
-        Role role = BeanUtil.copyProperties(roleDTO, Role.class);
+        RoleDO roleDO = BeanUtil.copyProperties(roleDTO, RoleDO.class);
         //保存
-        roleRepository.save(role);
+        roleRepository.save(roleDO);
         //保存角色菜单信息
-        roleMenuService.saveList(role.getId(), roleDTO.getMenuIds());
+        roleMenuService.saveList(roleDO.getId(), roleDTO.getMenuIds());
 
     }
 
@@ -60,17 +60,17 @@ public class RoleServiceImpl implements RoleService {
         //获取id
         Long id = roleDTO.getId();
         //获取角色信息
-        Optional<Role> optional = roleRepository.findById(id);
+        Optional<RoleDO> optional = roleRepository.findById(id);
         //判断用户是否不为空
         if (optional.isEmpty()) {
             throw new BizException(SystemFail.ROLE_NULL_ERROR);
         }
         //获取用户
-        Role role = optional.get();
+        RoleDO roleDO = optional.get();
         //DTO转换Entity
-        ConverterUtil.to(roleDTO, role);
+        ConverterUtil.to(roleDTO, roleDO);
         //保存
-        roleRepository.save(role);
+        roleRepository.save(roleDO);
         //删除角色菜单集
         roleMenuService.removeByRoleId(id);
         //保存角色菜单信息
@@ -83,8 +83,8 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<RoleVO> readListByPageAndParam(BasePageParam pageParam, RoleParam roleParam) {
+    public List<RoleVO> readListByPageAndQuery(BasePageQuery pageParam, RoleQuery roleQuery) {
         PageHelper.startPage(pageParam.getCurrentPage(), pageParam.getPageSize(), pageParam.getSort());
-        return roleMapper.selectListByParam(roleParam);
+        return roleMapper.selectListByParam(roleQuery);
     }
 }

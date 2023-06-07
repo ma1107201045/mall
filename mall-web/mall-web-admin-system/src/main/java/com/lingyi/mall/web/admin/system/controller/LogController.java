@@ -1,12 +1,8 @@
 package com.lingyi.mall.web.admin.system.controller;
 
-import com.lingyi.mall.api.system.entity.Log;
-import com.lingyi.mall.api.system.param.UserParam;
-import com.lingyi.mall.api.system.vo.MenuVO;
-import com.lingyi.mall.api.system.vo.UserVO;
-import com.lingyi.mall.biz.system.constant.SystemConstant;
+import com.lingyi.mall.api.system.entity.LogDO;
 import com.lingyi.mall.biz.system.service.LogService;
-import com.lingyi.mall.common.base.param.BasePageParam;
+import com.lingyi.mall.common.base.query.BasePageQuery;
 import com.lingyi.mall.common.base.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -37,17 +33,17 @@ public class LogController {
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('mws:user:get')")
-    public ServerResponse<Log> getById(@PathVariable Long id) {
-        Log log = logService.readById(id);
-        return ServerResponse.success(log);
+    public ServerResponse<LogDO> getById(@PathVariable Long id) {
+        LogDO logDO = logService.readById(id);
+        return ServerResponse.success(logDO);
     }
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
     @PreAuthorize("hasAnyAuthority('mws:user:getList')")
-    public ServerResponse<List<Log>> getListByPageAndParam(@Valid BasePageParam basePageParam, @Valid Log log) {
-        List<Log> logs = logService.readListByPageAndParam(basePageParam, log);
-        return ServerResponse.success(logs);
+    public ServerResponse<List<LogDO>> getListByPageAndParam(@Valid BasePageQuery basePageQuery, @Valid LogDO logDO) {
+        List<LogDO> logDOS = logService.readListByPageAndQuery(basePageQuery, logDO);
+        return ServerResponse.success(logDOS);
     }
 
 }

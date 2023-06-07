@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.member.repository;
 
-import com.lingyi.mall.api.member.entity.MemberLevel;
+import com.lingyi.mall.api.member.entity.MemberLevelDO;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 
 /**
@@ -9,5 +9,5 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryImplementati
  * @datetime 2023/5/25 14:33
  * @description
  */
-public interface MemberLevelRepository extends JpaRepositoryImplementation<MemberLevel, Long> {
+public interface MemberLevelRepository extends JpaRepositoryImplementation<MemberLevelDO, Long> {
 }
