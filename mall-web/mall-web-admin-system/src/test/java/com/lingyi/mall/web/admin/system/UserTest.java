@@ -2,7 +2,7 @@ package com.lingyi.mall.web.admin.system;
 
 import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.MallBizSystemApplicationTest;
-import com.lingyi.mall.api.system.entity.User;
+import com.lingyi.mall.api.system.entity.UserDO;
 import com.lingyi.mall.biz.system.mapper.UserMapper;
 import com.lingyi.mall.biz.system.repository.UserRepository;
 import com.lingyi.mall.common.base.enums.Whether;
@@ -32,37 +32,37 @@ public class UserTest implements MallBizSystemApplicationTest {
 
     @Test
     public void testUserSave() {
-        User user = new User();
-        user.setUserName(RandomUtil.randomString(6));
-        user.setPassword(passwordEncoder.encode(RandomUtil.randomString(6)));
-        user.setIsEnable(Whether.Y.getCode());
-        user = userRepository.save(user);
-        System.out.println(user);
+        UserDO userDO = new UserDO();
+        userDO.setUserName(RandomUtil.randomString(6));
+        userDO.setPassword(passwordEncoder.encode(RandomUtil.randomString(6)));
+        userDO.setIsEnable(Whether.Y.getCode());
+        userDO = userRepository.save(userDO);
+        System.out.println(userDO);
     }
 
     @Test
     public void testUserRemove() {
-        User user = new User();
-        user.setPassword("11");
-        userRepository.delete(user);
+        UserDO userDO = new UserDO();
+        userDO.setPassword("11");
+        userRepository.delete(userDO);
         System.out.println("删除成功");
     }
 
     @Test
     public void testUserUpdate() {
-        User user = new User();
-        user.setId(5308839368929536L);
-        user.setUserName(RandomUtil.randomString(6));
-        user.setPassword(passwordEncoder.encode(RandomUtil.randomString(6)));
-        user.setIsEnable(Whether.Y.getCode());
-        user = userRepository.save(user);
-        System.out.println(user);
+        UserDO userDO = new UserDO();
+        userDO.setId(5308839368929536L);
+        userDO.setUserName(RandomUtil.randomString(6));
+        userDO.setPassword(passwordEncoder.encode(RandomUtil.randomString(6)));
+        userDO.setIsEnable(Whether.Y.getCode());
+        userDO = userRepository.save(userDO);
+        System.out.println(userDO);
     }
 
     @Test
     public void testUserGet() {
-        Optional<User> userOptional = userRepository.findById(5308839368929536L);
-        System.out.println(userOptional.orElse(new User()));
+        Optional<UserDO> userOptional = userRepository.findById(5308839368929536L);
+        System.out.println(userOptional.orElse(new UserDO()));
     }
 
 
