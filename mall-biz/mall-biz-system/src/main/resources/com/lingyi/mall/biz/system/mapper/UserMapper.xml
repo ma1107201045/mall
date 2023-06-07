@@ -33,14 +33,14 @@
     <select id="selectById" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM mbs_user
+        FROM ms_user
         WHERE id=#{id,jdbcType=BIGINT}
     </select>
 
     <select id="selectListByParam" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM mbs_user
+        FROM ms_user
         <where>
             <include refid="Base_Condition"/>
         </where>
@@ -53,7 +53,7 @@
     </resultMap>
     <select id="selectIdByUserName" resultType="java.lang.Long">
         SELECT id
-        FROM mbs_user
+        FROM ms_user
         WHERE user_name = #{userName}
     </select>
     <select id="selectByUserName" resultMap="SelectByUserNameMap">
@@ -69,15 +69,15 @@
                mu.last_login_ip        mu_last_login_ip,
                mu.is_enable            mu_is_enable,
                mu.remark               mu_remark
-        FROM mbs_user mu
+        FROM ms_user mu
         WHERE mu.user_name = #{userName}
     </select>
 
     <select id="selectMenuPermissionsByUserIdAndMenuType" resultType="java.lang.String">
         SELECT mm.permission
-        FROM mbs_user_role mur
-                 INNER JOIN mbs_role_menu mrm ON mrm.menu_id = mur.role_id
-                 INNER JOIN mbs_menu mm ON mm.id = mrm.menu_id
+        FROM ms_user_role mur
+                 INNER JOIN ms_role_menu mrm ON mrm.menu_id = mur.role_id
+                 INNER JOIN ms_menu mm ON mm.id = mrm.menu_id
         WHERE mur.user_id = #{userId}
           AND mm.type = #{menuType}
         GROUP BY mm.id
@@ -91,10 +91,10 @@
     <select id="selectMenusByUserNameAndMenuTypesAndMenuParentId"
             resultMap="SelectMenusByUserNameAndMenuTypesAndMenuParentIdMap">
         SELECT mm.id mm.name ,mm.icon ,mm.path,
-        FROM mbs_user mu INNER JOIN
-        mbs_user_role mur ON mur.user_id=mu.id
-        INNER JOIN mbs_role_menu mrm ON mrm.menu_id = mur.role_id
-        INNER JOIN mbs_menu mm ON mm.id = mrm.menu_id
+        FROM ms_user mu INNER JOIN
+        ms_user_role mur ON mur.user_id=mu.id
+        INNER JOIN ms_role_menu mrm ON mrm.menu_id = mur.role_id
+        INNER JOIN ms_menu mm ON mm.id = mrm.menu_id
         WHERE mm.type IN
         <foreach collection="menuTypes" item="menuType" open="(" separator="," close=")">
             #{menuType}

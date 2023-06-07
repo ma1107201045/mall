@@ -31,13 +31,13 @@
     <select id="selectById" resultType="com.lingyi.mall.api.member.vo.MemberVO">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM mbm_member
+        FROM mm_member
         WHERE id#{id,jdbcType=BIGINT}
     </select>
     <select id="selectListByParam" resultType="com.lingyi.mall.api.member.vo.MemberVO">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM mbm_member
+        FROM mm_member
         <where>
             <include refid="Base_Condition"/>
         </where>
@@ -45,7 +45,7 @@
     <select id="selectByPhoneNumber" resultType="com.lingyi.mall.api.member.vo.MemberVO">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM mbm_member
+        FROM mm_member
         WHERE phone_number=#{phoneNumber,jdbcType=VARCHAR}
     </select>
 

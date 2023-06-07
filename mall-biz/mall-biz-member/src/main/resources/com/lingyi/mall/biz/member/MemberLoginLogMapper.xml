@@ -24,13 +24,13 @@
     <select id="selectById" resultType="com.lingyi.mall.api.member.vo.MemberLoginLogVO">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM mbm_member_level
+        FROM mm_member_level
         WHERE id#{id,jdbcType=BIGINT}
     </select>
     <select id="selectListByParam" resultType="com.lingyi.mall.api.member.vo.MemberLoginLogVO">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM mbm_member_level
+        FROM mm_member_level
         <where>
             <include refid="Base_Condition"/>
         </where>

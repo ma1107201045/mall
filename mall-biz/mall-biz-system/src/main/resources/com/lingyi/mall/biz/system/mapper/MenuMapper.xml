@@ -32,12 +32,12 @@
     </sql>
     <select id="selectTypeById" resultType="java.lang.Integer">
         SELECT type
-        FROM mbs_menu
+        FROM ms_menu
         WHERE id = #{id}
     </select>
     <select id="selectIdsByParentIds" resultType="java.lang.Long">
         SELECT id
-        FROM mbs_menu
+        FROM ms_menu
         WHERE parent_id in
         <foreach collection="parentIds" item="parentId" open="(" separator="," close=")">
             #{parentId}
@@ -46,13 +46,13 @@
     <select id="selectById" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM mbs_menu
+        FROM ms_menu
         WHERE id=#{id,jdbcType=BIGINT}
     </select>
     <select id="selectListByParam" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM mbs_menu
+        FROM ms_menu
         <where>
             <include refid="Base_Condition"/>
         </where>
@@ -60,7 +60,7 @@
     <select id="selectListByParentId" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM mbs_menu
+        FROM ms_menu
         WHERE
         AND parent_id = #{parentId,jdbcType=BIGINT}
         ORDER BY sort
@@ -68,14 +68,14 @@
 
     <select id="selectPermissionsByType" resultType="java.lang.String">
         SELECT permission
-        FROM mbs_menu
+        FROM ms_menu
         WHERE type = #{type}
     </select>
 
     <select id="selectListByTypesAndParentId"
             resultMap="com.lingyi.mall.biz.system.mapper.UserMapper.SelectMenusByUserNameAndMenuTypesAndMenuParentIdMap">
         SELECT id, name, icon, path
-        FROM mbs_menu
+        FROM ms_menu
         WHERE type IN
         <foreach collection="types" item="type" open="(" separator="," close=")">
             #{type}
