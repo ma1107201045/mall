@@ -2,10 +2,8 @@ package com.lingyi.mall.common.base.config;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ArrayUtil;
-import cn.hutool.core.util.ObjUtil;
 import com.lingyi.mall.common.base.constant.BaseConstant;
 import com.lingyi.mall.common.base.constant.SecurityBaseConstant;
-import feign.Logger;
 import feign.RequestInterceptor;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,11 +29,6 @@ import java.util.Objects;
  */
 @Configuration(proxyBeanMethods = false)
 public class OpenFeignConfig {
-
-    @Bean
-    Logger.Level level() {
-        return Logger.Level.FULL;
-    }
 
     @Bean
     @NonNull

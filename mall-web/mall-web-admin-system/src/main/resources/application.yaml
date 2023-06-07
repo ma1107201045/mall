@@ -26,6 +26,15 @@ spring:
       password: jinbihu2023
       client-type: lettuce
       database: 1
+  cloud:
+    openfeign:
+      client:
+        config:
+          mall-web-admin-system:
+            loggerLevel: FULL
+            contract: feign.Contract.Default
+            connectTimeout: 5
+            readTimeout: 4
 # springdoc-openapi项目配置
 springdoc:
   swagger-ui:
@@ -35,3 +44,4 @@ springdoc:
     - group: '系统管理服务【后台】'
       paths-to-match: '/**'
       packages-to-scan: com.lingyi.mall.biz.system.b.controller
+# openFeign 配置
