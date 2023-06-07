@@ -20,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-redis</artifactId>
+            <artifactId>mall-common-cache</artifactId>
         </dependency>
         <dependency>
             <groupId>com.mysql</groupId>
