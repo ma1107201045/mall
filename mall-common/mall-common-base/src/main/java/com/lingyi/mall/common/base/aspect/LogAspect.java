@@ -3,11 +3,10 @@ package com.lingyi.mall.common.base.aspect;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.StopWatch;
-import cn.hutool.core.util.ObjUtil;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
-import com.lingyi.mall.common.base.enums.YN;
+import com.lingyi.mall.common.base.enums.Whether;
 import com.lingyi.mall.common.base.task.BaseAsyncTask;
 import com.lingyi.mall.common.base.util.RequestUtil;
 import jakarta.servlet.ServletRequest;
@@ -32,7 +31,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.List;
 import java.util.Map;
@@ -282,7 +280,7 @@ public class LogAspect {
         ReflectUtil.setFieldValue(logEntity, "requestParam", log.ignoreParam() ? JSON.toJSONString(null) : JSON.toJSONString(joinPoint.getArgs()));
         ReflectUtil.setFieldValue(logEntity, "responseParam", JSON.toJSONString(result));
         ReflectUtil.setFieldValue(logEntity, "executeDuration", taskTime);
-        ReflectUtil.setFieldValue(logEntity, "executeResult", isSuccess ? YN.Y.getCode() : YN.N.getCode());
+        ReflectUtil.setFieldValue(logEntity, "executeResult", isSuccess ? Whether.Y.getCode() : Whether.N.getCode());
         ReflectUtil.setFieldValue(logEntity, "failReason", failReason);
         ReflectUtil.setFieldValue(logEntity, "clientIp", RequestUtil.getRemoteHost(((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest()));
 

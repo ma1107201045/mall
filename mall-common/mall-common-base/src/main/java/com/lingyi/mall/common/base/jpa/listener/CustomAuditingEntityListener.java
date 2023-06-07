@@ -1,7 +1,7 @@
 package com.lingyi.mall.common.base.jpa.listener;
 
 import com.lingyi.mall.common.base.entity.BaseIsDeleteEntity;
-import com.lingyi.mall.common.base.enums.YN;
+import com.lingyi.mall.common.base.enums.Whether;
 import jakarta.annotation.Resource;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
@@ -37,7 +37,7 @@ public class CustomAuditingEntityListener {
 
     private void setIsDelete(Object target) {
         if (target instanceof BaseIsDeleteEntity baseIsDeleteEntity && Objects.isNull(baseIsDeleteEntity.getIsDelete())) {
-            baseIsDeleteEntity.setIsDelete(YN.N.getCode());
+            baseIsDeleteEntity.setIsDelete(Whether.N.getCode());
         }
     }
 }

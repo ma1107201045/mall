@@ -5,7 +5,7 @@ import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
 import com.lingyi.mall.api.member.vo.MemberVO;
 import com.lingyi.mall.common.base.entity.MemberDetails;
 import com.lingyi.mall.common.base.entity.MemberDetailsEntity;
-import com.lingyi.mall.common.base.enums.YN;
+import com.lingyi.mall.common.base.enums.Whether;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.security.app.authentication.service.MemberDetailsService;
 import com.lingyi.mall.common.security.app.enums.Fail;
@@ -44,7 +44,7 @@ public class MemberDetailsServiceImpl implements MemberDetailsService {
                 .authorities(simpleGrantedAuthorities)
                 .phoneNumber(memberVO.getPhoneNumber())
                 .verificationCode(RandomUtil.randomNumbers(6))
-                .enabled(YN.Y.getCode().equals(memberVO.getIsEnable()))
+                .enabled(Whether.Y.getCode().equals(memberVO.getIsEnable()))
                 .userId(memberVO.getMemberId())
                 .userName(memberVO.getUserName())
                 .build();

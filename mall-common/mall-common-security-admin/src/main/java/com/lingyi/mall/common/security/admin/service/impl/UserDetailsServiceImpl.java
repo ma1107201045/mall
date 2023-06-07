@@ -3,7 +3,7 @@ package com.lingyi.mall.common.security.admin.service.impl;
 import com.lingyi.mall.api.system.consumer.UserFeignConsumer;
 import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.common.base.entity.UserDetailsEntity;
-import com.lingyi.mall.common.base.enums.YN;
+import com.lingyi.mall.common.base.enums.Whether;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.security.admin.enums.Fail;
 import lombok.RequiredArgsConstructor;
@@ -47,7 +47,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .accountNonExpired(true)
                 .accountNonLocked(true)
                 .credentialsNonExpired(true)
-                .enabled(YN.Y.getCode().equals(userVO.getIsEnable()))
+                .enabled(Whether.Y.getCode().equals(userVO.getIsEnable()))
                 .userId(userVO.getUserId())
                 .build();
     }
