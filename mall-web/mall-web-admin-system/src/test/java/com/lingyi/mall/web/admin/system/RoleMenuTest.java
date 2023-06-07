@@ -1,6 +1,6 @@
-package com.lingyi.mall.biz.system;
+package com.lingyi.mall.web.admin.system;
 
-import com.lingyi.mall.MallBizSystemApplicationTests;
+import com.lingyi.mall.MallBizSystemApplicationTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
 /**
@@ -10,5 +10,5 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @description
  */
 @SpringBootTest
-public class RoleMenuTests implements MallBizSystemApplicationTests {
+public class RoleMenuTest implements MallBizSystemApplicationTest {
 }

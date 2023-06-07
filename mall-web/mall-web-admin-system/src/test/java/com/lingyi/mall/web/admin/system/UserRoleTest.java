@@ -1,6 +1,6 @@
-package com.lingyi.mall.biz.system;
+package com.lingyi.mall.web.admin.system;
 
-import com.lingyi.mall.MallBizSystemApplicationTests;
+import com.lingyi.mall.MallBizSystemApplicationTest;
 import com.lingyi.mall.biz.system.repository.UserRoleRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @description
  */
 @SpringBootTest
-public class UserRoleTests implements MallBizSystemApplicationTests {
+public class UserRoleTest implements MallBizSystemApplicationTest {
 
 
     @Autowired

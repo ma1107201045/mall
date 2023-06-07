@@ -1,7 +1,7 @@
-package com.lingyi.mall.biz.system;
+package com.lingyi.mall.web.admin.system;
 
 import cn.hutool.core.util.RandomUtil;
-import com.lingyi.mall.MallBizSystemApplicationTests;
+import com.lingyi.mall.MallBizSystemApplicationTest;
 import com.lingyi.mall.api.system.entity.User;
 import com.lingyi.mall.biz.system.mapper.UserMapper;
 import com.lingyi.mall.biz.system.repository.UserRepository;
@@ -20,7 +20,7 @@ import java.util.Optional;
  * @description
  */
 @SpringBootTest
-public class UserTests implements MallBizSystemApplicationTests {
+public class UserTest implements MallBizSystemApplicationTest {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
