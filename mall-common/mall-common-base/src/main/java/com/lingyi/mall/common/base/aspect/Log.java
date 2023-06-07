@@ -1,7 +1,7 @@
 package com.lingyi.mall.common.base.aspect;
 
-import com.lingyi.mall.common.base.enums.ClientType;
-import com.lingyi.mall.common.base.enums.OperationType;
+import com.lingyi.mall.common.base.enums.ClientTypeEnum;
+import com.lingyi.mall.common.base.enums.OperationTypeEnum;
 
 import java.lang.annotation.*;
 
@@ -18,9 +18,9 @@ public @interface Log {
 
     String title() default "";
 
-    OperationType operationType() default OperationType.OTHER;
+    OperationTypeEnum operationType() default OperationTypeEnum.OTHER;
 
-    ClientType clientType() default ClientType.ADMIN;
+    ClientTypeEnum clientType() default ClientTypeEnum.ADMIN;
 
     boolean ignoreParam() default false;
 }

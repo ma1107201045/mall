@@ -22,7 +22,7 @@ public class RoleMenuServiceImpl implements RoleMenuService {
 
 
     @Override
-    public void saveList(Long roleId, List<Long> menuIds) {
+    public void createList(Long roleId, List<Long> menuIds) {
         List<RoleMenuDO> roleMenuDOS = menuIds.stream()
                 .map(menuId -> RoleMenuDO.of(roleId, menuId))
                 .toList();
@@ -30,7 +30,7 @@ public class RoleMenuServiceImpl implements RoleMenuService {
     }
 
     @Override
-    public void removeByRoleId(Long roleId) {
+    public void deleteByRoleId(Long roleId) {
         roleMenuRepository.deleteByRoleId(roleId);
     }
 }

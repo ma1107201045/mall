@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.member.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.api.member.entity.MemberDO;
-import com.lingyi.mall.api.member.enums.MemberFail;
+import com.lingyi.mall.api.member.enums.MemberFailEnumEnum;
 import com.lingyi.mall.api.member.query.MemberQuery;
 import com.lingyi.mall.api.member.vo.MemberVO;
 import com.lingyi.mall.biz.member.mapper.MemberMapper;
@@ -45,7 +45,7 @@ public class MemberServiceImpl implements MemberService {
     public void updateById(MemberDO memberDO) {
         Optional<MemberDO> optional = memberRepository.findById(memberDO.getId());
         if (optional.isEmpty()) {
-            throw new BizException(MemberFail.MEMBER_NULL_ERROR);
+            throw new BizException(MemberFailEnumEnum.MEMBER_NULL_ERROR);
         }
         MemberDO newMemberDO = optional.get();
         ConverterUtil.to(memberDO, newMemberDO);

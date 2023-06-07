@@ -34,16 +34,16 @@ public class LogController {
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('mws:user:get')")
     public ServerResponse<LogDO> getById(@PathVariable Long id) {
-        LogDO logDO = logService.readById(id);
-        return ServerResponse.success(logDO);
+        LogDO log = logService.readById(id);
+        return ServerResponse.success(log);
     }
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
     @PreAuthorize("hasAnyAuthority('mws:user:getList')")
     public ServerResponse<List<LogDO>> getListByPageAndParam(@Valid BasePageQuery basePageQuery, @Valid LogDO logDO) {
-        List<LogDO> logDOS = logService.readListByPageAndQuery(basePageQuery, logDO);
-        return ServerResponse.success(logDOS);
+        List<LogDO> logs = logService.readListByPageAndQuery(basePageQuery, logDO);
+        return ServerResponse.success(logs);
     }
 
 }

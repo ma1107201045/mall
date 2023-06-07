@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.member.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.api.member.entity.MemberLoginLogDO;
-import com.lingyi.mall.api.member.enums.MemberFail;
+import com.lingyi.mall.api.member.enums.MemberFailEnumEnum;
 import com.lingyi.mall.api.member.vo.MemberLoginLogVO;
 import com.lingyi.mall.biz.member.mapper.MemberLoginLogMapper;
 import com.lingyi.mall.biz.member.repository.MemberLoginLogRepository;
@@ -46,7 +46,7 @@ public class MemberLoginLogServiceImpl implements MemberLoginLogService {
         Optional<MemberLoginLogDO> optional = memberLoginLogRepository.findById(memberLoginLogDO.getId());
         //判断日志是否为空
         if (optional.isEmpty()) {
-            throw new BizException(MemberFail.MEMBER_LOGIN_LOG_NULL_ERROR);
+            throw new BizException(MemberFailEnumEnum.MEMBER_LOGIN_LOG_NULL_ERROR);
         }
         //获取用户
         MemberLoginLogDO newMemberLoginLogDO = optional.get();

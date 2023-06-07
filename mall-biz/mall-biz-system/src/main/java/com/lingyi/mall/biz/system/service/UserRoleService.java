@@ -16,7 +16,7 @@ public interface UserRoleService {
      * @param userId  用户id
      * @param roleIds 角色id集
      */
-    void addList(Long userId, List<Long> roleIds);
+    void createList(Long userId, List<Long> roleIds);
 
 
     /**
@@ -24,5 +24,5 @@ public interface UserRoleService {
      *
      * @param userId 用户id
      */
-    void removeByUserId(Long userId);
+    void deleteByUserId(Long userId);
 }

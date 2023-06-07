@@ -5,7 +5,7 @@ import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ObjUtil;
 import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.common.base.constant.BaseConstant;
-import com.lingyi.mall.common.base.enums.BaseFail;
+import com.lingyi.mall.common.base.enums.BaseFailEnum;
 import com.lingyi.mall.common.base.exception.BizException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -23,11 +23,11 @@ public final class AssertUtil {
 
     }
 
-    public static void isNull(Object object, BaseFail failEnum) {
+    public static void isNull(Object object, BaseFailEnum failEnum) {
         isTrue(ObjUtil.isNull(object), failEnum);
     }
 
-    public static void notNull(Object object, BaseFail failEnum) {
+    public static void notNull(Object object, BaseFailEnum failEnum) {
         isTrue(ObjUtil.isNotNull(object), failEnum);
     }
 
@@ -35,7 +35,7 @@ public final class AssertUtil {
         isTrue(ObjUtil.isNotNull(object), exception);
     }
 
-    public static void isTrue(boolean flag, BaseFail baseFailEnum) {
+    public static void isTrue(boolean flag, BaseFailEnum baseFailEnum) {
         if (!flag) {
             Object[] objects = getFailEnumValues(baseFailEnum);
             throw new BizException((Integer) objects[0], (String) objects[1]);
@@ -48,34 +48,34 @@ public final class AssertUtil {
         }
     }
 
-    public static void isFalse(boolean flag, BaseFail failEnum) {
+    public static void isFalse(boolean flag, BaseFailEnum failEnum) {
         isTrue(!flag, failEnum);
     }
 
-    public static void isGtZero(int number, BaseFail failEnum) {
+    public static void isGtZero(int number, BaseFailEnum failEnum) {
         isTrue(number > 0, failEnum);
     }
 
-    public static void isLtZero(int number, BaseFail failEnum) {
+    public static void isLtZero(int number, BaseFailEnum failEnum) {
         isFalse(number < 0, failEnum);
     }
 
-    public static <T extends CharSequence> T isEmpty(T t, BaseFail failEnum) {
+    public static <T extends CharSequence> T isEmpty(T t, BaseFailEnum failEnum) {
         isTrue(StrUtil.isEmpty(t), failEnum);
         return t;
     }
 
-    public static <T extends CharSequence> T notEmpty(T t, BaseFail failEnum) {
+    public static <T extends CharSequence> T notEmpty(T t, BaseFailEnum failEnum) {
         isTrue(StrUtil.isNotEmpty(t), failEnum);
         return t;
     }
 
-    public static <T extends CharSequence> T isBlack(T t, BaseFail failEnum) {
+    public static <T extends CharSequence> T isBlack(T t, BaseFailEnum failEnum) {
         isTrue(StrUtil.isBlank(t), failEnum);
         return t;
     }
 
-    public static <T extends CharSequence> T notBlack(T t, BaseFail failEnum) {
+    public static <T extends CharSequence> T notBlack(T t, BaseFailEnum failEnum) {
         isTrue(StrUtil.isNotBlank(t), failEnum);
         return t;
     }
@@ -85,27 +85,27 @@ public final class AssertUtil {
         return t;
     }
 
-    public static <T> T[] isEmpty(T[] t, BaseFail failEnum) {
+    public static <T> T[] isEmpty(T[] t, BaseFailEnum failEnum) {
         isTrue(ArrayUtil.isEmpty(t), failEnum);
         return t;
     }
 
-    public static <T> T[] notEmpty(T[] t, BaseFail failEnum) {
+    public static <T> T[] notEmpty(T[] t, BaseFailEnum failEnum) {
         isTrue(ArrayUtil.isNotEmpty(t), failEnum);
         return t;
     }
 
-    public static <E, T extends Iterable<E>> T isEmpty(T t, BaseFail failEnum) {
+    public static <E, T extends Iterable<E>> T isEmpty(T t, BaseFailEnum failEnum) {
         isTrue(CollUtil.isEmpty(t), failEnum);
         return t;
     }
 
-    public static <E, T extends Iterable<E>> T notEmpty(T t, BaseFail failEnum) {
+    public static <E, T extends Iterable<E>> T notEmpty(T t, BaseFailEnum failEnum) {
         isTrue(CollUtil.isNotEmpty(t), failEnum);
         return t;
     }
 
-    public static Object[] getFailEnumValues(BaseFail failEnum) {
+    public static Object[] getFailEnumValues(BaseFailEnum failEnum) {
         Object[] objects = new Object[2];
         try {
             Class<?> clazz = failEnum.getClass();

@@ -1,6 +1,6 @@
 package com.lingyi.mall.common.base.exception;
 
-import com.lingyi.mall.common.base.enums.BaseFail;
+import com.lingyi.mall.common.base.enums.BaseFailEnum;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
@@ -24,7 +24,7 @@ public class BizException extends RuntimeException {
 
     private final String message;
 
-    public BizException(BaseFail baseFailEnum) {
+    public BizException(BaseFailEnum baseFailEnum) {
         super((String) AssertUtil.getFailEnumValues(baseFailEnum)[1]);
         this.bizCode = (Integer) AssertUtil.getFailEnumValues(baseFailEnum)[0];
         this.message = (String) AssertUtil.getFailEnumValues(baseFailEnum)[1];

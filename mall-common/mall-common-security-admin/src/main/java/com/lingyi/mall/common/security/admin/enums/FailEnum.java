@@ -1,6 +1,6 @@
-package com.lingyi.mall.common.security.app.enums;
+package com.lingyi.mall.common.security.admin.enums;
 
-import com.lingyi.mall.common.base.enums.BaseFail;
+import com.lingyi.mall.common.base.enums.BaseFailEnum;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -12,13 +12,13 @@ import lombok.RequiredArgsConstructor;
  */
 @Getter
 @RequiredArgsConstructor
-public enum Fail implements BaseFail {
+public enum FailEnum implements BaseFailEnum {
     /**
      *
      */
-    PHONE_NUMBER_NOT_NULL_ERROR(8001, "手机号不能为空"),
+    USER_NAME_NOT_NULL_ERROR(8001, "用户名称不能为空"),
 
-    PHONE_NUMBER_NOT_FOUND_ERROR(8002, "手机号不存在");
+    USER_NAME_NOT_FOUND_ERROR(8002, "用户名称不存在");
 
 
     private final Integer code;

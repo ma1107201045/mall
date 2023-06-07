@@ -21,7 +21,7 @@ public class UserRoleServiceImpl implements UserRoleService {
     private final UserRoleRepository userRoleRepository;
 
     @Override
-    public void addList(Long userId, List<Long> roleIds) {
+    public void createList(Long userId, List<Long> roleIds) {
         List<UserRoleDO> userRoleDOS = roleIds.stream()
                 .map(roleId -> UserRoleDO.of(userId, roleId))
                 .toList();
@@ -29,7 +29,7 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
-    public void removeByUserId(Long userId) {
+    public void deleteByUserId(Long userId) {
         userRoleRepository.deleteByUserId(userId);
     }
 }

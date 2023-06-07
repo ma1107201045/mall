@@ -1,6 +1,6 @@
 package com.lingyi.mall.api.member.enums;
 
-import com.lingyi.mall.common.base.enums.BaseFail;
+import com.lingyi.mall.common.base.enums.BaseFailEnum;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Getter
 @RequiredArgsConstructor
-public enum MemberFail implements BaseFail {
+public enum MemberFailEnumEnum implements BaseFailEnum {
 
     MEMBER_NULL_ERROR(8001, "会员不能为空"),
 

@@ -5,10 +5,10 @@ import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
 import com.lingyi.mall.api.member.vo.MemberVO;
 import com.lingyi.mall.common.base.entity.MemberDetails;
 import com.lingyi.mall.common.base.entity.MemberDetailsDO;
-import com.lingyi.mall.common.base.enums.Whether;
+import com.lingyi.mall.common.base.enums.WhetherEnum;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.security.app.authentication.service.MemberDetailsService;
-import com.lingyi.mall.common.security.app.enums.Fail;
+import com.lingyi.mall.common.security.app.enums.FailEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -32,11 +32,11 @@ public class MemberDetailsServiceImpl implements MemberDetailsService {
     @Override
     public MemberDetails loadMemberByPhoneNumber(String phoneNumber) throws UsernameNotFoundException {
         //校验用户名称
-        AssertUtil.notBlack(phoneNumber, new UsernameNotFoundException(Fail.PHONE_NUMBER_NOT_FOUND_ERROR.getMessage()));
+        AssertUtil.notBlack(phoneNumber, new UsernameNotFoundException(FailEnum.PHONE_NUMBER_NOT_FOUND_ERROR.getMessage()));
         //查询用户信息和菜单权限
         MemberVO memberVO = memberFeignConsumer.getByPhoneNumber(phoneNumber);
         //校验用用户信息
-        AssertUtil.notNull(memberVO, new UsernameNotFoundException(Fail.PHONE_NUMBER_NOT_FOUND_ERROR.getMessage()));
+        AssertUtil.notNull(memberVO, new UsernameNotFoundException(FailEnum.PHONE_NUMBER_NOT_FOUND_ERROR.getMessage()));
         //ignore
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = Collections.emptyList();
         //组装MemberDetailsEntity
@@ -44,7 +44,7 @@ public class MemberDetailsServiceImpl implements MemberDetailsService {
                 .authorities(simpleGrantedAuthorities)
                 .phoneNumber(memberVO.getPhoneNumber())
                 .verificationCode(RandomUtil.randomNumbers(6))
-                .enabled(Whether.Y.getCode().equals(memberVO.getIsEnable()))
+                .enabled(WhetherEnum.Y.getCode().equals(memberVO.getIsEnable()))
                 .userId(memberVO.getMemberId())
                 .userName(memberVO.getUserName())
                 .build();

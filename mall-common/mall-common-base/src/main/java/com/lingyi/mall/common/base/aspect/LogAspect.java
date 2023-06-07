@@ -6,7 +6,7 @@ import cn.hutool.core.date.StopWatch;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
-import com.lingyi.mall.common.base.enums.Whether;
+import com.lingyi.mall.common.base.enums.WhetherEnum;
 import com.lingyi.mall.common.base.task.BaseAsyncTask;
 import com.lingyi.mall.common.base.util.RequestUtil;
 import jakarta.servlet.ServletRequest;
@@ -280,7 +280,7 @@ public class LogAspect {
         ReflectUtil.setFieldValue(logDO, "requestParam", log.ignoreParam() ? JSON.toJSONString(null) : JSON.toJSONString(joinPoint.getArgs()));
         ReflectUtil.setFieldValue(logDO, "responseParam", JSON.toJSONString(result));
         ReflectUtil.setFieldValue(logDO, "executeDuration", taskTime);
-        ReflectUtil.setFieldValue(logDO, "executeResult", isSuccess ? Whether.Y.getCode() : Whether.N.getCode());
+        ReflectUtil.setFieldValue(logDO, "executeResult", isSuccess ? WhetherEnum.Y.getCode() : WhetherEnum.N.getCode());
         ReflectUtil.setFieldValue(logDO, "failReason", failReason);
         ReflectUtil.setFieldValue(logDO, "clientIp", RequestUtil.getRemoteHost(((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest()));
 

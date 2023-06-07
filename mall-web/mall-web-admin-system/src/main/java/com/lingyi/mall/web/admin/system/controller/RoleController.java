@@ -39,8 +39,8 @@ public class RoleController {
 
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
-    @PreAuthorize("hasAnyAuthority('mws:role:remove')")
-    public ServerResponse<Void> removeByIds(@PathVariable List<Long> ids) {
+    @PreAuthorize("hasAnyAuthority('mws:role:delete')")
+    public ServerResponse<Void> deleteByIds(@PathVariable List<Long> ids) {
         roleService.deleteByIds(ids);
         return ServerResponse.success();
     }

@@ -6,5 +6,5 @@ package com.lingyi.mall.common.base.enums;
  * @datetime 2023/05/01 18:52
  * @description
  */
-public interface BaseFail {
+public interface BaseFailEnum {
 }

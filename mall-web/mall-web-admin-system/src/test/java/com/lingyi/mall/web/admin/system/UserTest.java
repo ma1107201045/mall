@@ -5,7 +5,7 @@ import com.lingyi.mall.MallBizSystemApplicationTest;
 import com.lingyi.mall.api.system.entity.UserDO;
 import com.lingyi.mall.biz.system.mapper.UserMapper;
 import com.lingyi.mall.biz.system.repository.UserRepository;
-import com.lingyi.mall.common.base.enums.Whether;
+import com.lingyi.mall.common.base.enums.WhetherEnum;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -35,7 +35,7 @@ public class UserTest implements MallBizSystemApplicationTest {
         UserDO userDO = new UserDO();
         userDO.setUserName(RandomUtil.randomString(6));
         userDO.setPassword(passwordEncoder.encode(RandomUtil.randomString(6)));
-        userDO.setIsEnable(Whether.Y.getCode());
+        userDO.setIsEnable(WhetherEnum.Y.getCode());
         userDO = userRepository.save(userDO);
         System.out.println(userDO);
     }
@@ -54,7 +54,7 @@ public class UserTest implements MallBizSystemApplicationTest {
         userDO.setId(5308839368929536L);
         userDO.setUserName(RandomUtil.randomString(6));
         userDO.setPassword(passwordEncoder.encode(RandomUtil.randomString(6)));
-        userDO.setIsEnable(Whether.Y.getCode());
+        userDO.setIsEnable(WhetherEnum.Y.getCode());
         userDO = userRepository.save(userDO);
         System.out.println(userDO);
     }

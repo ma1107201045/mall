@@ -4,7 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.api.system.dto.RoleDTO;
 import com.lingyi.mall.api.system.entity.RoleDO;
-import com.lingyi.mall.api.system.enums.SystemFail;
+import com.lingyi.mall.api.system.enums.SystemFailEnum;
 import com.lingyi.mall.api.system.query.RoleQuery;
 import com.lingyi.mall.api.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.mapper.RoleMapper;
@@ -45,7 +45,7 @@ public class RoleServiceImpl implements RoleService {
         //保存
         roleRepository.save(roleDO);
         //保存角色菜单信息
-        roleMenuService.saveList(roleDO.getId(), roleDTO.getMenuIds());
+        roleMenuService.createList(roleDO.getId(), roleDTO.getMenuIds());
 
     }
 
@@ -63,7 +63,7 @@ public class RoleServiceImpl implements RoleService {
         Optional<RoleDO> optional = roleRepository.findById(id);
         //判断用户是否不为空
         if (optional.isEmpty()) {
-            throw new BizException(SystemFail.ROLE_NULL_ERROR);
+            throw new BizException(SystemFailEnum.ROLE_NULL_ERROR);
         }
         //获取用户
         RoleDO roleDO = optional.get();
@@ -72,9 +72,9 @@ public class RoleServiceImpl implements RoleService {
         //保存
         roleRepository.save(roleDO);
         //删除角色菜单集
-        roleMenuService.removeByRoleId(id);
+        roleMenuService.deleteByRoleId(id);
         //保存角色菜单信息
-        roleMenuService.saveList(id, roleDTO.getMenuIds());
+        roleMenuService.createList(id, roleDTO.getMenuIds());
     }
 
     @Override

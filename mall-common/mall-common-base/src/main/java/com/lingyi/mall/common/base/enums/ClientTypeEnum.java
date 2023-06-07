@@ -6,7 +6,7 @@ package com.lingyi.mall.common.base.enums;
  * @DateTime: 2023/6/5 20:30
  * @Description:
  */
-public enum ClientType {
+public enum ClientTypeEnum {
     /**
      *
      */
