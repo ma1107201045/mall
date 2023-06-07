@@ -21,8 +21,8 @@ public class BaseAsyncTask {
 
 
     @Async
-    public void saveLog(Object log) {
+    public void saveLog(Object logEntity) {
         Object logFeignConsumer = SpringUtil.getBean(TaskConstant.LOG_BEAN_NAME);
-        ReflectUtil.invoke(logFeignConsumer, TaskConstant.LOG_METHOD_NAME, log);
+        ReflectUtil.invoke(logFeignConsumer, TaskConstant.LOG_METHOD_NAME, logEntity);
     }
 }
