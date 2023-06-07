@@ -3,6 +3,7 @@ package com.lingyi.mall.api.system.feign;
 import com.lingyi.mall.api.system.entity.LogDO;
 import com.lingyi.mall.api.system.fallbackfactory.LogFeignFallbackFactory;
 import com.lingyi.mall.common.base.util.ServerResponse;
+import feign.Request;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,5 +24,5 @@ public interface LogFeign {
      * @return ServerResponse
      */
     @PostMapping("/admin/system/logs")
-    ServerResponse<Void> save(@RequestBody LogDO logDO);
+    ServerResponse<Void> save(@RequestBody LogDO logDO, Request.Options options);
 }

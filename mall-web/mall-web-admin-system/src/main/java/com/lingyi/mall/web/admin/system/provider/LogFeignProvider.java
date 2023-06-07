@@ -4,6 +4,7 @@ import com.lingyi.mall.api.system.entity.LogDO;
 import com.lingyi.mall.api.system.feign.LogFeign;
 import com.lingyi.mall.biz.system.service.LogService;
 import com.lingyi.mall.common.base.util.ServerResponse;
+import feign.Request;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class LogFeignProvider implements LogFeign {
 
     @Operation(summary = "添加", description = "添加")
     @Override
-    public ServerResponse<Void> save(LogDO logDO) {
+    public ServerResponse<Void> save(LogDO logDO, Request.Options options) {
         logService.create(logDO);
         return ServerResponse.success();
     }

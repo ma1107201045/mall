@@ -5,9 +5,12 @@ import com.lingyi.mall.api.system.entity.LogDO;
 import com.lingyi.mall.api.system.feign.LogFeign;
 import com.lingyi.mall.common.base.exception.OpenFeignException;
 import com.lingyi.mall.common.base.util.ServerResponse;
+import feign.Request;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author: maweiyan
@@ -24,7 +27,7 @@ public class LogFeignConsumer {
 
     public void save(LogDO logDO) {
         log.info("入参:log:{}", logDO);
-        ServerResponse<Void> response = logFeign.save(logDO);
+        ServerResponse<Void> response = logFeign.save(logDO, new Request.Options(5L, TimeUnit.SECONDS, 4L, TimeUnit.SECONDS, true));
         if (response.getIsSuccess()) {
             log.info("出参:Void:{}", JSON.toJSONString(response.getData()));
             return;
