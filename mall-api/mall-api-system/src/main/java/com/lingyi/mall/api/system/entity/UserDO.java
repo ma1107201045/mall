@@ -68,13 +68,11 @@ public class UserDO extends BaseIsDeleteDO implements Serializable {
 
     @Column(name = "remark", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '备注'")
     private String remark;
-
     /**
      * 角色集
      */
     @ManyToMany(mappedBy = "users")
-    @ToString.Exclude
-    private List<RoleDO> roleDOS;
+    private List<RoleDO> roles;
 
 
     @Override
@@ -124,7 +122,7 @@ public class UserDO extends BaseIsDeleteDO implements Serializable {
         if (!Objects.equals(remark, userDO.remark)) {
             return false;
         }
-        return Objects.equals(roleDOS, userDO.roleDOS);
+        return Objects.equals(roles, userDO.roles);
     }
 
     @Override
@@ -141,7 +139,7 @@ public class UserDO extends BaseIsDeleteDO implements Serializable {
         result = 31 * result + (lastLoginIp != null ? lastLoginIp.hashCode() : 0);
         result = 31 * result + (isEnable != null ? isEnable.hashCode() : 0);
         result = 31 * result + (remark != null ? remark.hashCode() : 0);
-        result = 31 * result + (roleDOS != null ? roleDOS.hashCode() : 0);
+        result = 31 * result + (roles != null ? roles.hashCode() : 0);
         return result;
     }
 }

@@ -69,8 +69,7 @@ public class MenuDO extends BaseIsDeleteDO implements Serializable {
             joinColumns = @JoinColumn(name = "menu_id"), inverseJoinColumns = @JoinColumn(name = "role_id"),
             foreignKey = @ForeignKey(name = "fk_menu_id"), inverseForeignKey = @ForeignKey(name = "fk_role_id2"),
             uniqueConstraints = {@UniqueConstraint(name = "fk_menu_id", columnNames = "menu_id"), @UniqueConstraint(name = "fk_role_id2", columnNames = "role_id")})
-    @ToString.Exclude
-    private List<RoleDO> roleDOS;
+    private List<RoleDO> roles;
 
     @Override
     public boolean equals(Object o) {
@@ -117,7 +116,7 @@ public class MenuDO extends BaseIsDeleteDO implements Serializable {
         if (!Objects.equals(permission, mbsMenuDO.permission)) {
             return false;
         }
-        return Objects.equals(roleDOS, mbsMenuDO.roleDOS);
+        return Objects.equals(roles, mbsMenuDO.roles);
     }
 
     @Override
@@ -134,7 +133,7 @@ public class MenuDO extends BaseIsDeleteDO implements Serializable {
         result = 31 * result + (componentPath != null ? componentPath.hashCode() : 0);
         result = 31 * result + (componentName != null ? componentName.hashCode() : 0);
         result = 31 * result + (permission != null ? permission.hashCode() : 0);
-        result = 31 * result + (roleDOS != null ? roleDOS.hashCode() : 0);
+        result = 31 * result + (roles != null ? roles.hashCode() : 0);
         return result;
     }
 }

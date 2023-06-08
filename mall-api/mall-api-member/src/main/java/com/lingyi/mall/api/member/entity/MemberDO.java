@@ -25,77 +25,46 @@ import java.time.LocalDateTime;
 @DynamicInsert
 @DynamicUpdate
 @Entity
-@Table(name = "mm_member")
+@Table(name = "mm_member", uniqueConstraints = {@UniqueConstraint(name = "uk_user_name", columnNames = "user_name"),
+        @UniqueConstraint(name = "uk_phone_number", columnNames = "phone_number")})
 public class MemberDO extends BaseIdDO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -2724268672754765122L;
-    /**
-     * 会员等级id
-     */
+
     @ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "member_level_id", nullable = false, foreignKey = @ForeignKey(name = "fk_member_level_id"))
-    @ToString.Exclude
+    @JoinColumn(name = "member_level_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '会员等级id'",
+            foreignKey = @ForeignKey(name = "fk_member_level_id"))
     private MemberLevelDO memberLevelDO;
 
-    /**
-     * 用户名称
-     */
-    @Column(name = "user_name", nullable = false, length = 20)
+    @Column(name = "user_name", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '用户名称'")
     private String userName;
 
-    /**
-     * 昵称
-     */
-    @Column(name = "nickname", length = 20)
+    @Column(name = "nickname", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '用户名称'")
     private String nickname;
 
-    /**
-     * 性别 1 男 2 女
-     */
-    @Column(name = "sex")
+    @Column(name = "sex", columnDefinition = "TINYINT(4) UNSIGNED COMMENT '性别 1 男 2 女'")
     private Integer sex;
 
-    /**
-     * 生日
-     */
-    @Column(name = "birthday")
+    @Column(name = "birthday", columnDefinition = "DATE(3) COMMENT '生日'")
     private LocalDate birthday;
 
-    /**
-     * 手机号
-     */
-    @Column(name = "phone_number", length = 20)
+    @Column(name = "phone_number", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '手机号'")
     private String phoneNumber;
 
-    /**
-     * 头像
-     */
-    @Column(name = "head_portrait", length = 200)
+    @Column(name = "head_portrait", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '手机号'")
     private String headPortrait;
 
-    /**
-     * 头像
-     */
-    @Column(name = "personalized_signature", length = 200)
+    @Column(name = "personalized_signature", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '头像'")
     private String personalizedSignature;
 
-    /**
-     * 是否启用 1 是 0 否
-     */
-    @Column(name = "is_enable", nullable = false)
+    @Column(name = "is_enable", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '是否启用 1 是 0 否'")
     private Integer isEnable;
 
-    /**
-     * 注册来源 1.Web端 2.Android端 3.IOS端 4.PC端
-     */
-    @Column(name = "register_source", nullable = false)
+    @Column(name = "register_source", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '注册来源 1.Web端 2.Android端 3.IOS端 4.PC端'")
     private Integer registerSource;
 
-
-    /**
-     * 注册时间
-     */
-    @Column(name = "register_data_time", nullable = false)
+    @Column(name = "register_data_time", columnDefinition = "DATETIME(6) NOT NULL COMMENT '注册时间'")
     private LocalDateTime registerDataTime;
+
 }

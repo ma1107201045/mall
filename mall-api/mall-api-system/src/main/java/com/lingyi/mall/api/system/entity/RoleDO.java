@@ -49,15 +49,14 @@ public class RoleDO extends BaseIsDeleteDO implements Serializable {
             joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "user_id"),
             foreignKey = @ForeignKey(name = "fk_role_id"), inverseForeignKey = @ForeignKey(name = "fk_user_id"),
             indexes = {@Index(name = "fk_role_id", columnList = "role_id"), @Index(name = "fk_user_id", columnList = "user_id")})
-    @ToString.Exclude
-    private List<UserDO> userDOS;
+    private List<UserDO> users;
 
     /**
      * 菜单集
      */
     @ManyToMany(mappedBy = "roles")
     @ToString.Exclude
-    private List<MenuDO> menuDOS;
+    private List<MenuDO> menus;
 
     @Override
     public boolean equals(Object o) {
@@ -85,10 +84,10 @@ public class RoleDO extends BaseIsDeleteDO implements Serializable {
         if (!Objects.equals(remark, roleDO.remark)) {
             return false;
         }
-        if (!Objects.equals(userDOS, roleDO.userDOS)) {
+        if (!Objects.equals(users, roleDO.users)) {
             return false;
         }
-        return Objects.equals(menuDOS, roleDO.menuDOS);
+        return Objects.equals(menus, roleDO.menus);
     }
 
     @Override
@@ -98,8 +97,8 @@ public class RoleDO extends BaseIsDeleteDO implements Serializable {
         result = 31 * result + (isEnable != null ? isEnable.hashCode() : 0);
         result = 31 * result + (sort != null ? sort.hashCode() : 0);
         result = 31 * result + (remark != null ? remark.hashCode() : 0);
-        result = 31 * result + (userDOS != null ? userDOS.hashCode() : 0);
-        result = 31 * result + (menuDOS != null ? menuDOS.hashCode() : 0);
+        result = 31 * result + (users != null ? users.hashCode() : 0);
+        result = 31 * result + (menus != null ? menus.hashCode() : 0);
         return result;
     }
 }

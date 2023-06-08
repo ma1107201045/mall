@@ -30,14 +30,12 @@ public class UserRoleDO extends BaseCommonDO implements Serializable {
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '用户id'")
-    @ToString.Exclude
     private UserDO userDO;
     /**
      * 角色id
      */
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "role_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '角色id'")
-    @ToString.Exclude
     private RoleDO roleDO;
 
     @Override

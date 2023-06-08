@@ -26,7 +26,7 @@ public abstract class BaseIdDO {
     @Id
     @GeneratedValue(generator = "SnowflakeIdentifierGenerator")
     @GenericGenerator(name = "SnowflakeIdentifierGenerator", type = SnowflakeIdentifierGenerator.class)
-    @Column(name = "id", columnDefinition = "BIGINT(20)  UNSIGNED NOT NULL COMMENT '主键id'")
+    @Column(name = "id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '主键id'")
     protected Long id;
 
     @Override

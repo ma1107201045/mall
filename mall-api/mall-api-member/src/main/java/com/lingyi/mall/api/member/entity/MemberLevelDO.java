@@ -31,33 +31,18 @@ public class MemberLevelDO extends BaseIdDO implements Serializable {
     @Serial
     private static final long serialVersionUID = 1698976479509049883L;
 
-    /**
-     * 等级名称
-     */
-    @Column(name = "name", nullable = false, length = 20)
+    @Column(name = "name", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '等级名称'")
     private String name;
 
-    /**
-     * 增长点
-     */
-    @Column(name = "growth_point", nullable = false)
+    @Column(name = "growth_point", columnDefinition = "INT(11) UNSIGNED NOT NULL COMMENT '增长点'")
     private Integer growthPoint;
 
-    /**
-     * 每次评价获取的成长值
-     */
-    @Column(name = "comment_growth_point", nullable = false)
+    @Column(name = "comment_growth_point", columnDefinition = "INT(11) UNSIGNED NOT NULL COMMENT '每次评价获取的成长值'")
     private Integer commentGrowthPoint;
 
-    /**
-     * 是否为默认等级：0->不是；1->是
-     */
-    @Column(name = "is_default_level", nullable = false)
+    @Column(name = "is_default_level", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '是否为默认等级：1是 0否'")
     private Integer isDefaultLevel;
 
-    /**
-     * 备注
-     */
-    @Column(name = "remark")
+    @Column(name = "remark", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '备注'")
     private String remark;
 }
