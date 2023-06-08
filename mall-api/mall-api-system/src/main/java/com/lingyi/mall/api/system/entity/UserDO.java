@@ -4,16 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lingyi.mall.common.base.entity.BaseIsDeleteDO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @author maweiyan
@@ -22,11 +19,9 @@ import java.util.Objects;
  * @description 系统管理-用户表
  */
 @Schema(description = "用户")
-@Getter
-@Setter
+@Data
+@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-@DynamicInsert
-@DynamicUpdate
 @Entity
 @Table(name = "ms_user", uniqueConstraints = @UniqueConstraint(name = "uk_user_name", columnNames = "user_name"))
 public class UserDO extends BaseIsDeleteDO implements Serializable {
@@ -74,72 +69,4 @@ public class UserDO extends BaseIsDeleteDO implements Serializable {
     @ManyToMany(mappedBy = "users")
     private List<RoleDO> roles;
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        if (!super.equals(o)) {
-            return false;
-        }
-
-        UserDO userDO = (UserDO) o;
-
-        if (!Objects.equals(userName, userDO.userName)) {
-            return false;
-        }
-        if (!Objects.equals(realName, userDO.realName)) {
-            return false;
-        }
-        if (!Objects.equals(nickname, userDO.nickname)) {
-            return false;
-        }
-        if (!Objects.equals(sex, userDO.sex)) {
-            return false;
-        }
-        if (!Objects.equals(password, userDO.password)) {
-            return false;
-        }
-        if (!Objects.equals(headPortrait, userDO.headPortrait)) {
-            return false;
-        }
-        if (!Objects.equals(email, userDO.email)) {
-            return false;
-        }
-        if (!Objects.equals(phoneNumber, userDO.phoneNumber)) {
-            return false;
-        }
-        if (!Objects.equals(lastLoginIp, userDO.lastLoginIp)) {
-            return false;
-        }
-        if (!Objects.equals(isEnable, userDO.isEnable)) {
-            return false;
-        }
-        if (!Objects.equals(remark, userDO.remark)) {
-            return false;
-        }
-        return Objects.equals(roles, userDO.roles);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (userName != null ? userName.hashCode() : 0);
-        result = 31 * result + (realName != null ? realName.hashCode() : 0);
-        result = 31 * result + (nickname != null ? nickname.hashCode() : 0);
-        result = 31 * result + (sex != null ? sex.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (headPortrait != null ? headPortrait.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
-        result = 31 * result + (lastLoginIp != null ? lastLoginIp.hashCode() : 0);
-        result = 31 * result + (isEnable != null ? isEnable.hashCode() : 0);
-        result = 31 * result + (remark != null ? remark.hashCode() : 0);
-        result = 31 * result + (roles != null ? roles.hashCode() : 0);
-        return result;
-    }
 }

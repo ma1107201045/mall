@@ -2,9 +2,7 @@ package com.lingyi.mall.api.member.entity;
 
 import com.lingyi.mall.common.base.entity.BaseIdDO;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -19,11 +17,9 @@ import java.time.LocalDateTime;
  * @datetime 2023/5/24 14:49
  * @description
  */
-@Getter
-@Setter
+@Data
+@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-@DynamicInsert
-@DynamicUpdate
 @Entity
 @Table(name = "mm_member", uniqueConstraints = {@UniqueConstraint(name = "uk_user_name", columnNames = "user_name"),
         @UniqueConstraint(name = "uk_phone_number", columnNames = "phone_number")})

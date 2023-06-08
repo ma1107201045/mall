@@ -14,11 +14,10 @@ import java.io.Serializable;
  * @datetime 2023/6/3 9:04
  * @description
  */
+
+@Data
 @EqualsAndHashCode(callSuper = true)
-@Getter
-@Setter
 @ToString(callSuper = true)
-@DynamicInsert
 @Entity
 @Table(name = "ms_log")
 public class LogDO extends BaseCommonDO implements Serializable {

@@ -4,11 +4,9 @@ import com.lingyi.mall.common.base.entity.BaseIdDO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -19,11 +17,9 @@ import java.io.Serializable;
  * @datetime 2023/5/24 14:53
  * @description
  */
-@Getter
-@Setter
+@Data
+@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-@DynamicInsert
-@DynamicUpdate
 @Entity
 @Table(name = "mm_member_level")
 public class MemberLevelDO extends BaseIdDO implements Serializable {

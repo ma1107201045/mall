@@ -5,6 +5,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -17,8 +18,7 @@ import java.util.Objects;
  * @datetime 2023/4/30 13:38
  * @description
  */
-@Getter
-@Setter
+@Data
 @MappedSuperclass
 public abstract class BaseIdDO {
 

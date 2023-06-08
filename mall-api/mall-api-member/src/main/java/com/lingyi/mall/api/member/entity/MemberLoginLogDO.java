@@ -2,11 +2,9 @@ package com.lingyi.mall.api.member.entity;
 
 import com.lingyi.mall.common.base.entity.BaseIdDO;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -18,51 +16,31 @@ import java.time.LocalDateTime;
  * @datetime 2023/5/24 15:21
  * @description
  */
-@Getter
-@Setter
+@Data
+@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-@DynamicInsert
-@DynamicUpdate
 @Entity
 @Table(name = "mm_member_login_log")
 public class MemberLoginLogDO extends BaseIdDO implements Serializable {
     @Serial
     private static final long serialVersionUID = 7083829914819620788L;
 
-    /**
-     * 会员id
-     */
     @ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "member_id", nullable = false, foreignKey = @ForeignKey(name = "fk_member_id"))
-    @ToString.Exclude
     private MemberDO memberDO;
 
-    /**
-     * 会员用户名称
-     */
-    @Column(name = "member_user_name", nullable = false, length = 20)
+    @Column(name = "member_user_name", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '会员用户名称'")
     private String memberUserName;
-    /**
-     * 登录ip
-     */
-    @Column(name = "ip", length = 20)
+
+    @Column(name = "ip", length = 20, columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '登录ip'")
     private String ip;
 
-    /**
-     * 登录所在城市
-     */
-    @Column(name = "city", length = 20)
+    @Column(name = "city", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '登录城市'")
     private String city;
 
-    /**
-     * 登录来源 1.Web端 2.Android端 3.IOS端 4.PC端
-     */
-    @Column(name = "source")
+    @Column(name = "source", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '登录来源 1.Web端 2.Android端 3.IOS端 4.PC端")
     private Integer source;
 
-    /**
-     * 创建时间
-     */
-    @Column(name = "create_data_time")
+    @Column(name = "create_data_time", columnDefinition = "DATETIME(6)  NOT NULL COMMENT '创建时间")
     private LocalDateTime createDataTime;
 }

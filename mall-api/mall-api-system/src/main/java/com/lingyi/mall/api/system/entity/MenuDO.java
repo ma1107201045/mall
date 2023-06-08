@@ -2,14 +2,13 @@ package com.lingyi.mall.api.system.entity;
 
 import com.lingyi.mall.common.base.entity.BaseIsDeleteDO;
 import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @author maweiyan
@@ -17,11 +16,9 @@ import java.util.Objects;
  * @datetime 2023/4/30 22:43
  * @description 系统管理-菜单表
  */
-@Getter
-@Setter
+@Data
+@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-@DynamicInsert
-@DynamicUpdate
 @Entity
 @Table(name = "ms_menu")
 public class MenuDO extends BaseIsDeleteDO implements Serializable {
@@ -64,76 +61,11 @@ public class MenuDO extends BaseIsDeleteDO implements Serializable {
     /**
      * 角色集
      */
+    @ToString.Exclude
     @ManyToMany
     @JoinTable(name = "ms_role_menu",
             joinColumns = @JoinColumn(name = "menu_id"), inverseJoinColumns = @JoinColumn(name = "role_id"),
             foreignKey = @ForeignKey(name = "fk_menu_id"), inverseForeignKey = @ForeignKey(name = "fk_role_id2"),
             uniqueConstraints = {@UniqueConstraint(name = "fk_menu_id", columnNames = "menu_id"), @UniqueConstraint(name = "fk_role_id2", columnNames = "role_id")})
     private List<RoleDO> roles;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        if (!super.equals(o)) {
-            return false;
-        }
-        MenuDO mbsMenuDO = (MenuDO) o;
-        if (!Objects.equals(name, mbsMenuDO.name)) {
-            return false;
-        }
-        if (!Objects.equals(type, mbsMenuDO.type)) {
-            return false;
-        }
-        if (!Objects.equals(parentId, mbsMenuDO.parentId)) {
-            return false;
-        }
-        if (!Objects.equals(icon, mbsMenuDO.icon)) {
-            return false;
-        }
-        if (!Objects.equals(sort, mbsMenuDO.sort)) {
-            return false;
-        }
-        if (!Objects.equals(remark, mbsMenuDO.remark)) {
-            return false;
-        }
-        if (!Objects.equals(isEnable, mbsMenuDO.isEnable)) {
-            return false;
-        }
-        if (!Objects.equals(path, mbsMenuDO.path)) {
-            return false;
-        }
-        if (!Objects.equals(componentPath, mbsMenuDO.componentPath)) {
-            return false;
-        }
-        if (!Objects.equals(componentName, mbsMenuDO.componentName)) {
-            return false;
-        }
-        if (!Objects.equals(permission, mbsMenuDO.permission)) {
-            return false;
-        }
-        return Objects.equals(roles, mbsMenuDO.roles);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (type != null ? type.hashCode() : 0);
-        result = 31 * result + (parentId != null ? parentId.hashCode() : 0);
-        result = 31 * result + (icon != null ? icon.hashCode() : 0);
-        result = 31 * result + (sort != null ? sort.hashCode() : 0);
-        result = 31 * result + (remark != null ? remark.hashCode() : 0);
-        result = 31 * result + (isEnable != null ? isEnable.hashCode() : 0);
-        result = 31 * result + (path != null ? path.hashCode() : 0);
-        result = 31 * result + (componentPath != null ? componentPath.hashCode() : 0);
-        result = 31 * result + (componentName != null ? componentName.hashCode() : 0);
-        result = 31 * result + (permission != null ? permission.hashCode() : 0);
-        result = 31 * result + (roles != null ? roles.hashCode() : 0);
-        return result;
-    }
 }
