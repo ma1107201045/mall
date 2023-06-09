@@ -37,7 +37,7 @@ public class RedisUtil {
     public <T> void set(String key, T value, long timeout, TimeUnit unit) {
         redisTemplate.opsForValue().set(key, value, timeout, unit);
     }
-
+    @SuppressWarnings("unchecked")
     public <T> T get(String key, Class<T> clazz) {
         Object obj = redisTemplate.opsForValue().get(key);
         return (T) obj;

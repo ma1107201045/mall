@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.member.mapper;
 
+import com.lingyi.mall.api.member.dto.MemberReqDTO;
 import com.lingyi.mall.biz.member.query.MemberQuery;
 import com.lingyi.mall.biz.member.vo.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -37,5 +38,5 @@ public interface MemberMapper {
      * @param phoneNumber 手机号
      * @return MemberVO
      */
-    MemberVO selectByPhoneNumber(String phoneNumber);
+    MemberReqDTO selectByPhoneNumber(String phoneNumber);
 }

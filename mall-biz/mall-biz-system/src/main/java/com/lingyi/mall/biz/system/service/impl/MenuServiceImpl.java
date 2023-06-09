@@ -3,6 +3,7 @@ package com.lingyi.mall.biz.system.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import com.github.pagehelper.PageHelper;
+import com.lingyi.mall.api.system.dto.MenuResDTO;
 import com.lingyi.mall.biz.system.constant.SystemConstant;
 import com.lingyi.mall.biz.system.dto.MenuDTO;
 import com.lingyi.mall.biz.system.entity.MenuDO;
@@ -95,7 +96,7 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public List<MenuVO> findListByTypesAndParentId(List<Integer> types, Long parentId) {
+    public List<MenuResDTO> findListByTypesAndParentId(List<Integer> types, Long parentId) {
         return menuMapper.selectListByTypesAndParentId(types, parentId);
     }
 

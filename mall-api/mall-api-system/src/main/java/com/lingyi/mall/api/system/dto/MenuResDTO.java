@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Schema(description = "菜单")
 @Data
-public class MenuDTO implements Serializable {
+public class MenuResDTO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -8081768166478917809L;
@@ -73,5 +73,5 @@ public class MenuDTO implements Serializable {
     private Integer isDelete;
 
     @Schema(description = "菜单子级")
-    private List<MenuDTO> menus;
+    private List<MenuResDTO> menus;
 }

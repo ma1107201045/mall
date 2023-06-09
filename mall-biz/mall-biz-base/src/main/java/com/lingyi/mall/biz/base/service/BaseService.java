@@ -1,8 +1,8 @@
 package com.lingyi.mall.biz.base.service;
 
 
-import com.lingyi.mall.api.system.dto.MenuDTO;
-import com.lingyi.mall.api.system.dto.UserPartDTO;
+import com.lingyi.mall.api.system.dto.MenuResDTO;
+import com.lingyi.mall.api.system.dto.UserPartReqDTO;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public interface BaseService {
      * @param userName 用户名称
      * @return 菜单树
      */
-    List<MenuDTO> findMenuTreeByUserName(String userName);
+    List<MenuResDTO> findMenuTreeByUserName(String userName);
 
     /**
      * 按照用户id更改用户信息
@@ -29,5 +29,5 @@ public interface BaseService {
      * @param userId      用户id
      * @param userPartDTO 用户信息
      */
-    void editUserByUserId(Long userId, UserPartDTO userPartDTO);
+    void editUserByUserId(Long userId, UserPartReqDTO userPartDTO);
 }

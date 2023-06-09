@@ -1,7 +1,7 @@
 package com.lingyi.mall.web.admin.base.controller;
 
-import com.lingyi.mall.api.system.dto.MenuDTO;
-import com.lingyi.mall.api.system.dto.UserPartDTO;
+import com.lingyi.mall.api.system.dto.MenuResDTO;
+import com.lingyi.mall.api.system.dto.UserPartReqDTO;
 import com.lingyi.mall.biz.base.service.BaseService;
 import com.lingyi.mall.common.base.util.AuthenticatorUtil;
 import com.lingyi.mall.common.util.ServerResponse;
@@ -31,15 +31,15 @@ public class BaseController {
 
     @Operation(summary = "获取菜单", description = "获取菜单")
     @GetMapping("/menu")
-    public ServerResponse<List<MenuDTO>> getMenu() {
+    public ServerResponse<List<MenuResDTO>> getMenu() {
         String userName = AuthenticatorUtil.getUserName();
-        List<MenuDTO> menus = baseService.findMenuTreeByUserName(userName);
+        List<MenuResDTO> menus = baseService.findMenuTreeByUserName(userName);
         return ServerResponse.success(menus);
     }
 
     @Operation(summary = "更新用户信息", description = "更新用户信息")
     @PatchMapping("/user")
-    public ServerResponse<Void> updateUserPartById(UserPartDTO userPartDTO) {
+    public ServerResponse<Void> updateUserPartById(UserPartReqDTO userPartDTO) {
         Long userId = AuthenticatorUtil.getUserId();
         baseService.editUserByUserId(userId, userPartDTO);
         return ServerResponse.success();

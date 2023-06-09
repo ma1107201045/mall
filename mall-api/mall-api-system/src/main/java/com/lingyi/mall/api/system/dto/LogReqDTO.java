@@ -18,7 +18,7 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LogDTO implements Serializable {
+public class LogReqDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = 8394395747897938021L;
 

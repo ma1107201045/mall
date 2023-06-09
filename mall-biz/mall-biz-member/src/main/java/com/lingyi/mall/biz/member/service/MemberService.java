@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.member.service;
 
+import com.lingyi.mall.api.member.dto.MemberReqDTO;
 import com.lingyi.mall.biz.member.entity.MemberDO;
 import com.lingyi.mall.biz.member.query.MemberQuery;
 import com.lingyi.mall.biz.member.vo.MemberVO;
@@ -20,6 +21,6 @@ public interface MemberService extends BaseService<MemberDO, MemberQuery, Member
      * @return MemberVO
      */
 
-    MemberVO findByPhoneNumber(String phoneNumber);
+    MemberReqDTO findByPhoneNumber(String phoneNumber);
 
 }

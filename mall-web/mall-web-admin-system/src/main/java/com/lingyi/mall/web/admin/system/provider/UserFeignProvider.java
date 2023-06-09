@@ -1,12 +1,10 @@
 package com.lingyi.mall.web.admin.system.provider;
 
-import com.lingyi.mall.api.system.dto.MenuDTO;
-import com.lingyi.mall.api.system.dto.UserDTO;
-import com.lingyi.mall.api.system.dto.UserPartDTO;
-import com.lingyi.mall.biz.system.constant.SystemConstant;
+import com.lingyi.mall.api.system.dto.MenuResDTO;
+import com.lingyi.mall.api.system.dto.UserPartReqDTO;
+import com.lingyi.mall.api.system.dto.UserResDTO;
 import com.lingyi.mall.api.system.feign.UserFeign;
-import com.lingyi.mall.biz.system.vo.MenuVO;
-import com.lingyi.mall.biz.system.vo.UserVO;
+import com.lingyi.mall.biz.system.constant.SystemConstant;
 import com.lingyi.mall.biz.system.service.UserService;
 import com.lingyi.mall.common.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,25 +29,25 @@ public class UserFeignProvider implements UserFeign {
 
     @Operation(summary = "更新用户部分信息", description = "更新用户部分信息")
     @Override
-    public ServerResponse<Void> updatePartById(Long id, UserPartDTO userPartDTO) {
-        userPartDTO.setId(id);
-        userService.editPartById(null);
+    public ServerResponse<Void> updatePartById(Long id, UserPartReqDTO userPartReqDTO) {
+        userPartReqDTO.setId(id);
+        userService.editPartById(userPartReqDTO);
         return ServerResponse.success();
     }
 
 
     @Operation(summary = "查询用户和权限标识", description = "查询用户和权限标识")
     @Override
-    public ServerResponse<UserDTO> getUserAndMenuPermissionsByUserName(String userName) {
-        UserVO userVO = userService.findUserAndMenuPermissionsByUserName(userName);
-        return ServerResponse.success(null);
+    public ServerResponse<UserResDTO> getUserAndMenuPermissionsByUserName(String userName) {
+        UserResDTO userResDTO = userService.findUserAndMenuPermissionsByUserName(userName);
+        return ServerResponse.success(userResDTO);
     }
 
     @Operation(summary = "查询菜单树", description = "查询菜单树")
     @Override
-    public ServerResponse<List<MenuDTO>> getMenuTreeByUserName(String userName) {
-        List<MenuVO> menuVoList = userService.findMenuTreeByUserNameAndMenuParentId(userName, SystemConstant.MENU_ROOT_ID);
-        return ServerResponse.success(null);
+    public ServerResponse<List<MenuResDTO>> getMenuTreeByUserName(String userName) {
+        List<MenuResDTO> menuResDTOList = userService.findMenuTreeByUserNameAndMenuParentId(userName, SystemConstant.MENU_ROOT_ID);
+        return ServerResponse.success(menuResDTOList);
     }
 
 }

@@ -45,7 +45,7 @@
             <include refid="Base_Condition"/>
         </where>
     </select>
-    <resultMap id="SelectByUserNameMap" type="com.lingyi.mall.biz.system.vo.UserVO">
+    <resultMap id="SelectByUserNameMap" type="com.lingyi.mall.api.system.dto.UserResDTO">
         <id column="mu_id" property="userId"/>
         <result column="mu_user_name" property="userName"/>
         <result column="mu_password" property="password"/>
@@ -82,7 +82,7 @@
           AND mm.type = #{menuType}
         GROUP BY mm.id
     </select>
-    <resultMap id="SelectMenusByUserNameAndMenuTypesAndMenuParentIdMap" type="com.lingyi.mall.biz.system.vo.MenuVO">
+    <resultMap id="SelectMenusByUserNameAndMenuTypesAndMenuParentIdMap" type="com.lingyi.mall.api.system.dto.MenuResDTO">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="icon" property="icon"/>

@@ -1,6 +1,6 @@
 package com.lingyi.mall.api.system.feign;
 
-import com.lingyi.mall.api.system.dto.LogDTO;
+import com.lingyi.mall.api.system.dto.LogReqDTO;
 import com.lingyi.mall.api.system.fallbackfactory.LogFeignFallbackFactory;
 import com.lingyi.mall.common.util.ServerResponse;
 import feign.Request;
@@ -26,5 +26,5 @@ public interface LogFeign {
      * @return ServerResponse
      */
     @PostMapping(URL_PREFIX)
-    ServerResponse<Void> save(@RequestBody LogDTO logDTO, Request.Options options);
+    ServerResponse<Void> save(@RequestBody LogReqDTO logDTO, Request.Options options);
 }

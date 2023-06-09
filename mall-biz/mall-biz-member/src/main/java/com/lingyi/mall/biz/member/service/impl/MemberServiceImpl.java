@@ -1,6 +1,7 @@
 package com.lingyi.mall.biz.member.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.lingyi.mall.api.member.dto.MemberReqDTO;
 import com.lingyi.mall.biz.member.entity.MemberDO;
 import com.lingyi.mall.biz.member.enums.MemberFailEnumEnum;
 import com.lingyi.mall.biz.member.query.MemberQuery;
@@ -64,7 +65,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public MemberVO findByPhoneNumber(String phoneNumber) {
+    public MemberReqDTO findByPhoneNumber(String phoneNumber) {
         return memberMapper.selectByPhoneNumber(phoneNumber);
     }
 

@@ -3,10 +3,9 @@ package com.lingyi.mall.common.base.aspect;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.StopWatch;
-import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
-import com.lingyi.mall.api.system.dto.LogDTO;
+import com.lingyi.mall.api.system.dto.LogReqDTO;
 import com.lingyi.mall.common.base.enums.WhetherEnum;
 import com.lingyi.mall.common.base.task.BaseAsyncTask;
 import com.lingyi.mall.common.base.util.RequestUtil;
@@ -114,7 +113,7 @@ public class LogAspect {
             // 获取该方法上的 Log注解
             Log log = ((MethodSignature) joinPoint.getSignature()).getMethod().getAnnotation(Log.class);
             //赋值
-            LogDTO logDTO = getLogDTO(log, joinPoint, result, isSuccess, sw.getLastTaskTimeMillis(), failReason);
+            LogReqDTO logDTO = getLogDTO(log, joinPoint, result, isSuccess, sw.getLastTaskTimeMillis(), failReason);
             //异步保存
             baseAsyncTask.saveLog(logDTO);
         }
@@ -271,8 +270,8 @@ public class LogAspect {
         }
     }
 
-    private LogDTO getLogDTO(Log log, ProceedingJoinPoint joinPoint, Object result, boolean isSuccess, long taskTime, String failReason) {
-        return LogDTO.builder()
+    private LogReqDTO getLogDTO(Log log, ProceedingJoinPoint joinPoint, Object result, boolean isSuccess, long taskTime, String failReason) {
+        return LogReqDTO.builder()
                 .title(log.clientType() + "-" + log.title())
                 .operationType(log.operationType().getCode())
                 .callClass(joinPoint.getTarget().getClass().getName())

@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.system.mapper;
 
+import com.lingyi.mall.api.system.dto.MenuResDTO;
 import com.lingyi.mall.biz.system.query.MenuQuery;
 import com.lingyi.mall.biz.system.vo.MenuVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -72,6 +73,6 @@ public interface MenuMapper {
      * @param parentId 父级菜单id
      * @return List<MenuTreeVO>
      */
-    List<MenuVO> selectListByTypesAndParentId(@Param("types") List<Integer> types, @Param("parentId") Long parentId);
+    List<MenuResDTO> selectListByTypesAndParentId(@Param("types") List<Integer> types, @Param("parentId") Long parentId);
 
 }

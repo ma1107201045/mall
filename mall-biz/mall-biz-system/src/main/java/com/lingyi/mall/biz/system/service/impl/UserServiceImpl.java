@@ -3,20 +3,21 @@ package com.lingyi.mall.biz.system.service.impl;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjUtil;
 import com.github.pagehelper.PageHelper;
-import com.lingyi.mall.api.system.dto.UserPartDTO;
+import com.lingyi.mall.api.system.dto.MenuResDTO;
+import com.lingyi.mall.api.system.dto.UserPartReqDTO;
+import com.lingyi.mall.api.system.dto.UserResDTO;
+import com.lingyi.mall.biz.system.constant.SystemConstant;
 import com.lingyi.mall.biz.system.dto.UserDTO;
 import com.lingyi.mall.biz.system.entity.UserDO;
 import com.lingyi.mall.biz.system.enums.MenuTypeEnum;
 import com.lingyi.mall.biz.system.enums.SystemFailEnum;
-import com.lingyi.mall.biz.system.query.UserQuery;
-import com.lingyi.mall.biz.system.vo.MenuVO;
-import com.lingyi.mall.biz.system.vo.UserVO;
-import com.lingyi.mall.biz.system.constant.SystemConstant;
 import com.lingyi.mall.biz.system.mapper.UserMapper;
+import com.lingyi.mall.biz.system.query.UserQuery;
 import com.lingyi.mall.biz.system.repository.UserRepository;
 import com.lingyi.mall.biz.system.service.MenuService;
 import com.lingyi.mall.biz.system.service.UserRoleService;
 import com.lingyi.mall.biz.system.service.UserService;
+import com.lingyi.mall.biz.system.vo.UserVO;
 import com.lingyi.mall.common.base.exception.BizException;
 import com.lingyi.mall.common.base.query.BasePageQuery;
 import com.lingyi.mall.common.base.util.AssertUtil;
@@ -121,7 +122,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void editPartById(UserPartDTO userPartDTO) {
+    public void editPartById(UserPartReqDTO userPartDTO) {
         UserVO userVO = userMapper.selectById(userPartDTO.getId());
 
         AssertUtil.notNull(userVO, SystemFailEnum.USER_NULL_ERROR);
@@ -135,34 +136,34 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserVO findUserAndMenuPermissionsByUserName(String userName) {
-        UserVO userVO = userMapper.selectByUserName(userName);
-        if (ObjUtil.isNull(userVO)) {
-            return userVO;
+    public UserResDTO findUserAndMenuPermissionsByUserName(String userName) {
+        UserResDTO userResDTO = userMapper.selectByUserName(userName);
+        if (ObjUtil.isNull(userResDTO)) {
+            return userResDTO;
         }
         List<String> permissions;
         Integer type = MenuTypeEnum.BUTTON.getCode();
         if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
-            permissions = userMapper.selectMenuPermissionsByUserIdAndMenuType(userVO.getUserId(), type);
+            permissions = userMapper.selectMenuPermissionsByUserIdAndMenuType(userResDTO.getUserId(), type);
         } else {
             permissions = menuService.findPermissionsByType(type);
         }
-        userVO.setPermissions(permissions);
-        return userVO;
+        userResDTO.setPermissions(permissions);
+        return userResDTO;
     }
 
 
     @Override
-    public List<MenuVO> findMenuTreeByUserNameAndMenuParentId(String userName, Long menuParentId) {
-        List<MenuVO> menuVOList;
+    public List<MenuResDTO> findMenuTreeByUserNameAndMenuParentId(String userName, Long menuParentId) {
+        List<MenuResDTO> menuResDTOList;
         List<Integer> menuTypes = CollUtil.newArrayList(MenuTypeEnum.DIRECTORY.getCode(), MenuTypeEnum.MENU.getCode());
         if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
-            menuVOList = userMapper.selectMenusByUserNameAndMenuTypesAndMenuParentId(userName, menuTypes, menuParentId);
+            menuResDTOList = userMapper.selectMenusByUserNameAndMenuTypesAndMenuParentId(userName, menuTypes, menuParentId);
         } else {
-            menuVOList = menuService.findListByTypesAndParentId(menuTypes, menuParentId);
+            menuResDTOList = menuService.findListByTypesAndParentId(menuTypes, menuParentId);
         }
-        menuVOList.forEach(menuTreeVO -> menuTreeVO.setMenus(findMenuTreeByUserNameAndMenuParentId(userName, menuParentId)));
-        return menuVOList;
+        menuResDTOList.forEach(menuResDTO -> menuResDTO.setMenus(findMenuTreeByUserNameAndMenuParentId(userName, menuParentId)));
+        return menuResDTOList;
     }
 
 }

@@ -1,7 +1,7 @@
 package com.lingyi.mall.common.security.admin.service.impl;
 
 import com.lingyi.mall.api.system.consumer.UserFeignConsumer;
-import com.lingyi.mall.api.system.dto.UserDTO;
+import com.lingyi.mall.api.system.dto.UserResDTO;
 import com.lingyi.mall.common.base.entity.UserDetailsDO;
 import com.lingyi.mall.common.base.enums.WhetherEnum;
 import com.lingyi.mall.common.base.util.AssertUtil;
@@ -32,7 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         //校验用户名称
         AssertUtil.notBlack(username, new UsernameNotFoundException(FailEnum.USER_NAME_NOT_NULL_ERROR.getMessage()));
         //查询用户信息和菜单权限
-        UserDTO userDTO = userFeignConsumer.getUserAndMenuPermissionsByUserName(username);
+        UserResDTO userDTO = userFeignConsumer.getUserAndMenuPermissionsByUserName(username);
         //校验用用户信息
         AssertUtil.notNull(userDTO, new UsernameNotFoundException(FailEnum.USER_NAME_NOT_FOUND_ERROR.getMessage()));
         //获取菜单权限中的权限标识

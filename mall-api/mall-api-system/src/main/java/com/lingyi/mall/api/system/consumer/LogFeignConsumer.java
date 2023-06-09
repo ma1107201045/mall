@@ -1,7 +1,7 @@
 package com.lingyi.mall.api.system.consumer;
 
 import com.alibaba.fastjson2.JSON;
-import com.lingyi.mall.api.system.dto.LogDTO;
+import com.lingyi.mall.api.system.dto.LogReqDTO;
 import com.lingyi.mall.api.system.feign.LogFeign;
 import com.lingyi.mall.common.util.OpenFeignException;
 import com.lingyi.mall.common.util.ServerResponse;
@@ -25,7 +25,7 @@ public class LogFeignConsumer {
 
     private final LogFeign logFeign;
 
-    public void save(LogDTO logDTO) {
+    public void save(LogReqDTO logDTO) {
         log.info("入参:log:{}", logDTO);
         ServerResponse<Void> response = logFeign.save(logDTO, new Request.Options(5L, TimeUnit.SECONDS, 4L, TimeUnit.SECONDS, true));
         if (response.getIsSuccess()) {

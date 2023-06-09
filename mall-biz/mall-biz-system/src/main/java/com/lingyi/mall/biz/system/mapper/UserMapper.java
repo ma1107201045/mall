@@ -1,6 +1,8 @@
 package com.lingyi.mall.biz.system.mapper;
 
 
+import com.lingyi.mall.api.system.dto.MenuResDTO;
+import com.lingyi.mall.api.system.dto.UserResDTO;
 import com.lingyi.mall.biz.system.query.UserQuery;
 import com.lingyi.mall.biz.system.vo.MenuVO;
 import com.lingyi.mall.biz.system.vo.UserVO;
@@ -49,7 +51,7 @@ public interface UserMapper {
      * @param userName 用户名称
      * @return MbsUserVO
      */
-    UserVO selectByUserName(String userName);
+    UserResDTO selectByUserName(String userName);
 
 
     /**
@@ -70,7 +72,7 @@ public interface UserMapper {
      * @param menuParentId 菜单父级id
      * @return List<MenuTreeVO>
      */
-    List<MenuVO> selectMenusByUserNameAndMenuTypesAndMenuParentId(@Param("userName") String userName, @Param("menuTypes") List<Integer> menuTypes, @Param("menuParentId") Long menuParentId);
+    List<MenuResDTO> selectMenusByUserNameAndMenuTypesAndMenuParentId(@Param("userName") String userName, @Param("menuTypes") List<Integer> menuTypes, @Param("menuParentId") Long menuParentId);
 
 
 }

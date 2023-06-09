@@ -1,12 +1,12 @@
 package com.lingyi.mall.biz.system.service;
 
-import com.lingyi.mall.api.system.dto.UserPartDTO;
+import com.lingyi.mall.api.system.dto.MenuResDTO;
+import com.lingyi.mall.api.system.dto.UserPartReqDTO;
+import com.lingyi.mall.api.system.dto.UserResDTO;
 import com.lingyi.mall.biz.system.dto.UserDTO;
 import com.lingyi.mall.biz.system.query.UserQuery;
-import com.lingyi.mall.biz.system.vo.MenuVO;
 import com.lingyi.mall.biz.system.vo.UserVO;
 import com.lingyi.mall.common.base.util.BaseService;
-
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public interface UserService extends BaseService<UserDTO, UserQuery, UserVO, Lon
      *
      * @param userPartDTO ..
      */
-    void editPartById(UserPartDTO userPartDTO);
+    void editPartById(UserPartReqDTO userPartDTO);
 
 
     /**
@@ -33,7 +33,7 @@ public interface UserService extends BaseService<UserDTO, UserQuery, UserVO, Lon
      * @param userName 用户名称
      * @return MbsUserVO
      */
-    UserVO findUserAndMenuPermissionsByUserName(String userName);
+    UserResDTO findUserAndMenuPermissionsByUserName(String userName);
 
 
     /**
@@ -43,7 +43,7 @@ public interface UserService extends BaseService<UserDTO, UserQuery, UserVO, Lon
      * @param menuParentId 菜单父级id
      * @return List<MenuTreeVO>
      */
-    List<MenuVO> findMenuTreeByUserNameAndMenuParentId(String userName, Long menuParentId);
+    List<MenuResDTO> findMenuTreeByUserNameAndMenuParentId(String userName, Long menuParentId);
 
 
 }

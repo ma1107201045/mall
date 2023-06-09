@@ -1,7 +1,7 @@
 package com.lingyi.mall.common.base.task;
 
 import com.lingyi.mall.api.system.consumer.LogFeignConsumer;
-import com.lingyi.mall.api.system.dto.LogDTO;
+import com.lingyi.mall.api.system.dto.LogReqDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
@@ -19,7 +19,7 @@ public class BaseAsyncTask {
     private final LogFeignConsumer logFeignConsumer;
 
     @Async
-    public void saveLog(LogDTO logDTO) {
+    public void saveLog(LogReqDTO logDTO) {
         logFeignConsumer.save(logDTO);
     }
 }

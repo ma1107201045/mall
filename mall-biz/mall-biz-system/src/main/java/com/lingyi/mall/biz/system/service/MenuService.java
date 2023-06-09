@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.system.service;
 
+import com.lingyi.mall.api.system.dto.MenuResDTO;
 import com.lingyi.mall.biz.system.dto.MenuDTO;
 import com.lingyi.mall.biz.system.query.MenuQuery;
 import com.lingyi.mall.biz.system.vo.MenuVO;
@@ -39,5 +40,5 @@ public interface MenuService extends BaseService<MenuDTO, MenuQuery, MenuVO, Lon
      * @param parentId 菜单父级id
      * @return List<MenuTreeVO>
      */
-    List<MenuVO> findListByTypesAndParentId(List<Integer> types, Long parentId);
+    List<MenuResDTO> findListByTypesAndParentId(List<Integer> types, Long parentId);
 }

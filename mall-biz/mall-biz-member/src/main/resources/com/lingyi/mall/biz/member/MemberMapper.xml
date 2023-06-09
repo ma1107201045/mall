@@ -42,7 +42,7 @@
             <include refid="Base_Condition"/>
         </where>
     </select>
-    <select id="selectByPhoneNumber" resultType="com.lingyi.mall.biz.member.vo.MemberVO">
+    <select id="selectByPhoneNumber" resultType="com.lingyi.mall.api.member.dto.MemberReqDTO">
         SELECT
         <include refid="Base_Column_List"/>
         FROM mm_member

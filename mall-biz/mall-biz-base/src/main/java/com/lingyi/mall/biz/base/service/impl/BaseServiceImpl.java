@@ -1,8 +1,8 @@
 package com.lingyi.mall.biz.base.service.impl;
 
 import com.lingyi.mall.api.system.consumer.UserFeignConsumer;
-import com.lingyi.mall.api.system.dto.MenuDTO;
-import com.lingyi.mall.api.system.dto.UserPartDTO;
+import com.lingyi.mall.api.system.dto.MenuResDTO;
+import com.lingyi.mall.api.system.dto.UserPartReqDTO;
 
 import com.lingyi.mall.biz.base.service.BaseService;
 import lombok.RequiredArgsConstructor;
@@ -23,12 +23,12 @@ public class BaseServiceImpl implements BaseService {
     private final UserFeignConsumer userFeignConsumer;
 
     @Override
-    public List<MenuDTO> findMenuTreeByUserName(String userName) {
+    public List<MenuResDTO> findMenuTreeByUserName(String userName) {
         return userFeignConsumer.getMenuTreeByUserName(userName);
     }
 
     @Override
-    public void editUserByUserId(Long userId, UserPartDTO userPartDTO) {
+    public void editUserByUserId(Long userId, UserPartReqDTO userPartDTO) {
         userFeignConsumer.updatePartById(userId, userPartDTO);
     }
 }
