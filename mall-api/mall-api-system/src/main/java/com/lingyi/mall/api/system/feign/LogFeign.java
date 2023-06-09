@@ -22,8 +22,9 @@ public interface LogFeign {
     /**
      * 保存
      *
-     * @param logDTO 。。
-     * @return ServerResponse
+     * @param logDTO  logDTO
+     * @param options options
+     * @return ServerResponse<Void>
      */
     @PostMapping(URL_PREFIX)
     ServerResponse<Void> save(@RequestBody LogReqDTO logDTO, Request.Options options);
