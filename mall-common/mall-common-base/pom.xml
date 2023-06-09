@@ -10,11 +10,11 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-util</artifactId>
+            <artifactId>mall-api-system</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-api-system</artifactId>
+            <artifactId>mall-common-util</artifactId>
         </dependency>
         <dependency>
             <groupId>jakarta.servlet</groupId>
