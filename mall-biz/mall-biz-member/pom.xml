@@ -9,10 +9,4 @@
         <version>${revision}</version>
     </parent>
     <artifactId>mall-biz-member</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>mall-api-member</artifactId>
-        </dependency>
-    </dependencies>
 </project>
