@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.system.service;
 
-import com.lingyi.mall.api.system.entity.LogDO;
+import com.lingyi.mall.biz.system.entity.LogDO;
 import com.lingyi.mall.common.base.util.BaseService;
 
 /**

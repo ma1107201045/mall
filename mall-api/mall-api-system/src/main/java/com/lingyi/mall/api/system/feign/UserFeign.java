@@ -1,9 +1,9 @@
 package com.lingyi.mall.api.system.feign;
 
+import com.lingyi.mall.api.system.dto.MenuDTO;
+import com.lingyi.mall.api.system.dto.UserDTO;
 import com.lingyi.mall.api.system.dto.UserPartDTO;
 import com.lingyi.mall.api.system.fallbackfactory.UserFeignFallbackFactory;
-import com.lingyi.mall.api.system.vo.MenuVO;
-import com.lingyi.mall.api.system.vo.UserVO;
 import com.lingyi.mall.common.base.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +19,7 @@ import java.util.List;
 @FeignClient(url = "http://localhost:7003", value = "mall-web-admin-system", fallbackFactory = UserFeignFallbackFactory.class)
 public interface UserFeign {
 
+    String URL_PREFIX = "/admin/system/users";
 
     /**
      * 更新部分用户信息
@@ -27,7 +28,7 @@ public interface UserFeign {
      * @param userPartDTO ..
      * @return ServerResponse
      */
-    @PatchMapping("/admin/system/users/{id}")
+    @PatchMapping(URL_PREFIX + "/{id}")
     ServerResponse<Void> updatePartById(@PathVariable("id") Long id, @RequestBody UserPartDTO userPartDTO);
 
     /**
@@ -36,8 +37,8 @@ public interface UserFeign {
      * @param userName 用户名称
      * @return 用户信息
      */
-    @GetMapping("/admin/system/users/permissions")
-    ServerResponse<UserVO> getUserAndMenuPermissionsByUserName(@RequestParam(name = "userName") String userName);
+    @GetMapping(URL_PREFIX + "/permissions")
+    ServerResponse<UserDTO> getUserAndMenuPermissionsByUserName(@RequestParam(name = "userName") String userName);
 
 
     /**
@@ -46,6 +47,6 @@ public interface UserFeign {
      * @param userName 用户名称
      * @return 用户信息
      */
-    @GetMapping("/admin/system/users/menu-tree")
-    ServerResponse<List<MenuVO>> getMenuTreeByUserName(@RequestParam(name = "userName") String userName);
+    @GetMapping(URL_PREFIX + "/menu-tree")
+    ServerResponse<List<MenuDTO>> getMenuTreeByUserName(@RequestParam(name = "userName") String userName);
 }

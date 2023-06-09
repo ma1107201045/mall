@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.system.repository;
 
-import com.lingyi.mall.api.system.entity.MenuDO;
+import com.lingyi.mall.biz.system.entity.MenuDO;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 
 /**

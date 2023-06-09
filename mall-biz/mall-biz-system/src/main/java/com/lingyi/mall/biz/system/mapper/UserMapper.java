@@ -1,9 +1,9 @@
 package com.lingyi.mall.biz.system.mapper;
 
 
-import com.lingyi.mall.api.system.query.UserQuery;
-import com.lingyi.mall.api.system.vo.MenuVO;
-import com.lingyi.mall.api.system.vo.UserVO;
+import com.lingyi.mall.biz.system.query.UserQuery;
+import com.lingyi.mall.biz.system.vo.MenuVO;
+import com.lingyi.mall.biz.system.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

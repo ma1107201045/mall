@@ -1,9 +1,9 @@
 package com.lingyi.mall.biz.member.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.lingyi.mall.api.member.entity.MemberLoginLogDO;
-import com.lingyi.mall.api.member.enums.MemberFailEnumEnum;
-import com.lingyi.mall.api.member.vo.MemberLoginLogVO;
+import com.lingyi.mall.biz.member.entity.MemberLoginLogDO;
+import com.lingyi.mall.biz.member.enums.MemberFailEnumEnum;
+import com.lingyi.mall.biz.member.vo.MemberLoginLogVO;
 import com.lingyi.mall.biz.member.mapper.MemberLoginLogMapper;
 import com.lingyi.mall.biz.member.repository.MemberLoginLogRepository;
 import com.lingyi.mall.biz.member.service.MemberLoginLogService;

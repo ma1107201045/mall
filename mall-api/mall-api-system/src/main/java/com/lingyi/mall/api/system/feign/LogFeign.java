@@ -1,6 +1,6 @@
 package com.lingyi.mall.api.system.feign;
 
-import com.lingyi.mall.api.system.entity.LogDO;
+import com.lingyi.mall.api.system.dto.LogDTO;
 import com.lingyi.mall.api.system.fallbackfactory.LogFeignFallbackFactory;
 import com.lingyi.mall.common.base.util.ServerResponse;
 import feign.Request;
@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(url = "http://localhost:7003", value = "mall-web-admin-system", fallbackFactory = LogFeignFallbackFactory.class)
 public interface LogFeign {
 
+    String URL_PREFIX = "/admin/system/logs";
+
     /**
      * 保存
      *
-     * @param logDO 。。
+     * @param logDTO 。。
      * @return ServerResponse
      */
-    @PostMapping("/admin/system/logs")
-    ServerResponse<Void> save(@RequestBody LogDO logDO, Request.Options options);
+    @PostMapping(URL_PREFIX)
+    ServerResponse<Void> save(@RequestBody LogDTO logDTO, Request.Options options);
 }

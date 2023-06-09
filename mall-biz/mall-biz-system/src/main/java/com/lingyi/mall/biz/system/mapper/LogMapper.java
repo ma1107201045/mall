@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.system.mapper;
 
-import com.lingyi.mall.api.system.entity.LogDO;
+import com.lingyi.mall.biz.system.entity.LogDO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

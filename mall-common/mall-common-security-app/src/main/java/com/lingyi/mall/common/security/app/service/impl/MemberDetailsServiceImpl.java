@@ -2,7 +2,7 @@ package com.lingyi.mall.common.security.app.service.impl;
 
 import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
-import com.lingyi.mall.api.member.vo.MemberVO;
+import com.lingyi.mall.api.member.dto.MemberDTO;
 import com.lingyi.mall.common.base.entity.MemberDetails;
 import com.lingyi.mall.common.base.entity.MemberDetailsDO;
 import com.lingyi.mall.common.base.enums.WhetherEnum;
@@ -34,19 +34,19 @@ public class MemberDetailsServiceImpl implements MemberDetailsService {
         //校验用户名称
         AssertUtil.notBlack(phoneNumber, new UsernameNotFoundException(FailEnum.PHONE_NUMBER_NOT_FOUND_ERROR.getMessage()));
         //查询用户信息和菜单权限
-        MemberVO memberVO = memberFeignConsumer.getByPhoneNumber(phoneNumber);
+        MemberDTO memberDTO = memberFeignConsumer.getByPhoneNumber(phoneNumber);
         //校验用用户信息
-        AssertUtil.notNull(memberVO, new UsernameNotFoundException(FailEnum.PHONE_NUMBER_NOT_FOUND_ERROR.getMessage()));
+        AssertUtil.notNull(memberDTO, new UsernameNotFoundException(FailEnum.PHONE_NUMBER_NOT_FOUND_ERROR.getMessage()));
         //ignore
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = Collections.emptyList();
         //组装MemberDetailsEntity
         return MemberDetailsDO.builder()
                 .authorities(simpleGrantedAuthorities)
-                .phoneNumber(memberVO.getPhoneNumber())
+                .phoneNumber(memberDTO.getPhoneNumber())
                 .verificationCode(RandomUtil.randomNumbers(6))
-                .enabled(WhetherEnum.Y.getCode().equals(memberVO.getIsEnable()))
-                .userId(memberVO.getMemberId())
-                .userName(memberVO.getUserName())
+                .enabled(WhetherEnum.Y.getCode().equals(memberDTO.getIsEnable()))
+                .userId(memberDTO.getMemberId())
+                .userName(memberDTO.getUserName())
                 .build();
     }
 }

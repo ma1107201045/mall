@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.member.repository;
 
-import com.lingyi.mall.api.member.entity.MemberDO;
+import com.lingyi.mall.biz.member.entity.MemberDO;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 
 

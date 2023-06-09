@@ -1,10 +1,10 @@
 package com.lingyi.mall.biz.member.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.lingyi.mall.api.member.entity.MemberDO;
-import com.lingyi.mall.api.member.enums.MemberFailEnumEnum;
-import com.lingyi.mall.api.member.query.MemberQuery;
-import com.lingyi.mall.api.member.vo.MemberVO;
+import com.lingyi.mall.biz.member.entity.MemberDO;
+import com.lingyi.mall.biz.member.enums.MemberFailEnumEnum;
+import com.lingyi.mall.biz.member.query.MemberQuery;
+import com.lingyi.mall.biz.member.vo.MemberVO;
 import com.lingyi.mall.biz.member.mapper.MemberMapper;
 import com.lingyi.mall.biz.member.repository.MemberRepository;
 import com.lingyi.mall.biz.member.service.MemberService;

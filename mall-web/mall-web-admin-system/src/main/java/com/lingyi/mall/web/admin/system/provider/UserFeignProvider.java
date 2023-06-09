@@ -1,10 +1,12 @@
 package com.lingyi.mall.web.admin.system.provider;
 
+import com.lingyi.mall.api.system.dto.MenuDTO;
+import com.lingyi.mall.api.system.dto.UserDTO;
 import com.lingyi.mall.api.system.dto.UserPartDTO;
 import com.lingyi.mall.biz.system.constant.SystemConstant;
 import com.lingyi.mall.api.system.feign.UserFeign;
-import com.lingyi.mall.api.system.vo.MenuVO;
-import com.lingyi.mall.api.system.vo.UserVO;
+import com.lingyi.mall.biz.system.vo.MenuVO;
+import com.lingyi.mall.biz.system.vo.UserVO;
 import com.lingyi.mall.biz.system.service.UserService;
 import com.lingyi.mall.common.base.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,22 +33,23 @@ public class UserFeignProvider implements UserFeign {
     @Override
     public ServerResponse<Void> updatePartById(Long id, UserPartDTO userPartDTO) {
         userPartDTO.setId(id);
-        userService.editPartById(userPartDTO);
+        userService.editPartById(null);
         return ServerResponse.success();
     }
 
+
     @Operation(summary = "查询用户和权限标识", description = "查询用户和权限标识")
     @Override
-    public ServerResponse<UserVO> getUserAndMenuPermissionsByUserName(String userName) {
+    public ServerResponse<UserDTO> getUserAndMenuPermissionsByUserName(String userName) {
         UserVO userVO = userService.findUserAndMenuPermissionsByUserName(userName);
-        return ServerResponse.success(userVO);
+        return ServerResponse.success(null);
     }
 
     @Operation(summary = "查询菜单树", description = "查询菜单树")
     @Override
-    public ServerResponse<List<MenuVO>> getMenuTreeByUserName(String userName) {
+    public ServerResponse<List<MenuDTO>> getMenuTreeByUserName(String userName) {
         List<MenuVO> menuVoList = userService.findMenuTreeByUserNameAndMenuParentId(userName, SystemConstant.MENU_ROOT_ID);
-        return ServerResponse.success(menuVoList);
+        return ServerResponse.success(null);
     }
 
 }

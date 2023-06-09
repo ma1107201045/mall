@@ -1,7 +1,7 @@
 package com.lingyi.mall.api.member.feign;
 
+import com.lingyi.mall.api.member.dto.MemberDTO;
 import com.lingyi.mall.api.member.fallbackfactory.MemberFeignFallbackFactory;
-import com.lingyi.mall.api.member.vo.MemberVO;
 import com.lingyi.mall.common.base.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(url = "http://localhost:8002", value = "mall-web-app-member", fallbackFactory = MemberFeignFallbackFactory.class)
 public interface MemberFeign {
 
+    String URL_PREFIX = "/app/member/members";
 
     /**
      * 按照用户名称查询用户信息和按钮权限标识
@@ -23,6 +24,6 @@ public interface MemberFeign {
      * @param phoneNumber 手机号
      * @return 用户信息
      */
-    @GetMapping("/app/member/members")
-    ServerResponse<MemberVO> getByPhoneNumber(@RequestParam(name = "phoneNumber") String phoneNumber);
+    @GetMapping(URL_PREFIX)
+    ServerResponse<MemberDTO> getByPhoneNumber(@RequestParam(name = "phoneNumber") String phoneNumber);
 }

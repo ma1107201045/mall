@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lingyi.mall.biz.member.mapper.MemberMapper">
-    <resultMap id="BaseResultMap" type="com.lingyi.mall.api.member.vo.MemberVO">
+    <resultMap id="BaseResultMap" type="com.lingyi.mall.biz.member.vo.MemberVO">
         <id property="memberId" column="id" jdbcType="BIGINT"/>
         <result property="memberLevelId" column="member_level_id" jdbcType="BIGINT"/>
         <result property="userName" column="user_name" jdbcType="VARCHAR"/>
@@ -28,13 +28,13 @@
             AND user_name LIKE CONCAT('%',#{userName,jdbcType=VARCHAR},'%')
         </if>
     </sql>
-    <select id="selectById" resultType="com.lingyi.mall.api.member.vo.MemberVO">
+    <select id="selectById" resultType="com.lingyi.mall.biz.member.vo.MemberVO">
         SELECT
         <include refid="Base_Column_List"/>
         FROM mm_member
         WHERE id#{id,jdbcType=BIGINT}
     </select>
-    <select id="selectListByParam" resultType="com.lingyi.mall.api.member.vo.MemberVO">
+    <select id="selectListByParam" resultType="com.lingyi.mall.biz.member.vo.MemberVO">
         SELECT
         <include refid="Base_Column_List"/>
         FROM mm_member
@@ -42,7 +42,7 @@
             <include refid="Base_Condition"/>
         </where>
     </select>
-    <select id="selectByPhoneNumber" resultType="com.lingyi.mall.api.member.vo.MemberVO">
+    <select id="selectByPhoneNumber" resultType="com.lingyi.mall.biz.member.vo.MemberVO">
         SELECT
         <include refid="Base_Column_List"/>
         FROM mm_member

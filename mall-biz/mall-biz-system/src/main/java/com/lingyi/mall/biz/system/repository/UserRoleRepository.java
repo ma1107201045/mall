@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.system.repository;
 
 
-import com.lingyi.mall.api.system.entity.UserRoleDO;
+import com.lingyi.mall.biz.system.entity.UserRoleDO;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;

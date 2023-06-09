@@ -1,9 +1,9 @@
 package com.lingyi.mall.biz.base.service.impl;
 
 import com.lingyi.mall.api.system.consumer.UserFeignConsumer;
-import com.lingyi.mall.api.system.dto.UserDTO;
+import com.lingyi.mall.api.system.dto.MenuDTO;
 import com.lingyi.mall.api.system.dto.UserPartDTO;
-import com.lingyi.mall.api.system.vo.MenuVO;
+
 import com.lingyi.mall.biz.base.service.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ public class BaseServiceImpl implements BaseService {
     private final UserFeignConsumer userFeignConsumer;
 
     @Override
-    public List<MenuVO> findMenuTreeByUserName(String userName) {
+    public List<MenuDTO> findMenuTreeByUserName(String userName) {
         return userFeignConsumer.getMenuTreeByUserName(userName);
     }
 

@@ -1,8 +1,7 @@
 package com.lingyi.mall.common.base.task;
 
-import cn.hutool.core.util.ReflectUtil;
-import cn.hutool.extra.spring.SpringUtil;
-import com.lingyi.mall.common.base.constant.TaskConstant;
+import com.lingyi.mall.api.system.consumer.LogFeignConsumer;
+import com.lingyi.mall.api.system.dto.LogDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
@@ -19,10 +18,10 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class BaseAsyncTask {
 
+    private final LogFeignConsumer logFeignConsumer;
 
     @Async
-    public void saveLog(Object logEntity) {
-        Object logFeignConsumer = SpringUtil.getBean(TaskConstant.LOG_BEAN_NAME);
-        ReflectUtil.invoke(logFeignConsumer, TaskConstant.LOG_METHOD_NAME, logEntity);
+    public void saveLog(LogDTO logDTO) {
+        logFeignConsumer.save(logDTO);
     }
 }

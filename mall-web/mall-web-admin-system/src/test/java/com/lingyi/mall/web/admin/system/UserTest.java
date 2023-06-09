@@ -2,7 +2,7 @@ package com.lingyi.mall.web.admin.system;
 
 import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.MallBizSystemApplicationTest;
-import com.lingyi.mall.api.system.entity.UserDO;
+import com.lingyi.mall.biz.system.entity.UserDO;
 import com.lingyi.mall.biz.system.mapper.UserMapper;
 import com.lingyi.mall.biz.system.repository.UserRepository;
 import com.lingyi.mall.common.base.enums.WhetherEnum;

@@ -1,8 +1,8 @@
 package com.lingyi.mall.web.admin.system.controller;
 
-import com.lingyi.mall.api.system.dto.UserDTO;
-import com.lingyi.mall.api.system.query.UserQuery;
-import com.lingyi.mall.api.system.vo.UserVO;
+import com.lingyi.mall.biz.system.dto.UserDTO;
+import com.lingyi.mall.biz.system.query.UserQuery;
+import com.lingyi.mall.biz.system.vo.UserVO;
 import com.lingyi.mall.biz.system.service.UserService;
 import com.lingyi.mall.common.base.aspect.Log;
 import com.lingyi.mall.common.base.enums.OperationTypeEnum;

@@ -1,10 +1,10 @@
 package com.lingyi.mall.biz.system.service;
 
-import com.lingyi.mall.api.system.dto.UserDTO;
 import com.lingyi.mall.api.system.dto.UserPartDTO;
-import com.lingyi.mall.api.system.query.UserQuery;
-import com.lingyi.mall.api.system.vo.MenuVO;
-import com.lingyi.mall.api.system.vo.UserVO;
+import com.lingyi.mall.biz.system.dto.UserDTO;
+import com.lingyi.mall.biz.system.query.UserQuery;
+import com.lingyi.mall.biz.system.vo.MenuVO;
+import com.lingyi.mall.biz.system.vo.UserVO;
 import com.lingyi.mall.common.base.util.BaseService;
 
 

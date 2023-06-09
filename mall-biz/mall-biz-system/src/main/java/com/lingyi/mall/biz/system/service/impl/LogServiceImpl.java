@@ -1,8 +1,8 @@
 package com.lingyi.mall.biz.system.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.lingyi.mall.api.system.entity.LogDO;
-import com.lingyi.mall.api.system.enums.SystemFailEnum;
+import com.lingyi.mall.biz.system.entity.LogDO;
+import com.lingyi.mall.biz.system.enums.SystemFailEnum;
 import com.lingyi.mall.biz.system.mapper.LogMapper;
 import com.lingyi.mall.biz.system.repository.LogRepository;
 import com.lingyi.mall.biz.system.service.LogService;

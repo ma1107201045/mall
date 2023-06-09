@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.member.mapper;
 
-import com.lingyi.mall.api.member.entity.MemberLoginLogDO;
-import com.lingyi.mall.api.member.vo.MemberLoginLogVO;
+import com.lingyi.mall.biz.member.entity.MemberLoginLogDO;
+import com.lingyi.mall.biz.member.vo.MemberLoginLogVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lingyi.mall.biz.system.mapper.UserMapper">
-    <resultMap id="BaseResultMap" type="com.lingyi.mall.api.system.vo.UserVO">
+    <resultMap id="BaseResultMap" type="com.lingyi.mall.biz.system.vo.UserVO">
         <id column="id" jdbcType="BIGINT" property="userId"/>
         <result column="user_name" jdbcType="VARCHAR" property="userName"/>
         <result column="real_name" jdbcType="VARCHAR" property="realName"/>
@@ -45,7 +45,7 @@
             <include refid="Base_Condition"/>
         </where>
     </select>
-    <resultMap id="SelectByUserNameMap" type="com.lingyi.mall.api.system.vo.UserVO">
+    <resultMap id="SelectByUserNameMap" type="com.lingyi.mall.biz.system.vo.UserVO">
         <id column="mu_id" property="userId"/>
         <result column="mu_user_name" property="userName"/>
         <result column="mu_password" property="password"/>
@@ -82,7 +82,7 @@
           AND mm.type = #{menuType}
         GROUP BY mm.id
     </select>
-    <resultMap id="SelectMenusByUserNameAndMenuTypesAndMenuParentIdMap" type="com.lingyi.mall.api.system.vo.MenuVO">
+    <resultMap id="SelectMenusByUserNameAndMenuTypesAndMenuParentIdMap" type="com.lingyi.mall.biz.system.vo.MenuVO">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="icon" property="icon"/>

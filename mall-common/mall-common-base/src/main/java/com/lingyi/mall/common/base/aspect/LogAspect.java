@@ -6,6 +6,7 @@ import cn.hutool.core.date.StopWatch;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
+import com.lingyi.mall.api.system.dto.LogDTO;
 import com.lingyi.mall.common.base.enums.WhetherEnum;
 import com.lingyi.mall.common.base.task.BaseAsyncTask;
 import com.lingyi.mall.common.base.util.RequestUtil;
@@ -112,12 +113,10 @@ public class LogAspect {
             sw.stop();
             // 获取该方法上的 Log注解
             Log log = ((MethodSignature) joinPoint.getSignature()).getMethod().getAnnotation(Log.class);
-            //获取log类实例
-            Object logEntity = getInstance();
             //赋值
-            setValue(logEntity, log, joinPoint, result, isSuccess, sw.getLastTaskTimeMillis(), failReason);
+            LogDTO logDTO = getLogDTO(log, joinPoint, result, isSuccess, sw.getLastTaskTimeMillis(), failReason);
             //异步保存
-            baseAsyncTask.saveLog(logEntity);
+            baseAsyncTask.saveLog(logDTO);
         }
     }
 
@@ -272,17 +271,18 @@ public class LogAspect {
         }
     }
 
-    private void setValue(Object logDO, Log log, ProceedingJoinPoint joinPoint, Object result, boolean isSuccess, long taskTime, String failReason) {
-        ReflectUtil.setFieldValue(logDO, "title", log.clientType() + "-" + log.title());
-        ReflectUtil.setFieldValue(logDO, "operationType", log.operationType().getCode());
-        ReflectUtil.setFieldValue(logDO, "callClass", joinPoint.getTarget().getClass().getName());
-        ReflectUtil.setFieldValue(logDO, "callMethod", joinPoint.getSignature().getName());
-        ReflectUtil.setFieldValue(logDO, "requestParam", log.ignoreParam() ? JSON.toJSONString(null) : JSON.toJSONString(joinPoint.getArgs()));
-        ReflectUtil.setFieldValue(logDO, "responseParam", JSON.toJSONString(result));
-        ReflectUtil.setFieldValue(logDO, "executeDuration", taskTime);
-        ReflectUtil.setFieldValue(logDO, "executeResult", isSuccess ? WhetherEnum.Y.getCode() : WhetherEnum.N.getCode());
-        ReflectUtil.setFieldValue(logDO, "failReason", failReason);
-        ReflectUtil.setFieldValue(logDO, "clientIp", RequestUtil.getRemoteHost(((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest()));
-
+    private LogDTO getLogDTO(Log log, ProceedingJoinPoint joinPoint, Object result, boolean isSuccess, long taskTime, String failReason) {
+        return LogDTO.builder()
+                .title(log.clientType() + "-" + log.title())
+                .operationType(log.operationType().getCode())
+                .callClass(joinPoint.getTarget().getClass().getName())
+                .callMethod(joinPoint.getSignature().getName())
+                .requestParam(log.ignoreParam() ? JSON.toJSONString(null) : JSON.toJSONString(joinPoint.getArgs()))
+                .responseParam(JSON.toJSONString(result))
+                .executeDuration(taskTime)
+                .executeResult(isSuccess ? WhetherEnum.Y.getCode() : WhetherEnum.N.getCode())
+                .failReason(failReason)
+                .clientIp(RequestUtil.getRemoteHost(((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest()))
+                .build();
     }
 }

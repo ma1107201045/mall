@@ -1,7 +1,8 @@
 package com.lingyi.mall.web.app.member.provider;
 
+import com.lingyi.mall.api.member.dto.MemberDTO;
 import com.lingyi.mall.api.member.feign.MemberFeign;
-import com.lingyi.mall.api.member.vo.MemberVO;
+import com.lingyi.mall.biz.member.vo.MemberVO;
 import com.lingyi.mall.biz.member.service.MemberService;
 import com.lingyi.mall.common.base.util.ServerResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -22,8 +23,8 @@ public class MemberProvider implements MemberFeign {
     private final MemberService mbmMemberService;
 
     @Override
-    public ServerResponse<MemberVO> getByPhoneNumber(String phoneNumber) {
+    public ServerResponse<MemberDTO> getByPhoneNumber(String phoneNumber) {
         MemberVO memberVO = mbmMemberService.findByPhoneNumber(phoneNumber);
-        return ServerResponse.success(memberVO);
+        return ServerResponse.success(null);
     }
 }

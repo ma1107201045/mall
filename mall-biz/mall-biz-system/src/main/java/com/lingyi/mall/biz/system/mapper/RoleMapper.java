@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.system.mapper;
 
-import com.lingyi.mall.api.system.query.RoleQuery;
-import com.lingyi.mall.api.system.vo.RoleVO;
+import com.lingyi.mall.biz.system.query.RoleQuery;
+import com.lingyi.mall.biz.system.vo.RoleVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

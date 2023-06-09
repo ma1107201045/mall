@@ -3,16 +3,18 @@ server:
 spring:
   application:
     name: mall-web-admin-product
+  main:
+    allow-bean-definition-overriding: true
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
-    generate-ddl: true
     database: mysql
     show-sql: true
     openInView: true
+    hibernate:
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
-        dialect:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://rm-2ze09g9o0bb02q5r54o.mysql.rds.aliyuncs.com:3306/mall-product?serverTimezone=GMT%2B8

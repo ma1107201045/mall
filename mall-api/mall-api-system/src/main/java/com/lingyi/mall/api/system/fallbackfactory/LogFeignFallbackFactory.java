@@ -1,8 +1,9 @@
 package com.lingyi.mall.api.system.fallbackfactory;
 
-import com.lingyi.mall.api.system.entity.LogDO;
+import com.lingyi.mall.api.system.dto.LogDTO;
 import com.lingyi.mall.api.system.feign.LogFeign;
 import com.lingyi.mall.common.base.util.ServerResponse;
+import feign.Request;
 import org.springframework.cloud.openfeign.FallbackFactory;
 
 /**
@@ -16,9 +17,10 @@ public class LogFeignFallbackFactory implements FallbackFactory<LogFeign> {
     public LogFeign create(Throwable cause) {
         return new LogFeign() {
             @Override
-            public ServerResponse<Void> save(LogDO logDO) {
+            public ServerResponse<Void> save(LogDTO logDTO, Request.Options options) {
                 return null;
             }
+
         };
     }
 }

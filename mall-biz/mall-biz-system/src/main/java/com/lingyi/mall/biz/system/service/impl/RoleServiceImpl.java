@@ -2,11 +2,11 @@ package com.lingyi.mall.biz.system.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.github.pagehelper.PageHelper;
-import com.lingyi.mall.api.system.dto.RoleDTO;
-import com.lingyi.mall.api.system.entity.RoleDO;
-import com.lingyi.mall.api.system.enums.SystemFailEnum;
-import com.lingyi.mall.api.system.query.RoleQuery;
-import com.lingyi.mall.api.system.vo.RoleVO;
+import com.lingyi.mall.biz.system.dto.RoleDTO;
+import com.lingyi.mall.biz.system.entity.RoleDO;
+import com.lingyi.mall.biz.system.enums.SystemFailEnum;
+import com.lingyi.mall.biz.system.query.RoleQuery;
+import com.lingyi.mall.biz.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.mapper.RoleMapper;
 import com.lingyi.mall.biz.system.repository.RoleRepository;
 import com.lingyi.mall.biz.system.service.RoleMenuService;

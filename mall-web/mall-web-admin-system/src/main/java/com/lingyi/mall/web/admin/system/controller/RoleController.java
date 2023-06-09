@@ -1,8 +1,8 @@
 package com.lingyi.mall.web.admin.system.controller;
 
-import com.lingyi.mall.api.system.dto.RoleDTO;
-import com.lingyi.mall.api.system.query.RoleQuery;
-import com.lingyi.mall.api.system.vo.RoleVO;
+import com.lingyi.mall.biz.system.dto.RoleDTO;
+import com.lingyi.mall.biz.system.query.RoleQuery;
+import com.lingyi.mall.biz.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.service.RoleService;
 import com.lingyi.mall.common.base.query.BasePageQuery;
 import com.lingyi.mall.common.base.util.ServerResponse;

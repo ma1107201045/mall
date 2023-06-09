@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.system.service.impl;
 
-import com.lingyi.mall.api.system.entity.UserRoleDO;
+import com.lingyi.mall.biz.system.entity.UserRoleDO;
 import com.lingyi.mall.biz.system.repository.UserRoleRepository;
 import com.lingyi.mall.biz.system.service.UserRoleService;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,7 @@
 package com.lingyi.mall.api.system.consumer;
 
 import com.alibaba.fastjson2.JSON;
+import com.lingyi.mall.api.system.dto.MenuDTO;
 import com.lingyi.mall.api.system.dto.UserDTO;
 import com.lingyi.mall.api.system.dto.UserPartDTO;
 import com.lingyi.mall.api.system.feign.UserFeign;
@@ -33,14 +34,14 @@ public class UserFeignConsumer {
         ServerResponse<Void> response = userFeign.updatePartById(id, userPartDTO);
         if (response.getIsSuccess()) {
             log.info("出参:Void:{}", JSON.toJSONString(response.getData()));
-           return;
+            return;
         }
         throw new OpenFeignException(response.getBizCode(), response.getMessage());
     }
 
-    public UserVO getUserAndMenuPermissionsByUserName(String userName) {
+    public UserDTO getUserAndMenuPermissionsByUserName(String userName) {
         log.info("入参:userName:{}", userName);
-        ServerResponse<UserVO> response = userFeign.getUserAndMenuPermissionsByUserName(userName);
+        ServerResponse<UserDTO> response = userFeign.getUserAndMenuPermissionsByUserName(userName);
         if (response.getIsSuccess()) {
             log.info("出参:UserVO:{}", JSON.toJSONString(response.getData()));
             return response.getData();
@@ -48,9 +49,9 @@ public class UserFeignConsumer {
         throw new OpenFeignException(response.getBizCode(), response.getMessage());
     }
 
-    public List<MenuVO> getMenuTreeByUserName(String userName) {
+    public List<MenuDTO> getMenuTreeByUserName(String userName) {
         log.info("入参:userName:{}", userName);
-        ServerResponse<List<MenuVO>> response = userFeign.getMenuTreeByUserName(userName);
+        ServerResponse<List<MenuDTO>> response = userFeign.getMenuTreeByUserName(userName);
         if (response.getIsSuccess()) {
             log.info("出参:UserVO:{}", JSON.toJSONString(response.getData()));
             return response.getData();

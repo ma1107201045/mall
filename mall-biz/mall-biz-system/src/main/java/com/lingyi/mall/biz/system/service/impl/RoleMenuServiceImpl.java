@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.system.service.impl;
 
-import com.lingyi.mall.api.system.entity.RoleMenuDO;
+import com.lingyi.mall.biz.system.entity.RoleMenuDO;
 import com.lingyi.mall.biz.system.repository.RoleMenuRepository;
 import com.lingyi.mall.biz.system.service.RoleMenuService;
 import lombok.RequiredArgsConstructor;

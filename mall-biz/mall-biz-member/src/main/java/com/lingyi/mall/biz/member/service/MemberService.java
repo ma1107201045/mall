@@ -1,8 +1,8 @@
 package com.lingyi.mall.biz.member.service;
 
-import com.lingyi.mall.api.member.entity.MemberDO;
-import com.lingyi.mall.api.member.query.MemberQuery;
-import com.lingyi.mall.api.member.vo.MemberVO;
+import com.lingyi.mall.biz.member.entity.MemberDO;
+import com.lingyi.mall.biz.member.query.MemberQuery;
+import com.lingyi.mall.biz.member.vo.MemberVO;
 import com.lingyi.mall.common.base.util.BaseService;
 
 /**

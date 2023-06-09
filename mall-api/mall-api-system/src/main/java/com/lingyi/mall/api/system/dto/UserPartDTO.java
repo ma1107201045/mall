@@ -7,16 +7,17 @@ import java.io.Serial;
 import java.io.Serializable;
 
 /**
- * @Author: maweiyan
- * @Email 1107201045@qq.com
- * @DateTime: 2023/6/1 22:31
- * @Description:
+ * @author maweiyan
+ * @email 1107201045@qq.com
+ * @datetime 2023/6/9 16:10
+ * @description
  */
 @Schema(description = "用户")
 @Data
 public class UserPartDTO implements Serializable {
+
     @Serial
-    private static final long serialVersionUID = 1494543714894436563L;
+    private static final long serialVersionUID = -1025701979000302522L;
 
     @Schema(description = "菜单id")
     private Long id;

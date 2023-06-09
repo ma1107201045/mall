@@ -1,8 +1,8 @@
 package com.lingyi.mall.web.admin.system.controller;
 
 import com.lingyi.mall.biz.system.constant.SystemConstant;
-import com.lingyi.mall.api.system.dto.MenuDTO;
-import com.lingyi.mall.api.system.vo.MenuVO;
+import com.lingyi.mall.biz.system.dto.MenuDTO;
+import com.lingyi.mall.biz.system.vo.MenuVO;
 import com.lingyi.mall.biz.system.service.MenuService;
 import com.lingyi.mall.common.base.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;

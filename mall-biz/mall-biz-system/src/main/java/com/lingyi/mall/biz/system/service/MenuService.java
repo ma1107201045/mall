@@ -1,8 +1,8 @@
 package com.lingyi.mall.biz.system.service;
 
-import com.lingyi.mall.api.system.dto.MenuDTO;
-import com.lingyi.mall.api.system.query.MenuQuery;
-import com.lingyi.mall.api.system.vo.MenuVO;
+import com.lingyi.mall.biz.system.dto.MenuDTO;
+import com.lingyi.mall.biz.system.query.MenuQuery;
+import com.lingyi.mall.biz.system.vo.MenuVO;
 import com.lingyi.mall.common.base.util.BaseService;
 
 import java.util.List;

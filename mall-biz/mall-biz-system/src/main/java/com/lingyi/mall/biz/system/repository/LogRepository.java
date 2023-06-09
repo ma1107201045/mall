@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.system.repository;
 
-import com.lingyi.mall.api.system.entity.LogDO;
+import com.lingyi.mall.biz.system.entity.LogDO;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 
 /**
