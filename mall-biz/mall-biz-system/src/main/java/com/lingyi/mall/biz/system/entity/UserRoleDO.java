@@ -35,4 +35,14 @@ public class UserRoleDO extends BaseCommonDO implements Serializable {
     @JoinColumn(name = "role_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '角色id'")
     private RoleDO roleDO;
 
+    public static UserRoleDO of(Long userId, Long roleId) {
+        UserDO newUserDO = new UserDO();
+        newUserDO.setId(userId);
+        RoleDO newRoleDO = new RoleDO();
+        newRoleDO.setId(roleId);
+        UserRoleDO userRoleDO = new UserRoleDO();
+        userRoleDO.setUserDO(newUserDO);
+        userRoleDO.setRoleDO(newRoleDO);
+        return userRoleDO;
+    }
 }

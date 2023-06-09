@@ -4,7 +4,7 @@ import com.lingyi.mall.auth.app.dto.AppLoginDTO;
 import com.lingyi.mall.auth.app.dto.AppRegisterDTO;
 import com.lingyi.mall.auth.app.service.MaaAppService;
 import com.lingyi.mall.auth.app.vo.AppLoginVO;
-import com.lingyi.mall.common.base.util.ServerResponse;
+import com.lingyi.mall.common.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

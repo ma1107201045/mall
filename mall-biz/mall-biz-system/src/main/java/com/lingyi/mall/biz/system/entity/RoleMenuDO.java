@@ -40,4 +40,14 @@ public class RoleMenuDO extends BaseCommonDO implements Serializable {
     @ToString.Exclude
     private MenuDO menuDO;
 
+    public static RoleMenuDO of(Long roleId, Long menuId) {
+        RoleDO newRoleDO = new RoleDO();
+        newRoleDO.setId(roleId);
+        MenuDO newMenuDO = new MenuDO();
+        newMenuDO.setId(menuId);
+        RoleMenuDO roleMenuDO = new RoleMenuDO();
+        roleMenuDO.setRoleDO(newRoleDO);
+        roleMenuDO.setMenuDO(newMenuDO);
+        return roleMenuDO;
+    }
 }

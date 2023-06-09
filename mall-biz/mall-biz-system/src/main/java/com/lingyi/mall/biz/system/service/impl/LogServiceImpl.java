@@ -8,7 +8,7 @@ import com.lingyi.mall.biz.system.repository.LogRepository;
 import com.lingyi.mall.biz.system.service.LogService;
 import com.lingyi.mall.common.base.exception.BizException;
 import com.lingyi.mall.common.base.query.BasePageQuery;
-import com.lingyi.mall.common.base.util.ConverterUtil;
+import com.lingyi.mall.common.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

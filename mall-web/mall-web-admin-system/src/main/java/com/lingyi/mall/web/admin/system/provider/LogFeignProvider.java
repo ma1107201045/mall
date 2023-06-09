@@ -4,7 +4,7 @@ import com.lingyi.mall.api.system.dto.LogDTO;
 import com.lingyi.mall.biz.system.entity.LogDO;
 import com.lingyi.mall.api.system.feign.LogFeign;
 import com.lingyi.mall.biz.system.service.LogService;
-import com.lingyi.mall.common.base.util.ServerResponse;
+import com.lingyi.mall.common.util.ServerResponse;
 import feign.Request;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

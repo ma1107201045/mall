@@ -7,8 +7,15 @@
         <version>${revision}</version>
     </parent>
     <artifactId>mall-common-security-app</artifactId>
-
     <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>mall-common-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>mall-common-util</artifactId>
+        </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>mall-api-member</artifactId>

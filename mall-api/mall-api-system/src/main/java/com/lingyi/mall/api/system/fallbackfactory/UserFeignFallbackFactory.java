@@ -4,7 +4,7 @@ import com.lingyi.mall.api.system.dto.MenuDTO;
 import com.lingyi.mall.api.system.dto.UserDTO;
 import com.lingyi.mall.api.system.dto.UserPartDTO;
 import com.lingyi.mall.api.system.feign.UserFeign;
-import com.lingyi.mall.common.base.util.ServerResponse;
+import com.lingyi.mall.common.util.ServerResponse;
 import org.springframework.cloud.openfeign.FallbackFactory;
 
 import java.util.List;

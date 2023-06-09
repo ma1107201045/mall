@@ -5,7 +5,7 @@ import com.lingyi.mall.biz.system.query.RoleQuery;
 import com.lingyi.mall.biz.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.service.RoleService;
 import com.lingyi.mall.common.base.query.BasePageQuery;
-import com.lingyi.mall.common.base.util.ServerResponse;
+import com.lingyi.mall.common.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.base.util;
+package com.lingyi.mall.common.util;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;

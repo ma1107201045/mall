@@ -1,11 +1,10 @@
 package com.lingyi.mall.web.admin.base.controller;
 
-import com.lingyi.mall.api.system.dto.UserDTO;
+import com.lingyi.mall.api.system.dto.MenuDTO;
 import com.lingyi.mall.api.system.dto.UserPartDTO;
-import com.lingyi.mall.api.system.vo.MenuVO;
 import com.lingyi.mall.biz.base.service.BaseService;
 import com.lingyi.mall.common.base.util.AuthenticatorUtil;
-import com.lingyi.mall.common.base.util.ServerResponse;
+import com.lingyi.mall.common.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -32,9 +31,9 @@ public class BaseController {
 
     @Operation(summary = "获取菜单", description = "获取菜单")
     @GetMapping("/menu")
-    public ServerResponse<List<MenuVO>> getMenu() {
+    public ServerResponse<List<MenuDTO>> getMenu() {
         String userName = AuthenticatorUtil.getUserName();
-        List<MenuVO> menus = baseService.findMenuTreeByUserName(userName);
+        List<MenuDTO> menus = baseService.findMenuTreeByUserName(userName);
         return ServerResponse.success(menus);
     }
 

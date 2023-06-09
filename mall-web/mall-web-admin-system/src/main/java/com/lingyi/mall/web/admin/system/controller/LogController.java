@@ -3,7 +3,7 @@ package com.lingyi.mall.web.admin.system.controller;
 import com.lingyi.mall.biz.system.entity.LogDO;
 import com.lingyi.mall.biz.system.service.LogService;
 import com.lingyi.mall.common.base.query.BasePageQuery;
-import com.lingyi.mall.common.base.util.ServerResponse;
+import com.lingyi.mall.common.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

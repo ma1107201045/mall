@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.base.exception;
+package com.lingyi.mall.common.util;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

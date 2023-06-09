@@ -5,11 +5,8 @@ import com.lingyi.mall.api.system.dto.MenuDTO;
 import com.lingyi.mall.api.system.dto.UserDTO;
 import com.lingyi.mall.api.system.dto.UserPartDTO;
 import com.lingyi.mall.api.system.feign.UserFeign;
-import com.lingyi.mall.api.system.vo.MenuVO;
-import com.lingyi.mall.api.system.vo.UserVO;
-
-import com.lingyi.mall.common.base.util.ServerResponse;
-import com.lingyi.mall.common.base.exception.OpenFeignException;
+import com.lingyi.mall.common.util.OpenFeignException;
+import com.lingyi.mall.common.util.ServerResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

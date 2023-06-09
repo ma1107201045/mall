@@ -10,7 +10,7 @@ import com.lingyi.mall.biz.member.repository.MemberRepository;
 import com.lingyi.mall.biz.member.service.MemberService;
 import com.lingyi.mall.common.base.exception.BizException;
 import com.lingyi.mall.common.base.query.BasePageQuery;
-import com.lingyi.mall.common.base.util.ConverterUtil;
+import com.lingyi.mall.common.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

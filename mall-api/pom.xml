@@ -15,4 +15,10 @@
         <module>mall-api-product</module>
         <module>mall-api-system</module>
     </modules>
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>mall-common-util</artifactId>
+        </dependency>
+    </dependencies>
 </project>
