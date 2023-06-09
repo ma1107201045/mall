@@ -115,8 +115,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserVO> readListByPageAndQuery(BasePageQuery pageParam, UserQuery userQuery) {
-        PageHelper.startPage(pageParam.getCurrentPage(), pageParam.getPageSize(), pageParam.getSort());
+    public List<UserVO> readListByPageAndQuery(BasePageQuery pageQuery, UserQuery userQuery) {
+        startPage(pageQuery);
         return userMapper.selectListByParam(userQuery);
     }
 

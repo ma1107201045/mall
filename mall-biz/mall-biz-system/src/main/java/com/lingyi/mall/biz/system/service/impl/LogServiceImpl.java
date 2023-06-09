@@ -63,8 +63,8 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public List<LogDO> readListByPageAndQuery(BasePageQuery pageParam, LogDO logDO) {
-        PageHelper.startPage(pageParam.getCurrentPage(), pageParam.getPageSize(), pageParam.getSort());
+    public List<LogDO> readListByPageAndQuery(BasePageQuery pageQuery, LogDO logDO) {
+        startPage(pageQuery);
         return logMapper.selectListByParam(logDO);
     }
 

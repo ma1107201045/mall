@@ -22,27 +22,31 @@ import java.io.Serializable;
 public class BasePageQuery implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = -7930591841165119678L;
+    private static final long serialVersionUID = 975629823646747916L;
 
-    @Schema(description = "页码", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
+    private static final Integer CURRENT_PAGE_DEFAULT_VALUE = 1;
+
+    private static final Integer PAGE_SIZE_DEFAULT_VALUE = 10;
+
+    private static final String SORT_FIELD_DEFAULT_VALUE = "id";
+
+    private static final String SORT_DIRECTION_DEFAULT_VALUE = "DESC";
+
+    @Schema(description = "页码", requiredMode = Schema.RequiredMode.NOT_REQUIRED, example = "1")
     @Min(value = 1, message = "页码最小值有误")
     @Max(value = Integer.MAX_VALUE, message = "页码最大值有误")
-    @NotNull(message = "页码不能为空")
-    private Integer currentPage;
+    private Integer currentPage = CURRENT_PAGE_DEFAULT_VALUE;
 
-    @Schema(description = "页数", requiredMode = Schema.RequiredMode.REQUIRED, example = "10")
+    @Schema(description = "页数", requiredMode = Schema.RequiredMode.NOT_REQUIRED, example = "10")
     @Min(value = 1, message = "页数最小值有误")
     @Max(value = Integer.MAX_VALUE, message = "页数最大值有误")
-    @NotNull(message = "页数不能为空")
-    private Integer pageSize;
+    private Integer pageSize = PAGE_SIZE_DEFAULT_VALUE;
 
-    @Schema(description = "排序字段", requiredMode = Schema.RequiredMode.REQUIRED, example = "id")
-    @NotBlank(message = "排序字段不能为空")
-    private String sortField;
+    @Schema(description = "排序字段", requiredMode = Schema.RequiredMode.NOT_REQUIRED, example = "id")
+    private String sortField = SORT_FIELD_DEFAULT_VALUE;
 
-    @Schema(description = "排序方向", requiredMode = Schema.RequiredMode.REQUIRED, example = "DESC")
-    @NotBlank(message = "排序不能为空")
-    private String sortDirection;
+    @Schema(description = "排序方向", requiredMode = Schema.RequiredMode.NOT_REQUIRED, example = "DESC")
+    private String sortDirection = SORT_DIRECTION_DEFAULT_VALUE;
 
     public String getSort() {
         return sortField + BaseConstant.SPACE_CHAR + sortDirection;

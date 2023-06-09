@@ -83,8 +83,8 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<RoleVO> readListByPageAndQuery(BasePageQuery pageParam, RoleQuery roleQuery) {
-        PageHelper.startPage(pageParam.getCurrentPage(), pageParam.getPageSize(), pageParam.getSort());
+    public List<RoleVO> readListByPageAndQuery(BasePageQuery pageQuery, RoleQuery roleQuery) {
+        startPage(pageQuery);
         return roleMapper.selectListByParam(roleQuery);
     }
 }

@@ -1,6 +1,7 @@
 package com.lingyi.mall.common.base.util;
 
 
+import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.common.base.query.BasePageQuery;
 
 import java.io.Serializable;
@@ -51,6 +52,16 @@ public interface BaseService<DTO extends Serializable, QUERY extends Serializabl
      * @return List<VO>
      */
     List<VO> readListByPageAndQuery(BasePageQuery pageQuery, QUERY query);
+
+
+    /**
+     * 开始分页
+     *
+     * @param pageQuery pageQuery
+     */
+    default void startPage(BasePageQuery pageQuery) {
+        PageHelper.startPage(pageQuery.getCurrentPage(), pageQuery.getPageSize(), pageQuery.getSort());
+    }
 
 
 }
