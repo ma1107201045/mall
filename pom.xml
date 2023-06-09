@@ -26,19 +26,10 @@
     </properties>
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>mall-biz-base</artifactId>
-                <version>${project.version}</version>
-            </dependency>
+            <!-- api jar-->
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>mall-api-member</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>mall-biz-member</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -48,12 +39,23 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>mall-biz-product</artifactId>
+                <artifactId>mall-api-system</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- biz jar-->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>mall-biz-base</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>mall-api-system</artifactId>
+                <artifactId>mall-biz-member</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>mall-biz-product</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -62,6 +64,7 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <!-- common jar-->
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>mall-common-base</artifactId>
@@ -92,6 +95,7 @@
                 <artifactId>mall-common-security-merchant</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <!-- spring boot jar-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -99,6 +103,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- spring cloud jar-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -106,6 +111,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- spring cloud alibaba-->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>

@@ -53,16 +53,16 @@ public class ServerResponse<T> implements Serializable {
         return new ServerResponse<>(code, false, bizCode, message, null);
     }
 
-    public static <T> ServerResponse<T> fail(Integer code, String message) {
-        return new ServerResponse<>(code, false, code, message, null);
+    public static <T> ServerResponse<T> fail(Integer bizCode, String message) {
+        return fail(HttpStatus.INTERNAL_SERVER_ERROR.value(), bizCode, message);
     }
 
     public static <T> ServerResponse<T> fail(String message) {
-        return new ServerResponse<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), false, HttpStatus.INTERNAL_SERVER_ERROR.value(), message, null);
+        return fail(HttpStatus.INTERNAL_SERVER_ERROR.value(), message);
     }
 
     public static <T> ServerResponse<T> fail() {
-        return new ServerResponse<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), false, HttpStatus.INTERNAL_SERVER_ERROR.value(), HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), null);
+        return fail(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
     }
 
 }
