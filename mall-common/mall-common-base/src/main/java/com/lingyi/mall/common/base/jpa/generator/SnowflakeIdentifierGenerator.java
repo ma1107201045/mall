@@ -7,6 +7,7 @@ import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.IdentifierGenerator;
 import org.springframework.stereotype.Component;
 
+import java.io.Serial;
 import java.util.Objects;
 
 /**
@@ -17,6 +18,9 @@ import java.util.Objects;
  */
 @Component //可以不被spring容器所管理
 public class SnowflakeIdentifierGenerator implements IdentifierGenerator {
+    @Serial
+    private static final long serialVersionUID = -8880217543923811348L;
+
     @Override
     public Object generate(SharedSessionContractImplementor sharedSessionContractImplementor, Object obj) throws HibernateException {
         if (obj instanceof BaseIdDO baseIdDO) {

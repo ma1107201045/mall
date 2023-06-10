@@ -10,8 +10,7 @@ spring:
     database: mysql
     show-sql: true
     openInView: true
-    hibernate:
-      ddl-auto: update
+    generate-ddl: true
     properties:
       hibernate:
         format_sql: true

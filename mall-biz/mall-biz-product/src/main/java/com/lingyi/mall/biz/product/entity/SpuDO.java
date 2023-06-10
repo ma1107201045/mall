@@ -1,9 +1,7 @@
 package com.lingyi.mall.biz.product.entity;
 
 import com.lingyi.mall.common.base.entity.BaseIsDeleteDO;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -22,7 +20,7 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Entity
-@Table(name = "mp_spu")
+@Table(name = "mp_spu", indexes = @Index(name = "fk_category_id", columnList = "category_id"))
 public class SpuDO extends BaseIsDeleteDO implements Serializable {
     @Serial
     private static final long serialVersionUID = -6759034725107108170L;
@@ -35,6 +33,10 @@ public class SpuDO extends BaseIsDeleteDO implements Serializable {
 
     @Column(name = "shop_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '商铺id'")
     private Long shopId;
+
+    @ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "category_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '分类id'", foreignKey = @ForeignKey(name = "fk_category_id"))
+    private CategoryDO categoryDO;
 
     @Column(name = "name", columnDefinition = "VARCHAR(50) NOT NULL COMMENT '商品名称'")
     private String name;
@@ -65,12 +67,6 @@ public class SpuDO extends BaseIsDeleteDO implements Serializable {
 
     @Column(name = "total_stock", columnDefinition = "INT(11) UNSIGNED DEFAULT 0 COMMENT '总库存'")
     private Integer totalStock;
-
-    @Column(name = "unit", columnDefinition = "VARCHAR(11) DEFAULT '' COMMENT '单位'")
-    private String unit;
-
-    @Column(name = "weight", columnDefinition = "VARCHAR(11) DEFAULT '' COMMENT '重量'")
-    private String weight;
 
     @Column(name = "keywords", columnDefinition = "VARCHAR(200)  DEFAULT '' COMMENT '关键字（用于全文检索）'")
     private String keywords;
