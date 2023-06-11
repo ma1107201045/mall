@@ -72,7 +72,7 @@ public class UserController {
     @GetMapping
     @PreAuthorize("hasAnyAuthority('mws:user:getList')")
     @Log(title = "保存用户", operationType = OperationTypeEnum.READ)
-    public ServerResponse<List<UserVO>> getListByPageAndParam(@Valid BasePageQuery basePageQuery, @Valid UserQuery userQuery) {
+    public ServerResponse<List<UserVO>> getListByPageAndQuery(@Valid BasePageQuery basePageQuery, @Valid UserQuery userQuery) {
         List<UserVO> userVOList = userService.readListByPageAndQuery(basePageQuery, userQuery);
         return ServerResponse.success(userVOList);
     }

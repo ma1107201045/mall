@@ -26,7 +26,7 @@ import java.io.OutputStream;
  */
 @Tag(name = "验证码接口", description = "验证码接口")
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/auth/admin")
 @RequiredArgsConstructor
 public class AdminController {
 

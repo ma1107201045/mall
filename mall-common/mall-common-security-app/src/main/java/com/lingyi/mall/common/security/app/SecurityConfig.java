@@ -39,8 +39,8 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
  */
 @Configuration(proxyBeanMethods = false)
 public class SecurityConfig {
-    public static final String LOGIN_PROCESSING_URL = "/app/login";
-    public static final String LOGOUT_URL = "/app/logout";
+    public static final String LOGIN_PROCESSING_URL = "/auth/app/login";
+    public static final String LOGOUT_URL = "/auth/app/logout";
     public static final String JWT_KEY = "199726ma.";
 
     @Bean
@@ -123,8 +123,8 @@ public class SecurityConfig {
                 .sessionManagement(sessionManagementConfigurer -> sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorizeHttpRequestsConfigurer -> authorizeHttpRequestsConfigurer
                         .requestMatchers(HttpMethod.GET, "/swagger-ui/**", "/doc.html", "/webjars/**", "/v3/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/auth/app/send-verification-code").permitAll()
                         .requestMatchers(HttpMethod.POST, "/admin/system/logs").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/app/send-verification-code").permitAll()
                         .requestMatchers(HttpMethod.GET, "/app/member/members").permitAll()
                         .anyRequest()
                         .authenticated())

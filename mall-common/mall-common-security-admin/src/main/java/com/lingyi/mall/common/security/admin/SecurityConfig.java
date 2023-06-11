@@ -28,8 +28,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
  */
 @Configuration(proxyBeanMethods = false)
 public class SecurityConfig {
-    public static final String LOGIN_PROCESSING_URL = "/admin/login";
-    public static final String LOGOUT_URL = "/admin/logout";
+    public static final String LOGIN_PROCESSING_URL = "/auth/admin/login";
+    public static final String LOGOUT_URL = "/auth/admin/logout";
     public static final String REMEMBER_ME_KEY = "199726ma.";
 
     @Bean
@@ -78,8 +78,8 @@ public class SecurityConfig {
         return http.addFilterBefore(oncePerRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(authorizeHttpRequestsConfigurer -> authorizeHttpRequestsConfigurer
                         .requestMatchers(HttpMethod.GET, "/swagger-ui/**", "/doc.html", "/webjars/**", "/v3/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/auth/admin/get-captcha").permitAll()
                         .requestMatchers(HttpMethod.POST, "/admin/system/logs").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/admin//get-captcha").permitAll()
                         .requestMatchers(HttpMethod.GET, "/admin/system/users/permissions").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(formLoginConfigurer -> formLoginConfigurer.loginProcessingUrl(LOGIN_PROCESSING_URL)

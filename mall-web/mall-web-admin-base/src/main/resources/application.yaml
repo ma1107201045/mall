@@ -32,7 +32,6 @@ spring:
         config:
           mall-web-admin-base:
             loggerLevel: FULL
-            contract: feign.Contract.Default
             connectTimeout: 5
             readTimeout: 4
 # springdoc-openapi项目配置
