@@ -19,8 +19,8 @@ public class BaseConstant {
     public static final String UNKNOWN = "unknown";
     public static final String EQUAL_SIGN_CHAR = "=";
     public static final String SEMICOLON_CHAR = ";";
-
     public static final String SPACE_CHAR = " ";
+
 
     private BaseConstant() {
 

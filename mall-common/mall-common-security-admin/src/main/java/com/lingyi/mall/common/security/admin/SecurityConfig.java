@@ -1,7 +1,8 @@
 package com.lingyi.mall.common.security.admin;
 
-import com.lingyi.mall.common.base.constant.SecurityBaseConstant;
+import com.lingyi.mall.common.security.admin.constant.SecurityAdminConstant;
 import com.lingyi.mall.common.base.filter.TrackIdFilter;
+import com.lingyi.mall.common.security.admin.filter.CaptchaFilter;
 import com.lingyi.mall.common.security.admin.handler.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +18,6 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
-import org.springframework.web.filter.OncePerRequestFilter;
 
 
 /**
@@ -28,13 +28,16 @@ import org.springframework.web.filter.OncePerRequestFilter;
  */
 @Configuration(proxyBeanMethods = false)
 public class SecurityConfig {
-    public static final String LOGIN_PROCESSING_URL = "/auth/admin/login";
-    public static final String LOGOUT_URL = "/auth/admin/logout";
-    public static final String REMEMBER_ME_KEY = "199726ma.";
+
 
     @Bean
-    public OncePerRequestFilter oncePerRequestFilter() {
+    public TrackIdFilter trackIdFilter() {
         return new TrackIdFilter();
+    }
+
+    @Bean
+    public CaptchaFilter captchaFilter() {
+        return new CaptchaFilter();
     }
 
     @Bean
@@ -69,32 +72,37 @@ public class SecurityConfig {
 
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, OncePerRequestFilter oncePerRequestFilter,
+    public SecurityFilterChain securityFilterChain(HttpSecurity http,
+                                                   TrackIdFilter trackIdFilter,
+                                                   CaptchaFilter captchaFilter,
                                                    AuthenticationSuccessHandler authenticationSuccessHandler,
                                                    AuthenticationFailureHandler authenticationFailureHandler,
                                                    LogoutSuccessHandler logoutSuccessHandler,
                                                    AuthenticationEntryPoint authenticationEntryPoint,
                                                    AccessDeniedHandler accessDeniedHandler) throws Exception {
-        return http.addFilterBefore(oncePerRequestFilter, UsernamePasswordAuthenticationFilter.class)
+        return http.addFilterBefore(trackIdFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(captchaFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(authorizeHttpRequestsConfigurer -> authorizeHttpRequestsConfigurer
                         .requestMatchers(HttpMethod.GET, "/swagger-ui/**", "/doc.html", "/webjars/**", "/v3/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/auth/admin/get-captcha").permitAll()
                         .requestMatchers(HttpMethod.POST, "/admin/system/logs").permitAll()
                         .requestMatchers(HttpMethod.GET, "/admin/system/users/permissions").permitAll()
                         .anyRequest().authenticated())
-                .formLogin(formLoginConfigurer -> formLoginConfigurer.loginProcessingUrl(LOGIN_PROCESSING_URL)
-                        .usernameParameter(SecurityBaseConstant.USERNAME_PARAMETER)
+                .formLogin(formLoginConfigurer -> formLoginConfigurer.loginProcessingUrl(SecurityAdminConstant.LOGIN_PROCESSING_URL)
+                        .usernameParameter(SecurityAdminConstant.USER_NAME_PARAMETER)
+                        .passwordParameter(SecurityAdminConstant.PASSWORD_PARAMETER)
                         .successHandler(authenticationSuccessHandler)
                         .failureHandler(authenticationFailureHandler))
-                .logout(logoutConfigurer -> logoutConfigurer.logoutUrl(LOGOUT_URL)
+                .logout(logoutConfigurer -> logoutConfigurer.logoutUrl(SecurityAdminConstant.LOGOUT_URL)
                         .logoutSuccessHandler(logoutSuccessHandler))
-                .rememberMe(rememberMeConfigurer -> rememberMeConfigurer.key(REMEMBER_ME_KEY)
-                        .rememberMeParameter(SecurityBaseConstant.REMEMBER_ME_PARAMETER)
-                        .rememberMeCookieName(SecurityBaseConstant.REMEMBER_ME_COOKIE_NAME))
+                .rememberMe(rememberMeConfigurer -> rememberMeConfigurer.key(SecurityAdminConstant.REMEMBER_ME_KEY)
+                        .rememberMeParameter(SecurityAdminConstant.REMEMBER_ME_PARAMETER)
+                        .rememberMeCookieName(SecurityAdminConstant.REMEMBER_ME_COOKIE_NAME))
                 .exceptionHandling(exceptionHandlingConfigurer -> exceptionHandlingConfigurer
                         .authenticationEntryPoint((authenticationEntryPoint))
                         .accessDeniedHandler(accessDeniedHandler))
-                .cors(AbstractHttpConfigurer::disable)
+                .cors(corsConfigurer -> {
+                })
                 .csrf(AbstractHttpConfigurer::disable)
                 .build();
     }
