@@ -18,6 +18,9 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 
 
 /**
@@ -70,6 +73,28 @@ public class SecurityConfig {
         return new JsonAccessDeniedHandler();
     }
 
+    @Bean
+    public CorsConfiguration corsConfiguration() {
+        //1.添加CORS配置信息
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        //放行哪些原始域
+        corsConfiguration.addAllowedOriginPattern("*");
+        //是否发送Cookie信息
+        corsConfiguration.setAllowCredentials(true);
+        //放行哪些原始域(请求方式)
+        corsConfiguration.addAllowedMethod("*");
+        //放行哪些原始域(头部信息)
+        corsConfiguration.addAllowedHeader("*");
+        //暴露哪些头部信息(因为跨域访问默认不能获取全部头部信息)
+        corsConfiguration.addExposedHeader("*");
+        return corsConfiguration;
+    }
+    @Bean
+    public UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource(CorsConfiguration corsConfiguration) {
+        UrlBasedCorsConfigurationSource configSource = new UrlBasedCorsConfigurationSource();
+        configSource.registerCorsConfiguration("/**", corsConfiguration);
+        return configSource;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http,
@@ -79,7 +104,8 @@ public class SecurityConfig {
                                                    AuthenticationFailureHandler authenticationFailureHandler,
                                                    LogoutSuccessHandler logoutSuccessHandler,
                                                    AuthenticationEntryPoint authenticationEntryPoint,
-                                                   AccessDeniedHandler accessDeniedHandler) throws Exception {
+                                                   AccessDeniedHandler accessDeniedHandler,
+                                                   UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource) throws Exception {
         return http.addFilterBefore(trackIdFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(captchaFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(authorizeHttpRequestsConfigurer -> authorizeHttpRequestsConfigurer
@@ -101,8 +127,7 @@ public class SecurityConfig {
                 .exceptionHandling(exceptionHandlingConfigurer -> exceptionHandlingConfigurer
                         .authenticationEntryPoint((authenticationEntryPoint))
                         .accessDeniedHandler(accessDeniedHandler))
-                .cors(corsConfigurer -> {
-                })
+                .cors(corsConfigurer -> corsConfigurer.configurationSource(urlBasedCorsConfigurationSource))
                 .csrf(AbstractHttpConfigurer::disable)
                 .build();
     }
