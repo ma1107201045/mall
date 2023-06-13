@@ -25,6 +25,14 @@ spring:
       password: jinbihu2023
       client-type: lettuce
       database: 1
+  cloud:
+    openfeign:
+      client:
+        config:
+          mall-auth-admin:
+            loggerLevel: FULL
+            connectTimeout: 5000
+            readTimeout: 5000
 # springdoc-openapi项目配置
 springdoc:
   swagger-ui:

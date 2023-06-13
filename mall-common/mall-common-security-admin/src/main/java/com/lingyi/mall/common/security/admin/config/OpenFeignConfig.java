@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ArrayUtil;
 import com.lingyi.mall.common.base.constant.BaseConstant;
 import com.lingyi.mall.common.security.admin.constant.SecurityAdminConstant;
+import feign.Logger;
 import feign.RequestInterceptor;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,6 +31,10 @@ import java.util.Objects;
 @Configuration(proxyBeanMethods = false)
 public class OpenFeignConfig {
 
+    @Bean
+    Logger.Level feignLevel() {
+        return Logger.Level.FULL;
+    }
 
     @Bean
     @NonNull
