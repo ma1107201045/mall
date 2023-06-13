@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.security.app.authentication.token;
+package com.lingyi.mall.common.security.app.token;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;

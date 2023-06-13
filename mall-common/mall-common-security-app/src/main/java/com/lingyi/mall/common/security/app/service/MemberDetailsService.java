@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.security.app.authentication.service;
+package com.lingyi.mall.common.security.app.service;
 
 import com.lingyi.mall.common.base.entity.MemberDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

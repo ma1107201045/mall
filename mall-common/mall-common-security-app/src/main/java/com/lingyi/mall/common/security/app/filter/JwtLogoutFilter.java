@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.security.app.authentication.filter;
+package com.lingyi.mall.common.security.app.filter;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

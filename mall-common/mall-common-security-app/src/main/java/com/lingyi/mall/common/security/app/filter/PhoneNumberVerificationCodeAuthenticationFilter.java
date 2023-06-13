@@ -1,19 +1,15 @@
-package com.lingyi.mall.common.security.app.authentication.filter;
+package com.lingyi.mall.common.security.app.filter;
 
 import cn.hutool.core.util.StrUtil;
-import com.lingyi.mall.common.security.app.authentication.token.PhoneNumberVerificationCodeToken;
-import jakarta.servlet.FilterChain;
+import com.lingyi.mall.common.security.app.token.PhoneNumberVerificationCodeToken;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.core.log.LogMessage;
 import org.springframework.lang.Nullable;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.authentication.event.InteractiveAuthenticationSuccessEvent;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.util.Assert;

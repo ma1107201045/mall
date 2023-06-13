@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.security.app.authentication.filter;
+package com.lingyi.mall.common.security.app.filter;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
@@ -6,7 +6,7 @@ import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTUtil;
 import com.lingyi.mall.common.base.entity.MemberDetailsDO;
 import com.lingyi.mall.common.security.app.SecurityConfig;
-import com.lingyi.mall.common.security.app.authentication.token.PhoneNumberVerificationCodeToken;
+import com.lingyi.mall.common.security.app.token.PhoneNumberVerificationCodeToken;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;

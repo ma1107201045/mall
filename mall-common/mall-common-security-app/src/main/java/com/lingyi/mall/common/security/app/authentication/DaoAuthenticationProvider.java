@@ -1,7 +1,7 @@
 package com.lingyi.mall.common.security.app.authentication;
 import com.lingyi.mall.common.base.entity.MemberDetails;
-import com.lingyi.mall.common.security.app.authentication.service.MemberDetailsService;
-import com.lingyi.mall.common.security.app.authentication.token.PhoneNumberVerificationCodeToken;
+import com.lingyi.mall.common.security.app.service.MemberDetailsService;
+import com.lingyi.mall.common.security.app.token.PhoneNumberVerificationCodeToken;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;

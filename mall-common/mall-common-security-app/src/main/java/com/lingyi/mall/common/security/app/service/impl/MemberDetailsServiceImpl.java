@@ -7,7 +7,7 @@ import com.lingyi.mall.common.base.entity.MemberDetails;
 import com.lingyi.mall.common.base.entity.MemberDetailsDO;
 import com.lingyi.mall.common.base.enums.WhetherEnum;
 import com.lingyi.mall.common.base.util.AssertUtil;
-import com.lingyi.mall.common.security.app.authentication.service.MemberDetailsService;
+import com.lingyi.mall.common.security.app.service.MemberDetailsService;
 import com.lingyi.mall.common.security.app.enums.FailEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
