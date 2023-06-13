@@ -43,13 +43,13 @@ public class OpenFeignConfig {
             }
             // 获取原请求
             HttpServletRequest request = attributes.getRequest();
-            //解决记住密码bug（当未认证但有REMEMBER_ME COOKIE会造成死循环，一旦授权者类型属于RememberMeAuthenticationToken，则必须带上REMEMBER_ME COOKIE）
+            //解决记住密码bug（Authentication是null或者其他排除 REMEMBER_ME_COOKIE_NAME，Authentication是RememberMeAuthenticationToken带REMEMBER_ME_COOKIE_NAME）
             Cookie[] cookies = request.getCookies();
             if (ArrayUtil.isNotEmpty(cookies)) {
                 //获取授权者类型
                 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
                 List<String> cookieList = Arrays.stream(cookies)
-                        .filter(cookie -> authentication instanceof RememberMeAuthenticationToken || !cookie.getName().equals(SecurityAdminConstant.REMEMBER_ME_COOKIE_NAME))
+                        .filter(cookie -> !cookie.getName().equals(SecurityAdminConstant.REMEMBER_ME_COOKIE_NAME) || authentication instanceof RememberMeAuthenticationToken)
                         .map(cookie -> cookie.getName() + BaseConstant.EQUAL_SIGN_CHAR + cookie.getValue())
                         .toList();
                 // 将cookie同步到新的请求的请求头中
