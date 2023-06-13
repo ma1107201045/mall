@@ -39,7 +39,7 @@ public class BaseController {
 
     @Operation(summary = "更新用户信息", description = "更新用户信息")
     @PatchMapping("/user")
-    public ServerResponse<Void> updateUserPartById(UserPartReqDTO userPartDTO) {
+    public ServerResponse<Void> updateUser(UserPartReqDTO userPartDTO) {
         Long userId = AuthenticatorUtil.getUserId();
         baseService.editUserByUserId(userId, userPartDTO);
         return ServerResponse.success();
