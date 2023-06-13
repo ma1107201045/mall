@@ -32,8 +32,8 @@ spring:
         config:
           mall-web-admin-base:
             loggerLevel: FULL
-            connectTimeout: 5
-            readTimeout: 4
+            connectTimeout: 5000
+            readTimeout: 5000
 # springdoc-openapi项目配置
 springdoc:
   swagger-ui:

@@ -30,6 +30,7 @@ import java.util.Objects;
 @Configuration(proxyBeanMethods = false)
 public class OpenFeignConfig {
 
+
     @Bean
     @NonNull
     public RequestInterceptor requestInterceptor() {
