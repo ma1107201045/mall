@@ -29,7 +29,7 @@ public class MenuDO extends BaseIsDeleteDO implements Serializable {
     @Column(name = "name", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '菜单名称'")
     private String name;
 
-    @Column(name = "type", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '菜单类型'")
+    @Column(name = "type", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '菜单类型 1.目录 2.菜单 3.按钮'")
     private Integer type;
 
     @Column(name = "parent_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '父级菜单id'")

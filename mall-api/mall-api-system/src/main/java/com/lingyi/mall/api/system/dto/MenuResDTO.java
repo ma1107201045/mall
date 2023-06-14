@@ -25,7 +25,7 @@ public class MenuResDTO implements Serializable {
     private Long id;
 
     @Schema(description = "菜单名称")
-    private Long name;
+    private String name;
 
     @Schema(description = "菜单类型 1目录 2 菜单 3 按钮")
     private Integer type;
@@ -34,7 +34,7 @@ public class MenuResDTO implements Serializable {
     private Long parentId;
 
     @Schema(description = "菜单图标")
-    private Long icon;
+    private String icon;
 
     @Schema(description = "菜单顺序")
     private Integer sort;
@@ -43,7 +43,7 @@ public class MenuResDTO implements Serializable {
     private Integer isEnable;
 
     @Schema(description = "路由地址")
-    private Long path;
+    private String path;
 
     @Schema(description = "组件路径")
     private String componentPath;
