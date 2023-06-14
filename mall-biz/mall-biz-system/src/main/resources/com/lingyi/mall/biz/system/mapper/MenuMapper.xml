@@ -81,6 +81,7 @@
             #{type}
         </foreach>
         AND parent_id = #{parentId}
+        ORDER BY sort
     </select>
 
 

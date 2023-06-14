@@ -101,6 +101,7 @@
         </foreach>
         AND mm.parent_id = #{parentId}
         AND mu.user_name = #{userName}
+        ORDER BY mm.sort
         GROUP BY mm.id
     </select>
 </mapper>
