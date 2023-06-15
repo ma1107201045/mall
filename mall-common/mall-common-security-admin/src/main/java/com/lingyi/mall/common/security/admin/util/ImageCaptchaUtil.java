@@ -41,6 +41,7 @@ public class ImageCaptchaUtil {
                     abstractCaptcha = CaptchaUtil.createShearCaptcha(properties.getWidth(), properties.getHeight(), properties.getCount(), properties.getTypeCount());
             case GIF ->
                     abstractCaptcha = CaptchaUtil.createGifCaptcha(properties.getWidth(), properties.getHeight(), properties.getCount());
+            default -> log.error("获取验证码结果出错");
         }
         if (properties.getCodeGenerator() == ImageCaptchaProperties.CodeGenerator.MATH) {
             abstractCaptcha.setGenerator(new MathGenerator(1));
@@ -68,38 +69,13 @@ public class ImageCaptchaUtil {
                 case '+' -> result = firstOperand + secondOperand;
                 case '-' -> result = firstOperand - secondOperand;
                 case '*' -> result = firstOperand * secondOperand;
+                default -> log.error("计算验证码结果出错");
             }
             return String.valueOf(result);
         } catch (Exception e) {
             log.error("计算验证码出错");
             return null;
         }
-    }
-
-    public static void write(ImageCaptchaProperties properties) {
-        ServletRequestAttributes servletRequestAttributes = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes()));
-        HttpSession session = servletRequestAttributes.getRequest().getSession();
-        HttpServletResponse response = Objects.requireNonNull(servletRequestAttributes.getResponse());
-        response.setContentType(MediaType.IMAGE_PNG_VALUE);
-        ICaptcha captcha = ImageCaptchaUtil.get(properties);
-        session.setAttribute(properties.getSessionAttributeName(), captcha.getCode());
-        OutputStream os = null;
-        try {
-            os = response.getOutputStream();
-            captcha.write(os);
-        } catch (IOException e) {
-            log.error("验证码有误", e);
-        } finally {
-            if (Objects.nonNull(os)) {
-                try {
-                    os.close();
-                    os.flush();
-                } catch (IOException e) {
-                    log.error("关闭流失败", e);
-                }
-            }
-        }
-
     }
 
 }
