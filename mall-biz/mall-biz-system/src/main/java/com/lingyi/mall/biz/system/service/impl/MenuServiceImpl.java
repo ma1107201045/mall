@@ -44,7 +44,7 @@ public class MenuServiceImpl implements MenuService {
     @Transactional(rollbackFor = Exception.class)
     public void create(MenuDTO menuDTO) {
         //校验数据
-        verifyAndGetData(menuDTO, false);
+        verifyAndGet(menuDTO, false);
         //DTO转换Entity
         MenuDO menuDO = BeanUtil.copyProperties(menuDTO, MenuDO.class);
         //保存
@@ -63,8 +63,8 @@ public class MenuServiceImpl implements MenuService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateById(MenuDTO menuDTO) {
-        //校验数据
-        MenuDO menuDO = verifyAndGetData(menuDTO, true);
+        //校验数据并且获取菜单
+        MenuDO menuDO = verifyAndGet(menuDTO, true);
         //DTO转换Entity
         ConverterUtil.to(menuDTO, menuDO);
         //更新
@@ -101,7 +101,7 @@ public class MenuServiceImpl implements MenuService {
     }
 
 
-    private MenuDO verifyAndGetData(MenuDTO menuDTO, boolean isEdit) {
+    private MenuDO verifyAndGet(MenuDTO menuDTO, boolean isEdit) {
         Integer type = menuDTO.getType();
         Long parentId = menuDTO.getParentId();
         //断言目录父级为root
