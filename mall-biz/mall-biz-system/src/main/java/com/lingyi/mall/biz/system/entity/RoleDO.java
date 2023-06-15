@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -21,6 +22,7 @@ import java.util.List;
 @ToString(callSuper = true)
 @Entity
 @Table(name = "ms_role")
+@DynamicInsert
 public class RoleDO extends BaseIsDeleteDO implements Serializable {
 
     @Serial

@@ -20,6 +20,7 @@ import java.io.Serializable;
 @ToString(callSuper = true)
 @Entity
 @Table(name = "ms_log")
+@DynamicInsert
 public class LogDO extends BaseCommonDO implements Serializable {
     @Serial
     private static final long serialVersionUID = 3263673947812164534L;
