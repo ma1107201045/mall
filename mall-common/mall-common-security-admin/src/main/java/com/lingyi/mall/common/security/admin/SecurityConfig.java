@@ -88,6 +88,7 @@ public class SecurityConfig {
         corsConfiguration.addExposedHeader("*");
         return corsConfiguration;
     }
+
     @Bean
     public UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource(CorsConfiguration corsConfiguration) {
         UrlBasedCorsConfigurationSource configSource = new UrlBasedCorsConfigurationSource();
@@ -121,7 +122,7 @@ public class SecurityConfig {
                 .logout(logoutConfigurer -> logoutConfigurer.logoutUrl(SecurityAdminConstant.LOGOUT_URL)
                         .logoutSuccessHandler(logoutSuccessHandler))
                 .rememberMe(rememberMeConfigurer -> rememberMeConfigurer.key(SecurityAdminConstant.REMEMBER_ME_KEY)
-                        .rememberMeParameter(SecurityAdminConstant.REMEMBER_ME_PARAMETER)
+                        .rememberMeParameter(SecurityAdminConstant.IS_REMEMBER_ME_PARAMETER)
                         .rememberMeCookieName(SecurityAdminConstant.REMEMBER_ME_COOKIE_NAME))
                 .exceptionHandling(exceptionHandlingConfigurer -> exceptionHandlingConfigurer
                         .authenticationEntryPoint((authenticationEntryPoint))
