@@ -12,7 +12,7 @@ public class SecurityAdminConstant {
     public static final String LOGOUT_URL = "/auth/admin/logout";
     public static final String USER_NAME_PARAMETER = "userName";
     public static final String PASSWORD_PARAMETER = "password";
-    public static final String CAPTCHA_PARAMETER = "captcha";
+    public static final String IMAGE_CAPTCHA_PARAMETER = "imageCaptcha";
     public static final String REMEMBER_ME_PARAMETER = "isRememberMe";
     public static final String REMEMBER_ME_COOKIE_NAME = "REMEMBER_ME";
     public static final String REMEMBER_ME_KEY = "199726ma.";

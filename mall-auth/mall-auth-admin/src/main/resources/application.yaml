@@ -44,8 +44,9 @@ springdoc:
     - group: '认证授权服务【后台】'
       paths-to-match: '/**'
       packages-to-scan: com.lingyi.mall.auth.admin.controller
-captcha:
-  type: shear
+image-captcha:
+  disturbance-type: circle
+  code-generator: math
 
 
 

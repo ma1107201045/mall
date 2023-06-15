@@ -2,7 +2,7 @@ package com.lingyi.mall.common.security.admin;
 
 import com.lingyi.mall.common.security.admin.constant.SecurityAdminConstant;
 import com.lingyi.mall.common.base.filter.TrackIdFilter;
-import com.lingyi.mall.common.security.admin.filter.CaptchaFilter;
+import com.lingyi.mall.common.security.admin.filter.ImageCaptchaFilter;
 import com.lingyi.mall.common.security.admin.handler.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +20,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 
 
 /**
@@ -39,8 +38,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public CaptchaFilter captchaFilter() {
-        return new CaptchaFilter();
+    public ImageCaptchaFilter imageCaptchaFilter() {
+        return new ImageCaptchaFilter();
     }
 
     @Bean
@@ -99,7 +98,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http,
                                                    TrackIdFilter trackIdFilter,
-                                                   CaptchaFilter captchaFilter,
+                                                   ImageCaptchaFilter imageCaptchaFilter,
                                                    AuthenticationSuccessHandler authenticationSuccessHandler,
                                                    AuthenticationFailureHandler authenticationFailureHandler,
                                                    LogoutSuccessHandler logoutSuccessHandler,
@@ -107,10 +106,10 @@ public class SecurityConfig {
                                                    AccessDeniedHandler accessDeniedHandler,
                                                    UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource) throws Exception {
         return http.addFilterBefore(trackIdFilter, UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(captchaFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(imageCaptchaFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(authorizeHttpRequestsConfigurer -> authorizeHttpRequestsConfigurer
                         .requestMatchers(HttpMethod.GET, "/swagger-ui/**", "/doc.html", "/webjars/**", "/v3/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/auth/admin/get-captcha").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/auth/admin/get-image-captcha").permitAll()
                         .requestMatchers(HttpMethod.POST, "/admin/system/logs").permitAll()
                         .requestMatchers(HttpMethod.GET, "/admin/system/users/permissions").permitAll()
                         .anyRequest().authenticated())

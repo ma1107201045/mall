@@ -161,7 +161,7 @@ public class UserServiceImpl implements UserService {
         } else {
             menuResDTOList = menuService.findListByTypesAndParentId(menuTypes, menuParentId);
         }
-        menuResDTOList.forEach(menuResDTO -> menuResDTO.setMenus(findMenuTreeByUserNameAndMenuParentId(userName, menuResDTO.getId())));
+        menuResDTOList.forEach(menuResDTO -> menuResDTO.setChildren(findMenuTreeByUserNameAndMenuParentId(userName, menuResDTO.getId())));
         return menuResDTOList;
     }
 

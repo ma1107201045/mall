@@ -1,4 +1,4 @@
-package com.lingyi.mall.auth.admin.properties;
+package com.lingyi.mall.common.security.admin.propertis;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -12,13 +12,13 @@ import org.springframework.context.annotation.Configuration;
  */
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "captcha")
-public class CaptchaProperties {
+@ConfigurationProperties(prefix = "image-captcha")
+public class ImageCaptchaProperties {
 
     /**
      * 验证码存到session的属性名
      */
-    private String sessionAttributeName = "captcha";
+    private String sessionAttributeName = "imageCaptcha";
 
     /**
      * 验证码宽度
@@ -33,18 +33,34 @@ public class CaptchaProperties {
      * 验证码个数
      */
     private int count = 4;
+
+    /**
+     * 验证码生成规则
+     */
+    private CodeGenerator codeGenerator = CodeGenerator.RANDOM;
     /**
      * 验证码干扰类型
      */
-    private Type type = Type.LINE;
+    private DisturbanceType disturbanceType = DisturbanceType.LINE;
 
     /**
      * 验证码干扰类型个数
      */
     private int typeCount = 10;
 
+    public enum CodeGenerator {
+        /**
+         * 随机
+         */
+        RANDOM,
+        /**
+         * 数学
+         */
+        MATH;
 
-    public enum Type {
+    }
+
+    public enum DisturbanceType {
         /**
          * 线干扰的验证码
          */

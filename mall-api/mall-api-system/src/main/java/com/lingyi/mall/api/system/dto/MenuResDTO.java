@@ -73,5 +73,5 @@ public class MenuResDTO implements Serializable {
     private Integer isDelete;
 
     @Schema(description = "菜单子级")
-    private List<MenuResDTO> menus;
+    private List<MenuResDTO> children;
 }
