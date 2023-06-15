@@ -104,18 +104,20 @@ public class MenuServiceImpl implements MenuService {
     private MenuDO verifyAndGetData(MenuDTO menuDTO, boolean isEdit) {
         Integer type = menuDTO.getType();
         Long parentId = menuDTO.getParentId();
-        //断言目录父级parentId只能为-1
+        //断言目录父级为root
         boolean result01 = Objects.equals(MenuTypeEnum.DIRECTORY.getCode(), type) && Objects.equals(SystemConstant.MENU_ROOT_ID, parentId);
         AssertUtil.isTrue(result01, SystemFailEnum.MENU_DIRECTORY_PARENT_ERROR);
+
         //断言菜单类型不能为空
         Integer newType = menuMapper.selectTypeById(parentId);
         AssertUtil.notNull(newType, SystemFailEnum.MENU_TYPE_NOT_EXIST_ERROR);
 
-        //断言菜单父级parentId对应的菜单只能为目录类型
-        boolean result02 = Objects.equals(MenuTypeEnum.MENU.getCode(), type) && Objects.equals(MenuTypeEnum.DIRECTORY.getCode(), newType);
+        //断言菜单父级为root或者父级为目录
+        boolean result02 = Objects.equals(MenuTypeEnum.MENU.getCode(), type) && Objects.equals(SystemConstant.MENU_ROOT_ID, parentId) ||
+                Objects.equals(MenuTypeEnum.MENU.getCode(), type) && Objects.equals(MenuTypeEnum.DIRECTORY.getCode(), newType);
         AssertUtil.isTrue(result02, SystemFailEnum.MENU_MENU_PARENT_ERROR);
 
-        //断言按钮父级parentId对应的菜单只能为菜单类型
+        //断言按钮父级为菜单
         boolean result03 = Objects.equals(MenuTypeEnum.BUTTON.getCode(), type) && Objects.equals(MenuTypeEnum.MENU.getCode(), newType);
         AssertUtil.isTrue(result03, SystemFailEnum.MENU_BUTTON_PARENT_ERROR);
         MenuDO menuDO = null;
