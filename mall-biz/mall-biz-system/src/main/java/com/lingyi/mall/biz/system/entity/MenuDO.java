@@ -49,11 +49,11 @@ public class MenuDO extends BaseIsDeleteDO implements Serializable {
     @Column(name = "path", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '路由地址'")
     private String path;
 
+    @Column(name = "component_name", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '组件名称'")
+    private String componentName;
+
     @Column(name = "component_path", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '组件路径'")
     private String componentPath;
-
-    @Column(name = "component_name", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '组件路径'")
-    private String componentName;
 
     @Column(name = "permission", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '按钮权限标识'")
     private String permission;

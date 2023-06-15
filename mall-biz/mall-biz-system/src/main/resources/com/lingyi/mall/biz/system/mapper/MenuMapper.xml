@@ -74,7 +74,7 @@
 
     <select id="selectListByTypesAndParentId"
             resultMap="com.lingyi.mall.biz.system.mapper.UserMapper.SelectMenusByUserNameAndMenuTypesAndMenuParentIdMap">
-        SELECT id, name, icon, path
+        SELECT id, name,type, icon, path
         FROM ms_menu
         WHERE type IN
         <foreach collection="types" item="type" open="(" separator="," close=")">
