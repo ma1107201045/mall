@@ -17,6 +17,7 @@ public class SecurityAdminConstant {
     public static final String REMEMBER_ME_COOKIE_NAME = "REMEMBER_ME";
     public static final String REMEMBER_ME_KEY = "199726ma.";
     public static final String COOKIE = "cookie";
+    public static final String PERMISSION_SPLIT_CHAR = ",";
 
 
     private SecurityAdminConstant() {

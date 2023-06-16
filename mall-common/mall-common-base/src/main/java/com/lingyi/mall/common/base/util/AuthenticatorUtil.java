@@ -2,7 +2,11 @@ package com.lingyi.mall.common.base.util;
 
 import com.lingyi.mall.common.base.entity.MemberDetailsDO;
 import com.lingyi.mall.common.base.entity.UserDetailsDO;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+
+import java.util.Collection;
 
 /**
  * @Author: maweiyan
@@ -13,10 +17,18 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public class AuthenticatorUtil {
 
 
-    private static Object getPrincipal() {
-        return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    private static Authentication getAuthentication() {
+        return SecurityContextHolder.getContext().getAuthentication();
     }
 
+    public static Object getPrincipal() {
+        return getAuthentication().getPrincipal();
+    }
+
+
+    public static Collection<? extends GrantedAuthority> getAuthorities() {
+        return getAuthentication().getAuthorities();
+    }
 
     /**
      * 获取admin端用户认证信息
