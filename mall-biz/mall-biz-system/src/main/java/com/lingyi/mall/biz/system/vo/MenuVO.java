@@ -72,5 +72,5 @@ public class MenuVO implements Serializable {
     private Integer isDelete;
 
     @Schema(description = "菜单子级")
-    private List<MenuVO> menus;
+    private List<MenuVO> children;
 }
