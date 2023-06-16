@@ -62,7 +62,7 @@ public class MemberLoginLogServiceImpl implements MemberLoginLogService {
     }
 
     @Override
-    public List<MemberLoginLogVO> readListByPageAndQuery(BasePageParam pageParam, MemberLoginLogDO memberLoginLogDO) {
+    public List<MemberLoginLogVO> readListByPageAndParam(BasePageParam pageParam, MemberLoginLogDO memberLoginLogDO) {
         PageHelper.startPage(pageParam.getCurrentPage(), pageParam.getPageSize(), pageParam.getSort());
         return memberLoginLogMapper.selectListByParam(memberLoginLogDO);
     }
