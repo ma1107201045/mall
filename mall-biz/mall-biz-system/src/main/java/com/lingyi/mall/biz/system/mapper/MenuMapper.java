@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.system.mapper;
 
 import com.lingyi.mall.api.system.dto.MenuResDTO;
-import com.lingyi.mall.biz.system.query.MenuQuery;
+import com.lingyi.mall.biz.system.param.MenuParam;
 import com.lingyi.mall.biz.system.vo.MenuVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -44,10 +44,10 @@ public interface MenuMapper {
     /**
      * 按照分页信息和条件查询
      *
-     * @param menuQuery 菜单信息
+     * @param menuParam 菜单信息
      * @return List<MenuVO>
      */
-    List<MenuVO> selectListByParam(MenuQuery menuQuery);
+    List<MenuVO> selectListByParam(MenuParam menuParam);
 
     /**
      * 按照父级id查询

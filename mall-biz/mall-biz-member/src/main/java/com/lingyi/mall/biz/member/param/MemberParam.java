@@ -1,4 +1,4 @@
-package com.lingyi.mall.biz.member.query;
+package com.lingyi.mall.biz.member.param;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 @Schema(description = "会员")
 @Data
-public class MemberQuery implements Serializable {
+public class MemberParam implements Serializable {
     @Serial
     private static final long serialVersionUID = 2889287473826593426L;
 

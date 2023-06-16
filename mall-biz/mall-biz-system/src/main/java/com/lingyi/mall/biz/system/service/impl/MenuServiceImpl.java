@@ -1,21 +1,19 @@
 package com.lingyi.mall.biz.system.service.impl;
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
-import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.api.system.dto.MenuResDTO;
 import com.lingyi.mall.biz.system.constant.SystemConstant;
 import com.lingyi.mall.biz.system.dto.MenuDTO;
 import com.lingyi.mall.biz.system.entity.MenuDO;
 import com.lingyi.mall.biz.system.enums.SystemFailEnum;
 import com.lingyi.mall.biz.system.enums.MenuTypeEnum;
-import com.lingyi.mall.biz.system.query.MenuQuery;
+import com.lingyi.mall.biz.system.param.MenuParam;
 import com.lingyi.mall.biz.system.vo.MenuVO;
 import com.lingyi.mall.biz.system.mapper.MenuMapper;
 import com.lingyi.mall.biz.system.repository.MenuRepository;
 import com.lingyi.mall.biz.system.service.MenuService;
 import com.lingyi.mall.common.base.exception.BizException;
-import com.lingyi.mall.common.base.query.BasePageQuery;
+import com.lingyi.mall.common.base.param.BasePageParam;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
@@ -77,7 +75,7 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public List<MenuVO> readListByPageAndQuery(BasePageQuery pageQuery, MenuQuery menuQuery) {
+    public List<MenuVO> readListByPageAndParam(BasePageParam pageQuery, MenuParam menuQuery) {
         startPage(pageQuery);
         return menuMapper.selectListByParam(menuQuery);
     }
@@ -86,7 +84,7 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public List<MenuVO> findTreeByParentId(Long parentId) {
         List<MenuVO> menus = menuMapper.selectListByParentId(parentId);
-        menus.forEach(menu -> menu.setMenus(findTreeByParentId(menu.getId())));
+        menus.forEach(menu -> menu.setChildren(findTreeByParentId(menu.getId())));
         return menus;
     }
 

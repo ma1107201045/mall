@@ -1,11 +1,9 @@
-package com.lingyi.mall.common.base.query;
+package com.lingyi.mall.common.base.param;
 
 import com.lingyi.mall.common.base.constant.BaseConstant;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.io.Serial;
@@ -19,7 +17,7 @@ import java.io.Serializable;
  */
 @Schema(description = "后台分页信息")
 @Data
-public class BasePageQuery implements Serializable {
+public class BasePageParam implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 975629823646747916L;
@@ -52,7 +50,7 @@ public class BasePageQuery implements Serializable {
         return sortField + BaseConstant.SPACE_CHAR + sortDirection;
     }
 
-    public static BasePageQuery getEmpty() {
-        return new BasePageQuery();
+    public static BasePageParam getEmpty() {
+        return new BasePageParam();
     }
 }

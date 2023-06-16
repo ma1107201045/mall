@@ -1,6 +1,5 @@
 package com.lingyi.mall.biz.system.service.impl;
 
-import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.api.system.dto.LogReqDTO;
 import com.lingyi.mall.biz.system.entity.LogDO;
 import com.lingyi.mall.biz.system.enums.SystemFailEnum;
@@ -8,7 +7,7 @@ import com.lingyi.mall.biz.system.mapper.LogMapper;
 import com.lingyi.mall.biz.system.repository.LogRepository;
 import com.lingyi.mall.biz.system.service.LogService;
 import com.lingyi.mall.common.base.exception.BizException;
-import com.lingyi.mall.common.base.query.BasePageQuery;
+import com.lingyi.mall.common.base.param.BasePageParam;
 import com.lingyi.mall.common.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -63,8 +62,8 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public List<LogDO> readListByPageAndQuery(BasePageQuery pageQuery, LogDO logDO) {
-        startPage(pageQuery);
+    public List<LogDO> readListByPageAndParam(BasePageParam basePageParam, LogDO logDO) {
+        startPage(basePageParam);
         return logMapper.selectListByParam(logDO);
     }
 

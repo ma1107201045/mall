@@ -8,7 +8,7 @@ import com.lingyi.mall.biz.member.mapper.MemberLoginLogMapper;
 import com.lingyi.mall.biz.member.repository.MemberLoginLogRepository;
 import com.lingyi.mall.biz.member.service.MemberLoginLogService;
 import com.lingyi.mall.common.base.exception.BizException;
-import com.lingyi.mall.common.base.query.BasePageQuery;
+import com.lingyi.mall.common.base.param.BasePageParam;
 import com.lingyi.mall.common.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -62,7 +62,7 @@ public class MemberLoginLogServiceImpl implements MemberLoginLogService {
     }
 
     @Override
-    public List<MemberLoginLogVO> readListByPageAndQuery(BasePageQuery pageParam, MemberLoginLogDO memberLoginLogDO) {
+    public List<MemberLoginLogVO> readListByPageAndQuery(BasePageParam pageParam, MemberLoginLogDO memberLoginLogDO) {
         PageHelper.startPage(pageParam.getCurrentPage(), pageParam.getPageSize(), pageParam.getSort());
         return memberLoginLogMapper.selectListByParam(memberLoginLogDO);
     }

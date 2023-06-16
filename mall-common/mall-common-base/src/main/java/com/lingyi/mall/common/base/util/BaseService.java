@@ -2,7 +2,7 @@ package com.lingyi.mall.common.base.util;
 
 
 import com.github.pagehelper.PageHelper;
-import com.lingyi.mall.common.base.query.BasePageQuery;
+import com.lingyi.mall.common.base.param.BasePageParam;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
  * @datetime 2023/5/4 17:08
  * @description
  */
-public interface BaseService<DTO extends Serializable, CONDITION_QUERY extends Serializable, VO extends Serializable, ID extends Serializable> {
+public interface BaseService<DTO extends Serializable, PARAM extends Serializable, VO extends Serializable, ID extends Serializable> {
 
     /**
      * 添加
@@ -47,20 +47,20 @@ public interface BaseService<DTO extends Serializable, CONDITION_QUERY extends S
     /**
      * 查找列表
      *
-     * @param pageQuery      分页信息
-     * @param conditionQuery 条件
+     * @param basePageParam 分页参数
+     * @param param         参数
      * @return List<VO>
      */
-    List<VO> readListByPageAndQuery(BasePageQuery pageQuery, CONDITION_QUERY conditionQuery);
+    List<VO> readListByPageAndParam(BasePageParam basePageParam, PARAM param);
 
 
     /**
      * 开始分页
      *
-     * @param pageQuery pageQuery
+     * @param basePageParam 分页参数
      */
-    default void startPage(BasePageQuery pageQuery) {
-        PageHelper.startPage(pageQuery.getCurrentPage(), pageQuery.getPageSize(), pageQuery.getSort());
+    default void startPage(BasePageParam basePageParam) {
+        PageHelper.startPage(basePageParam.getCurrentPage(), basePageParam.getPageSize(), basePageParam.getSort());
     }
 
 

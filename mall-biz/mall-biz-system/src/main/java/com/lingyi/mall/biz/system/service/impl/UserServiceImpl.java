@@ -11,14 +11,14 @@ import com.lingyi.mall.biz.system.entity.UserDO;
 import com.lingyi.mall.biz.system.enums.MenuTypeEnum;
 import com.lingyi.mall.biz.system.enums.SystemFailEnum;
 import com.lingyi.mall.biz.system.mapper.UserMapper;
-import com.lingyi.mall.biz.system.query.UserQuery;
+import com.lingyi.mall.biz.system.param.UserParam;
 import com.lingyi.mall.biz.system.repository.UserRepository;
 import com.lingyi.mall.biz.system.service.MenuService;
 import com.lingyi.mall.biz.system.service.UserRoleService;
 import com.lingyi.mall.biz.system.service.UserService;
 import com.lingyi.mall.biz.system.vo.UserVO;
 import com.lingyi.mall.common.base.exception.BizException;
-import com.lingyi.mall.common.base.query.BasePageQuery;
+import com.lingyi.mall.common.base.param.BasePageParam;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
@@ -114,9 +114,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserVO> readListByPageAndQuery(BasePageQuery pageQuery, UserQuery userQuery) {
-        startPage(pageQuery);
-        return userMapper.selectListByParam(userQuery);
+    public List<UserVO> readListByPageAndParam(BasePageParam basePageParam, UserParam userParam) {
+        startPage(basePageParam);
+        return userMapper.selectListByParam(userParam);
     }
 
 

@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.member.mapper;
 
 import com.lingyi.mall.api.member.dto.MemberReqDTO;
-import com.lingyi.mall.biz.member.query.MemberQuery;
+import com.lingyi.mall.biz.member.param.MemberParam;
 import com.lingyi.mall.biz.member.vo.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -27,10 +27,10 @@ public interface MemberMapper {
     /**
      * 按照分页信息和条件查询
      *
-     * @param memberQuery 会员信息
+     * @param memberParam 会员信息
      * @return List<UserVO>
      */
-    List<MemberVO> selectListByParam(MemberQuery memberQuery);
+    List<MemberVO> selectListByParam(MemberParam memberParam);
 
     /**
      * 按照手机号查询

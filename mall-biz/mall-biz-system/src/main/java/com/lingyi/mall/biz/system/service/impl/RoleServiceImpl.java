@@ -1,18 +1,17 @@
 package com.lingyi.mall.biz.system.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.biz.system.dto.RoleDTO;
 import com.lingyi.mall.biz.system.entity.RoleDO;
 import com.lingyi.mall.biz.system.enums.SystemFailEnum;
-import com.lingyi.mall.biz.system.query.RoleQuery;
+import com.lingyi.mall.biz.system.param.RoleParam;
 import com.lingyi.mall.biz.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.mapper.RoleMapper;
 import com.lingyi.mall.biz.system.repository.RoleRepository;
 import com.lingyi.mall.biz.system.service.RoleMenuService;
 import com.lingyi.mall.biz.system.service.RoleService;
 import com.lingyi.mall.common.base.exception.BizException;
-import com.lingyi.mall.common.base.query.BasePageQuery;
+import com.lingyi.mall.common.base.param.BasePageParam;
 import com.lingyi.mall.common.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -83,8 +82,8 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<RoleVO> readListByPageAndQuery(BasePageQuery pageQuery, RoleQuery roleQuery) {
-        startPage(pageQuery);
-        return roleMapper.selectListByParam(roleQuery);
+    public List<RoleVO> readListByPageAndParam(BasePageParam basePageParam, RoleParam roleParam) {
+        startPage(basePageParam);
+        return roleMapper.selectListByParam(roleParam);
     }
 }

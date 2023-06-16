@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.base.query;
+package com.lingyi.mall.common.base.param;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Max;

@@ -33,15 +33,15 @@ public class BaseController {
     @GetMapping("/menu")
     public ServerResponse<List<MenuResDTO>> getMenu() {
         String userName = AuthenticatorUtil.getUserName();
-        List<MenuResDTO> menus = baseService.findMenuTreeByUserName(userName);
+        List<MenuResDTO> menus = baseService.readMenuTreeByUserName(userName);
         return ServerResponse.success(menus);
     }
 
     @Operation(summary = "更新用户信息", description = "更新用户信息")
     @PatchMapping("/user")
-    public ServerResponse<Void> updateUser(UserPartReqDTO userPartDTO) {
+    public ServerResponse<Void> updateUser(UserPartReqDTO userPartReqDTO) {
         Long userId = AuthenticatorUtil.getUserId();
-        baseService.editUserByUserId(userId, userPartDTO);
+        baseService.updateUserByUserId(userId, userPartReqDTO);
         return ServerResponse.success();
     }
 }

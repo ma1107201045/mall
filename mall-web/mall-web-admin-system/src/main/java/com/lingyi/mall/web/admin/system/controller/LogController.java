@@ -2,7 +2,7 @@ package com.lingyi.mall.web.admin.system.controller;
 
 import com.lingyi.mall.biz.system.entity.LogDO;
 import com.lingyi.mall.biz.system.service.LogService;
-import com.lingyi.mall.common.base.query.BasePageQuery;
+import com.lingyi.mall.common.base.param.BasePageParam;
 import com.lingyi.mall.common.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -41,8 +41,8 @@ public class LogController {
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
     @PreAuthorize("ps.hasAnyAuthority('admin:system:logs:getList')")
-    public ServerResponse<List<LogDO>> getListByPageAndParam(@Valid BasePageQuery basePageQuery, @Valid LogDO logDO) {
-        List<LogDO> logs = logService.readListByPageAndQuery(basePageQuery, logDO);
+    public ServerResponse<List<LogDO>> getListByPageAndParam(@Valid BasePageParam basePageParam, @Valid LogDO logDO) {
+        List<LogDO> logs = logService.readListByPageAndParam(basePageParam, logDO);
         return ServerResponse.success(logs);
     }
 

@@ -1,4 +1,4 @@
-package com.lingyi.mall.biz.system.query;
+package com.lingyi.mall.biz.system.param;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 @Schema(description = "角色")
 @Data
-public class RoleQuery implements Serializable {
+public class RoleParam implements Serializable {
     @Serial
     private static final long serialVersionUID = -3790408928903411297L;
 

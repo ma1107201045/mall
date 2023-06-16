@@ -3,8 +3,7 @@ package com.lingyi.mall.biz.system.mapper;
 
 import com.lingyi.mall.api.system.dto.MenuResDTO;
 import com.lingyi.mall.api.system.dto.UserResDTO;
-import com.lingyi.mall.biz.system.query.UserQuery;
-import com.lingyi.mall.biz.system.vo.MenuVO;
+import com.lingyi.mall.biz.system.param.UserParam;
 import com.lingyi.mall.biz.system.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -30,10 +29,10 @@ public interface UserMapper {
     /**
      * 按照分页信息和条件查询
      *
-     * @param userQuery 用户信息
+     * @param userParam 用户信息
      * @return List<UserVO>
      */
-    List<UserVO> selectListByParam(UserQuery userQuery);
+    List<UserVO> selectListByParam(UserParam userParam);
 
 
     /**
