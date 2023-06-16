@@ -11,12 +11,14 @@ spring:
         username: nacos
         password: nacos
         access-key: ThisIsMyCustomSecretKey012345678
+        namespace: dev
       config:
         # 配置中心地址
         server-addr: 182.92.64.247:8848
         username: nacos
         password: nacos
         access-key: ThisIsMyCustomSecretKey012345678
+        namespace: dev
     gateway:
       routes:
         #后台admin端认证服务
