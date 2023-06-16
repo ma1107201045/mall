@@ -2,6 +2,7 @@ package com.lingyi.mall.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * @author maweiyan
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @datetime 2023/4/28 10:35
  * @description 网关服务
  */
+@EnableDiscoveryClient
 @SpringBootApplication
 public class MallGatewayApplication {
 

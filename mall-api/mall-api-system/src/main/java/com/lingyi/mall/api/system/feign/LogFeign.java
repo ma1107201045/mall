@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @DateTime: 2023/6/3 18:47
  * @Description:
  */
-@FeignClient(url = "http://localhost:7003", value = "mall-web-admin-system", fallbackFactory = LogFeignFallbackFactory.class)
+@FeignClient( value = "mall-web-admin-system", fallbackFactory = LogFeignFallbackFactory.class)
 public interface LogFeign {
 
     String URL_PREFIX = "/admin/system/logs";

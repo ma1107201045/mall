@@ -26,6 +26,19 @@ spring:
       client-type: lettuce
       database: 1
   cloud:
+    nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: 182.92.64.247:8848
+        username: nacos
+        password: nacos
+        access-key: ThisIsMyCustomSecretKey012345678
+      config:
+        # 配置中心地址
+        server-addr: 182.92.64.247:8848
+        username: nacos
+        password: nacos
+        access-key: ThisIsMyCustomSecretKey012345678
     openfeign:
       client:
         config:

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @datetime 2023/5/25 16:13
  * @description
  */
-@FeignClient(url = "http://localhost:8002", value = "mall-web-app-member", fallbackFactory = MemberFeignFallbackFactory.class)
+@FeignClient(value = "mall-web-app-member", fallbackFactory = MemberFeignFallbackFactory.class)
 public interface MemberFeign {
 
     String URL_PREFIX = "/app/member/members";
