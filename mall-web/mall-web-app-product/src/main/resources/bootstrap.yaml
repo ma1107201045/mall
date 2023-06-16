@@ -3,6 +3,8 @@ server:
 spring:
   application:
     name: mall-web-app-product
+  main:
+    allow-bean-definition-overriding: true
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     database: mysql

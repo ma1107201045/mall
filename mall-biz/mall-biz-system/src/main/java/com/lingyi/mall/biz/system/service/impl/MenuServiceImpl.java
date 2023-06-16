@@ -46,7 +46,7 @@ public class MenuServiceImpl implements MenuService {
         //校验数据
         verifyAndGet(menuDTO, false);
         //DTO转换Entity
-        MenuDO menuDO = BeanUtil.copyProperties(menuDTO, MenuDO.class);
+        MenuDO menuDO = ConverterUtil.to(menuDTO, MenuDO.class);
         //保存
         menuRepository.save(menuDO);
     }
@@ -101,7 +101,7 @@ public class MenuServiceImpl implements MenuService {
     }
 
 
-    private MenuDO verifyAndGet(MenuDTO menuDTO, boolean isEdit) {
+    private MenuDO verifyAndGet(MenuDTO menuDTO, boolean isUpdate) {
         Integer type = menuDTO.getType();
         Long parentId = menuDTO.getParentId();
         //断言目录父级为root
@@ -126,7 +126,7 @@ public class MenuServiceImpl implements MenuService {
             AssertUtil.isTrue(result, SystemFailEnum.MENU_BUTTON_PARENT_ERROR);
         }
         MenuDO menuDO = null;
-        if (isEdit) {
+        if (isUpdate) {
             Optional<MenuDO> optional = menuRepository.findById(menuDTO.getId());
             //判断用户是否不为空
             if (optional.isEmpty()) {
