@@ -31,7 +31,7 @@ public class RoleController {
 
     @Operation(summary = "保存", description = "保存")
     @PostMapping
-    @PreAuthorize("ps.hasAnyAuthority('system:role:save')")
+    @PreAuthorize("ps.hasAnyAuthority('admin:system:roles:save')")
     public ServerResponse<Void> save(@Valid @RequestBody RoleDTO roleDTO) {
         roleService.create(roleDTO);
         return ServerResponse.success();
@@ -39,7 +39,7 @@ public class RoleController {
 
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
-    @PreAuthorize("ps.hasAnyAuthority('system:role:delete')")
+    @PreAuthorize("ps.hasAnyAuthority('admin:system:roles:delete')")
     public ServerResponse<Void> deleteByIds(@PathVariable List<Long> ids) {
         roleService.deleteByIds(ids);
         return ServerResponse.success();
@@ -47,7 +47,7 @@ public class RoleController {
 
     @Operation(summary = "更新", description = "更新")
     @PutMapping("/{id}")
-    @PreAuthorize("ps.hasAnyAuthority('system:role:update')")
+    @PreAuthorize("ps.hasAnyAuthority('admin:system:roles:update')")
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody RoleDTO roleDTO) {
         roleDTO.setId(id);
         roleService.updateById(roleDTO);
@@ -56,7 +56,7 @@ public class RoleController {
 
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
-    @PreAuthorize("ps.hasAnyAuthority('system:role:get')")
+    @PreAuthorize("ps.hasAnyAuthority('admin:system:roles:get')")
     public ServerResponse<RoleVO> getById(@PathVariable Long id) {
         RoleVO roleVO = roleService.readById(id);
         return ServerResponse.success(roleVO);
@@ -64,7 +64,7 @@ public class RoleController {
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
-    @PreAuthorize("ps.hasAnyAuthority('system:role:getList')")
+    @PreAuthorize("ps.hasAnyAuthority('admin:system:roles:getList')")
     public ServerResponse<List<RoleVO>> getListByPageAndParam(@Valid BasePageQuery basePageQuery, @Valid RoleQuery roleQuery) {
         List<RoleVO> roles = roleService.readListByPageAndQuery(basePageQuery, roleQuery);
         return ServerResponse.success(roles);

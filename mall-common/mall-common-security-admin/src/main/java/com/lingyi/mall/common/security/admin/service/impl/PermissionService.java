@@ -15,6 +15,12 @@ import java.util.Arrays;
 @Component("ps")
 public class PermissionService {
 
+    /**
+     * 当前用户是否具有权限
+     *
+     * @param permission 权限标识
+     * @return 结果
+     */
     public boolean hasAnyAuthority(String permission) {
         return AuthenticatorUtil.getAuthorities().stream()
                 .flatMap(grantedAuthority -> Arrays.stream(grantedAuthority.getAuthority()

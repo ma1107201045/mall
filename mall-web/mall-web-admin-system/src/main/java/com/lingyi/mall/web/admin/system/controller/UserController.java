@@ -33,7 +33,7 @@ public class UserController {
 
     @Operation(summary = "保存", description = "保存")
     @PostMapping
-    @PreAuthorize("ps.hasAnyAuthority('system:user:save')")
+    @PreAuthorize("ps.hasAnyAuthority('admin:system:users:save')")
     @Log(title = "保存用户", operationType = OperationTypeEnum.CREATE)
     public ServerResponse<Void> save(@Valid @RequestBody UserDTO userDTO) {
         userService.create(userDTO);
@@ -42,7 +42,7 @@ public class UserController {
 
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
-    @PreAuthorize("ps.hasAnyAuthority('system:user:delete')")
+    @PreAuthorize("ps.hasAnyAuthority('admin:system:users:delete')")
     @Log(title = "保存用户", operationType = OperationTypeEnum.DELETE)
     public ServerResponse<Void> deleteByIds(@PathVariable List<Long> ids) {
         userService.deleteByIds(ids);
@@ -51,7 +51,7 @@ public class UserController {
 
     @Operation(summary = "更新", description = "更新")
     @PutMapping("/{id}")
-    @PreAuthorize("ps.hasAnyAuthority('system:user:update')")
+    @PreAuthorize("ps.hasAnyAuthority('admin:system:users:update')")
     @Log(title = "保存用户", operationType = OperationTypeEnum.UPDATE)
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody UserDTO userDTO) {
         userDTO.setId(id);
@@ -61,7 +61,7 @@ public class UserController {
 
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
-    @PreAuthorize("ps.hasAnyAuthority('system:user:get')")
+    @PreAuthorize("ps.hasAnyAuthority('admin:system:users:get')")
     @Log(title = "保存用户", operationType = OperationTypeEnum.READ)
     public ServerResponse<UserVO> getById(@PathVariable Long id) {
         UserVO userVO = userService.readById(id);
@@ -70,7 +70,7 @@ public class UserController {
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
-    @PreAuthorize("ps.hasAnyAuthority('system:user:getList')")
+    @PreAuthorize("ps.hasAnyAuthority('admin:system:users:getList')")
     @Log(title = "保存用户", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<UserVO>> getListByPageAndQuery(@Valid BasePageQuery basePageQuery, @Valid UserQuery userQuery) {
         List<UserVO> userVOList = userService.readListByPageAndQuery(basePageQuery, userQuery);

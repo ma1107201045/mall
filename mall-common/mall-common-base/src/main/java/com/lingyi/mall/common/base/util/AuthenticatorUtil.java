@@ -17,7 +17,7 @@ import java.util.Collection;
 public class AuthenticatorUtil {
 
 
-    private static Authentication getAuthentication() {
+    public static Authentication getAuthentication() {
         return SecurityContextHolder.getContext().getAuthentication();
     }
 

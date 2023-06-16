@@ -32,7 +32,7 @@ public class LogController {
 
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
-    @PreAuthorize("ps.hasAnyAuthority('system:user:get')")
+    @PreAuthorize("ps.hasAnyAuthority('admin:system:logs:get')")
     public ServerResponse<LogDO> getById(@PathVariable Long id) {
         LogDO log = logService.readById(id);
         return ServerResponse.success(log);
@@ -40,7 +40,7 @@ public class LogController {
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
-    @PreAuthorize("ps.hasAnyAuthority('system:user:getList')")
+    @PreAuthorize("ps.hasAnyAuthority('admin:system:logs:getList')")
     public ServerResponse<List<LogDO>> getListByPageAndParam(@Valid BasePageQuery basePageQuery, @Valid LogDO logDO) {
         List<LogDO> logs = logService.readListByPageAndQuery(basePageQuery, logDO);
         return ServerResponse.success(logs);
