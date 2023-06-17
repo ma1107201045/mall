@@ -16,7 +16,7 @@ import java.util.List;
  * @DateTime: 2023/5/3 20:34
  * @Description:
  */
-@FeignClient(value = "mall-web-admin-system", fallbackFactory = UserFeignFallbackFactory.class)
+@FeignClient(url = "http://localhost:7003", value = "mall-web-admin-system", fallbackFactory = UserFeignFallbackFactory.class)
 public interface UserFeign {
 
     String URL_PREFIX = "/admin/system/users";

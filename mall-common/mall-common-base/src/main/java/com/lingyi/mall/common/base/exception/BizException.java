@@ -20,25 +20,25 @@ public class BizException extends RuntimeException {
     @Serial
     private static final long serialVersionUID = -5427223280793906864L;
 
-    private final Integer bizCode;
+    private final Integer code;
 
     private final String message;
 
     public BizException(BaseFailEnum baseFailEnum) {
         super((String) AssertUtil.getFailEnumValues(baseFailEnum)[1]);
-        this.bizCode = (Integer) AssertUtil.getFailEnumValues(baseFailEnum)[0];
+        this.code = (Integer) AssertUtil.getFailEnumValues(baseFailEnum)[0];
         this.message = (String) AssertUtil.getFailEnumValues(baseFailEnum)[1];
     }
 
     public BizException(String message) {
         super(message);
-        this.bizCode = HttpStatus.INTERNAL_SERVER_ERROR.value();
+        this.code = HttpStatus.INTERNAL_SERVER_ERROR.value();
         this.message = message;
     }
 
-    public BizException(Integer bizCode, String message) {
+    public BizException(Integer code, String message) {
         super(message);
-        this.bizCode = bizCode;
+        this.code = code;
         this.message = message;
     }
 }

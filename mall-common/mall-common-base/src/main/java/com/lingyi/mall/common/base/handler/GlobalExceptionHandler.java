@@ -101,14 +101,14 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ServerResponse<Void> openFeignException(OpenFeignException e) {
         log.error("OpenFeignException：", e);
-        return ServerResponse.fail(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getBizCode(), e.getMessage());
+        return ServerResponse.fail(e.getCode(), e.getMessage());
     }
 
     @ExceptionHandler(BizException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ServerResponse<Void> bizException(BizException e) {
         log.error("BizException：", e);
-        return ServerResponse.fail(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getBizCode(), e.getMessage());
+        return ServerResponse.fail(e.getCode(), e.getMessage());
     }
 
     @ExceptionHandler(RuntimeException.class)

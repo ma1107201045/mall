@@ -32,7 +32,7 @@ public class LogFeignConsumer {
             log.info("出参:Void:{}", JSON.toJSONString(response.getData()));
             return;
         }
-        throw new OpenFeignException(response.getBizCode(), response.getMessage());
+        throw new OpenFeignException(response.getCode(), response.getMessage());
     }
 
 }
