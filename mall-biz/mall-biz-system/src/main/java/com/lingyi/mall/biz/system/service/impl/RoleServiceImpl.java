@@ -82,8 +82,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<RoleVO> readListByPageAndParam(BasePageParam basePageParam, RoleParam roleParam) {
-        startPage(basePageParam);
+    public List<RoleVO> readListByParam(RoleParam roleParam) {
         return roleMapper.selectListByParam(roleParam);
     }
 }

@@ -26,6 +26,10 @@ spring:
       password: jinbihu2023
       client-type: lettuce
       database: 1
+      jedis:
+        pool:
+          enabled: true
+
   cloud:
     nacos:
       discovery:

@@ -9,7 +9,7 @@
         <result property="operationType" column="operation_type" jdbcType="TINYINT"/>
         <result property="requestParam" column="request_param" jdbcType="VARCHAR"/>
         <result property="callClass" column="call_class" jdbcType="VARCHAR"/>
-        <result property="callMethod" column="call_method" jdbcType="VARCHAR"/>
+        <result property="callClassMethod" column="call_class_method" jdbcType="VARCHAR"/>
         <result property="responseParam" column="response_param" jdbcType="VARCHAR"/>
         <result property="executeDuration" column="execute_duration" jdbcType="BIGINT"/>
         <result property="executeResult" column="execute_result" jdbcType="TINYINT"/>
@@ -22,9 +22,9 @@
         <result property="lastModifyDateTime" column="last_modify_date_time" jdbcType="TIMESTAMP"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id,title,operation_type,call_class,call_method
+        id,title,operation_type,call_class,call_class_method,
         request_param,response_param,
-        execute_duration,client_ip,remark,
+        execute_duration,execute_result,fail_reason,client_ip,remark,
         create_by,create_date_time,last_modify_by,
         last_modify_date_time
     </sql>
@@ -39,7 +39,7 @@
         FROM ms_log
         WHERE id = #{id,jdbcType=BIGINT}
     </select>
-    <select id="selectListByParam" resultType="com.lingyi.mall.biz.system.entity.LogDO">
+    <select id="selectListByParam" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
         FROM ms_log

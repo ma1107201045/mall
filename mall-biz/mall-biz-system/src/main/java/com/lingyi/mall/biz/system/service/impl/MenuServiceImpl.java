@@ -75,8 +75,7 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public List<MenuVO> readListByPageAndParam(BasePageParam pageQuery, MenuParam menuQuery) {
-        startPage(pageQuery);
+    public List<MenuVO> readListByParam(MenuParam menuQuery) {
         return menuMapper.selectListByParam(menuQuery);
     }
 

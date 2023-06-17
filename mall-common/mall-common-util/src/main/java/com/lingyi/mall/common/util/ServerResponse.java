@@ -37,9 +37,16 @@ public class ServerResponse<T> implements Serializable {
     @Schema(description = "数据", example = "对象 or 数组")
     private T data;
 
+    @Schema(description = "总条数", example = "1000L")
+    private Long total;
+
+
+    public static <T> ServerResponse<T> success(T data, Long total) {
+        return new ServerResponse<>(true, HttpStatus.OK.value(), HttpStatus.OK.getReasonPhrase(), data, total);
+    }
 
     public static <T> ServerResponse<T> success(T data) {
-        return new ServerResponse<>(true, HttpStatus.OK.value(), HttpStatus.OK.getReasonPhrase(), data);
+        return success(data, 0L);
     }
 
     public static <T> ServerResponse<T> success() {
@@ -47,7 +54,7 @@ public class ServerResponse<T> implements Serializable {
     }
 
     public static <T> ServerResponse<T> fail(Integer code, String message) {
-        return new ServerResponse<>(false, code, message, null);
+        return new ServerResponse<>(false, code, message, null, 0L);
     }
 
 

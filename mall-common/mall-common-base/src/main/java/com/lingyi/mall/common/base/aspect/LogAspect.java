@@ -258,26 +258,14 @@ public class LogAspect {
     }
 
 
-    private Object getInstance() {
-        Class<?> clazz;
-        try {
-            clazz = Class.forName("com.lingyi.mall.api.system.entity.Log");
-            Constructor<?> constructor = clazz.getDeclaredConstructor();
-            return constructor.newInstance();
-        } catch (Exception e) {
-            log.error("com.lingyi.mall.api.system.entity.Log new error");
-            return null;
-        }
-    }
-
     private LogReqDTO getLogDTO(Log log, ProceedingJoinPoint joinPoint, Object result, boolean isSuccess, long taskTime, String failReason) {
         return LogReqDTO.builder()
                 .title(log.clientType() + "-" + log.title())
                 .operationType(log.operationType().getCode())
                 .callClass(joinPoint.getTarget().getClass().getName())
-                .callMethod(joinPoint.getSignature().getName())
-                .requestParam(log.ignoreParam() ? JSON.toJSONString(null) : JSON.toJSONString(joinPoint.getArgs()))
-                .responseParam(JSON.toJSONString(result))
+                .callClassMethod(joinPoint.getSignature().getName())
+                .requestParam(log.ignoreParam() ? null : JSON.toJSONString(joinPoint.getArgs()))
+                .responseParam(Objects.isNull(result) ? null : JSON.toJSONString(result))
                 .executeDuration(taskTime)
                 .executeResult(isSuccess ? WhetherEnum.Y.getCode() : WhetherEnum.N.getCode())
                 .failReason(failReason)

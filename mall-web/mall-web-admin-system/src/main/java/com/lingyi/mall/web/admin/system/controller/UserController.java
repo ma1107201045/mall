@@ -1,12 +1,15 @@
 package com.lingyi.mall.web.admin.system.controller;
 
+import com.github.pagehelper.Page;
 import com.lingyi.mall.biz.system.dto.UserDTO;
+import com.lingyi.mall.biz.system.entity.LogDO;
 import com.lingyi.mall.biz.system.param.UserParam;
 import com.lingyi.mall.biz.system.vo.UserVO;
 import com.lingyi.mall.biz.system.service.UserService;
 import com.lingyi.mall.common.base.aspect.Log;
 import com.lingyi.mall.common.base.enums.OperationTypeEnum;
 import com.lingyi.mall.common.base.param.BasePageParam;
+import com.lingyi.mall.common.base.util.PageUtil;
 import com.lingyi.mall.common.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -70,11 +73,12 @@ public class UserController {
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
-    @PreAuthorize("ps.hasAnyAuthority('admin:system:users:getList')")
+    @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:getList')")
     @Log(title = "保存用户", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<UserVO>> getListByPageAndQuery(@Valid BasePageParam basePageParam, @Valid UserParam userParam) {
-        List<UserVO> userVOList = userService.readListByPageAndParam(basePageParam, userParam);
-        return ServerResponse.success(userVOList);
+        Page<UserVO> page = PageUtil.startPage(basePageParam);
+        List<UserVO> users = userService.readListByParam(userParam);
+        return ServerResponse.success(users, page.getTotal());
     }
 
 

@@ -59,8 +59,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public List<MemberVO> readListByPageAndParam(BasePageParam pageParam, MemberParam memberParam) {
-        PageHelper.startPage(pageParam.getCurrentPage(), pageParam.getPageSize(), pageParam.getSort());
+    public List<MemberVO> readListByParam( MemberParam memberParam) {
         return memberMapper.selectListByParam(memberParam);
     }
 

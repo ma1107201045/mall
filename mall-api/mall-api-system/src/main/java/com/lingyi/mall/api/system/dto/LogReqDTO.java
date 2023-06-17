@@ -35,9 +35,9 @@ public class LogReqDTO implements Serializable {
      */
     private String callClass;
     /**
-     * 调用方法
+     * 调用类方法
      */
-    private String callMethod;
+    private String callClassMethod;
     /**
      * 请求参数
      */

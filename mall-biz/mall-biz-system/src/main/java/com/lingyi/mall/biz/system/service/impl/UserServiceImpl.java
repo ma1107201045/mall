@@ -114,8 +114,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserVO> readListByPageAndParam(BasePageParam basePageParam, UserParam userParam) {
-        startPage(basePageParam);
+    public List<UserVO> readListByParam(UserParam userParam) {
         return userMapper.selectListByParam(userParam);
     }
 

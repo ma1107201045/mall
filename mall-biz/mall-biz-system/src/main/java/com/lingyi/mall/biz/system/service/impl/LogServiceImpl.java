@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.system.service.impl;
 
+import com.github.pagehelper.Page;
 import com.lingyi.mall.api.system.dto.LogReqDTO;
 import com.lingyi.mall.biz.system.entity.LogDO;
 import com.lingyi.mall.biz.system.enums.SystemFailEnum;
@@ -62,8 +63,7 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public List<LogDO> readListByPageAndParam(BasePageParam basePageParam, LogDO logDO) {
-        startPage(basePageParam);
+    public List<LogDO> readListByParam(LogDO logDO) {
         return logMapper.selectListByParam(logDO);
     }
 

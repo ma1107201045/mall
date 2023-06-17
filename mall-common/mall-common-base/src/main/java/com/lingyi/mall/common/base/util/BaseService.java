@@ -1,9 +1,6 @@
 package com.lingyi.mall.common.base.util;
 
 
-import com.github.pagehelper.PageHelper;
-import com.lingyi.mall.common.base.param.BasePageParam;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -47,21 +44,10 @@ public interface BaseService<DTO extends Serializable, PARAM extends Serializabl
     /**
      * 查找列表
      *
-     * @param basePageParam 分页参数
-     * @param param         参数
-     * @return List<VO>
+     * @param param 参数
+     * @return List<VO> List<VO>
      */
-    List<VO> readListByPageAndParam(BasePageParam basePageParam, PARAM param);
-
-
-    /**
-     * 开始分页
-     *
-     * @param basePageParam 分页参数
-     */
-    default void startPage(BasePageParam basePageParam) {
-        PageHelper.startPage(basePageParam.getCurrentPage(), basePageParam.getPageSize(), basePageParam.getSort());
-    }
+    List<VO> readListByParam(PARAM param);
 
 
 }
