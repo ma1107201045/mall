@@ -14,10 +14,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,6 +31,14 @@ import java.util.List;
 public class LogController {
 
     private final LogService logService;
+
+    @Operation(summary = "删除/批量删除", description = "删除/批量删除")
+    @DeleteMapping("/{ids}")
+    @PreAuthorize("@ps.hasAnyAuthority('admin:system:logs:delete')")
+    public ServerResponse<LogDO> deleteByIds(@PathVariable List<Long> ids) {
+        logService.deleteByIds(ids);
+        return ServerResponse.success();
+    }
 
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
