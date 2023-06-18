@@ -46,7 +46,7 @@ public class UserController {
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
     @PreAuthorize("ps.hasAnyAuthority('admin:system:users:delete')")
-    @Log(title = "保存用户", operationType = OperationTypeEnum.DELETE)
+    @Log(title = "删除用户", operationType = OperationTypeEnum.DELETE)
     public ServerResponse<Void> deleteByIds(@PathVariable List<Long> ids) {
         userService.deleteByIds(ids);
         return ServerResponse.success();
@@ -55,7 +55,7 @@ public class UserController {
     @Operation(summary = "更新", description = "更新")
     @PutMapping("/{id}")
     @PreAuthorize("ps.hasAnyAuthority('admin:system:users:update')")
-    @Log(title = "保存用户", operationType = OperationTypeEnum.UPDATE)
+    @Log(title = "更新用户", operationType = OperationTypeEnum.UPDATE)
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody UserDTO userDTO) {
         userDTO.setId(id);
         userService.updateById(userDTO);
@@ -65,7 +65,7 @@ public class UserController {
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
     @PreAuthorize("ps.hasAnyAuthority('admin:system:users:get')")
-    @Log(title = "保存用户", operationType = OperationTypeEnum.READ)
+    @Log(title = "查询用户", operationType = OperationTypeEnum.READ)
     public ServerResponse<UserVO> getById(@PathVariable Long id) {
         UserVO userVO = userService.readById(id);
         return ServerResponse.success(userVO);
@@ -74,7 +74,7 @@ public class UserController {
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:getList')")
-    @Log(title = "保存用户", operationType = OperationTypeEnum.READ)
+    @Log(title = "查询列表用户", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<UserVO>> getListByPageAndQuery(@Valid BasePageParam basePageParam, @Valid UserParam userParam) {
         Page<UserVO> page = PageUtil.startPage(basePageParam);
         List<UserVO> users = userService.readListByParam(userParam);

@@ -30,7 +30,7 @@ public class MenuController {
 
     @Operation(summary = "保存", description = "保存")
     @PostMapping
-    @PreAuthorize("ps.hasAnyAuthority('admin:system:menus:save')")
+    @PreAuthorize("@ps.hasAnyAuthority('admin:system:menus:save')")
     public ServerResponse<Void> save(@Valid @RequestBody MenuDTO menuDTO) {
         menuService.create(menuDTO);
         return ServerResponse.success();
@@ -38,7 +38,7 @@ public class MenuController {
 
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
-    @PreAuthorize("ps.hasAnyAuthority('admin:system:menus:delete')")
+    @PreAuthorize("@ps.hasAnyAuthority('admin:system:menus:delete')")
     public ServerResponse<Void> deleteByIds(@PathVariable List<Long> ids) {
         menuService.deleteByIds(ids);
         return ServerResponse.success();
@@ -46,7 +46,7 @@ public class MenuController {
 
     @Operation(summary = "更新", description = "更新")
     @PutMapping("/{id}")
-    @PreAuthorize("ps.hasAnyAuthority('admin:system:menus:update')")
+    @PreAuthorize("@ps.hasAnyAuthority('admin:system:menus:update')")
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody MenuDTO menuDTO) {
         menuDTO.setId(id);
         menuService.updateById(menuDTO);
@@ -55,7 +55,7 @@ public class MenuController {
 
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
-    @PreAuthorize("ps.hasAnyAuthority('admin:system:menus:get')")
+    @PreAuthorize("@ps.hasAnyAuthority('admin:system:menus:get')")
     public ServerResponse<MenuVO> getById(@PathVariable Long id) {
         MenuVO menuVO = menuService.readById(id);
         return ServerResponse.success(menuVO);
@@ -63,7 +63,7 @@ public class MenuController {
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
-    @PreAuthorize("ps.hasAnyAuthority('admin:system:menus:getTree')")
+    @PreAuthorize("@ps.hasAnyAuthority('admin:system:menus:getTree')")
     public ServerResponse<List<MenuVO>> getTree() {
         List<MenuVO> menus = menuService.findTreeByParentId(SystemConstant.MENU_ROOT_ID);
         return ServerResponse.success(menus);
