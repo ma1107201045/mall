@@ -49,7 +49,7 @@ public class LogDO extends BaseCommonDO implements Serializable {
     @Column(name = "execute_result", columnDefinition = "TINYINT(4) DEFAULT 1 COMMENT '执行结果 1 成功 0 失败'")
     private Integer executeResult;
 
-    @Column(name = "fail_reason", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '失败原因'")
+    @Column(name = "fail_reason", columnDefinition = "TEXT COMMENT '失败原因'")
     private String failReason;
 
     @Column(name = "client_ip", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '客户端ip'")

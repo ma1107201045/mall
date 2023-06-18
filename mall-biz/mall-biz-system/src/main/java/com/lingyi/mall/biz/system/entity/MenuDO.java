@@ -46,11 +46,11 @@ public class MenuDO extends BaseIsDeleteDO implements Serializable {
     @Column(name = "is_enable", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '是否启用 1 是 0 否'")
     private Integer isEnable;
 
-    @Column(name = "path", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '路由地址'")
-    private String path;
+    @Column(name = "route_name", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '路由名称'")
+    private String routeName;
 
-    @Column(name = "component_name", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '组件名称'")
-    private String componentName;
+    @Column(name = "route_path", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '路由地址'")
+    private String routePath;
 
     @Column(name = "component_path", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '组件路径'")
     private String componentPath;

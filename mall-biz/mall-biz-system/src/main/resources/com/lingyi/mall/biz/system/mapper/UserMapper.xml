@@ -87,11 +87,12 @@
         <result column="name" property="name"/>
         <result column="type" property="type"/>
         <result column="icon" property="icon"/>
-        <result column="path" property="path"/>
+        <result column="route_name" property="routeName"/>
+        <result column="route_path" property="routePath"/>
     </resultMap>
     <select id="selectMenusByUserNameAndMenuTypesAndMenuParentId"
             resultMap="SelectMenusByUserNameAndMenuTypesAndMenuParentIdMap">
-        SELECT mm.id mm.name,mm.type, mm.icon ,mm.path,
+        SELECT mm.id mm.name,mm.type, mm.icon ,mm.route_name,mm.route_path
         FROM ms_user mu INNER JOIN
         ms_user_role mur ON mur.user_id=mu.id
         INNER JOIN ms_role_menu mrm ON mrm.menu_id = mur.role_id

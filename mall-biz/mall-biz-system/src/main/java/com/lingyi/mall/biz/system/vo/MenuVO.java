@@ -41,11 +41,11 @@ public class MenuVO implements Serializable {
     @Schema(description = "是否启用 1 是 0 否")
     private Integer isEnable;
 
-    @Schema(description = "路由地址")
-    private Long path;
+    @Schema(description = "路由名称")
+    private String routeName;
 
-    @Schema(description = "组件路径")
-    private String componentPath;
+    @Schema(description = "路由地址")
+    private String routePath;
 
     @Schema(description = "组件名称")
     private String componentName;
