@@ -45,5 +45,14 @@ public interface UserService extends BaseService<UserDTO, UserParam, UserVO, Lon
      */
     List<MenuResDTO> findMenuTreeByUserNameAndMenuParentId(String userName, Long menuParentId);
 
+    /**
+     * 按照用户id和用户名称查询权限
+     *
+     * @param userId   用户id
+     * @param userName 用户名称
+     * @return List<String>
+     */
+    List<String> findMenuPermissionsByUserIdAndUserName(Long userId, String userName);
+
 
 }

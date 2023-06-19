@@ -29,7 +29,7 @@ public class MemberFeignConsumer {
             log.info("出参:MemberVO:{}", JSON.toJSONString(response.getData()));
             return response.getData();
         }
-        throw new OpenFeignException(response.getBizCode(), response.getMessage());
+        throw new OpenFeignException(response.getCode(), response.getMessage());
     }
 }
 

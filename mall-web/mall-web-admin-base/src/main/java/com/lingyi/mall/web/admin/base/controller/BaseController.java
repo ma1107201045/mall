@@ -31,16 +31,25 @@ public class BaseController {
 
     private final BaseService baseService;
 
-    @Operation(summary = "获取菜单", description = "获取菜单")
-    @GetMapping("/menu")
-    @Log(title = "获取当前用户菜单", operationType = OperationTypeEnum.READ)
-    public ServerResponse<List<MenuResDTO>> getMenu() {
+    @Operation(summary = "获取当前用户菜单树", description = "获取当前用户菜单树")
+    @GetMapping("/menu-tree")
+    @Log(title = "获取当前用户菜单树", operationType = OperationTypeEnum.READ)
+    public ServerResponse<List<MenuResDTO>> getMenuTree() {
         String userName = AuthenticatorUtil.getUserName();
         List<MenuResDTO> menus = baseService.readMenuTreeByUserName(userName);
         return ServerResponse.success(menus);
     }
 
-    @Operation(summary = "更新用户", description = "更新用户")
+    @Operation(summary = "获取当前用户菜单权限标识集", description = "获取当前用户菜单权限标识集")
+    @GetMapping("/menu-permissions")
+    @Log(title = "获取当前用户菜单权限标识集", operationType = OperationTypeEnum.READ)
+    public ServerResponse<List<String>> getMenuPermissions() {
+        String userName = AuthenticatorUtil.getUserName();
+        List<String> permissions = baseService.readMenuPermissionsByUserName(userName);
+        return ServerResponse.success(permissions);
+    }
+
+    @Operation(summary = "更新当前用户信息", description = "更新当前用户信息")
     @PatchMapping("/user")
     @Log(title = "更新当前用户信息", operationType = OperationTypeEnum.UPDATE)
     public ServerResponse<Void> updateUser(UserPartReqDTO userPartReqDTO) {

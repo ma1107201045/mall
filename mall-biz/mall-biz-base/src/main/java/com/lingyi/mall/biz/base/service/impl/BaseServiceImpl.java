@@ -5,6 +5,7 @@ import com.lingyi.mall.api.system.dto.MenuResDTO;
 import com.lingyi.mall.api.system.dto.UserPartReqDTO;
 
 import com.lingyi.mall.biz.base.service.BaseService;
+import com.lingyi.mall.common.base.util.AuthenticatorUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,11 @@ public class BaseServiceImpl implements BaseService {
     @Override
     public List<MenuResDTO> readMenuTreeByUserName(String userName) {
         return userFeignConsumer.getMenuTreeByUserName(userName);
+    }
+
+    @Override
+    public List<String> readMenuPermissionsByUserName(String userName) {
+        return userFeignConsumer.getMenuPermissionsByUserIdAndUserName(AuthenticatorUtil.getUserId(), userName);
     }
 
     @Override

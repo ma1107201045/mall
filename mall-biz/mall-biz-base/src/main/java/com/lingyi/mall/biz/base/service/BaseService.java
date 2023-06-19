@@ -16,12 +16,21 @@ public interface BaseService {
 
 
     /**
-     * 按照用户id查询菜单树
+     * 按照用户名称查询菜单树
      *
      * @param userName 用户名称
      * @return 菜单树
      */
     List<MenuResDTO> readMenuTreeByUserName(String userName);
+
+
+    /**
+     * 按照用户名称查询菜单树
+     *
+     * @param userName 用户名称
+     * @return 菜单权限集
+     */
+    List<String> readMenuPermissionsByUserName(String userName);
 
     /**
      * 按照用户id更改用户信息

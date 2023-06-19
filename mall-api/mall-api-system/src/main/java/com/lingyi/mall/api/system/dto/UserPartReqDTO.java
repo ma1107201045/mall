@@ -19,7 +19,7 @@ public class UserPartReqDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = -1025701979000302522L;
 
-    @Schema(description = "菜单id")
+    @Schema(description = "用户id")
     private Long id;
 
     @Schema(description = "昵称")

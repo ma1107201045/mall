@@ -35,7 +35,6 @@ public class UserFeignProvider implements UserFeign {
         return ServerResponse.success();
     }
 
-
     @Operation(summary = "查询用户和权限标识", description = "查询用户和权限标识")
     @Override
     public ServerResponse<UserResDTO> getUserAndMenuPermissionsByUserName(String userName) {
@@ -50,4 +49,10 @@ public class UserFeignProvider implements UserFeign {
         return ServerResponse.success(menuResDTOList);
     }
 
+    @Operation(summary = "查询菜单树", description = "查询菜单树")
+    @Override
+    public ServerResponse<List<String>> getMenuPermissionsByUserIdAndUserName(Long userId, String userName) {
+        List<String> permissions = userService.findMenuPermissionsByUserIdAndUserName(userId, userName);
+        return ServerResponse.success(permissions);
+    }
 }

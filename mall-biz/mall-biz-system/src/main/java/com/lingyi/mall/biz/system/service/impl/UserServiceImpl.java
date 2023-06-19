@@ -26,6 +26,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -139,13 +140,7 @@ public class UserServiceImpl implements UserService {
         if (ObjUtil.isNull(userResDTO)) {
             return userResDTO;
         }
-        List<String> permissions;
-        Integer type = MenuTypeEnum.BUTTON.getCode();
-        if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
-            permissions = userMapper.selectMenuPermissionsByUserIdAndMenuType(userResDTO.getUserId(), type);
-        } else {
-            permissions = menuService.findPermissionsByType(type);
-        }
+        List<String> permissions = findMenuPermissionsByUserIdAndUserName(userResDTO.getUserId(), userName);
         userResDTO.setPermissions(permissions);
         return userResDTO;
     }
@@ -163,5 +158,15 @@ public class UserServiceImpl implements UserService {
         menuResDTOList.forEach(menuResDTO -> menuResDTO.setChildren(findMenuTreeByUserNameAndMenuParentId(userName, menuResDTO.getId())));
         return menuResDTOList;
     }
+
+    @Override
+    public List<String> findMenuPermissionsByUserIdAndUserName(Long userId, String userName) {
+        Integer type = MenuTypeEnum.BUTTON.getCode();
+        if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
+            return userMapper.selectMenuPermissionsByUserIdAndMenuType(userId, type);
+        }
+        return menuService.findPermissionsByType(type);
+    }
+
 
 }
