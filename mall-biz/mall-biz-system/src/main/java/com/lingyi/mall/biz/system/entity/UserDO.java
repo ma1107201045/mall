@@ -47,7 +47,7 @@ public class UserDO extends BaseIsDeleteDO implements Serializable {
     @Column(name = "password", columnDefinition = "VARCHAR(100) NOT NULL COMMENT '密码'")
     private String password;
 
-    @Column(name = "head_portrait", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '密码'")
+    @Column(name = "head_portrait", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '头像'")
     private String headPortrait;
 
     @Schema(description = "邮箱")
@@ -57,7 +57,7 @@ public class UserDO extends BaseIsDeleteDO implements Serializable {
     @Column(name = "phone_number", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '手机号'")
     private String phoneNumber;
 
-    @Column(name = "last_login_ip", columnDefinition = "INT(30) COMMENT '手机号'")
+    @Column(name = "last_login_ip", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '最后一次登录IP'")
     private String lastLoginIp;
 
     @Column(name = "is_enable", columnDefinition = "TINYINT(4) NOT NULL COMMENT '是否启用 1 是 0 否'")
