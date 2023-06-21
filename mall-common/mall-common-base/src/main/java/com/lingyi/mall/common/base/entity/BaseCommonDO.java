@@ -33,7 +33,7 @@ public abstract class BaseCommonDO extends BaseIdDO {
     protected String createBy;
 
     @CreatedDate
-    @Column(name = "create_date_time", updatable = false, columnDefinition = "DATETIME(6) NOT NULL COMMENT '创建时间'")
+    @Column(name = "create_date_time", updatable = false, columnDefinition = "DATETIME NOT NULL COMMENT '创建时间'")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     protected LocalDateTime createDateTime;
 
@@ -42,7 +42,7 @@ public abstract class BaseCommonDO extends BaseIdDO {
     protected String lastModifyBy;
 
     @LastModifiedDate
-    @Column(name = "last_modify_date_time", columnDefinition = "DATETIME(6) NOT NULL COMMENT '最后修改时间'")
+    @Column(name = "last_modify_date_time", columnDefinition = "DATETIME NOT NULL COMMENT '最后修改时间'")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     protected LocalDateTime lastModifyDateTime;
 

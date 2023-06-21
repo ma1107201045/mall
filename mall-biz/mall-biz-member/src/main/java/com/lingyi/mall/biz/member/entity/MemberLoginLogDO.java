@@ -41,6 +41,6 @@ public class MemberLoginLogDO extends BaseIdDO implements Serializable {
     @Column(name = "source", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '登录来源 1.Web端 2.Android端 3.IOS端 4.PC端")
     private Integer source;
 
-    @Column(name = "create_data_time", columnDefinition = "DATETIME(6)  NOT NULL COMMENT '创建时间")
+    @Column(name = "create_data_time", columnDefinition = "DATETIME  NOT NULL COMMENT '创建时间")
     private LocalDateTime createDataTime;
 }

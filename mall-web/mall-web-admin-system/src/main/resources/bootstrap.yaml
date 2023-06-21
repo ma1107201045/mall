@@ -17,13 +17,13 @@ spring:
         format_sql: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://rm-2ze09g9o0bb02q5r54o.mysql.rds.aliyuncs.com:3306/mall-system?serverTimezone=GMT%2B8
-    username: jinbihu_shop
-    password: Jinbihu_2023
+    url: jdbc:mysql://36.137.103.166:3306/mall-system?serverTimezone=GMT%2B8
+    username: root
+    password: TfbY820tfp3d31rb@
   data:
     redis:
-      host: 182.92.64.247
-      password: jinbihu2023
+      host: 36.137.103.166
+      password: j53BDRarSwtWvdDZ
       client-type: lettuce
       database: 1
       jedis:
@@ -34,20 +34,18 @@ spring:
     nacos:
       discovery:
         # 服务注册地址
-        server-addr: 182.92.64.247:8848
+        server-addr: 36.137.103.166:8848
         username: nacos
         password: nacos
         access-key: ThisIsMyCustomSecretKey012345678
         namespace: dev
-        enabled: false
       config:
         # 配置中心地址
-        server-addr: 182.92.64.247:8848
+        server-addr: 36.137.103.166:8848
         username: nacos
         password: nacos
         access-key: ThisIsMyCustomSecretKey012345678
         namespace: dev
-        enabled: false
     openfeign:
       client:
         config:

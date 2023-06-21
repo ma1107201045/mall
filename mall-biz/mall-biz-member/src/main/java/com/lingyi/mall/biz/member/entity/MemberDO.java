@@ -40,7 +40,7 @@ public class MemberDO extends BaseIdDO implements Serializable {
     @Column(name = "sex", columnDefinition = "TINYINT(4) UNSIGNED COMMENT '性别 1 男 2 女'")
     private Integer sex;
 
-    @Column(name = "birthday", columnDefinition = "DATE(3) COMMENT '生日'")
+    @Column(name = "birthday", columnDefinition = "DATE COMMENT '生日'")
     private LocalDate birthday;
 
     @Column(name = "phone_number", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '手机号'")
@@ -58,7 +58,7 @@ public class MemberDO extends BaseIdDO implements Serializable {
     @Column(name = "register_source", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '注册来源 1.Web端 2.Android端 3.IOS端 4.PC端'")
     private Integer registerSource;
 
-    @Column(name = "register_data_time", columnDefinition = "DATETIME(6) NOT NULL COMMENT '注册时间'")
+    @Column(name = "register_data_time", columnDefinition = "DATETIME NOT NULL COMMENT '注册时间'")
     private LocalDateTime registerDataTime;
 
 }
