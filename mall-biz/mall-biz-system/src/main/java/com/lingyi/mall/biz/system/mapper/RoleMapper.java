@@ -18,4 +18,6 @@ public interface RoleMapper {
     RoleVO selectById(Long id);
 
     List<RoleVO> selectListByParam(RoleParam roleParam);
+
+
 }

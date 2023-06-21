@@ -85,4 +85,5 @@ public class RoleServiceImpl implements RoleService {
     public List<RoleVO> readListByParam(RoleParam roleParam) {
         return roleMapper.selectListByParam(roleParam);
     }
+
 }

@@ -5,6 +5,8 @@ import com.lingyi.mall.biz.system.param.RoleParam;
 import com.lingyi.mall.biz.system.vo.RoleVO;
 import com.lingyi.mall.common.base.util.BaseService;
 
+import java.util.List;
+
 /**
  * @Author: maweiyan
  * @Email 1107201045@qq.com
@@ -12,4 +14,5 @@ import com.lingyi.mall.common.base.util.BaseService;
  * @Description:
  */
 public interface RoleService extends BaseService<RoleDTO, RoleParam, RoleVO, Long> {
+
 }

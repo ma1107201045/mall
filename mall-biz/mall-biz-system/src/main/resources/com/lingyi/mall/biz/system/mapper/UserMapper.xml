@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lingyi.mall.biz.system.mapper.UserMapper">
     <resultMap id="BaseResultMap" type="com.lingyi.mall.biz.system.vo.UserVO">
-        <id column="id" jdbcType="BIGINT" property="userId"/>
+        <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="user_name" jdbcType="VARCHAR" property="userName"/>
         <result column="real_name" jdbcType="VARCHAR" property="realName"/>
         <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
@@ -19,11 +19,14 @@
         <result column="last_modify_by" jdbcType="VARCHAR" property="lastModifyBy"/>
         <result column="last_modify_date_time" jdbcType="TIMESTAMP" property="lastModifyDateTime"/>
         <result column="is_delete" jdbcType="TINYINT" property="isDelete"/>
+        <collection property="roleIds" ofType="java.lang.Long">
+            <result column="role_id" jdbcType="BIGINT"/>
+        </collection>
     </resultMap>
     <sql id="Base_Column_List">
-        id, user_name, real_name, nickname, sex, `password`, head_portrait, email, phone_number,
-    last_login_ip, is_enable, remark, create_by, create_date_time,
-    last_modify_by, last_modify_date_time, is_delete
+        mu.id, mu.user_name, mu.real_name, mu.nickname, mu.sex, mu.`password`, mu.head_portrait, mu.email, mu.phone_number,
+    mu.last_login_ip, mu.is_enable,mu. remark, mu.create_by, mu.create_date_time,
+    mu.last_modify_by, mu.last_modify_date_time, mu.is_delete,mur.role_id
     </sql>
     <sql id="Base_Condition">
         <if test="userName!=null and userName!=''">
@@ -33,23 +36,33 @@
     <select id="selectById" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM ms_user
-        WHERE id=#{id,jdbcType=BIGINT}
+        FROM ms_user mu LEFT JOIN ms_user_role mur ON mu.id =mur.user_id
+        WHERE mu.id=#{id,jdbcType=BIGINT}
     </select>
 
     <select id="selectListByParam" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM ms_user
+        FROM ms_user mu LEFT JOIN ms_user_role mur ON mu.id =mur.user_id
         <where>
             <include refid="Base_Condition"/>
         </where>
     </select>
+
     <resultMap id="SelectByUserNameMap" type="com.lingyi.mall.api.system.dto.UserResDTO">
         <id column="mu_id" property="userId"/>
         <result column="mu_user_name" property="userName"/>
         <result column="mu_password" property="password"/>
         <result column="mu_is_enable" property="isEnable"/>
+    </resultMap>
+    <resultMap id="SelectMenusByUserNameAndMenuTypesAndMenuParentIdMap"
+               type="com.lingyi.mall.api.system.dto.MenuResDTO">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="type" property="type"/>
+        <result column="icon" property="icon"/>
+        <result column="route_name" property="routeName"/>
+        <result column="route_path" property="routePath"/>
     </resultMap>
     <select id="selectIdByUserName" resultType="java.lang.Long">
         SELECT id
@@ -57,18 +70,18 @@
         WHERE user_name = #{userName}
     </select>
     <select id="selectByUserName" resultMap="SelectByUserNameMap">
-        SELECT mu.id                   mu_id,
-               mu.user_name            mu_user_name,
-               mu.real_name            mu_real_name,
-               mu.nickname             mu_nickname,
-               mu.sex                  mu_sex,
-               mu.password             mu_password,
-               mu.head_portrait        mu_head_portrait,
-               mu.email                mu_email,
-               mu.phone_number         mu_phone_number,
-               mu.last_login_ip        mu_last_login_ip,
-               mu.is_enable            mu_is_enable,
-               mu.remark               mu_remark
+        SELECT mu.id            mu_id,
+               mu.user_name     mu_user_name,
+               mu.real_name     mu_real_name,
+               mu.nickname      mu_nickname,
+               mu.sex           mu_sex,
+               mu.password      mu_password,
+               mu.head_portrait mu_head_portrait,
+               mu.email         mu_email,
+               mu.phone_number  mu_phone_number,
+               mu.last_login_ip mu_last_login_ip,
+               mu.is_enable     mu_is_enable,
+               mu.remark        mu_remark
         FROM ms_user mu
         WHERE mu.user_name = #{userName}
     </select>
@@ -82,14 +95,6 @@
           AND mm.type = #{menuType}
         GROUP BY mm.id
     </select>
-    <resultMap id="SelectMenusByUserNameAndMenuTypesAndMenuParentIdMap" type="com.lingyi.mall.api.system.dto.MenuResDTO">
-        <id column="id" property="id"/>
-        <result column="name" property="name"/>
-        <result column="type" property="type"/>
-        <result column="icon" property="icon"/>
-        <result column="route_name" property="routeName"/>
-        <result column="route_path" property="routePath"/>
-    </resultMap>
     <select id="selectMenusByUserNameAndMenuTypesAndMenuParentId"
             resultMap="SelectMenusByUserNameAndMenuTypesAndMenuParentIdMap">
         SELECT mm.id mm.name,mm.type, mm.icon ,mm.route_name,mm.route_path

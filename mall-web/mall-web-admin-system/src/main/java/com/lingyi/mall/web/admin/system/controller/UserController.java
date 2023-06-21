@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import com.lingyi.mall.biz.system.dto.UserDTO;
 import com.lingyi.mall.biz.system.entity.LogDO;
 import com.lingyi.mall.biz.system.param.UserParam;
+import com.lingyi.mall.biz.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.vo.UserVO;
 import com.lingyi.mall.biz.system.service.UserService;
 import com.lingyi.mall.common.base.aspect.Log;
@@ -64,7 +65,7 @@ public class UserController {
 
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
-    @PreAuthorize("ps.hasAnyAuthority('admin:system:users:get')")
+    @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:get')")
     @Log(title = "查询用户", operationType = OperationTypeEnum.READ)
     public ServerResponse<UserVO> getById(@PathVariable Long id) {
         UserVO userVO = userService.readById(id);
@@ -74,12 +75,20 @@ public class UserController {
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:getList')")
-    @Log(title = "查询列表用户", operationType = OperationTypeEnum.READ)
+    @Log(title = "查询用户列表", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<UserVO>> getListByPageAndQuery(@Valid BasePageParam basePageParam, @Valid UserParam userParam) {
         Page<UserVO> page = PageUtil.startPage(basePageParam);
         List<UserVO> users = userService.readListByParam(userParam);
         return ServerResponse.success(users, page.getTotal());
     }
 
+    @Operation(summary = "查询角色列表", description = "查询角色列表")
+    @GetMapping("/roles")
+    @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:roles:getList')")
+    @Log(title = "查询角色列表", operationType = OperationTypeEnum.READ)
+    public ServerResponse<List<RoleVO>> getRoleList() {
+        List<RoleVO> roles = userService.readRoleList();
+        return ServerResponse.success(roles);
+    }
 
 }
