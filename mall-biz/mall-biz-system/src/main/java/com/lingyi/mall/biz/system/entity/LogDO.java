@@ -37,10 +37,10 @@ public class LogDO extends BaseCommonDO implements Serializable {
     @Column(name = "call_class_method", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '调用类方法'")
     private String callClassMethod;
 
-    @Column(name = "request_param", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '请求参数'")
+    @Column(name = "request_param", columnDefinition = "TEXT  COMMENT '请求参数'")
     private String requestParam;
 
-    @Column(name = "response_param", columnDefinition = "LONGTEXT  COMMENT '返回参数'")
+    @Column(name = "response_param", columnDefinition = "LONGTEXT COMMENT '返回参数'")
     private String responseParam;
 
     @Column(name = "execute_duration", columnDefinition = "BIGINT(20) UNSIGNED DEFAULT NULL COMMENT '执行时长 单位ms'")

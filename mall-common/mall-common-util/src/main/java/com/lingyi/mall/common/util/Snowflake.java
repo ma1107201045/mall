@@ -43,7 +43,7 @@ public class Snowflake implements Serializable {
     /**
      * 默认的起始时间，为2023/05/01 00:00:00 000
      */
-    public static long DEFAULT_TWEPOCH = 1682870400000L;
+    public static long DEFAULT_TWEPOCH = 1687364301811L;
     /**
      * 默认回拨时间，2S
      */
@@ -297,6 +297,10 @@ public class Snowflake implements Serializable {
      */
     private long genTime() {
         return this.useSystemClock ? SystemClock.now() : System.currentTimeMillis();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(System.currentTimeMillis());
     }
     // ------------------------------------------------------------------------------------------------------------------------------------ Private method end
 }
