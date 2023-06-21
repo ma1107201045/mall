@@ -32,6 +32,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Parameter;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -53,7 +54,7 @@ public class LogAspect {
     /**
      * 控制台日志切点
      */
-    @Order(1)
+
     @Pointcut("execution(public com.lingyi.mall.common.util.ServerResponse com.lingyi.mall..*(..))")
     private void consolePointcut() {
 
@@ -63,7 +64,6 @@ public class LogAspect {
     /**
      * 数据库日志切点
      */
-    @Order(2)
     @Pointcut("@annotation(com.lingyi.mall.common.base.aspect.Log)")
     private void dataBasePointcut() {
     }
@@ -173,6 +173,13 @@ public class LogAspect {
     }
 
     private void printRequest(List<ParamDescription> paramDescList) {
+        //由于aop可能存在参数校验，判断一下直接返回
+        if (CollUtil.isNotEmpty(paramDescList)) {
+            ParamDescription paramDescription = paramDescList.get(0);
+            if (paramDescription.getParamValue() instanceof Exception) {
+                return;
+            }
+        }
         Map<Class<? extends Annotation>, List<ParamDescription>> map = paramDescList.stream().collect(Collectors.groupingBy(ParamDescription::getParamAnnoClass));
         StringBuilder sb1 = new StringBuilder();
         StringBuilder sb2 = new StringBuilder();

@@ -25,6 +25,10 @@ spring:
       password: j53BDRarSwtWvdDZ
       client-type: lettuce
       database: 1
+      jedis:
+        pool:
+          enabled: true
+          min-idle: 2
   cloud:
     nacos:
       discovery:

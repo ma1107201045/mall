@@ -37,7 +37,7 @@ public class UserController {
 
     @Operation(summary = "保存", description = "保存")
     @PostMapping
-    @PreAuthorize("ps.hasAnyAuthority('admin:system:users:save')")
+    @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:save')")
     @Log(title = "保存用户", operationType = OperationTypeEnum.CREATE)
     public ServerResponse<Void> save(@Valid @RequestBody UserDTO userDTO) {
         userService.create(userDTO);
@@ -46,7 +46,7 @@ public class UserController {
 
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
-    @PreAuthorize("ps.hasAnyAuthority('admin:system:users:delete')")
+    @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:delete')")
     @Log(title = "删除用户", operationType = OperationTypeEnum.DELETE)
     public ServerResponse<Void> deleteByIds(@PathVariable List<Long> ids) {
         userService.deleteByIds(ids);
@@ -55,7 +55,7 @@ public class UserController {
 
     @Operation(summary = "更新", description = "更新")
     @PutMapping("/{id}")
-    @PreAuthorize("ps.hasAnyAuthority('admin:system:users:update')")
+    @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:update')")
     @Log(title = "更新用户", operationType = OperationTypeEnum.UPDATE)
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody UserDTO userDTO) {
         userDTO.setId(id);

@@ -29,6 +29,7 @@ spring:
       jedis:
         pool:
           enabled: true
+          min-idle: 2
 
   cloud:
     nacos:

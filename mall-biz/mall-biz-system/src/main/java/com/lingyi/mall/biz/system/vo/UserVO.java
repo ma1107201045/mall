@@ -2,6 +2,7 @@
 package com.lingyi.mall.biz.system.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
@@ -38,6 +39,7 @@ public class UserVO implements Serializable {
     private Integer sex;
 
     @Schema(description = "密码")
+    @JsonIgnore
     private String password;
 
     @Schema(description = "头像")
