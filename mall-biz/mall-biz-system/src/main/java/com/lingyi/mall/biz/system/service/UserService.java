@@ -32,7 +32,7 @@ public interface UserService extends BaseService<UserDTO, UserParam, UserVO, Lon
      *
      * @param userPartDTO ..
      */
-    void editPartById(UserPartReqDTO userPartDTO);
+    void updatePartById(UserPartReqDTO userPartDTO);
 
 
     /**
@@ -41,7 +41,7 @@ public interface UserService extends BaseService<UserDTO, UserParam, UserVO, Lon
      * @param userName 用户名称
      * @return MbsUserVO
      */
-    UserResDTO findUserAndMenuPermissionsByUserName(String userName);
+    UserResDTO readUserAndMenuPermissionsByUserName(String userName);
 
 
     /**
@@ -51,7 +51,7 @@ public interface UserService extends BaseService<UserDTO, UserParam, UserVO, Lon
      * @param menuParentId 菜单父级id
      * @return List<MenuTreeVO>
      */
-    List<MenuResDTO> findMenuTreeByUserNameAndMenuParentId(String userName, Long menuParentId);
+    List<MenuResDTO> readMenuTreeByUserNameAndMenuParentId(String userName, Long menuParentId);
 
     /**
      * 按照用户id和用户名称查询权限
@@ -60,7 +60,7 @@ public interface UserService extends BaseService<UserDTO, UserParam, UserVO, Lon
      * @param userName 用户名称
      * @return List<String>
      */
-    List<String> findMenuPermissionsByUserIdAndUserName(Long userId, String userName);
+    List<String> readMenuPermissionsByUserIdAndUserName(Long userId, String userName);
 
 
 }

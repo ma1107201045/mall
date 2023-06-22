@@ -132,7 +132,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void editPartById(UserPartReqDTO userPartDTO) {
+    public void updatePartById(UserPartReqDTO userPartDTO) {
         UserVO userVO = userMapper.selectById(userPartDTO.getId());
 
         AssertUtil.notNull(userVO, SystemFailEnum.USER_NULL_ERROR);
@@ -146,7 +146,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResDTO findUserAndMenuPermissionsByUserName(String userName) {
+    public UserResDTO readUserAndMenuPermissionsByUserName(String userName) {
         UserResDTO userResDTO = userMapper.selectByUserName(userName);
         if (ObjUtil.isNull(userResDTO)) {
             return userResDTO;
@@ -158,7 +158,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public List<MenuResDTO> findMenuTreeByUserNameAndMenuParentId(String userName, Long menuParentId) {
+    public List<MenuResDTO> readMenuTreeByUserNameAndMenuParentId(String userName, Long menuParentId) {
         List<MenuResDTO> menuResDTOList;
         List<Integer> menuTypes = CollUtil.newArrayList(MenuTypeEnum.DIRECTORY.getCode(), MenuTypeEnum.MENU.getCode());
         if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
@@ -166,12 +166,12 @@ public class UserServiceImpl implements UserService {
         } else {
             menuResDTOList = menuService.findListByTypesAndParentId(menuTypes, menuParentId);
         }
-        menuResDTOList.forEach(menuResDTO -> menuResDTO.setChildren(findMenuTreeByUserNameAndMenuParentId(userName, menuResDTO.getId())));
+        menuResDTOList.forEach(menuResDTO -> menuResDTO.setChildren(readMenuTreeByUserNameAndMenuParentId(userName, menuResDTO.getId())));
         return menuResDTOList;
     }
 
     @Override
-    public List<String> findMenuPermissionsByUserIdAndUserName(Long userId, String userName) {
+    public List<String> readMenuPermissionsByUserIdAndUserName(Long userId, String userName) {
         Integer type = MenuTypeEnum.BUTTON.getCode();
         if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
             return userMapper.selectMenuPermissionsByUserIdAndMenuType(userId, type);

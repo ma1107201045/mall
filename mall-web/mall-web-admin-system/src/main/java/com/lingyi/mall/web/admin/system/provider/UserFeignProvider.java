@@ -31,28 +31,28 @@ public class UserFeignProvider implements UserFeign {
     @Override
     public ServerResponse<Void> updatePartById(Long id, UserPartReqDTO userPartReqDTO) {
         userPartReqDTO.setId(id);
-        userService.editPartById(userPartReqDTO);
+        userService.updatePartById(userPartReqDTO);
         return ServerResponse.success();
     }
 
     @Operation(summary = "查询用户和权限标识", description = "查询用户和权限标识")
     @Override
     public ServerResponse<UserResDTO> getUserAndMenuPermissionsByUserName(String userName) {
-        UserResDTO userResDTO = userService.findUserAndMenuPermissionsByUserName(userName);
+        UserResDTO userResDTO = userService.readUserAndMenuPermissionsByUserName(userName);
         return ServerResponse.success(userResDTO);
     }
 
     @Operation(summary = "查询菜单树", description = "查询菜单树")
     @Override
     public ServerResponse<List<MenuResDTO>> getMenuTreeByUserName(String userName) {
-        List<MenuResDTO> menuResDTOList = userService.findMenuTreeByUserNameAndMenuParentId(userName, SystemConstant.MENU_ROOT_ID);
+        List<MenuResDTO> menuResDTOList = userService.readMenuTreeByUserNameAndMenuParentId(userName, SystemConstant.MENU_ROOT_ID);
         return ServerResponse.success(menuResDTOList);
     }
 
     @Operation(summary = "查询菜单树", description = "查询菜单树")
     @Override
     public ServerResponse<List<String>> getMenuPermissionsByUserIdAndUserName(Long userId, String userName) {
-        List<String> permissions = userService.findMenuPermissionsByUserIdAndUserName(userId, userName);
+        List<String> permissions = userService.readMenuPermissionsByUserIdAndUserName(userId, userName);
         return ServerResponse.success(permissions);
     }
 }
