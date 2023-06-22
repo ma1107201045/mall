@@ -1,7 +1,6 @@
 
 package com.lingyi.mall.biz.system.vo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -9,6 +8,7 @@ import lombok.Data;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -64,14 +64,12 @@ public class UserVO implements Serializable {
     private String createBy;
 
     @Schema(description = "创建时间")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createDateTime;
 
     @Schema(description = "最后一次更新人")
     private String lastModifyBy;
 
     @Schema(description = "最后一次更新时间")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime lastModifyDateTime;
 
     @Schema(description = "是否删除 1是 0否")
