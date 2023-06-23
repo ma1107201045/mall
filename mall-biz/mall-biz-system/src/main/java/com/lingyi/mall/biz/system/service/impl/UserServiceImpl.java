@@ -151,7 +151,7 @@ public class UserServiceImpl implements UserService {
         if (ObjUtil.isNull(userResDTO)) {
             return userResDTO;
         }
-        List<String> permissions = findMenuPermissionsByUserIdAndUserName(userResDTO.getUserId(), userName);
+        List<String> permissions = readMenuPermissionsByUserIdAndUserName(userResDTO.getUserId(), userName);
         userResDTO.setPermissions(permissions);
         return userResDTO;
     }

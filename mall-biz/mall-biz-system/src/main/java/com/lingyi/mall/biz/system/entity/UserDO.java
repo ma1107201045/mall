@@ -19,7 +19,6 @@ import java.util.List;
  * @datetime 2023/4/30 22:43
  * @description 系统管理-用户表
  */
-@Schema(description = "用户")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
