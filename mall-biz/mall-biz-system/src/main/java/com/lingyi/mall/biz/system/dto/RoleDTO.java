@@ -36,6 +36,7 @@ public class RoleDTO implements Serializable {
     private Integer isEnable;
 
     @Schema(description = "角色顺序")
+    @NotNull(message = "角色顺序不能为空")
     private Integer sort;
 
     @Schema(description = "备注")

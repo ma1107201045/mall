@@ -37,9 +37,9 @@ public interface MenuService extends BaseService<MenuDTO, MenuParam, MenuVO, Lon
     /**
      * 按照菜单类型集和菜单上级id查询
      *
-     * @param types    菜单类型集
      * @param parentId 菜单父级id
+     * @param types    菜单类型集
      * @return List<MenuTreeVO>
      */
-    List<MenuResDTO> readListByTypesAndParentId(List<Integer> types, Long parentId);
+    List<MenuResDTO> readListByParentIdAndTypes(Long parentId, List<Integer> types);
 }

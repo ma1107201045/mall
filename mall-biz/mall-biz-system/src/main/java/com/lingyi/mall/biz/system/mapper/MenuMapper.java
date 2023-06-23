@@ -72,10 +72,10 @@ public interface MenuMapper {
     /**
      * 按照类型集和父级id查询
      *
+     * @param parentId 父级id
      * @param types    按钮类型集
-     * @param parentId 父级菜单id
      * @return List<MenuTreeVO>
      */
-    List<MenuResDTO> selectListByTypesAndParentId(@Param("types") List<Integer> types, @Param("parentId") Long parentId);
+    List<MenuResDTO> selectListByParentIdAndTypes(@Param("parentId") Long parentId, @Param("types") List<Integer> types);
 
 }

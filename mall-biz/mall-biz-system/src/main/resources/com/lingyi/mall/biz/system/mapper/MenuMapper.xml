@@ -69,15 +69,15 @@
         WHERE type = #{type}
     </select>
 
-    <select id="selectListByTypesAndParentId"
+    <select id="selectListByParentIdAndTypes"
             resultMap="com.lingyi.mall.biz.system.mapper.UserMapper.SelectMenusByUserNameAndMenuTypesAndMenuParentIdMap">
         SELECT id, name,type, icon, route_name,route_path
         FROM ms_menu
-        WHERE type IN
+        WHERE parent_id = #{parentId}
+        AND type IN
         <foreach collection="types" item="type" open="(" separator="," close=")">
             #{type}
         </foreach>
-        AND parent_id = #{parentId}
         ORDER BY sort
     </select>
 

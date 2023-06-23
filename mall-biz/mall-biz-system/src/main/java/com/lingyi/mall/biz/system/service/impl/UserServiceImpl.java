@@ -156,6 +156,14 @@ public class UserServiceImpl implements UserService {
         return userResDTO;
     }
 
+    @Override
+    public List<String> readMenuPermissionsByUserIdAndUserName(Long userId, String userName) {
+        Integer type = MenuTypeEnum.BUTTON.getCode();
+        if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
+            return userMapper.selectMenuPermissionsByUserIdAndMenuType(userId, type);
+        }
+        return menuService.readPermissionsByType(type);
+    }
 
     @Override
     public List<MenuResDTO> readMenuTreeByUserNameAndMenuParentId(String userName, Long menuParentId) {
@@ -164,19 +172,10 @@ public class UserServiceImpl implements UserService {
         if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
             menuResDTOList = userMapper.selectMenusByUserNameAndMenuTypesAndMenuParentId(userName, menuTypes, menuParentId);
         } else {
-            menuResDTOList = menuService.readListByTypesAndParentId(menuTypes, menuParentId);
+            menuResDTOList = menuService.readListByParentIdAndTypes(menuParentId, menuTypes);
         }
         menuResDTOList.forEach(menuResDTO -> menuResDTO.setChildren(readMenuTreeByUserNameAndMenuParentId(userName, menuResDTO.getId())));
         return menuResDTOList;
-    }
-
-    @Override
-    public List<String> readMenuPermissionsByUserIdAndUserName(Long userId, String userName) {
-        Integer type = MenuTypeEnum.BUTTON.getCode();
-        if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
-            return userMapper.selectMenuPermissionsByUserIdAndMenuType(userId, type);
-        }
-        return menuService.readPermissionsByType(type);
     }
 
 

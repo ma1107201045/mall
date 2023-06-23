@@ -92,8 +92,8 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public List<MenuResDTO> readListByTypesAndParentId(List<Integer> types, Long parentId) {
-        return menuMapper.selectListByTypesAndParentId(types, parentId);
+    public List<MenuResDTO> readListByParentIdAndTypes(Long parentId, List<Integer> types) {
+        return menuMapper.selectListByParentIdAndTypes(parentId, types);
     }
 
 

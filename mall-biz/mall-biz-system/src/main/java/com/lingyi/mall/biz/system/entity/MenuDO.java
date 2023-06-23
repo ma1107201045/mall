@@ -41,7 +41,7 @@ public class MenuDO extends BaseCommonDO implements Serializable {
     @Column(name = "icon", columnDefinition = "VARCHAR(50) DEFAULT '' COMMENT '菜单图标'")
     private String icon;
 
-    @Column(name = "sort", columnDefinition = "INT(11) UNSIGNED DEFAULT '0' COMMENT '菜单顺序'")
+    @Column(name = "sort", columnDefinition = "INT(11) UNSIGNED NOT NULL COMMENT '菜单顺序'")
     private Integer sort;
 
     @Column(name = "is_enable", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '是否启用 1 是 0 否'")
