@@ -36,12 +36,13 @@ public class RoleDTO implements Serializable {
     private Integer isEnable;
 
     @Schema(description = "角色顺序")
-    @NotNull(message = "角色顺序不能为空")
     private Integer sort;
 
     @Schema(description = "备注")
     private String remark;
 
     @Schema(description = "菜单id集")
+    @NotNull(message = "菜单id集不能为空")
+    @Size(min = 1, message = "菜单id集不能为空")
     private List<Long> menuIds;
 }

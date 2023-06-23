@@ -3,9 +3,12 @@ package com.lingyi.mall.web.admin.system.controller;
 import com.github.pagehelper.Page;
 import com.lingyi.mall.biz.system.dto.RoleDTO;
 import com.lingyi.mall.biz.system.param.RoleParam;
+import com.lingyi.mall.biz.system.vo.MenuVO;
 import com.lingyi.mall.biz.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.service.RoleService;
 import com.lingyi.mall.biz.system.vo.UserVO;
+import com.lingyi.mall.common.base.aspect.Log;
+import com.lingyi.mall.common.base.enums.OperationTypeEnum;
 import com.lingyi.mall.common.base.param.BasePageParam;
 import com.lingyi.mall.common.base.util.PageUtil;
 import com.lingyi.mall.common.util.ServerResponse;
@@ -72,5 +75,14 @@ public class RoleController {
         Page<RoleVO> page = PageUtil.startPage(basePageParam);
         List<RoleVO> roles = roleService.readListByParam(roleParam);
         return ServerResponse.success(roles, page.getTotal());
+    }
+
+    @Operation(summary = "查询菜单树", description = "查询菜单树")
+    @GetMapping("/menu-tree")
+    @PreAuthorize("@ps.hasAnyAuthority('admin:system:roles:menus:getTree')")
+    @Log(title = "查询菜单树", operationType = OperationTypeEnum.READ)
+    public ServerResponse<List<MenuVO>> getMenuTree() {
+        List<MenuVO> menuTree = roleService.readMenuTree();
+        return ServerResponse.success(menuTree);
     }
 }

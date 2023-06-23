@@ -65,7 +65,7 @@ public class MenuController {
     @GetMapping
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:menus:getTree')")
     public ServerResponse<List<MenuVO>> getTree() {
-        List<MenuVO> menus = menuService.findTreeByParentId(SystemConstant.MENU_ROOT_ID);
+        List<MenuVO> menus = menuService.readTreeByParentId(SystemConstant.MENU_ROOT_ID);
         return ServerResponse.success(menus);
     }
 

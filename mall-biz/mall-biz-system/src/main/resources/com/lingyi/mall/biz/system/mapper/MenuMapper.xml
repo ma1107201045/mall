@@ -10,39 +10,24 @@
         <result column="sort" jdbcType="INTEGER" property="sort"/>
         <result column="remark" jdbcType="VARCHAR" property="remark"/>
         <result column="is_enable" jdbcType="TINYINT" property="isEnable"/>
-        <result column="path" jdbcType="VARCHAR" property="path"/>
+        <result column="route_name" jdbcType="VARCHAR" property="routeName"/>
+        <result column="route_path" jdbcType="VARCHAR" property="routePath"/>
         <result column="component_path" jdbcType="VARCHAR" property="componentPath"/>
-        <result column="component_name" jdbcType="VARCHAR" property="componentName"/>
         <result column="permission" jdbcType="VARCHAR" property="permission"/>
         <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
         <result column="create_date_time" jdbcType="TIMESTAMP" property="createDateTime"/>
         <result column="last_modify_by" jdbcType="VARCHAR" property="lastModifyBy"/>
         <result column="last_modify_date_time" jdbcType="TIMESTAMP" property="lastModifyDateTime"/>
-        <result column="is_delete" jdbcType="TINYINT" property="isDelete"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id, `name`, `type`, parent_id, icon, sort, remark, is_enable, `path`, component_path,
-    component_name, permission, create_by, create_date_time, last_modify_by, last_modify_date_time,
-    is_delete
+        id, `name`, `type`, parent_id, icon, sort, remark, is_enable, route_name, route_path,
+    component_path, permission, create_by, create_date_time, last_modify_by, last_modify_date_time
     </sql>
     <sql id="Base_Condition">
         <if test="name!=null and name!=''">
             AND name LIKE CONCAT('%',#{name,jdbcType=VARCHAR},'%')
         </if>
     </sql>
-    <select id="selectTypeById" resultType="java.lang.Integer">
-        SELECT type
-        FROM ms_menu
-        WHERE id = #{id}
-    </select>
-    <select id="selectIdsByParentIds" resultType="java.lang.Long">
-        SELECT id
-        FROM ms_menu
-        WHERE parent_id in
-        <foreach collection="parentIds" item="parentId" open="(" separator="," close=")">
-            #{parentId}
-        </foreach>
-    </select>
     <select id="selectById" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
@@ -62,10 +47,22 @@
         <include refid="Base_Column_List"/>
         FROM ms_menu
         WHERE
-        AND parent_id = #{parentId,jdbcType=BIGINT}
+        parent_id = #{parentId,jdbcType=BIGINT}
         ORDER BY sort
     </select>
-
+    <select id="selectTypeById" resultType="java.lang.Integer">
+        SELECT type
+        FROM ms_menu
+        WHERE id = #{id}
+    </select>
+    <select id="selectIdsByParentIds" resultType="java.lang.Long">
+        SELECT id
+        FROM ms_menu
+        WHERE parent_id in
+        <foreach collection="parentIds" item="parentId" open="(" separator="," close=")">
+            #{parentId}
+        </foreach>
+    </select>
     <select id="selectPermissionsByType" resultType="java.lang.String">
         SELECT permission
         FROM ms_menu

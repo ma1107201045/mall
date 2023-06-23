@@ -1,10 +1,13 @@
 package com.lingyi.mall.biz.system.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.lingyi.mall.biz.system.constant.SystemConstant;
 import com.lingyi.mall.biz.system.dto.RoleDTO;
 import com.lingyi.mall.biz.system.entity.RoleDO;
 import com.lingyi.mall.biz.system.enums.SystemFailEnum;
 import com.lingyi.mall.biz.system.param.RoleParam;
+import com.lingyi.mall.biz.system.service.MenuService;
+import com.lingyi.mall.biz.system.vo.MenuVO;
 import com.lingyi.mall.biz.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.mapper.RoleMapper;
 import com.lingyi.mall.biz.system.repository.RoleRepository;
@@ -35,6 +38,8 @@ public class RoleServiceImpl implements RoleService {
     private final RoleMapper roleMapper;
 
     private final RoleMenuService roleMenuService;
+
+    private final MenuService menuService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -86,4 +91,8 @@ public class RoleServiceImpl implements RoleService {
         return roleMapper.selectListByParam(roleParam);
     }
 
+    @Override
+    public List<MenuVO> readMenuTree() {
+        return menuService.readTreeByParentId(SystemConstant.MENU_ROOT_ID);
+    }
 }

@@ -24,7 +24,7 @@ public class MenuVO implements Serializable {
     private Long id;
 
     @Schema(description = "菜单名称")
-    private Long name;
+    private String name;
 
     @Schema(description = "菜单类型 1目录 2 菜单 3 按钮")
     private Integer type;
@@ -33,7 +33,7 @@ public class MenuVO implements Serializable {
     private Long parentId;
 
     @Schema(description = "菜单图标")
-    private Long icon;
+    private String icon;
 
     @Schema(description = "菜单顺序")
     private Integer sort;
@@ -47,8 +47,8 @@ public class MenuVO implements Serializable {
     @Schema(description = "路由地址")
     private String routePath;
 
-    @Schema(description = "组件名称")
-    private String componentName;
+    @Schema(description = "组件路径")
+    private String componentPath;
 
     @Schema(description = "按钮权限标识")
     private String permission;

@@ -15,8 +15,20 @@ import java.util.List;
 @Mapper
 public interface RoleMapper {
 
+    /**
+     * 按照主键id查询
+     *
+     * @param id 主键id
+     * @return RoleVO
+     */
     RoleVO selectById(Long id);
 
+    /**
+     * 按照参数集查询
+     *
+     * @param roleParam 参数集
+     * @return List<RoleVO>
+     */
     List<RoleVO> selectListByParam(RoleParam roleParam);
 
 

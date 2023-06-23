@@ -20,6 +20,9 @@ spring:
     url: jdbc:mysql://36.137.103.166:3306/mall-base?serverTimezone=GMT%2B8
     username: root
     password: TfbY820tfp3d31rb@
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 3
   data:
     redis:
       host: 36.137.103.166

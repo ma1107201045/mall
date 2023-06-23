@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.system.entity;
 
+import com.lingyi.mall.common.base.entity.BaseCommonDO;
 import com.lingyi.mall.common.base.entity.BaseIsDeleteDO;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -23,7 +24,7 @@ import java.util.List;
 @Entity
 @Table(name = "ms_role")
 @DynamicInsert
-public class RoleDO extends BaseIsDeleteDO implements Serializable {
+public class RoleDO extends BaseCommonDO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -5280755884593902334L;
@@ -31,7 +32,7 @@ public class RoleDO extends BaseIsDeleteDO implements Serializable {
     @Column(name = "name", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '角色名称'")
     private String name;
 
-    @Column(name = "sort", columnDefinition = "INT(11) DEFAULT NULL COMMENT '角色顺序'")
+    @Column(name = "sort", columnDefinition = "INT(11) DEFAULT '0' COMMENT '角色顺序'")
     private Integer sort;
 
     @Column(name = "is_enable", columnDefinition = "TINYINT(4) NOT NULL COMMENT '是否启用 1 是 0 否'")

@@ -1,6 +1,7 @@
 package com.lingyi.mall.biz.system.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.lingyi.mall.common.base.entity.BaseCommonDO;
 import com.lingyi.mall.common.base.entity.BaseIsDeleteDO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
@@ -25,7 +26,7 @@ import java.util.List;
 @Entity
 @Table(name = "ms_user", uniqueConstraints = @UniqueConstraint(name = "uk_user_name", columnNames = "user_name"))
 @DynamicInsert
-public class UserDO extends BaseIsDeleteDO implements Serializable {
+public class UserDO extends BaseCommonDO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 5771438753938667975L;

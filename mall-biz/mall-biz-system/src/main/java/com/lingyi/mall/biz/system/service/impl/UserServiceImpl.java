@@ -164,7 +164,7 @@ public class UserServiceImpl implements UserService {
         if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
             menuResDTOList = userMapper.selectMenusByUserNameAndMenuTypesAndMenuParentId(userName, menuTypes, menuParentId);
         } else {
-            menuResDTOList = menuService.findListByTypesAndParentId(menuTypes, menuParentId);
+            menuResDTOList = menuService.readListByTypesAndParentId(menuTypes, menuParentId);
         }
         menuResDTOList.forEach(menuResDTO -> menuResDTO.setChildren(readMenuTreeByUserNameAndMenuParentId(userName, menuResDTO.getId())));
         return menuResDTOList;
@@ -176,7 +176,7 @@ public class UserServiceImpl implements UserService {
         if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
             return userMapper.selectMenuPermissionsByUserIdAndMenuType(userId, type);
         }
-        return menuService.findPermissionsByType(type);
+        return menuService.readPermissionsByType(type);
     }
 
 

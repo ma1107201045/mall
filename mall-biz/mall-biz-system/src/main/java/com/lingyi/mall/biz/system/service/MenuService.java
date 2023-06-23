@@ -22,7 +22,8 @@ public interface MenuService extends BaseService<MenuDTO, MenuParam, MenuVO, Lon
      * @param parentId 父级id
      * @return List<MenuTreeVO>
      */
-    List<MenuVO> findTreeByParentId(Long parentId);
+    List<MenuVO> readTreeByParentId(Long parentId);
+
 
     /**
      * 按照菜单类型查询
@@ -30,7 +31,7 @@ public interface MenuService extends BaseService<MenuDTO, MenuParam, MenuVO, Lon
      * @param type 按钮类型
      * @return List<String>
      */
-    List<String> findPermissionsByType(Integer type);
+    List<String> readPermissionsByType(Integer type);
 
 
     /**
@@ -40,5 +41,5 @@ public interface MenuService extends BaseService<MenuDTO, MenuParam, MenuVO, Lon
      * @param parentId 菜单父级id
      * @return List<MenuTreeVO>
      */
-    List<MenuResDTO> findListByTypesAndParentId(List<Integer> types, Long parentId);
+    List<MenuResDTO> readListByTypesAndParentId(List<Integer> types, Long parentId);
 }

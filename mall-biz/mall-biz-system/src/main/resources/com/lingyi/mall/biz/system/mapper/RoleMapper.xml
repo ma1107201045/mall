@@ -11,27 +11,35 @@
         <result column="create_date_time" jdbcType="TIMESTAMP" property="createDateTime"/>
         <result column="last_modify_by" jdbcType="VARCHAR" property="lastModifyBy"/>
         <result column="last_modify_date_time" jdbcType="TIMESTAMP" property="lastModifyDateTime"/>
-        <result column="is_delete" jdbcType="TINYINT" property="isDelete"/>
+        <collection property="menuIds" ofType="java.lang.Long">
+            <result column="menu_id" jdbcType="BIGINT"/>
+        </collection>
     </resultMap>
     <sql id="Base_Column_List">
-        id, `name`, is_enable, sort, remark, create_by, create_date_time, last_modify_by,
-    last_modify_date_time, is_delete
+        mr.id, mr.`name`, mr.is_enable, mr.sort, mr.remark, mr.create_by, mr.create_date_time, mr.last_modify_by,
+    mr.last_modify_date_time,mrm.menu_id
     </sql>
     <sql id="Base_Condition">
+        AND mm.type = 3
         <if test="name!=null and name!=''">
-            AND `name` LIKE CONCAT('%',#{name,jdbcType=VARCHAR},'%')
+            AND mrm.`name` LIKE CONCAT('%',#{name,jdbcType=VARCHAR},'%')
         </if>
     </sql>
     <select id="selectById" resultMap="BaseResultMap">
-        select
+        SELECT
         <include refid="Base_Column_List"/>
-        from ms_role
-        where id = #{id,jdbcType=BIGINT}
+        FROM ms_role mr
+        LEFT JOIN ms_role_menu mrm ON mrm.role_id = mr.id
+        LEFT JOIN ms_menu mm ON mm.id = mrm.menu_id
+        WHERE mr.id = #{id,jdbcType=BIGINT}
+        AND mm.type = 3
     </select>
     <select id="selectListByParam" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM ms_role
+        FROM ms_role mr
+        LEFT JOIN ms_role_menu mrm ON mr.id  =mrm.role_id
+        LEFT JOIN ms_menu mm ON mm.id = mrm.menu_id
         <where>
             <include refid="Base_Condition"/>
         </where>

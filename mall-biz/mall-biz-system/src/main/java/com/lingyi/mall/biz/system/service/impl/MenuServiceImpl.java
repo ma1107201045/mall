@@ -75,25 +75,24 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public List<MenuVO> readListByParam(MenuParam menuQuery) {
-        return menuMapper.selectListByParam(menuQuery);
+    public List<MenuVO> readListByParam(MenuParam menuParam) {
+        return menuMapper.selectListByParam(menuParam);
     }
 
-
     @Override
-    public List<MenuVO> findTreeByParentId(Long parentId) {
+    public List<MenuVO> readTreeByParentId(Long parentId) {
         List<MenuVO> menus = menuMapper.selectListByParentId(parentId);
-        menus.forEach(menu -> menu.setChildren(findTreeByParentId(menu.getId())));
+        menus.forEach(menu -> menu.setChildren(readTreeByParentId(menu.getId())));
         return menus;
     }
 
     @Override
-    public List<String> findPermissionsByType(Integer type) {
+    public List<String> readPermissionsByType(Integer type) {
         return menuMapper.selectPermissionsByType(type);
     }
 
     @Override
-    public List<MenuResDTO> findListByTypesAndParentId(List<Integer> types, Long parentId) {
+    public List<MenuResDTO> readListByTypesAndParentId(List<Integer> types, Long parentId) {
         return menuMapper.selectListByTypesAndParentId(types, parentId);
     }
 

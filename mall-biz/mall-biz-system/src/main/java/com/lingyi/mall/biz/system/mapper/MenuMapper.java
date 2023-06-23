@@ -17,21 +17,6 @@ import java.util.List;
 @Mapper
 public interface MenuMapper {
 
-    /**
-     * 按照id查询菜单类型
-     *
-     * @param id id
-     * @return Integer
-     */
-    Integer selectTypeById(Long id);
-
-    /**
-     * 按照父级id查询id集合
-     *
-     * @param parentIds 父级id集
-     * @return List<Long>
-     */
-    List<Long> selectIdsByParentIds(List<Long> parentIds);
 
     /**
      * 按照id查询
@@ -49,6 +34,7 @@ public interface MenuMapper {
      */
     List<MenuVO> selectListByParam(MenuParam menuParam);
 
+
     /**
      * 按照父级id查询
      *
@@ -56,6 +42,23 @@ public interface MenuMapper {
      * @return List<MenuTreeVO>
      */
     List<MenuVO> selectListByParentId(Long parentId);
+
+
+    /**
+     * 按照id查询菜单类型
+     *
+     * @param id id
+     * @return Integer
+     */
+    Integer selectTypeById(Long id);
+
+    /**
+     * 按照父级id查询id集合
+     *
+     * @param parentIds 父级id集
+     * @return List<Long>
+     */
+    List<Long> selectIdsByParentIds(List<Long> parentIds);
 
     /**
      * 查询按钮权限标识集

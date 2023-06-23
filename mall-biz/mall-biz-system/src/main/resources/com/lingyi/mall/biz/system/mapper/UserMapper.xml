@@ -18,7 +18,6 @@
         <result column="create_date_time" jdbcType="TIMESTAMP" property="createDateTime"/>
         <result column="last_modify_by" jdbcType="VARCHAR" property="lastModifyBy"/>
         <result column="last_modify_date_time" jdbcType="TIMESTAMP" property="lastModifyDateTime"/>
-        <result column="is_delete" jdbcType="TINYINT" property="isDelete"/>
         <collection property="roleIds" ofType="java.lang.Long">
             <result column="role_id" jdbcType="BIGINT"/>
         </collection>
@@ -26,18 +25,18 @@
     <sql id="Base_Column_List">
         mu.id, mu.user_name, mu.real_name, mu.nickname, mu.sex, mu.`password`, mu.head_portrait, mu.email, mu.phone_number,
     mu.last_login_ip, mu.is_enable,mu. remark, mu.create_by, mu.create_date_time,
-    mu.last_modify_by, mu.last_modify_date_time, mu.is_delete,mur.role_id
+    mu.last_modify_by, mu.last_modify_date_time,mur.role_id
     </sql>
     <sql id="Base_Condition">
         <if test="userName!=null and userName!=''">
-            AND user_name LIKE CONCAT('%',#{userName,jdbcType=VARCHAR},'%')
+            AND mu.user_name LIKE CONCAT('%',#{userName,jdbcType=VARCHAR},'%')
         </if>
     </sql>
     <select id="selectById" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
         FROM ms_user mu LEFT JOIN ms_user_role mur ON mu.id =mur.user_id
-        WHERE mu.id=#{id,jdbcType=BIGINT}
+        WHERE mu.id= #{id,jdbcType=BIGINT}
     </select>
 
     <select id="selectListByParam" resultMap="BaseResultMap">
@@ -97,18 +96,18 @@
     </select>
     <select id="selectMenusByUserNameAndMenuTypesAndMenuParentId"
             resultMap="SelectMenusByUserNameAndMenuTypesAndMenuParentIdMap">
-        SELECT mm.id mm.name,mm.type, mm.icon ,mm.route_name,mm.route_path
-        FROM ms_user mu INNER JOIN
-        ms_user_role mur ON mur.user_id=mu.id
+        SELECT mm.id, mm.name, mm.type, mm.icon, mm.route_name, mm.route_path
+        FROM ms_user mu INNER JOIN ms_user_role mur ON mur.user_id = mu.id
         INNER JOIN ms_role_menu mrm ON mrm.menu_id = mur.role_id
         INNER JOIN ms_menu mm ON mm.id = mrm.menu_id
-        WHERE mm.type IN
+        WHERE
+        mu.user_name = #{userName}
+        AND mm.type IN
         <foreach collection="menuTypes" item="menuType" open="(" separator="," close=")">
             #{menuType}
         </foreach>
-        AND mm.parent_id = #{parentId}
-        AND mu.user_name = #{userName}
-        ORDER BY mm.sort
+        AND mm.parent_id = #{menuParentId}
         GROUP BY mm.id
+        ORDER BY mm.sort
     </select>
 </mapper>
