@@ -16,13 +16,16 @@ import com.lingyi.mall.common.base.exception.BizException;
 import com.lingyi.mall.common.base.param.BasePageParam;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.util.ConverterUtil;
+import com.lingyi.mall.common.util.ObjectUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @Author: maweiyan
@@ -82,9 +85,26 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public List<MenuVO> readTreeByParentId(Long parentId) {
         List<MenuVO> menus = menuMapper.selectListByParentId(parentId);
-        menus.forEach(menu -> menu.setChildren(readTreeByParentId(menu.getId())));
+        menus.forEach(menuVO -> menuVO.setChildren(readTreeByParentId(menuVO.getId())));
         return menus;
     }
+
+    @Override
+    public List<MenuVO> readTreeByParentIdV2(Long parentId) {
+        List<MenuVO> menuVOList = menuMapper.selectListByParam(ObjectUtil.newInstance(MenuParam.class));
+        return readTreeByParentIdV3(parentId, menuVOList);
+    }
+
+    @Override
+    public List<MenuVO> readTreeByParentIdV3(Long parentId, List<MenuVO> menuVOList) {
+        List<MenuVO> menus = menuVOList.stream()
+                .filter(menuVO -> menuVO.getParentId().equals(parentId))
+                .sorted(Comparator.comparing(MenuVO::getSort))
+                .toList();
+        menus.forEach(menuVO -> menuVO.setChildren(readTreeByParentIdV3(menuVO.getId(), menuVOList)));
+        return menus;
+    }
+
 
     @Override
     public List<String> readPermissionsByType(Integer type) {
@@ -132,5 +152,6 @@ public class MenuServiceImpl implements MenuService {
         }
         return menuDO;
     }
-
 }
+
+

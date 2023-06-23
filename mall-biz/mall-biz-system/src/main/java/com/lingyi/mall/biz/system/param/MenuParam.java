@@ -17,5 +17,8 @@ import java.io.Serializable;
 public class MenuParam implements Serializable {
     @Serial
     private static final long serialVersionUID = -2617029654030868799L;
+    
+    @Schema(description = "菜单名称")
+    private String name;
 
 }

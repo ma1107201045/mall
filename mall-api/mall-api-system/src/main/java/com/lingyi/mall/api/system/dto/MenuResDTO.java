@@ -24,14 +24,14 @@ public class MenuResDTO implements Serializable {
     @Schema(description = "菜单id")
     private Long id;
 
+    @Schema(description = "父级菜单id")
+    private Long parentId;
+
     @Schema(description = "菜单名称")
     private String name;
 
     @Schema(description = "菜单类型 1目录 2 菜单 3 按钮")
     private Integer type;
-
-    @Schema(description = "父级菜单id")
-    private Long parentId;
 
     @Schema(description = "菜单图标")
     private String icon;
@@ -69,8 +69,6 @@ public class MenuResDTO implements Serializable {
     @Schema(description = "最后一次更新时间")
     private LocalDateTime lastModifyDateTime;
 
-    @Schema(description = "是否删除 1是 0否")
-    private Integer isDelete;
 
     @Schema(description = "菜单子级")
     private List<MenuResDTO> children;

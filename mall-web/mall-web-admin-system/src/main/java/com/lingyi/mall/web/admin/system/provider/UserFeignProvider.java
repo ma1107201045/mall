@@ -45,11 +45,11 @@ public class UserFeignProvider implements UserFeign {
     @Operation(summary = "查询菜单树", description = "查询菜单树")
     @Override
     public ServerResponse<List<MenuResDTO>> getMenuTreeByUserName(String userName) {
-        List<MenuResDTO> menuResDTOList = userService.readMenuTreeByUserNameAndMenuParentId(userName, SystemConstant.MENU_ROOT_ID);
+        List<MenuResDTO> menuResDTOList = userService.readMenuTreeByUserNameAndMenuParentIdv2(userName, SystemConstant.MENU_ROOT_ID);
         return ServerResponse.success(menuResDTOList);
     }
 
-    @Operation(summary = "查询菜单树", description = "查询菜单树")
+    @Operation(summary = "查询权限集", description = "查询权限集")
     @Override
     public ServerResponse<List<String>> getMenuPermissionsByUserIdAndUserName(Long userId, String userName) {
         List<String> permissions = userService.readMenuPermissionsByUserIdAndUserName(userId, userName);

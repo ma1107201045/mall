@@ -71,7 +71,7 @@ public interface UserMapper {
      * @param menuParentId 菜单父级id
      * @return List<MenuTreeVO>
      */
-    List<MenuResDTO> selectMenusByUserNameAndMenuTypesAndMenuParentId(@Param("userName") String userName, @Param("menuTypes") List<Integer> menuTypes, @Param("menuParentId") Long menuParentId);
+    List<MenuResDTO> selectMenusByUserNameAndMenuParentIdAndMenuTypes(@Param("userName") String userName, @Param("menuParentId") Long menuParentId, @Param("menuTypes") List<Integer> menuTypes);
 
 
 }

@@ -52,6 +52,8 @@ public interface UserFeign {
 
 
     /**
+     * 按照用户id和用户名称查询权限集
+     *
      * @param userId   用户id
      * @param userName 用户名称
      * @return 权限标识集

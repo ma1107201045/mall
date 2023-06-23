@@ -17,13 +17,29 @@ import java.util.List;
 public interface MenuService extends BaseService<MenuDTO, MenuParam, MenuVO, Long> {
 
     /**
-     * 通过父级id查询
+     * 通过父级id查询菜单树
      *
      * @param parentId 父级id
-     * @return List<MenuTreeVO>
+     * @return List<MenuVO>
      */
     List<MenuVO> readTreeByParentId(Long parentId);
 
+    /**
+     * 通过父级id查询菜单树
+     *
+     * @param parentId 父级id
+     * @return List<MenuVO>
+     */
+    List<MenuVO> readTreeByParentIdV2(Long parentId);
+
+    /**
+     * 通过父级id查询菜单树
+     *
+     * @param parentId   父级id
+     * @param menuVOList 按钮菜单集
+     * @return List<MenuVO>
+     */
+    List<MenuVO> readTreeByParentIdV3(Long parentId, List<MenuVO> menuVOList);
 
     /**
      * 按照菜单类型查询

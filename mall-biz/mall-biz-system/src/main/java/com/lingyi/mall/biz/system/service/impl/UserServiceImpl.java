@@ -18,6 +18,7 @@ import com.lingyi.mall.biz.system.service.MenuService;
 import com.lingyi.mall.biz.system.service.RoleService;
 import com.lingyi.mall.biz.system.service.UserRoleService;
 import com.lingyi.mall.biz.system.service.UserService;
+import com.lingyi.mall.biz.system.vo.MenuVO;
 import com.lingyi.mall.biz.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.vo.UserVO;
 import com.lingyi.mall.common.base.exception.BizException;
@@ -30,10 +31,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * @Author: maweiyan
@@ -157,6 +155,42 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<MenuResDTO> readMenuListByUserNameAndMenuParentId(String userName, Long menuParentId) {
+        List<MenuResDTO> menuResDTOList;
+        List<Integer> menuTypes = CollUtil.newArrayList(MenuTypeEnum.DIRECTORY.getCode(), MenuTypeEnum.MENU.getCode());
+        if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
+            menuResDTOList = userMapper.selectMenusByUserNameAndMenuParentIdAndMenuTypes(userName, menuParentId, menuTypes);
+        } else {
+            menuResDTOList = menuService.readListByParentIdAndTypes(menuParentId, menuTypes);
+        }
+        return menuResDTOList;
+    }
+
+
+    @Override
+    public List<MenuResDTO> readMenuTreeByUserNameAndMenuParentId(String userName, Long menuParentId) {
+        List<MenuResDTO> menuResDTOList = readMenuListByUserNameAndMenuParentId(userName, menuParentId);
+        menuResDTOList.forEach(menuResDTO -> menuResDTO.setChildren(readMenuTreeByUserNameAndMenuParentId(userName, menuResDTO.getId())));
+        return menuResDTOList;
+    }
+
+    @Override
+    public List<MenuResDTO> readMenuTreeByUserNameAndMenuParentIdv2(String userName, Long menuParentId) {
+        List<MenuResDTO> menuResDTOList = readMenuListByUserNameAndMenuParentId(userName, ObjectUtil.getNull());
+        return readMenuTreeByUserNameAndMenuParentIdv3(menuParentId, menuResDTOList);
+    }
+
+    @Override
+    public List<MenuResDTO> readMenuTreeByUserNameAndMenuParentIdv3(Long menuParentId, List<MenuResDTO> menuResDTOList) {
+        List<MenuResDTO> menus = menuResDTOList.stream()
+                .filter(menuVO -> menuVO.getParentId().equals(menuParentId))
+                .sorted(Comparator.comparing(MenuResDTO::getSort))
+                .toList();
+        menus.forEach(menuVO -> menuVO.setChildren(readMenuTreeByUserNameAndMenuParentIdv3(menuVO.getId(), menuResDTOList)));
+        return menus;
+    }
+
+    @Override
     public List<String> readMenuPermissionsByUserIdAndUserName(Long userId, String userName) {
         Integer type = MenuTypeEnum.BUTTON.getCode();
         if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
@@ -164,19 +198,5 @@ public class UserServiceImpl implements UserService {
         }
         return menuService.readPermissionsByType(type);
     }
-
-    @Override
-    public List<MenuResDTO> readMenuTreeByUserNameAndMenuParentId(String userName, Long menuParentId) {
-        List<MenuResDTO> menuResDTOList;
-        List<Integer> menuTypes = CollUtil.newArrayList(MenuTypeEnum.DIRECTORY.getCode(), MenuTypeEnum.MENU.getCode());
-        if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
-            menuResDTOList = userMapper.selectMenusByUserNameAndMenuTypesAndMenuParentId(userName, menuTypes, menuParentId);
-        } else {
-            menuResDTOList = menuService.readListByParentIdAndTypes(menuParentId, menuTypes);
-        }
-        menuResDTOList.forEach(menuResDTO -> menuResDTO.setChildren(readMenuTreeByUserNameAndMenuParentId(userName, menuResDTO.getId())));
-        return menuResDTOList;
-    }
-
 
 }

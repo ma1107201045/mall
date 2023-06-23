@@ -2,8 +2,10 @@ package com.lingyi.mall.web.admin.system.controller;
 
 import com.lingyi.mall.biz.system.constant.SystemConstant;
 import com.lingyi.mall.biz.system.dto.MenuDTO;
+import com.lingyi.mall.biz.system.param.MenuParam;
 import com.lingyi.mall.biz.system.vo.MenuVO;
 import com.lingyi.mall.biz.system.service.MenuService;
+import com.lingyi.mall.common.util.ObjectUtil;
 import com.lingyi.mall.common.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -65,7 +67,7 @@ public class MenuController {
     @GetMapping
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:menus:getTree')")
     public ServerResponse<List<MenuVO>> getTree() {
-        List<MenuVO> menus = menuService.readTreeByParentId(SystemConstant.MENU_ROOT_ID);
+        List<MenuVO> menus = menuService.readTreeByParentIdV2(SystemConstant.MENU_ROOT_ID);
         return ServerResponse.success(menus);
     }
 
