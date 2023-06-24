@@ -110,10 +110,10 @@ public class UserServiceImpl implements UserService {
 
         //校验用户名称是否相同
         Long newId = userMapper.selectIdByUserName(userDTO.getUserName());
-        boolean result = Objects.nonNull(optional.get().getId()) && !Objects.equals(id, newId);
+        boolean flag = Objects.nonNull(optional.get().getId()) && !Objects.equals(id, newId);
 
         //判断用户名称不存在
-        AssertUtil.isFalse(result, SystemFailEnum.USER_NAME_EXIST_ERROR);
+        AssertUtil.isFalse(flag, SystemFailEnum.USER_NAME_EXIST_ERROR);
         //密码加密
         String encodePassword = passwordEncoder.encode(userDTO.getPassword());
         //设置加密密码
@@ -172,7 +172,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<MenuResDTO> readMenuListByUserNameAndMenuParentId(String userName, Long menuParentId) {
         List<MenuResDTO> menuResDTOList;
-        List<Integer> menuTypes = CollUtil.newArrayList(MenuTypeEnum.DIRECTORY.getCode(), MenuTypeEnum.MENU.getCode());
+        List<Integer> menuTypes =   Arrays.asList(MenuTypeEnum.DIRECTORY.getCode(), MenuTypeEnum.MENU.getCode());
         if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
             menuResDTOList = userMapper.selectMenusByUserNameAndMenuParentIdAndMenuTypes(userName, menuParentId, menuTypes);
         } else {

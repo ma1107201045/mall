@@ -50,11 +50,11 @@ public class ServerResponse<T> implements Serializable {
     }
 
     public static <T> ServerResponse<T> success() {
-        return success(null);
+        return success(ObjectUtil.getNull());
     }
 
     public static <T> ServerResponse<T> fail(Integer code, String message) {
-        return new ServerResponse<>(false, code, message, null, 0L);
+        return new ServerResponse<>(false, code, message, ObjectUtil.getNull(), 0L);
     }
 
 
