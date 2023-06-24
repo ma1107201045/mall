@@ -56,8 +56,12 @@ public final class AssertUtil {
         isTrue(number > 0, failEnum);
     }
 
+    public static void isQqZero(int number, BaseFailEnum failEnum) {
+        isTrue(number == 0, failEnum);
+    }
+
     public static void isLtZero(int number, BaseFailEnum failEnum) {
-        isFalse(number < 0, failEnum);
+        isTrue(number < 0, failEnum);
     }
 
     public static <T extends CharSequence> T isEmpty(T t, BaseFailEnum failEnum) {

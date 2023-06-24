@@ -26,7 +26,13 @@ import com.lingyi.mall.common.base.param.BasePageParam;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.util.ConverterUtil;
 import com.lingyi.mall.common.util.ObjectUtil;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -77,6 +83,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteByIds(List<Long> ids) {
+        long count = userRepository.count(new Specification<UserDO>() {
+            @Override
+            public Predicate toPredicate(Root<UserDO> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+                //todo 条件查询
+                return null;
+
+            }
+        });
+        AssertUtil.isLtZero((int) count, SystemFailEnum.USER_NAME_ADMIN_DELETE_ERROR);
         userRepository.deleteAllById(ids);
     }
 
