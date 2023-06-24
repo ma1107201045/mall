@@ -20,6 +20,6 @@ public interface UserRoleRepository extends JpaRepositoryImplementation<UserRole
      * @param userId 用户id
      */
     @Modifying
-    @Query("DELETE FROM UserRoleDO WHERE userDO.id=?1")
+    @Query("DELETE FROM UserRoleDO WHERE userDO.id = ?1")
     void deleteByUserId(Long userId);
 }
