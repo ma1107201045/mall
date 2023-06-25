@@ -80,7 +80,7 @@
     <select id="selectMenuPermissionsByUserIdAndMenuType" resultType="java.lang.String">
         SELECT mm.permission
         FROM ms_user_role mur
-                 INNER JOIN ms_role_menu mrm ON mrm.menu_id = mur.role_id
+                 INNER JOIN ms_role_menu mrm ON mrm.role_id = mur.role_id
                  INNER JOIN ms_menu mm ON mm.id = mrm.menu_id
         WHERE mur.user_id = #{userId}
           AND mm.type = #{menuType}
@@ -102,7 +102,7 @@
             resultMap="SelectMenusByUserNameAndMenuParentIdAndMenuTypesMap">
         SELECT mm.id,mm.parent_id, mm.name, mm.type, mm.icon, mm.sort, mm.route_name, mm.route_path
         FROM ms_user mu INNER JOIN ms_user_role mur ON mur.user_id = mu.id
-        INNER JOIN ms_role_menu mrm ON mrm.menu_id = mur.role_id
+        INNER JOIN ms_role_menu mrm ON mrm.role_id = mur.role_id
         INNER JOIN ms_menu mm ON mm.id = mrm.menu_id
         <where>
             mu.user_name = #{userName}

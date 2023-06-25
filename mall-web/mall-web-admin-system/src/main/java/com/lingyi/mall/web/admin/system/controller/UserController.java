@@ -47,7 +47,7 @@ public class UserController {
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:delete')")
-    @Log(title = "删除用户", operationType = OperationTypeEnum.DELETE)
+    @Log(title = "删除/批量删除用户", operationType = OperationTypeEnum.DELETE)
     public ServerResponse<Void> deleteByIds(@PathVariable List<Long> ids) {
         userService.deleteByIds(ids);
         return ServerResponse.success();
@@ -76,7 +76,7 @@ public class UserController {
     @GetMapping
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:getList')")
     @Log(title = "查询用户列表", operationType = OperationTypeEnum.READ)
-    public ServerResponse<List<UserVO>> getListByPageAndQuery(@Valid BasePageParam basePageParam, @Valid UserParam userParam) {
+    public ServerResponse<List<UserVO>> getListByPageAndParam(@Valid BasePageParam basePageParam, @Valid UserParam userParam) {
         Page<UserVO> page = PageUtil.startPage(basePageParam);
         List<UserVO> users = userService.readListByParam(userParam);
         return ServerResponse.success(users, page.getTotal());
