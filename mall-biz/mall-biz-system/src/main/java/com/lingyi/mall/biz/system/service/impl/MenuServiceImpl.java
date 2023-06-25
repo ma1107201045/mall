@@ -5,15 +5,14 @@ import com.lingyi.mall.api.system.dto.MenuResDTO;
 import com.lingyi.mall.biz.system.constant.SystemConstant;
 import com.lingyi.mall.biz.system.dto.MenuDTO;
 import com.lingyi.mall.biz.system.entity.MenuDO;
-import com.lingyi.mall.biz.system.enums.SystemFailEnum;
 import com.lingyi.mall.biz.system.enums.MenuTypeEnum;
-import com.lingyi.mall.biz.system.param.MenuParam;
-import com.lingyi.mall.biz.system.vo.MenuVO;
+import com.lingyi.mall.biz.system.enums.SystemFailEnum;
 import com.lingyi.mall.biz.system.mapper.MenuMapper;
+import com.lingyi.mall.biz.system.param.MenuParam;
 import com.lingyi.mall.biz.system.repository.MenuRepository;
 import com.lingyi.mall.biz.system.service.MenuService;
+import com.lingyi.mall.biz.system.vo.MenuVO;
 import com.lingyi.mall.common.base.exception.BizException;
-import com.lingyi.mall.common.base.param.BasePageParam;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.util.ConverterUtil;
 import com.lingyi.mall.common.util.ObjectUtil;
@@ -25,7 +24,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * @Author: maweiyan
