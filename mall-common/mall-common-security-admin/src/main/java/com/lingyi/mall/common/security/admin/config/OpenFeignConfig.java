@@ -40,6 +40,8 @@ public class OpenFeignConfig {
     @NonNull
     public RequestInterceptor requestInterceptor() {
         return requestTemplate -> {
+            // 将trackId 同步到新的请求的请求头中
+            requestTemplate.header(BaseConstant.TRACK_ID_NAME, MDC.get(BaseConstant.TRACK_ID_NAME));
             // 获取原请求属性
             ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
             //判空
@@ -60,8 +62,7 @@ public class OpenFeignConfig {
                 // 将cookie同步到新的请求的请求头中
                 requestTemplate.header(SecurityAdminConstant.COOKIE, CollUtil.join(cookieList, BaseConstant.SEMICOLON_CHAR));
             }
-            // 将trackId 同步到新的请求的请求头中
-            requestTemplate.header(BaseConstant.TRACK_ID_NAME, MDC.get(BaseConstant.TRACK_ID_NAME));
+
         };
 
     }

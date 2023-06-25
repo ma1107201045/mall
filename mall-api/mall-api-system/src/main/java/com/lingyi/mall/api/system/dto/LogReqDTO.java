@@ -66,4 +66,7 @@ public class LogReqDTO implements Serializable {
      * 备注
      */
     private String remark;
+
+
+    private String trackId;
 }

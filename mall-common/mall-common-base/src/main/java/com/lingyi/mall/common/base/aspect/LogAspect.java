@@ -6,6 +6,7 @@ import cn.hutool.core.date.StopWatch;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
 import com.lingyi.mall.api.system.dto.LogReqDTO;
+import com.lingyi.mall.common.base.constant.BaseConstant;
 import com.lingyi.mall.common.base.enums.WhetherEnum;
 import com.lingyi.mall.common.base.task.BaseAsyncTask;
 import com.lingyi.mall.common.base.util.RequestUtil;
@@ -20,7 +21,8 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.core.annotation.Order;
+import org.slf4j.MDC;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,9 +32,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Parameter;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -70,6 +71,9 @@ public class LogAspect {
 
     @Around("consolePointcut()")
     public Object consoleAround(ProceedingJoinPoint joinPoint) throws Throwable {
+        if (isFeign(joinPoint)) {
+            return joinPoint.proceed(joinPoint.getArgs());
+        }
         Object returnValue = null;
         Throwable throwable = null;
         String methodName = null;
@@ -88,9 +92,11 @@ public class LogAspect {
             throwable = e;
             throw e;
         } finally {
-            sw.stop();
-            this.printResponse(returnValue);
-            this.printResult(joinPoint.getTarget().getClass().getName(), methodName, throwable, sw);
+            if (!isFeign(joinPoint)) {
+                sw.stop();
+                this.printResponse(returnValue);
+                this.printResult(joinPoint.getTarget().getClass().getName(), methodName, throwable, sw);
+            }
         }
     }
 
@@ -117,6 +123,11 @@ public class LogAspect {
             //异步保存
             baseAsyncTask.saveLog(logDTO);
         }
+    }
+
+    private boolean isFeign(ProceedingJoinPoint joinPoint) {
+        Class<?>[] interfaces = joinPoint.getTarget().getClass().getInterfaces();
+        return Arrays.stream(interfaces).allMatch(clazz -> Objects.nonNull(clazz.getAnnotation(FeignClient.class)));
     }
 
     private void printUrlAndMethod(HttpServletRequest request) {
@@ -277,6 +288,7 @@ public class LogAspect {
                 .executeResult(isSuccess ? WhetherEnum.Y.getCode() : WhetherEnum.N.getCode())
                 .failReason(failReason)
                 .clientIp(RequestUtil.getRemoteHost(((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest()))
+                .trackId(MDC.get(BaseConstant.TRACK_ID_NAME))
                 .build();
     }
 }

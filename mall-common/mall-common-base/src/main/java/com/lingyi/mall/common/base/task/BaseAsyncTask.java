@@ -2,7 +2,10 @@ package com.lingyi.mall.common.base.task;
 
 import com.lingyi.mall.api.system.consumer.LogFeignConsumer;
 import com.lingyi.mall.api.system.dto.LogReqDTO;
+import com.lingyi.mall.common.base.constant.BaseConstant;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Component;
  * @DateTime: 2023/6/3 20:38
  * @Description:
  */
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class BaseAsyncTask {
@@ -20,6 +24,8 @@ public class BaseAsyncTask {
 
     @Async
     public void saveLog(LogReqDTO logDTO) {
+        MDC.put(BaseConstant.TRACK_ID_NAME, logDTO.getTrackId());
         logFeignConsumer.save(logDTO);
+        MDC.remove(BaseConstant.TRACK_ID_NAME);
     }
 }

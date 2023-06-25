@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 
 /**
@@ -13,6 +14,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
  * @datetime 2023/5/24 9:34
  * @description
  */
+@EnableAsync
 @EnableFeignClients
 @EnableDiscoveryClient
 @EnableJpaAuditing
