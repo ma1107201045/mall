@@ -47,7 +47,7 @@ public class UserController {
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:delete')")
-    @Log(title = "删除/批量删除用户", operationType = OperationTypeEnum.DELETE)
+    @Log(title = "删除用户", operationType = OperationTypeEnum.DELETE)
     public ServerResponse<Void> deleteByIds(@PathVariable List<Long> ids) {
         userService.deleteByIds(ids);
         return ServerResponse.success();
