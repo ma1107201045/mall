@@ -118,8 +118,8 @@ public class LogAspect {
             sw.stop();
             // 获取该方法上的 Log注解
             Log log = ((MethodSignature) joinPoint.getSignature()).getMethod().getAnnotation(Log.class);
-            //赋值
-            LogReqDTO logDTO = getLogDTO(log, joinPoint, result, isSuccess, sw.getLastTaskTimeMillis(), failReason);
+            //组装
+            LogReqDTO logDTO = buildLogDTO(log, joinPoint, result, isSuccess, sw.getLastTaskTimeMillis(), failReason);
             //异步保存
             baseAsyncTask.saveLog(logDTO);
         }
@@ -276,7 +276,7 @@ public class LogAspect {
     }
 
 
-    private LogReqDTO getLogDTO(Log log, ProceedingJoinPoint joinPoint, Object result, boolean isSuccess, long taskTime, String failReason) {
+    private LogReqDTO buildLogDTO(Log log, ProceedingJoinPoint joinPoint, Object result, boolean isSuccess, long taskTime, String failReason) {
         return LogReqDTO.builder()
                 .title(log.clientType() + "-" + log.title())
                 .operationType(log.operationType().getCode())

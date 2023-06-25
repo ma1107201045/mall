@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
  * @DateTime: 2023/6/3 20:38
  * @Description:
  */
+
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -25,7 +26,9 @@ public class BaseAsyncTask {
     @Async
     public void saveLog(LogReqDTO logDTO) {
         MDC.put(BaseConstant.TRACK_ID_NAME, logDTO.getTrackId());
+        log.info("save log begin");
         logFeignConsumer.save(logDTO);
+        log.info("save log end");
         MDC.remove(BaseConstant.TRACK_ID_NAME);
     }
 }

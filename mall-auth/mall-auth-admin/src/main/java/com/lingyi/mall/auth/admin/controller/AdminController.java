@@ -26,7 +26,7 @@ import java.io.OutputStream;
  * @description 验证码接口
  */
 @Slf4j
-@Tag(name = "验证码接口", description = "验证码接口")
+@Tag(name = "认证/授权接口", description = "认证/授权接口")
 @Controller
 @RequestMapping("/auth/admin")
 @RequiredArgsConstructor

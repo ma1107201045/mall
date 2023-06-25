@@ -8,6 +8,7 @@ import feign.Request;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @DateTime: 2023/5/10 19:55
  * @Description:
  */
+@Slf4j
 @Tag(name = "后台【系统管理服务-日志-Provider】", description = "后台【系统管理服务-日志-Provider】")
 @RequiredArgsConstructor
 @RestController
@@ -26,7 +28,9 @@ public class LogFeignProvider implements LogFeign {
     @Operation(summary = "添加", description = "添加")
     @Override
     public ServerResponse<Void> save(LogReqDTO logReqDTO, Request.Options options) {
+        log.info("save log begin");
         logService.create(logReqDTO);
+        log.info("save log end");
         return ServerResponse.success();
     }
 }
