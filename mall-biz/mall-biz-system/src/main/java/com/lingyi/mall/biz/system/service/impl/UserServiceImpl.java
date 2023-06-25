@@ -83,15 +83,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteByIds(List<Long> ids) {
-        long count = userRepository.count(new Specification<UserDO>() {
-            @Override
-            public Predicate toPredicate(Root<UserDO> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-                //todo 条件查询
-                return null;
-
-            }
-        });
-        AssertUtil.isLtZero((int) count, SystemFailEnum.USER_NAME_ADMIN_DELETE_ERROR);
+        boolean flag = userRepository.findAllById(ids)
+                .stream()
+                .anyMatch(userDO -> SystemConstant.USER_NAME_ADMIN.equals(userDO.getUserName()));
+        AssertUtil.isFalse(flag, SystemFailEnum.USER_NAME_ADMIN_DELETE_ERROR);
         userRepository.deleteAllById(ids);
     }
 
@@ -101,16 +96,15 @@ public class UserServiceImpl implements UserService {
         Long id = userDTO.getId();
         //获取用户信息
         Optional<UserDO> optional = userRepository.findById(id);
-        //判断用户是否不为空
-        if (optional.isEmpty()) {
-            throw new BizException(SystemFailEnum.USER_NULL_ERROR);
-        }
+        //断言用户是否不为空
+        AssertUtil.isFalse(optional.isEmpty(), SystemFailEnum.USER_NULL_ERROR);
         //获取用户
         UserDO userDO = optional.get();
-
-        //校验用户名称是否相同
+        //断言用户是否admin
+        AssertUtil.isFalse(SystemConstant.USER_NAME_ADMIN.equals(userDO.getUserName()), SystemFailEnum.USER_NAME_ADMIN_UPDATE_ERROR);
+        //断言用户名称是否相同
         Long newId = userMapper.selectIdByUserName(userDTO.getUserName());
-        boolean flag = Objects.nonNull(optional.get().getId()) && !Objects.equals(id, newId);
+        boolean flag = Objects.nonNull(newId) && !Objects.equals(id, newId);
 
         //判断用户名称不存在
         AssertUtil.isFalse(flag, SystemFailEnum.USER_NAME_EXIST_ERROR);
@@ -172,7 +166,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<MenuResDTO> readMenuListByUserNameAndMenuParentId(String userName, Long menuParentId) {
         List<MenuResDTO> menuResDTOList;
-        List<Integer> menuTypes =   Arrays.asList(MenuTypeEnum.DIRECTORY.getCode(), MenuTypeEnum.MENU.getCode());
+        List<Integer> menuTypes = Arrays.asList(MenuTypeEnum.DIRECTORY.getCode(), MenuTypeEnum.MENU.getCode());
         if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
             menuResDTOList = userMapper.selectMenusByUserNameAndMenuParentIdAndMenuTypes(userName, menuParentId, menuTypes);
         } else {
