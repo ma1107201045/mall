@@ -15,6 +15,7 @@ import com.lingyi.mall.biz.system.service.RoleMenuService;
 import com.lingyi.mall.biz.system.service.RoleService;
 import com.lingyi.mall.common.base.exception.BizException;
 import com.lingyi.mall.common.base.param.BasePageParam;
+import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -66,9 +67,7 @@ public class RoleServiceImpl implements RoleService {
         //获取角色信息
         Optional<RoleDO> optional = roleRepository.findById(id);
         //判断用户是否不为空
-        if (optional.isEmpty()) {
-            throw new BizException(SystemFailEnum.ROLE_NULL_ERROR);
-        }
+        AssertUtil.isFalse(optional.isEmpty(), SystemFailEnum.ROLE_NULL_ERROR);
         //获取用户
         RoleDO roleDO = optional.get();
         //DTO转换Entity

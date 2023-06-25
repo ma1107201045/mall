@@ -143,9 +143,7 @@ public class MenuServiceImpl implements MenuService {
         if (isUpdate) {
             Optional<MenuDO> optional = menuRepository.findById(menuDTO.getId());
             //判断用户是否不为空
-            if (optional.isEmpty()) {
-                throw new BizException(SystemFailEnum.MENU_NULL_ERROR);
-            }
+            AssertUtil.isFalse(optional.isEmpty(), SystemFailEnum.MENU_NULL_ERROR);
             menuDO = optional.get();
         }
         return menuDO;
