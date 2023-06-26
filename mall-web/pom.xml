@@ -19,6 +19,7 @@
         <module>mall-web-app-base</module>
         <module>mall-web-app-member</module>
         <module>mall-web-app-product</module>
+        <module>mall-web-admin-file</module>
     </modules>
     <dependencies>
         <dependency>
