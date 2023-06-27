@@ -9,6 +9,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Component;
@@ -52,9 +53,9 @@ public class CustomWebMvcConfigurer implements WebMvcConfigurer {
      */
     @Override
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
-        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
 
-        ObjectMapper objectMapper = converter.getObjectMapper();
+        ObjectMapper objectMapper = mappingJackson2HttpMessageConverter.getObjectMapper();
 
         SimpleModule simpleModule = new SimpleModule();
 
@@ -72,7 +73,13 @@ public class CustomWebMvcConfigurer implements WebMvcConfigurer {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         objectMapper.setDateFormat(new SimpleDateFormat(DEFAULT_DATE_TIME_PATTERN));
 
-        converter.setObjectMapper(objectMapper);
-        converters.add(0, converter);
+        mappingJackson2HttpMessageConverter.setObjectMapper(objectMapper);
+        //需要追加byte，否则springdoc-openapi接口会响应Base64编码内容，导致接口文档显示失败
+        // https://github.com/springdoc/springdoc-openapi/issues/2143
+        // 解决方案
+        converters.add(new ByteArrayHttpMessageConverter());
+        converters.add(mappingJackson2HttpMessageConverter);
+
+
     }
 }

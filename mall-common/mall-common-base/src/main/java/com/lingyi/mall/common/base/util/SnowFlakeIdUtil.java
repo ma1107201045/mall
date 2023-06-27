@@ -5,7 +5,6 @@ import cn.hutool.core.net.NetUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.common.base.constant.BaseConstant;
-import com.lingyi.mall.common.util.Snowflake;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;

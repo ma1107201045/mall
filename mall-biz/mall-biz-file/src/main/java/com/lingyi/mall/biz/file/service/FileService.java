@@ -1,5 +1,7 @@
 package com.lingyi.mall.biz.file.service;
 
+import com.lingyi.mall.biz.file.enums.ImageTypeEnum;
+
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -20,6 +22,16 @@ public interface FileService {
      * @return url
      */
     String upload(String name, InputStream is);
+
+    /**
+     * 上传图片并且获取url
+     *
+     * @param name          名称
+     * @param imageTypeEnum 图片类型
+     * @param is            输入流
+     * @return 文件id
+     */
+    String upload(String name, ImageTypeEnum imageTypeEnum, InputStream is);
 
     /**
      * 通过名称删除

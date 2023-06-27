@@ -4,6 +4,7 @@ import cn.hutool.http.ContentType;
 import com.lingyi.mall.biz.file.enums.FileFailEnum;
 import com.lingyi.mall.biz.file.enums.ImageTypeEnum;
 import com.lingyi.mall.biz.file.exception.FileException;
+import com.lingyi.mall.biz.file.service.FileService;
 import com.lingyi.mall.biz.file.service.ImageFileService;
 import com.lingyi.mall.common.util.ObjectUtil;
 import ink.fengshuai.minio.autoconfigure.MinioFileStorage;
@@ -26,7 +27,7 @@ import java.io.OutputStream;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class MinioFileServiceImpl implements ImageFileService {
+public class MinioFileServiceImpl implements FileService {
 
     @Value("${minio.bucket}")
     private String bucket;
