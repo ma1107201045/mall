@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.file.service;
 
-import java.io.File;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * @Author: maweiyan
@@ -13,36 +13,36 @@ public interface FileService {
 
 
     /**
-     * 通过输入流上传到文件服务器并拿到id
+     * 上传并且获取url
      *
+     * @param name 名称
      * @param is   输入流
-     * @param name 文件名称
-     * @return 文件id
+     * @return url
      */
-    String upload(InputStream is, String name);
+    String upload(String name, InputStream is);
 
     /**
-     * 通过id删除文件
+     * 通过名称删除
      *
-     * @param id id
+     * @param name 文件名
      */
-    void delete(String id);
+    void delete(String name);
 
     /**
      * 通过id将文件下载到本地磁盘
      *
-     * @param id       id
-     * @param fullName 存储的本地磁盘的文件名
+     * @param name 名称
+     * @param os   输出流
      */
-    void download(String id, String fullName);
+    void download(String name, OutputStream os);
 
 
     /**
-     * 通过id获取url
+     * 通过名称获取url
      *
-     * @param id id
+     * @param name id
      * @return url
      */
-    String getUrl(String id);
+    String getUrl(String name);
 
 }

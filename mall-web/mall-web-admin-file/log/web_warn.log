@@ -1,0 +1,24 @@
+2023-06-27 17:06:41.378 - WARN ---[           main] c.a.nacos.client.logging.NacosLogging    : Load Logback Configuration of Nacos fail, message: Could not initialize Logback Nacos logging from classpath:nacos-logback.xml
+2023-06-27 17:06:41.470 - WARN ---[           main] c.a.nacos.client.logging.NacosLogging    : Load Logback Configuration of Nacos fail, message: Could not initialize Logback Nacos logging from classpath:nacos-logback.xml
+2023-06-27 17:06:41.711 - WARN ---[           main] c.a.nacos.client.logging.NacosLogging    : Load Logback Configuration of Nacos fail, message: Could not initialize Logback Nacos logging from classpath:nacos-logback.xml
+2023-06-27 17:06:43.237 - WARN ---[           main] c.a.nacos.client.logging.NacosLogging    : Load Logback Configuration of Nacos fail, message: Could not initialize Logback Nacos logging from classpath:nacos-logback.xml
+2023-06-27 17:06:44.456 - WARN ---[           main] c.a.c.n.c.NacosPropertySourceBuilder     : Ignore the empty nacos configuration and get it based on dataId[mall-web-admin-file] & group[DEFAULT_GROUP]
+2023-06-27 17:06:44.471 - WARN ---[           main] c.a.c.n.c.NacosPropertySourceBuilder     : Ignore the empty nacos configuration and get it based on dataId[mall-web-admin-file.properties] & group[DEFAULT_GROUP]
+2023-06-27 17:06:44.487 - WARN ---[           main] c.a.nacos.client.logging.NacosLogging    : Load Logback Configuration of Nacos fail, message: Could not initialize Logback Nacos logging from classpath:nacos-logback.xml
+2023-06-27 17:06:45.581 - WARN ---[           main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.lingyi.mall]' package. Please check your configuration.
+2023-06-27 17:06:56.734 - WARN ---[       Thread-7] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Start destroying Publisher
+2023-06-27 17:06:56.734 - WARN ---[       Thread-1] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Start destroying common HttpClient
+2023-06-27 17:06:56.735 - WARN ---[       Thread-7] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Destruction of the end
+2023-06-27 17:06:56.735 - WARN ---[       Thread-1] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Destruction of the end
+2023-06-27 17:13:08.808 - WARN ---[           main] c.a.nacos.client.logging.NacosLogging    : Load Logback Configuration of Nacos fail, message: Could not initialize Logback Nacos logging from classpath:nacos-logback.xml
+2023-06-27 17:13:08.871 - WARN ---[           main] c.a.nacos.client.logging.NacosLogging    : Load Logback Configuration of Nacos fail, message: Could not initialize Logback Nacos logging from classpath:nacos-logback.xml
+2023-06-27 17:13:09.072 - WARN ---[           main] c.a.nacos.client.logging.NacosLogging    : Load Logback Configuration of Nacos fail, message: Could not initialize Logback Nacos logging from classpath:nacos-logback.xml
+2023-06-27 17:13:10.562 - WARN ---[           main] c.a.nacos.client.logging.NacosLogging    : Load Logback Configuration of Nacos fail, message: Could not initialize Logback Nacos logging from classpath:nacos-logback.xml
+2023-06-27 17:13:11.612 - WARN ---[           main] c.a.c.n.c.NacosPropertySourceBuilder     : Ignore the empty nacos configuration and get it based on dataId[mall-web-admin-file] & group[DEFAULT_GROUP]
+2023-06-27 17:13:11.631 - WARN ---[           main] c.a.c.n.c.NacosPropertySourceBuilder     : Ignore the empty nacos configuration and get it based on dataId[mall-web-admin-file.properties] & group[DEFAULT_GROUP]
+2023-06-27 17:13:11.647 - WARN ---[           main] c.a.nacos.client.logging.NacosLogging    : Load Logback Configuration of Nacos fail, message: Could not initialize Logback Nacos logging from classpath:nacos-logback.xml
+2023-06-27 17:13:12.905 - WARN ---[           main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.lingyi.mall]' package. Please check your configuration.
+2023-06-27 17:13:23.021 - WARN ---[       Thread-1] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Start destroying common HttpClient
+2023-06-27 17:13:23.021 - WARN ---[       Thread-7] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Start destroying Publisher
+2023-06-27 17:13:23.022 - WARN ---[       Thread-7] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Destruction of the end
+2023-06-27 17:13:23.022 - WARN ---[       Thread-1] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Destruction of the end
