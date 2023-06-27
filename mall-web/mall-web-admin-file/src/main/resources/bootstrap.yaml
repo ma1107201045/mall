@@ -64,6 +64,7 @@ springdoc:
 minio:
   endpoint: 36.137.103.166
   port: 9000
+  bucket: admin
   access-key: minioadmin
   secret-key: minioadmin
 

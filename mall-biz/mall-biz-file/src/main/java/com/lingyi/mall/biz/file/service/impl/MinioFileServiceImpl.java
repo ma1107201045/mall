@@ -10,6 +10,7 @@ import ink.fengshuai.minio.autoconfigure.MinioFileStorage;
 import ink.fengshuai.minio.autoconfigure.objectargs.InputStreamObject;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -27,7 +28,8 @@ import java.io.OutputStream;
 @RequiredArgsConstructor
 public class MinioFileServiceImpl implements ImageFileService {
 
-    private final static String BUCKET = "test";
+    @Value("${minio.bucket}")
+    private String bucket;
 
     private final MinioFileStorage minioFileStorage;
 
@@ -35,8 +37,8 @@ public class MinioFileServiceImpl implements ImageFileService {
     @Override
     public String upload(String name, InputStream is) {
         try {
-            minioFileStorage.putStream(BUCKET, new InputStreamObject(name, is));
-            return minioFileStorage.getViewUrl(BUCKET, name);
+            minioFileStorage.putStream(bucket, new InputStreamObject(name, is));
+            return minioFileStorage.getViewUrl(bucket, name);
         } catch (Exception e) {
             throw new FileException(FileFailEnum.UPLOAD_FILE_ERROR);
         }
@@ -45,7 +47,7 @@ public class MinioFileServiceImpl implements ImageFileService {
     @Override
     public void delete(String name) {
         try {
-            minioFileStorage.removeFile(BUCKET, name);
+            minioFileStorage.removeFile(bucket, name);
         } catch (Exception e) {
             throw new FileException(FileFailEnum.DELETE_FILE_ERROR);
         }
@@ -54,7 +56,7 @@ public class MinioFileServiceImpl implements ImageFileService {
     @Override
     public void download(String name, OutputStream os) {
         try {
-            minioFileStorage.getStreamToRead(BUCKET, name, inputStream -> {
+            minioFileStorage.getStreamToRead(bucket, name, inputStream -> {
                 try {
                     os.write(inputStream.readAllBytes());
                 } catch (IOException e) {
@@ -69,7 +71,7 @@ public class MinioFileServiceImpl implements ImageFileService {
     @Override
     public String getUrl(String name) {
         try {
-            return minioFileStorage.getViewUrl(BUCKET, name);
+            return minioFileStorage.getViewUrl(bucket, name);
         } catch (Exception e) {
             log.error("获取url出错", e);
             return ObjectUtil.getNull();
@@ -79,8 +81,8 @@ public class MinioFileServiceImpl implements ImageFileService {
     @Override
     public String upload(String name, ImageTypeEnum imageTypeEnum, InputStream is) {
         try {
-            minioFileStorage.putStream(BUCKET, new InputStreamObject(name, is, imageTypeEnum.getContentType()));
-            return minioFileStorage.getViewUrl(BUCKET, name);
+            minioFileStorage.putStream(bucket, new InputStreamObject(name, is, imageTypeEnum.getContentType()));
+            return minioFileStorage.getViewUrl(bucket, name);
         } catch (Exception e) {
             throw new FileException(FileFailEnum.UPLOAD_FILE_ERROR);
         }
