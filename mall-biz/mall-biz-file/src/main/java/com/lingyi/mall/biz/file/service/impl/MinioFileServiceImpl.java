@@ -37,6 +37,7 @@ public class MinioFileServiceImpl implements ImageFileService {
     @Override
     public String upload(String name, InputStream is) {
         try {
+            this.creatBucketOfNotExist(bucket);
             minioFileStorage.putStream(bucket, new InputStreamObject(name, is));
             return minioFileStorage.getViewUrl(bucket, name);
         } catch (Exception e) {
@@ -81,10 +82,25 @@ public class MinioFileServiceImpl implements ImageFileService {
     @Override
     public String upload(String name, ImageTypeEnum imageTypeEnum, InputStream is) {
         try {
+            creatBucketOfNotExist(bucket);
             minioFileStorage.putStream(bucket, new InputStreamObject(name, is, imageTypeEnum.getContentType()));
             return minioFileStorage.getViewUrl(bucket, name);
         } catch (Exception e) {
             throw new FileException(FileFailEnum.UPLOAD_FILE_ERROR);
         }
     }
+
+    private boolean creatBucketOfNotExist(String bucket) {
+        try {
+            var isExistBucket = minioFileStorage.isExistBucket(bucket);
+            if (!isExistBucket) {
+                minioFileStorage.createBucket(bucket);
+            }
+            return true;
+        } catch (Exception e) {
+            log.error("create bucket error ", e);
+            return false;
+        }
+    }
+
 }
