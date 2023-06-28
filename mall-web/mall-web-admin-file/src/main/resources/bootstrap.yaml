@@ -52,6 +52,10 @@ spring:
             loggerLevel: FULL
             connectTimeout: 5000
             readTimeout: 5000
+  servlet:
+    multipart:
+      max-file-size: 104857600 #100M
+      max-request-size: 104857600 #100M
 # springdoc-openapi项目配置
 springdoc:
   swagger-ui:

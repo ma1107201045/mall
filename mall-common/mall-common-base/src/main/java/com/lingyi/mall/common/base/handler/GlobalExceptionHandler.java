@@ -17,6 +17,7 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 import java.net.SocketTimeoutException;
 import java.util.List;
@@ -28,6 +29,7 @@ import java.util.Set;
  * @datetime 2023/05/01 18:52
  * @description 全局异常处理器
  */
+
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -102,6 +104,13 @@ public class GlobalExceptionHandler {
     public ServerResponse<Void> openFeignException(OpenFeignException e) {
         log.error("OpenFeignException：", e);
         return ServerResponse.fail(e.getCode(), e.getMessage());
+    }
+
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ServerResponse<Void> maxUploadSizeExceededException(MaxUploadSizeExceededException e) {
+        log.error("MaxUploadSizeExceededException：", e);
+        return ServerResponse.fail(HttpStatus.INTERNAL_SERVER_ERROR.value(), String.format("上传文件超过最大值%dB", e.getMaxUploadSize()));
     }
 
     @ExceptionHandler(BizException.class)
