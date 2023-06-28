@@ -32,7 +32,7 @@ import java.io.OutputStream;
 @RequiredArgsConstructor
 public class AdminController {
 
-    private final ImageCaptchaProperties properties;
+    private final ImageCaptchaProperties imageCaptchaProperties;
 
     @Operation(summary = "获取验证码", description = "获取验证码")
     @GetMapping("/get-image-captcha")
@@ -40,8 +40,8 @@ public class AdminController {
     public void getCaptcha(HttpServletResponse response, HttpSession session) throws IOException {
         log.info("获取验证码。。。。。。。。");
         response.setContentType(MediaType.IMAGE_PNG_VALUE);
-        ICaptcha captcha = ImageCaptchaUtil.get(properties);
-        session.setAttribute(properties.getSessionAttributeName(), captcha.getCode());
+        ICaptcha captcha = ImageCaptchaUtil.get(imageCaptchaProperties);
+        session.setAttribute(ImageCaptchaUtil.SESSION_ATTRIBUTE_NAME, captcha);
         OutputStream os = response.getOutputStream();
         captcha.write(os);
         os.flush();

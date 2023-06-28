@@ -1,5 +1,7 @@
 package com.lingyi.mall.common.security.admin.filter;
 
+import cn.hutool.captcha.ICaptcha;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import com.lingyi.mall.common.security.admin.constant.SecurityAdminConstant;
 import com.lingyi.mall.common.security.admin.propertis.ImageCaptchaProperties;
@@ -9,6 +11,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpMethod;
 import org.springframework.lang.NonNull;
@@ -31,30 +34,25 @@ public class ImageCaptchaFilter extends OncePerRequestFilter {
 
     private static final AntPathRequestMatcher LOGIN_ANT_PATH_REQUEST_MATCHER = new AntPathRequestMatcher(SecurityAdminConstant.LOGIN_PROCESSING_URL, HttpMethod.POST.name());
 
+
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
+        HttpSession session = request.getSession();
         if (this.isNeedAuthentication(request)) {
             try {
-                ImageCaptchaProperties property = SpringUtil.getBean(ImageCaptchaProperties.class);
-                String imageCaptcha1 = request.getParameter(SecurityAdminConstant.IMAGE_CAPTCHA_PARAMETER);
-                Object imageCaptcha2 = request.getSession().getAttribute(property.getSessionAttributeName());
-                if (Objects.isNull(imageCaptcha1) || Objects.isNull(imageCaptcha2)) {
+                String imageCaptcha = request.getParameter(SecurityAdminConstant.IMAGE_CAPTCHA_PARAMETER);
+                ICaptcha iCaptcha = (ICaptcha) session.getAttribute(ImageCaptchaUtil.SESSION_ATTRIBUTE_NAME);
+                if (StrUtil.isBlank(imageCaptcha) || Objects.isNull(iCaptcha)) {
                     throw new AuthenticationServiceException("验证码不能为空");
                 }
-                if (property.getCodeGenerator() == ImageCaptchaProperties.CodeGenerator.RANDOM) {
-                    if (!imageCaptcha1.equals(imageCaptcha2)) {
-                        throw new AuthenticationServiceException("验证码不正确");
-                    }
-                }
-                if (property.getCodeGenerator() == ImageCaptchaProperties.CodeGenerator.MATH) {
-                    if (!imageCaptcha1.equals(ImageCaptchaUtil.calculate(imageCaptcha2))) {
-                        throw new AuthenticationServiceException("验证码不正确");
-                    }
+                if (!iCaptcha.verify(imageCaptcha)) {
+                    throw new AuthenticationServiceException("验证码不正确");
                 }
             } catch (AuthenticationException exception) {
                 AuthenticationUtil.write(response, exception);
                 return;
             }
+            session.removeAttribute(ImageCaptchaUtil.SESSION_ATTRIBUTE_NAME);
         }
         filterChain.doFilter(request, response);
     }

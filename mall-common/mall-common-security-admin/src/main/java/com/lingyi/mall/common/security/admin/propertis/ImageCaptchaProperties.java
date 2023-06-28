@@ -16,11 +16,6 @@ import org.springframework.context.annotation.Configuration;
 public class ImageCaptchaProperties {
 
     /**
-     * 验证码存到session的属性名
-     */
-    private String sessionAttributeName = "imageCaptcha";
-
-    /**
      * 验证码宽度
      */
     private int width = 120;
