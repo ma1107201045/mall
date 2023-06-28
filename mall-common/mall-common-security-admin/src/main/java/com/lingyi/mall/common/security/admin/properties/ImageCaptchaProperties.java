@@ -30,7 +30,7 @@ public class ImageCaptchaProperties {
     private int count = 4;
 
     /**
-     * 验证码生成规则
+     * 验证码生成器类型
      */
     private CodeGeneratorType codeGeneratorType = CodeGeneratorType.RANDOM;
     /**
