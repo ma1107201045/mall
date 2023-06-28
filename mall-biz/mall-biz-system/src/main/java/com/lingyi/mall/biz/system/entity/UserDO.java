@@ -47,7 +47,7 @@ public class UserDO extends BaseCommonDO implements Serializable {
     @Column(name = "password", columnDefinition = "VARCHAR(100) NOT NULL COMMENT '密码'")
     private String password;
 
-    @Column(name = "head_portrait", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '头像'")
+    @Column(name = "head_portrait", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '头像'")
     private String headPortrait;
 
     @Schema(description = "邮箱")

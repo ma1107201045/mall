@@ -72,13 +72,12 @@ public class CustomWebMvcConfigurer implements WebMvcConfigurer {
         //Data 时间格式化
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         objectMapper.setDateFormat(new SimpleDateFormat(DEFAULT_DATE_TIME_PATTERN));
-
         mappingJackson2HttpMessageConverter.setObjectMapper(objectMapper);
+        converters.add(0, mappingJackson2HttpMessageConverter);
         //需要追加byte，否则springdoc-openapi接口会响应Base64编码内容，导致接口文档显示失败
         // https://github.com/springdoc/springdoc-openapi/issues/2143
-        // 解决方案
-        converters.add(new ByteArrayHttpMessageConverter());
-        converters.add(mappingJackson2HttpMessageConverter);
+        //解决方案
+        converters.add(1, new ByteArrayHttpMessageConverter());
 
 
     }

@@ -67,4 +67,6 @@ minio:
   bucket: admin
   access-key: minioadmin
   secret-key: minioadmin
+file:
+  base-url: http://36.137.103.166:9000
 

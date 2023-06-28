@@ -1,8 +1,8 @@
 package com.lingyi.mall.web.admin.file.controller;
 
-import cn.hutool.core.io.FileUtil;
 import com.lingyi.mall.biz.file.enums.FileTypeEnum;
 import com.lingyi.mall.biz.file.service.FileService;
+import com.lingyi.mall.biz.file.vo.FileVO;
 import com.lingyi.mall.common.base.aspect.Log;
 import com.lingyi.mall.common.base.enums.OperationTypeEnum;
 import com.lingyi.mall.common.util.ServerResponse;
@@ -32,10 +32,10 @@ public class FileController {
     @Operation(summary = "上传", description = "保存")
     @Parameter(name = "file", description = "文件")
     @PostMapping
-    @Log(title = "上传文件", operationType = OperationTypeEnum.CREATE)
-    public ServerResponse<String> upload(MultipartFile file) throws IOException {
-        var url = fileService.upload(file.getOriginalFilename(), file.getInputStream());
-        return ServerResponse.success(url);
+    @Log(title = "上传文件", operationType = OperationTypeEnum.CREATE, ignoreParam = true)
+    public ServerResponse<FileVO> upload(MultipartFile file) throws IOException {
+        var fileVO = fileService.upload(file.getOriginalFilename(), file.getInputStream());
+        return ServerResponse.success(fileVO);
     }
 
     @Operation(summary = "删除", description = "删除")
@@ -50,11 +50,11 @@ public class FileController {
     @Operation(summary = "上传图片", description = "上传图片")
     @Parameter(name = "file", description = "文件")
     @PostMapping("/image")
-    @Log(title = "上传图片", operationType = OperationTypeEnum.CREATE)
-    public ServerResponse<String> uploadImage(MultipartFile file) throws IOException {
+    @Log(title = "上传图片", operationType = OperationTypeEnum.CREATE, ignoreParam = true)
+    public ServerResponse<FileVO> uploadImage(MultipartFile file) throws IOException {
         var name = file.getOriginalFilename();
-        String url = fileService.upload(name, FileTypeEnum.getContentTypeByFileName(FileUtil.extName(name)), file.getInputStream());
-        return ServerResponse.success(url);
+        var fileVO = fileService.upload(name, FileTypeEnum.getContentTypeByFileName(name), file.getInputStream());
+        return ServerResponse.success(fileVO);
     }
 
 

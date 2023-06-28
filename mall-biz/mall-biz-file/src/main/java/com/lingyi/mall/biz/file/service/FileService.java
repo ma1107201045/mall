@@ -1,6 +1,7 @@
 package com.lingyi.mall.biz.file.service;
 
 import com.lingyi.mall.biz.file.enums.FileTypeEnum;
+import com.lingyi.mall.biz.file.vo.FileVO;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -21,17 +22,17 @@ public interface FileService {
      * @param is   输入流
      * @return url
      */
-    String upload(String name, InputStream is);
+    FileVO upload(String name, InputStream is);
 
     /**
      * 上传图片并且获取url
      *
-     * @param name          名称
+     * @param name         名称
      * @param fileTypeEnum 图片类型
-     * @param is            输入流
+     * @param is           输入流
      * @return 文件id
      */
-    String upload(String name, FileTypeEnum fileTypeEnum, InputStream is);
+    FileVO upload(String name, FileTypeEnum fileTypeEnum, InputStream is);
 
     /**
      * 通过名称删除
@@ -55,6 +56,6 @@ public interface FileService {
      * @param name id
      * @return url
      */
-    String getUrl(String name);
+    FileVO getUrl(String name);
 
 }

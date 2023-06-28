@@ -1,12 +1,17 @@
 package com.lingyi.mall.biz.file.service.impl;
 
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.IdUtil;
 import com.lingyi.mall.biz.file.enums.FileFailEnum;
 import com.lingyi.mall.biz.file.enums.FileTypeEnum;
 import com.lingyi.mall.biz.file.exception.FileException;
 import com.lingyi.mall.biz.file.service.FileService;
+import com.lingyi.mall.biz.file.vo.FileVO;
+import com.lingyi.mall.common.base.constant.BaseConstant;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.util.ObjectUtil;
 import ink.fengshuai.minio.autoconfigure.MinioFileStorage;
+import ink.fengshuai.minio.autoconfigure.MinoClientProperties;
 import ink.fengshuai.minio.autoconfigure.objectargs.InputStreamObject;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +33,9 @@ import java.io.OutputStream;
 @RequiredArgsConstructor
 public class MinioFileServiceImpl implements FileService {
 
+    @Value("${file.base-url}")
+    private String baseurl;
+
     @Value("${minio.bucket}")
     private String bucket;
 
@@ -35,7 +43,7 @@ public class MinioFileServiceImpl implements FileService {
 
 
     @Override
-    public String upload(String name, InputStream is) {
+    public FileVO upload(String name, InputStream is) {
         return upload(name, FileTypeEnum.FILE, is);
     }
 
@@ -44,6 +52,7 @@ public class MinioFileServiceImpl implements FileService {
         try {
             minioFileStorage.removeFile(bucket, name);
         } catch (Exception e) {
+            log.error("delete  error ", e);
             throw new FileException(FileFailEnum.DELETE_FILE_ERROR);
         }
     }
@@ -59,28 +68,33 @@ public class MinioFileServiceImpl implements FileService {
                 }
             });
         } catch (Exception e) {
+            log.error("download error ", e);
             throw new FileException(FileFailEnum.DOWNLOAD_FILE_ERROR);
         }
     }
 
     @Override
-    public String getUrl(String name) {
+    public FileVO getUrl(String name) {
         try {
-            return minioFileStorage.getViewUrl(bucket, name);
+            String url = minioFileStorage.getViewUrl(bucket, name);
+            return FileVO.of(getNotExpiryDateUrl(url));
         } catch (Exception e) {
-            log.error("获取url出错", e);
+            log.error("get url error", e);
             return ObjectUtil.getNull();
         }
     }
 
     @Override
-    public String upload(String name, FileTypeEnum fileTypeEnum, InputStream is) {
+    public FileVO upload(String name, FileTypeEnum fileTypeEnum, InputStream is) {
         try {
             boolean flag = creatBucketOfNotExist(bucket);
             AssertUtil.isTrue(flag, FileFailEnum.UPLOAD_FILE_ERROR);
-            minioFileStorage.putStream(bucket, new InputStreamObject(name, is, fileTypeEnum.getContentType()));
-            return minioFileStorage.getViewUrl(bucket, name);
+            String actualName = IdUtil.fastSimpleUUID() + BaseConstant.POINT_CHAR + FileUtil.extName(name);
+            minioFileStorage.putStream(bucket, new InputStreamObject(actualName, is, fileTypeEnum.getContentType()));
+            String url = minioFileStorage.getViewUrl(bucket, actualName);
+            return FileVO.of(baseurl, getNotExpiryDateUrl(url), name);
         } catch (Exception e) {
+            log.error("upload error ", e);
             throw new FileException(FileFailEnum.UPLOAD_FILE_ERROR);
         }
     }
@@ -96,6 +110,10 @@ public class MinioFileServiceImpl implements FileService {
             log.error("create bucket error ", e);
             return false;
         }
+    }
+
+    private String getNotExpiryDateUrl(String url) {
+        return url.split(BaseConstant.QUESTION_CHAR_REGEX)[0];
     }
 
 }
