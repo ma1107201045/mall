@@ -2,9 +2,7 @@ package com.lingyi.mall.common.security.admin.filter;
 
 import cn.hutool.captcha.ICaptcha;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.extra.spring.SpringUtil;
 import com.lingyi.mall.common.security.admin.constant.SecurityAdminConstant;
-import com.lingyi.mall.common.security.admin.propertis.ImageCaptchaProperties;
 import com.lingyi.mall.common.security.admin.util.AuthenticationUtil;
 import com.lingyi.mall.common.security.admin.util.ImageCaptchaUtil;
 import jakarta.servlet.FilterChain;

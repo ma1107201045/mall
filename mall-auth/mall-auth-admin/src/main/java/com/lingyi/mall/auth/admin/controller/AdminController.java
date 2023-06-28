@@ -3,7 +3,7 @@ package com.lingyi.mall.auth.admin.controller;
 import cn.hutool.captcha.ICaptcha;
 import com.lingyi.mall.common.base.aspect.Log;
 import com.lingyi.mall.common.base.enums.OperationTypeEnum;
-import com.lingyi.mall.common.security.admin.propertis.ImageCaptchaProperties;
+import com.lingyi.mall.common.security.admin.properties.ImageCaptchaProperties;
 import com.lingyi.mall.common.security.admin.util.ImageCaptchaUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

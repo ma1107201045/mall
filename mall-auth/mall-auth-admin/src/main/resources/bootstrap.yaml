@@ -65,7 +65,7 @@ spring:
 #      packages-to-scan: com.lingyi.mall.auth.admin.controller
 image-captcha:
   disturbance-type: circle
-  code-generator: math
+  code-generator-type: math
 
 
 

@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.security.admin.propertis;
+package com.lingyi.mall.common.security.admin.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -32,7 +32,7 @@ public class ImageCaptchaProperties {
     /**
      * 验证码生成规则
      */
-    private CodeGenerator codeGenerator = CodeGenerator.RANDOM;
+    private CodeGeneratorType codeGeneratorType = CodeGeneratorType.RANDOM;
     /**
      * 验证码干扰类型
      */
@@ -43,7 +43,7 @@ public class ImageCaptchaProperties {
      */
     private int typeCount = 10;
 
-    public enum CodeGenerator {
+    public enum CodeGeneratorType {
         /**
          * 随机
          */

@@ -4,10 +4,8 @@ import cn.hutool.captcha.AbstractCaptcha;
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.ICaptcha;
 import cn.hutool.captcha.generator.MathGenerator;
-import com.lingyi.mall.common.security.admin.propertis.ImageCaptchaProperties;
+import com.lingyi.mall.common.security.admin.properties.ImageCaptchaProperties;
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.Objects;
 
 /**
  * @author maweiyan
@@ -31,7 +29,7 @@ public class ImageCaptchaUtil {
             case GIF ->
                     abstractCaptcha = CaptchaUtil.createGifCaptcha(properties.getWidth(), properties.getHeight(), properties.getCount());
         }
-        if (properties.getCodeGenerator() == ImageCaptchaProperties.CodeGenerator.MATH) {
+        if (properties.getCodeGeneratorType() == ImageCaptchaProperties.CodeGeneratorType.MATH) {
             abstractCaptcha.setGenerator(new CodeGeneratorProxy(new MathGenerator(1)));
         }
         return abstractCaptcha;
