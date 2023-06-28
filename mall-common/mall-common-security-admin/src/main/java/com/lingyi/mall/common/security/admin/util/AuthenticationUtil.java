@@ -36,7 +36,7 @@ public class AuthenticationUtil {
             writer.write(JSON.toJSONString(ServerResponse.fail(exception.getLocalizedMessage())));
             writer.flush();
         } catch (IOException e) {
-            log.error("write失败，错误原因:", exception);
+            log.error("write失败，错误原因:", e);
         }
 
     }
