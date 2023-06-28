@@ -48,10 +48,17 @@ spring:
           uri: http://localhost:7002
           predicates:
             - Path=/admin/base/**
+
         - id: mall-web-admin-system
           uri: http://localhost:7003
           predicates:
             - Path=/admin/system/**
+
+        - id: mall-web-admin-file
+          uri: http://localhost:7004
+          predicates:
+            - Path=/admin/file/**
+
         - id: mall-web-app-member
           uri: http://localhost:8002
           predicates:

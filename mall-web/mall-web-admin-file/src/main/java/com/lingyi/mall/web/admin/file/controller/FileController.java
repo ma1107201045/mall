@@ -1,7 +1,7 @@
 package com.lingyi.mall.web.admin.file.controller;
 
 import cn.hutool.core.io.FileUtil;
-import com.lingyi.mall.biz.file.enums.ImageTypeEnum;
+import com.lingyi.mall.biz.file.enums.FileTypeEnum;
 import com.lingyi.mall.biz.file.service.FileService;
 import com.lingyi.mall.common.base.aspect.Log;
 import com.lingyi.mall.common.base.enums.OperationTypeEnum;
@@ -53,7 +53,7 @@ public class FileController {
     @Log(title = "上传图片", operationType = OperationTypeEnum.CREATE)
     public ServerResponse<String> uploadImage(MultipartFile file) throws IOException {
         var name = file.getOriginalFilename();
-        String url = fileService.upload(name, ImageTypeEnum.getContentTypeByFileName(FileUtil.extName(name)), file.getInputStream());
+        String url = fileService.upload(name, FileTypeEnum.getContentTypeByFileName(FileUtil.extName(name)), file.getInputStream());
         return ServerResponse.success(url);
     }
 

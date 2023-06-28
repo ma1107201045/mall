@@ -1,7 +1,6 @@
 package com.lingyi.mall.biz.file.enums;
 
 import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.common.util.ObjectUtil;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -18,13 +17,15 @@ import java.util.Objects;
 
 @Getter
 @RequiredArgsConstructor
-public enum ImageTypeEnum {
+public enum FileTypeEnum {
     /**
      *
      */
     JPEG("jpeg", "image/jpeg"),
 
-    PNG("png", "image/png");
+    PNG("png", "image/png"),
+
+    FILE("*", "application/octet-stream");
 
     private final String name;
 
@@ -37,16 +38,16 @@ public enum ImageTypeEnum {
      * @param fileName 文件名称
      * @return contentType
      */
-    public static ImageTypeEnum getContentTypeByFileName(String fileName) {
+    public static FileTypeEnum getContentTypeByFileName(String fileName) {
         var extName = FileUtil.extName(fileName);
         if (Objects.isNull(extName)) {
-            return JPEG;
+            return FILE;
         }
-        ImageTypeEnum imageTypeEnum = Arrays
+        FileTypeEnum fileTypeEnum = Arrays
                 .stream(values())
                 .filter(imageType -> imageType.name.equals(extName))
                 .findAny()
                 .orElse(ObjectUtil.getNull());
-        return Objects.isNull(imageTypeEnum) ? ImageTypeEnum.JPEG : imageTypeEnum;
+        return Objects.isNull(fileTypeEnum) ? FileTypeEnum.FILE : fileTypeEnum;
     }
 }

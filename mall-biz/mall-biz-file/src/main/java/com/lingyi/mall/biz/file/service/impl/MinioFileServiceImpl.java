@@ -1,9 +1,10 @@
 package com.lingyi.mall.biz.file.service.impl;
 
 import com.lingyi.mall.biz.file.enums.FileFailEnum;
-import com.lingyi.mall.biz.file.enums.ImageTypeEnum;
+import com.lingyi.mall.biz.file.enums.FileTypeEnum;
 import com.lingyi.mall.biz.file.exception.FileException;
 import com.lingyi.mall.biz.file.service.FileService;
+import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.util.ObjectUtil;
 import ink.fengshuai.minio.autoconfigure.MinioFileStorage;
 import ink.fengshuai.minio.autoconfigure.objectargs.InputStreamObject;
@@ -35,13 +36,7 @@ public class MinioFileServiceImpl implements FileService {
 
     @Override
     public String upload(String name, InputStream is) {
-        try {
-            this.creatBucketOfNotExist(bucket);
-            minioFileStorage.putStream(bucket, new InputStreamObject(name, is));
-            return minioFileStorage.getViewUrl(bucket, name);
-        } catch (Exception e) {
-            throw new FileException(FileFailEnum.UPLOAD_FILE_ERROR);
-        }
+        return upload(name, FileTypeEnum.FILE, is);
     }
 
     @Override
@@ -79,10 +74,11 @@ public class MinioFileServiceImpl implements FileService {
     }
 
     @Override
-    public String upload(String name, ImageTypeEnum imageTypeEnum, InputStream is) {
+    public String upload(String name, FileTypeEnum fileTypeEnum, InputStream is) {
         try {
-            creatBucketOfNotExist(bucket);
-            minioFileStorage.putStream(bucket, new InputStreamObject(name, is, imageTypeEnum.getContentType()));
+            boolean flag = creatBucketOfNotExist(bucket);
+            AssertUtil.isTrue(flag, FileFailEnum.UPLOAD_FILE_ERROR);
+            minioFileStorage.putStream(bucket, new InputStreamObject(name, is, fileTypeEnum.getContentType()));
             return minioFileStorage.getViewUrl(bucket, name);
         } catch (Exception e) {
             throw new FileException(FileFailEnum.UPLOAD_FILE_ERROR);
