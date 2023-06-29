@@ -118,14 +118,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Long countByParam(UserParam userParam) {
+        return userMapper.countByParam(userParam);
+    }
+
+    @Override
     public List<UserVO> readListByParam(UserParam userParam) {
+        userParam.convert();
         return userMapper.selectListByParam(userParam);
     }
 
 
     @Override
     public List<RoleVO> readRoleList() {
-        return roleService.readListByParam(ObjectUtil.newInstance(RoleParam.class));
+        return roleService.readList();
     }
 
     @Override

@@ -76,10 +76,10 @@ public class RoleController {
     @GetMapping
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:roles:getList')")
     @Log(title = "查询角色列表", operationType = OperationTypeEnum.READ)
-    public ServerResponse<List<RoleVO>> getListByPageAndParam(@Valid BasePageParam basePageParam, @Valid RoleParam roleParam) {
-        Page<RoleVO> page = PageUtil.startPage(basePageParam);
+    public ServerResponse<List<RoleVO>> getListByPageAndParam(@Valid RoleParam roleParam) {
+        Long total = roleService.countByParam(roleParam);
         List<RoleVO> roles = roleService.readListByParam(roleParam);
-        return ServerResponse.success(roles, page.getTotal());
+        return ServerResponse.success(roles, total);
     }
 
     @Operation(summary = "查询菜单树", description = "查询菜单树")

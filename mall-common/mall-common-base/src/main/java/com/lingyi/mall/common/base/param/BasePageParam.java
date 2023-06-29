@@ -17,7 +17,7 @@ import java.io.Serializable;
  */
 @Schema(description = "后台分页信息")
 @Data
-public class BasePageParam implements Serializable {
+public abstract class BasePageParam implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 975629823646747916L;
@@ -50,7 +50,4 @@ public class BasePageParam implements Serializable {
         return sortField + BaseConstant.SPACE_CHAR + sortDirection;
     }
 
-    public static BasePageParam getEmpty() {
-        return new BasePageParam();
-    }
 }

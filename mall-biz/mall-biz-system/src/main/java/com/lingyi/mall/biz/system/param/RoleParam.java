@@ -1,7 +1,10 @@
 package com.lingyi.mall.biz.system.param;
 
+import com.lingyi.mall.common.base.param.BaseLimitParam;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -14,9 +17,12 @@ import java.io.Serializable;
  */
 @Schema(description = "角色")
 @Data
-public class RoleParam implements Serializable {
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+public class RoleParam extends BaseLimitParam {
+
     @Serial
-    private static final long serialVersionUID = -3790408928903411297L;
+    private static final long serialVersionUID = 7120127170693422674L;
 
     @Schema(description = "角色名称")
     private String name;

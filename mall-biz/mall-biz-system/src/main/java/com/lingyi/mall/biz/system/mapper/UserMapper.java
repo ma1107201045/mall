@@ -26,6 +26,15 @@ public interface UserMapper {
      */
     UserVO selectById(Long id);
 
+
+    /**
+     * count
+     *
+     * @param userParam 用户信息
+     * @return 条目
+     */
+    Long countByParam(UserParam userParam);
+
     /**
      * 按照分页信息和条件查询
      *

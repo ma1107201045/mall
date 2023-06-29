@@ -86,9 +86,21 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    public Long countByParam(RoleParam roleParam) {
+        return roleMapper.countByParam(roleParam);
+    }
+
+    @Override
+    public List<RoleVO> readList() {
+        return roleMapper.selectList();
+    }
+
+    @Override
     public List<RoleVO> readListByParam(RoleParam roleParam) {
+        roleParam.convert();
         return roleMapper.selectListByParam(roleParam);
     }
+
 
     @Override
     public List<MenuVO> readMenuTree() {

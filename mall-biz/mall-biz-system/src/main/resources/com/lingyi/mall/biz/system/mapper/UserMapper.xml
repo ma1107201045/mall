@@ -23,29 +23,41 @@
         </collection>
     </resultMap>
     <sql id="Base_Column_List">
-        mu.id, mu.user_name, mu.real_name, mu.nickname, mu.sex, mu.`password`, mu.head_portrait, mu.email, mu.phone_number,
-    mu.last_login_ip, mu.is_enable,mu. remark, mu.create_by, mu.create_date_time,
-    mu.last_modify_by, mu.last_modify_date_time,mur.role_id
+        id, user_name, real_name, nickname, `password`, sex, head_portrait, email, phone_number,
+        last_login_ip, is_enable, remark, create_by, create_date_time, last_modify_by, last_modify_date_time
     </sql>
     <sql id="Base_Condition">
-        <if test="userName != null and userName!=''">
-            AND mu.user_name LIKE CONCAT('%',#{userName,jdbcType=VARCHAR},'%')
+        <if test="userName != null and userName !=''">
+            AND user_name LIKE CONCAT('%',#{userName,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="phoneNumber != null and phoneNumber != ''">
+            AND phone_number = #{phoneNumber,jdbcType=VARCHAR}
         </if>
     </sql>
     <select id="selectById" resultMap="BaseResultMap">
         SELECT
-        <include refid="Base_Column_List"/>
-        FROM ms_user mu LEFT JOIN ms_user_role mur ON mu.id =mur.user_id
+        <include refid="Base_Column_List"/>,mur.role_id
+        FROM ms_user mu LEFT JOIN ms_user_role mur ON mu.id = mur.user_id
         WHERE mu.id= #{id,jdbcType=BIGINT}
     </select>
-
-    <select id="selectListByParam" resultMap="BaseResultMap">
-        SELECT
-        <include refid="Base_Column_List"/>
-        FROM ms_user mu LEFT JOIN ms_user_role mur ON mu.id =mur.user_id
+    <select id="countByParam" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM ms_user
         <where>
             <include refid="Base_Condition"/>
         </where>
+    </select>
+    <select id="selectListByParam" resultMap="BaseResultMap">
+        SELECT mu.*, mur.role_id FROM
+        (SELECT
+        <include refid="Base_Column_List"/>
+        FROM ms_user
+        <where>
+            <include refid="Base_Condition"/>
+        </where>
+        ORDER BY #{sortField} #{sortDirection}
+        LIMIT #{index},#{limit}
+        ) mu
+        LEFT JOIN ms_user_role mur ON mu.id =mur.user_id
     </select>
 
     <select id="selectIdByUserName" resultType="java.lang.Long">
@@ -119,4 +131,5 @@
         GROUP BY mm.id
         ORDER BY mm.sort
     </select>
+
 </mapper>

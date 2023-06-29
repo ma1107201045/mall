@@ -76,10 +76,10 @@ public class UserController {
     @GetMapping
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:getList')")
     @Log(title = "查询用户列表", operationType = OperationTypeEnum.READ)
-    public ServerResponse<List<UserVO>> getListByPageAndParam(@Valid BasePageParam basePageParam, @Valid UserParam userParam) {
-        Page<UserVO> page = PageUtil.startPage(basePageParam);
+    public ServerResponse<List<UserVO>> getListByPageAndParam(@Valid UserParam userParam) {
+        Long total = userService.countByParam(userParam);
         List<UserVO> users = userService.readListByParam(userParam);
-        return ServerResponse.success(users, page.getTotal());
+        return ServerResponse.success(users, total);
     }
 
     @Operation(summary = "查询角色列表", description = "查询角色列表")

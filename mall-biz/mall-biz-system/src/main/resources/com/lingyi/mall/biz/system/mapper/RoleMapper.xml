@@ -16,32 +16,46 @@
         </collection>
     </resultMap>
     <sql id="Base_Column_List">
-        mr.id, mr.`name`, mr.is_enable, mr.sort, mr.remark, mr.create_by, mr.create_date_time, mr.last_modify_by,
-    mr.last_modify_date_time,mrm.menu_id
+        id, `name`, sort, is_enable, remark, create_by, create_date_time, last_modify_by, last_modify_date_time
     </sql>
     <sql id="Base_Condition">
-        AND mm.type = 3
-        <if test="name!=null and name!=''">
-            AND mrm.`name` LIKE CONCAT('%',#{name,jdbcType=VARCHAR},'%')
+        <if test="name != null and name != ''">
+            AND`name` LIKE CONCAT('%',#{name,jdbcType=VARCHAR},'%')
         </if>
     </sql>
     <select id="selectById" resultMap="BaseResultMap">
         SELECT
-        <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List"/>,mrm.menu_id
         FROM ms_role mr
         LEFT JOIN ms_role_menu mrm ON mrm.role_id = mr.id
         LEFT JOIN ms_menu mm ON mm.id = mrm.menu_id
-        WHERE mr.id = #{id,jdbcType=BIGINT}
-        AND mm.type = 3
+        WHERE mr.id = #{id,jdbcType=BIGINT} AND mm.type = 3
     </select>
-    <select id="selectListByParam" resultMap="BaseResultMap">
-        SELECT
-        <include refid="Base_Column_List"/>
-        FROM ms_role mr
-        LEFT JOIN ms_role_menu mrm ON mr.id  =mrm.role_id
-        LEFT JOIN ms_menu mm ON mm.id = mrm.menu_id
+    <select id="countByParam" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM ms_role
         <where>
             <include refid="Base_Condition"/>
         </where>
     </select>
+    <select id="selectListByParam" resultMap="BaseResultMap">
+        SELECT mr.*, mrm.menu_id FROM
+        (SELECT
+        <include refid="Base_Column_List"/>
+        FROM ms_role
+        <where>
+            <include refid="Base_Condition"/>
+        </where>
+        ORDER BY #{sortField} #{sortDirection}
+        LIMIT #{index},#{limit}
+        ) mr
+        LEFT JOIN ms_role_menu mrm ON mr.id =mrm.role_id
+        LEFT JOIN ms_menu mm ON mm.id = mrm.menu_id
+        WHERE mm.type = 3
+    </select>
+    <select id="selectList" resultType="com.lingyi.mall.biz.system.vo.RoleVO">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM ms_role ORDER BY sort
+    </select>
+
 </mapper>
