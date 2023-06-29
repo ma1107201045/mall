@@ -1,23 +1,17 @@
 package com.lingyi.mall.auth.admin.controller;
 
-import cn.hutool.captcha.ICaptcha;
+import com.lingyi.mall.auth.admin.service.AdminService;
 import com.lingyi.mall.common.base.aspect.Log;
 import com.lingyi.mall.common.base.enums.OperationTypeEnum;
-import com.lingyi.mall.common.security.admin.properties.ImageCaptchaProperties;
-import com.lingyi.mall.common.security.admin.util.ImageCaptchaUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.io.IOException;
-import java.io.OutputStream;
 
 /**
  * @author maweiyan
@@ -32,20 +26,12 @@ import java.io.OutputStream;
 @RequiredArgsConstructor
 public class AdminController {
 
-    private final ImageCaptchaProperties imageCaptchaProperties;
+    private final AdminService adminService;
 
     @Operation(summary = "获取验证码", description = "获取验证码")
     @GetMapping("/get-image-captcha")
     @Log(title = "获取验证码", operationType = OperationTypeEnum.READ, ignoreParam = true)
-    public void getCaptcha(HttpServletResponse response, HttpSession session) throws IOException {
-        log.info("获取验证码。。。。。。。。");
-        response.setContentType(MediaType.IMAGE_PNG_VALUE);
-        ICaptcha captcha = ImageCaptchaUtil.get(imageCaptchaProperties);
-        session.setAttribute(ImageCaptchaUtil.SESSION_ATTRIBUTE_NAME, captcha);
-        OutputStream os = response.getOutputStream();
-        captcha.write(os);
-        os.flush();
-        os.close();
+    public void getCaptcha(HttpServletResponse response, HttpSession session) {
+        adminService.writeImageCaptcha(response, session);
     }
-
 }

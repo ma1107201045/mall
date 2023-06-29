@@ -18,6 +18,7 @@ public class SecurityAdminConstant {
     public static final String REMEMBER_ME_KEY = "199726ma.";
     public static final String COOKIE = "cookie";
     public static final String PERMISSION_SPLIT_CHAR = ",";
+    public static final String SESSION_ATTRIBUTE_NAME = "imageCaptcha";
 
 
     private SecurityAdminConstant() {

@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.security.admin.properties;
+package com.lingyi.mall.auth.admin.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

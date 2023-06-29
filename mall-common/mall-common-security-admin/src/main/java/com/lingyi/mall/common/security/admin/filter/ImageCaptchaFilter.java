@@ -4,7 +4,6 @@ import cn.hutool.captcha.ICaptcha;
 import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.common.security.admin.constant.SecurityAdminConstant;
 import com.lingyi.mall.common.security.admin.util.AuthenticationUtil;
-import com.lingyi.mall.common.security.admin.util.ImageCaptchaUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -39,7 +38,7 @@ public class ImageCaptchaFilter extends OncePerRequestFilter {
         if (this.isNeedAuthentication(request)) {
             try {
                 String imageCaptcha = request.getParameter(SecurityAdminConstant.IMAGE_CAPTCHA_PARAMETER);
-                ICaptcha iCaptcha = (ICaptcha) session.getAttribute(ImageCaptchaUtil.SESSION_ATTRIBUTE_NAME);
+                ICaptcha iCaptcha = (ICaptcha) session.getAttribute(SecurityAdminConstant.SESSION_ATTRIBUTE_NAME);
                 if (StrUtil.isBlank(imageCaptcha) || Objects.isNull(iCaptcha)) {
                     throw new AuthenticationServiceException("验证码不能为空");
                 }
@@ -50,7 +49,7 @@ public class ImageCaptchaFilter extends OncePerRequestFilter {
                 AuthenticationUtil.write(response, exception);
                 return;
             }
-            session.removeAttribute(ImageCaptchaUtil.SESSION_ATTRIBUTE_NAME);
+            session.removeAttribute(SecurityAdminConstant.SESSION_ATTRIBUTE_NAME);
         }
         filterChain.doFilter(request, response);
     }
