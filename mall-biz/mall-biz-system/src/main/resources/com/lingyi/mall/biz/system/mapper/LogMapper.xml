@@ -29,13 +29,13 @@
         last_modify_date_time
     </sql>
     <sql id="Base_Condition">
-        <if test="title!=null and title!='' and title.trim() != ''">
+        <if test="title != null and title != '' and title.trim() != ''">
             AND title LIKE CONCAT('%',#{title,jdbcType=VARCHAR},'%')
         </if>
-        <if test="operationType!=null">
+        <if test="operationType != null">
             AND operation_type = #{operationType,jdbcType=TINYINT}
         </if>
-        <if test="executeResult!=null">
+        <if test="executeResult != null">
             AND execute_result = #{executeResult,jdbcType=TINYINT}
         </if>
     </sql>

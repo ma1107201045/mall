@@ -3,6 +3,7 @@ package com.lingyi.mall.web.admin.system.controller;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.biz.system.entity.LogDO;
+import com.lingyi.mall.biz.system.param.LogParam;
 import com.lingyi.mall.biz.system.service.LogService;
 import com.lingyi.mall.common.base.aspect.Log;
 import com.lingyi.mall.common.base.enums.OperationTypeEnum;
@@ -51,9 +52,9 @@ public class LogController {
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:logs:getList')")
-    public ServerResponse<List<LogDO>> getListByPageAndParam(@Valid BasePageParam basePageParam, @Valid LogDO logDO) {
-        Page<LogDO> page = PageUtil.startPage(basePageParam);
-        List<LogDO> logs = logService.readListByParam(logDO);
+    public ServerResponse<List<LogDO>> getListByPageAndParam(@Valid LogParam logParam) {
+        Page<LogDO> page = PageUtil.startPage(logParam);
+        List<LogDO> logs = logService.readListByParam(logParam);
         return ServerResponse.success(logs, page.getTotal());
     }
 

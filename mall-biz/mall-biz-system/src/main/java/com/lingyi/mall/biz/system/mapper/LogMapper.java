@@ -1,6 +1,7 @@
 package com.lingyi.mall.biz.system.mapper;
 
 import com.lingyi.mall.biz.system.entity.LogDO;
+import com.lingyi.mall.biz.system.param.LogParam;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -26,8 +27,8 @@ public interface LogMapper {
     /**
      * 按照分页信息和条件查询
      *
-     * @param logDO 日志信息
+     * @param logParam 日志信息
      * @return List<Log>
      */
-    List<LogDO> selectListByParam(LogDO logDO);
+    List<LogDO> selectListByParam(LogParam logParam);
 }

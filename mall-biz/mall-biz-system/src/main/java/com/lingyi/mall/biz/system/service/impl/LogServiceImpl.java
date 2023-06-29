@@ -4,6 +4,7 @@ import com.lingyi.mall.api.system.dto.LogReqDTO;
 import com.lingyi.mall.biz.system.entity.LogDO;
 import com.lingyi.mall.biz.system.enums.SystemFailEnum;
 import com.lingyi.mall.biz.system.mapper.LogMapper;
+import com.lingyi.mall.biz.system.param.LogParam;
 import com.lingyi.mall.biz.system.repository.LogRepository;
 import com.lingyi.mall.biz.system.service.LogService;
 import com.lingyi.mall.common.base.exception.BizException;
@@ -61,8 +62,8 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public List<LogDO> readListByParam(LogDO logDO) {
-        return logMapper.selectListByParam(logDO);
+    public List<LogDO> readListByParam(LogParam logParam) {
+        return logMapper.selectListByParam(logParam);
     }
 
     @Override
