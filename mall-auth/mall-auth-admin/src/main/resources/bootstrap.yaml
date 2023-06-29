@@ -64,7 +64,7 @@ spring:
 #      paths-to-match: '/**'
 #      packages-to-scan: com.lingyi.mall.auth.admin.controller
 image-captcha:
-  disturbance-type: shear
+  disturbance-type: CIRCLE
   code-generator-type: math
 
 
