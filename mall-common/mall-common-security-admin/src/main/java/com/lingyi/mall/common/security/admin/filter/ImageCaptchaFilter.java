@@ -33,7 +33,7 @@ import java.util.Objects;
 public class ImageCaptchaFilter extends OncePerRequestFilter {
 
     private static final AntPathRequestMatcher LOGIN_ANT_PATH_REQUEST_MATCHER = new AntPathRequestMatcher(SecurityAdminConstant.LOGIN_PROCESSING_URL, HttpMethod.POST.name());
-    protected MessageSourceAccessor messages = SpringSecurityMessageSource.getAccessor();
+    protected MessageSourceAccessor message = SpringSecurityMessageSource.getAccessor();
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
@@ -43,10 +43,10 @@ public class ImageCaptchaFilter extends OncePerRequestFilter {
                 String imageCaptcha = request.getParameter(SecurityAdminConstant.IMAGE_CAPTCHA_PARAMETER);
                 ICaptcha iCaptcha = (ICaptcha) session.getAttribute(SecurityAdminConstant.SESSION_ATTRIBUTE_NAME);
                 if (StrUtil.isBlank(imageCaptcha) || Objects.isNull(iCaptcha)) {
-                    throw new ImageCaptchaException(this.messages.getMessage("ImageCaptchaFilter.captchaNull", "ImageCaptcha is null"));
+                    throw new ImageCaptchaException(this.message.getMessage("ImageCaptchaFilter.captchaNull", "ImageCaptcha is null"));
                 }
                 if (!iCaptcha.verify(imageCaptcha)) {
-                    throw new ImageCaptchaException(this.messages.getMessage("ImageCaptchaFilter.captchaError", "ImageCaptcha is error"));
+                    throw new ImageCaptchaException(this.message.getMessage("ImageCaptchaFilter.captchaError", "ImageCaptcha is error"));
                 }
             } catch (AuthenticationException exception) {
                 session.removeAttribute(SecurityAdminConstant.SESSION_ATTRIBUTE_NAME);
@@ -63,4 +63,7 @@ public class ImageCaptchaFilter extends OncePerRequestFilter {
         return LOGIN_ANT_PATH_REQUEST_MATCHER.matches(request);
     }
 
+    public void setMessageSourceAccessor(MessageSourceAccessor messageSourceAccessor) {
+        this.message = messageSourceAccessor;
+    }
 }

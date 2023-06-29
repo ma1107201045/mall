@@ -1,11 +1,14 @@
-package com.lingyi.mall.common.security.admin;
+package com.lingyi.mall.common.security.admin.config;
 
 import com.lingyi.mall.common.security.admin.constant.SecurityAdminConstant;
 import com.lingyi.mall.common.base.filter.TrackIdFilter;
 import com.lingyi.mall.common.security.admin.filter.ImageCaptchaFilter;
 import com.lingyi.mall.common.security.admin.handler.*;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -41,8 +44,15 @@ public class SecurityConfig {
     }
 
     @Bean
-    public ImageCaptchaFilter imageCaptchaFilter() {
-        return new ImageCaptchaFilter();
+    public MessageSourceAccessor messageSourceAccessor(MessageSource messageSource) {
+        return new MessageSourceAccessor(messageSource, LocaleContextHolder.getLocale());
+    }
+
+    @Bean
+    public ImageCaptchaFilter imageCaptchaFilter(MessageSourceAccessor messageSourceAccessor) {
+        ImageCaptchaFilter imageCaptchaFilter = new ImageCaptchaFilter();
+        imageCaptchaFilter.setMessageSourceAccessor(messageSourceAccessor);
+        return imageCaptchaFilter;
     }
 
     @Bean
