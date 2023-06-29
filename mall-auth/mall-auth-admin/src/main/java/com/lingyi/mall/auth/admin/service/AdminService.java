@@ -13,10 +13,19 @@ public interface AdminService {
 
 
     /**
+     * 读取图形验证码
+     *
+     * @return BASE64数据
+     */
+    String readImageCaptcha();
+
+    /**
      * 输出图形验证码
      *
      * @param response 返回信息
      * @param session  session
      */
     void writeImageCaptcha(HttpServletResponse response, HttpSession session);
+
+
 }
