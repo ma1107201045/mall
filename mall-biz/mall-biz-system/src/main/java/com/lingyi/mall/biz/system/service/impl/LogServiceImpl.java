@@ -25,7 +25,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class LogServiceImpl implements LogService {
 
-
     private final LogRepository logRepository;
 
     private final LogMapper logMapper;
@@ -66,9 +65,4 @@ public class LogServiceImpl implements LogService {
         return logMapper.selectListByParam(logParam);
     }
 
-    @Override
-    public void create(LogReqDTO logReqDTO) {
-        LogDO logDO = ConverterUtil.to(logReqDTO, LogDO.class);
-        create(logDO);
-    }
 }
