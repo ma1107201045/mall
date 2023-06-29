@@ -46,6 +46,7 @@ public class ImageCaptchaFilter extends OncePerRequestFilter {
                     throw new AuthenticationServiceException("验证码不正确");
                 }
             } catch (AuthenticationException exception) {
+                session.removeAttribute(SecurityAdminConstant.SESSION_ATTRIBUTE_NAME);
                 AuthenticationUtil.write(response, exception);
                 return;
             }

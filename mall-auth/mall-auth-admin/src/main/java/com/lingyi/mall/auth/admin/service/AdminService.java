@@ -15,9 +15,10 @@ public interface AdminService {
     /**
      * 读取图形验证码
      *
+     * @param session session
      * @return BASE64数据
      */
-    String readImageCaptcha();
+    String readImageCaptcha(HttpSession session);
 
     /**
      * 输出图形验证码

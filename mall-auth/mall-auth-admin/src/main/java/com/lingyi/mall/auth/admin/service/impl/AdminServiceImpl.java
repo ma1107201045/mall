@@ -32,8 +32,9 @@ public class AdminServiceImpl implements AdminService {
     private final ImageCaptchaProperties properties;
 
     @Override
-    public String readImageCaptcha() {
+    public String readImageCaptcha(HttpSession session) {
         AbstractCaptcha abstractCaptcha = getImageCaptchaObject();
+        session.setAttribute(SecurityAdminConstant.SESSION_ATTRIBUTE_NAME, abstractCaptcha);
         return abstractCaptcha.getImageBase64Data();
     }
 

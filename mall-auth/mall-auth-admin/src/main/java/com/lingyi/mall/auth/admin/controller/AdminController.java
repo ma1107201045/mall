@@ -32,19 +32,19 @@ public class AdminController {
     private final AdminService adminService;
 
     @Operation(summary = "获取图形验证码-base64", description = "获取图形验证码-base64")
-    @Log(title = "获取验证码", operationType = OperationTypeEnum.READ)
+    @Log(title = "获取验证码", operationType = OperationTypeEnum.READ, ignoreParam = true)
     @GetMapping("/get-base64-image-captcha")
     @ResponseBody
-    public ServerResponse<String> getImageCaptcha() {
-        String imageCaptcha = adminService.readImageCaptcha();
+    public ServerResponse<String> getBase64ImageCaptcha(HttpSession session) {
+        String imageCaptcha = adminService.readImageCaptcha(session);
         return ServerResponse.success(imageCaptcha);
 
     }
 
-    @Operation(summary = "获取图形验证码-base64", description = "获取图形验证码-base64")
+    @Operation(summary = "获取图形验证码-二进制流", description = "获取图形验证码-二进制流")
+    @Log(title = "获取图形验证码-二进制流", operationType = OperationTypeEnum.READ, ignoreParam = true)
     @GetMapping("/get-bin-image-captcha")
-    @Log(title = "获取验证码", operationType = OperationTypeEnum.READ)
-    public void getImageCaptcha(HttpServletResponse response, HttpSession session) {
+    public void getBinImageCaptcha(HttpServletResponse response, HttpSession session) {
         adminService.writeImageCaptcha(response, session);
     }
 }
