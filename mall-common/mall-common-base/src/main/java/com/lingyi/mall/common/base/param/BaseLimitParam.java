@@ -21,8 +21,8 @@ public abstract class BaseLimitParam extends BasePageParam {
     @Serial
     private static final long serialVersionUID = 7987432903456059366L;
 
-    @Schema(description = "索引", hidden = true)
-    private Integer index;
+    @Schema(description = "偏移量", hidden = true)
+    private Integer offset;
 
     @Schema(description = "数量", hidden = true)
     private Integer limit;
@@ -31,7 +31,7 @@ public abstract class BaseLimitParam extends BasePageParam {
      * 抓换分页信息
      */
     public void convert() {
-        this.setIndex((this.getCurrentPage() - 1) * this.getPageSize());
+        this.setOffset((this.getCurrentPage() - 1) * this.getPageSize());
         this.setLimit(this.getPageSize());
     }
 }

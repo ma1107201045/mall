@@ -46,7 +46,7 @@
             <include refid="Base_Condition"/>
         </where>
         ORDER BY #{sortField} #{sortDirection}
-        LIMIT #{index},#{limit}
+        LIMIT #{offset},#{limit}
         ) mr
         LEFT JOIN ms_role_menu mrm ON mr.id =mrm.role_id
         LEFT JOIN ms_menu mm ON mm.id = mrm.menu_id

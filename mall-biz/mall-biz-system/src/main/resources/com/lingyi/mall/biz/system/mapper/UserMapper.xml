@@ -55,7 +55,7 @@
             <include refid="Base_Condition"/>
         </where>
         ORDER BY #{sortField} #{sortDirection}
-        LIMIT #{index},#{limit}
+        LIMIT #{offset},#{limit}
         ) mu
         LEFT JOIN ms_user_role mur ON mu.id =mur.user_id
     </select>
