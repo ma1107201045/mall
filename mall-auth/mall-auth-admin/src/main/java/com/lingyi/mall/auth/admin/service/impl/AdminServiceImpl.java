@@ -2,12 +2,10 @@ package com.lingyi.mall.auth.admin.service.impl;
 
 import cn.hutool.captcha.AbstractCaptcha;
 import cn.hutool.captcha.CaptchaUtil;
-import cn.hutool.captcha.ICaptcha;
 import cn.hutool.captcha.generator.MathGenerator;
 import com.lingyi.mall.auth.admin.properties.ImageCaptchaProperties;
 import com.lingyi.mall.auth.admin.service.AdminService;
 import com.lingyi.mall.common.security.admin.constant.SecurityAdminConstant;
-import com.lingyi.mall.common.security.admin.util.CodeGeneratorProxy;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;

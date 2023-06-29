@@ -19,9 +19,9 @@ import java.nio.charset.StandardCharsets;
  * @description
  */
 @Slf4j
-public class AuthenticationUtil {
+public class CommonWriteUtil {
 
-    private AuthenticationUtil() {
+    private CommonWriteUtil() {
 
     }
 

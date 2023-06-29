@@ -1,6 +1,6 @@
 package com.lingyi.mall.common.security.admin.handler;
 
-import com.lingyi.mall.common.security.admin.util.AuthenticationUtil;
+import com.lingyi.mall.common.security.admin.util.CommonWriteUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,6 +20,6 @@ import java.io.IOException;
 public class JsonAuthenticationFailureHandler implements AuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-        AuthenticationUtil.write(response,exception);
+        CommonWriteUtil.write(response,exception);
     }
 }
