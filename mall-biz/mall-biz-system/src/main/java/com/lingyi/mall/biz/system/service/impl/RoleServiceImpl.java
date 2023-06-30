@@ -91,8 +91,8 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<RoleVO> readList() {
-        return roleMapper.selectList();
+    public List<RoleVO> readList(BasePageParam basePageParam) {
+        return roleMapper.selectList(basePageParam);
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.lingyi.mall.biz.system.mapper;
 import com.lingyi.mall.biz.system.param.RoleParam;
 import com.lingyi.mall.biz.system.param.UserParam;
 import com.lingyi.mall.biz.system.vo.RoleVO;
+import com.lingyi.mall.common.base.param.BasePageParam;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -43,7 +44,7 @@ public interface RoleMapper {
     /**
      * @return 角色列表
      */
-    List<RoleVO> selectList();
+    List<RoleVO> selectList(BasePageParam basePageParam);
 
 
 }

@@ -17,7 +17,7 @@ import java.io.Serializable;
  */
 @Schema(description = "后台分页信息")
 @Data
-public abstract class BasePageParam implements Serializable {
+public class BasePageParam implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 975629823646747916L;

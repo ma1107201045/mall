@@ -7,6 +7,7 @@ import com.lingyi.mall.biz.system.dto.UserDTO;
 import com.lingyi.mall.biz.system.param.UserParam;
 import com.lingyi.mall.biz.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.vo.UserVO;
+import com.lingyi.mall.common.base.param.BasePageParam;
 import com.lingyi.mall.common.base.util.BaseService;
 
 import java.util.List;
@@ -28,10 +29,10 @@ public interface UserService extends BaseService<UserDTO, UserParam, UserVO, Lon
 
     /**
      * 读取角色集
-     *
+     * @param basePageParam ..
      * @return List<RoleVO>
      */
-    List<RoleVO> readRoleList();
+    List<RoleVO> readRoleList(BasePageParam basePageParam);
 
     /**
      * 更新部分信息

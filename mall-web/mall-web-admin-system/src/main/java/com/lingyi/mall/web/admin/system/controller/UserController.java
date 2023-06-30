@@ -86,8 +86,8 @@ public class UserController {
     @GetMapping("/roles")
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:roles:getList')")
     @Log(title = "查询角色列表", operationType = OperationTypeEnum.READ)
-    public ServerResponse<List<RoleVO>> getRoleList() {
-        List<RoleVO> roles = userService.readRoleList();
+    public ServerResponse<List<RoleVO>> getRoleList(@Valid BasePageParam basePageParam) {
+        List<RoleVO> roles = userService.readRoleList(basePageParam);
         return ServerResponse.success(roles);
     }
 

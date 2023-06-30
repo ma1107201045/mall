@@ -19,6 +19,7 @@ import com.lingyi.mall.biz.system.service.UserRoleService;
 import com.lingyi.mall.biz.system.service.UserService;
 import com.lingyi.mall.biz.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.vo.UserVO;
+import com.lingyi.mall.common.base.param.BasePageParam;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.util.ConverterUtil;
 import com.lingyi.mall.common.util.ObjectUtil;
@@ -130,8 +131,8 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public List<RoleVO> readRoleList() {
-        return roleService.readList();
+    public List<RoleVO> readRoleList(BasePageParam basePageParam) {
+        return roleService.readList(basePageParam);
     }
 
     @Override

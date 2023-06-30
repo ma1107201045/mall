@@ -55,7 +55,7 @@
     <select id="selectList" resultType="com.lingyi.mall.biz.system.vo.RoleVO">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM ms_role ORDER BY sort
+        FROM ms_role ORDER BY #{sortField} #{sortDirection}
     </select>
 
 </mapper>

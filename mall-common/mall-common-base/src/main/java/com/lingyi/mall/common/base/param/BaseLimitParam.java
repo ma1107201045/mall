@@ -17,7 +17,7 @@ import java.io.Serial;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public abstract class BaseLimitParam extends BasePageParam {
+public class BaseLimitParam extends BasePageParam {
     @Serial
     private static final long serialVersionUID = 7987432903456059366L;
 
