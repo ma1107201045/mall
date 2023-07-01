@@ -44,7 +44,7 @@ public class AdminController {
     @Operation(summary = "获取图形验证码-二进制流", description = "获取图形验证码-二进制流")
     @Log(title = "获取图形验证码-二进制流", operationType = OperationTypeEnum.READ, ignoreParam = true)
     @GetMapping("/get-bin-image-captcha")
-    public void getBinImageCaptcha(HttpServletResponse response, HttpSession session) {
-        adminService.writeImageCaptcha(response, session);
+    public void writeBinImageCaptcha(HttpSession session, HttpServletResponse response) {
+        adminService.writeImageCaptcha(session, response);
     }
 }

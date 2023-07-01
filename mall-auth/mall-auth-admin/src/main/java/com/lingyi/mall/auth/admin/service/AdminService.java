@@ -23,10 +23,10 @@ public interface AdminService {
     /**
      * 输出图形验证码
      *
-     * @param response 返回信息
      * @param session  session
+     * @param response 返回信息
      */
-    void writeImageCaptcha(HttpServletResponse response, HttpSession session);
+    void writeImageCaptcha(HttpSession session, HttpServletResponse response);
 
 
 }

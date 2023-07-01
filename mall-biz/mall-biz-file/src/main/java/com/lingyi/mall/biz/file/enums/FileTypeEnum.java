@@ -22,8 +22,11 @@ public enum FileTypeEnum {
      *
      */
     IMAGE_JPEG("jpeg", "image/jpeg"),
+
     IMAGE_JPG("jpg", "image/jpg"),
+
     IMAGE_PNG("png", "image/png"),
+
     FILE("*", "application/octet-stream");
 
     private final String name;
