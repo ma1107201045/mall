@@ -1,13 +1,12 @@
 package com.lingyi.mall.biz.system.param;
 
-import com.lingyi.mall.common.base.param.BaseLimitParam;
+import com.lingyi.mall.common.base.param.BasePageParam;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import java.io.Serial;
-import java.io.Serializable;
 
 /**
  * @author maweiyan
@@ -19,7 +18,7 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public class RoleParam extends BaseLimitParam {
+public class RoleParam extends BasePageParam {
 
     @Serial
     private static final long serialVersionUID = 7120127170693422674L;

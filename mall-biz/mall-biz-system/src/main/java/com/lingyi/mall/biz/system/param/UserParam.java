@@ -1,6 +1,5 @@
 package com.lingyi.mall.biz.system.param;
 
-import com.lingyi.mall.common.base.param.BaseLimitParam;
 import com.lingyi.mall.common.base.param.BasePageParam;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -8,7 +7,6 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import java.io.Serial;
-import java.io.Serializable;
 
 /**
  * @author maweiyan
@@ -21,10 +19,10 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public class UserParam extends BaseLimitParam {
+public class UserParam extends BasePageParam {
 
     @Serial
-    private static final long serialVersionUID = -6667153465937041097L;
+    private static final long serialVersionUID = 2130693581899316460L;
 
     @Schema(description = "用户名称")
     private String userName;

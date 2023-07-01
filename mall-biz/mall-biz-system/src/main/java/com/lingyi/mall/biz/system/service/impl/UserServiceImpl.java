@@ -125,7 +125,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserVO> readListByParam(UserParam userParam) {
-        userParam.convert();
         return userMapper.selectListByParam(userParam);
     }
 

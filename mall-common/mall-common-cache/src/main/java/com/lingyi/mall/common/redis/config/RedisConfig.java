@@ -20,14 +20,19 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  */
 @Configuration(proxyBeanMethods = false)
 public class RedisConfig {
+    @Bean
+    public RedisSerializer<String> stringRedisSerializer() {
+        return new StringRedisSerializer();
+    }
 
     /**
+     * springSessionDefaultRedisSerializer
      * Jackson2JsonRedisSerialize
      *
      * @return RedisSerializer
      */
     @Bean
-    public RedisSerializer<Object> redisSerializer() {
+    public RedisSerializer<Object> jackson2JsonRedisSerializer() {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         return new Jackson2JsonRedisSerializer<>(objectMapper, Object.class);
@@ -41,15 +46,15 @@ public class RedisConfig {
      * @return RedisTemplate
      */
     @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory, RedisSerializer<Object> redisSerializer) {
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory, RedisSerializer<String> stringRedisSerializer, RedisSerializer<Object> jackson2JsonRedisSerializer) {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         //设置连接工厂
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         // 设置value的序列化规则和 key的序列化规则
-        redisTemplate.setKeySerializer(new StringRedisSerializer());
-        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-        redisTemplate.setValueSerializer(redisSerializer);
-        redisTemplate.setHashValueSerializer(redisSerializer);
+        redisTemplate.setKeySerializer(stringRedisSerializer);
+        redisTemplate.setHashKeySerializer(stringRedisSerializer);
+        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
+        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
     }
@@ -61,15 +66,15 @@ public class RedisConfig {
      * @return RedisTemplate
      */
     @Bean
-    public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory redisConnectionFactory, RedisSerializer<Object> redisSerializer) {
+    public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory redisConnectionFactory, RedisSerializer<String> stringRedisSerializer, RedisSerializer<Object> jackson2JsonRedisSerializer) {
         StringRedisTemplate stringRedisTemplate = new StringRedisTemplate();
         stringRedisTemplate.setConnectionFactory(redisConnectionFactory);
         // 使用Jackson2JsonRedisSerialize 替换默认序列化
         // 设置value的序列化规则和 key的序列化规则
-        stringRedisTemplate.setKeySerializer(new StringRedisSerializer());
-        stringRedisTemplate.setHashKeySerializer(new StringRedisSerializer());
-        stringRedisTemplate.setValueSerializer(redisSerializer);
-        stringRedisTemplate.setHashValueSerializer(redisSerializer);
+        stringRedisTemplate.setKeySerializer(stringRedisSerializer);
+        stringRedisTemplate.setHashKeySerializer(stringRedisSerializer);
+        stringRedisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
+        stringRedisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
         stringRedisTemplate.afterPropertiesSet();
         return stringRedisTemplate;
     }

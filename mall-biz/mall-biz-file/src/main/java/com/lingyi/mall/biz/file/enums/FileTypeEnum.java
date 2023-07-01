@@ -21,10 +21,9 @@ public enum FileTypeEnum {
     /**
      *
      */
-    JPEG("jpeg", "image/jpeg"),
-
-    PNG("png", "image/png"),
-
+    IMAGE_JPEG("jpeg", "image/jpeg"),
+    IMAGE_JPG("jpg", "image/jpg"),
+    IMAGE_PNG("png", "image/png"),
     FILE("*", "application/octet-stream");
 
     private final String name;
@@ -43,9 +42,8 @@ public enum FileTypeEnum {
         if (Objects.isNull(extName)) {
             return FILE;
         }
-        FileTypeEnum fileTypeEnum = Arrays
-                .stream(values())
-                .filter(imageType -> imageType.name.equals(extName))
+        FileTypeEnum fileTypeEnum = Arrays.stream(values())
+                .filter(fileType -> fileType.name.equals(extName))
                 .findAny()
                 .orElse(ObjectUtil.getNull());
         return Objects.isNull(fileTypeEnum) ? FileTypeEnum.FILE : fileTypeEnum;

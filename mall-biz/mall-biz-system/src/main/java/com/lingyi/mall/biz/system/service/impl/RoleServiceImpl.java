@@ -97,7 +97,6 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List<RoleVO> readListByParam(RoleParam roleParam) {
-        roleParam.convert();
         return roleMapper.selectListByParam(roleParam);
     }
 

@@ -46,6 +46,23 @@ public class BasePageParam implements Serializable {
     @Schema(description = "排序方向", requiredMode = Schema.RequiredMode.NOT_REQUIRED, example = "DESC")
     private String sortDirection = SORT_DIRECTION_DEFAULT_VALUE;
 
+    @Schema(description = "偏移量", hidden = true)
+    private Integer offset;
+
+    @Schema(description = "数量", hidden = true)
+    private Integer limit;
+
+    public Integer getOffset() {
+        offset = (currentPage - 1) * pageSize;
+        return offset;
+    }
+
+    public Integer getLimit() {
+        limit = pageSize;
+        return limit;
+    }
+
+
     public String getSort() {
         return sortField + BaseConstant.SPACE_CHAR + sortDirection;
     }

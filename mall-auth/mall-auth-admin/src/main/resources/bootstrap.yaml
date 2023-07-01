@@ -1,6 +1,9 @@
 server:
   port: 7001
 spring:
+  session:
+    mongodb:
+      collection-name:
   application:
     name: mall-auth-admin
   main:

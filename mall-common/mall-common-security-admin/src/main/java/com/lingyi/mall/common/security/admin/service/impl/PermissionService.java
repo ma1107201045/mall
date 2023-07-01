@@ -25,7 +25,7 @@ public class PermissionService {
         return AuthenticatorUtil.getAuthorities().stream()
                 .flatMap(grantedAuthority -> Arrays.stream(grantedAuthority.getAuthority()
                         .split(SecurityAdminConstant.PERMISSION_SPLIT_CHAR)))
-                .anyMatch(p -> p.equals(permission));
+                .anyMatch(item -> item.equals(permission));
 
     }
 

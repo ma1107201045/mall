@@ -100,9 +100,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeHttpRequestsConfigurer -> authorizeHttpRequestsConfigurer
                         .requestMatchers(HttpMethod.GET, "/swagger-ui/**", "/doc.html", "/webjars/**", "/v3/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/auth/admin/get-base64-image-captcha", "/auth/admin/get-bin-image-captcha").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/admin/file/files/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/admin/system/logs").permitAll()
                         .requestMatchers(HttpMethod.GET, "/admin/system/users/permissions").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/admin/system/logs").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(formLoginConfigurer -> formLoginConfigurer.loginProcessingUrl(SecurityAdminConstant.LOGIN_PROCESSING_URL)
                         .usernameParameter(SecurityAdminConstant.USER_NAME_PARAMETER)

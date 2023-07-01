@@ -26,7 +26,7 @@ public class FileVO implements Serializable {
     @Serial
     private static final long serialVersionUID = 4716251147498450473L;
 
-    @Schema(description = "基础地址")
+    @Schema(description = "基础URL")
     private String baseUrl;
 
     @Schema(description = "相对URL")

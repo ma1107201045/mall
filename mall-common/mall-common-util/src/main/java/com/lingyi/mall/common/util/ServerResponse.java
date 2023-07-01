@@ -20,8 +20,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ServerResponse<T> implements Serializable {
-
-
+    
     @Serial
     private static final long serialVersionUID = 8505044737530270464L;
 
@@ -40,9 +39,8 @@ public class ServerResponse<T> implements Serializable {
     @Schema(description = "总条数", example = "1000L")
     private Long total;
 
-
     public static <T> ServerResponse<T> success(T data, Long total) {
-        return new ServerResponse<>(true, HttpStatus.OK.value(), HttpStatus.OK.getReasonPhrase(), data, total);
+        return new ServerResponse<>(Boolean.TRUE, HttpStatus.OK.value(), HttpStatus.OK.getReasonPhrase(), data, total);
     }
 
     public static <T> ServerResponse<T> success(T data) {
@@ -54,9 +52,8 @@ public class ServerResponse<T> implements Serializable {
     }
 
     public static <T> ServerResponse<T> fail(Integer code, String message) {
-        return new ServerResponse<>(false, code, message, ObjectUtil.getNull(), 0L);
+        return new ServerResponse<>(Boolean.FALSE, code, message, ObjectUtil.getNull(), 0L);
     }
-
 
     public static <T> ServerResponse<T> fail(String message) {
         return fail(HttpStatus.INTERNAL_SERVER_ERROR.value(), message);
