@@ -73,6 +73,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void deleteByIds(List<Long> ids) {
         boolean flag = userRepository.findAllById(ids)
                 .stream()
