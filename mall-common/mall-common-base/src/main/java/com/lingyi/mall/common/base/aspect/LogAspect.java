@@ -50,6 +50,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class LogAspect {
 
+    private static final ThreadLocal<StopWatch> STOP_WATCH_THREAD_LOCAL = ThreadLocal.withInitial(StopWatch::new);
+
     private final BaseAsyncTask baseAsyncTask;
 
     /**
@@ -77,7 +79,7 @@ public class LogAspect {
         Object returnValue = null;
         Throwable throwable = null;
         String methodName = null;
-        StopWatch sw = new StopWatch();
+        StopWatch sw = STOP_WATCH_THREAD_LOCAL.get();
         try {
             sw.start();
             MethodSignature ms = (MethodSignature) joinPoint.getSignature();
@@ -95,8 +97,9 @@ public class LogAspect {
             if (!isFeign(joinPoint)) {
                 sw.stop();
                 this.printResponse(returnValue);
-                this.printResult(joinPoint.getTarget().getClass().getName(), methodName, throwable, sw);
+                this.printResult(joinPoint.getTarget().getClass().getName(), methodName, throwable, sw.getLastTaskTimeMillis());
             }
+            STOP_WATCH_THREAD_LOCAL.remove();
         }
     }
 
@@ -105,7 +108,7 @@ public class LogAspect {
         Object result = null;
         boolean isSuccess = false;
         String failReason = null;
-        StopWatch sw = new StopWatch();
+        StopWatch sw = STOP_WATCH_THREAD_LOCAL.get();
         try {
             sw.start();
             result = joinPoint.proceed(joinPoint.getArgs());
@@ -122,6 +125,7 @@ public class LogAspect {
             LogReqDTO logDTO = buildLogDTO(log, joinPoint, result, isSuccess, sw.getLastTaskTimeMillis(), failReason);
             //异步保存
             baseAsyncTask.saveLog(logDTO);
+            STOP_WATCH_THREAD_LOCAL.remove();
         }
     }
 
@@ -254,8 +258,8 @@ public class LogAspect {
         log.info("Response:{}", JSON.toJSONString(obj));
     }
 
-    private void printResult(String className, String methodName, Throwable throwable, StopWatch sw) {
-        log.info("ResponseAfter:METHOD = {};  EX = {}; 耗时 = {}ms;", className + "." + methodName, throwable == null ? "-" : throwable.getClass().getSimpleName(), sw.getLastTaskTimeMillis());
+    private void printResult(String className, String methodName, Throwable throwable, long taskTime) {
+        log.info("ResponseAfter:METHOD = {};  EX = {}; 耗时 = {}ms;", className + "." + methodName, throwable == null ? "-" : throwable.getClass().getSimpleName(), taskTime);
     }
 
 
