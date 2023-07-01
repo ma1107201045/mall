@@ -34,7 +34,7 @@ import java.io.OutputStream;
 public class MinioFileServiceImpl implements FileService {
 
     @Value("${file.base-url}")
-    private String baseurl;
+    private String baseUrl;
 
     @Value("${minio.bucket}")
     private String bucket;
@@ -52,7 +52,7 @@ public class MinioFileServiceImpl implements FileService {
         try {
             minioFileStorage.removeFile(bucket, name);
         } catch (Exception e) {
-            log.error("delete  error ", e);
+            log.error("delete error ", e);
             throw new FileException(FileFailEnum.DELETE_FILE_ERROR);
         }
     }
@@ -90,9 +90,11 @@ public class MinioFileServiceImpl implements FileService {
             boolean flag = creatBucketOfNotExist(bucket);
             AssertUtil.isTrue(flag, FileFailEnum.UPLOAD_FILE_ERROR);
             String actualName = IdUtil.fastSimpleUUID() + BaseConstant.POINT_CHAR + FileUtil.extName(name);
+            //上传
             minioFileStorage.putStream(bucket, new InputStreamObject(actualName, is, fileTypeEnum.getContentType()));
+            //获取url
             String url = minioFileStorage.getViewUrl(bucket, actualName);
-            return FileVO.of(baseurl, getNotExpiryDateUrl(url), name);
+            return FileVO.of(baseUrl, getNotExpiryDateUrl(url), name);
         } catch (Exception e) {
             log.error("upload error ", e);
             throw new FileException(FileFailEnum.UPLOAD_FILE_ERROR);
