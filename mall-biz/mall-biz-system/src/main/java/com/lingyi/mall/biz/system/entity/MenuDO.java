@@ -50,7 +50,7 @@ public class MenuDO extends BaseCommonDO implements Serializable {
     @Column(name = "route_name", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '路由名称'")
     private String routeName;
 
-    @Column(name = "route_path", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '路由地址'")
+    @Column(name = "route_path", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '路由路径'")
     private String routePath;
 
     @Column(name = "component_path", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '组件路径'")

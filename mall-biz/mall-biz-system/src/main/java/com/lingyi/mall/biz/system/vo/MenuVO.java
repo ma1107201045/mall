@@ -44,7 +44,7 @@ public class MenuVO implements Serializable {
     @Schema(description = "路由名称")
     private String routeName;
 
-    @Schema(description = "路由地址")
+    @Schema(description = "路由路径")
     private String routePath;
 
     @Schema(description = "组件路径")
@@ -67,9 +67,6 @@ public class MenuVO implements Serializable {
 
     @Schema(description = "最后一次更新时间")
     private LocalDateTime lastModifyDateTime;
-
-    @Schema(description = "是否删除 1是 0否")
-    private Integer isDelete;
 
     @Schema(description = "菜单子级")
     private List<MenuVO> children;

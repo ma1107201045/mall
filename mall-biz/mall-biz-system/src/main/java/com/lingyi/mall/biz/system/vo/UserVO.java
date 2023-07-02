@@ -72,9 +72,6 @@ public class UserVO implements Serializable {
     @Schema(description = "最后一次更新时间")
     private LocalDateTime lastModifyDateTime;
 
-    @Schema(description = "是否删除 1是 0否")
-    private Integer isDelete;
-
     @Schema(description = "角色id集")
     private List<Long> roleIds;
 
