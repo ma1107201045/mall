@@ -1,12 +1,10 @@
 package com.lingyi.mall.common.base.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.NoArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
+import lombok.Data;
 
 import java.io.Serial;
-import java.util.Collection;
+import java.io.Serializable;
 
 /**
  * @Author: maweiyan
@@ -14,64 +12,16 @@ import java.util.Collection;
  * @DateTime: 2023/5/27 10:38
  * @Description:
  */
+@Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class MemberDetailsDO implements MemberDetails {
+public class MemberDetailsDO implements Serializable {
     @Serial
     private static final long serialVersionUID = -4555073638396468898L;
-
-    private Collection<? extends GrantedAuthority> authorities;
-
-    private String verificationCode;
-
-    private String phoneNumber;
-
-    private boolean enabled;
 
     private Long userId;
 
     private String userName;
 
-    private String authorization;
-
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
-
-    @Override
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    @Override
-    public String getVerificationCode() {
-        return verificationCode;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-
-    public void setAuthorization(String authorization) {
-        this.authorization = authorization;
-    }
-
-    public String getAuthorization() {
-        return authorization;
-    }
-
+    private String phoneNumber;
 
 }

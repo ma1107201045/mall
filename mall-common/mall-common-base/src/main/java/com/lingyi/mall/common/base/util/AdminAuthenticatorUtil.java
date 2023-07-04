@@ -1,5 +1,7 @@
-package com.lingyi.mall.common.security.admin.entity;
+package com.lingyi.mall.common.base.util;
 
+import com.lingyi.mall.common.base.entity.MemberDetailsDO;
+import com.lingyi.mall.common.base.entity.UserDetailsDO;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,7 +14,7 @@ import java.util.Collection;
  * @DateTime: 2023/5/12 22:27
  * @Description:
  */
-public class AuthenticatorUtil {
+public class AdminAuthenticatorUtil {
 
 
     public static Authentication getAuthentication() {
@@ -33,10 +35,9 @@ public class AuthenticatorUtil {
      *
      * @return UserDetailsEntity
      */
-    public static UserDetailsDO getUserDetailsEntity() {
+    public static UserDetailsDO getUserDetailsDO() {
         return (UserDetailsDO) getPrincipal();
     }
-
 
     /**
      * 获取当前认证用户id
@@ -44,7 +45,7 @@ public class AuthenticatorUtil {
      * @return 用户id
      */
     public static Long getUserId() {
-        return getUserDetailsEntity().getUserId();
+        return getUserDetailsDO().getUserId();
     }
 
     /**
@@ -53,6 +54,6 @@ public class AuthenticatorUtil {
      * @return 用户名称
      */
     public static String getUserName() {
-        return getUserDetailsEntity().getUsername();
+        return getUserDetailsDO().getUsername();
     }
 }
