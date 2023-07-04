@@ -10,6 +10,10 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>mall-api-system</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>mall-api-member</artifactId>
         </dependency>
         <dependency>

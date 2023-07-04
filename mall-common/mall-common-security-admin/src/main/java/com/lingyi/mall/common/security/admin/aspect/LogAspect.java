@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.base.aspect;
+package com.lingyi.mall.common.security.admin.aspect;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
@@ -8,8 +8,9 @@ import com.alibaba.fastjson2.JSON;
 import com.lingyi.mall.api.system.dto.LogReqDTO;
 import com.lingyi.mall.common.base.constant.BaseConstant;
 import com.lingyi.mall.common.base.enums.WhetherEnum;
-import com.lingyi.mall.common.base.task.BaseAsyncTask;
 import com.lingyi.mall.common.base.util.RequestUtil;
+import com.lingyi.mall.common.security.admin.task.BaseAsyncTask;
+import com.lingyi.mall.common.security.admin.util.AdminAuthenticatorUtil;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,6 +34,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Parameter;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -67,7 +69,7 @@ public class LogAspect {
     /**
      * 数据库日志切点
      */
-    @Pointcut("@annotation(com.lingyi.mall.common.base.aspect.Log)")
+    @Pointcut("@annotation(com.lingyi.mall.common.security.admin.aspect.Log)")
     private void dataBasePointcut() {
     }
 
@@ -293,6 +295,10 @@ public class LogAspect {
                 .failReason(failReason)
                 .clientIp(RequestUtil.getRemoteHost(((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest()))
                 .trackId(MDC.get(BaseConstant.TRACK_ID_NAME))
+                .createBy(AdminAuthenticatorUtil.getUserName())
+                .createDateTime(LocalDateTime.now())
+                .lastModifyBy(AdminAuthenticatorUtil.getUserName())
+                .lastModifyDateTime(LocalDateTime.now())
                 .build();
     }
 }

@@ -3,7 +3,7 @@ package com.lingyi.mall.web.admin.file.controller;
 import com.lingyi.mall.biz.file.enums.FileTypeEnum;
 import com.lingyi.mall.biz.file.service.FileService;
 import com.lingyi.mall.biz.file.vo.FileVO;
-import com.lingyi.mall.common.base.aspect.Log;
+import com.lingyi.mall.common.security.admin.aspect.Log;
 import com.lingyi.mall.common.base.enums.OperationTypeEnum;
 import com.lingyi.mall.common.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;

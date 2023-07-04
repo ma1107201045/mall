@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * @author maweiyan
@@ -69,4 +70,12 @@ public class LogReqDTO implements Serializable {
 
 
     private String trackId;
+
+    private String createBy;
+
+    private LocalDateTime createDateTime;
+
+    private String lastModifyBy;
+
+    private LocalDateTime lastModifyDateTime;
 }

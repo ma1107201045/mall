@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.base.aspect;
+package com.lingyi.mall.common.security.admin.aspect;
 
 import com.lingyi.mall.common.base.constant.BaseConstant;
 import com.lingyi.mall.common.base.enums.ClientTypeEnum;

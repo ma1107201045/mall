@@ -29,7 +29,7 @@
         FROM ms_role mr
         LEFT JOIN ms_role_menu mrm ON mrm.role_id = mr.id
         LEFT JOIN ms_menu mm ON mm.id = mrm.menu_id
-        WHERE mr.id = #{id,jdbcType=BIGINT} AND mm.type = 3
+        WHERE mr.id = #{id,jdbcType=BIGINT}
     </select>
     <select id="countByParam" resultType="java.lang.Long">
         SELECT COUNT(*) FROM ms_role
@@ -45,12 +45,11 @@
         <where>
             <include refid="Base_Condition"/>
         </where>
-        ORDER BY #{sortField} #{sortDirection}
         LIMIT #{offset},#{limit}
         ) mr
         LEFT JOIN ms_role_menu mrm ON mr.id =mrm.role_id
         LEFT JOIN ms_menu mm ON mm.id = mrm.menu_id
-        WHERE mm.type = 3
+        ORDER BY ${sortField} ${sortDirection}
     </select>
     <select id="selectList" resultType="com.lingyi.mall.biz.system.vo.RoleVO">
         SELECT
