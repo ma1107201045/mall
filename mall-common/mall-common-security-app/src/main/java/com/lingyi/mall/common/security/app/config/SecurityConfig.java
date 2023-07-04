@@ -50,9 +50,11 @@ public class SecurityConfig {
     }
 
     @Bean
-    public FilterRegistrationBean<JwtAuthorizationFilter> jwtAuthorizationFilterFilterRegistrationBean() {
+    public FilterRegistrationBean<JwtAuthorizationFilter> jwtAuthorizationFilterFilterRegistrationBean(MessageSourceAccessor messageSourceAccessor) {
         FilterRegistrationBean<JwtAuthorizationFilter> bean = new FilterRegistrationBean<>();
-        bean.setFilter(new JwtAuthorizationFilter());
+        JwtAuthorizationFilter jwtAuthorizationFilter = new JwtAuthorizationFilter();
+        jwtAuthorizationFilter.setMessageSourceAccessor(messageSourceAccessor);
+        bean.setFilter(jwtAuthorizationFilter);
         bean.addUrlPatterns("/**");
         bean.setOrder(3);
         return bean;
