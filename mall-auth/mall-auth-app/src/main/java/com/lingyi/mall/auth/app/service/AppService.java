@@ -10,7 +10,7 @@ import com.lingyi.mall.auth.app.vo.AppLoginVO;
  * @datetime 2023/5/25 15:50
  * @description
  */
-public interface MaaAppService {
+public interface AppService {
 
 
     /**

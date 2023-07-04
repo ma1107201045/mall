@@ -1,7 +1,6 @@
 package com.lingyi.mall.biz.member.service.impl;
 
-import com.github.pagehelper.PageHelper;
-import com.lingyi.mall.api.member.dto.MemberReqDTO;
+import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.biz.member.entity.MemberDO;
 import com.lingyi.mall.biz.member.enums.MemberFailEnumEnum;
 import com.lingyi.mall.biz.member.param.MemberParam;
@@ -10,7 +9,6 @@ import com.lingyi.mall.biz.member.mapper.MemberMapper;
 import com.lingyi.mall.biz.member.repository.MemberRepository;
 import com.lingyi.mall.biz.member.service.MemberService;
 import com.lingyi.mall.common.base.exception.BizException;
-import com.lingyi.mall.common.base.param.BasePageParam;
 import com.lingyi.mall.common.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -64,7 +62,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public MemberReqDTO findByPhoneNumber(String phoneNumber) {
+    public MemberRespDTO findByPhoneNumber(String phoneNumber) {
         return memberMapper.selectByPhoneNumber(phoneNumber);
     }
 

@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
  */
 @Schema(description = "会员")
 @Data
-public class MemberReqDTO implements Serializable {
+public class MemberRespDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = -6855300415860050264L;
 

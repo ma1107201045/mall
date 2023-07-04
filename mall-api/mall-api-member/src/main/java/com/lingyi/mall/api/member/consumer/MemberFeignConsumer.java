@@ -1,7 +1,7 @@
 package com.lingyi.mall.api.member.consumer;
 
 import com.alibaba.fastjson2.JSON;
-import com.lingyi.mall.api.member.dto.MemberReqDTO;
+import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.api.member.feign.MemberFeign;
 import com.lingyi.mall.common.util.OpenFeignException;
 import com.lingyi.mall.common.util.ServerResponse;
@@ -22,9 +22,9 @@ public class MemberFeignConsumer {
 
     private final MemberFeign memberFeign;
 
-    public MemberReqDTO getByPhoneNumber(String phoneNumber) {
+    public MemberRespDTO getByPhoneNumber(String phoneNumber) {
         log.info("入参:phoneNumber:{}", phoneNumber);
-        ServerResponse<MemberReqDTO> response = memberFeign.getByPhoneNumber(phoneNumber);
+        ServerResponse<MemberRespDTO> response = memberFeign.getByPhoneNumber(phoneNumber);
         if (response.getIsSuccess()) {
             log.info("出参:MemberVO:{}", JSON.toJSONString(response.getData()));
             return response.getData();

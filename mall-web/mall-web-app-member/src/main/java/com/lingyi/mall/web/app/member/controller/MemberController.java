@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class MemberController {
     @Operation(summary = "hell", description = "hell")
-    @GetMapping
+    @GetMapping("/hello")
     public String hello() {
         return "hello";
     }

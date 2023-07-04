@@ -1,6 +1,6 @@
 package com.lingyi.mall.web.app.member.provider;
 
-import com.lingyi.mall.api.member.dto.MemberReqDTO;
+import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.api.member.feign.MemberFeign;
 import com.lingyi.mall.biz.member.service.MemberService;
 import com.lingyi.mall.common.util.ServerResponse;
@@ -19,11 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MemberProvider implements MemberFeign {
 
-    private final MemberService mbmMemberService;
-
+    private final MemberService memberService;
     @Override
-    public ServerResponse<MemberReqDTO> getByPhoneNumber(String phoneNumber) {
-        MemberReqDTO memberReqDTO = mbmMemberService.findByPhoneNumber(phoneNumber);
-        return ServerResponse.success(memberReqDTO);
+    public ServerResponse<MemberRespDTO> getByPhoneNumber(String phoneNumber) {
+        MemberRespDTO memberRespDTO = memberService.findByPhoneNumber(phoneNumber);
+        return ServerResponse.success(memberRespDTO);
     }
 }

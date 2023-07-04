@@ -1,6 +1,6 @@
 package com.lingyi.mall.api.member.feign;
 
-import com.lingyi.mall.api.member.dto.MemberReqDTO;
+import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.api.member.fallbackfactory.MemberFeignFallbackFactory;
 import com.lingyi.mall.common.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -25,5 +25,5 @@ public interface MemberFeign {
      * @return 用户信息
      */
     @GetMapping(URL_PREFIX)
-    ServerResponse<MemberReqDTO> getByPhoneNumber(@RequestParam(name = "phoneNumber") String phoneNumber);
+    ServerResponse<MemberRespDTO> getByPhoneNumber(@RequestParam(name = "phoneNumber") String phoneNumber);
 }
