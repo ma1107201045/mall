@@ -1,12 +1,12 @@
-package com.lingyi.mall.common.base.util;
+package com.lingyi.mall.common.security.admin.util;
 
-import com.lingyi.mall.common.base.entity.MemberDetailsDO;
-import com.lingyi.mall.common.base.entity.UserDetailsDO;
+import com.lingyi.mall.common.security.admin.entity.UserDetailsDO;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.Collection;
+import java.util.Objects;
 
 /**
  * @Author: maweiyan
@@ -21,22 +21,15 @@ public class AdminAuthenticatorUtil {
         return SecurityContextHolder.getContext().getAuthentication();
     }
 
-    public static Object getPrincipal() {
-        return getAuthentication().getPrincipal();
-    }
-
-
-    public static Collection<? extends GrantedAuthority> getAuthorities() {
-        return getAuthentication().getAuthorities();
-    }
-
     /**
      * 获取admin端用户认证信息
      *
      * @return UserDetailsEntity
      */
     public static UserDetailsDO getUserDetailsDO() {
-        return (UserDetailsDO) getPrincipal();
+        Authentication authentication = getAuthentication();
+        return (UserDetailsDO) (Objects.isNull(authentication) ?
+                UserDetailsDO.builder().build() : authentication.getPrincipal());
     }
 
     /**
@@ -55,5 +48,9 @@ public class AdminAuthenticatorUtil {
      */
     public static String getUserName() {
         return getUserDetailsDO().getUsername();
+    }
+
+    public static Collection<? extends GrantedAuthority> getAuthorities() {
+        return getUserDetailsDO().getAuthorities();
     }
 }

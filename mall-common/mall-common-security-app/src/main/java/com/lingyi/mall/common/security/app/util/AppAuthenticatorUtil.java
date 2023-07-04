@@ -1,8 +1,7 @@
-package com.lingyi.mall.common.base.util;
+package com.lingyi.mall.common.security.app.util;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.jwt.JWT;
-import cn.hutool.jwt.JWTPayload;
 import cn.hutool.jwt.JWTUtil;
 import com.lingyi.mall.common.base.constant.BaseConstant;
 import com.lingyi.mall.common.base.entity.MemberDetailsDO;

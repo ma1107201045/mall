@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.base.entity;
+package com.lingyi.mall.common.security.admin.entity;
 
 import com.alibaba.fastjson2.annotation.JSONField;
 import lombok.Builder;

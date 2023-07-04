@@ -32,6 +32,7 @@ public class SecurityAppConstant {
     public static final String IS_IGNORE_REQUEST_ATTRIBUTE = "isIgnoreRequest";
     public static final String JWT_KEY = "199726ma.";
     public static final String AUTHORIZATION = "Authorization";
+    public static final String UNKNOWN = "unknown";
 
     private SecurityAppConstant() {
 

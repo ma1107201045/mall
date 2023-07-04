@@ -1,7 +1,7 @@
 package com.lingyi.mall.common.security.admin.service.impl;
 
-import com.lingyi.mall.common.base.util.AdminAuthenticatorUtil;
 import com.lingyi.mall.common.security.admin.constant.SecurityAdminConstant;
+import com.lingyi.mall.common.security.admin.util.AdminAuthenticatorUtil;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;

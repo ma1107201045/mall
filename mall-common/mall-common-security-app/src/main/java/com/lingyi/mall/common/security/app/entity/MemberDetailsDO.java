@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.base.entity;
+package com.lingyi.mall.common.security.app.entity;
 
 import lombok.Builder;
 import lombok.Data;
