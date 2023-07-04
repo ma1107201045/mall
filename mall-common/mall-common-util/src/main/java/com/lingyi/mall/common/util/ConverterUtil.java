@@ -16,8 +16,8 @@ public class ConverterUtil {
         return t;
     }
 
-    public static <S, T> T to(S s, Class<T> tClass) {
-        return BeanUtil.copyProperties(s, tClass);
+    public static <S, T> T to(S s, Class<T> clazz) {
+        return BeanUtil.copyProperties(s, clazz);
     }
 
 }
