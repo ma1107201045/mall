@@ -32,30 +32,40 @@ public class SecurityConfig {
     }
 
     @Bean
-    public FilterRegistrationBean<TrackIdFilter> trackIdFilterFilterRegistrationBean() {
+    public IgnoreRequestFilter ignoreRequestFilter() {
+        return new IgnoreRequestFilter();
+    }
+
+    @Bean
+    public JwtAuthorizationFilter jwtAuthorizationFilter(MessageSourceAccessor messageSourceAccessor) {
+        JwtAuthorizationFilter jwtAuthorizationFilter = new JwtAuthorizationFilter();
+        jwtAuthorizationFilter.setMessageSourceAccessor(messageSourceAccessor);
+        return jwtAuthorizationFilter;
+    }
+
+    @Bean
+    public FilterRegistrationBean<TrackIdFilter> trackIdFilterFilterRegistrationBean(TrackIdFilter trackIdFilter) {
         FilterRegistrationBean<TrackIdFilter> bean = new FilterRegistrationBean<>();
-        bean.setFilter(new TrackIdFilter());
-        bean.addUrlPatterns("/**");
+        bean.addUrlPatterns("/*");
+        bean.setFilter(trackIdFilter);
         bean.setOrder(1);
         return bean;
     }
 
     @Bean
-    public FilterRegistrationBean<IgnoreRequestFilter> ignoreUrlFilterFilterRegistrationBean() {
+    public FilterRegistrationBean<IgnoreRequestFilter> ignoreRequestFilterFilterRegistrationBean(IgnoreRequestFilter ignoreRequestFilter) {
         FilterRegistrationBean<IgnoreRequestFilter> bean = new FilterRegistrationBean<>();
-        bean.setFilter(new IgnoreRequestFilter());
-        bean.addUrlPatterns("/**");
+        bean.setFilter(ignoreRequestFilter);
+        bean.addUrlPatterns("/*");
         bean.setOrder(2);
         return bean;
     }
 
     @Bean
-    public FilterRegistrationBean<JwtAuthorizationFilter> jwtAuthorizationFilterFilterRegistrationBean(MessageSourceAccessor messageSourceAccessor) {
+    public FilterRegistrationBean<JwtAuthorizationFilter> jwtAuthorizationFilterFilterRegistrationBean(JwtAuthorizationFilter jwtAuthorizationFilter) {
         FilterRegistrationBean<JwtAuthorizationFilter> bean = new FilterRegistrationBean<>();
-        JwtAuthorizationFilter jwtAuthorizationFilter = new JwtAuthorizationFilter();
-        jwtAuthorizationFilter.setMessageSourceAccessor(messageSourceAccessor);
+        bean.addUrlPatterns("/*");
         bean.setFilter(jwtAuthorizationFilter);
-        bean.addUrlPatterns("/**");
         bean.setOrder(3);
         return bean;
     }
