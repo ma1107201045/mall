@@ -5,7 +5,7 @@ import com.lingyi.mall.api.system.dto.UserPartReqDTO;
 import com.lingyi.mall.biz.base.service.BaseService;
 import com.lingyi.mall.common.base.aspect.Log;
 import com.lingyi.mall.common.base.enums.OperationTypeEnum;
-import com.lingyi.mall.common.base.util.AdminAuthenticatorUtil;
+import com.lingyi.mall.common.security.admin.util.AdminAuthenticatorUtil;
 import com.lingyi.mall.common.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -44,8 +44,9 @@ public class BaseController {
     @GetMapping("/menu-permissions")
     @Log(title = "获取当前用户菜单权限标识集", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<String>> getMenuPermissions() {
+        Long userId = AdminAuthenticatorUtil.getUserId();
         String userName = AdminAuthenticatorUtil.getUserName();
-        List<String> permissions = baseService.readMenuPermissionsByUserName(userName);
+        List<String> permissions = baseService.readMenuPermissionsByUserIdAndUserName(userId, userName);
         return ServerResponse.success(permissions);
     }
 
