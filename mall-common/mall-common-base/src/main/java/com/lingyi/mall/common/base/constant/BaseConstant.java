@@ -24,6 +24,7 @@ public class BaseConstant {
     public static final String SEMICOLON_CHAR = ";";
     public static final String SPACE_CHAR = " ";
     public static final String EMPTY_CHAR = "";
+    public static final String AUTHORIZATION = "Authorization";
 
 
     private BaseConstant() {

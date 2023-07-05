@@ -19,6 +19,7 @@ public class SecurityAdminConstant {
     public static final String COOKIE = "cookie";
     public static final String PERMISSION_SPLIT_CHAR = ",";
     public static final String SESSION_ATTRIBUTE_NAME = "imageCaptcha";
+    public static final String UNKNOWN = "unknown";
 
 
     private SecurityAdminConstant() {

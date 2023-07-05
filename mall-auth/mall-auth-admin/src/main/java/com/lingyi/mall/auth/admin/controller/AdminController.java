@@ -1,7 +1,7 @@
 package com.lingyi.mall.auth.admin.controller;
 
 import com.lingyi.mall.auth.admin.service.AdminService;
-import com.lingyi.mall.common.base.aspect.Log;
+import com.lingyi.mall.common.security.admin.aspect.Log;
 import com.lingyi.mall.common.base.enums.OperationTypeEnum;
 import com.lingyi.mall.common.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author maweiyan

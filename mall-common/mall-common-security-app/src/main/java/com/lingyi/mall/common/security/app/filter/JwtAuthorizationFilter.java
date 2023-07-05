@@ -2,7 +2,9 @@ package com.lingyi.mall.common.security.app.filter;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.jwt.JWTUtil;
+import com.alibaba.fastjson2.JSON;
 import com.lingyi.mall.common.security.app.constant.SecurityAppConstant;
+import com.lingyi.mall.common.util.ServerResponse;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
@@ -11,6 +13,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.SpringSecurityMessageSource;
 import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper;
@@ -18,6 +22,7 @@ import org.springframework.security.core.authority.mapping.NullAuthoritiesMapper
 import org.springframework.web.filter.GenericFilterBean;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
@@ -39,22 +44,22 @@ public class JwtAuthorizationFilter extends GenericFilterBean {
     private void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         if (this.isIgnoreRequest(request)) {
             chain.doFilter(request, response);
+            return;
         }
         String token = request.getHeader(SecurityAppConstant.AUTHORIZATION);
-        if (StrUtil.isBlank(token)) {
-            this.throwException();
+        if (StrUtil.isNotBlank(token)) {
+            boolean flag = false;
+            try {
+                flag = JWTUtil.verify(token, SecurityAppConstant.JWT_KEY.getBytes(StandardCharsets.UTF_8));
+            } catch (Exception e) {
+                log.error("Error verifying token, reason: ", e);
+            }
+            if (flag) {
+                chain.doFilter(request, response);
+                return;
+            }
         }
-        boolean flag = false;
-        try {
-            flag = JWTUtil.verify(token, SecurityAppConstant.JWT_KEY.getBytes(StandardCharsets.UTF_8));
-        } catch (Exception e) {
-            log.error("Error verifying token, reason: ", e);
-            this.throwException();
-        }
-        if (!flag) {
-            this.throwException();
-        }
-        chain.doFilter(request, response);
+        write(response);
     }
 
 
@@ -63,8 +68,13 @@ public class JwtAuthorizationFilter extends GenericFilterBean {
         return Objects.nonNull(value) && (Boolean) value;
     }
 
-    private void throwException() {
-        throw new InsufficientAuthenticationException(this.message.getMessage("ExceptionTranslationFilter.insufficientAuthentication", "Full authentication is required to access this resource"));
+    private void write(HttpServletResponse response) throws IOException {
+        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+        response.setContentType(MediaType.APPLICATION_JSON.toString());
+        response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
+        PrintWriter writer = response.getWriter();
+        writer.write(JSON.toJSONString(ServerResponse.fail(HttpStatus.UNAUTHORIZED.value(), this.message.getMessage("ExceptionTranslationFilter.insufficientAuthentication", "Full authentication is required to access this resource"))));
+        writer.flush();
     }
 
     public void setMessageSourceAccessor(MessageSourceAccessor messageSourceAccessor) {

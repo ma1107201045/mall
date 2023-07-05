@@ -1,5 +1,7 @@
 package com.lingyi.mall.common.base.jpa.listener;
 
+import cn.hutool.core.util.StrUtil;
+import com.lingyi.mall.common.base.entity.BaseCommonDO;
 import com.lingyi.mall.common.base.entity.BaseIsDeleteDO;
 import com.lingyi.mall.common.base.enums.WhetherEnum;
 import jakarta.annotation.Resource;
@@ -24,15 +26,27 @@ public class CustomAuditingEntityListener {
 
     @PrePersist
     public void touchForCreate(Object target) {
-        auditingEntityListener.touchForCreate(target);
+        setCreateBy(target);
         setIsDelete(target);
     }
 
 
     @PreUpdate
     public void touchForUpdate(Object target) {
-        auditingEntityListener.touchForUpdate(target);
+        setLastModifyBy(target);
         setIsDelete(target);
+    }
+
+    private void setCreateBy(Object target) {
+        if (target instanceof BaseCommonDO baseCommonDO && StrUtil.isBlank(baseCommonDO.getCreateBy())) {
+            auditingEntityListener.touchForCreate(target);
+        }
+    }
+
+    private void setLastModifyBy(Object target) {
+        if (target instanceof BaseCommonDO baseCommonDO && StrUtil.isBlank(baseCommonDO.getLastModifyBy())) {
+            auditingEntityListener.touchForUpdate(target);
+        }
     }
 
     private void setIsDelete(Object target) {

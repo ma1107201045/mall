@@ -1,7 +1,7 @@
 package com.lingyi.mall.common.security.admin.service.impl;
 
-import com.lingyi.mall.common.base.util.AuthenticatorUtil;
 import com.lingyi.mall.common.security.admin.constant.SecurityAdminConstant;
+import com.lingyi.mall.common.security.admin.util.AdminAuthenticatorUtil;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -22,7 +22,7 @@ public class PermissionService {
      * @return 结果
      */
     public boolean hasAnyAuthority(String permission) {
-        return AuthenticatorUtil.getAuthorities().stream()
+        return AdminAuthenticatorUtil.getAuthorities().stream()
                 .flatMap(grantedAuthority -> Arrays.stream(grantedAuthority.getAuthority()
                         .split(SecurityAdminConstant.PERMISSION_SPLIT_CHAR)))
                 .anyMatch(item -> item.equals(permission));

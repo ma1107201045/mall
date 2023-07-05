@@ -2,9 +2,9 @@ package com.lingyi.mall.common.security.admin.service.impl;
 
 import com.lingyi.mall.api.system.consumer.UserFeignConsumer;
 import com.lingyi.mall.api.system.dto.UserResDTO;
-import com.lingyi.mall.common.base.entity.UserDetailsDO;
 import com.lingyi.mall.common.base.enums.WhetherEnum;
 import com.lingyi.mall.common.base.util.AssertUtil;
+import com.lingyi.mall.common.security.admin.entity.UserDetailsDO;
 import com.lingyi.mall.common.security.admin.enums.FailEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

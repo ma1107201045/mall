@@ -27,10 +27,11 @@ public interface BaseService {
     /**
      * 按照用户名称查询菜单树
      *
+     * @param userId   用户id
      * @param userName 用户名称
      * @return 菜单权限集
      */
-    List<String> readMenuPermissionsByUserName(String userName);
+    List<String> readMenuPermissionsByUserIdAndUserName(Long userId, String userName);
 
     /**
      * 按照用户id更改用户信息
