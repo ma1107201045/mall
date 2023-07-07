@@ -11,6 +11,10 @@
     <artifactId>mall-biz-file</artifactId>
     <dependencies>
         <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>mall-api-file</artifactId>
+        </dependency>
+        <dependency>
             <groupId>ink.fengshuai</groupId>
             <artifactId>minio-springboot-starter</artifactId>
         </dependency>
