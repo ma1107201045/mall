@@ -21,6 +21,8 @@ import java.util.List;
 public interface UserService extends BaseService<UserDTO, UserParam, UserVO, Long> {
 
     /**
+     * 按照参数统计数量
+     *
      * @param userParam 参数
      * @return 数量
      */

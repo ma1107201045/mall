@@ -108,7 +108,7 @@
         INNER JOIN ms_role_menu mrm ON mrm.role_id = mur.role_id
         INNER JOIN ms_menu mm ON mm.id = mrm.menu_id
         <where>
-            <if test="userName!=null and userName !=''">
+            <if test="userName != null and userName != '' ">
                 AND mu.user_name = #{userName}
             </if>
             <if test="menuTypes != null and menuTypes.size() > 0">
