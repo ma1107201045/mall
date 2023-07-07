@@ -14,7 +14,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
  */
 @EnableFeignClients
 @EnableDiscoveryClient
-@EnableJpaAuditing
 @SpringBootApplication
 public class MallWebAppProductApplication {
     public static void main(String[] args) {

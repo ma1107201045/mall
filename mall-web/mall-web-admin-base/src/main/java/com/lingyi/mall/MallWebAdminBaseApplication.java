@@ -13,10 +13,9 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
  * @datetime 2023/5/24 10:15
  * @description
  */
-@EnableAsync
+@EnableMethodSecurity
 @EnableFeignClients
 @EnableDiscoveryClient
-@EnableMethodSecurity
 @SpringBootApplication
 public class MallWebAdminBaseApplication {
 
