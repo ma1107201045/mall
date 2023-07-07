@@ -1,7 +1,7 @@
 package com.lingyi.mall.common.security.admin.handler;
 
 import com.alibaba.fastjson2.JSON;
-import com.lingyi.mall.common.util.ServerResponse;
+import com.lingyi.mall.common.base.util.ServerResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;

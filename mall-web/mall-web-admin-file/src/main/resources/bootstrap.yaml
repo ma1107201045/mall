@@ -5,24 +5,6 @@ spring:
     name: mall-web-admin-file
   main:
     allow-bean-definition-overriding: true
-  jpa:
-    database-platform: org.hibernate.dialect.MySQLDialect
-    database: mysql
-    show-sql: true
-    openInView: true
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        format_sql: true
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://36.137.103.166:3306/mall-file?serverTimezone=GMT%2B8
-    username: root
-    password: TfbY820tfp3d31rb@
-    hikari:
-      maximum-pool-size: 5
-      minimum-idle: 3
   data:
     redis:
       host: 36.137.103.166

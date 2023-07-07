@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,8 +16,8 @@ import org.springframework.stereotype.Component;
  * @DateTime: 2023/6/3 20:38
  * @Description:
  */
-
 @Slf4j
+@EnableAsync
 @Component
 @RequiredArgsConstructor
 public class BaseAsyncTask {

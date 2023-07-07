@@ -12,7 +12,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
  * @datetime 2023/5/1 17:10
  * @description
  */
-@EnableAsync
 @EnableFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication

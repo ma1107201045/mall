@@ -3,7 +3,7 @@ package com.lingyi.mall.auth.admin.controller;
 import com.lingyi.mall.auth.admin.service.AdminService;
 import com.lingyi.mall.common.security.admin.aspect.Log;
 import com.lingyi.mall.common.base.enums.OperationTypeEnum;
-import com.lingyi.mall.common.util.ServerResponse;
+import com.lingyi.mall.common.base.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;

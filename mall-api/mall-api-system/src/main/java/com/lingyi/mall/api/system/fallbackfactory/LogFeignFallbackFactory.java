@@ -2,7 +2,7 @@ package com.lingyi.mall.api.system.fallbackfactory;
 
 import com.lingyi.mall.api.system.dto.LogReqDTO;
 import com.lingyi.mall.api.system.feign.LogFeign;
-import com.lingyi.mall.common.util.ServerResponse;
+import com.lingyi.mall.common.base.util.ServerResponse;
 import feign.Request;
 import org.springframework.cloud.openfeign.FallbackFactory;
 

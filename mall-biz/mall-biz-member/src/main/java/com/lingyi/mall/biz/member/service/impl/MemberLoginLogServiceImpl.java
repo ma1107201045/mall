@@ -1,6 +1,5 @@
 package com.lingyi.mall.biz.member.service.impl;
 
-import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.biz.member.entity.MemberLoginLogDO;
 import com.lingyi.mall.biz.member.enums.MemberFailEnumEnum;
 import com.lingyi.mall.biz.member.vo.MemberLoginLogVO;
@@ -8,8 +7,7 @@ import com.lingyi.mall.biz.member.mapper.MemberLoginLogMapper;
 import com.lingyi.mall.biz.member.repository.MemberLoginLogRepository;
 import com.lingyi.mall.biz.member.service.MemberLoginLogService;
 import com.lingyi.mall.common.base.exception.BizException;
-import com.lingyi.mall.common.base.param.BasePageParam;
-import com.lingyi.mall.common.util.ConverterUtil;
+import com.lingyi.mall.common.base.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

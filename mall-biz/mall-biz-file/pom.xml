@@ -8,9 +8,7 @@
         <artifactId>mall-biz</artifactId>
         <version>${revision}</version>
     </parent>
-
     <artifactId>mall-biz-file</artifactId>
-
     <dependencies>
         <dependency>
             <groupId>ink.fengshuai</groupId>

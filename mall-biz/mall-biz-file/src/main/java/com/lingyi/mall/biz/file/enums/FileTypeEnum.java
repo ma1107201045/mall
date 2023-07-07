@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.file.enums;
 
 import cn.hutool.core.io.FileUtil;
-import com.lingyi.mall.common.util.ObjectUtil;
+import com.lingyi.mall.common.base.util.ObjectUtil;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

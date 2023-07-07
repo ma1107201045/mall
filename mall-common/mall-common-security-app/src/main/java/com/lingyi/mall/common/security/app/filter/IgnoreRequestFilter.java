@@ -25,7 +25,8 @@ public class IgnoreRequestFilter extends GenericFilterBean {
     }
 
     private void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        boolean flag = SecurityAppConstant.REQUEST_MATCHER_LIST.stream().anyMatch(requestMatcher -> requestMatcher.matcher(request).isMatch());
+        boolean flag = SecurityAppConstant.REQUEST_MATCHER_LIST.stream()
+                .anyMatch(requestMatcher -> requestMatcher.matcher(request).isMatch());
         if (flag) {
             request.setAttribute(SecurityAppConstant.IS_IGNORE_REQUEST_ATTRIBUTE, true);
         }

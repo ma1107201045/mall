@@ -4,7 +4,7 @@ import com.lingyi.mall.auth.app.dto.AppLoginDTO;
 import com.lingyi.mall.auth.app.dto.AppRegisterDTO;
 import com.lingyi.mall.auth.app.service.AppService;
 import com.lingyi.mall.auth.app.vo.AppLoginVO;
-import com.lingyi.mall.common.util.ServerResponse;
+import com.lingyi.mall.common.base.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -42,8 +42,8 @@ public class AppController {
         return ServerResponse.success();
     }
 
-    @Operation(summary = "发送验证码", description = "发送验证码")
-    @GetMapping("/send-verification-code")
+    @Operation(summary = "发送短信验证码", description = "发送短信验证码")
+    @GetMapping("/send-sms-captcha")
     public ServerResponse<Void> sendVerificationCode(@NotBlank(message = "手机号不能为空") String phoneNumber) {
         appService.sendVerificationCode(phoneNumber);
         return ServerResponse.success();

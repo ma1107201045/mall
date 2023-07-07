@@ -1,11 +1,11 @@
 package com.lingyi.mall.web.admin.system.controller;
 
 import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.biz.system.entity.LogDO;
 import com.lingyi.mall.biz.system.param.LogParam;
 import com.lingyi.mall.biz.system.service.LogService;
-import com.lingyi.mall.common.base.util.PageUtil;
-import com.lingyi.mall.common.util.ServerResponse;
+import com.lingyi.mall.common.base.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -49,7 +49,7 @@ public class LogController {
     @GetMapping
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:logs:getList')")
     public ServerResponse<List<LogDO>> getListByPageAndParam(@Valid LogParam logParam) {
-        Page<LogDO> page = PageUtil.startPage(logParam);
+        Page<LogDO> page = PageHelper.startPage(logParam.getCurrentPage(), logParam.getPageSize(), logParam.getSort());
         List<LogDO> logs = logService.readListByParam(logParam);
         return ServerResponse.success(logs, page.getTotal());
     }

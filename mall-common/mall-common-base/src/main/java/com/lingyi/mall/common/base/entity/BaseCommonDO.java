@@ -1,18 +1,18 @@
 package com.lingyi.mall.common.base.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.lingyi.mall.common.base.jpa.listener.CustomAuditingEntityListener;
+import com.lingyi.mall.common.base.jpa.listener.CustomEntityListener;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  * @author maweiyan
@@ -24,7 +24,7 @@ import java.util.Objects;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @MappedSuperclass
-@EntityListeners(CustomAuditingEntityListener.class)
+@EntityListeners(CustomEntityListener.class)
 public abstract class BaseCommonDO extends BaseIdDO {
 
 

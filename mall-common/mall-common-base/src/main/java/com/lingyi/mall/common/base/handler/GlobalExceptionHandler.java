@@ -1,8 +1,8 @@
 package com.lingyi.mall.common.base.handler;
 
 import com.lingyi.mall.common.base.exception.BizException;
-import com.lingyi.mall.common.util.OpenFeignException;
-import com.lingyi.mall.common.util.ServerResponse;
+import com.lingyi.mall.common.base.exception.OpenFeignException;
+import com.lingyi.mall.common.base.util.ServerResponse;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;

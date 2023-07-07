@@ -11,7 +11,7 @@ import com.lingyi.mall.auth.app.vo.AppLoginVO;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.security.app.constant.SecurityAppConstant;
 import com.lingyi.mall.common.security.app.enums.FailEnum;
-import com.lingyi.mall.common.util.ConverterUtil;
+import com.lingyi.mall.common.base.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

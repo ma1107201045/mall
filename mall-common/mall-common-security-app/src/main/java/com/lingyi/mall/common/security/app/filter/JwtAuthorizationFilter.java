@@ -4,7 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.jwt.JWTUtil;
 import com.alibaba.fastjson2.JSON;
 import com.lingyi.mall.common.security.app.constant.SecurityAppConstant;
-import com.lingyi.mall.common.util.ServerResponse;
+import com.lingyi.mall.common.base.util.ServerResponse;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
@@ -15,10 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.SpringSecurityMessageSource;
-import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper;
-import org.springframework.security.core.authority.mapping.NullAuthoritiesMapper;
 import org.springframework.web.filter.GenericFilterBean;
 
 import java.io.IOException;
@@ -64,8 +61,8 @@ public class JwtAuthorizationFilter extends GenericFilterBean {
 
 
     private boolean isIgnoreRequest(HttpServletRequest request) {
-        Object value = request.getAttribute(SecurityAppConstant.IS_IGNORE_REQUEST_ATTRIBUTE);
-        return Objects.nonNull(value) && (Boolean) value;
+        Boolean value = (Boolean) request.getAttribute(SecurityAppConstant.IS_IGNORE_REQUEST_ATTRIBUTE);
+        return Objects.nonNull(value) &&  value;
     }
 
     private void write(HttpServletResponse response) throws IOException {

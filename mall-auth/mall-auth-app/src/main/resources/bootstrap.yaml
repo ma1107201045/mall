@@ -5,26 +5,6 @@ spring:
     name: mall-auth-admin
   main:
     allow-bean-definition-overriding: true
-  jpa:
-    generate-ddl: true
-    database: mysql
-    show-sql: true
-    openInView: true
-    properties:
-      hibernate:
-        format_sql: true
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://36.137.103.166:3306/mall-member?serverTimezone=GMT%2B8
-    username: root
-    password: TfbY820tfp3d31rb@
-    type: com.zaxxer.hikari.HikariDataSource
-  data:
-    redis:
-      host: 36.137.103.166
-      password: j53BDRarSwtWvdDZ
-      client-type: lettuce
-      database: 1
   cloud:
     nacos:
       discovery:

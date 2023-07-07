@@ -1,9 +1,8 @@
 package com.lingyi.mall.biz.file.vo;
 
 import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.common.base.constant.BaseConstant;
-import com.lingyi.mall.common.util.ObjectUtil;
+import com.lingyi.mall.common.base.util.ObjectUtil;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.Data;

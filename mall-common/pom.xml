@@ -16,14 +16,9 @@
         <module>mall-common-security-admin</module>
         <module>mall-common-security-app</module>
         <module>mall-common-security-merchant</module>
-        <module>mall-common-util</module>
     </modules>
     <properties>
-        <mybatis-spring-boot-starter.version>3.0.1</mybatis-spring-boot-starter.version>
-        <pagehelper-spring-boot-starter.version>1.4.6</pagehelper-spring-boot-starter.version>
-        <mybatis-plus-boot-starter.version>3.5.3.1</mybatis-plus-boot-starter.version>
-        <mybatis-flex-spring-boot-starter.version>1.2.0</mybatis-flex-spring-boot-starter.version>
-        <hutool-all.version>5.8.11</hutool-all.version>
+          <hutool-all.version>5.8.11</hutool-all.version>
         <fastjson2.verson>2.0.25</fastjson2.verson>
         <springdoc-openapi-starter-webmvc-ui.version>2.0.4</springdoc-openapi-starter-webmvc-ui.version>
         <springdoc-openapi-starter-webflux-ui.version>2.0.4</springdoc-openapi-starter-webflux-ui.version>
@@ -40,26 +35,6 @@
                 <groupId>com.alibaba.fastjson2</groupId>
                 <artifactId>fastjson2</artifactId>
                 <version>${fastjson2.verson}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mybatis.spring.boot</groupId>
-                <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>${mybatis-spring-boot-starter.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper-spring-boot-starter</artifactId>
-                <version>${pagehelper-spring-boot-starter.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus-boot-starter.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.mybatis-flex</groupId>
-                <artifactId>mybatis-flex-spring-boot-starter</artifactId>
-                <version>${mybatis-flex-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springdoc</groupId>

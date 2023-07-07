@@ -4,7 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTUtil;
 import com.lingyi.mall.common.base.constant.BaseConstant;
-import com.lingyi.mall.common.base.entity.MemberDetailsDO;
+import com.lingyi.mall.common.security.app.entity.MemberDetailsDO;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
