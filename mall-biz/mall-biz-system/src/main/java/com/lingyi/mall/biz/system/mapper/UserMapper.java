@@ -61,26 +61,14 @@ public interface UserMapper {
      */
     UserResDTO selectByUserName(String userName);
 
-
     /**
-     * 按照用户id菜单类型查询按钮权限标识
+     * 按照用户名称和菜单类型集查询菜单列表
      *
-     * @param userId   用户id
-     * @param menuType 按钮类型
-     * @return MenuVO
-     */
-    List<String> selectMenuPermissionsByUserIdAndMenuType(@Param("userId") Long userId, @Param("menuType") Integer menuType);
-
-
-    /**
-     * 按照用户id菜单类型集和菜单父级id查询菜单列表
-     *
-     * @param userName     用户名称
-     * @param menuTypes    按钮类型集
-     * @param menuParentId 菜单父级id
+     * @param userName  用户名称
+     * @param menuTypes 按钮类型集
      * @return List<MenuTreeVO>
      */
-    List<MenuResDTO> selectMenusByUserNameAndMenuParentIdAndMenuTypes(@Param("userName") String userName, @Param("menuParentId") Long menuParentId, @Param("menuTypes") List<Integer> menuTypes);
+    List<MenuResDTO> selectMenusByUserNameAndMenuTypes(@Param("userName") String userName, @Param("menuTypes") List<Integer> menuTypes);
 
 
 }

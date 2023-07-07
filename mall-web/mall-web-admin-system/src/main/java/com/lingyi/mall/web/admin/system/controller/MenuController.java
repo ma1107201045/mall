@@ -1,8 +1,10 @@
 package com.lingyi.mall.web.admin.system.controller;
 
 import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.biz.system.constant.SystemConstant;
 import com.lingyi.mall.biz.system.dto.MenuDTO;
+import com.lingyi.mall.biz.system.entity.LogDO;
 import com.lingyi.mall.biz.system.param.MenuParam;
 import com.lingyi.mall.biz.system.vo.MenuVO;
 import com.lingyi.mall.biz.system.service.MenuService;
@@ -76,8 +78,8 @@ public class MenuController {
     @GetMapping
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:menus:getList')")
     @Log(title = "查询菜单列表", operationType = OperationTypeEnum.READ)
-    public ServerResponse<List<MenuVO>> getListByPageAndParam(@Valid BasePageParam basePageParam, @Valid MenuParam menuParam) {
-        Page<UserVO> page = PageUtil.startPage(basePageParam);
+    public ServerResponse<List<MenuVO>> getListByPageAndParam(@Valid MenuParam menuParam) {
+        Page<LogDO> page = PageHelper.startPage(menuParam.getCurrentPage(), menuParam.getPageSize(), menuParam.getSort());
         List<MenuVO> menus = menuService.readListByParam(menuParam);
         return ServerResponse.success(menus, page.getTotal());
     }
@@ -87,7 +89,7 @@ public class MenuController {
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:menus:getTree')")
     @Log(title = "查询菜单树", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<MenuVO>> getTree() {
-        List<MenuVO> menus = menuService.readTreeByParentIdV2(SystemConstant.MENU_ROOT_ID);
+        List<MenuVO> menus = menuService.readTree();
         return ServerResponse.success(menus);
     }
 

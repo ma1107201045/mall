@@ -80,37 +80,15 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public List<MenuVO> readTreeByParentId(Long parentId) {
-        List<MenuVO> menus = menuMapper.selectListByParentId(parentId);
-        menus.forEach(menuVO -> menuVO.setChildren(readTreeByParentId(menuVO.getId())));
-        return menus;
-    }
-
-    @Override
-    public List<MenuVO> readTreeByParentIdV2(Long parentId) {
-        List<MenuVO> menuVOList = menuMapper.selectListByParam(ObjectUtil.newInstance(MenuParam.class));
-        return readTreeByParentIdV3(parentId, menuVOList);
-    }
-
-    @Override
-    public List<MenuVO> readTreeByParentIdV3(Long parentId, List<MenuVO> menuVOList) {
-        List<MenuVO> menus = menuVOList.stream()
-                .filter(menuVO -> menuVO.getParentId().equals(parentId))
-                .sorted(Comparator.comparing(MenuVO::getSort))
-                .toList();
-        menus.forEach(menuVO -> menuVO.setChildren(readTreeByParentIdV3(menuVO.getId(), menuVOList)));
-        return menus;
+    public List<MenuVO> readTree() {
+        List<MenuVO> menuVOList = readListByParam(ObjectUtil.newInstance(MenuParam.class));
+        return toTree(SystemConstant.MENU_ROOT_ID, menuVOList);
     }
 
 
     @Override
-    public List<String> readPermissionsByType(Integer type) {
-        return menuMapper.selectPermissionsByType(type);
-    }
-
-    @Override
-    public List<MenuResDTO> readListByParentIdAndTypes(Long parentId, List<Integer> types) {
-        return menuMapper.selectListByParentIdAndTypes(parentId, types);
+    public List<MenuResDTO> readListByTypes(List<Integer> types) {
+        return menuMapper.selectListByTypes(types);
     }
 
 
@@ -146,6 +124,16 @@ public class MenuServiceImpl implements MenuService {
             menuDO = optional.get();
         }
         return menuDO;
+    }
+
+
+    private List<MenuVO> toTree(Long parentId, List<MenuVO> menuVOList) {
+        List<MenuVO> menus = menuVOList.stream()
+                .filter(menuVO -> menuVO.getParentId().equals(parentId))
+                .sorted(Comparator.comparing(MenuVO::getSort))
+                .toList();
+        menus.forEach(menuVO -> menuVO.setChildren(toTree(menuVO.getId(), menuVOList)));
+        return menus;
     }
 }
 

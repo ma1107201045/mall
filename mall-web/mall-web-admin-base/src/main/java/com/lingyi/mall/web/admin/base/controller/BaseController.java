@@ -31,6 +31,15 @@ public class BaseController {
 
     private final BaseService baseService;
 
+    @Operation(summary = "更新当前用户信息", description = "更新当前用户信息")
+    @PatchMapping("/user")
+    @Log(title = "更新当前用户信息", operationType = OperationTypeEnum.UPDATE)
+    public ServerResponse<Void> updateUser(UserPartReqDTO userPartReqDTO) {
+        Long userId = AdminAuthenticatorUtil.getUserId();
+        baseService.updateUserByUserId(userId, userPartReqDTO);
+        return ServerResponse.success();
+    }
+
     @Operation(summary = "获取当前用户菜单树", description = "获取当前用户菜单树")
     @GetMapping("/menu-tree")
     @Log(title = "获取当前用户菜单树", operationType = OperationTypeEnum.READ)
@@ -44,18 +53,10 @@ public class BaseController {
     @GetMapping("/menu-permissions")
     @Log(title = "获取当前用户菜单权限标识集", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<String>> getMenuPermissions() {
-        Long userId = AdminAuthenticatorUtil.getUserId();
         String userName = AdminAuthenticatorUtil.getUserName();
-        List<String> permissions = baseService.readMenuPermissionsByUserIdAndUserName(userId, userName);
+        List<String> permissions = baseService.readMenuPermissionsByUserName(userName);
         return ServerResponse.success(permissions);
     }
 
-    @Operation(summary = "更新当前用户信息", description = "更新当前用户信息")
-    @PatchMapping("/user")
-    @Log(title = "更新当前用户信息", operationType = OperationTypeEnum.UPDATE)
-    public ServerResponse<Void> updateUser(UserPartReqDTO userPartReqDTO) {
-        Long userId = AdminAuthenticatorUtil.getUserId();
-        baseService.updateUserByUserId(userId, userPartReqDTO);
-        return ServerResponse.success();
-    }
+
 }

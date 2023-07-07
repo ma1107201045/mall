@@ -13,7 +13,13 @@ import java.util.List;
  * @Description:
  */
 public interface BaseService {
-
+    /**
+     * 按照用户id更改用户信息
+     *
+     * @param userId      用户id
+     * @param userPartDTO 用户信息
+     */
+    void updateUserByUserId(Long userId, UserPartReqDTO userPartDTO);
 
     /**
      * 按照用户名称查询菜单树
@@ -25,19 +31,12 @@ public interface BaseService {
 
 
     /**
-     * 按照用户名称查询菜单树
+     * 按照用户名称查询菜单权限集
      *
-     * @param userId   用户id
      * @param userName 用户名称
      * @return 菜单权限集
      */
-    List<String> readMenuPermissionsByUserIdAndUserName(Long userId, String userName);
+    List<String> readMenuPermissionsByUserName(String userName);
 
-    /**
-     * 按照用户id更改用户信息
-     *
-     * @param userId      用户id
-     * @param userPartDTO 用户信息
-     */
-    void updateUserByUserId(Long userId, UserPartReqDTO userPartDTO);
+
 }

@@ -42,14 +42,6 @@
             <include refid="Base_Condition"/>
         </where>
     </select>
-    <select id="selectListByParentId" resultMap="BaseResultMap">
-        SELECT
-        <include refid="Base_Column_List"/>
-        FROM ms_menu
-        WHERE
-        parent_id = #{parentId,jdbcType=BIGINT}
-        ORDER BY sort
-    </select>
     <select id="selectTypeById" resultType="java.lang.Integer">
         SELECT type
         FROM ms_menu
@@ -63,21 +55,13 @@
             #{parentId}
         </foreach>
     </select>
-    <select id="selectPermissionsByType" resultType="java.lang.String">
-        SELECT permission
-        FROM ms_menu
-        WHERE type = #{type}
-    </select>
 
-    <select id="selectListByParentIdAndTypes"
-            resultMap="com.lingyi.mall.biz.system.mapper.UserMapper.SelectMenusByUserNameAndMenuParentIdAndMenuTypesMap">
-        SELECT id, name, parent_id, type, icon,sort, route_name, route_path
+    <select id="selectListByTypes"
+            resultMap="com.lingyi.mall.biz.system.mapper.UserMapper.SelectMenusByUserNameAndMenuTypesMap">
+        SELECT id, name, parent_id, type, icon,sort, route_name, route_path,permission
         FROM ms_menu
         <where>
-            <if test="parentId != null">
-                parent_id = #{parentId}
-            </if>
-            <if test="types!=null and types.size() > 0">
+            <if test="types != null and types.size() > 0">
                 AND type IN
                 <foreach collection="types" item="type" open="(" separator="," close=")">
                     #{type}

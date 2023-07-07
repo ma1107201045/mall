@@ -69,7 +69,6 @@ public class MenuResDTO implements Serializable {
     @Schema(description = "最后一次更新时间")
     private LocalDateTime lastModifyDateTime;
 
-
     @Schema(description = "菜单子级")
     private List<MenuResDTO> children;
 }

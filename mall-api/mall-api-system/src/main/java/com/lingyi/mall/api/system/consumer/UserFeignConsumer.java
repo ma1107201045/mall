@@ -56,9 +56,9 @@ public class UserFeignConsumer {
         throw new OpenFeignException(response.getCode(), response.getMessage());
     }
 
-    public List<String> getMenuPermissionsByUserIdAndUserName(Long userId, String userName) {
-        log.info("入参:userId:{},userName:{}", userId, userName);
-        ServerResponse<List<String>> response = userFeign.getMenuPermissionsByUserIdAndUserName(userId, userName);
+    public List<String> getMenuPermissionsByUserName(String userName) {
+        log.info("入参:userName:{}", userName);
+        ServerResponse<List<String>> response = userFeign.getMenuPermissionsByUserName(userName);
         if (response.getIsSuccess()) {
             log.info("出参:permissions:{}", JSON.toJSONString(response.getData()));
             return response.getData();

@@ -1,7 +1,10 @@
 package com.lingyi.mall.biz.system.param;
 
+import com.lingyi.mall.common.base.param.BasePageParam;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -14,10 +17,11 @@ import java.io.Serializable;
  */
 @Schema(description = "菜单")
 @Data
-public class MenuParam implements Serializable {
-    @Serial
-    private static final long serialVersionUID = -2617029654030868799L;
-    
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+public class MenuParam extends BasePageParam {
+
+
     @Schema(description = "菜单名称")
     private String name;
 

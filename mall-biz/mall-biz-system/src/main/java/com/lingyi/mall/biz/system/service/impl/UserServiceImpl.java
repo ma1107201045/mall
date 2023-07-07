@@ -154,54 +154,44 @@ public class UserServiceImpl implements UserService {
         if (ObjUtil.isNull(userResDTO)) {
             return userResDTO;
         }
-        List<String> permissions = readMenuPermissionsByUserIdAndUserName(userResDTO.getUserId(), userName);
+        List<String> permissions = readMenuPermissionsByUserName(userName);
         userResDTO.setPermissions(permissions);
         return userResDTO;
     }
 
     @Override
-    public List<MenuResDTO> readMenuListByUserNameAndMenuParentId(String userName, Long menuParentId) {
+    public List<MenuResDTO> readMenuTreeByUserName(String userName) {
         List<MenuResDTO> menuResDTOList;
         List<Integer> menuTypes = Arrays.asList(MenuTypeEnum.DIRECTORY.getCode(), MenuTypeEnum.MENU.getCode());
         if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
-            menuResDTOList = userMapper.selectMenusByUserNameAndMenuParentIdAndMenuTypes(userName, menuParentId, menuTypes);
+            menuResDTOList = userMapper.selectMenusByUserNameAndMenuTypes(userName, menuTypes);
         } else {
-            menuResDTOList = menuService.readListByParentIdAndTypes(menuParentId, menuTypes);
+            menuResDTOList = menuService.readListByTypes(menuTypes);
         }
-        return menuResDTOList;
-    }
-
-
-    @Override
-    public List<MenuResDTO> readMenuTreeByUserNameAndMenuParentId(String userName, Long menuParentId) {
-        List<MenuResDTO> menuResDTOList = readMenuListByUserNameAndMenuParentId(userName, menuParentId);
-        menuResDTOList.forEach(menuResDTO -> menuResDTO.setChildren(readMenuTreeByUserNameAndMenuParentId(userName, menuResDTO.getId())));
-        return menuResDTOList;
+        return toMenuTree(SystemConstant.MENU_ROOT_ID, menuResDTOList);
     }
 
     @Override
-    public List<MenuResDTO> readMenuTreeByUserNameAndMenuParentIdv2(String userName, Long menuParentId) {
-        List<MenuResDTO> menuResDTOList = readMenuListByUserNameAndMenuParentId(userName, ObjectUtil.getNull());
-        return readMenuTreeByUserNameAndMenuParentIdv3(menuParentId, menuResDTOList);
+    public List<String> readMenuPermissionsByUserName(String userName) {
+        List<MenuResDTO> menuResDTOList;
+        List<Integer> menuTypes = Collections.singletonList(MenuTypeEnum.BUTTON.getCode());
+        if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
+            menuResDTOList = userMapper.selectMenusByUserNameAndMenuTypes(userName, menuTypes);
+        } else {
+            menuResDTOList = menuService.readListByTypes(menuTypes);
+        }
+        return menuResDTOList.stream().map(MenuResDTO::getPermission).toList();
     }
 
-    @Override
-    public List<MenuResDTO> readMenuTreeByUserNameAndMenuParentIdv3(Long menuParentId, List<MenuResDTO> menuResDTOList) {
+
+    private List<MenuResDTO> toMenuTree(Long menuParentId, List<MenuResDTO> menuResDTOList) {
         List<MenuResDTO> menus = menuResDTOList.stream()
                 .filter(menuVO -> menuVO.getParentId().equals(menuParentId))
                 .sorted(Comparator.comparing(MenuResDTO::getSort))
                 .toList();
-        menus.forEach(menuVO -> menuVO.setChildren(readMenuTreeByUserNameAndMenuParentIdv3(menuVO.getId(), menuResDTOList)));
+        menus.forEach(menuVO -> menuVO.setChildren(toMenuTree(menuVO.getId(), menuResDTOList)));
         return menus;
     }
 
-    @Override
-    public List<String> readMenuPermissionsByUserIdAndUserName(Long userId, String userName) {
-        Integer type = MenuTypeEnum.BUTTON.getCode();
-        if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
-            return userMapper.selectMenuPermissionsByUserIdAndMenuType(userId, type);
-        }
-        return menuService.readPermissionsByType(type);
-    }
 
 }

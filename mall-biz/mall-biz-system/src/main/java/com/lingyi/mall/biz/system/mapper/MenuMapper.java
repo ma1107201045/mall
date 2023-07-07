@@ -36,15 +36,6 @@ public interface MenuMapper {
 
 
     /**
-     * 按照父级id查询
-     *
-     * @param parentId 父级id
-     * @return List<MenuTreeVO>
-     */
-    List<MenuVO> selectListByParentId(Long parentId);
-
-
-    /**
      * 按照id查询菜单类型
      *
      * @param id id
@@ -61,21 +52,11 @@ public interface MenuMapper {
     List<Long> selectIdsByParentIds(List<Long> parentIds);
 
     /**
-     * 查询按钮权限标识集
-     *
-     * @param type 按钮类型
-     * @return List<String>
-     */
-    List<String> selectPermissionsByType(Integer type);
-
-
-    /**
      * 按照类型集和父级id查询
      *
-     * @param parentId 父级id
-     * @param types    按钮类型集
-     * @return List<MenuTreeVO>
+     * @param types 按钮类型集
+     * @return List<MenuResDTO>
      */
-    List<MenuResDTO> selectListByParentIdAndTypes(@Param("parentId") Long parentId, @Param("types") List<Integer> types);
+    List<MenuResDTO> selectListByTypes(List<Integer> types);
 
 }

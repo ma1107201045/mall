@@ -23,17 +23,19 @@ public class BaseServiceImpl implements BaseService {
     private final UserFeignConsumer userFeignConsumer;
 
     @Override
+    public void updateUserByUserId(Long userId, UserPartReqDTO userPartDTO) {
+        userFeignConsumer.updatePartById(userId, userPartDTO);
+    }
+
+    @Override
     public List<MenuResDTO> readMenuTreeByUserName(String userName) {
         return userFeignConsumer.getMenuTreeByUserName(userName);
     }
 
     @Override
-    public List<String> readMenuPermissionsByUserIdAndUserName(Long userId, String userName) {
-        return userFeignConsumer.getMenuPermissionsByUserIdAndUserName(userId, userName);
+    public List<String> readMenuPermissionsByUserName(String userName) {
+        return userFeignConsumer.getMenuPermissionsByUserName(userName);
     }
 
-    @Override
-    public void updateUserByUserId(Long userId, UserPartReqDTO userPartDTO) {
-        userFeignConsumer.updatePartById(userId, userPartDTO);
-    }
+
 }

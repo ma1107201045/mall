@@ -21,7 +21,6 @@ import java.util.List;
 public interface UserService extends BaseService<UserDTO, UserParam, UserVO, Long> {
 
     /**
-     *
      * @param userParam 参数
      * @return 数量
      */
@@ -29,6 +28,7 @@ public interface UserService extends BaseService<UserDTO, UserParam, UserVO, Lon
 
     /**
      * 读取角色集
+     *
      * @param basePageParam ..
      * @return List<RoleVO>
      */
@@ -53,49 +53,18 @@ public interface UserService extends BaseService<UserDTO, UserParam, UserVO, Lon
     /**
      * 按照用户名称和菜单父级id查询菜单集
      *
-     * @param userName     用户名称
-     * @param menuParentId 菜单父级id
+     * @param userName 用户名称
      * @return List<MenuResDTO>
      */
-    List<MenuResDTO> readMenuListByUserNameAndMenuParentId(String userName, Long menuParentId);
-
-
-    /**
-     * 按照用户名称和菜单父级id查询菜单树
-     *
-     * @param userName     用户名称
-     * @param menuParentId 菜单父级id
-     * @return List<MenuTreeVO>
-     */
-    List<MenuResDTO> readMenuTreeByUserNameAndMenuParentId(String userName, Long menuParentId);
-
-
-    /**
-     * 按照用户名称查询菜单树
-     *
-     * @param userName     用户名称
-     * @param menuParentId 菜单父级id
-     * @return List<MenuTreeVO>
-     */
-    List<MenuResDTO> readMenuTreeByUserNameAndMenuParentIdv2(String userName, Long menuParentId);
-
-
-    /**
-     * 按照用户名称查询菜单树
-     *
-     * @param menuParentId   菜单父级id
-     * @param menuResDTOList 菜单集
-     * @return List<MenuTreeVO>
-     */
-    List<MenuResDTO> readMenuTreeByUserNameAndMenuParentIdv3(Long menuParentId, List<MenuResDTO> menuResDTOList);
+    List<MenuResDTO> readMenuTreeByUserName(String userName);
 
     /**
      * 按照用户id和用户名称查询权限
      *
-     * @param userId   用户id
      * @param userName 用户名称
      * @return List<String>
      */
-    List<String> readMenuPermissionsByUserIdAndUserName(Long userId, String userName);
+    List<String> readMenuPermissionsByUserName(String userName);
+
 
 }
