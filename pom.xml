@@ -14,6 +14,7 @@
         <module>mall-common</module>
         <module>mall-gateway</module>
         <module>mall-web</module>
+
     </modules>
     <properties>
         <revision>0.0.1</revision>
@@ -49,6 +50,11 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
+                <artifactId>mall-api-sms</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>mall-api-system</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -71,6 +77,11 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>mall-biz-product</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>mall-biz-sms</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

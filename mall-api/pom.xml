@@ -15,6 +15,7 @@
         <module>mall-api-file</module>
         <module>mall-api-member</module>
         <module>mall-api-product</module>
+        <module>mall-api-sms</module>
         <module>mall-api-system</module>
     </modules>
     <dependencies>

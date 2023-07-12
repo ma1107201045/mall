@@ -14,8 +14,9 @@
         <module>mall-biz-base</module>
         <module>mall-biz-file</module>
         <module>mall-biz-member</module>
-        <module>mall-biz-system</module>
         <module>mall-biz-product</module>
+        <module>mall-biz-sms</module>
+        <module>mall-biz-system</module>
     </modules>
     <properties>
         <mybatis-spring-boot-starter.version>3.0.1</mybatis-spring-boot-starter.version>

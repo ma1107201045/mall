@@ -21,6 +21,7 @@
         <module>mall-web-app-file</module>
         <module>mall-web-app-member</module>
         <module>mall-web-app-product</module>
+        <module>mall-web-app-sms</module>
     </modules>
     <dependencies>
         <dependency>

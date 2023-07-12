@@ -3,6 +3,7 @@ package com.lingyi.mall.biz.member.entity;
 import com.lingyi.mall.common.base.entity.BaseIdDO;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -21,6 +22,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "mm_member", uniqueConstraints = {@UniqueConstraint(name = "uk_user_name", columnNames = "user_name"),
         @UniqueConstraint(name = "uk_phone_number", columnNames = "phone_number")})
+@DynamicInsert
 public class MemberDO extends BaseIdDO implements Serializable {
 
     @Serial
