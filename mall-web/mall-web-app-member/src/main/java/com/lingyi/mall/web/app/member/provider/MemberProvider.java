@@ -20,9 +20,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class MemberProvider implements MemberFeign {
 
     private final MemberService memberService;
+
     @Override
     public ServerResponse<MemberRespDTO> getByPhoneNumber(String phoneNumber) {
-        MemberRespDTO memberRespDTO = memberService.findByPhoneNumber(phoneNumber);
+        MemberRespDTO memberRespDTO = memberService.readByPhoneNumber(phoneNumber);
         return ServerResponse.success(memberRespDTO);
+    }
+
+    @Override
+    public ServerResponse<Void> save(String phoneNumber) {
+        memberService.create(phoneNumber);
+        return ServerResponse.success();
     }
 }

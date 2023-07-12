@@ -21,13 +21,6 @@ public interface AppService {
      */
     AppLoginVO login(AppLoginDTO appLoginDTO);
 
-    /**
-     * 注册
-     *
-     * @param appRegisterDTO 注册
-     */
-    void register(AppRegisterDTO appRegisterDTO);
-
 
     /**
      * 发送手机号验证码

@@ -2,17 +2,24 @@ package com.lingyi.mall.biz.member.service.impl;
 
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.biz.member.entity.MemberDO;
-import com.lingyi.mall.biz.member.enums.MemberFailEnumEnum;
-import com.lingyi.mall.biz.member.param.MemberParam;
-import com.lingyi.mall.biz.member.vo.MemberVO;
+import com.lingyi.mall.biz.member.entity.MemberLevelDO;
+import com.lingyi.mall.biz.member.enums.MemberFailEnum;
+import com.lingyi.mall.biz.member.enums.RegisterSourceEnum;
 import com.lingyi.mall.biz.member.mapper.MemberMapper;
+import com.lingyi.mall.biz.member.param.MemberParam;
 import com.lingyi.mall.biz.member.repository.MemberRepository;
+import com.lingyi.mall.biz.member.service.MemberLevelService;
 import com.lingyi.mall.biz.member.service.MemberService;
+import com.lingyi.mall.biz.member.util.UserNameUtil;
+import com.lingyi.mall.biz.member.vo.MemberVO;
+import com.lingyi.mall.common.base.enums.WhetherEnum;
 import com.lingyi.mall.common.base.exception.BizException;
+import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.base.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,8 +37,10 @@ public class MemberServiceImpl implements MemberService {
 
     private final MemberMapper memberMapper;
 
+    private final MemberLevelService memberLevelService;
+
     @Override
-    public void  create(MemberDO memberDO) {
+    public void create(MemberDO memberDO) {
         memberRepository.save(memberDO);
     }
 
@@ -44,7 +53,7 @@ public class MemberServiceImpl implements MemberService {
     public void updateById(MemberDO memberDO) {
         Optional<MemberDO> optional = memberRepository.findById(memberDO.getId());
         if (optional.isEmpty()) {
-            throw new BizException(MemberFailEnumEnum.MEMBER_NULL_ERROR);
+            throw new BizException(MemberFailEnum.MEMBER_NULL_ERROR);
         }
         MemberDO newMemberDO = optional.get();
         ConverterUtil.to(memberDO, newMemberDO);
@@ -57,12 +66,26 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public List<MemberVO> readListByParam( MemberParam memberParam) {
+    public List<MemberVO> readListByParam(MemberParam memberParam) {
         return memberMapper.selectListByParam(memberParam);
     }
 
     @Override
-    public MemberRespDTO findByPhoneNumber(String phoneNumber) {
+    public void create(String phoneNumber) {
+        MemberLevelDO memberLevelDO = memberLevelService.readByIsDefaultLevel(WhetherEnum.Y.getCode());
+        AssertUtil.isNull(memberLevelDO, MemberFailEnum.MEMBER_LEVEL_NULL_ERROR);
+        MemberDO memberDO = new MemberDO();
+        memberDO.setMemberLevelDO(memberLevelDO);
+        memberDO.setUserName(UserNameUtil.getRightFourBit(phoneNumber));
+        memberDO.setPhoneNumber(phoneNumber);
+        memberDO.setIsEnable(WhetherEnum.Y.getCode());
+        memberDO.setRegisterSource(RegisterSourceEnum.H5.getCode());
+        memberDO.setRegisterDataTime(LocalDateTime.now());
+        create(memberDO);
+    }
+
+    @Override
+    public MemberRespDTO readByPhoneNumber(String phoneNumber) {
         return memberMapper.selectByPhoneNumber(phoneNumber);
     }
 

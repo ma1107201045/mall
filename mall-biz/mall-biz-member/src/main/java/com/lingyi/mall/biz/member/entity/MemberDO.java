@@ -46,16 +46,16 @@ public class MemberDO extends BaseIdDO implements Serializable {
     @Column(name = "phone_number", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '手机号'")
     private String phoneNumber;
 
-    @Column(name = "head_portrait", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '手机号'")
+    @Column(name = "head_portrait", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '头像'")
     private String headPortrait;
 
-    @Column(name = "personalized_signature", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '头像'")
+    @Column(name = "personalized_signature", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '个性签名'")
     private String personalizedSignature;
 
     @Column(name = "is_enable", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '是否启用 1 是 0 否'")
     private Integer isEnable;
 
-    @Column(name = "register_source", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '注册来源 1.Web端 2.Android端 3.IOS端 4.PC端'")
+    @Column(name = "register_source", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '注册来源 1.H5端 2.Android端 3.IOS端 4.PC端'")
     private Integer registerSource;
 
     @Column(name = "register_data_time", columnDefinition = "DATETIME NOT NULL COMMENT '注册时间'")

@@ -26,4 +26,8 @@ public interface MemberFeign {
      */
     @GetMapping(URL_PREFIX)
     ServerResponse<MemberRespDTO> getByPhoneNumber(@RequestParam(name = "phoneNumber") String phoneNumber);
+
+    @GetMapping(URL_PREFIX)
+    ServerResponse<Void> save(@RequestParam(name = "phoneNumber") String phoneNumber);
+
 }

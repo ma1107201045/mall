@@ -22,6 +22,15 @@ public class MemberFeignConsumer {
 
     private final MemberFeign memberFeign;
 
+    public void save(String phoneNumber) {
+        log.info("入参:phoneNumber:{}", phoneNumber);
+        ServerResponse<Void> response = memberFeign.save(phoneNumber);
+        if (response.getIsSuccess()) {
+            log.info("出参:void:{}", JSON.toJSONString(response.getData()));
+        }
+        throw new OpenFeignException(response.getCode(), response.getMessage());
+    }
+
     public MemberRespDTO getByPhoneNumber(String phoneNumber) {
         log.info("入参:phoneNumber:{}", phoneNumber);
         ServerResponse<MemberRespDTO> response = memberFeign.getByPhoneNumber(phoneNumber);

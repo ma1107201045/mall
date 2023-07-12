@@ -2,4 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lingyi.mall.biz.member.mapper.MemberLevelMapper">
 
+    <select id="selectIdByIsDefaultLevel" resultType="java.lang.Long">
+        SELECT id
+        FROM mm_member_level
+        WHERE is_default_level = #{isDefaultLevel,jdbcType=BIGINT}
+    </select>
 </mapper>

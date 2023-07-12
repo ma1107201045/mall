@@ -102,6 +102,6 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List<MenuVO> readMenuTree() {
-        return menuService.readTreeByParentIdV2(SystemConstant.MENU_ROOT_ID);
+        return menuService.readTree();
     }
 }

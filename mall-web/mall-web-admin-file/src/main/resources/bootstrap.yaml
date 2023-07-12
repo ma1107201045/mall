@@ -5,12 +5,6 @@ spring:
     name: mall-web-admin-file
   main:
     allow-bean-definition-overriding: true
-  data:
-    redis:
-      host: 36.137.103.166
-      password: j53BDRarSwtWvdDZ
-      client-type: lettuce
-      database: 1
   cloud:
     nacos:
       discovery:

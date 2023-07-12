@@ -15,12 +15,19 @@ import com.lingyi.mall.common.base.util.BaseService;
 public interface MemberService extends BaseService<MemberDO, MemberParam, MemberVO, Long> {
 
     /**
+     * 创建
+     *
+     * @param phoneNumber 手机号
+     */
+    void create(String phoneNumber);
+
+    /**
      * 按照手机号查询
      *
      * @param phoneNumber 手机号
      * @return MemberVO
      */
 
-    MemberRespDTO findByPhoneNumber(String phoneNumber);
+    MemberRespDTO readByPhoneNumber(String phoneNumber);
 
 }
