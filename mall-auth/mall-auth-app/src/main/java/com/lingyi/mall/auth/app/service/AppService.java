@@ -1,7 +1,6 @@
 package com.lingyi.mall.auth.app.service;
 
 import com.lingyi.mall.auth.app.dto.AppLoginDTO;
-import com.lingyi.mall.auth.app.dto.AppRegisterDTO;
 import com.lingyi.mall.auth.app.vo.AppLoginVO;
 
 /**
@@ -23,9 +22,9 @@ public interface AppService {
 
 
     /**
-     * 发送手机号验证码
+     * 发送短信验证码
      *
      * @param phoneNumber 手机号
      */
-    void sendVerificationCode(String phoneNumber);
+    void sendSmsCaptcha(String phoneNumber);
 }

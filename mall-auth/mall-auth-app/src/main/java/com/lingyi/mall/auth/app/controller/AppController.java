@@ -36,8 +36,8 @@ public class AppController {
 
     @Operation(summary = "发送短信验证码", description = "发送短信验证码")
     @GetMapping("/send-sms-captcha")
-    public ServerResponse<Void> sendVerificationCode(@NotBlank(message = "手机号不能为空") String phoneNumber) {
-        appService.sendVerificationCode(phoneNumber);
+    public ServerResponse<Void> sendSmsCaptcha(@NotBlank(message = "手机号不能为空") String phoneNumber) {
+        appService.sendSmsCaptcha(phoneNumber);
         return ServerResponse.success();
     }
 

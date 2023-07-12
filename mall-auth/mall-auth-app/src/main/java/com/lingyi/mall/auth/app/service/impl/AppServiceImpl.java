@@ -48,7 +48,7 @@ public class AppServiceImpl implements AppService {
 
 
     @Override
-    public void sendVerificationCode(String phoneNumber) {
+    public void sendSmsCaptcha(String phoneNumber) {
 
     }
 }
