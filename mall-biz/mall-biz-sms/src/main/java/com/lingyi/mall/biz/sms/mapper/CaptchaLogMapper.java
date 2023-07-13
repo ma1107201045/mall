@@ -9,5 +9,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @description
  */
 @Mapper
-public interface SmsLogMapper {
+public interface CaptchaLogMapper {
 }

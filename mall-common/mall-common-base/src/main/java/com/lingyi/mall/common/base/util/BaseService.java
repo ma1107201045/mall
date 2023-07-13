@@ -1,6 +1,8 @@
 package com.lingyi.mall.common.base.util;
 
 
+import com.lingyi.mall.common.base.param.BasePageParam;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -10,7 +12,7 @@ import java.util.List;
  * @datetime 2023/5/4 17:08
  * @description
  */
-public interface BaseService<DTO extends Serializable, PARAM extends Serializable, VO extends Serializable, ID extends Serializable> {
+public interface BaseService<DTO extends Serializable, PARAM extends BasePageParam, VO extends Serializable, ID extends Serializable> {
 
     /**
      * 添加

@@ -1,6 +1,5 @@
 package com.lingyi.mall.api.sms.dto;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.io.Serial;
@@ -13,18 +12,18 @@ import java.io.Serializable;
  * @description
  */
 @Data
-public class SmsReqDTO implements Serializable {
+public class CaptchaReqDTO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 403346381956934054L;
 
     /**
-     * 服务
+     * 服务类型
      */
-    private String serviceType;
+    private Integer serviceType;
 
     /**
-     * 业务
+     * 业务类型
      */
     private Integer businessType;
 
@@ -36,7 +35,12 @@ public class SmsReqDTO implements Serializable {
     /**
      * 验证码长度
      */
-    private Integer captchaLength;
+    private Integer length;
+
+    /**
+     * 验证码有效期 （分钟）
+     */
+    private Integer expiryDate;
 
     /**
      * 备注

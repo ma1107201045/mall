@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.sms.service;
 
-import com.lingyi.mall.api.sms.dto.SmsReqDTO;
+import com.lingyi.mall.api.sms.dto.CaptchaReqDTO;
 
 /**
  * @author maweiyan
@@ -8,14 +8,14 @@ import com.lingyi.mall.api.sms.dto.SmsReqDTO;
  * @datetime 2023/7/12 14:22
  * @description
  */
-public interface SmsService {
+public interface CaptchaService {
 
     /**
      * 发送验证码
      *
-     * @param smsReqDTO 。。
+     * @param captchaReqDTO 。。
      */
 
-    void send(SmsReqDTO smsReqDTO);
+    void send(CaptchaReqDTO captchaReqDTO);
 
 }
