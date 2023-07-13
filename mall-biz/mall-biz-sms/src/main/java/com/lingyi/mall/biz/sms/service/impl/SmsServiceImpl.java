@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.sms.service.impl;
 
-import com.lingyi.mall.biz.sms.dto.SmsDTO;
+import com.lingyi.mall.api.sms.dto.SmsReqDTO;
 import com.lingyi.mall.biz.sms.service.SmsService;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class SmsServiceImpl implements SmsService {
     @Override
-    public void send(SmsDTO smsDTO) {
+    public void send(SmsReqDTO smsReqDTO) {
+        //TODO 发送mq消息
 
     }
 }

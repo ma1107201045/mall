@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.sms.service;
 
-import com.lingyi.mall.biz.sms.dto.SmsDTO;
+import com.lingyi.mall.api.sms.dto.SmsReqDTO;
 
 /**
  * @author maweiyan
@@ -10,7 +10,12 @@ import com.lingyi.mall.biz.sms.dto.SmsDTO;
  */
 public interface SmsService {
 
+    /**
+     * 发送验证码
+     *
+     * @param smsReqDTO 。。
+     */
 
-    void send(SmsDTO smsDTO);
+    void send(SmsReqDTO smsReqDTO);
 
 }
