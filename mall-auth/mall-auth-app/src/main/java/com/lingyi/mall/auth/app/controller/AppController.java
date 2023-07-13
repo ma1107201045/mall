@@ -27,7 +27,7 @@ public class AppController {
 
     private final AppService appService;
 
-    @Operation(summary = "登录", description = "登录")
+    @Operation(summary = "手机号登录", description = "手机号登录")
     @PostMapping("/login")
     public ServerResponse<AppLoginVO> login(@Valid @RequestBody AppLoginDTO appLoginDTO) {
         AppLoginVO apploginVo = appService.login(appLoginDTO);

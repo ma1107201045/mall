@@ -1,7 +1,9 @@
 package com.lingyi.mall.biz.sms.service.impl;
 
 import cn.hutool.core.util.RandomUtil;
-import com.lingyi.mall.api.sms.dto.CaptchaReqDTO;
+import cn.hutool.core.util.StrUtil;
+import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
+import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
 import com.lingyi.mall.biz.sms.entity.CaptchaLogDO;
 import com.lingyi.mall.biz.sms.service.CaptchaLogService;
 import com.lingyi.mall.biz.sms.service.CaptchaService;
@@ -31,16 +33,23 @@ public class CaptchaServiceImpl implements CaptchaService {
 
 
     @Override
-    public void send(CaptchaReqDTO captchaReqDTO) {
+    public void send(CaptchaSendReqDTO captchaSendReqDTO) {
         //生成验证码
-        String captcha = RandomUtil.randomNumbers(captchaReqDTO.getLength());
+        String captcha = RandomUtil.randomNumbers(captchaSendReqDTO.getLength());
         //设置有效期
-        redisUtil.set(redisKeyUtil.getCaptchaKey(captchaReqDTO), captcha, captchaReqDTO.getExpiryDate(), TimeUnit.MINUTES);
+        redisUtil.set(redisKeyUtil.getCaptchaKey(captchaSendReqDTO), captcha, captchaSendReqDTO.getExpiryDate(), TimeUnit.MINUTES);
         //TODO 发送mq消息
         //转换成验证码日志信息
-        CaptchaLogDO captchaLogDO = ConverterUtil.to(captchaReqDTO, CaptchaLogDO.class);
+        CaptchaLogDO captchaLogDO = ConverterUtil.to(captchaSendReqDTO, CaptchaLogDO.class);
         //保存验证码日志
         captchaLogService.create(captchaLogDO);
+    }
+
+    @Override
+    public Boolean verify(CaptchaVerifyReqDTO captchaVerifyReqDTO) {
+        String targetCaptcha = captchaVerifyReqDTO.getCaptcha();
+        String sourceCaptcha = redisUtil.get(redisKeyUtil.getCaptchaKey(captchaVerifyReqDTO), String.class);
+        return StrUtil.isNotBlank(targetCaptcha) && targetCaptcha.equals(sourceCaptcha);
     }
 
 }

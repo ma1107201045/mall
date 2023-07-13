@@ -1,6 +1,7 @@
 package com.lingyi.mall.biz.sms.service;
 
-import com.lingyi.mall.api.sms.dto.CaptchaReqDTO;
+import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
+import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
 
 /**
  * @author maweiyan
@@ -13,9 +14,18 @@ public interface CaptchaService {
     /**
      * 发送验证码
      *
-     * @param captchaReqDTO 。。
+     * @param captchaSendReqDTO 。。
      */
 
-    void send(CaptchaReqDTO captchaReqDTO);
+    void send(CaptchaSendReqDTO captchaSendReqDTO);
+
+
+    /**
+     * 校验验证码
+     *
+     * @param captchaVerifyReqDTO 。。
+     * @return 结果
+     */
+    Boolean verify(CaptchaVerifyReqDTO captchaVerifyReqDTO);
 
 }

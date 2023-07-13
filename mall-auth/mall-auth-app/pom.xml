@@ -12,6 +12,10 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>mall-api-sms</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>mall-common-security-app</artifactId>
         </dependency>
     </dependencies>

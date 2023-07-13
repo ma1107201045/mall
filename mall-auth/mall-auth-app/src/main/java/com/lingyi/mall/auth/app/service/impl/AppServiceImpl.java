@@ -4,9 +4,15 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.jwt.JWTUtil;
 import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
+import com.lingyi.mall.api.sms.consumer.CaptchaFeignConsumer;
+import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
+import com.lingyi.mall.api.sms.enums.BusinessTypeEnum;
+import com.lingyi.mall.api.sms.enums.ServiceTypeEnum;
+import com.lingyi.mall.auth.app.constant.AppConstant;
 import com.lingyi.mall.auth.app.dto.AppLoginDTO;
 import com.lingyi.mall.auth.app.service.AppService;
 import com.lingyi.mall.auth.app.vo.AppLoginVO;
+import com.lingyi.mall.common.base.constant.BaseConstant;
 import com.lingyi.mall.common.base.util.ConverterUtil;
 import com.lingyi.mall.common.security.app.constant.SecurityAppConstant;
 import lombok.RequiredArgsConstructor;
@@ -25,8 +31,9 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class AppServiceImpl implements AppService {
 
-
     private final MemberFeignConsumer memberFeignConsumer;
+
+    private final CaptchaFeignConsumer captchaFeignConsumer;
 
     @Override
     public AppLoginVO login(AppLoginDTO appLoginDTO) {
@@ -34,8 +41,6 @@ public class AppServiceImpl implements AppService {
         //TODO 验证码逻辑
         //手机号查询用会员
         MemberRespDTO memberRespDTO = memberFeignConsumer.getByPhoneNumber(phoneNumber);
-        //断言用户是否存在
-        //AssertUtil.notNull(memberRespDTO, FailEnum.PHONE_NUMBER_NOT_FOUND_ERROR);
         if (Objects.isNull(memberRespDTO)) {
             memberFeignConsumer.save(phoneNumber);
         }
@@ -49,6 +54,15 @@ public class AppServiceImpl implements AppService {
 
     @Override
     public void sendSmsCaptcha(String phoneNumber) {
-
+        CaptchaSendReqDTO captchaSendReqDTO = new CaptchaSendReqDTO();
+        captchaSendReqDTO.setServiceType(ServiceTypeEnum.MALL_AUTH_APP.getCode());
+        captchaSendReqDTO.setBusinessType(BusinessTypeEnum.LOGIN.getCode());
+        captchaSendReqDTO.setPhoneNumber(phoneNumber);
+        captchaSendReqDTO.setLength(AppConstant.CAPTCHA_LENGTH);
+        captchaSendReqDTO.setExpiryDate(AppConstant.EXPIRY_DATE);
+        captchaSendReqDTO.setRemark(ServiceTypeEnum.MALL_AUTH_APP.getMessage() +
+                BaseConstant.COLON_CHAR +
+                BusinessTypeEnum.LOGIN.getMessage());
+        captchaFeignConsumer.send(captchaSendReqDTO);
     }
 }

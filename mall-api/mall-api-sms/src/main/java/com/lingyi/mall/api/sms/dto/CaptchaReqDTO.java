@@ -8,14 +8,14 @@ import java.io.Serializable;
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
- * @datetime 2023/7/12 14:23
+ * @datetime 2023/7/13 16:46
  * @description
  */
 @Data
 public class CaptchaReqDTO implements Serializable {
-
     @Serial
-    private static final long serialVersionUID = 403346381956934054L;
+    private static final long serialVersionUID = -4203487465308572746L;
+
 
     /**
      * 服务类型
@@ -31,19 +31,4 @@ public class CaptchaReqDTO implements Serializable {
      * 手机号
      */
     private String phoneNumber;
-
-    /**
-     * 验证码长度
-     */
-    private Integer length;
-
-    /**
-     * 验证码有效期 （分钟）
-     */
-    private Integer expiryDate;
-
-    /**
-     * 备注
-     */
-    private String remark;
 }
