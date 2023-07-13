@@ -18,7 +18,7 @@
         <module>mall-common-security-merchant</module>
     </modules>
     <properties>
-          <hutool-all.version>5.8.11</hutool-all.version>
+        <hutool-all.version>5.8.20</hutool-all.version>
         <fastjson2.verson>2.0.25</fastjson2.verson>
         <springdoc-openapi-starter-webmvc-ui.version>2.1.0</springdoc-openapi-starter-webmvc-ui.version>
         <springdoc-openapi-starter-webflux-ui.version>2.1.0</springdoc-openapi-starter-webflux-ui.version>
