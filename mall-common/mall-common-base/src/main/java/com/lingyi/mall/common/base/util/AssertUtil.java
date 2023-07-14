@@ -10,6 +10,8 @@ import com.lingyi.mall.common.base.exception.BizException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 
+import java.util.Objects;
+
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
@@ -35,6 +37,26 @@ public final class AssertUtil {
         isTrue(ObjUtil.isNotNull(object), exception);
     }
 
+    public static void isEquals(Object object1, Object object2, BaseFailEnum failEnum) {
+        isTrue(object1.equals(object2), failEnum);
+    }
+
+    public static void notEquals(Object object1, Objects object2, BaseFailEnum failEnum) {
+        isTrue(!object1.equals(object2), failEnum);
+    }
+
+    public static void isGtZero(int number, BaseFailEnum failEnum) {
+        isTrue(number > 0, failEnum);
+    }
+
+    public static void isQqZero(int number, BaseFailEnum failEnum) {
+        isTrue(number == 0, failEnum);
+    }
+
+    public static void isLtZero(int number, BaseFailEnum failEnum) {
+        isTrue(number < 0, failEnum);
+    }
+
     public static void isTrue(boolean flag, BaseFailEnum baseFailEnum) {
         if (!flag) {
             Object[] objects = getFailEnumValues(baseFailEnum);
@@ -50,18 +72,6 @@ public final class AssertUtil {
 
     public static void isFalse(boolean flag, BaseFailEnum failEnum) {
         isTrue(!flag, failEnum);
-    }
-
-    public static void isGtZero(int number, BaseFailEnum failEnum) {
-        isTrue(number > 0, failEnum);
-    }
-
-    public static void isQqZero(int number, BaseFailEnum failEnum) {
-        isTrue(number == 0, failEnum);
-    }
-
-    public static void isLtZero(int number, BaseFailEnum failEnum) {
-        isTrue(number < 0, failEnum);
     }
 
     public static <T extends CharSequence> T isEmpty(T t, BaseFailEnum failEnum) {

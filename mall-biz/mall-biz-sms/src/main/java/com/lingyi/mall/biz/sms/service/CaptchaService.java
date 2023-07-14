@@ -26,6 +26,6 @@ public interface CaptchaService {
      * @param captchaVerifyReqDTO 。。
      * @return 结果
      */
-    Boolean verify(CaptchaVerifyReqDTO captchaVerifyReqDTO);
+    void verify(CaptchaVerifyReqDTO captchaVerifyReqDTO);
 
 }

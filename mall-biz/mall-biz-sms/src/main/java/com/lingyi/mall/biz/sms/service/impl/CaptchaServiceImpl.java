@@ -71,10 +71,7 @@ public class CaptchaServiceImpl implements CaptchaService {
         redisUtil.incr(upperLimitKey);
         if (Objects.isNull(nowUpperLimitValue)) {
             //第二天凌晨失效
-            LocalDateTime time01 = LocalDateTime.now();
-            LocalDateTime time02 = LocalDateTime.of(time01.plusDays(1).toLocalDate(), LocalTime.MIN);
-            long subTimestamp = time02.toInstant(ZoneOffset.ofHours(8)).toEpochMilli() - time01.toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
-            redisUtil.expire(upperLimitKey, subTimestamp, TimeUnit.MILLISECONDS);
+            redisUtil.expire(upperLimitKey, getSubTimestamp(), TimeUnit.MILLISECONDS);
         }
         //转换成验证码日志信息
         CaptchaLogDO captchaLogDO = ConverterUtil.to(captchaSendReqDTO, CaptchaLogDO.class);
@@ -84,10 +81,20 @@ public class CaptchaServiceImpl implements CaptchaService {
 
 
     @Override
-    public Boolean verify(CaptchaVerifyReqDTO captchaVerifyReqDTO) {
+    public void verify(CaptchaVerifyReqDTO captchaVerifyReqDTO) {
         String targetCaptcha = captchaVerifyReqDTO.getCaptcha();
         String sourceCaptcha = redisUtil.get(redisKeyUtil.getCaptchaExpiryDateKey(captchaVerifyReqDTO), String.class);
-        return StrUtil.isNotBlank(targetCaptcha) && targetCaptcha.equals(sourceCaptcha);
+        AssertUtil.isEquals(targetCaptcha, sourceCaptcha, SmsFailEnum.CAPTCHA_EXPIRY_DATE_ERROR);
     }
 
+    /**
+     * 当前时间戳与第二天凌晨时间戳差值
+     *
+     * @return 时间戳
+     */
+    private long getSubTimestamp() {
+        LocalDateTime time01 = LocalDateTime.now();
+        LocalDateTime time02 = LocalDateTime.of(time01.plusDays(1).toLocalDate(), LocalTime.MIN);
+        return time02.toInstant(ZoneOffset.ofHours(8)).toEpochMilli() - time01.toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
+    }
 }

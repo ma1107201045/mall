@@ -35,7 +35,7 @@ public class CaptchaSendReqDTO extends CaptchaReqDTO {
      */
     private Integer expiryDate;
     /**
-     * 验证码发送间隔时间
+     * 验证码发送间隔时间（分钟）
      */
     private Integer intervalDate;
     /**

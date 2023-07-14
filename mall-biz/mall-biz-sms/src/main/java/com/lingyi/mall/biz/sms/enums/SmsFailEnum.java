@@ -22,6 +22,8 @@ public enum SmsFailEnum implements BaseFailEnum {
 
     CAPTCHA_INTERVAL_DATE_ERROR(8002, "验证码发送频繁"),
 
+    CAPTCHA_EXPIRY_DATE_ERROR(8003, "验证码不存在或者已失效"),
+
     CAPTCHA_LOG_NULL_ERROR(8002, "验证码日志不能为空");
 
 

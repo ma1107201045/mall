@@ -29,7 +29,7 @@ public class CaptchaTest implements MallWebAppSmsApplicationTest {
         CaptchaSendReqDTO captchaSendReqDTO = new CaptchaSendReqDTO();
         captchaSendReqDTO.setServiceType(ServiceTypeEnum.MALL_AUTH_APP.getCode());
         captchaSendReqDTO.setBusinessType(BusinessTypeEnum.LOGIN.getCode());
-        captchaSendReqDTO.setPhoneNumber("15038233127");
+        captchaSendReqDTO.setPhoneNumber("15038233126");
         captchaSendReqDTO.setCaptcha(RandomUtil.randomNumbers(6));
         captchaSendReqDTO.setLength(6);
         captchaSendReqDTO.setExpiryDate(30);
