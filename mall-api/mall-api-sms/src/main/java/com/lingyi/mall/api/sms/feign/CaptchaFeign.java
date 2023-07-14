@@ -33,10 +33,10 @@ public interface CaptchaFeign {
     /**
      * 保存验证码
      *
-     * @param captchaSendReqDTO ..
+     * @param captchaVerifyReqDTO ..
      * @return ServerResponse
      */
     @GetMapping(URL_PREFIX)
-    ServerResponse<Boolean> verify(CaptchaVerifyReqDTO captchaVerifyReqDTO);
+    ServerResponse<Void> verify(CaptchaVerifyReqDTO captchaVerifyReqDTO);
 
 }

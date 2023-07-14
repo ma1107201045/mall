@@ -63,7 +63,7 @@ public class CaptchaServiceImpl implements CaptchaService {
         String expiryDateKey = redisKeyUtil.getCaptchaExpiryDateKey(captchaSendReqDTO);
         redisUtil.set(expiryDateKey, captchaSendReqDTO.getCaptcha(), captchaSendReqDTO.getExpiryDate(), TimeUnit.MINUTES);
 
-        //TODO 发送mq消息
+        //TODO 发送mq消息 加分布式锁防止恶意发送
 
         //设置验证码发送间隔时间随机值
         redisUtil.set(intervalDateKey, IdUtil.fastSimpleUUID(), captchaSendReqDTO.getIntervalDate(), TimeUnit.MINUTES);

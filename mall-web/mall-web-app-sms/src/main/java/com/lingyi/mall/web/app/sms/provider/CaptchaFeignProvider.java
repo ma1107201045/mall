@@ -34,8 +34,8 @@ public class CaptchaFeignProvider implements CaptchaFeign {
 
     @Operation(summary = "校验", description = "校验")
     @Override
-    public ServerResponse<Boolean> verify(CaptchaVerifyReqDTO captchaVerifyReqDTO) {
-        boolean flag = captchaService.verify(captchaVerifyReqDTO);
-        return ServerResponse.success(flag);
+    public ServerResponse<Void> verify(CaptchaVerifyReqDTO captchaVerifyReqDTO) {
+        captchaService.verify(captchaVerifyReqDTO);
+        return ServerResponse.success();
     }
 }

@@ -1,5 +1,6 @@
 package com.lingyi.mall.web.app.sms;
 
+import cn.hutool.core.thread.ThreadUtil;
 import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.MallWebAppSmsApplicationTest;
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
@@ -11,6 +12,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.concurrent.ExecutorService;
+
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
@@ -19,6 +22,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class CaptchaTest implements MallWebAppSmsApplicationTest {
+
 
     @Autowired
     private CaptchaService captchaService;
@@ -29,7 +33,7 @@ public class CaptchaTest implements MallWebAppSmsApplicationTest {
         CaptchaSendReqDTO captchaSendReqDTO = new CaptchaSendReqDTO();
         captchaSendReqDTO.setServiceType(ServiceTypeEnum.MALL_AUTH_APP.getCode());
         captchaSendReqDTO.setBusinessType(BusinessTypeEnum.LOGIN.getCode());
-        captchaSendReqDTO.setPhoneNumber("15038233126");
+        captchaSendReqDTO.setPhoneNumber("15038233127");
         captchaSendReqDTO.setCaptcha(RandomUtil.randomNumbers(6));
         captchaSendReqDTO.setLength(6);
         captchaSendReqDTO.setExpiryDate(30);
@@ -37,5 +41,14 @@ public class CaptchaTest implements MallWebAppSmsApplicationTest {
         captchaSendReqDTO.setUpperLimit(10);
         captchaSendReqDTO.setRemark(ServiceTypeEnum.UNKNOWN.getMessage() + BaseConstant.COLON_CHAR + BusinessTypeEnum.UNKNOWN.getMessage());
         captchaService.send(captchaSendReqDTO);
+    }
+
+    @Test
+    public void testCaptchaAsyncSend() {
+        ExecutorService executorService = ThreadUtil.newFixedExecutor(100, "11", false);
+        for (int i = 0; i < 100; i++) {
+            executorService.submit(this::testCaptchaSend);
+        }
+        ThreadUtil.sleep(10000);
     }
 }
