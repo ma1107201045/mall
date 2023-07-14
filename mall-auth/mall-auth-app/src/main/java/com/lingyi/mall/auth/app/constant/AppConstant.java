@@ -8,10 +8,11 @@ package com.lingyi.mall.auth.app.constant;
  */
 public class AppConstant {
 
-
-    public static final Integer CAPTCHA_LENGTH = 6;
-
+    public static final Integer LENGTH = 6;
     public static final Integer EXPIRY_DATE = 30;
+    public static final Integer INTERVAL = 1;
+    public static final Integer UPPER_LIMIT = 10;
+
 
     private AppConstant() {
 

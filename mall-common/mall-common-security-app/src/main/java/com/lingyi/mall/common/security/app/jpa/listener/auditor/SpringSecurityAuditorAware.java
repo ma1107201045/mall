@@ -1,6 +1,7 @@
 package com.lingyi.mall.common.security.app.jpa.listener.auditor;
 
 import cn.hutool.core.util.StrUtil;
+import com.lingyi.mall.common.base.jpa.listener.auditor.CustomAuditorAware;
 import com.lingyi.mall.common.security.app.constant.SecurityAppConstant;
 import com.lingyi.mall.common.security.app.util.AppAuthenticatorUtil;
 import org.springframework.data.domain.AuditorAware;
@@ -16,7 +17,7 @@ import java.util.Optional;
  * @description
  */
 @Component
-public class SpringSecurityAuditorAware implements AuditorAware<String> {
+public class SpringSecurityAuditorAware implements CustomAuditorAware<String> {
 
 
     @Override

@@ -11,6 +11,7 @@ import org.hibernate.annotations.DynamicInsert;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.math.BigInteger;
 
 /**
  * @author maweiyan
@@ -37,13 +38,22 @@ public class CaptchaLogDO extends BaseCommonDO implements Serializable {
     @Column(name = "phone_number", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '手机号'")
     private String phoneNumber;
 
+    @Column(name = "captcha", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '验证码'")
+    private Integer captcha;
+
     @Column(name = "length", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '验证码长度'")
     private Integer length;
 
-    @Column(name = "value", columnDefinition = "VARCHAR(10) NOT NULL COMMENT '验证码值'")
-    private String value;
+    @Column(name = "expiry_date", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '验证码有效期 （分钟）'")
+    private Integer expiryDate;
 
-    @Column(name = "is_success", columnDefinition = "INT UNSIGNED NOT NULL  COMMENT '是否成功 1.是 0.否'")
+    @Column(name = "interval_date", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '验证码发送间隔时间（分钟）'")
+    private Integer intervalDate;
+
+    @Column(name = "upper_limit", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '验证码每天上限'")
+    private Integer upperLimit;
+
+    @Column(name = "is_success", columnDefinition = "INT UNSIGNED COMMENT '是否成功 1.是 0.否'")
     private Integer isSuccess;
 
     @Column(name = "fail_message", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '失败信息'")

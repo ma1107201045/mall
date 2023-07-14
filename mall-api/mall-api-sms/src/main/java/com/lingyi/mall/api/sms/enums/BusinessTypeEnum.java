@@ -16,8 +16,8 @@ import java.util.Arrays;
 @RequiredArgsConstructor
 public enum BusinessTypeEnum {
 
-    LOGIN(1, "登录");
-
+    LOGIN(1, "登录"),
+    UNKNOWN(100, "未知");
     private final Integer code;
 
     private final String message;

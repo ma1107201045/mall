@@ -2,6 +2,7 @@ package com.lingyi.mall.biz.member.service.impl;
 
 import com.lingyi.mall.biz.member.entity.MemberLoginLogDO;
 import com.lingyi.mall.biz.member.enums.MemberFailEnum;
+import com.lingyi.mall.biz.member.param.MemberLoginParam;
 import com.lingyi.mall.biz.member.vo.MemberLoginLogVO;
 import com.lingyi.mall.biz.member.mapper.MemberLoginLogMapper;
 import com.lingyi.mall.biz.member.repository.MemberLoginLogRepository;
@@ -60,7 +61,7 @@ public class MemberLoginLogServiceImpl implements MemberLoginLogService {
     }
 
     @Override
-    public List<MemberLoginLogVO> readListByParam(MemberLoginLogDO memberLoginLogDO) {
-        return memberLoginLogMapper.selectListByParam(memberLoginLogDO);
+    public List<MemberLoginLogVO> readListByParam(MemberLoginParam memberLoginParam) {
+        return memberLoginLogMapper.selectListByParam(memberLoginParam);
     }
 }

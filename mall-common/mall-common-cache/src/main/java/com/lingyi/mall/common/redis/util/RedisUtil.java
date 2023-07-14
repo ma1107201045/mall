@@ -5,7 +5,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Collection;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -21,8 +25,17 @@ public class RedisUtil {
 
     private final RedisTemplate<String, Object> redisTemplate;
 
+
     public boolean expire(String key, long timeout, TimeUnit unit) {
         return redisTemplate.expire(key, timeout, unit) != null;
+    }
+
+    public boolean expireAt(String key, Instant expireAt) {
+        return redisTemplate.expireAt(key, expireAt) != null;
+    }
+
+    public boolean expireAt(String key, LocalDateTime localDateTime) {
+        return redisTemplate.expireAt(key, localDateTime.atZone(ZoneId.systemDefault()).toInstant()) != null;
     }
 
     public long getExpire(String key) {
@@ -37,6 +50,23 @@ public class RedisUtil {
     public <T> void set(String key, T value, long timeout, TimeUnit unit) {
         redisTemplate.opsForValue().set(key, value, timeout, unit);
     }
+
+    public void incr(String key) {
+        redisTemplate.opsForValue().increment(key);
+    }
+
+    public void incr(String key, long delta) {
+        redisTemplate.opsForValue().increment(key, delta);
+    }
+
+    public void decr(String key) {
+        redisTemplate.opsForValue().decrement(key);
+    }
+
+    public void decr(String key, long delta) {
+        redisTemplate.opsForValue().decrement(key, delta);
+    }
+
     @SuppressWarnings("unchecked")
     public <T> T get(String key, Class<T> clazz) {
         Object obj = redisTemplate.opsForValue().get(key);

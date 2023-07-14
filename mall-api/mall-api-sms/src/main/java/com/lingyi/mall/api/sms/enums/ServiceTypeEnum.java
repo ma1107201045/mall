@@ -3,6 +3,7 @@ package com.lingyi.mall.api.sms.enums;
 import com.lingyi.mall.common.base.constant.BaseConstant;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.apache.bcel.classfile.Unknown;
 
 import java.util.Arrays;
 
@@ -17,7 +18,9 @@ import java.util.Arrays;
 public enum ServiceTypeEnum {
 
 
-    MALL_AUTH_APP(1, "APP认证");
+    MALL_AUTH_APP(1, "APP认证"),
+
+    UNKNOWN(100, "未知");
 
 
     private final Integer code;

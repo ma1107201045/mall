@@ -18,7 +18,11 @@ public enum SmsFailEnum implements BaseFailEnum {
     /**
      *
      */
-    CAPTCHA_LOG_NULL_ERROR(8001, "验证码日志不能为空");
+    CAPTCHA_UPPER_LIMIT_ERROR(8001, "验证码发送当日次数已达到上限"),
+
+    CAPTCHA_INTERVAL_DATE_ERROR(8002, "验证码发送频繁"),
+
+    CAPTCHA_LOG_NULL_ERROR(8002, "验证码日志不能为空");
 
 
     private final Integer code;

@@ -10,6 +10,7 @@ import com.lingyi.mall.api.sms.enums.BusinessTypeEnum;
 import com.lingyi.mall.api.sms.enums.ServiceTypeEnum;
 import com.lingyi.mall.auth.app.constant.AppConstant;
 import com.lingyi.mall.auth.app.dto.AppLoginDTO;
+import com.lingyi.mall.auth.app.properties.SmsCaptchaProperties;
 import com.lingyi.mall.auth.app.service.AppService;
 import com.lingyi.mall.auth.app.vo.AppLoginVO;
 import com.lingyi.mall.common.base.constant.BaseConstant;
@@ -35,6 +36,8 @@ public class AppServiceImpl implements AppService {
 
     private final CaptchaFeignConsumer captchaFeignConsumer;
 
+    private final SmsCaptchaProperties smsCaptchaProperties;
+
     @Override
     public AppLoginVO login(AppLoginDTO appLoginDTO) {
         String phoneNumber = appLoginDTO.getPhoneNumber();
@@ -55,14 +58,14 @@ public class AppServiceImpl implements AppService {
     @Override
     public void sendSmsCaptcha(String phoneNumber) {
         CaptchaSendReqDTO captchaSendReqDTO = new CaptchaSendReqDTO();
-        captchaSendReqDTO.setServiceType(ServiceTypeEnum.MALL_AUTH_APP.getCode());
-        captchaSendReqDTO.setBusinessType(BusinessTypeEnum.LOGIN.getCode());
         captchaSendReqDTO.setPhoneNumber(phoneNumber);
-        captchaSendReqDTO.setLength(AppConstant.CAPTCHA_LENGTH);
-        captchaSendReqDTO.setExpiryDate(AppConstant.EXPIRY_DATE);
-        captchaSendReqDTO.setRemark(ServiceTypeEnum.MALL_AUTH_APP.getMessage() +
-                BaseConstant.COLON_CHAR +
-                BusinessTypeEnum.LOGIN.getMessage());
+        captchaSendReqDTO.setServiceType(smsCaptchaProperties.getServiceTypeEnum().getCode());
+        captchaSendReqDTO.setBusinessType(smsCaptchaProperties.getBusinessTypeEnum().getCode());
+        captchaSendReqDTO.setLength(smsCaptchaProperties.getLength());
+        captchaSendReqDTO.setExpiryDate(smsCaptchaProperties.getExpiryDate());
+        captchaSendReqDTO.setIntervalDate(smsCaptchaProperties.getIntervalDate());
+        captchaSendReqDTO.setUpperLimit(smsCaptchaProperties.getUpperLimit());
+        captchaSendReqDTO.setRemark(ServiceTypeEnum.MALL_AUTH_APP.getMessage() + BaseConstant.COLON_CHAR + BusinessTypeEnum.LOGIN.getMessage());
         captchaFeignConsumer.send(captchaSendReqDTO);
     }
 }
