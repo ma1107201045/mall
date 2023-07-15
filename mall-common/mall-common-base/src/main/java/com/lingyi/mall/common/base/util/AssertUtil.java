@@ -33,9 +33,6 @@ public final class AssertUtil {
         isTrue(ObjUtil.isNotNull(object), failEnum);
     }
 
-    public static void notNull(Object object, RuntimeException exception) {
-        isTrue(ObjUtil.isNotNull(object), exception);
-    }
 
     public static void isEquals(Object object1, Object object2, BaseFailEnum failEnum) {
         isTrue(object1.equals(object2), failEnum);

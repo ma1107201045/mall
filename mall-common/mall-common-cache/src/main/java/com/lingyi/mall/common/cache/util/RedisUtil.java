@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.redis.util;
+package com.lingyi.mall.common.cache.util;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +9,6 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Collection;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**

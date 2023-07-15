@@ -23,6 +23,7 @@
         <springdoc-openapi-starter-webmvc-ui.version>2.1.0</springdoc-openapi-starter-webmvc-ui.version>
         <springdoc-openapi-starter-webflux-ui.version>2.1.0</springdoc-openapi-starter-webflux-ui.version>
         <knife4j-openapi3-jakarta-spring-boot-starte.version>4.1.0</knife4j-openapi3-jakarta-spring-boot-starte.version>
+        <redisson-spring-boot-starter.version>3.23.0</redisson-spring-boot-starter.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -50,6 +51,11 @@
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
                 <version>${knife4j-openapi3-jakarta-spring-boot-starte.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson-spring-boot-starter.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

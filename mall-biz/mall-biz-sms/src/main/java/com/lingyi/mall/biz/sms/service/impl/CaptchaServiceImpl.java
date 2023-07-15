@@ -1,9 +1,6 @@
 package com.lingyi.mall.biz.sms.service.impl;
 
-import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.RandomUtil;
-import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
 import com.lingyi.mall.biz.sms.entity.CaptchaLogDO;
@@ -14,18 +11,17 @@ import com.lingyi.mall.biz.sms.service.CaptchaService;
 import com.lingyi.mall.biz.sms.util.RedisKeyUtil;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.base.util.ConverterUtil;
-import com.lingyi.mall.common.redis.util.RedisUtil;
+import com.lingyi.mall.common.cache.util.RedisUtil;
 import lombok.RequiredArgsConstructor;
+import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Service;
 
-import javax.management.MBeanAttributeInfo;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.ZoneOffset;
-import java.time.temporal.ChronoField;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
 
 /**
  * @author maweiyan
@@ -43,40 +39,49 @@ public class CaptchaServiceImpl implements CaptchaService {
 
     private final RedisKeyUtil redisKeyUtil;
 
+    private final RedissonClient redissonClient;
+
 
     @Override
     public void send(CaptchaSendReqDTO captchaSendReqDTO) {
-        //校验验证码当天发送上限
-        String upperLimitKey = redisKeyUtil.getCaptchaUpperLimitKey(captchaSendReqDTO);
-        Integer nowUpperLimitValue = redisUtil.get(upperLimitKey, Integer.class);
-        Integer upperLimitValue = captchaSendReqDTO.getUpperLimit();
-        if (Objects.nonNull(nowUpperLimitValue) && (nowUpperLimitValue.equals(upperLimitValue) || nowUpperLimitValue > upperLimitValue)) {
-            throw new SmsException(SmsFailEnum.CAPTCHA_UPPER_LIMIT_ERROR);
+        //加分布式锁
+        Lock lock = redissonClient.getLock(redisKeyUtil.getCaptchaLockKey(captchaSendReqDTO));
+        try {
+            lock.lock();
+            //校验验证码当天发送上限
+            String upperLimitKey = redisKeyUtil.getCaptchaUpperLimitKey(captchaSendReqDTO);
+            Integer nowUpperLimitValue = redisUtil.get(upperLimitKey, Integer.class);
+            Integer upperLimitValue = captchaSendReqDTO.getUpperLimit();
+            if (Objects.nonNull(nowUpperLimitValue) && (nowUpperLimitValue.equals(upperLimitValue) || nowUpperLimitValue > upperLimitValue)) {
+                throw new SmsException(SmsFailEnum.CAPTCHA_UPPER_LIMIT_ERROR);
+            }
+
+            //校验验证码发送间隔时间
+            String intervalDateKey = redisKeyUtil.getCaptchaIntervalDateKey(captchaSendReqDTO);
+            String intervalDateValue = redisUtil.get(intervalDateKey, String.class);
+            AssertUtil.isNull(intervalDateValue, SmsFailEnum.CAPTCHA_INTERVAL_DATE_ERROR);
+
+            //设置验证码失效时间
+            String expiryDateKey = redisKeyUtil.getCaptchaExpiryDateKey(captchaSendReqDTO);
+            redisUtil.set(expiryDateKey, captchaSendReqDTO.getCaptcha(), captchaSendReqDTO.getExpiryDate(), TimeUnit.MINUTES);
+
+            //TODO 发送mq消息
+
+            //设置验证码发送间隔时间随机值
+            redisUtil.set(intervalDateKey, IdUtil.fastSimpleUUID(), captchaSendReqDTO.getIntervalDate(), TimeUnit.MINUTES);
+            //验证码发送次数累加
+            redisUtil.incr(upperLimitKey);
+            if (Objects.isNull(nowUpperLimitValue)) {
+                //第二天凌晨失效
+                redisUtil.expire(upperLimitKey, getSubTimestamp(), TimeUnit.MILLISECONDS);
+            }
+            //转换成验证码日志信息
+            CaptchaLogDO captchaLogDO = ConverterUtil.to(captchaSendReqDTO, CaptchaLogDO.class);
+            //保存验证码日志
+            captchaLogService.create(captchaLogDO);
+        } finally {
+            lock.unlock();
         }
-
-        //校验验证码发送间隔时间
-        String intervalDateKey = redisKeyUtil.getCaptchaIntervalDateKey(captchaSendReqDTO);
-        String intervalDateValue = redisUtil.get(intervalDateKey, String.class);
-        AssertUtil.isNull(intervalDateValue, SmsFailEnum.CAPTCHA_INTERVAL_DATE_ERROR);
-
-        //设置验证码失效时间
-        String expiryDateKey = redisKeyUtil.getCaptchaExpiryDateKey(captchaSendReqDTO);
-        redisUtil.set(expiryDateKey, captchaSendReqDTO.getCaptcha(), captchaSendReqDTO.getExpiryDate(), TimeUnit.MINUTES);
-
-        //TODO 发送mq消息 加分布式锁防止恶意发送
-
-        //设置验证码发送间隔时间随机值
-        redisUtil.set(intervalDateKey, IdUtil.fastSimpleUUID(), captchaSendReqDTO.getIntervalDate(), TimeUnit.MINUTES);
-        //验证码发送次数累加
-        redisUtil.incr(upperLimitKey);
-        if (Objects.isNull(nowUpperLimitValue)) {
-            //第二天凌晨失效
-            redisUtil.expire(upperLimitKey, getSubTimestamp(), TimeUnit.MILLISECONDS);
-        }
-        //转换成验证码日志信息
-        CaptchaLogDO captchaLogDO = ConverterUtil.to(captchaSendReqDTO, CaptchaLogDO.class);
-        //保存验证码日志
-        captchaLogService.create(captchaLogDO);
     }
 
 
@@ -93,8 +98,8 @@ public class CaptchaServiceImpl implements CaptchaService {
      * @return 时间戳
      */
     private long getSubTimestamp() {
-        LocalDateTime time01 = LocalDateTime.now();
-        LocalDateTime time02 = LocalDateTime.of(time01.plusDays(1).toLocalDate(), LocalTime.MIN);
-        return time02.toInstant(ZoneOffset.ofHours(8)).toEpochMilli() - time01.toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
+        LocalDateTime startDateTime = LocalDateTime.now();
+        LocalDateTime endDateTime = LocalDateTime.of(startDateTime.plusDays(1).toLocalDate(), LocalTime.MIN);
+        return endDateTime.toInstant(ZoneOffset.ofHours(8)).toEpochMilli() - startDateTime.toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
     }
 }

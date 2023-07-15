@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class RedisKeyUtil {
-
+    private static final String CAPTCHA_LOCK = "captcha-lock";
     private static final String CAPTCHA_EXPIRY_DATA = "captcha-expire-date";
     private static final String CAPTCHA_INTERVAL_DATA = "captcha-interval-date";
     private static final String CAPTCHA_UPPER_LIMIT = "captcha-upper-limit";
@@ -22,6 +22,13 @@ public class RedisKeyUtil {
     @Value("${spring.application.name}")
     private String keyPrefix;
 
+    public String getCaptchaLockKey(CaptchaReqDTO captchaReqDTO) {
+        return keyPrefix + BaseConstant.COLON_CHAR
+                + CAPTCHA_LOCK + BaseConstant.COLON_CHAR
+                + captchaReqDTO.getServiceType() + BaseConstant.COLON_CHAR
+                + captchaReqDTO.getBusinessType() + BaseConstant.COLON_CHAR
+                + captchaReqDTO.getPhoneNumber();
+    }
 
     public String getCaptchaExpiryDateKey(CaptchaReqDTO captchaReqDTO) {
         return keyPrefix + BaseConstant.COLON_CHAR

@@ -24,7 +24,6 @@ public interface CaptchaService {
      * 校验验证码
      *
      * @param captchaVerifyReqDTO 。。
-     * @return 结果
      */
     void verify(CaptchaVerifyReqDTO captchaVerifyReqDTO);
 
