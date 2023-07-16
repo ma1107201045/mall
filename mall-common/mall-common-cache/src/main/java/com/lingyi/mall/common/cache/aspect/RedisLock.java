@@ -1,7 +1,5 @@
 package com.lingyi.mall.common.cache.aspect;
 
-import org.springframework.core.annotation.AliasFor;
-
 import java.lang.annotation.*;
 import java.util.concurrent.TimeUnit;
 
@@ -20,26 +18,27 @@ public @interface RedisLock {
     /**
      * redis锁 key后缀 支持SPEL表达式
      */
-    @AliasFor("keySuffix")
-    String value() default "";
-
-    /**
-     * redis锁 key后缀 支持SPEL表达式
-     */
-    @AliasFor("value")
     String keySuffix() default "";
 
+
     /**
-     * 过期秒数,默认为30秒
+     * 是否自动续期
+     *
+     * @return 结果
+     */
+    boolean isRenewal() default true;
+
+    /**
+     * 过期秒数,默认为5秒
      *
      * @return 轮询锁的时间
      */
-    int expire() default 30;
+    int expire() default 5;
 
     /**
      * 超时时间单位
      *
      * @return 秒
      */
-    TimeUnit timeUnit() default TimeUnit.MINUTES;
+    TimeUnit timeUnit() default TimeUnit.SECONDS;
 }

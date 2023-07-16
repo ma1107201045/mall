@@ -39,15 +39,19 @@ public class RedisLockAspect {
     @Value("${spring.application.name}")
     private String applicationName;
 
-    @Pointcut("@annotation(com.lingyi.mall.common.cache.aspect.RedisLock)")
-    private void redisLockPointcut() {
-    }
+//    @Pointcut("@annotation(com.lingyi.mall.common.cache.aspect.RedisLock)")
+//    private void redisLockPointcut() {
+//    }
 
     @Around("@annotation(redisLock)")
     public Object around(ProceedingJoinPoint joinPoint, RedisLock redisLock) throws Throwable {
         String keySuffix = SpelUtil.parse(joinPoint.getTarget(), redisLock.keySuffix(), getMethod(joinPoint), joinPoint.getArgs());
         RLock rLock = redissonClient.getLock(applicationName + BaseConstant.COLON_CHAR + KEY_PREFIX + BaseConstant.COLON_CHAR + keySuffix);
-        rLock.lock(redisLock.expire(), redisLock.timeUnit());
+        if (redisLock.isRenewal()) {
+            rLock.lock();
+        } else {
+            rLock.lock(redisLock.expire(), redisLock.timeUnit());
+        }
         Object result;
         try {
             result = joinPoint.proceed();

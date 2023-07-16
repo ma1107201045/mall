@@ -46,7 +46,7 @@ public class CaptchaTest implements MallWebAppSmsApplicationTest {
     }
 
     @Test
-    public void testCaptchaAsyncSend() {
+    public void testThreadCaptchaSend() {
         ExecutorService executorService = ThreadUtil.newFixedExecutor(100, "11", false);
         for (int i = 0; i < 100; i++) {
             executorService.submit(() -> {
