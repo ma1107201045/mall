@@ -1,6 +1,5 @@
 package com.lingyi.mall.web.app.sms;
 
-import cn.hutool.core.text.split.SplitIter;
 import cn.hutool.core.thread.ThreadUtil;
 import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.MallWebAppSmsApplicationTest;

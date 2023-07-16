@@ -1,7 +1,6 @@
 package com.lingyi.mall.biz.sms.util;
 
 import com.lingyi.mall.api.sms.dto.CaptchaReqDTO;
-import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.common.base.constant.BaseConstant;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -14,24 +13,16 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class RedisKeyUtil {
-    private static final String CAPTCHA_LOCK = "captcha-lock";
     private static final String CAPTCHA_EXPIRY_DATA = "captcha-expire-date";
     private static final String CAPTCHA_INTERVAL_DATA = "captcha-interval-date";
     private static final String CAPTCHA_UPPER_LIMIT = "captcha-upper-limit";
 
     @Value("${spring.application.name}")
-    private String keyPrefix;
+    private String applicationName;
 
-    public String getCaptchaLockKey(CaptchaReqDTO captchaReqDTO) {
-        return keyPrefix + BaseConstant.COLON_CHAR
-                + CAPTCHA_LOCK + BaseConstant.COLON_CHAR
-                + captchaReqDTO.getServiceType() + BaseConstant.COLON_CHAR
-                + captchaReqDTO.getBusinessType() + BaseConstant.COLON_CHAR
-                + captchaReqDTO.getPhoneNumber();
-    }
 
     public String getCaptchaExpiryDateKey(CaptchaReqDTO captchaReqDTO) {
-        return keyPrefix + BaseConstant.COLON_CHAR
+        return applicationName + BaseConstant.COLON_CHAR
                 + CAPTCHA_EXPIRY_DATA + BaseConstant.COLON_CHAR
                 + captchaReqDTO.getServiceType() + BaseConstant.COLON_CHAR
                 + captchaReqDTO.getBusinessType() + BaseConstant.COLON_CHAR
@@ -39,7 +30,7 @@ public class RedisKeyUtil {
     }
 
     public String getCaptchaIntervalDateKey(CaptchaReqDTO captchaReqDTO) {
-        return keyPrefix + BaseConstant.COLON_CHAR
+        return applicationName + BaseConstant.COLON_CHAR
                 + CAPTCHA_INTERVAL_DATA + BaseConstant.COLON_CHAR
                 + captchaReqDTO.getServiceType() + BaseConstant.COLON_CHAR
                 + captchaReqDTO.getBusinessType() + BaseConstant.COLON_CHAR
@@ -47,7 +38,7 @@ public class RedisKeyUtil {
     }
 
     public String getCaptchaUpperLimitKey(CaptchaReqDTO captchaReqDTO) {
-        return keyPrefix + BaseConstant.COLON_CHAR
+        return applicationName + BaseConstant.COLON_CHAR
                 + CAPTCHA_UPPER_LIMIT + BaseConstant.COLON_CHAR
                 + captchaReqDTO.getServiceType() + BaseConstant.COLON_CHAR
                 + captchaReqDTO.getBusinessType() + BaseConstant.COLON_CHAR

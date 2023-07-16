@@ -1,14 +1,26 @@
 package com.lingyi.mall.common.cache.aspect;
 
+import com.lingyi.mall.common.base.constant.BaseConstant;
+import com.lingyi.mall.common.base.util.SpelUtil;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
 import org.springframework.stereotype.Component;
+
+import java.lang.reflect.Method;
 
 /**
  * @author maweiyan
@@ -20,9 +32,12 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class RedisLockAspect {
+    private static final String KEY_PREFIX = "redisson-lock";
 
     private final RedissonClient redissonClient;
-    private static final String REDISSON_LOCK_PREFIX = "redisson-lock:";
+
+    @Value("${spring.application.name}")
+    private String applicationName;
 
     @Pointcut("@annotation(com.lingyi.mall.common.cache.aspect.RedisLock)")
     private void redisLockPointcut() {
@@ -30,9 +45,8 @@ public class RedisLockAspect {
 
     @Around("@annotation(redisLock)")
     public Object around(ProceedingJoinPoint joinPoint, RedisLock redisLock) throws Throwable {
-        String name = redisLock.name();
-        String key = redisLock.key();
-        RLock rLock = redissonClient.getLock(REDISSON_LOCK_PREFIX + name + key);
+        String keySuffix = SpelUtil.parse(joinPoint.getTarget(), redisLock.keySuffix(), getMethod(joinPoint), joinPoint.getArgs());
+        RLock rLock = redissonClient.getLock(applicationName + BaseConstant.COLON_CHAR + KEY_PREFIX + BaseConstant.COLON_CHAR + keySuffix);
         rLock.lock(redisLock.expire(), redisLock.timeUnit());
         Object result;
         try {
@@ -41,5 +55,10 @@ public class RedisLockAspect {
             rLock.unlock();
         }
         return result;
+    }
+
+    private Method getMethod(ProceedingJoinPoint joinPoint) {
+        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+        return methodSignature.getMethod();
     }
 }
