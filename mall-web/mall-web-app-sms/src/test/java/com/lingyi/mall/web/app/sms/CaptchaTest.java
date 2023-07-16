@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 
 /**
@@ -46,7 +47,7 @@ public class CaptchaTest implements MallWebAppSmsApplicationTest {
     }
 
     @Test
-    public void testThreadCaptchaSend() {
+    public void testThreadCaptchaSend() throws IOException {
         ExecutorService executorService = ThreadUtil.newFixedExecutor(100, "11", false);
         for (int i = 0; i < 100; i++) {
             executorService.submit(() -> {
@@ -63,6 +64,6 @@ public class CaptchaTest implements MallWebAppSmsApplicationTest {
                 captchaService.send(captchaSendReqDTO);
             });
         }
-        ThreadUtil.sleep(10000);
+        System.in.read();
     }
 }
