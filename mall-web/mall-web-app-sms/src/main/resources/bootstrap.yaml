@@ -33,7 +33,6 @@ spring:
         pool:
           enabled: true
           min-idle: 2
-
   cloud:
     nacos:
       discovery:
@@ -57,13 +56,3 @@ spring:
             loggerLevel: FULL
             connectTimeout: 5000
             readTimeout: 5000
-# springdoc-openapi项目配置
-springdoc:
-  swagger-ui:
-    tags-sorter: alpha
-    operations-sorter: alpha
-  group-configs:
-    - group: '系统管理服务【后台】'
-      paths-to-match: '/**'
-      packages-to-scan: com.lingyi.mall.web.app.sys.controller
-# openFeign 配置

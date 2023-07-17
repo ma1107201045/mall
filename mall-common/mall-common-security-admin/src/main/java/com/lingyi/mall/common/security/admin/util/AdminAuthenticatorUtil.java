@@ -1,12 +1,13 @@
 package com.lingyi.mall.common.security.admin.util;
 
+import com.lingyi.mall.common.security.admin.constant.SecurityAdminConstant;
 import com.lingyi.mall.common.security.admin.entity.UserDetailsDO;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.Collection;
-import java.util.Objects;
+import java.util.Collections;
 
 /**
  * @Author: maweiyan
@@ -27,9 +28,13 @@ public class AdminAuthenticatorUtil {
      * @return UserDetailsEntity
      */
     public static UserDetailsDO getUserDetailsDO() {
-        Authentication authentication = getAuthentication();
-        return (UserDetailsDO) (Objects.isNull(authentication) ?
-                UserDetailsDO.builder().build() : authentication.getPrincipal());
+        Object principal = getAuthentication().getPrincipal();
+        return principal instanceof UserDetailsDO userDetailsDO ? userDetailsDO :
+                UserDetailsDO.builder()
+                        .userId(-1L)
+                        .username(SecurityAdminConstant.UNKNOWN)
+                        .authorities(Collections.emptyList())
+                        .build();
     }
 
     /**

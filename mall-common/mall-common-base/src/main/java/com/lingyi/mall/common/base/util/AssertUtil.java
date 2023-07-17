@@ -33,6 +33,9 @@ public final class AssertUtil {
         isTrue(ObjUtil.isNotNull(object), failEnum);
     }
 
+    public static void notNull(Object object, RuntimeException runtimeException) {
+        isTrue(ObjUtil.isNotNull(object), runtimeException);
+    }
 
     public static void isEquals(Object object1, Object object2, BaseFailEnum failEnum) {
         isTrue(object1.equals(object2), failEnum);
@@ -52,19 +55,6 @@ public final class AssertUtil {
 
     public static void isLtZero(int number, BaseFailEnum failEnum) {
         isTrue(number < 0, failEnum);
-    }
-
-    public static void isTrue(boolean flag, BaseFailEnum baseFailEnum) {
-        if (!flag) {
-            Object[] objects = getFailEnumValues(baseFailEnum);
-            throw new BizException((Integer) objects[0], (String) objects[1]);
-        }
-    }
-
-    public static void isTrue(boolean flag, RuntimeException exception) {
-        if (!flag) {
-            throw exception;
-        }
     }
 
     public static void isFalse(boolean flag, BaseFailEnum failEnum) {
@@ -114,6 +104,19 @@ public final class AssertUtil {
     public static <E, T extends Iterable<E>> T notEmpty(T t, BaseFailEnum failEnum) {
         isTrue(CollUtil.isNotEmpty(t), failEnum);
         return t;
+    }
+
+    public static void isTrue(boolean flag, BaseFailEnum baseFailEnum) {
+        if (!flag) {
+            Object[] objects = getFailEnumValues(baseFailEnum);
+            throw new BizException((Integer) objects[0], (String) objects[1]);
+        }
+    }
+
+    public static void isTrue(boolean flag, RuntimeException exception) {
+        if (!flag) {
+            throw exception;
+        }
     }
 
     public static Object[] getFailEnumValues(BaseFailEnum failEnum) {

@@ -13,6 +13,7 @@
     <modules>
         <module>mall-common-base</module>
         <module>mall-common-cache</module>
+        <module>mall-common-mq</module>
         <module>mall-common-security-admin</module>
         <module>mall-common-security-app</module>
         <module>mall-common-security-merchant</module>
@@ -24,6 +25,7 @@
         <springdoc-openapi-starter-webflux-ui.version>2.1.0</springdoc-openapi-starter-webflux-ui.version>
         <knife4j-openapi3-jakarta-spring-boot-starte.version>4.1.0</knife4j-openapi3-jakarta-spring-boot-starte.version>
         <redisson-spring-boot-starter.version>3.23.0</redisson-spring-boot-starter.version>
+        <rocketmq-spring-boot-starter.version>2.2.3</rocketmq-spring-boot-starter.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -56,6 +58,11 @@
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-boot-starter</artifactId>
                 <version>${redisson-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq-spring-boot-starter.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
