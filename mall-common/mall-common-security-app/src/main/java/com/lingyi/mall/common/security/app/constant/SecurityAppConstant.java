@@ -27,7 +27,10 @@ public class SecurityAppConstant {
             new AntPathRequestMatcher("/auth/app/**", HttpMethod.DELETE.name()),
             new AntPathRequestMatcher("/auth/app/**", HttpMethod.OPTIONS.name()),
             new AntPathRequestMatcher("/auth/app/**", HttpMethod.TRACE.name()),
-            new AntPathRequestMatcher("/admin/system/members", HttpMethod.GET.name()),
+            new AntPathRequestMatcher("/app/sms/captchas/send", HttpMethod.POST.name()),
+            new AntPathRequestMatcher("/app/sms/captchas/verify", HttpMethod.GET.name()),
+            new AntPathRequestMatcher("/app/member/members", HttpMethod.GET.name()),
+            new AntPathRequestMatcher("/app/member/members", HttpMethod.POST.name()),
             new AntPathRequestMatcher("/admin/system/logs", HttpMethod.POST.name()));
     public static final String IS_IGNORE_REQUEST_ATTRIBUTE = "isIgnoreRequest";
     public static final String JWT_KEY = "199726ma.";

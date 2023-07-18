@@ -73,7 +73,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void create(String phoneNumber) {
         MemberLevelDO memberLevelDO = memberLevelService.readByIsDefaultLevel(WhetherEnum.Y.getCode());
-        AssertUtil.isNull(memberLevelDO, MemberFailEnum.MEMBER_LEVEL_NULL_ERROR);
+        AssertUtil.notNull(memberLevelDO, MemberFailEnum.MEMBER_LEVEL_NULL_ERROR);
         MemberDO memberDO = new MemberDO();
         memberDO.setMemberLevelDO(memberLevelDO);
         memberDO.setUserName(UserNameUtil.getRightFourBit(phoneNumber));

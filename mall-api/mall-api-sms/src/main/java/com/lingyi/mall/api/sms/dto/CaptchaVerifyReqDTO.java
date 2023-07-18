@@ -24,4 +24,7 @@ public class CaptchaVerifyReqDTO extends CaptchaReqDTO {
      * 验证码
      */
     private String captcha;
+
+
+
 }

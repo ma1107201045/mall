@@ -27,6 +27,7 @@ public class MemberFeignConsumer {
         ServerResponse<Void> response = memberFeign.save(phoneNumber);
         if (response.getIsSuccess()) {
             log.info("出参:void:{}", JSON.toJSONString(response.getData()));
+            return;
         }
         throw new OpenFeignException(response.getCode(), response.getMessage());
     }

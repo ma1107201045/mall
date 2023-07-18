@@ -1,11 +1,13 @@
 package com.lingyi.mall.auth.app.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.RandomUtil;
 import cn.hutool.jwt.JWTUtil;
 import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.api.sms.consumer.CaptchaFeignConsumer;
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
+import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
 import com.lingyi.mall.api.sms.enums.BusinessTypeEnum;
 import com.lingyi.mall.api.sms.enums.ServiceTypeEnum;
 import com.lingyi.mall.auth.app.constant.AppConstant;
@@ -41,7 +43,11 @@ public class AppServiceImpl implements AppService {
     @Override
     public AppLoginVO login(AppLoginDTO appLoginDTO) {
         String phoneNumber = appLoginDTO.getPhoneNumber();
-        //TODO 验证码逻辑
+        CaptchaVerifyReqDTO captchaVerifyReqDTO = new CaptchaVerifyReqDTO();
+        captchaVerifyReqDTO.setPhoneNumber(phoneNumber);
+        captchaVerifyReqDTO.setServiceType(smsCaptchaProperties.getServiceTypeEnum().getCode());
+        captchaVerifyReqDTO.setBusinessType(smsCaptchaProperties.getBusinessTypeEnum().getCode());
+        captchaVerifyReqDTO.setCaptcha(appLoginDTO.getSmsCaptcha());
         //手机号查询用会员
         MemberRespDTO memberRespDTO = memberFeignConsumer.getByPhoneNumber(phoneNumber);
         if (Objects.isNull(memberRespDTO)) {
@@ -58,9 +64,10 @@ public class AppServiceImpl implements AppService {
     @Override
     public void sendSmsCaptcha(String phoneNumber) {
         CaptchaSendReqDTO captchaSendReqDTO = new CaptchaSendReqDTO();
-        captchaSendReqDTO.setPhoneNumber(phoneNumber);
         captchaSendReqDTO.setServiceType(smsCaptchaProperties.getServiceTypeEnum().getCode());
         captchaSendReqDTO.setBusinessType(smsCaptchaProperties.getBusinessTypeEnum().getCode());
+        captchaSendReqDTO.setPhoneNumber(phoneNumber);
+        captchaSendReqDTO.setCaptcha(RandomUtil.randomNumbers(smsCaptchaProperties.getLength()));
         captchaSendReqDTO.setLength(smsCaptchaProperties.getLength());
         captchaSendReqDTO.setExpiryDate(smsCaptchaProperties.getExpiryDate());
         captchaSendReqDTO.setIntervalDate(smsCaptchaProperties.getIntervalDate());

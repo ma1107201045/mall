@@ -26,7 +26,7 @@ public interface CaptchaFeign {
      * @param captchaSendReqDTO ..
      * @return ServerResponse
      */
-    @PostMapping(URL_PREFIX)
+    @PostMapping(URL_PREFIX + "/send")
     ServerResponse<Void> send(@RequestBody CaptchaSendReqDTO captchaSendReqDTO);
 
 
@@ -36,7 +36,7 @@ public interface CaptchaFeign {
      * @param captchaVerifyReqDTO ..
      * @return ServerResponse
      */
-    @GetMapping(URL_PREFIX)
+    @GetMapping(URL_PREFIX + "/verify")
     ServerResponse<Void> verify(CaptchaVerifyReqDTO captchaVerifyReqDTO);
 
 }

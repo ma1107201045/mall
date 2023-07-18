@@ -5,6 +5,7 @@ import com.lingyi.mall.api.member.fallbackfactory.MemberFeignFallbackFactory;
 import com.lingyi.mall.common.base.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -27,7 +28,7 @@ public interface MemberFeign {
     @GetMapping(URL_PREFIX)
     ServerResponse<MemberRespDTO> getByPhoneNumber(@RequestParam(name = "phoneNumber") String phoneNumber);
 
-    @GetMapping(URL_PREFIX)
+    @PostMapping(URL_PREFIX)
     ServerResponse<Void> save(@RequestParam(name = "phoneNumber") String phoneNumber);
 
 }

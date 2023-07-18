@@ -23,7 +23,7 @@ public class AppLoginDTO implements Serializable {
     @NotBlank(message = "手机号不能为空")
     private String phoneNumber;
 
-    @Schema(description = "验证码")
-    @NotBlank(message = "验证码不能为空")
-    private String verificationCode;
+    @Schema(description = "短信验证码")
+    @NotBlank(message = "短信验证码不能为空")
+    private String smsCaptcha;
 }
