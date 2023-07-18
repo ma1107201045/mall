@@ -42,16 +42,21 @@ public class AppServiceImpl implements AppService {
 
     @Override
     public AppLoginVO login(AppLoginDTO appLoginDTO) {
+        //设置数据
         String phoneNumber = appLoginDTO.getPhoneNumber();
         CaptchaVerifyReqDTO captchaVerifyReqDTO = new CaptchaVerifyReqDTO();
         captchaVerifyReqDTO.setPhoneNumber(phoneNumber);
         captchaVerifyReqDTO.setServiceType(smsCaptchaProperties.getServiceTypeEnum().getCode());
         captchaVerifyReqDTO.setBusinessType(smsCaptchaProperties.getBusinessTypeEnum().getCode());
         captchaVerifyReqDTO.setCaptcha(appLoginDTO.getSmsCaptcha());
+        //校验验证码
+        captchaFeignConsumer.verify(captchaVerifyReqDTO);
         //手机号查询用会员
         MemberRespDTO memberRespDTO = memberFeignConsumer.getByPhoneNumber(phoneNumber);
         if (Objects.isNull(memberRespDTO)) {
             memberFeignConsumer.save(phoneNumber);
+            //TODO 待优化，默认值从这边生成
+            memberRespDTO = memberFeignConsumer.getByPhoneNumber(phoneNumber);
         }
         //生成token
         String token = JWTUtil.createToken(BeanUtil.beanToMap(memberRespDTO), SecurityAppConstant.JWT_KEY.getBytes(StandardCharsets.UTF_8));

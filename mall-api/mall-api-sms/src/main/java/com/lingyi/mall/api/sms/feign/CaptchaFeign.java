@@ -36,7 +36,7 @@ public interface CaptchaFeign {
      * @param captchaVerifyReqDTO ..
      * @return ServerResponse
      */
-    @GetMapping(URL_PREFIX + "/verify")
-    ServerResponse<Void> verify(CaptchaVerifyReqDTO captchaVerifyReqDTO);
+    @PostMapping(URL_PREFIX + "/verify")
+    ServerResponse<Void> verify(@RequestBody CaptchaVerifyReqDTO captchaVerifyReqDTO);
 
 }

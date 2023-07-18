@@ -16,6 +16,7 @@ import com.lingyi.mall.common.base.enums.WhetherEnum;
 import com.lingyi.mall.common.base.exception.BizException;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.base.util.ConverterUtil;
+import com.lingyi.mall.common.base.util.SnowFlakeIdUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -76,7 +77,8 @@ public class MemberServiceImpl implements MemberService {
         AssertUtil.notNull(memberLevelDO, MemberFailEnum.MEMBER_LEVEL_NULL_ERROR);
         MemberDO memberDO = new MemberDO();
         memberDO.setMemberLevelDO(memberLevelDO);
-        memberDO.setUserName(UserNameUtil.getRightFourBit(phoneNumber));
+        memberDO.setUserName(SnowFlakeIdUtil.nextStr());
+        memberDO.setNickname(UserNameUtil.getRightFourBit(phoneNumber));
         memberDO.setPhoneNumber(phoneNumber);
         memberDO.setIsEnable(WhetherEnum.Y.getCode());
         memberDO.setRegisterSource(RegisterSourceEnum.H5.getCode());

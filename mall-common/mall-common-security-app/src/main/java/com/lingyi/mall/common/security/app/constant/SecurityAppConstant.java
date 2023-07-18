@@ -28,7 +28,7 @@ public class SecurityAppConstant {
             new AntPathRequestMatcher("/auth/app/**", HttpMethod.OPTIONS.name()),
             new AntPathRequestMatcher("/auth/app/**", HttpMethod.TRACE.name()),
             new AntPathRequestMatcher("/app/sms/captchas/send", HttpMethod.POST.name()),
-            new AntPathRequestMatcher("/app/sms/captchas/verify", HttpMethod.GET.name()),
+            new AntPathRequestMatcher("/app/sms/captchas/verify", HttpMethod.POST.name()),
             new AntPathRequestMatcher("/app/member/members", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/app/member/members", HttpMethod.POST.name()),
             new AntPathRequestMatcher("/admin/system/logs", HttpMethod.POST.name()));

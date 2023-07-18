@@ -33,7 +33,7 @@ public class AppTest implements MallAuthAppApplicationTest {
     public void testLogin() {
         AppLoginDTO appLoginDTO = new AppLoginDTO();
         appLoginDTO.setPhoneNumber("15038233127");
-        appLoginDTO.setSmsCaptcha("1454545");
+        appLoginDTO.setSmsCaptcha("561320");
         AppLoginVO appLoginVO = appService.login(appLoginDTO);
         log.info(appLoginVO.toString());
     }

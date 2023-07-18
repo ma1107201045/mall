@@ -1,6 +1,5 @@
 package com.lingyi.mall.biz.sms.service.impl;
 
-import cn.hutool.core.thread.ThreadUtil;
 import cn.hutool.core.util.IdUtil;
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
@@ -15,7 +14,6 @@ import com.lingyi.mall.common.base.util.ConverterUtil;
 import com.lingyi.mall.common.cache.aspect.RedisLock;
 import com.lingyi.mall.common.cache.util.RedisUtil;
 import lombok.RequiredArgsConstructor;
-import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -23,7 +21,6 @@ import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Lock;
 
 /**
  * @author maweiyan
@@ -80,9 +77,11 @@ public class CaptchaServiceImpl implements CaptchaService {
 
     @Override
     public void verify(CaptchaVerifyReqDTO captchaVerifyReqDTO) {
+        String captchaExpiryDateKey = redisKeyUtil.getCaptchaExpiryDateKey(captchaVerifyReqDTO);
+        String sourceCaptcha = redisUtil.get(captchaExpiryDateKey, String.class);
         String targetCaptcha = captchaVerifyReqDTO.getCaptcha();
-        String sourceCaptcha = redisUtil.get(redisKeyUtil.getCaptchaExpiryDateKey(captchaVerifyReqDTO), String.class);
         AssertUtil.isEquals(targetCaptcha, sourceCaptcha, SmsFailEnum.CAPTCHA_EXPIRY_DATE_ERROR);
+        redisUtil.delete(captchaExpiryDateKey);
     }
 
     /**

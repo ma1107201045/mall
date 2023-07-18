@@ -9,6 +9,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -24,17 +25,20 @@ public class RedisUtil {
 
     private final RedisTemplate<String, Object> redisTemplate;
 
+    public boolean delete(String key) {
+        return Objects.nonNull(redisTemplate.delete(key));
+    }
 
     public boolean expire(String key, long timeout, TimeUnit unit) {
-        return redisTemplate.expire(key, timeout, unit) != null;
+        return Objects.nonNull(redisTemplate.expire(key, timeout, unit));
     }
 
     public boolean expireAt(String key, Instant expireAt) {
-        return redisTemplate.expireAt(key, expireAt) != null;
+        return Objects.nonNull(redisTemplate.expireAt(key, expireAt));
     }
 
     public boolean expireAt(String key, LocalDateTime localDateTime) {
-        return redisTemplate.expireAt(key, localDateTime.atZone(ZoneId.systemDefault()).toInstant()) != null;
+        return Objects.nonNull(redisTemplate.expireAt(key, localDateTime.atZone(ZoneId.systemDefault()).toInstant()));
     }
 
     public long getExpire(String key) {
