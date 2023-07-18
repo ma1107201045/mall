@@ -22,6 +22,9 @@ import java.io.Serializable;
 public class MenuParam extends BasePageParam {
 
 
+    @Serial
+    private static final long serialVersionUID = -1378558776551277164L;
+
     @Schema(description = "菜单名称")
     private String name;
 
