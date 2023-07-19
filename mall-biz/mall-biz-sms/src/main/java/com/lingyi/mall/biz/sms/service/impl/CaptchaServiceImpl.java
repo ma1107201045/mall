@@ -1,6 +1,7 @@
 package com.lingyi.mall.biz.sms.service.impl;
 
 import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
 import com.lingyi.mall.biz.sms.entity.CaptchaLogDO;
@@ -61,7 +62,7 @@ public class CaptchaServiceImpl implements CaptchaService {
         //TODO 发送mq消息
 
         //设置验证码发送间隔时间随机值
-        redisUtil.set(intervalDateKey, IdUtil.fastSimpleUUID(), captchaSendReqDTO.getIntervalDate(), TimeUnit.MINUTES);
+        redisUtil.set(intervalDateKey, RandomUtil.randomInt(), captchaSendReqDTO.getIntervalDate(), TimeUnit.MINUTES);
         //验证码发送次数累加
         redisUtil.incr(upperLimitKey);
         if (Objects.isNull(nowUpperLimitValue)) {

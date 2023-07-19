@@ -2,6 +2,7 @@ package com.lingyi.mall.biz.sms.param;
 
 import com.lingyi.mall.common.base.param.BasePageParam;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serial;
 
@@ -12,6 +13,7 @@ import java.io.Serial;
  * @description
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class CaptchaLogParam extends BasePageParam {
     @Serial
     private static final long serialVersionUID = -5994404259586919408L;
