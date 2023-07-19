@@ -27,6 +27,8 @@ public final class BaseConstant {
     public static final String EMPTY_CHAR = "";
     public static final String COLON_CHAR = ":";
     public static final String AUTHORIZATION = "Authorization";
+    public static final String DATE_TIME_PATTERN_DEFAULT = "yyyy-MM-dd HH:mm:ss";
+    public static final String DATE_TIME_PATTERN = "yyyy:MM:dd:HH:mm:ss";
 
 
     private BaseConstant() {

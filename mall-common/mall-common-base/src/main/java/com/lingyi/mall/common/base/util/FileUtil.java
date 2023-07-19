@@ -1,9 +1,11 @@
 package com.lingyi.mall.common.base.util;
 
 import cn.hutool.extra.spring.SpringUtil;
+import com.lingyi.mall.common.base.constant.BaseConstant;
 import com.lingyi.mall.common.base.enums.ClientTypeEnum;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author maweiyan
@@ -13,11 +15,16 @@ import java.time.LocalDateTime;
  */
 public class FileUtil {
 
-    private static final String DIRECTORY_NAME_FORMAT = "%s/%s/%s/%d/%d/%d/%d/%d/%d/";
+    private static final String DIRECTORY_NAME_FORMAT = "%s/%s/%s/%s/%s/%s/%s/%s/%s/";
 
     public static String getDirectoryName(ClientTypeEnum clientTypeEnum, String username) {
         String applicationName = SpringUtil.getProperty("spring.application.name");
-        LocalDateTime now = LocalDateTime.now();
-        return String.format(DIRECTORY_NAME_FORMAT, applicationName, clientTypeEnum.toString().toLowerCase(), username, now.getYear(), now.getMonthValue(), now.getDayOfMonth(), now.getHour(), now.getMinute(), now.getSecond());
+        String nowFormat = LocalDateTime.now().format(DateTimeFormatter.ofPattern(BaseConstant.DATE_TIME_PATTERN));
+        String[] splitArr = nowFormat.split(BaseConstant.COLON_CHAR);
+        return String.format(DIRECTORY_NAME_FORMAT,
+                applicationName,
+                clientTypeEnum.toString().toLowerCase(),
+                username,
+                splitArr[0], splitArr[1], splitArr[2], splitArr[3], splitArr[4], splitArr[5]);
     }
 }
