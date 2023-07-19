@@ -2,8 +2,8 @@ package com.lingyi.mall.common.security.admin.jpa.listener.auditor;
 
 import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.common.base.jpa.listener.auditor.CustomAuditorAware;
-import com.lingyi.mall.common.security.admin.constant.SecurityAdminConstant;
-import com.lingyi.mall.common.security.admin.util.AdminAuthenticatorUtil;
+import com.lingyi.mall.common.security.admin.constant.SecurityConstant;
+import com.lingyi.mall.common.security.admin.util.AuthenticatorUtil;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +22,7 @@ public class SpringSecurityAuditorAware implements CustomAuditorAware<String> {
     @Override
     @NonNull
     public Optional<String> getCurrentAuditor() {
-        String userName = AdminAuthenticatorUtil.getUserName();
-        return StrUtil.isBlank(userName) ? Optional.of(SecurityAdminConstant.UNKNOWN) : Optional.of(userName);
+        String userName = AuthenticatorUtil.getUserName();
+        return StrUtil.isBlank(userName) ? Optional.of(SecurityConstant.UNKNOWN) : Optional.of(userName);
     }
 }

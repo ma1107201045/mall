@@ -13,7 +13,7 @@ import java.util.List;
  * @DateTime: 2023/5/14 0:39
  * @Description:
  */
-public class SecurityAppConstant {
+public class SecurityConstant {
     public static final List<RequestMatcher> REQUEST_MATCHER_LIST = Arrays.asList(
             new AntPathRequestMatcher("/swagger-ui/**", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/doc.html", HttpMethod.GET.name()),
@@ -37,7 +37,7 @@ public class SecurityAppConstant {
     public static final String AUTHORIZATION = "Authorization";
     public static final String UNKNOWN = "unknown";
 
-    private SecurityAppConstant() {
+    private SecurityConstant() {
 
     }
 }

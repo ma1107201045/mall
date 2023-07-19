@@ -10,7 +10,7 @@ import com.lingyi.mall.common.base.constant.BaseConstant;
 import com.lingyi.mall.common.base.enums.WhetherEnum;
 import com.lingyi.mall.common.base.util.RequestUtil;
 import com.lingyi.mall.common.security.app.task.BaseAsyncTask;
-import com.lingyi.mall.common.security.app.util.AppAuthenticatorUtil;
+import com.lingyi.mall.common.security.app.util.AuthenticatorUtil;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
@@ -295,9 +295,9 @@ public class LogAspect {
                 .failReason(failReason)
                 .clientIp(RequestUtil.getRemoteHost(((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest()))
                 .trackId(MDC.get(BaseConstant.TRACK_ID_NAME))
-                .createBy(AppAuthenticatorUtil.getUserName())
+                .createBy(AuthenticatorUtil.getUserName())
                 .createDateTime(LocalDateTime.now())
-                .lastModifyBy(AppAuthenticatorUtil.getUserName())
+                .lastModifyBy(AuthenticatorUtil.getUserName())
                 .lastModifyDateTime(LocalDateTime.now())
                 .build();
     }

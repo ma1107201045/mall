@@ -3,7 +3,7 @@ package com.lingyi.mall.common.security.app.filter;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.jwt.JWTUtil;
 import com.alibaba.fastjson2.JSON;
-import com.lingyi.mall.common.security.app.constant.SecurityAppConstant;
+import com.lingyi.mall.common.security.app.constant.SecurityConstant;
 import com.lingyi.mall.common.base.util.ServerResponse;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -43,11 +43,11 @@ public class JwtAuthorizationFilter extends GenericFilterBean {
             chain.doFilter(request, response);
             return;
         }
-        String token = request.getHeader(SecurityAppConstant.AUTHORIZATION);
+        String token = request.getHeader(SecurityConstant.AUTHORIZATION);
         if (StrUtil.isNotBlank(token)) {
             boolean flag = false;
             try {
-                flag = JWTUtil.verify(token, SecurityAppConstant.JWT_KEY.getBytes(StandardCharsets.UTF_8));
+                flag = JWTUtil.verify(token, SecurityConstant.JWT_KEY.getBytes(StandardCharsets.UTF_8));
             } catch (Exception e) {
                 log.error("Error verifying token, reason: ", e);
             }
@@ -61,7 +61,7 @@ public class JwtAuthorizationFilter extends GenericFilterBean {
 
 
     private boolean isIgnoreRequest(HttpServletRequest request) {
-        Boolean value = (Boolean) request.getAttribute(SecurityAppConstant.IS_IGNORE_REQUEST_ATTRIBUTE);
+        Boolean value = (Boolean) request.getAttribute(SecurityConstant.IS_IGNORE_REQUEST_ATTRIBUTE);
         return Objects.nonNull(value) &&  value;
     }
 

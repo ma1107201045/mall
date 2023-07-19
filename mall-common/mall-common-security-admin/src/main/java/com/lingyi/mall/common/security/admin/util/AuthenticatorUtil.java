@@ -1,6 +1,6 @@
 package com.lingyi.mall.common.security.admin.util;
 
-import com.lingyi.mall.common.security.admin.constant.SecurityAdminConstant;
+import com.lingyi.mall.common.security.admin.constant.SecurityConstant;
 import com.lingyi.mall.common.security.admin.entity.UserDetailsDO;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,7 +15,7 @@ import java.util.Collections;
  * @DateTime: 2023/5/12 22:27
  * @Description:
  */
-public class AdminAuthenticatorUtil {
+public class AuthenticatorUtil {
 
 
     public static Authentication getAuthentication() {
@@ -32,7 +32,7 @@ public class AdminAuthenticatorUtil {
         return principal instanceof UserDetailsDO userDetailsDO ? userDetailsDO :
                 UserDetailsDO.builder()
                         .userId(-1L)
-                        .username(SecurityAdminConstant.UNKNOWN)
+                        .username(SecurityConstant.UNKNOWN)
                         .authorities(Collections.emptyList())
                         .build();
     }

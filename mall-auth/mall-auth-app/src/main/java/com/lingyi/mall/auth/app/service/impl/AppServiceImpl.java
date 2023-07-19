@@ -10,14 +10,13 @@ import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
 import com.lingyi.mall.api.sms.enums.BusinessTypeEnum;
 import com.lingyi.mall.api.sms.enums.ServiceTypeEnum;
-import com.lingyi.mall.auth.app.constant.AppConstant;
 import com.lingyi.mall.auth.app.dto.AppLoginDTO;
 import com.lingyi.mall.auth.app.properties.SmsCaptchaProperties;
 import com.lingyi.mall.auth.app.service.AppService;
 import com.lingyi.mall.auth.app.vo.AppLoginVO;
 import com.lingyi.mall.common.base.constant.BaseConstant;
 import com.lingyi.mall.common.base.util.ConverterUtil;
-import com.lingyi.mall.common.security.app.constant.SecurityAppConstant;
+import com.lingyi.mall.common.security.app.constant.SecurityConstant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -59,7 +58,7 @@ public class AppServiceImpl implements AppService {
             memberRespDTO = memberFeignConsumer.getByPhoneNumber(phoneNumber);
         }
         //生成token
-        String token = JWTUtil.createToken(BeanUtil.beanToMap(memberRespDTO), SecurityAppConstant.JWT_KEY.getBytes(StandardCharsets.UTF_8));
+        String token = JWTUtil.createToken(BeanUtil.beanToMap(memberRespDTO), SecurityConstant.JWT_KEY.getBytes(StandardCharsets.UTF_8));
         AppLoginVO appLoginVO = ConverterUtil.to(memberRespDTO, AppLoginVO.class);
         appLoginVO.setAuthorization(token);
         return appLoginVO;

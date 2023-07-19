@@ -1,6 +1,6 @@
 package com.lingyi.mall.common.security.app.filter;
 
-import com.lingyi.mall.common.security.app.constant.SecurityAppConstant;
+import com.lingyi.mall.common.security.app.constant.SecurityConstant;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
@@ -25,10 +25,10 @@ public class IgnoreRequestFilter extends GenericFilterBean {
     }
 
     private void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        boolean flag = SecurityAppConstant.REQUEST_MATCHER_LIST.stream()
+        boolean flag = SecurityConstant.REQUEST_MATCHER_LIST.stream()
                 .anyMatch(requestMatcher -> requestMatcher.matcher(request).isMatch());
         if (flag) {
-            request.setAttribute(SecurityAppConstant.IS_IGNORE_REQUEST_ATTRIBUTE, true);
+            request.setAttribute(SecurityConstant.IS_IGNORE_REQUEST_ATTRIBUTE, true);
         }
         chain.doFilter(request, response);
     }

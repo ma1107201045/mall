@@ -2,7 +2,7 @@ package com.lingyi.mall.common.security.admin.filter;
 
 import cn.hutool.captcha.ICaptcha;
 import cn.hutool.core.util.StrUtil;
-import com.lingyi.mall.common.security.admin.constant.SecurityAdminConstant;
+import com.lingyi.mall.common.security.admin.constant.SecurityConstant;
 import com.lingyi.mall.common.security.admin.exception.ImageCaptchaException;
 import com.lingyi.mall.common.security.admin.util.CommonWriteUtil;
 import jakarta.servlet.FilterChain;
@@ -14,7 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.http.HttpMethod;
 import org.springframework.lang.NonNull;
-import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.SpringSecurityMessageSource;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -32,7 +31,7 @@ import java.util.Objects;
 @Slf4j
 public class ImageCaptchaFilter extends OncePerRequestFilter {
 
-    private static final AntPathRequestMatcher LOGIN_ANT_PATH_REQUEST_MATCHER = new AntPathRequestMatcher(SecurityAdminConstant.LOGIN_PROCESSING_URL, HttpMethod.POST.name());
+    private static final AntPathRequestMatcher LOGIN_ANT_PATH_REQUEST_MATCHER = new AntPathRequestMatcher(SecurityConstant.LOGIN_PROCESSING_URL, HttpMethod.POST.name());
     protected MessageSourceAccessor message = SpringSecurityMessageSource.getAccessor();
 
     @Override
@@ -40,8 +39,8 @@ public class ImageCaptchaFilter extends OncePerRequestFilter {
         HttpSession session = request.getSession();
         if (this.isNeedAuthentication(request)) {
             try {
-                String imageCaptcha = request.getParameter(SecurityAdminConstant.IMAGE_CAPTCHA_PARAMETER);
-                ICaptcha iCaptcha = (ICaptcha) session.getAttribute(SecurityAdminConstant.SESSION_ATTRIBUTE_NAME);
+                String imageCaptcha = request.getParameter(SecurityConstant.IMAGE_CAPTCHA_PARAMETER);
+                ICaptcha iCaptcha = (ICaptcha) session.getAttribute(SecurityConstant.SESSION_ATTRIBUTE_NAME);
                 if (StrUtil.isBlank(imageCaptcha) || Objects.isNull(iCaptcha)) {
                     throw new ImageCaptchaException(this.message.getMessage("ImageCaptchaFilter.captchaNull", "ImageCaptcha is null"));
                 }
@@ -49,11 +48,11 @@ public class ImageCaptchaFilter extends OncePerRequestFilter {
                     throw new ImageCaptchaException(this.message.getMessage("ImageCaptchaFilter.captchaError", "ImageCaptcha is error"));
                 }
             } catch (AuthenticationException exception) {
-                session.removeAttribute(SecurityAdminConstant.SESSION_ATTRIBUTE_NAME);
+                session.removeAttribute(SecurityConstant.SESSION_ATTRIBUTE_NAME);
                 CommonWriteUtil.write(response, exception);
                 return;
             }
-            session.removeAttribute(SecurityAdminConstant.SESSION_ATTRIBUTE_NAME);
+            session.removeAttribute(SecurityConstant.SESSION_ATTRIBUTE_NAME);
         }
         filterChain.doFilter(request, response);
     }

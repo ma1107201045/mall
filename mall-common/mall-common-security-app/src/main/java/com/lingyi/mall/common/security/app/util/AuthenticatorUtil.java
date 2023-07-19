@@ -17,7 +17,7 @@ import java.util.Objects;
  * @DateTime: 2023/7/4 21:22
  * @Description:
  */
-public class AppAuthenticatorUtil {
+public class AuthenticatorUtil {
 
 
     /**

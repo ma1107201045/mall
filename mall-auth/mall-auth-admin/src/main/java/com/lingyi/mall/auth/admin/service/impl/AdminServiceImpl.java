@@ -2,12 +2,11 @@ package com.lingyi.mall.auth.admin.service.impl;
 
 import cn.hutool.captcha.AbstractCaptcha;
 import cn.hutool.captcha.CaptchaUtil;
-import cn.hutool.captcha.ICaptcha;
 import cn.hutool.captcha.generator.MathGenerator;
 import com.lingyi.mall.auth.admin.properties.ImageCaptchaProperties;
 import com.lingyi.mall.auth.admin.service.AdminService;
 import com.lingyi.mall.common.base.util.CodeGeneratorProxy;
-import com.lingyi.mall.common.security.admin.constant.SecurityAdminConstant;
+import com.lingyi.mall.common.security.admin.constant.SecurityConstant;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -34,14 +33,14 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public String readImageCaptcha(HttpSession session) {
         AbstractCaptcha abstractCaptcha = getImageCaptchaObject();
-        session.setAttribute(SecurityAdminConstant.SESSION_ATTRIBUTE_NAME, abstractCaptcha);
+        session.setAttribute(SecurityConstant.SESSION_ATTRIBUTE_NAME, abstractCaptcha);
         return abstractCaptcha.getImageBase64Data();
     }
 
     @Override
     public void writeImageCaptcha(HttpSession session, HttpServletResponse response) {
         AbstractCaptcha abstractCaptcha = getImageCaptchaObject();
-        session.setAttribute(SecurityAdminConstant.SESSION_ATTRIBUTE_NAME, abstractCaptcha);
+        session.setAttribute(SecurityConstant.SESSION_ATTRIBUTE_NAME, abstractCaptcha);
         response.setContentType(MediaType.IMAGE_PNG_VALUE);
         try (OutputStream os = response.getOutputStream()) {
             abstractCaptcha.write(os);

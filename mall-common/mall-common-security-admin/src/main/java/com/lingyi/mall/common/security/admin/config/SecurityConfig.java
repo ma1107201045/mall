@@ -1,6 +1,6 @@
 package com.lingyi.mall.common.security.admin.config;
 
-import com.lingyi.mall.common.security.admin.constant.SecurityAdminConstant;
+import com.lingyi.mall.common.security.admin.constant.SecurityConstant;
 import com.lingyi.mall.common.base.filter.TrackIdFilter;
 import com.lingyi.mall.common.security.admin.filter.ImageCaptchaFilter;
 import com.lingyi.mall.common.security.admin.handler.*;
@@ -10,11 +10,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.CorsConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -24,8 +21,6 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 
 /**
@@ -103,16 +98,16 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/admin/system/users/permissions").permitAll()
                         .requestMatchers(HttpMethod.POST, "/admin/system/logs").permitAll()
                         .anyRequest().authenticated())
-                .formLogin(formLoginConfigurer -> formLoginConfigurer.loginProcessingUrl(SecurityAdminConstant.LOGIN_PROCESSING_URL)
-                        .usernameParameter(SecurityAdminConstant.USER_NAME_PARAMETER)
-                        .passwordParameter(SecurityAdminConstant.PASSWORD_PARAMETER)
+                .formLogin(formLoginConfigurer -> formLoginConfigurer.loginProcessingUrl(SecurityConstant.LOGIN_PROCESSING_URL)
+                        .usernameParameter(SecurityConstant.USER_NAME_PARAMETER)
+                        .passwordParameter(SecurityConstant.PASSWORD_PARAMETER)
                         .successHandler(authenticationSuccessHandler)
                         .failureHandler(authenticationFailureHandler))
-                .logout(logoutConfigurer -> logoutConfigurer.logoutUrl(SecurityAdminConstant.LOGOUT_URL)
+                .logout(logoutConfigurer -> logoutConfigurer.logoutUrl(SecurityConstant.LOGOUT_URL)
                         .logoutSuccessHandler(logoutSuccessHandler))
-                .rememberMe(rememberMeConfigurer -> rememberMeConfigurer.key(SecurityAdminConstant.REMEMBER_ME_KEY)
-                        .rememberMeParameter(SecurityAdminConstant.IS_REMEMBER_ME_PARAMETER)
-                        .rememberMeCookieName(SecurityAdminConstant.REMEMBER_ME_COOKIE_NAME))
+                .rememberMe(rememberMeConfigurer -> rememberMeConfigurer.key(SecurityConstant.REMEMBER_ME_KEY)
+                        .rememberMeParameter(SecurityConstant.IS_REMEMBER_ME_PARAMETER)
+                        .rememberMeCookieName(SecurityConstant.REMEMBER_ME_COOKIE_NAME))
                 .exceptionHandling(exceptionHandlingConfigurer -> exceptionHandlingConfigurer
                         .authenticationEntryPoint((authenticationEntryPoint))
                         .accessDeniedHandler(accessDeniedHandler))
