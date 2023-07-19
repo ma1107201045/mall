@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @description
  */
 @Component
-public class RedisKeyUtil {
+public final class RedisKeyUtil {
     private static final String CAPTCHA_EXPIRY_DATA_KEY_FORMAT = "%s:captcha-expire-date:%s:%s:%s";
     private static final String CAPTCHA_INTERVAL_DATA_KEY_FORMAT = "%s:captcha-interval-date:%s:%s:%s";
     private static final String CAPTCHA_UPPER_LIMIT_KEY_FORMAT = "%s:captcha-upper-limit:%s:%s:%s";
