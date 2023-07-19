@@ -4,6 +4,7 @@ import com.lingyi.mall.biz.system.entity.RoleMenuDO;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author maweiyan
@@ -11,6 +12,7 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryImplementati
  * @datetime 2023/4/30 22:43
  * @description
  */
+@Repository
 public interface RoleMenuRepository extends JpaRepositoryImplementation<RoleMenuDO, Long> {
 
     /**
