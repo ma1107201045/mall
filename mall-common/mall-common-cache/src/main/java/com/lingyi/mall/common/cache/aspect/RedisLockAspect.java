@@ -32,6 +32,7 @@ import java.lang.reflect.Method;
 @Component
 @RequiredArgsConstructor
 public class RedisLockAspect {
+    private static final String KEY_FORMAT = "%s:%s:%s";
     private static final String KEY_PREFIX = "redisson-lock";
 
     private final RedissonClient redissonClient;
@@ -46,7 +47,7 @@ public class RedisLockAspect {
     @Around("@annotation(redisLock)")
     public Object around(ProceedingJoinPoint joinPoint, RedisLock redisLock) throws Throwable {
         String keySuffix = SpelUtil.parse(joinPoint.getTarget(), redisLock.keySuffix(), getMethod(joinPoint), joinPoint.getArgs());
-        RLock rLock = redissonClient.getLock(applicationName + BaseConstant.COLON_CHAR + KEY_PREFIX + BaseConstant.COLON_CHAR + keySuffix);
+        RLock rLock = redissonClient.getLock(String.format(KEY_FORMAT, applicationName, KEY_PREFIX, keySuffix));
         if (redisLock.isRenewal()) {
             rLock.lock();
         } else {

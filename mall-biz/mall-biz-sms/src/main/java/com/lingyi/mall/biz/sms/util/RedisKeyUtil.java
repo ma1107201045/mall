@@ -13,35 +13,26 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class RedisKeyUtil {
-    private static final String CAPTCHA_EXPIRY_DATA = "captcha-expire-date";
-    private static final String CAPTCHA_INTERVAL_DATA = "captcha-interval-date";
-    private static final String CAPTCHA_UPPER_LIMIT = "captcha-upper-limit";
+    private static final String CAPTCHA_EXPIRY_DATA_KEY_FORMAT = "%s:captcha-expire-date:%s:%s:%s";
+    private static final String CAPTCHA_INTERVAL_DATA_KEY_FORMAT = "%s:captcha-interval-date:%s:%s:%s";
+    private static final String CAPTCHA_UPPER_LIMIT_KEY_FORMAT = "%s:captcha-upper-limit:%s:%s:%s";
 
     @Value("${spring.application.name}")
     private String applicationName;
 
 
     public String getCaptchaExpiryDateKey(CaptchaReqDTO captchaReqDTO) {
-        return applicationName + BaseConstant.COLON_CHAR
-                + CAPTCHA_EXPIRY_DATA + BaseConstant.COLON_CHAR
-                + captchaReqDTO.getServiceType() + BaseConstant.COLON_CHAR
-                + captchaReqDTO.getBusinessType() + BaseConstant.COLON_CHAR
-                + captchaReqDTO.getPhoneNumber();
+        return String.format(CAPTCHA_EXPIRY_DATA_KEY_FORMAT, applicationName,
+                captchaReqDTO.getServiceType(), captchaReqDTO.getBusinessType(), captchaReqDTO.getPhoneNumber());
     }
 
     public String getCaptchaIntervalDateKey(CaptchaReqDTO captchaReqDTO) {
-        return applicationName + BaseConstant.COLON_CHAR
-                + CAPTCHA_INTERVAL_DATA + BaseConstant.COLON_CHAR
-                + captchaReqDTO.getServiceType() + BaseConstant.COLON_CHAR
-                + captchaReqDTO.getBusinessType() + BaseConstant.COLON_CHAR
-                + captchaReqDTO.getPhoneNumber();
+        return String.format(CAPTCHA_INTERVAL_DATA_KEY_FORMAT, applicationName,
+                captchaReqDTO.getServiceType(), captchaReqDTO.getBusinessType(), captchaReqDTO.getPhoneNumber());
     }
 
     public String getCaptchaUpperLimitKey(CaptchaReqDTO captchaReqDTO) {
-        return applicationName + BaseConstant.COLON_CHAR
-                + CAPTCHA_UPPER_LIMIT + BaseConstant.COLON_CHAR
-                + captchaReqDTO.getServiceType() + BaseConstant.COLON_CHAR
-                + captchaReqDTO.getBusinessType() + BaseConstant.COLON_CHAR
-                + captchaReqDTO.getPhoneNumber();
+        return String.format(CAPTCHA_UPPER_LIMIT_KEY_FORMAT, applicationName,
+                captchaReqDTO.getServiceType(), captchaReqDTO.getBusinessType(), captchaReqDTO.getPhoneNumber());
     }
 }
