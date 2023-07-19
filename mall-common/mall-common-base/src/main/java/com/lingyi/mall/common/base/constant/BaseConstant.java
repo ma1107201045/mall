@@ -6,7 +6,7 @@ package com.lingyi.mall.common.base.constant;
  * @datetime 2023/4/30 14:11
  * @description
  */
-public class BaseConstant {
+public final class BaseConstant {
 
 
     public static final String TRACK_ID_NAME = "trackId";
@@ -15,6 +15,7 @@ public class BaseConstant {
     public static final long WORKER_ID = 0L;
     public static final String CODE_GET_METHOD_NAME = "getCode";
     public static final String MESSAGE_GET_METHOD_NAME = "getMessage";
+
     public static final String UNKNOWN = "unknown";
     public static final String POINT_CHAR_REGEX = "\\.";
     public static final String QUESTION_CHAR_REGEX = "\\?";
