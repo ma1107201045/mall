@@ -22,17 +22,18 @@ public interface FileService {
      * @param is   输入流
      * @return url
      */
-    FileVO upload(String name, InputStream is);
+    FileVO upload(String directoryName, String name, InputStream is);
 
     /**
      * 上传图片并且获取url
      *
-     * @param name         名称
-     * @param fileTypeEnum 图片类型
-     * @param is           输入流
+     * @param directoryName 目录名称
+     * @param name          名称
+     * @param fileTypeEnum  图片类型
+     * @param is            输入流
      * @return 文件id
      */
-    FileVO upload(String name, FileTypeEnum fileTypeEnum, InputStream is);
+    FileVO upload(String directoryName, String name, FileTypeEnum fileTypeEnum, InputStream is);
 
     /**
      * 通过名称删除

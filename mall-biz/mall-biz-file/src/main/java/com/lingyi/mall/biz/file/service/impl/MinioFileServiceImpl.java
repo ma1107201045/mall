@@ -32,6 +32,7 @@ import java.io.OutputStream;
 @RequiredArgsConstructor
 public class MinioFileServiceImpl implements FileService {
 
+
     @Value("${file.base-url}")
     private String baseUrl;
 
@@ -42,8 +43,8 @@ public class MinioFileServiceImpl implements FileService {
 
 
     @Override
-    public FileVO upload(String name, InputStream is) {
-        return upload(name, FileTypeEnum.FILE, is);
+    public FileVO upload(String directoryName, String name, InputStream is) {
+        return upload(directoryName, name, FileTypeEnum.FILE, is);
     }
 
     @Override
@@ -84,11 +85,12 @@ public class MinioFileServiceImpl implements FileService {
     }
 
     @Override
-    public FileVO upload(String name, FileTypeEnum fileTypeEnum, InputStream is) {
+    public FileVO upload(String directoryName, String name, FileTypeEnum fileTypeEnum, InputStream is) {
         try {
             boolean flag = creatBucketOfNotExist(bucket);
             AssertUtil.isTrue(flag, FileFailEnum.UPLOAD_FILE_ERROR);
-            String actualName = IdUtil.fastSimpleUUID() + BaseConstant.POINT_CHAR + FileUtil.extName(name);
+            //名称
+            String actualName = directoryName + IdUtil.fastSimpleUUID() + BaseConstant.POINT_CHAR + FileUtil.extName(name);
             //上传
             minioFileStorage.putStream(bucket, new InputStreamObject(actualName, is, fileTypeEnum.getContentType()));
             //获取url
