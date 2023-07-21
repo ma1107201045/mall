@@ -23,14 +23,15 @@ public class MemberProvider implements MemberFeign {
     private final MemberService memberService;
 
     @Override
-    public ServerResponse<MemberRespDTO> getByPhoneNumber(String phoneNumber) {
-        MemberRespDTO memberRespDTO = memberService.readByPhoneNumber(phoneNumber);
-        return ServerResponse.success(memberRespDTO);
-    }
-
-    @Override
     public ServerResponse<Void> register(MemberReqDTO memberReqDTO) {
         memberService.register(memberReqDTO);
         return ServerResponse.success();
+    }
+
+
+    @Override
+    public ServerResponse<MemberRespDTO> getByPhoneNumber(String phoneNumber) {
+        MemberRespDTO memberRespDTO = memberService.readByPhoneNumber(phoneNumber);
+        return ServerResponse.success(memberRespDTO);
     }
 }

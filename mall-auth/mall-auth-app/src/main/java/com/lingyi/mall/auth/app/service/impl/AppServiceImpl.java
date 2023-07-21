@@ -53,6 +53,7 @@ public class AppServiceImpl implements AppService {
         if (Objects.isNull(memberRespDTO)) {
             Long memberLevelId = memberLevelFeignConsumer.getDefaultLevelId();
             AssertUtil.notNull(memberLevelId, AppFailEnum.MEMBER_DEFAULT_LEVEL_ID_NULL_ERROR);
+
             MemberReqDTO memberReqDTO = AppConverter.INSTANCE.to(appLoginDTO, memberLevelId);
             memberRespDTO = ConverterUtil.to(memberReqDTO, MemberRespDTO.class);
             memberFeignConsumer.register(memberReqDTO);

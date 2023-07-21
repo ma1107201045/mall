@@ -64,7 +64,6 @@ public class MemberServiceImpl implements MemberService {
         return memberMapper.selectListByParam(memberParam);
     }
 
-
     @Override
     public void register(MemberReqDTO memberReqDTO) {
         MemberDO memberDO = ConverterUtil.to(memberReqDTO, MemberDO.class);
