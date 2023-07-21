@@ -34,10 +34,10 @@ public class SecurityConstant {
             new AntPathRequestMatcher("/app/member/members", HttpMethod.POST.name()),
             new AntPathRequestMatcher("/admin/system/logs", HttpMethod.POST.name()));
     public static final String IS_IGNORE_REQUEST_ATTRIBUTE = "isIgnoreRequest";
+    public static final String AUTHORIZATION = "Authorization";
     public static final String JWT_KEY = "199726ma.";
     public static final int TOKEN_EXPIRATION_TIME_VALUE = 30;
     public static final ChronoUnit CHRONO_UNIT = ChronoUnit.SECONDS;
-    public static final String AUTHORIZATION = "Authorization";
     public static final String UNKNOWN = "unknown";
 
     private SecurityConstant() {
