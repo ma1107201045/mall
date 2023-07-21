@@ -68,7 +68,6 @@ public class AppServiceImpl implements AppService {
             AssertUtil.notNull(memberLevelId, AppFailEnum.MEMBER_DEFAULT_LEVEL_ID_NULL_ERROR);
             MemberReqDTO memberReqDTO = new MemberReqDTO();
             memberReqDTO.setMemberLevelId(memberLevelId);
-            memberReqDTO.setUserName(UserNameUtil.getRightFourBit(phoneNumber));
             memberReqDTO.setUserName(SnowFlakeIdUtil.nextStr());
             memberReqDTO.setNickname(UserNameUtil.getRightFourBit(phoneNumber));
             memberReqDTO.setPhoneNumber(phoneNumber);
