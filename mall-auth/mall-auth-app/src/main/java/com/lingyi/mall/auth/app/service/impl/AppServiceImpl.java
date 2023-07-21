@@ -1,7 +1,6 @@
 package com.lingyi.mall.auth.app.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.util.RandomUtil;
 import cn.hutool.jwt.JWTUtil;
 import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
 import com.lingyi.mall.api.member.consumer.MemberLevelFeignConsumer;
@@ -10,27 +9,19 @@ import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.api.sms.consumer.CaptchaFeignConsumer;
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
-import com.lingyi.mall.api.sms.enums.BusinessTypeEnum;
-import com.lingyi.mall.api.sms.enums.ServiceTypeEnum;
 import com.lingyi.mall.auth.app.converter.AppConverter;
 import com.lingyi.mall.auth.app.dto.AppLoginDTO;
 import com.lingyi.mall.auth.app.enums.AppFailEnum;
-import com.lingyi.mall.auth.app.enums.RegisterSourceEnum;
 import com.lingyi.mall.auth.app.properties.SmsCaptchaProperties;
 import com.lingyi.mall.auth.app.service.AppService;
-import com.lingyi.mall.auth.app.util.UserNameUtil;
 import com.lingyi.mall.auth.app.vo.AppLoginVO;
-import com.lingyi.mall.common.base.constant.BaseConstant;
-import com.lingyi.mall.common.base.enums.WhetherEnum;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.base.util.ConverterUtil;
-import com.lingyi.mall.common.base.util.SnowFlakeIdUtil;
 import com.lingyi.mall.common.security.app.constant.SecurityConstant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
