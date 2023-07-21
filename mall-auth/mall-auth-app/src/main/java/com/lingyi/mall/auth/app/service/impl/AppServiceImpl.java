@@ -57,6 +57,7 @@ public class AppServiceImpl implements AppService {
             memberRespDTO = ConverterUtil.to(memberReqDTO, MemberRespDTO.class);
             memberFeignConsumer.register(memberReqDTO);
         }
+
         //通过会员信息生成token
         String token = JWTUtil.createToken(BeanUtil.beanToMap(memberRespDTO), SecurityConstant.JWT_KEY.getBytes(StandardCharsets.UTF_8));
         AppLoginVO appLoginVO = ConverterUtil.to(memberRespDTO, AppLoginVO.class);
