@@ -1,5 +1,6 @@
 package com.lingyi.mall.web.app.member.provider;
 
+import com.lingyi.mall.api.member.dto.MemberReqDTO;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.api.member.feign.MemberFeign;
 import com.lingyi.mall.biz.member.service.MemberService;
@@ -28,8 +29,8 @@ public class MemberProvider implements MemberFeign {
     }
 
     @Override
-    public ServerResponse<Void> save(String phoneNumber) {
-        memberService.create(phoneNumber);
+    public ServerResponse<Void> register(MemberReqDTO memberReqDTO) {
+        memberService.register(memberReqDTO);
         return ServerResponse.success();
     }
 }

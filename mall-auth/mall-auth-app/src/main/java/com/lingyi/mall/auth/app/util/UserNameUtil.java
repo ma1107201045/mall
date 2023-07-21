@@ -1,4 +1,4 @@
-package com.lingyi.mall.biz.member.util;
+package com.lingyi.mall.auth.app.util;
 
 import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.common.base.util.ObjectUtil;

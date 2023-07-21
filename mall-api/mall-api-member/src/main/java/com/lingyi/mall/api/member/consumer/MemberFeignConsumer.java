@@ -1,6 +1,7 @@
 package com.lingyi.mall.api.member.consumer;
 
 import com.alibaba.fastjson2.JSON;
+import com.lingyi.mall.api.member.dto.MemberReqDTO;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.api.member.feign.MemberFeign;
 import com.lingyi.mall.common.base.exception.OpenFeignException;
@@ -22,9 +23,9 @@ public class MemberFeignConsumer {
 
     private final MemberFeign memberFeign;
 
-    public void save(String phoneNumber) {
-        log.info("入参:phoneNumber:{}", phoneNumber);
-        ServerResponse<Void> response = memberFeign.save(phoneNumber);
+    public void register(MemberReqDTO memberReqDTO) {
+        log.info("入参:memberReqDTO:{}", JSON.toJSONString(memberReqDTO));
+        ServerResponse<Void> response = memberFeign.register(memberReqDTO);
         if (response.getIsSuccess()) {
             log.info("出参:void:{}", JSON.toJSONString(response.getData()));
             return;
@@ -36,7 +37,7 @@ public class MemberFeignConsumer {
         log.info("入参:phoneNumber:{}", phoneNumber);
         ServerResponse<MemberRespDTO> response = memberFeign.getByPhoneNumber(phoneNumber);
         if (response.getIsSuccess()) {
-            log.info("出参:MemberVO:{}", JSON.toJSONString(response.getData()));
+            log.info("出参:MemberRespDTO:{}", JSON.toJSONString(response.getData()));
             return response.getData();
         }
         throw new OpenFeignException(response.getCode(), response.getMessage());

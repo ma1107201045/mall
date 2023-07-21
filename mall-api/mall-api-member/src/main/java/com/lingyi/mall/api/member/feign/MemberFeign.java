@@ -1,11 +1,13 @@
 package com.lingyi.mall.api.member.feign;
 
+import com.lingyi.mall.api.member.dto.MemberReqDTO;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.api.member.fallbackfactory.MemberFeignFallbackFactory;
 import com.lingyi.mall.common.base.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -20,6 +22,15 @@ public interface MemberFeign {
     String URL_PREFIX = "/app/member/members";
 
     /**
+     * 注册
+     *
+     * @param memberReqDTO 。。
+     * @return Void
+     */
+    @PostMapping(URL_PREFIX)
+    ServerResponse<Void> register(@RequestBody MemberReqDTO memberReqDTO);
+
+    /**
      * 按照用户名称查询用户信息和按钮权限标识
      *
      * @param phoneNumber 手机号
@@ -28,7 +39,5 @@ public interface MemberFeign {
     @GetMapping(URL_PREFIX)
     ServerResponse<MemberRespDTO> getByPhoneNumber(@RequestParam(name = "phoneNumber") String phoneNumber);
 
-    @PostMapping(URL_PREFIX)
-    ServerResponse<Void> save(@RequestParam(name = "phoneNumber") String phoneNumber);
 
 }

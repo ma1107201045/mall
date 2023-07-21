@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.member.service.impl;
 
+import com.lingyi.mall.api.member.dto.MemberReqDTO;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.biz.member.entity.MemberDO;
 import com.lingyi.mall.biz.member.entity.MemberLevelDO;
@@ -38,7 +39,6 @@ public class MemberServiceImpl implements MemberService {
 
     private final MemberMapper memberMapper;
 
-    private final MemberLevelService memberLevelService;
 
     @Override
     public void create(MemberDO memberDO) {
@@ -71,18 +71,12 @@ public class MemberServiceImpl implements MemberService {
         return memberMapper.selectListByParam(memberParam);
     }
 
+
     @Override
-    public void create(String phoneNumber) {
-        MemberLevelDO memberLevelDO = memberLevelService.readByIsDefaultLevel(WhetherEnum.Y.getCode());
-        AssertUtil.notNull(memberLevelDO, MemberFailEnum.MEMBER_LEVEL_NULL_ERROR);
-        MemberDO memberDO = new MemberDO();
-        memberDO.setMemberLevelDO(memberLevelDO);
-        memberDO.setUserName(SnowFlakeIdUtil.nextStr());
-        memberDO.setNickname(UserNameUtil.getRightFourBit(phoneNumber));
-        memberDO.setPhoneNumber(phoneNumber);
-        memberDO.setIsEnable(WhetherEnum.Y.getCode());
-        memberDO.setRegisterSource(RegisterSourceEnum.H5.getCode());
-        memberDO.setRegisterDataTime(LocalDateTime.now());
+    public void register(MemberReqDTO memberReqDTO) {
+        MemberDO memberDO = ConverterUtil.to(memberReqDTO, MemberDO.class);
+        MemberLevelDO memberLevelDO = new MemberLevelDO();
+        memberLevelDO.setId(memberReqDTO.getMemberLevelId());
         create(memberDO);
     }
 

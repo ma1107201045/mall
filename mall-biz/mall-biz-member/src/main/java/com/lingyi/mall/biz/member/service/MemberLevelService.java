@@ -1,7 +1,5 @@
 package com.lingyi.mall.biz.member.service;
 
-import com.lingyi.mall.biz.member.entity.MemberLevelDO;
-
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
@@ -12,10 +10,7 @@ public interface MemberLevelService {
 
 
     /**
-     * 读取默认Id
-     *
-     * @param isDefaultLevel 是否是默认等级 1是 0否
-     * @return id
+     * 读取默认会员等级id
      */
-    MemberLevelDO readByIsDefaultLevel(Integer isDefaultLevel);
+    Long readDefaultLevelId();
 }

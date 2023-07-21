@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.member.service;
 
+import com.lingyi.mall.api.member.dto.MemberReqDTO;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.biz.member.entity.MemberDO;
 import com.lingyi.mall.biz.member.param.MemberParam;
@@ -15,11 +16,11 @@ import com.lingyi.mall.common.base.util.BaseService;
 public interface MemberService extends BaseService<MemberDO, MemberParam, MemberVO, Long> {
 
     /**
-     * 创建
+     * 注册会员
      *
-     * @param phoneNumber 手机号
+     * @param memberReqDTO 。。
      */
-    void create(String phoneNumber);
+    void register(MemberReqDTO memberReqDTO);
 
     /**
      * 按照手机号查询
