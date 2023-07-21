@@ -5,23 +5,16 @@ import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.biz.member.entity.MemberDO;
 import com.lingyi.mall.biz.member.entity.MemberLevelDO;
 import com.lingyi.mall.biz.member.enums.MemberFailEnum;
-import com.lingyi.mall.biz.member.enums.RegisterSourceEnum;
 import com.lingyi.mall.biz.member.mapper.MemberMapper;
 import com.lingyi.mall.biz.member.param.MemberParam;
 import com.lingyi.mall.biz.member.repository.MemberRepository;
-import com.lingyi.mall.biz.member.service.MemberLevelService;
 import com.lingyi.mall.biz.member.service.MemberService;
-import com.lingyi.mall.biz.member.util.UserNameUtil;
 import com.lingyi.mall.biz.member.vo.MemberVO;
-import com.lingyi.mall.common.base.enums.WhetherEnum;
 import com.lingyi.mall.common.base.exception.BizException;
-import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.base.util.ConverterUtil;
-import com.lingyi.mall.common.base.util.SnowFlakeIdUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
