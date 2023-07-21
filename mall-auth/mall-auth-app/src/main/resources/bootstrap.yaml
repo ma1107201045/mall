@@ -28,17 +28,6 @@ spring:
             loggerLevel: FULL
             connectTimeout: 5000
             readTimeout: 5000
-# springdoc-openapi项目配置
-#springdoc:
-#  swagger-ui:
-#    tags-sorter: alpha
-#    operations-sorter: alpha
-#  api-docs:
-#    path: /v3/api-docs
-#  group-configs:
-#    - group: '认证授权服务【前台】'
-#      paths-to-match: '/**'
-#      packages-to-scan: com.lingyi.mall.auth.app.controller
 sms-captcha:
   service-type-enum: mall_auth_app
   business-type-enum: login

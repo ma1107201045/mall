@@ -1,6 +1,7 @@
 package com.lingyi.mall.auth.app;
 
 
+import com.alibaba.fastjson2.JSON;
 import com.lingyi.mall.MallAuthAppApplicationTest;
 import com.lingyi.mall.auth.app.dto.AppLoginDTO;
 import com.lingyi.mall.auth.app.service.AppService;
@@ -33,8 +34,8 @@ public class AppTest implements MallAuthAppApplicationTest {
     public void testLogin() {
         AppLoginDTO appLoginDTO = new AppLoginDTO();
         appLoginDTO.setPhoneNumber("15038233127");
-        appLoginDTO.setSmsCaptcha("561320");
+        appLoginDTO.setSmsCaptcha("376295");
         AppLoginVO appLoginVO = appService.login(appLoginDTO);
-        log.info(appLoginVO.toString());
+        log.info(JSON.toJSONString(appLoginVO));
     }
 }

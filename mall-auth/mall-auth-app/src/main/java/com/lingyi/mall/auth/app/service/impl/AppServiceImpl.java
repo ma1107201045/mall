@@ -14,6 +14,7 @@ import com.lingyi.mall.auth.app.dto.AppLoginDTO;
 import com.lingyi.mall.auth.app.enums.AppFailEnum;
 import com.lingyi.mall.auth.app.properties.SmsCaptchaProperties;
 import com.lingyi.mall.auth.app.service.AppService;
+import com.lingyi.mall.auth.app.util.PayloadUtil;
 import com.lingyi.mall.auth.app.vo.AppLoginVO;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.base.util.ConverterUtil;
@@ -22,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -60,7 +62,7 @@ public class AppServiceImpl implements AppService {
         }
 
         //通过会员信息生成token
-        String token = JWTUtil.createToken(BeanUtil.beanToMap(memberRespDTO), SecurityConstant.JWT_KEY.getBytes(StandardCharsets.UTF_8));
+        String token = JWTUtil.createToken(PayloadUtil.generate(memberRespDTO), SecurityConstant.JWT_KEY.getBytes(StandardCharsets.UTF_8));
         AppLoginVO appLoginVO = ConverterUtil.to(memberRespDTO, AppLoginVO.class);
         appLoginVO.setAuthorization(token);
         return appLoginVO;

@@ -1,5 +1,7 @@
 package com.lingyi.mall.common.base.constant;
 
+import java.time.format.DateTimeFormatter;
+
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
@@ -29,6 +31,7 @@ public final class BaseConstant {
     public static final String AUTHORIZATION = "Authorization";
     public static final String DATE_TIME_PATTERN_DEFAULT = "yyyy-MM-dd HH:mm:ss";
     public static final String DATE_TIME_PATTERN = "yyyy:MM:dd:HH:mm:ss";
+    public static final DateTimeFormatter DATE_TIME_FORMATTER_DEFAULT = DateTimeFormatter.ofPattern(BaseConstant.DATE_TIME_PATTERN_DEFAULT);
 
 
     private BaseConstant() {
