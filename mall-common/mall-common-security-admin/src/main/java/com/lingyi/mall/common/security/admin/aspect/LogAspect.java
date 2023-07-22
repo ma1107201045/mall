@@ -52,7 +52,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class LogAspect {
 
-    private static final ThreadLocal<StopWatch> STOP_WATCH_THREAD_LOCAL = ThreadLocal.withInitial(StopWatch::new);
+    private static final ThreadLocal<StopWatch> CONSOLE_STOP_WATCH_THREAD_LOCAL = ThreadLocal.withInitial(StopWatch::new);
+    private static final ThreadLocal<StopWatch> DATABASE_STOP_WATCH_THREAD_LOCAL = ThreadLocal.withInitial(StopWatch::new);
 
     private final BaseAsyncTask baseAsyncTask;
 
@@ -73,6 +74,7 @@ public class LogAspect {
     private void dataBasePointcut() {
     }
 
+
     @Around("consolePointcut()")
     public Object consoleAround(ProceedingJoinPoint joinPoint) throws Throwable {
         if (isFeign(joinPoint)) {
@@ -81,7 +83,7 @@ public class LogAspect {
         Object returnValue = null;
         Throwable throwable = null;
         String methodName = null;
-        StopWatch sw = STOP_WATCH_THREAD_LOCAL.get();
+        StopWatch sw = CONSOLE_STOP_WATCH_THREAD_LOCAL.get();
         try {
             sw.start();
             MethodSignature ms = (MethodSignature) joinPoint.getSignature();
@@ -96,12 +98,12 @@ public class LogAspect {
             throwable = e;
             throw e;
         } finally {
+            sw.stop();
             if (!isFeign(joinPoint)) {
-                sw.stop();
                 this.printResponse(returnValue);
                 this.printResult(joinPoint.getTarget().getClass().getName(), methodName, throwable, sw.getLastTaskTimeMillis());
             }
-            STOP_WATCH_THREAD_LOCAL.remove();
+            CONSOLE_STOP_WATCH_THREAD_LOCAL.remove();
         }
     }
 
@@ -110,7 +112,7 @@ public class LogAspect {
         Object result = null;
         boolean isSuccess = false;
         String failReason = null;
-        StopWatch sw = STOP_WATCH_THREAD_LOCAL.get();
+        StopWatch sw = DATABASE_STOP_WATCH_THREAD_LOCAL.get();
         try {
             sw.start();
             result = joinPoint.proceed(joinPoint.getArgs());
@@ -127,13 +129,14 @@ public class LogAspect {
             LogReqDTO logDTO = buildLogDTO(log, joinPoint, result, isSuccess, sw.getLastTaskTimeMillis(), failReason);
             //异步保存
             baseAsyncTask.saveLog(logDTO);
-            STOP_WATCH_THREAD_LOCAL.remove();
+            DATABASE_STOP_WATCH_THREAD_LOCAL.remove();
         }
     }
 
     private boolean isFeign(ProceedingJoinPoint joinPoint) {
         Class<?>[] interfaces = joinPoint.getTarget().getClass().getInterfaces();
-        return Arrays.stream(interfaces).allMatch(clazz -> Objects.nonNull(clazz.getAnnotation(FeignClient.class)));
+        return interfaces.length > 0 && Arrays.stream(interfaces).allMatch(clazz -> Objects.nonNull(clazz.getAnnotation(FeignClient.class))
+        );
     }
 
     private void printUrlAndMethod(HttpServletRequest request) {

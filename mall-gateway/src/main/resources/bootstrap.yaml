@@ -63,4 +63,9 @@ spring:
           uri: http://localhost:8002
           predicates:
             - Path=/app/member/**
+    stream:
+      binding-retry-interval: 7200
+      rocketmq:
+        binder:
+          name-server: 36.137.103.166:9876
 
