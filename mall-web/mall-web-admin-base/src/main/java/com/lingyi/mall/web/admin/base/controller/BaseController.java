@@ -3,7 +3,7 @@ package com.lingyi.mall.web.admin.base.controller;
 import com.lingyi.mall.api.system.dto.MenuResDTO;
 import com.lingyi.mall.api.system.dto.UserPartReqDTO;
 import com.lingyi.mall.biz.base.service.BaseService;
-import com.lingyi.mall.common.security.admin.aspect.Log;
+import com.lingyi.mall.common.security.common.aspetct.Log;
 import com.lingyi.mall.common.base.enums.OperationTypeEnum;
 import com.lingyi.mall.common.security.admin.util.AuthenticatorUtil;
 import com.lingyi.mall.common.base.util.ServerResponse;

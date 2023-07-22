@@ -5,7 +5,7 @@ import com.lingyi.mall.biz.system.param.UserParam;
 import com.lingyi.mall.biz.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.vo.UserVO;
 import com.lingyi.mall.biz.system.service.UserService;
-import com.lingyi.mall.common.security.admin.aspect.Log;
+import com.lingyi.mall.common.security.common.aspetct.Log;
 import com.lingyi.mall.common.base.enums.OperationTypeEnum;
 import com.lingyi.mall.common.base.param.BasePageParam;
 import com.lingyi.mall.common.base.util.ServerResponse;

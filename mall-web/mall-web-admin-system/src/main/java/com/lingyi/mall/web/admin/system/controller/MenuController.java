@@ -9,7 +9,7 @@ import com.lingyi.mall.biz.system.service.MenuService;
 import com.lingyi.mall.biz.system.vo.MenuVO;
 import com.lingyi.mall.common.base.enums.OperationTypeEnum;
 import com.lingyi.mall.common.base.util.ServerResponse;
-import com.lingyi.mall.common.security.admin.aspect.Log;
+import com.lingyi.mall.common.security.common.aspetct.Log;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
