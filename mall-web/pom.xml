@@ -16,6 +16,7 @@
         <module>mall-web-admin-file</module>
         <module>mall-web-admin-member</module>
         <module>mall-web-admin-product</module>
+        <module>mall-web-admin-sms</module>
         <module>mall-web-admin-system</module>
         <module>mall-web-app-base</module>
         <module>mall-web-app-file</module>
