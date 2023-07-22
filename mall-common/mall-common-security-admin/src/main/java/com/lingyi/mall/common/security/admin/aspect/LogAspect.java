@@ -135,8 +135,7 @@ public class LogAspect {
 
     private boolean isFeign(ProceedingJoinPoint joinPoint) {
         Class<?>[] interfaces = joinPoint.getTarget().getClass().getInterfaces();
-        return interfaces.length > 0 && Arrays.stream(interfaces).allMatch(clazz -> Objects.nonNull(clazz.getAnnotation(FeignClient.class))
-        );
+        return interfaces.length > 0 && Arrays.stream(interfaces).allMatch(clazz -> Objects.nonNull(clazz.getAnnotation(FeignClient.class)));
     }
 
     private void printUrlAndMethod(HttpServletRequest request) {
