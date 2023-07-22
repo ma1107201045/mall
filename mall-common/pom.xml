@@ -16,6 +16,7 @@
         <module>mall-common-mq</module>
         <module>mall-common-security-admin</module>
         <module>mall-common-security-app</module>
+        <module>mall-common-security-common</module>
         <module>mall-common-security-merchant</module>
     </modules>
     <properties>

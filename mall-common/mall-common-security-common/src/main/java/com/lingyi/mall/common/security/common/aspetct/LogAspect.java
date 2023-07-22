@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.security.admin.aspect;
+package com.lingyi.mall.common.security.common.aspetct;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
@@ -9,8 +9,8 @@ import com.lingyi.mall.api.system.dto.LogReqDTO;
 import com.lingyi.mall.common.base.constant.BaseConstant;
 import com.lingyi.mall.common.base.enums.WhetherEnum;
 import com.lingyi.mall.common.base.util.RequestUtil;
-import com.lingyi.mall.common.security.admin.task.BaseAsyncTask;
-import com.lingyi.mall.common.security.admin.util.AuthenticatorUtil;
+import com.lingyi.mall.common.security.common.task.BaseAsyncTask;
+import com.lingyi.mall.common.security.common.util.Authenticator;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
@@ -57,6 +57,8 @@ public class LogAspect {
 
     private final BaseAsyncTask baseAsyncTask;
 
+    private final Authenticator authenticator;
+
     /**
      * 控制台日志切点
      */
@@ -70,10 +72,9 @@ public class LogAspect {
     /**
      * 数据库日志切点
      */
-    @Pointcut("@annotation(com.lingyi.mall.common.security.admin.aspect.Log)")
+    @Pointcut("@annotation(com.lingyi.mall.common.security.common.aspetct.Log)")
     private void dataBasePointcut() {
     }
-
 
     @Around("consolePointcut()")
     public Object consoleAround(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -98,12 +99,13 @@ public class LogAspect {
             throwable = e;
             throw e;
         } finally {
-            sw.stop();
             if (!isFeign(joinPoint)) {
+                sw.stop();
                 this.printResponse(returnValue);
                 this.printResult(joinPoint.getTarget().getClass().getName(), methodName, throwable, sw.getLastTaskTimeMillis());
             }
             CONSOLE_STOP_WATCH_THREAD_LOCAL.remove();
+
         }
     }
 
@@ -297,9 +299,9 @@ public class LogAspect {
                 .failReason(failReason)
                 .clientIp(RequestUtil.getRemoteHost(((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest()))
                 .trackId(MDC.get(BaseConstant.TRACK_ID_NAME))
-                .createBy(AuthenticatorUtil.getUserName())
+                .createBy(authenticator.getUserName())
                 .createDateTime(LocalDateTime.now())
-                .lastModifyBy(AuthenticatorUtil.getUserName())
+                .lastModifyBy(authenticator.getUserName())
                 .lastModifyDateTime(LocalDateTime.now())
                 .build();
     }

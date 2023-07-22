@@ -10,5 +10,10 @@ import java.util.Optional;
  */
 public interface CustomAuditorAware<T> {
 
+    /**
+     * getCurrentAuditor
+     *
+     * @return Optional
+     */
     Optional<T> getCurrentAuditor();
 }
