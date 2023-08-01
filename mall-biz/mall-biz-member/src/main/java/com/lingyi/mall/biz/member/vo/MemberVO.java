@@ -3,8 +3,6 @@ package com.lingyi.mall.biz.member.vo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -16,9 +14,7 @@ import java.time.LocalDateTime;
  */
 @Schema(description = "会员")
 @Data
-public class MemberVO implements Serializable {
-    @Serial
-    private static final long serialVersionUID = -2383876878730762559L;
+public class MemberVO  {
 
     @Schema(description = "会员id")
     private Long memberId;

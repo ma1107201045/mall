@@ -3,8 +3,6 @@ package com.lingyi.mall.api.member.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -15,9 +13,7 @@ import java.time.LocalDateTime;
  */
 @Schema(description = "会员")
 @Data
-public class MemberReqDTO implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 7583545536864764236L;
+public class MemberReqDTO  {
 
     /**
      * 会员等级id

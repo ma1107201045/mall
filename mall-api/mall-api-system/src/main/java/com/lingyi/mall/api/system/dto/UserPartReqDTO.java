@@ -14,10 +14,7 @@ import java.io.Serializable;
  */
 @Schema(description = "用户")
 @Data
-public class UserPartReqDTO implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = -1025701979000302522L;
+public class UserPartReqDTO  {
 
     @Schema(description = "用户id")
     private Long id;

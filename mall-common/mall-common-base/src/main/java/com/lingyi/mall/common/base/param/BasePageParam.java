@@ -6,9 +6,6 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.Data;
 
-import java.io.Serial;
-import java.io.Serializable;
-
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
@@ -17,10 +14,8 @@ import java.io.Serializable;
  */
 @Schema(description = "后台分页信息")
 @Data
-public class BasePageParam implements Serializable {
+public class BasePageParam {
 
-    @Serial
-    private static final long serialVersionUID = 975629823646747916L;
 
     private static final Integer CURRENT_PAGE_DEFAULT_VALUE = 1;
 

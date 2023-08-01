@@ -20,10 +20,7 @@ import java.util.Objects;
 @Schema(description = "文件")
 @Data
 @Builder
-public class FileVO implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 4716251147498450473L;
+public class FileVO {
 
     @Schema(description = "基础URL")
     private String baseUrl;

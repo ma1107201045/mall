@@ -18,9 +18,7 @@ import java.util.List;
  */
 @Schema(description = "用户")
 @Data
-public class UserDTO implements Serializable {
-    @Serial
-    private static final long serialVersionUID = -3590238359696349969L;
+public class UserDTO  {
 
     @Schema(description = "用户id")
     private Long id;

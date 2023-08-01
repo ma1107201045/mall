@@ -16,9 +16,7 @@ import java.time.LocalDateTime;
  */
 @Schema(description = "会员")
 @Data
-public class MemberRespDTO implements Serializable {
-    @Serial
-    private static final long serialVersionUID = -6855300415860050264L;
+public class MemberRespDTO {
 
     @Schema(description = "会员id")
     private Long memberId;

@@ -16,9 +16,7 @@ import java.util.List;
  */
 @Schema(description = "菜单")
 @Data
-public class MenuVO implements Serializable {
-    @Serial
-    private static final long serialVersionUID = -7753690884211490825L;
+public class MenuVO  {
 
     @Schema(description = "菜单id")
     private Long id;

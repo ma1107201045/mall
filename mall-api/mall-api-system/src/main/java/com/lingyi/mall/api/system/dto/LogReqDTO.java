@@ -19,9 +19,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LogReqDTO implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 8394395747897938021L;
+public class LogReqDTO {
 
     /**
      * 标题

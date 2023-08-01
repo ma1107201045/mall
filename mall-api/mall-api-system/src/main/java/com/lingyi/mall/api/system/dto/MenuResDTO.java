@@ -3,8 +3,6 @@ package com.lingyi.mall.api.system.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,10 +14,7 @@ import java.util.List;
  */
 @Schema(description = "菜单")
 @Data
-public class MenuResDTO implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = -8081768166478917809L;
+public class MenuResDTO {
 
     @Schema(description = "菜单id")
     private Long id;

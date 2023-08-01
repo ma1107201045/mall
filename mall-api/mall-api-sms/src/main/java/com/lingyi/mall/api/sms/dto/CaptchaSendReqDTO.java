@@ -20,8 +20,6 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true)
 public class CaptchaSendReqDTO extends CaptchaReqDTO {
 
-    @Serial
-    private static final long serialVersionUID = 403346381956934054L;
     /**
      * 验证码
      */

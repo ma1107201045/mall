@@ -15,10 +15,8 @@ import java.time.LocalDateTime;
  */
 @Schema(description = "会员登录日志")
 @Data
-public class MemberLoginLogVO implements Serializable {
+public class MemberLoginLogVO  {
 
-    @Serial
-    private static final long serialVersionUID = 1419582644815972194L;
 
     @Schema(description = "主键id")
     private Long id;

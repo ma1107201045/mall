@@ -16,10 +16,8 @@ import java.util.List;
  */
 @Schema(description = "用户")
 @Data
-public class UserResDTO implements Serializable {
+public class UserResDTO {
 
-    @Serial
-    private static final long serialVersionUID = 3367734680549044276L;
 
     @Schema(description = "用户id")
     private Long userId;
