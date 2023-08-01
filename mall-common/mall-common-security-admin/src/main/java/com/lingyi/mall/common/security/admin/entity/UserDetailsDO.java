@@ -2,6 +2,7 @@ package com.lingyi.mall.common.security.admin.entity;
 
 import com.alibaba.fastjson2.annotation.JSONField;
 import lombok.Builder;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -33,6 +34,7 @@ public class UserDetailsDO implements UserDetails {
 
     private boolean enabled;
 
+    @Getter
     private Long userId;
 
     @Override
@@ -71,7 +73,4 @@ public class UserDetailsDO implements UserDetails {
         return enabled;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
 }
