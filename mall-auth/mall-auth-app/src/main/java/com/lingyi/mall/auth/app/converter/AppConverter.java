@@ -65,4 +65,6 @@ public class AppConverter {
         captchaSendReqDTO.setRemark(ServiceTypeEnum.MALL_AUTH_APP.getMessage() + BaseConstant.COLON_CHAR + BusinessTypeEnum.LOGIN.getMessage());
         return captchaSendReqDTO;
     }
+
+
 }

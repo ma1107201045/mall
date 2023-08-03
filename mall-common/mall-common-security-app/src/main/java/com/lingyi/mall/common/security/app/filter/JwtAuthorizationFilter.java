@@ -45,15 +45,14 @@ public class JwtAuthorizationFilter extends GenericFilterBean {
         }
         String token = request.getHeader(SecurityConstant.AUTHORIZATION);
         if (StrUtil.isNotBlank(token)) {
-            boolean flag = false;
             try {
-                flag = JWTUtil.verify(token, SecurityConstant.JWT_KEY.getBytes(StandardCharsets.UTF_8));
+                boolean flag = JWTUtil.verify(token, SecurityConstant.JWT_KEY.getBytes(StandardCharsets.UTF_8));
+                if (flag) {
+                    chain.doFilter(request, response);
+                    return;
+                }
             } catch (Exception e) {
                 log.error("Error verifying token, reason: ", e);
-            }
-            if (flag) {
-                chain.doFilter(request, response);
-                return;
             }
         }
         write(response);
@@ -62,7 +61,7 @@ public class JwtAuthorizationFilter extends GenericFilterBean {
 
     private boolean isIgnoreRequest(HttpServletRequest request) {
         Boolean value = (Boolean) request.getAttribute(SecurityConstant.IS_IGNORE_REQUEST_ATTRIBUTE);
-        return Objects.nonNull(value) &&  value;
+        return Objects.nonNull(value) && value;
     }
 
     private void write(HttpServletResponse response) throws IOException {

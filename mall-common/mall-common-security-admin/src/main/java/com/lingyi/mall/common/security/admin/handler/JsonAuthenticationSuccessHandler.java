@@ -25,7 +25,8 @@ public class JsonAuthenticationSuccessHandler implements AuthenticationSuccessHa
         response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
         PrintWriter writer = response.getWriter();
         Object principal = authentication.getPrincipal();
-        writer.write(JSON.toJSONString(ServerResponse.success(principal)));
+        ServerResponse<?> serverResponse = ServerResponse.success(principal);
+        writer.write(JSON.toJSONString(serverResponse));
         writer.flush();
     }
 }

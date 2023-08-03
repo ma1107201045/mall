@@ -1,6 +1,5 @@
 package com.lingyi.mall.auth.app.service.impl;
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.jwt.JWTUtil;
 import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
 import com.lingyi.mall.api.member.consumer.MemberLevelFeignConsumer;
@@ -60,10 +59,9 @@ public class AppServiceImpl implements AppService {
             memberRespDTO = ConverterUtil.to(memberReqDTO, MemberRespDTO.class);
             memberFeignConsumer.register(memberReqDTO);
         }
-
         //通过会员信息生成token
-        String token = JWTUtil.createToken(PayloadUtil.generate(memberRespDTO), SecurityConstant.JWT_KEY.getBytes(StandardCharsets.UTF_8));
         AppLoginVO appLoginVO = ConverterUtil.to(memberRespDTO, AppLoginVO.class);
+        String token = JWTUtil.createToken(PayloadUtil.generate(memberRespDTO), SecurityConstant.JWT_KEY.getBytes(StandardCharsets.UTF_8));
         appLoginVO.setAuthorization(token);
         return appLoginVO;
     }

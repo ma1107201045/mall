@@ -1,8 +1,10 @@
 package com.lingyi.mall.common.security.app.config;
 
+import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
 import com.lingyi.mall.common.base.filter.TrackIdFilter;
 import com.lingyi.mall.common.security.app.filter.IgnoreRequestFilter;
 import com.lingyi.mall.common.security.app.filter.JwtAuthorizationFilter;
+import com.lingyi.mall.common.security.app.filter.JwtTokenRenewalFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -44,6 +46,15 @@ public class SecurityConfig {
     }
 
     @Bean
+    public JwtTokenRenewalFilter jwtTokenRenewalFilter(MessageSourceAccessor messageSourceAccessor, MemberFeignConsumer memberFeignConsumer) {
+        JwtTokenRenewalFilter jwtTokenRenewalFilter = new JwtTokenRenewalFilter();
+        jwtTokenRenewalFilter.setMessageSourceAccessor(messageSourceAccessor);
+        jwtTokenRenewalFilter.setMemberFeignConsumer(memberFeignConsumer);
+        return jwtTokenRenewalFilter;
+    }
+
+
+    @Bean
     public FilterRegistrationBean<TrackIdFilter> trackIdFilterFilterRegistrationBean(TrackIdFilter trackIdFilter) {
         FilterRegistrationBean<TrackIdFilter> bean = new FilterRegistrationBean<>();
         bean.addUrlPatterns("/*");
@@ -70,4 +81,12 @@ public class SecurityConfig {
         return bean;
     }
 
+    @Bean
+    public FilterRegistrationBean<JwtTokenRenewalFilter> jwtTokenRenewalFilterRegistrationBean(JwtTokenRenewalFilter jwtTokenRenewalFilter) {
+        FilterRegistrationBean<JwtTokenRenewalFilter> bean = new FilterRegistrationBean<>();
+        bean.addUrlPatterns("/*");
+        bean.setFilter(jwtTokenRenewalFilter);
+        bean.setOrder(4);
+        return bean;
+    }
 }

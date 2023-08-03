@@ -37,7 +37,7 @@ public class SecurityConstant {
     public static final String AUTHORIZATION = "Authorization";
     public static final String JWT_KEY = "199726ma.";
     public static final int TOKEN_EXPIRATION_TIME_VALUE = 30;
-    public static final ChronoUnit CHRONO_UNIT = ChronoUnit.SECONDS;
+    public static final String PHONE_NUMBER = "phoneNumber";
     public static final String UNKNOWN = "unknown";
 
     private SecurityConstant() {

@@ -30,7 +30,8 @@ public class JsonAuthenticationEntryPoint implements AuthenticationEntryPoint {
         response.setContentType(MediaType.APPLICATION_JSON.toString());
         response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
         PrintWriter writer = response.getWriter();
-        writer.write(JSON.toJSONString(ServerResponse.fail(HttpStatus.UNAUTHORIZED.value(), exception.getLocalizedMessage())));
+        ServerResponse<?> serverResponse = ServerResponse.fail(HttpStatus.UNAUTHORIZED.value(), exception.getLocalizedMessage());
+        writer.write(JSON.toJSONString(serverResponse));
         writer.flush();
     }
 }

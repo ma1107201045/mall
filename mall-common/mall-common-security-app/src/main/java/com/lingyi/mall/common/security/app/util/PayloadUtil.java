@@ -1,4 +1,4 @@
-package com.lingyi.mall.auth.app.util;
+package com.lingyi.mall.common.security.app.util;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateField;
@@ -6,10 +6,8 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.jwt.JWTPayload;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
-import com.lingyi.mall.common.base.constant.BaseConstant;
 import com.lingyi.mall.common.security.app.constant.SecurityConstant;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Map;
 

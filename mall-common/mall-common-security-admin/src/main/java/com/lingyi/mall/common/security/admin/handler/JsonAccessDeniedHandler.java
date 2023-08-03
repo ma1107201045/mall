@@ -29,7 +29,8 @@ public class JsonAccessDeniedHandler implements AccessDeniedHandler {
         response.setContentType(MediaType.APPLICATION_JSON.toString());
         response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
         PrintWriter writer = response.getWriter();
-        writer.write(JSON.toJSONString(ServerResponse.fail(HttpStatus.FORBIDDEN.value(), exception.getLocalizedMessage())));
+        ServerResponse<?> serverResponse = ServerResponse.fail(HttpStatus.FORBIDDEN.value(), exception.getLocalizedMessage());
+        writer.write(JSON.toJSONString(serverResponse));
         writer.flush();
     }
 }
