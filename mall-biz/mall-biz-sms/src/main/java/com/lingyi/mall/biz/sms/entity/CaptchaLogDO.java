@@ -29,10 +29,10 @@ public class CaptchaLogDO extends BaseCommonDO implements Serializable {
     @Serial
     private static final long serialVersionUID = 5605276090951019486L;
 
-    @Column(name = "service_type", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '服务类型'")
+    @Column(name = "service_name", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '服务名称'")
     private String serviceType;
 
-    @Column(name = "business_type", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '业务类型'")
+    @Column(name = "business_name", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '业务名称'")
     private String businessType;
 
     @Column(name = "phone_number", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '手机号'")
