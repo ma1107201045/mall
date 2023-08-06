@@ -4,6 +4,7 @@ import com.lingyi.mall.auth.app.dto.AppLoginDTO;
 import com.lingyi.mall.auth.app.service.AppService;
 import com.lingyi.mall.auth.app.vo.AppLoginVO;
 import com.lingyi.mall.common.base.util.ServerResponse;
+import com.lingyi.mall.common.security.app.constant.SecurityConstant;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -27,6 +28,13 @@ public class AppController {
 
     private final AppService appService;
 
+    @Operation(summary = "发送短信验证码", description = "发送短信验证码")
+    @GetMapping("/send-sms-captcha")
+    public ServerResponse<Void> sendSmsCaptcha(@NotBlank(message = "手机号不能为空") String phoneNumber) {
+        appService.sendSmsCaptcha(phoneNumber);
+        return ServerResponse.success();
+    }
+
     @Operation(summary = "手机号登录", description = "手机号登录")
     @PostMapping("/login")
     public ServerResponse<AppLoginVO> login(@Valid @RequestBody AppLoginDTO appLoginDTO) {
@@ -34,10 +42,10 @@ public class AppController {
         return ServerResponse.success(apploginVo);
     }
 
-    @Operation(summary = "发送短信验证码", description = "发送短信验证码")
-    @GetMapping("/send-sms-captcha")
-    public ServerResponse<Void> sendSmsCaptcha(@NotBlank(message = "手机号不能为空") String phoneNumber) {
-        appService.sendSmsCaptcha(phoneNumber);
+    @Operation(summary = "注销", description = "注销")
+    @PostMapping("/logout")
+    public ServerResponse<AppLoginVO> logout(@NotBlank(message = "令牌不能为空") @RequestHeader(SecurityConstant.AUTHORIZATION) String token) {
+        appService.logout(token);
         return ServerResponse.success();
     }
 

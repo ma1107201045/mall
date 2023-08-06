@@ -2,9 +2,12 @@ package com.lingyi.mall.common.security.app.config;
 
 import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
 import com.lingyi.mall.common.base.filter.TrackIdFilter;
+import com.lingyi.mall.common.cache.util.RedisUtil;
 import com.lingyi.mall.common.security.app.filter.IgnoreRequestFilter;
-import com.lingyi.mall.common.security.app.filter.JwtAuthorizationFilter;
+import com.lingyi.mall.common.security.app.filter.JwtTokenAuthorizationFilter;
+import com.lingyi.mall.common.security.app.filter.JwtTokenBlacklistFilter;
 import com.lingyi.mall.common.security.app.filter.JwtTokenRenewalFilter;
+import com.lingyi.mall.common.security.app.util.AppRedisKeyUtil;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -39,10 +42,19 @@ public class SecurityConfig {
     }
 
     @Bean
-    public JwtAuthorizationFilter jwtAuthorizationFilter(MessageSourceAccessor messageSourceAccessor) {
-        JwtAuthorizationFilter jwtAuthorizationFilter = new JwtAuthorizationFilter();
-        jwtAuthorizationFilter.setMessageSourceAccessor(messageSourceAccessor);
-        return jwtAuthorizationFilter;
+    public JwtTokenBlacklistFilter jwtTokenBlacklistFilter(MessageSourceAccessor messageSourceAccessor, RedisUtil redisUtil, AppRedisKeyUtil appRedisKeyUtil) {
+        JwtTokenBlacklistFilter jwtTokenBlacklistFilter = new JwtTokenBlacklistFilter();
+        jwtTokenBlacklistFilter.setMessageSourceAccessor(messageSourceAccessor);
+        jwtTokenBlacklistFilter.setRedisUtil(redisUtil);
+        jwtTokenBlacklistFilter.setAppRedisKeyUtil(appRedisKeyUtil);
+        return jwtTokenBlacklistFilter;
+    }
+
+    @Bean
+    public JwtTokenAuthorizationFilter jwtTokenAuthorizationFilter(MessageSourceAccessor messageSourceAccessor) {
+        JwtTokenAuthorizationFilter jwtTokenAuthorizationFilter = new JwtTokenAuthorizationFilter();
+        jwtTokenAuthorizationFilter.setMessageSourceAccessor(messageSourceAccessor);
+        return jwtTokenAuthorizationFilter;
     }
 
     @Bean
@@ -64,20 +76,29 @@ public class SecurityConfig {
     }
 
     @Bean
-    public FilterRegistrationBean<IgnoreRequestFilter> ignoreRequestFilterFilterRegistrationBean(IgnoreRequestFilter ignoreRequestFilter) {
-        FilterRegistrationBean<IgnoreRequestFilter> bean = new FilterRegistrationBean<>();
-        bean.setFilter(ignoreRequestFilter);
+    public FilterRegistrationBean<JwtTokenBlacklistFilter> jwtTokenBlacklistFilterFilterRegistrationBean(JwtTokenBlacklistFilter jwtTokenBlacklistFilter) {
+        FilterRegistrationBean<JwtTokenBlacklistFilter> bean = new FilterRegistrationBean<>();
+        bean.setFilter(jwtTokenBlacklistFilter);
         bean.addUrlPatterns("/*");
         bean.setOrder(2);
         return bean;
     }
 
     @Bean
-    public FilterRegistrationBean<JwtAuthorizationFilter> jwtAuthorizationFilterFilterRegistrationBean(JwtAuthorizationFilter jwtAuthorizationFilter) {
-        FilterRegistrationBean<JwtAuthorizationFilter> bean = new FilterRegistrationBean<>();
+    public FilterRegistrationBean<IgnoreRequestFilter> ignoreRequestFilterFilterRegistrationBean(IgnoreRequestFilter ignoreRequestFilter) {
+        FilterRegistrationBean<IgnoreRequestFilter> bean = new FilterRegistrationBean<>();
+        bean.setFilter(ignoreRequestFilter);
         bean.addUrlPatterns("/*");
-        bean.setFilter(jwtAuthorizationFilter);
         bean.setOrder(3);
+        return bean;
+    }
+
+    @Bean
+    public FilterRegistrationBean<JwtTokenAuthorizationFilter> jwtAuthorizationFilterFilterRegistrationBean(JwtTokenAuthorizationFilter jwtTokenAuthorizationFilter) {
+        FilterRegistrationBean<JwtTokenAuthorizationFilter> bean = new FilterRegistrationBean<>();
+        bean.addUrlPatterns("/*");
+        bean.setFilter(jwtTokenAuthorizationFilter);
+        bean.setOrder(4);
         return bean;
     }
 
