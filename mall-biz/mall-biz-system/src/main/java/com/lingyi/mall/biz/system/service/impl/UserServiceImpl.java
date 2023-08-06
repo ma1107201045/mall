@@ -74,8 +74,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteByIds(List<Long> ids) {
-        boolean flag = userRepository.findAllById(ids)
-                .stream()
+        boolean flag = userRepository.findAllById(ids).stream()
                 .anyMatch(userDO -> SystemConstant.USER_NAME_ADMIN.equals(userDO.getUserName()));
         AssertUtil.isFalse(flag, SystemFailEnum.USER_NAME_ADMIN_DELETE_ERROR);
         userRepository.deleteAllById(ids);
@@ -186,10 +185,10 @@ public class UserServiceImpl implements UserService {
 
     private List<MenuResDTO> toMenuTree(Long menuParentId, List<MenuResDTO> menuResDTOList) {
         List<MenuResDTO> menus = menuResDTOList.stream()
-                .filter(menuVO -> menuVO.getParentId().equals(menuParentId))
+                .filter(menuResDTO -> menuResDTO.getParentId().equals(menuParentId))
                 .sorted(Comparator.comparing(MenuResDTO::getSort))
                 .toList();
-        menus.forEach(menuVO -> menuVO.setChildren(toMenuTree(menuVO.getId(), menuResDTOList)));
+        menus.forEach(menuResDTO -> menuResDTO.setChildren(toMenuTree(menuResDTO.getId(), menuResDTOList)));
         return menus;
     }
 
