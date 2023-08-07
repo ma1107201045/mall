@@ -49,8 +49,7 @@ public class JwtTokenRenewalFilter extends GenericFilterBean {
     private void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         String oldToken = request.getHeader(SecurityConstant.AUTHORIZATION);
         if (StrUtil.isNotBlank(oldToken)) {
-            JWT jwt = JWTUtil.parseToken(oldToken);
-            JWTPayload payload = jwt.getPayload();
+            JWTPayload payload = JWTUtil.parseToken(oldToken).getPayload();
             Date expiresAt = (Date) payload.getClaim(JWTPayload.EXPIRES_AT);
             if (expiresAt.equals(DateUtil.date()) || expiresAt.after(DateUtil.date())) {
                 String phoneNumber = (String) payload.getClaim(SecurityConstant.PHONE_NUMBER);
