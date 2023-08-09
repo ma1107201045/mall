@@ -3,6 +3,7 @@ package com.lingyi.mall.common.security.admin.config;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ArrayUtil;
 import com.lingyi.mall.common.base.constant.BaseConstant;
+import com.lingyi.mall.common.base.util.HttpUtil;
 import com.lingyi.mall.common.security.admin.constant.SecurityConstant;
 import feign.Logger;
 import feign.RequestInterceptor;
@@ -42,14 +43,8 @@ public class OpenFeignConfig {
         return requestTemplate -> {
             // 将trackId 同步到新的请求的请求头中
             requestTemplate.header(BaseConstant.TRACK_ID_NAME, MDC.get(BaseConstant.TRACK_ID_NAME));
-            // 获取原请求属性
-            ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-            //判空
-            if (Objects.isNull(attributes)) {
-                return;
-            }
             // 获取原请求
-            HttpServletRequest request = attributes.getRequest();
+            HttpServletRequest request = HttpUtil.getRequest();
             //解决记住密码bug（Authentication是null或者其他排除 REMEMBER_ME_COOKIE_NAME，Authentication是RememberMeAuthenticationToken带REMEMBER_ME_COOKIE_NAME）
             Cookie[] cookies = request.getCookies();
             if (ArrayUtil.isNotEmpty(cookies)) {
@@ -64,6 +59,5 @@ public class OpenFeignConfig {
             }
 
         };
-
     }
 }

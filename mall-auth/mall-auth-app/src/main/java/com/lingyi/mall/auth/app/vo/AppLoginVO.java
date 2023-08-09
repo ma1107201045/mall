@@ -54,7 +54,4 @@ public class AppLoginVO {
 
     @Schema(description = "注册时间")
     private LocalDateTime registerDataTime;
-
-    @Schema(description = "authorization")
-    private String authorization;
 }
