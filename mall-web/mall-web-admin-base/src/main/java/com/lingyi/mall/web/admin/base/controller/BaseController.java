@@ -1,6 +1,6 @@
 package com.lingyi.mall.web.admin.base.controller;
 
-import com.lingyi.mall.api.system.dto.MenuResDTO;
+import com.lingyi.mall.api.system.dto.MenuRespDTO;
 import com.lingyi.mall.api.system.dto.UserPartReqDTO;
 import com.lingyi.mall.biz.base.service.BaseService;
 import com.lingyi.mall.common.security.common.aspetct.Log;
@@ -43,9 +43,9 @@ public class BaseController {
     @Operation(summary = "获取当前用户菜单树", description = "获取当前用户菜单树")
     @GetMapping("/menu-tree")
     @Log(title = "获取当前用户菜单树", operationType = OperationTypeEnum.READ)
-    public ServerResponse<List<MenuResDTO>> getMenuTree() {
+    public ServerResponse<List<MenuRespDTO>> getMenuTree() {
         String userName = AuthenticatorUtil.getUserName();
-        List<MenuResDTO> menus = baseService.readMenuTreeByUserName(userName);
+        List<MenuRespDTO> menus = baseService.readMenuTreeByUserName(userName);
         return ServerResponse.success(menus);
     }
 

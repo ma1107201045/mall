@@ -1,9 +1,9 @@
 package com.lingyi.mall.biz.system.service.impl;
 
 import cn.hutool.core.util.ObjUtil;
-import com.lingyi.mall.api.system.dto.MenuResDTO;
+import com.lingyi.mall.api.system.dto.MenuRespDTO;
 import com.lingyi.mall.api.system.dto.UserPartReqDTO;
-import com.lingyi.mall.api.system.dto.UserResDTO;
+import com.lingyi.mall.api.system.dto.UserRespDTO;
 import com.lingyi.mall.biz.system.constant.SystemConstant;
 import com.lingyi.mall.biz.system.dto.UserDTO;
 import com.lingyi.mall.biz.system.entity.UserDO;
@@ -21,7 +21,6 @@ import com.lingyi.mall.biz.system.vo.UserVO;
 import com.lingyi.mall.common.base.param.BasePageParam;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.base.util.ConverterUtil;
-import com.lingyi.mall.common.base.util.ObjectUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -148,47 +147,47 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResDTO readUserAndMenuPermissionsByUserName(String userName) {
-        UserResDTO userResDTO = userMapper.selectByUserName(userName);
-        if (ObjUtil.isNull(userResDTO)) {
-            return userResDTO;
+    public UserRespDTO readUserAndMenuPermissionsByUserName(String userName) {
+        UserRespDTO userRespDTO = userMapper.selectByUserName(userName);
+        if (ObjUtil.isNull(userRespDTO)) {
+            return userRespDTO;
         }
         List<String> permissions = readMenuPermissionsByUserName(userName);
-        userResDTO.setPermissions(permissions);
-        return userResDTO;
+        userRespDTO.setPermissions(permissions);
+        return userRespDTO;
     }
 
     @Override
-    public List<MenuResDTO> readMenuTreeByUserName(String userName) {
-        List<MenuResDTO> menuResDTOList;
+    public List<MenuRespDTO> readMenuTreeByUserName(String userName) {
+        List<MenuRespDTO> menuRespDTOList;
         List<Integer> menuTypes = Arrays.asList(MenuTypeEnum.DIRECTORY.getCode(), MenuTypeEnum.MENU.getCode());
         if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
-            menuResDTOList = userMapper.selectMenusByUserNameAndMenuTypes(userName, menuTypes);
+            menuRespDTOList = userMapper.selectMenusByUserNameAndMenuTypes(userName, menuTypes);
         } else {
-            menuResDTOList = menuService.readListByTypes(menuTypes);
+            menuRespDTOList = menuService.readListByTypes(menuTypes);
         }
-        return toMenuTree(SystemConstant.MENU_ROOT_ID, menuResDTOList);
+        return toMenuTree(SystemConstant.MENU_ROOT_ID, menuRespDTOList);
     }
 
     @Override
     public List<String> readMenuPermissionsByUserName(String userName) {
-        List<MenuResDTO> menuResDTOList;
+        List<MenuRespDTO> menuRespDTOList;
         List<Integer> menuTypes = Collections.singletonList(MenuTypeEnum.BUTTON.getCode());
         if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
-            menuResDTOList = userMapper.selectMenusByUserNameAndMenuTypes(userName, menuTypes);
+            menuRespDTOList = userMapper.selectMenusByUserNameAndMenuTypes(userName, menuTypes);
         } else {
-            menuResDTOList = menuService.readListByTypes(menuTypes);
+            menuRespDTOList = menuService.readListByTypes(menuTypes);
         }
-        return menuResDTOList.stream().map(MenuResDTO::getPermission).toList();
+        return menuRespDTOList.stream().map(MenuRespDTO::getPermission).toList();
     }
 
 
-    private List<MenuResDTO> toMenuTree(Long menuParentId, List<MenuResDTO> menuResDTOList) {
-        List<MenuResDTO> menus = menuResDTOList.stream()
+    private List<MenuRespDTO> toMenuTree(Long menuParentId, List<MenuRespDTO> menuRespDTOList) {
+        List<MenuRespDTO> menus = menuRespDTOList.stream()
                 .filter(menuResDTO -> menuResDTO.getParentId().equals(menuParentId))
-                .sorted(Comparator.comparing(MenuResDTO::getSort))
+                .sorted(Comparator.comparing(MenuRespDTO::getSort))
                 .toList();
-        menus.forEach(menuResDTO -> menuResDTO.setChildren(toMenuTree(menuResDTO.getId(), menuResDTOList)));
+        menus.forEach(menuResDTO -> menuResDTO.setChildren(toMenuTree(menuResDTO.getId(), menuRespDTOList)));
         return menus;
     }
 

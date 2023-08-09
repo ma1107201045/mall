@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.system.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
-import com.lingyi.mall.api.system.dto.MenuResDTO;
+import com.lingyi.mall.api.system.dto.MenuRespDTO;
 import com.lingyi.mall.biz.system.constant.SystemConstant;
 import com.lingyi.mall.biz.system.dto.MenuDTO;
 import com.lingyi.mall.biz.system.entity.MenuDO;
@@ -87,7 +87,7 @@ public class MenuServiceImpl implements MenuService {
 
 
     @Override
-    public List<MenuResDTO> readListByTypes(List<Integer> types) {
+    public List<MenuRespDTO> readListByTypes(List<Integer> types) {
         return menuMapper.selectListByTypes(types);
     }
 

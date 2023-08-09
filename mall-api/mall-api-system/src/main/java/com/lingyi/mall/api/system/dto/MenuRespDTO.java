@@ -14,7 +14,7 @@ import java.util.List;
  */
 @Schema(description = "菜单")
 @Data
-public class MenuResDTO {
+public class MenuRespDTO {
 
     @Schema(description = "菜单id")
     private Long id;
@@ -65,5 +65,5 @@ public class MenuResDTO {
     private LocalDateTime lastModifyDateTime;
 
     @Schema(description = "菜单子级")
-    private List<MenuResDTO> children;
+    private List<MenuRespDTO> children;
 }

@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.base.service.impl;
 
 import com.lingyi.mall.api.system.consumer.UserFeignConsumer;
-import com.lingyi.mall.api.system.dto.MenuResDTO;
+import com.lingyi.mall.api.system.dto.MenuRespDTO;
 import com.lingyi.mall.api.system.dto.UserPartReqDTO;
 
 import com.lingyi.mall.biz.base.service.BaseService;
@@ -28,7 +28,7 @@ public class BaseServiceImpl implements BaseService {
     }
 
     @Override
-    public List<MenuResDTO> readMenuTreeByUserName(String userName) {
+    public List<MenuRespDTO> readMenuTreeByUserName(String userName) {
         return userFeignConsumer.getMenuTreeByUserName(userName);
     }
 

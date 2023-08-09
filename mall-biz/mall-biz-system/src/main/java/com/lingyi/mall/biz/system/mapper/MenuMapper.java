@@ -1,10 +1,9 @@
 package com.lingyi.mall.biz.system.mapper;
 
-import com.lingyi.mall.api.system.dto.MenuResDTO;
+import com.lingyi.mall.api.system.dto.MenuRespDTO;
 import com.lingyi.mall.biz.system.param.MenuParam;
 import com.lingyi.mall.biz.system.vo.MenuVO;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -57,6 +56,6 @@ public interface MenuMapper {
      * @param types 按钮类型集
      * @return List<MenuResDTO>
      */
-    List<MenuResDTO> selectListByTypes(List<Integer> types);
+    List<MenuRespDTO> selectListByTypes(List<Integer> types);
 
 }

@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.system.service;
 
-import com.lingyi.mall.api.system.dto.MenuResDTO;
+import com.lingyi.mall.api.system.dto.MenuRespDTO;
 import com.lingyi.mall.biz.system.dto.MenuDTO;
 import com.lingyi.mall.biz.system.param.MenuParam;
 import com.lingyi.mall.biz.system.vo.MenuVO;
@@ -31,5 +31,5 @@ public interface MenuService extends BaseService<MenuDTO, MenuParam, MenuVO, Lon
      * @param types 菜单类型集
      * @return List<MenuTreeVO>
      */
-    List<MenuResDTO> readListByTypes(List<Integer> types);
+    List<MenuRespDTO> readListByTypes(List<Integer> types);
 }

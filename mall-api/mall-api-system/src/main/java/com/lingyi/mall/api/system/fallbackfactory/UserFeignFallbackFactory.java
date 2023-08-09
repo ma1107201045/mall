@@ -1,7 +1,7 @@
 package com.lingyi.mall.api.system.fallbackfactory;
 
-import com.lingyi.mall.api.system.dto.MenuResDTO;
-import com.lingyi.mall.api.system.dto.UserResDTO;
+import com.lingyi.mall.api.system.dto.MenuRespDTO;
+import com.lingyi.mall.api.system.dto.UserRespDTO;
 import com.lingyi.mall.api.system.dto.UserPartReqDTO;
 import com.lingyi.mall.api.system.feign.UserFeign;
 import com.lingyi.mall.common.base.util.ServerResponse;
@@ -28,12 +28,12 @@ public class UserFeignFallbackFactory implements FallbackFactory<UserFeign> {
             }
 
             @Override
-            public ServerResponse<UserResDTO> getUserAndMenuPermissionsByUserName(String userName) {
+            public ServerResponse<UserRespDTO> getUserAndMenuPermissionsByUserName(String userName) {
                 return null;
             }
 
             @Override
-            public ServerResponse<List<MenuResDTO>> getMenuTreeByUserName(String userName) {
+            public ServerResponse<List<MenuRespDTO>> getMenuTreeByUserName(String userName) {
                 return null;
             }
 

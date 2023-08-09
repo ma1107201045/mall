@@ -1,7 +1,7 @@
 package com.lingyi.mall.api.system.feign;
 
-import com.lingyi.mall.api.system.dto.MenuResDTO;
-import com.lingyi.mall.api.system.dto.UserResDTO;
+import com.lingyi.mall.api.system.dto.MenuRespDTO;
+import com.lingyi.mall.api.system.dto.UserRespDTO;
 import com.lingyi.mall.api.system.dto.UserPartReqDTO;
 import com.lingyi.mall.api.system.fallbackfactory.UserFeignFallbackFactory;
 import com.lingyi.mall.common.base.util.ServerResponse;
@@ -38,7 +38,7 @@ public interface UserFeign {
      * @return 用户信息
      */
     @GetMapping(URL_PREFIX + "/permissions")
-    ServerResponse<UserResDTO> getUserAndMenuPermissionsByUserName(@RequestParam(name = "userName") String userName);
+    ServerResponse<UserRespDTO> getUserAndMenuPermissionsByUserName(@RequestParam(name = "userName") String userName);
 
 
     /**
@@ -48,7 +48,7 @@ public interface UserFeign {
      * @return 菜单树
      */
     @GetMapping(URL_PREFIX + "/menu-tree")
-    ServerResponse<List<MenuResDTO>> getMenuTreeByUserName(@RequestParam(name = "userName") String userName);
+    ServerResponse<List<MenuRespDTO>> getMenuTreeByUserName(@RequestParam(name = "userName") String userName);
 
 
     /**

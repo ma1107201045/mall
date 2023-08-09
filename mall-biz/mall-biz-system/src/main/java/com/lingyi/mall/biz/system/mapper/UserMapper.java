@@ -1,8 +1,8 @@
 package com.lingyi.mall.biz.system.mapper;
 
 
-import com.lingyi.mall.api.system.dto.MenuResDTO;
-import com.lingyi.mall.api.system.dto.UserResDTO;
+import com.lingyi.mall.api.system.dto.MenuRespDTO;
+import com.lingyi.mall.api.system.dto.UserRespDTO;
 import com.lingyi.mall.biz.system.param.UserParam;
 import com.lingyi.mall.biz.system.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -59,7 +59,7 @@ public interface UserMapper {
      * @param userName 用户名称
      * @return MbsUserVO
      */
-    UserResDTO selectByUserName(String userName);
+    UserRespDTO selectByUserName(String userName);
 
     /**
      * 按照用户名称和菜单类型集查询菜单列表
@@ -68,7 +68,7 @@ public interface UserMapper {
      * @param menuTypes 按钮类型集
      * @return List<MenuTreeVO>
      */
-    List<MenuResDTO> selectMenusByUserNameAndMenuTypes(@Param("userName") String userName, @Param("menuTypes") List<Integer> menuTypes);
+    List<MenuRespDTO> selectMenusByUserNameAndMenuTypes(@Param("userName") String userName, @Param("menuTypes") List<Integer> menuTypes);
 
 
 }
