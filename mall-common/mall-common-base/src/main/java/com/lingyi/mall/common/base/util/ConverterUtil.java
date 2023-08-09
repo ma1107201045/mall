@@ -11,13 +11,13 @@ import cn.hutool.core.bean.copier.CopyOptions;
  */
 public class ConverterUtil {
 
-    public static <S, T> T to(S s, T t) {
-        BeanUtil.copyProperties(s, t, CopyOptions.create().setIgnoreNullValue(true));
-        return t;
+    public static <S, T> T to(S source, T target) {
+        BeanUtil.copyProperties(source, target, CopyOptions.create().setIgnoreNullValue(true));
+        return target;
     }
 
-    public static <S, T> T to(S s, Class<T> clazz) {
-        return BeanUtil.copyProperties(s, clazz);
+    public static <S, T> T to(S source, Class<T> clazz) {
+        return BeanUtil.copyProperties(source, clazz);
     }
 
 }

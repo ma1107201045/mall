@@ -5,6 +5,7 @@ import cn.hutool.jwt.JWTUtil;
 import com.alibaba.fastjson2.JSON;
 import com.lingyi.mall.common.security.app.constant.SecurityConstant;
 import com.lingyi.mall.common.base.util.ServerResponse;
+import com.lingyi.mall.common.security.app.util.CommonWriteUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
@@ -30,7 +31,8 @@ import java.util.Objects;
  * @description
  */
 @Slf4j
-public class JwtAuthorizationFilter extends GenericFilterBean {
+public class JwtTokenAuthorizationFilter extends GenericFilterBean {
+
     protected MessageSourceAccessor message = SpringSecurityMessageSource.getAccessor();
 
     @Override
@@ -55,7 +57,7 @@ public class JwtAuthorizationFilter extends GenericFilterBean {
                 log.error("Error verifying token, reason: ", e);
             }
         }
-        write(response);
+        CommonWriteUtil.write(response, this.message.getMessage("ExceptionTranslationFilter.insufficientAuthentication", "Full authentication is required to access this resource"));
     }
 
 
@@ -64,14 +66,6 @@ public class JwtAuthorizationFilter extends GenericFilterBean {
         return Objects.nonNull(value) && value;
     }
 
-    private void write(HttpServletResponse response) throws IOException {
-        response.setStatus(HttpStatus.UNAUTHORIZED.value());
-        response.setContentType(MediaType.APPLICATION_JSON.toString());
-        response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
-        PrintWriter writer = response.getWriter();
-        writer.write(JSON.toJSONString(ServerResponse.fail(HttpStatus.UNAUTHORIZED.value(), this.message.getMessage("ExceptionTranslationFilter.insufficientAuthentication", "Full authentication is required to access this resource"))));
-        writer.flush();
-    }
 
     public void setMessageSourceAccessor(MessageSourceAccessor messageSourceAccessor) {
         this.message = messageSourceAccessor;

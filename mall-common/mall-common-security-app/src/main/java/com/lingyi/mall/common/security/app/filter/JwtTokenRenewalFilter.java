@@ -36,10 +36,9 @@ import java.util.Map;
 @Slf4j
 public class JwtTokenRenewalFilter extends GenericFilterBean {
 
-    @Autowired
-    private MemberFeignConsumer memberFeignConsumer;
     protected MessageSourceAccessor message = SpringSecurityMessageSource.getAccessor();
 
+    private MemberFeignConsumer memberFeignConsumer;
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {

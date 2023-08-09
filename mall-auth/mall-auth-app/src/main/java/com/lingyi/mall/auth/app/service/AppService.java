@@ -11,6 +11,12 @@ import com.lingyi.mall.auth.app.vo.AppLoginVO;
  */
 public interface AppService {
 
+    /**
+     * 发送短信验证码
+     *
+     * @param phoneNumber 手机号
+     */
+    void sendSmsCaptcha(String phoneNumber);
 
     /**
      * 登录（手机号登录）
@@ -22,9 +28,9 @@ public interface AppService {
 
 
     /**
-     * 发送短信验证码
+     * 注销
      *
-     * @param phoneNumber 手机号
+     * @param token 令牌
      */
-    void sendSmsCaptcha(String phoneNumber);
+    void logout(String token);
 }
