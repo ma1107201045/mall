@@ -5,6 +5,7 @@ import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.jwt.JWTPayload;
+import cn.hutool.jwt.JWTUtil;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.common.security.app.constant.SecurityConstant;
 
@@ -33,5 +34,17 @@ public class PayloadUtil {
         jwtPayload.setExpiresAt(DateUtil.offset(date, DateField.MINUTE, SecurityConstant.TOKEN_EXPIRATION_TIME_VALUE));
         jwtPayload.setJWTId(String.valueOf(memberRespDTO.getMemberId()));
         return jwtPayload.getClaimsJson();
+    }
+
+    public static JWTPayload getJwtPayload(String token) {
+        return JWTUtil.parseToken(token).getPayload();
+    }
+
+    public static Date getExp(String token) {
+        return new Date(((Number) getJwtPayload(token).getClaim(JWTPayload.EXPIRES_AT)).longValue() * 1000L);
+    }
+
+    public static String getPhoneNumber(String token) {
+        return (String) getJwtPayload(token).getClaim(SecurityConstant.PHONE_NUMBER);
     }
 }

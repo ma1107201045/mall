@@ -59,14 +59,16 @@ spring:
           predicates:
             - Path=/admin/file/**
 
-        - id: mall-web-app-member
+        - id: mall-web-app-base
           uri: http://localhost:8002
           predicates:
-            - Path=/app/member/**
-        - id: mall-web-app-base
+            - Path=/app/base/**
+            -
+        - id: mall-web-app-member
           uri: http://localhost:8003
           predicates:
-            - Path=/app/base/**
+            - Path=/app/member/**
+
         - id: mall-web-app-file
           uri: http://localhost:8004
           predicates:
