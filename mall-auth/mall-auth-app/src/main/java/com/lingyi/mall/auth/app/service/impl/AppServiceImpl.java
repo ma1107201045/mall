@@ -24,7 +24,7 @@ import com.lingyi.mall.common.base.util.HttpUtil;
 import com.lingyi.mall.common.cache.util.RedisUtil;
 import com.lingyi.mall.common.security.app.constant.SecurityConstant;
 import com.lingyi.mall.common.security.app.util.AppRedisKeyUtil;
-import com.lingyi.mall.common.security.app.util.PayloadUtil;
+import com.lingyi.mall.common.security.app.util.JwtUtil;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -75,7 +75,7 @@ public class AppServiceImpl implements AppService {
         }
         //通过会员信息生成token
         AppLoginVO appLoginVO = ConverterUtil.to(memberRespDTO, AppLoginVO.class);
-        String token = JWTUtil.createToken(PayloadUtil.generate(memberRespDTO), SecurityConstant.JWT_KEY.getBytes(StandardCharsets.UTF_8));
+        String token = JwtUtil.createToken(memberRespDTO);
         //设置返回头token
         HttpServletResponse response = HttpUtil.getResponse();
         response.addHeader(SecurityConstant.AUTHORIZATION, token);

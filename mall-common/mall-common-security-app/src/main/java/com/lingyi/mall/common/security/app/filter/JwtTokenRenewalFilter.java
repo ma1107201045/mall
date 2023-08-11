@@ -3,12 +3,11 @@ package com.lingyi.mall.common.security.app.filter;
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.jwt.JWTPayload;
 import cn.hutool.jwt.JWTUtil;
 import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.common.security.app.constant.SecurityConstant;
-import com.lingyi.mall.common.security.app.util.PayloadUtil;
+import com.lingyi.mall.common.security.app.util.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,11 +29,6 @@ import java.util.Date;
 @Slf4j
 public class JwtTokenRenewalFilter extends AbstractJwtTokenFilter {
 
-    public static void main(String[] args) {
-        String a = "eyJwYXNzd29yZCI6IiIsIm5pY2tuYW1lIjoi55So5oi3MzEyNyIsInN1YiI6IiIsImF1ZCI6WyIiXSwibmJmIjoxNjkxNzQxOTAwLCJpYXQiOjE2OTE3NDE5MDAsImV4cCI6MTY5MTc0MzcwMCwianRpIjoibnVsbCJ9";
-        System.out.println(Base64.decodeStr(a));
-    }
-
     protected MessageSourceAccessor message = SpringSecurityMessageSource.getAccessor();
     private MemberFeignConsumer memberFeignConsumer;
 
@@ -43,11 +37,11 @@ public class JwtTokenRenewalFilter extends AbstractJwtTokenFilter {
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         String oldToken = request.getHeader(SecurityConstant.AUTHORIZATION);
         if (StrUtil.isNotBlank(oldToken)) {
-            Date expiresAt = PayloadUtil.getExp(oldToken);
+            Date expiresAt = JwtUtil.getJwtPayloadExp(oldToken);
             if (!expiresAt.before(DateUtil.date())) {
-                String phoneNumber = PayloadUtil.getPhoneNumber(oldToken);
+                String phoneNumber = JwtUtil.getJwtPayloadPhoneNumber(oldToken);
                 MemberRespDTO memberRespDTO = memberFeignConsumer.getByPhoneNumber(phoneNumber);
-                String token = JWTUtil.createToken(PayloadUtil.generate(memberRespDTO), SecurityConstant.JWT_KEY.getBytes(StandardCharsets.UTF_8));
+                String token = JwtUtil.createToken(memberRespDTO);
                 response.setHeader(SecurityConstant.AUTHORIZATION, token);
             }
         }
