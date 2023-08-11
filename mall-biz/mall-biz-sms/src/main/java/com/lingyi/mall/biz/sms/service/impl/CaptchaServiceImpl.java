@@ -51,7 +51,7 @@ public class CaptchaServiceImpl implements CaptchaService {
         }
         //校验验证码发送间隔时间
         String intervalDateKey = smsRedisKeyUtil.getCaptchaIntervalDateKey(captchaSendReqDTO);
-        String intervalDateValue = redisUtil.get(intervalDateKey, String.class);
+        Integer intervalDateValue = redisUtil.get(intervalDateKey, Integer.class);
         AssertUtil.isNull(intervalDateValue, SmsFailEnum.CAPTCHA_INTERVAL_DATE_ERROR);
 
         //设置验证码失效时间

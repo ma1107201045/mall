@@ -3,7 +3,6 @@ package com.lingyi.mall.common.security.app.config;
 import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
 import com.lingyi.mall.common.base.filter.TrackIdFilter;
 import com.lingyi.mall.common.cache.util.RedisUtil;
-import com.lingyi.mall.common.security.app.filter.IgnoreRequestFilter;
 import com.lingyi.mall.common.security.app.filter.JwtTokenAuthorizationFilter;
 import com.lingyi.mall.common.security.app.filter.JwtTokenBlacklistFilter;
 import com.lingyi.mall.common.security.app.filter.JwtTokenRenewalFilter;
@@ -25,20 +24,14 @@ import org.springframework.context.support.MessageSourceAccessor;
 @Configuration(proxyBeanMethods = false)
 public class SecurityConfig {
 
-
-    @Bean
-    public TrackIdFilter trackIdFilter() {
-        return new TrackIdFilter();
-    }
-
     @Bean
     public MessageSourceAccessor messageSourceAccessor(MessageSource messageSource) {
         return new MessageSourceAccessor(messageSource, LocaleContextHolder.getLocale());
     }
 
     @Bean
-    public IgnoreRequestFilter ignoreRequestFilter() {
-        return new IgnoreRequestFilter();
+    public TrackIdFilter trackIdFilter() {
+        return new TrackIdFilter();
     }
 
     @Bean
@@ -75,6 +68,7 @@ public class SecurityConfig {
         return bean;
     }
 
+
     @Bean
     public FilterRegistrationBean<JwtTokenBlacklistFilter> jwtTokenBlacklistFilterFilterRegistrationBean(JwtTokenBlacklistFilter jwtTokenBlacklistFilter) {
         FilterRegistrationBean<JwtTokenBlacklistFilter> bean = new FilterRegistrationBean<>();
@@ -85,20 +79,11 @@ public class SecurityConfig {
     }
 
     @Bean
-    public FilterRegistrationBean<IgnoreRequestFilter> ignoreRequestFilterFilterRegistrationBean(IgnoreRequestFilter ignoreRequestFilter) {
-        FilterRegistrationBean<IgnoreRequestFilter> bean = new FilterRegistrationBean<>();
-        bean.setFilter(ignoreRequestFilter);
-        bean.addUrlPatterns("/*");
-        bean.setOrder(3);
-        return bean;
-    }
-
-    @Bean
     public FilterRegistrationBean<JwtTokenAuthorizationFilter> jwtAuthorizationFilterFilterRegistrationBean(JwtTokenAuthorizationFilter jwtTokenAuthorizationFilter) {
         FilterRegistrationBean<JwtTokenAuthorizationFilter> bean = new FilterRegistrationBean<>();
         bean.addUrlPatterns("/*");
         bean.setFilter(jwtTokenAuthorizationFilter);
-        bean.setOrder(4);
+        bean.setOrder(3);
         return bean;
     }
 

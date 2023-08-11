@@ -14,22 +14,22 @@ import java.io.IOException;
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
- * @datetime 2023/7/4 16:38
+ * @datetime 2023/8/11 9:14
  * @description
  */
-public class IgnoreRequestFilter extends GenericFilterBean {
-
+public abstract class AbstractJwtTokenFilter extends GenericFilterBean {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        if (this.isIgnoreRequest(servletRequest)) {
+            filterChain.doFilter(servletRequest, servletResponse);
+            return;
+        }
         this.doFilter((HttpServletRequest) servletRequest, (HttpServletResponse) servletResponse, filterChain);
     }
 
-    private void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        boolean flag = SecurityConstant.REQUEST_MATCHER_LIST.stream()
-                .anyMatch(requestMatcher -> requestMatcher.matcher(request).isMatch());
-        if (flag) {
-            request.setAttribute(SecurityConstant.IS_IGNORE_REQUEST_ATTRIBUTE, true);
-        }
-        chain.doFilter(request, response);
+    private boolean isIgnoreRequest(ServletRequest request) {
+        return SecurityConstant.REQUEST_MATCHER_LIST.stream().anyMatch(requestMatcher -> requestMatcher.matcher((HttpServletRequest) request).isMatch());
     }
+
+    protected abstract void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException;
 }

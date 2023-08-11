@@ -1,5 +1,5 @@
 server:
-  port: 7005
+  port: 8005
 spring:
   application:
     name: mall-web-app-sms

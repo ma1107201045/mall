@@ -42,6 +42,7 @@ public class AppController {
         return ServerResponse.success(apploginVo);
     }
 
+
     @Operation(summary = "注销", description = "注销")
     @PostMapping("/logout")
     public ServerResponse<AppLoginVO> logout(@NotBlank(message = "令牌不能为空") @RequestHeader(SecurityConstant.AUTHORIZATION) String token) {

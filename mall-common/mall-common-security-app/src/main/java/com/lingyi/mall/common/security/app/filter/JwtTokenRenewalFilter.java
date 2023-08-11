@@ -10,15 +10,11 @@ import com.lingyi.mall.common.security.app.constant.SecurityConstant;
 import com.lingyi.mall.common.security.app.util.PayloadUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.security.core.SpringSecurityMessageSource;
-import org.springframework.web.filter.GenericFilterBean;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -31,18 +27,13 @@ import java.util.Date;
  * @description
  */
 @Slf4j
-public class JwtTokenRenewalFilter extends GenericFilterBean {
+public class JwtTokenRenewalFilter extends AbstractJwtTokenFilter {
 
     protected MessageSourceAccessor message = SpringSecurityMessageSource.getAccessor();
-
     private MemberFeignConsumer memberFeignConsumer;
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        this.doFilter((HttpServletRequest) servletRequest, (HttpServletResponse) servletResponse, filterChain);
-    }
-
-    private void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
+    protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         String oldToken = request.getHeader(SecurityConstant.AUTHORIZATION);
         if (StrUtil.isNotBlank(oldToken)) {
             JWTPayload payload = JWTUtil.parseToken(oldToken).getPayload();
@@ -56,6 +47,7 @@ public class JwtTokenRenewalFilter extends GenericFilterBean {
         }
         chain.doFilter(request, response);
     }
+
 
     public void setMessageSourceAccessor(MessageSourceAccessor messageSourceAccessor) {
         this.message = messageSourceAccessor;

@@ -63,6 +63,18 @@ spring:
           uri: http://localhost:8002
           predicates:
             - Path=/app/member/**
+        - id: mall-web-app-base
+          uri: http://localhost:8003
+          predicates:
+            - Path=/app/base/**
+        - id: mall-web-app-file
+          uri: http://localhost:8004
+          predicates:
+            - Path=/app/file/**
+        - id: mall-web-app-sms
+          uri: http://localhost:8005
+          predicates:
+            - Path=/app/sms/**
     stream:
       binding-retry-interval: 7200
       rocketmq:
