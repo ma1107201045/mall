@@ -43,7 +43,6 @@ public class AppConverter {
     public MemberReqDTO to(AppLoginDTO appLoginDTO, Long memberLevelId) {
         MemberReqDTO memberReqDTO = new MemberReqDTO();
         memberReqDTO.setMemberLevelId(memberLevelId);
-        memberReqDTO.setUserName(SnowFlakeIdUtil.nextStr());
         memberReqDTO.setNickname(UserNameUtil.getRightFourBit(appLoginDTO.getPhoneNumber()));
         memberReqDTO.setPhoneNumber(appLoginDTO.getPhoneNumber());
         memberReqDTO.setIsEnable(WhetherEnum.Y.getCode());

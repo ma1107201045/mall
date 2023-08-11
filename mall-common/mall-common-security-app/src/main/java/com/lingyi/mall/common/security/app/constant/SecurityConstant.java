@@ -32,6 +32,7 @@ public class SecurityConstant {
             new AntPathRequestMatcher("/app/sms/captchas/verify", HttpMethod.POST.name()),
             new AntPathRequestMatcher("/app/member/members", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/app/member/members", HttpMethod.POST.name()),
+            new AntPathRequestMatcher("/app/member/member-levels", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/admin/system/logs", HttpMethod.POST.name()));
     public static final String AUTHORIZATION = "Authorization";
     public static final String JWT_KEY = "199726ma.";

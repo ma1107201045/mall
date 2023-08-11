@@ -56,6 +56,11 @@ spring:
             loggerLevel: FULL
             connectTimeout: 5000
             readTimeout: 5000
+    stream:
+      binding-retry-interval: 7200
+      rocketmq:
+        binder:
+          name-server: 36.137.103.166:9876
 # springdoc-openapi项目配置
 springdoc:
   swagger-ui:

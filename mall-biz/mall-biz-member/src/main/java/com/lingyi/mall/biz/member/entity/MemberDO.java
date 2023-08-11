@@ -32,10 +32,13 @@ public class MemberDO extends BaseIdDO implements Serializable {
     @JoinColumn(name = "member_level_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '会员等级id'", foreignKey = @ForeignKey(name = "fk_member_level_id"))
     private MemberLevelDO memberLevelDO;
 
-    @Column(name = "user_name", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '用户名称'")
+    @Column(name = "user_name", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '用户名称'")
     private String userName;
 
-    @Column(name = "nickname", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '用户名称'")
+    @Column(name = "password", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '用户密码'")
+    private String password;
+
+    @Column(name = "nickname", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '用户昵称'")
     private String nickname;
 
     @Column(name = "sex", columnDefinition = "TINYINT(4) UNSIGNED COMMENT '性别 1 男 2 女'")
@@ -44,7 +47,7 @@ public class MemberDO extends BaseIdDO implements Serializable {
     @Column(name = "birthday", columnDefinition = "DATE COMMENT '生日'")
     private LocalDate birthday;
 
-    @Column(name = "phone_number", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '手机号'")
+    @Column(name = "phone_number", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '手机号'")
     private String phoneNumber;
 
     @Column(name = "head_portrait", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '头像'")

@@ -69,6 +69,7 @@ public class MemberServiceImpl implements MemberService {
         MemberDO memberDO = ConverterUtil.to(memberReqDTO, MemberDO.class);
         MemberLevelDO memberLevelDO = new MemberLevelDO();
         memberLevelDO.setId(memberReqDTO.getMemberLevelId());
+        memberDO.setMemberLevelDO(memberLevelDO);
         create(memberDO);
     }
 

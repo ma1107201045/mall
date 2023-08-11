@@ -69,8 +69,9 @@ public class AppServiceImpl implements AppService {
             AssertUtil.notNull(memberLevelId, AppFailEnum.MEMBER_DEFAULT_LEVEL_ID_NULL_ERROR);
             //注册会员
             MemberReqDTO memberReqDTO = AppConverter.INSTANCE.to(appLoginDTO, memberLevelId);
-            memberRespDTO = ConverterUtil.to(memberReqDTO, MemberRespDTO.class);
             memberFeignConsumer.register(memberReqDTO);
+            //转换数据
+            memberRespDTO = ConverterUtil.to(memberReqDTO, MemberRespDTO.class);
         }
         //通过会员信息生成token
         AppLoginVO appLoginVO = ConverterUtil.to(memberRespDTO, AppLoginVO.class);

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public final class SmsRedisKeyUtil {
-    private static final String CAPTCHA_EXPIRY_DATA_KEY_FORMAT = "%s:captcha-expire-date:%s:%s:%s";
+    private static final String CAPTCHA_KEY_FORMAT = "%s:captcha-expire-date:%s:%s:%s";
     private static final String CAPTCHA_INTERVAL_DATA_KEY_FORMAT = "%s:captcha-interval-date:%s:%s:%s";
     private static final String CAPTCHA_UPPER_LIMIT_KEY_FORMAT = "%s:captcha-upper-limit:%s:%s:%s";
 
@@ -20,8 +20,8 @@ public final class SmsRedisKeyUtil {
     private String applicationName;
 
 
-    public String getCaptchaExpiryDateKey(CaptchaReqDTO captchaReqDTO) {
-        return String.format(CAPTCHA_EXPIRY_DATA_KEY_FORMAT, applicationName,
+    public String getCaptchaKey(CaptchaReqDTO captchaReqDTO) {
+        return String.format(CAPTCHA_KEY_FORMAT, applicationName,
                 captchaReqDTO.getServiceType(), captchaReqDTO.getBusinessType(), captchaReqDTO.getPhoneNumber());
     }
 
