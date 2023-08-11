@@ -85,8 +85,7 @@ public class AppServiceImpl implements AppService {
     @Override
     public void logout(String token) {
         String tokenBlacklistKey = appRedisKeyUtil.getTokenBlacklistKey(token);
-        JWTPayload payload = JWTUtil.parseToken(token).getPayload();
-        Date expiresAt = (Date) payload.getClaim(JWTPayload.EXPIRES_AT);
+        Date expiresAt = JwtUtil.getJwtPayloadExp(token);
         long expiryDate = DateUtil.between(expiresAt, DateUtil.date(), DateUnit.SECOND);
         redisUtil.set(tokenBlacklistKey, RandomUtil.randomInt(), expiryDate, TimeUnit.MINUTES);
     }

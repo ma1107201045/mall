@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
+import com.lingyi.mall.common.base.constant.BaseConstant;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
@@ -34,9 +35,6 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class CustomWebMvcConfigurer implements WebMvcConfigurer {
 
-    private static final String DEFAULT_DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
-    private static final String DEFAULT_DATE_PATTERN = "yyyy-MM-dd";
-    private static final String DEFAULT_TIME_PATTERN = "HH:mm:ss";
 
     private final CustomAsyncConfigurer customAsyncConfigurer;
 
@@ -60,18 +58,18 @@ public class CustomWebMvcConfigurer implements WebMvcConfigurer {
         SimpleModule simpleModule = new SimpleModule();
 
         //  LocalDateTime时间格式化
-        simpleModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(DEFAULT_DATE_TIME_PATTERN)));
+        simpleModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(BaseConstant.DEFAULT_DATE_TIME_PATTERN)));
 
         // LocalDate时间格式化
-        simpleModule.addSerializer(LocalDate.class, new LocalDateSerializer(DateTimeFormatter.ofPattern(DEFAULT_DATE_PATTERN)));
+        simpleModule.addSerializer(LocalDate.class, new LocalDateSerializer(DateTimeFormatter.ofPattern(BaseConstant.DEFAULT_DATE_PATTERN)));
 
         // LocalTime时间格式化
-        simpleModule.addSerializer(LocalTime.class, new LocalTimeSerializer(DateTimeFormatter.ofPattern(DEFAULT_TIME_PATTERN)));
+        simpleModule.addSerializer(LocalTime.class, new LocalTimeSerializer(DateTimeFormatter.ofPattern(BaseConstant.DEFAULT_TIME_PATTERN)));
         objectMapper.registerModule(simpleModule);
 
         //Data 时间格式化
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        objectMapper.setDateFormat(new SimpleDateFormat(DEFAULT_DATE_TIME_PATTERN));
+        objectMapper.setDateFormat(new SimpleDateFormat(BaseConstant.DEFAULT_DATE_TIME_PATTERN));
         mappingJackson2HttpMessageConverter.setObjectMapper(objectMapper);
         converters.add(0, mappingJackson2HttpMessageConverter);
         //需要追加byte，否则springdoc-openapi接口会响应Base64编码内容，导致接口文档显示失败

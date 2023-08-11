@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONObject;
 import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTHeader;
 import cn.hutool.jwt.JWTPayload;
@@ -36,8 +37,8 @@ public class JwtUtil {
         jwtPayload.setNotBefore(date);
         jwtPayload.setIssuedAt(date);
         jwtPayload.setExpiresAt(DateUtil.offset(date, DateField.MINUTE, SecurityConstant.TOKEN_EXPIRATION_TIME_VALUE));
-        jwtPayload.setJWTId(String.valueOf(memberRespDTO.getMemberId()));
-        return JWTUtil.createToken(map, SecurityConstant.JWT_KEY.getBytes(StandardCharsets.UTF_8));
+        jwtPayload.setJWTId(memberRespDTO.getMemberId().toString());
+        return JWTUtil.createToken(jwtPayload.getClaimsJson(), SecurityConstant.JWT_KEY.getBytes(StandardCharsets.UTF_8));
     }
 
     public static boolean verifyToken(String token) {

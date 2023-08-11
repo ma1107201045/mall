@@ -1,5 +1,6 @@
 package com.lingyi.mall.api.member.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
@@ -55,5 +56,6 @@ public class MemberRespDTO {
     private Integer registerSource;
 
     @Schema(description = "注册时间")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime registerDataTime;
 }
