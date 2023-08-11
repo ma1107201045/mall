@@ -26,8 +26,8 @@ public class CommonWriteUtil {
     }
 
     public static void write(HttpServletResponse response, AuthenticationException exception) {
-        log.error("认证失败，错误原因:", exception);
-        response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        log.error("登录失败，错误原因:", exception);
+        response.setStatus(HttpStatus.OK.value());
         response.setContentType(MediaType.APPLICATION_JSON.toString());
         response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
         PrintWriter writer;
