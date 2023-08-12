@@ -1,6 +1,7 @@
 package com.lingyi.mall.auth.app.controller;
 
 import com.lingyi.mall.auth.app.dto.AppLoginDTO;
+import com.lingyi.mall.auth.app.dto.AppSendDTO;
 import com.lingyi.mall.auth.app.service.AppService;
 import com.lingyi.mall.auth.app.vo.AppLoginVO;
 import com.lingyi.mall.common.base.util.ServerResponse;
@@ -29,9 +30,9 @@ public class AppController {
     private final AppService appService;
 
     @Operation(summary = "发送短信验证码", description = "发送短信验证码")
-    @GetMapping("/send-sms-captcha")
-    public ServerResponse<Void> sendSmsCaptcha(@NotBlank(message = "手机号不能为空") String phoneNumber) {
-        appService.sendSmsCaptcha(phoneNumber);
+    @PostMapping("/send")
+    public ServerResponse<Void> send(AppSendDTO appSendDTO) {
+        appService.send(appSendDTO);
         return ServerResponse.success();
     }
 

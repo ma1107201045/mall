@@ -1,6 +1,7 @@
 package com.lingyi.mall.auth.app.service;
 
 import com.lingyi.mall.auth.app.dto.AppLoginDTO;
+import com.lingyi.mall.auth.app.dto.AppSendDTO;
 import com.lingyi.mall.auth.app.vo.AppLoginVO;
 
 /**
@@ -14,14 +15,14 @@ public interface AppService {
     /**
      * 发送短信验证码
      *
-     * @param phoneNumber 手机号
+     * @param appSendDTO 发送dto
      */
-    void sendSmsCaptcha(String phoneNumber);
+    void send(AppSendDTO appSendDTO);
 
     /**
-     * 登录（手机号登录）
+     * 手机号登录
      *
-     * @param appLoginDTO 登录
+     * @param appLoginDTO 登录DTO
      * @return AppLoginVO
      */
     AppLoginVO login(AppLoginDTO appLoginDTO);

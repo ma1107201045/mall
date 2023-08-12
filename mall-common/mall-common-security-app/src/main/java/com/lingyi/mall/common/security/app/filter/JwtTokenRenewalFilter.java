@@ -38,8 +38,7 @@ public class JwtTokenRenewalFilter extends AbstractJwtTokenFilter {
         String oldToken = request.getHeader(SecurityConstant.AUTHORIZATION);
         if (StrUtil.isNotBlank(oldToken)) {
             Date expiresAt = JwtUtil.getJwtPayloadExp(oldToken);
-            if (!expiresAt.before(DateUtil.date())) {
-                //TODO token失效放入黑名单，防止二次请求
+            if (!DateUtil.date().after(expiresAt)) {
                 String phoneNumber = JwtUtil.getJwtPayloadPhoneNumber(oldToken);
                 MemberRespDTO memberRespDTO = memberFeignConsumer.getByPhoneNumber(phoneNumber);
                 String token = JwtUtil.createToken(memberRespDTO);

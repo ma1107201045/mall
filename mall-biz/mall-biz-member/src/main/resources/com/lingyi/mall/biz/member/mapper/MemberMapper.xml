@@ -28,13 +28,13 @@
             AND user_name LIKE CONCAT('%',#{userName,jdbcType=VARCHAR},'%')
         </if>
     </sql>
-    <select id="selectById" resultType="com.lingyi.mall.biz.member.vo.MemberVO">
+    <select id="selectById" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
         FROM mm_member
         WHERE id#{id,jdbcType=BIGINT}
     </select>
-    <select id="selectListByParam" resultType="com.lingyi.mall.biz.member.vo.MemberVO">
+    <select id="selectListByParam" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
         FROM mm_member

@@ -56,6 +56,5 @@ public class MemberRespDTO {
     private Integer registerSource;
 
     @Schema(description = "注册时间")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime registerDataTime;
 }

@@ -20,19 +20,13 @@ public class SecurityConstant {
             new AntPathRequestMatcher("/doc.html", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/webjars/**", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/v3/**", HttpMethod.GET.name()),
-            new AntPathRequestMatcher("/auth/app/**", HttpMethod.GET.name()),
-            new AntPathRequestMatcher("/auth/app/**", HttpMethod.HEAD.name()),
-            new AntPathRequestMatcher("/auth/app/**", HttpMethod.POST.name()),
-            new AntPathRequestMatcher("/auth/app/**", HttpMethod.PUT.name()),
-            new AntPathRequestMatcher("/auth/app/**", HttpMethod.PATCH.name()),
-            new AntPathRequestMatcher("/auth/app/**", HttpMethod.DELETE.name()),
-            new AntPathRequestMatcher("/auth/app/**", HttpMethod.OPTIONS.name()),
-            new AntPathRequestMatcher("/auth/app/**", HttpMethod.TRACE.name()),
+            new AntPathRequestMatcher("/auth/app/send", HttpMethod.POST.name()),
+            new AntPathRequestMatcher("/auth/app/login", HttpMethod.POST.name()),
             new AntPathRequestMatcher("/app/sms/captchas/send", HttpMethod.POST.name()),
             new AntPathRequestMatcher("/app/sms/captchas/verify", HttpMethod.POST.name()),
+            new AntPathRequestMatcher("/app/member/member-levels", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/app/member/members", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/app/member/members", HttpMethod.POST.name()),
-            new AntPathRequestMatcher("/app/member/member-levels", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/admin/system/logs", HttpMethod.POST.name()));
     public static final String AUTHORIZATION = "Authorization";
     public static final String JWT_KEY = "199726ma.";

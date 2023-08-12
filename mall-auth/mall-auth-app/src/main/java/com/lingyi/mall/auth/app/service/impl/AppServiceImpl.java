@@ -14,6 +14,7 @@ import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
 import com.lingyi.mall.auth.app.converter.AppConverter;
 import com.lingyi.mall.auth.app.dto.AppLoginDTO;
+import com.lingyi.mall.auth.app.dto.AppSendDTO;
 import com.lingyi.mall.auth.app.enums.AppFailEnum;
 import com.lingyi.mall.auth.app.properties.SmsCaptchaProperties;
 import com.lingyi.mall.auth.app.service.AppService;
@@ -57,6 +58,12 @@ public class AppServiceImpl implements AppService {
     private final AppRedisKeyUtil appRedisKeyUtil;
 
     @Override
+    public void send(AppSendDTO appSendDTO) {
+        CaptchaSendReqDTO captchaSendReqDTO = AppConverter.INSTANCE.to(appSendDTO.getPhoneNumber(), properties);
+        captchaFeignConsumer.send(captchaSendReqDTO);
+    }
+
+    @Override
     public AppLoginVO login(AppLoginDTO appLoginDTO) {
         //转换数据并且校验短信验证码
         CaptchaVerifyReqDTO captchaVerifyReqDTO = AppConverter.INSTANCE.to(appLoginDTO, properties);
@@ -84,16 +91,11 @@ public class AppServiceImpl implements AppService {
 
     @Override
     public void logout(String token) {
-        String tokenBlacklistKey = appRedisKeyUtil.getTokenBlacklistKey(token);
         Date expiresAt = JwtUtil.getJwtPayloadExp(token);
         long expiryDate = DateUtil.between(expiresAt, DateUtil.date(), DateUnit.SECOND);
+        String tokenBlacklistKey = appRedisKeyUtil.getTokenBlacklistKey(token);
         redisUtil.set(tokenBlacklistKey, RandomUtil.randomInt(), expiryDate, TimeUnit.MINUTES);
     }
 
 
-    @Override
-    public void sendSmsCaptcha(String phoneNumber) {
-        CaptchaSendReqDTO captchaSendReqDTO = AppConverter.INSTANCE.to(phoneNumber, properties);
-        captchaFeignConsumer.send(captchaSendReqDTO);
-    }
 }
