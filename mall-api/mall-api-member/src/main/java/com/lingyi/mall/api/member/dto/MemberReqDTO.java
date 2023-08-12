@@ -9,11 +9,10 @@ import java.time.LocalDateTime;
  * @author maweiyan
  * @email 1107201045@qq.com
  * @datetime 2023/7/21 9:13
- * @description
+ * @description 会员 Request
  */
-@Schema(description = "会员")
 @Data
-public class MemberReqDTO  {
+public class MemberReqDTO {
 
     /**
      * 会员等级id

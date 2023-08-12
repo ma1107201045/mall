@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -66,14 +64,25 @@ public class LogReqDTO {
      */
     private String remark;
 
-
-    private String trackId;
-
+    /**
+     * 创建人
+     */
     private String createBy;
-
+    /**
+     * 创建人
+     */
     private LocalDateTime createDateTime;
-
+    /**
+     * 最后一次更新人
+     */
     private String lastModifyBy;
-
+    /**
+     * 最后一次更新时间
+     */
     private LocalDateTime lastModifyDateTime;
+
+    /**
+     * 链路id
+     */
+    private String trackId;
 }
