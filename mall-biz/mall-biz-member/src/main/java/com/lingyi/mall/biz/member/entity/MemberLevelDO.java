@@ -7,6 +7,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -23,6 +24,7 @@ import java.math.BigDecimal;
 @ToString(callSuper = true)
 @Entity
 @Table(name = "mm_member_level")
+@DynamicInsert
 public class MemberLevelDO extends BaseIdDO implements Serializable {
 
     @Serial

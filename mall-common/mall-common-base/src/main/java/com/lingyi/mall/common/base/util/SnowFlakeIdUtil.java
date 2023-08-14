@@ -2,12 +2,8 @@ package com.lingyi.mall.common.base.util;
 
 import cn.hutool.core.lang.Singleton;
 import cn.hutool.core.net.NetUtil;
-import cn.hutool.core.util.NumberUtil;
-import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.common.base.constant.BaseConstant;
 
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.Arrays;
 
 /**
@@ -54,21 +50,19 @@ public final class SnowFlakeIdUtil {
         return Arrays.stream(localhostStr.split(BaseConstant.POINT_CHAR_REGEX)).mapToLong(Long::parseLong).sum();
     }
 
-
-    private static String getBinaryStr(long value) {
-        String str = StrUtil.fillBefore(NumberUtil.getBinaryStr(value), '0', 64);
-        System.out.println(str.length());
-        return str.charAt(0) + " - " + str.substring(1, 42) + " - " + str.substring(42, 47) + " " + str.substring(47, 57) + " - " + str.substring(57);
-    }
-
-    public static void main(String[] args) {
-        System.out.println(LocalDateTime.of(2023, 5, 1, 0, 0, 0, 0).toEpochSecond(ZoneOffset.of("+8")));
-        System.out.println(LocalDateTime.of(2023, 5, 1, 0, 0, 0, 0).toInstant(ZoneOffset.of("+8")).toEpochMilli());
-        System.out.println(nextId());
-        System.out.println(getBinaryStr(nextId()));
-        System.out.println(getBinaryStr(2479464776777472L));
-        System.out.println(getBinaryStr(2479464877440768L));
-    }
-
+//    public static void main(String[] args) {
+//        System.out.println(LocalDateTime.of(2023, 5, 1, 0, 0, 0, 0).toEpochSecond(ZoneOffset.of("+8")));
+//        System.out.println(LocalDateTime.of(2023, 5, 1, 0, 0, 0, 0).toInstant(ZoneOffset.of("+8")).toEpochMilli());
+//        System.out.println(nextId());
+//        System.out.println(getBinaryStr(nextId()));
+//        System.out.println(getBinaryStr(2479464776777472L));
+//        System.out.println(getBinaryStr(2479464877440768L));
+//    }
+//
+//    private static String getBinaryStr(long value) {
+//        String str = StrUtil.fillBefore(NumberUtil.getBinaryStr(value), '0', 64);
+//        System.out.println(str.length());
+//        return str.charAt(0) + " - " + str.substring(1, 42) + " - " + str.substring(42, 47) + " " + str.substring(47, 57) + " - " + str.substring(57);
+//    }
 
 }
