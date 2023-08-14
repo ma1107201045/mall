@@ -60,8 +60,8 @@ public class MemberLevelServiceImpl implements MemberLevelService {
     }
 
     @Override
-    public List<MemberLevelVO> readListByParam(MemberLevelParam param) {
-        return null;
+    public List<MemberLevelVO> readListByParam(MemberLevelParam memberLevelParam) {
+        return memberLevelMapper.selectListByParam(memberLevelParam);
     }
 
     @Override
