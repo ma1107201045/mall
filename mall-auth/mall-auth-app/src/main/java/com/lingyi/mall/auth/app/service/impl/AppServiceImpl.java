@@ -3,8 +3,6 @@ package com.lingyi.mall.auth.app.service.impl;
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.RandomUtil;
-import cn.hutool.jwt.JWTPayload;
-import cn.hutool.jwt.JWTUtil;
 import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
 import com.lingyi.mall.api.member.consumer.MemberLevelFeignConsumer;
 import com.lingyi.mall.api.member.dto.MemberReqDTO;
@@ -30,7 +28,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;

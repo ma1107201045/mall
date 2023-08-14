@@ -6,7 +6,7 @@
     <version>${revision}</version>
     <packaging>pom</packaging>
     <name>mall</name>
-    <description>电商项目父工程</description>
+    <description>mall parent project.</description>
     <modules>
         <module>mall-api</module>
         <module>mall-auth</module>

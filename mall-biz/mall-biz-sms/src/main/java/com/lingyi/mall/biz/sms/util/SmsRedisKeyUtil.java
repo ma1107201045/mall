@@ -1,13 +1,8 @@
 package com.lingyi.mall.biz.sms.util;
 
-import com.fasterxml.jackson.databind.type.ClassKey;
 import com.lingyi.mall.api.sms.dto.CaptchaReqDTO;
-import com.lingyi.mall.common.base.constant.BaseConstant;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * @author maweiyan
