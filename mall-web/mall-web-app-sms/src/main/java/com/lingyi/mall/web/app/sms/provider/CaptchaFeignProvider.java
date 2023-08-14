@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @datetime 2023/7/13 16:18
  * @description
  */
+@Tag(name = "短信验证码", description = "短信验证码")
 @Slf4j
-@Tag(name = "前台【短信服务-验证码-Provider】", description = "前台【短信服务-验证码-Provider】")
 @RequiredArgsConstructor
 @RestController
 public class CaptchaFeignProvider implements CaptchaFeign {

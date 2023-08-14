@@ -25,6 +25,10 @@ public class HttpUtil {
         return getServletRequestAttributes().getRequest();
     }
 
+    public static String getHeader(String name) {
+        return getRequest().getHeader(name);
+    }
+
     public static HttpServletResponse getResponse() {
         return getServletRequestAttributes().getResponse();
     }

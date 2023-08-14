@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @datetime 2023/7/21 9:29
  * @description
  */
-@Tag(name = "前台【会员服务-会员等级-Provider】", description = "前台【会员服务-会员等级-Provider】")
+@Tag(name = "会员等级", description = "会员等级")
 @RequiredArgsConstructor
 @RestController
 public class MemberLevelProvider implements MemberLevelFeign {

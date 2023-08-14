@@ -19,15 +19,7 @@
         <module>mall-common-security-common</module>
         <module>mall-common-security-merchant</module>
     </modules>
-    <properties>
-        <hutool-all.version>5.8.20</hutool-all.version>
-        <fastjson2.verson>2.0.25</fastjson2.verson>
-        <springdoc-openapi-starter-webmvc-ui.version>2.1.0</springdoc-openapi-starter-webmvc-ui.version>
-        <springdoc-openapi-starter-webflux-ui.version>2.1.0</springdoc-openapi-starter-webflux-ui.version>
-        <knife4j-openapi3-jakarta-spring-boot-starte.version>4.1.0</knife4j-openapi3-jakarta-spring-boot-starte.version>
-        <redisson-spring-boot-starter.version>3.23.0</redisson-spring-boot-starter.version>
-        <rocketmq-spring-boot-starter.version>2.2.3</rocketmq-spring-boot-starter.version>
-    </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>

@@ -30,8 +30,6 @@ public interface AppService {
 
     /**
      * 注销
-     *
-     * @param token 令牌
      */
-    void logout(String token);
+    void logout();
 }

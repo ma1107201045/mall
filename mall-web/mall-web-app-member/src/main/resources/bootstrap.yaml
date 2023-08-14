@@ -61,15 +61,19 @@ spring:
       rocketmq:
         binder:
           name-server: 36.137.103.166:9876
-# springdoc-openapi项目配置
+#mybatis config
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+# springdoc-openapi config
 springdoc:
   swagger-ui:
     tags-sorter: alpha
     operations-sorter: alpha
   group-configs:
-    - group: '系统管理服务【后台】'
+    - group: 'APP-会员服务'
       paths-to-match: '/**'
-      packages-to-scan: com.lingyi.mall.biz.system.b.controller
-mybatis:
-  configuration:
-    map-underscore-to-camel-case: true
+      packages-to-scan: com.lingyi.mall.web.app.member.controller
+    - group: 'APP-会员服务-provider'
+      paths-to-match: '/**'
+      packages-to-scan: com.lingyi.mall.web.app.member.provider

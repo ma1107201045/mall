@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @datetime 2023/5/31 9:07
  * @description
  */
-@Tag(name = "【会员服务】", description = "【会员服务】")
+@Tag(name = "会员服务", description = "会员服务")
 @RequestMapping("/app/member/members")
 @RestController
 @RequiredArgsConstructor

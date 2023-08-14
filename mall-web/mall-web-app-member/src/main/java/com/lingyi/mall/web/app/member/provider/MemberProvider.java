@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @datetime 2023/6/1 15:35
  * @description
  */
-@Tag(name = "前台【会员服务-用户-Provider】", description = "前台【会员服务-用户-Provider】")
+@Tag(name = "会员服务", description = "会员服务")
 @RequiredArgsConstructor
 @RestController
 public class MemberProvider implements MemberFeign {

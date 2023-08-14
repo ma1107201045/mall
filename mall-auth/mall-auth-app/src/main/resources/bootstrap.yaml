@@ -50,6 +50,16 @@ sms-captcha:
   expiry-date: 30
   interval-date: 1
   upper-limit: 10
+# springdoc-openapi config
+springdoc:
+  swagger-ui:
+    tags-sorter: alpha
+    operations-sorter: alpha
+  group-configs:
+    - group: 'APP-认证服务'
+      paths-to-match: '/**'
+      packages-to-scan: com.lingyi.mall.auth.app.controller
+
 
 
 

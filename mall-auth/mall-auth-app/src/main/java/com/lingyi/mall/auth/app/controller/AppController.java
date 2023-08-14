@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  * @datetime 2023/5/25 15:25
  * @description
  */
-@Tag(name = "app认证", description = "登录、验证码相关接口")
+@Tag(name = "认证", description = "认证")
 @Validated
 @RestController
 @RequestMapping("/auth/app")
@@ -46,8 +46,8 @@ public class AppController {
 
     @Operation(summary = "注销", description = "注销")
     @PostMapping("/logout")
-    public ServerResponse<AppLoginVO> logout(@NotBlank(message = "令牌不能为空") @RequestHeader(SecurityConstant.AUTHORIZATION) String token) {
-        appService.logout(token);
+    public ServerResponse<AppLoginVO> logout() {
+        appService.logout();
         return ServerResponse.success();
     }
 

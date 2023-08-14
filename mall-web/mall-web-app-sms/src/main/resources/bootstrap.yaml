@@ -66,5 +66,21 @@ rocketmq:
   producer:
     group: group02
     send-message-timeout: 300000
+#mybatis config
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+# springdoc-openapi config
+springdoc:
+  swagger-ui:
+    tags-sorter: alpha
+    operations-sorter: alpha
+  group-configs:
+    - group: 'APP-短信服务'
+      paths-to-match: '/**'
+      packages-to-scan: com.lingyi.mall.web.app.sms.controller
+    - group: 'APP-短信服务-provider'
+      paths-to-match: '/**'
+      packages-to-scan: com.lingyi.mall.web.app.sms.provider
 
 
