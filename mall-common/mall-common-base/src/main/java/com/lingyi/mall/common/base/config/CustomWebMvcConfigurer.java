@@ -54,35 +54,35 @@ public class CustomWebMvcConfigurer implements WebMvcConfigurer {
      */
     @Override
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
-        MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
-
-        ObjectMapper objectMapper = mappingJackson2HttpMessageConverter.getObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        //TODO 日期反序列化问题
-        SimpleModule simpleModule = new SimpleModule();
-        //  LocalDateTime时间格式化
-        simpleModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(BaseConstant.DEFAULT_DATE_TIME_PATTERN)));
-        // LocalDate时间格式化
-        simpleModule.addSerializer(LocalDate.class, new LocalDateSerializer(DateTimeFormatter.ofPattern(BaseConstant.DEFAULT_DATE_PATTERN)));
-        // LocalTime时间格式化
-        simpleModule.addSerializer(LocalTime.class, new LocalTimeSerializer(DateTimeFormatter.ofPattern(BaseConstant.DEFAULT_TIME_PATTERN)));
-        // 字符串转成LocalDateTime
-        simpleModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(BaseConstant.DEFAULT_DATE_TIME_PATTERN)));
-        // 字符串转成LocalDate
-        simpleModule.addDeserializer(LocalDate.class, new LocalDateDeserializer(DateTimeFormatter.ofPattern(BaseConstant.DEFAULT_DATE_PATTERN)));
-        // 字符串转成LocalTime
-        simpleModule.addDeserializer(LocalTime.class, new LocalTimeDeserializer(DateTimeFormatter.ofPattern(BaseConstant.DEFAULT_TIME_PATTERN)));
-        objectMapper.registerModule(simpleModule);
-
+//        MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
+//
+//        ObjectMapper objectMapper = mappingJackson2HttpMessageConverter.getObjectMapper();
+//        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+//        //TODO 日期反序列化问题
+//        SimpleModule simpleModule = new SimpleModule();
+//        //  LocalDateTime时间格式化
+//        simpleModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(BaseConstant.DEFAULT_DATE_TIME_PATTERN)));
+//        // LocalDate时间格式化
+//        simpleModule.addSerializer(LocalDate.class, new LocalDateSerializer(DateTimeFormatter.ofPattern(BaseConstant.DEFAULT_DATE_PATTERN)));
+//        // LocalTime时间格式化
+//        simpleModule.addSerializer(LocalTime.class, new LocalTimeSerializer(DateTimeFormatter.ofPattern(BaseConstant.DEFAULT_TIME_PATTERN)));
+//        // 字符串转成LocalDateTime
+//        simpleModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(BaseConstant.DEFAULT_DATE_TIME_PATTERN)));
+//        // 字符串转成LocalDate
+//        simpleModule.addDeserializer(LocalDate.class, new LocalDateDeserializer(DateTimeFormatter.ofPattern(BaseConstant.DEFAULT_DATE_PATTERN)));
+//        // 字符串转成LocalTime
+//        simpleModule.addDeserializer(LocalTime.class, new LocalTimeDeserializer(DateTimeFormatter.ofPattern(BaseConstant.DEFAULT_TIME_PATTERN)));
+//        objectMapper.registerModule(simpleModule);
+//
 //        objectMapper.setDateFormat(new SimpleDateFormat(BaseConstant.DEFAULT_DATE_TIME_PATTERN));
-
-        mappingJackson2HttpMessageConverter.setObjectMapper(objectMapper);
-
-        converters.add(0, mappingJackson2HttpMessageConverter);
-        //需要追加byte，否则springdoc-openapi接口会响应Base64编码内容，导致接口文档显示失败
-        // https://github.com/springdoc/springdoc-openapi/issues/2143
-        //解决方案
-        converters.add(1, new ByteArrayHttpMessageConverter());
+//
+//        mappingJackson2HttpMessageConverter.setObjectMapper(objectMapper);
+//
+//        converters.add(0, mappingJackson2HttpMessageConverter);
+//        //需要追加byte，否则springdoc-openapi接口会响应Base64编码内容，导致接口文档显示失败
+//        // https://github.com/springdoc/springdoc-openapi/issues/2143
+//        //解决方案
+//        converters.add(1, new ByteArrayHttpMessageConverter());
 
 
     }

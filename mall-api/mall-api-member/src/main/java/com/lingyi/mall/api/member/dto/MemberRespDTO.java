@@ -17,7 +17,7 @@ public class MemberRespDTO {
     /**
      * 会员id
      */
-    private Long memberId;
+    private Long id;
     /**
      * 会员等级id
      */

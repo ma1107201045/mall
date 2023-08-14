@@ -37,7 +37,7 @@ public class JwtUtil {
         jwtPayload.setNotBefore(date);
         jwtPayload.setIssuedAt(date);
         jwtPayload.setExpiresAt(DateUtil.offset(date, DateField.MINUTE, SecurityConstant.TOKEN_EXPIRATION_TIME_VALUE));
-        jwtPayload.setJWTId(memberRespDTO.getMemberId().toString());
+        jwtPayload.setJWTId(memberRespDTO.getId().toString());
         return JWTUtil.createToken(jwtPayload.getClaimsJson(), SecurityConstant.JWT_KEY.getBytes(StandardCharsets.UTF_8));
     }
 
