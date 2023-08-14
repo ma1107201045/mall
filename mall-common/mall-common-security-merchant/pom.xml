@@ -7,4 +7,10 @@
         <version>${revision}</version>
     </parent>
     <artifactId>mall-common-security-merchant</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>mall-common-security-common</artifactId>
+        </dependency>
+    </dependencies>
 </project>
