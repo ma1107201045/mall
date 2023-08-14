@@ -77,13 +77,12 @@ public class AppServiceImpl implements AppService {
             //转换数据
             memberRespDTO = ConverterUtil.to(memberReqDTO, MemberRespDTO.class);
         }
-        //通过会员信息生成token
-        AppLoginVO appLoginVO = ConverterUtil.to(memberRespDTO, AppLoginVO.class);
+        //创建token
         String token = JwtUtil.createToken(memberRespDTO);
+        
         //设置返回头token
-        HttpServletResponse response = HttpUtil.getResponse();
-        response.addHeader(SecurityConstant.AUTHORIZATION, token);
-        return appLoginVO;
+        HttpUtil.addHeader(SecurityConstant.AUTHORIZATION, token);
+        return ConverterUtil.to(memberRespDTO, AppLoginVO.class);
     }
 
     @Override

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -21,6 +22,7 @@ import java.time.LocalDateTime;
 @ToString(callSuper = true)
 @Entity
 @Table(name = "mm_member_login_log")
+@DynamicInsert
 public class MemberLoginLogDO extends BaseIdDO implements Serializable {
     @Serial
     private static final long serialVersionUID = 7083829914819620788L;

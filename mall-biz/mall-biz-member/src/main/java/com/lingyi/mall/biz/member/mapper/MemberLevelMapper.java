@@ -1,6 +1,10 @@
 package com.lingyi.mall.biz.member.mapper;
 
+import com.lingyi.mall.biz.member.param.MemberLevelParam;
+import com.lingyi.mall.biz.member.vo.MemberLevelVO;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * @author maweiyan
@@ -11,6 +15,9 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface MemberLevelMapper {
 
+    MemberLevelVO selectById(Long id);
+
+    List<MemberLevelVO> selectListByParam(MemberLevelParam memberLevelParam);
 
     Long selectIdByIsDefaultLevel(Integer isDefaultLevel);
 }

@@ -27,7 +27,6 @@ import java.time.LocalDateTime;
 @EntityListeners(CustomEntityListener.class)
 public abstract class BaseCommonDO extends BaseIdDO {
 
-
     @CreatedBy
     @Column(name = "create_by", updatable = false, columnDefinition = "VARCHAR(20) NOT NULL COMMENT '创建人'")
     protected String createBy;
