@@ -2,7 +2,7 @@ package com.lingyi.mall.common.security.app.config;
 
 import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
 import com.lingyi.mall.common.base.filter.TrackIdFilter;
-import com.lingyi.mall.common.cache.util.RedisUtil;
+import com.lingyi.mall.common.redis.util.RedisUtil;
 import com.lingyi.mall.common.security.app.filter.JwtTokenAuthorizationFilter;
 import com.lingyi.mall.common.security.app.filter.JwtTokenBlacklistFilter;
 import com.lingyi.mall.common.security.app.filter.JwtTokenRenewalFilter;

@@ -72,19 +72,25 @@
             <!-- mall common jar-->
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>mall-common-base</artifactId>
+                <artifactId>mall-common-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>mall-common-cache</artifactId>
+                <artifactId>mall-common-elasticsearch</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>mall-common-mq</artifactId>
+                <artifactId>mall-common-rocketmq</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>mall-common-redis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>mall-common-security-admin</artifactId>

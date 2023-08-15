@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.cache.util;
+package com.lingyi.mall.common.redis.util;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -6,7 +6,7 @@
         <artifactId>mall-common</artifactId>
         <version>${revision}</version>
     </parent>
-    <artifactId>mall-common-base</artifactId>
+    <artifactId>mall-common-core</artifactId>
     <dependencies>
         <dependency>
             <groupId>cn.hutool</groupId>

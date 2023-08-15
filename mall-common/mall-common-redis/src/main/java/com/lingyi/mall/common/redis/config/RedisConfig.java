@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.cache.config;
+package com.lingyi.mall.common.redis.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.cache.aspect;
+package com.lingyi.mall.common.redis.aspect;
 
 import com.lingyi.mall.common.base.util.SpelUtil;
 import lombok.RequiredArgsConstructor;

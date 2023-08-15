@@ -4,6 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTUtil;
 import com.lingyi.mall.common.base.constant.BaseConstant;
+import com.lingyi.mall.common.base.util.HttpUtil;
 import com.lingyi.mall.common.security.app.entity.MemberDetailsDO;
 import com.lingyi.mall.common.security.common.util.Authenticator;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,20 +28,11 @@ public class AuthenticatorUtil {
      * @return UserDetailsEntity
      */
     public static MemberDetailsDO getMemberDetailsDO() {
-        // 获取原请求属性
-        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        //判空
-        if (Objects.isNull(attributes)) {
-            return MemberDetailsDO.builder().build();
-        }
-        // 获取原请求
-        HttpServletRequest request = attributes.getRequest();
-        String token = request.getHeader(BaseConstant.AUTHORIZATION);
+        String token = HttpUtil.getHeader(BaseConstant.AUTHORIZATION);
         if (StrUtil.isBlank(token)) {
             return MemberDetailsDO.builder().build();
         }
-        JWT jwt = JWTUtil.parseToken(token);
-        return jwt.getPayload().getClaimsJson().toBean(MemberDetailsDO.class);
+        return JwtUtil.getJwtPayload(token).getClaimsJson().toBean(MemberDetailsDO.class);
     }
 
     /**

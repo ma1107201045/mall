@@ -12,11 +12,11 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-base</artifactId>
+            <artifactId>mall-common-core</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-cache</artifactId>
+            <artifactId>mall-common-redis</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>

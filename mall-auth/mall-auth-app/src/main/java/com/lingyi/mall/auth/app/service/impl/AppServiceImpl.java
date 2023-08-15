@@ -20,11 +20,10 @@ import com.lingyi.mall.auth.app.vo.AppLoginVO;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.base.util.ConverterUtil;
 import com.lingyi.mall.common.base.util.HttpUtil;
-import com.lingyi.mall.common.cache.util.RedisUtil;
+import com.lingyi.mall.common.redis.util.RedisUtil;
 import com.lingyi.mall.common.security.app.constant.SecurityConstant;
 import com.lingyi.mall.common.security.app.util.AppRedisKeyUtil;
 import com.lingyi.mall.common.security.app.util.JwtUtil;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

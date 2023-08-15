@@ -2,7 +2,7 @@ package com.lingyi.mall.common.security.app.filter;
 
 import cn.hutool.core.util.ObjUtil;
 import cn.hutool.core.util.StrUtil;
-import com.lingyi.mall.common.cache.util.RedisUtil;
+import com.lingyi.mall.common.redis.util.RedisUtil;
 import com.lingyi.mall.common.security.app.constant.SecurityConstant;
 import com.lingyi.mall.common.security.app.util.AppRedisKeyUtil;
 import com.lingyi.mall.common.security.app.util.CommonWriteUtil;
