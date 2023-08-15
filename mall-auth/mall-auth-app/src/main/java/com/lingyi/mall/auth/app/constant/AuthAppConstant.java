@@ -6,7 +6,7 @@ package com.lingyi.mall.auth.app.constant;
  * @datetime 2023/7/13 16:35
  * @description
  */
-public class AppConstant {
+public class AuthAppConstant {
 
     public static final Integer LENGTH = 6;
     public static final Integer EXPIRY_DATE = 30;
@@ -14,7 +14,7 @@ public class AppConstant {
     public static final Integer UPPER_LIMIT = 10;
 
 
-    private AppConstant() {
+    private AuthAppConstant() {
 
     }
 

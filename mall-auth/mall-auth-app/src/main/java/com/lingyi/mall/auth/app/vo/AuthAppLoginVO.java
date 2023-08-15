@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
  */
 @Schema(description = "登录")
 @Data
-public class AppLoginVO {
+public class AuthAppLoginVO {
 
     @Schema(description = "会员id")
     private Long memberId;

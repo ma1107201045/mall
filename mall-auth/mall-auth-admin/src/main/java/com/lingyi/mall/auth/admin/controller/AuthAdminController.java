@@ -1,6 +1,6 @@
 package com.lingyi.mall.auth.admin.controller;
 
-import com.lingyi.mall.auth.admin.service.AdminService;
+import com.lingyi.mall.auth.admin.service.AuthAdminService;
 import com.lingyi.mall.common.security.common.aspetct.Log;
 import com.lingyi.mall.common.base.enums.OperationTypeEnum;
 import com.lingyi.mall.common.base.util.ServerResponse;
@@ -26,16 +26,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/auth/admin")
 @RequiredArgsConstructor
-public class AdminController {
+public class AuthAdminController {
 
-    private final AdminService adminService;
+    private final AuthAdminService authAdminService;
 
     @Operation(summary = "获取图形验证码-base64", description = "获取图形验证码-base64")
     @Log(title = "获取验证码", operationType = OperationTypeEnum.READ, ignoreParam = true)
     @GetMapping("/get-base64-image-captcha")
     @ResponseBody
     public ServerResponse<String> getBase64ImageCaptcha(HttpSession session) {
-        String imageCaptcha = adminService.readImageCaptcha(session);
+        String imageCaptcha = authAdminService.readImageCaptcha(session);
         return ServerResponse.success(imageCaptcha);
 
     }
@@ -44,6 +44,6 @@ public class AdminController {
     @Log(title = "获取图形验证码-二进制流", operationType = OperationTypeEnum.READ, ignoreParam = true)
     @GetMapping("/get-bin-image-captcha")
     public void writeBinImageCaptcha(HttpSession session, HttpServletResponse response) {
-        adminService.writeImageCaptcha(session, response);
+        authAdminService.writeImageCaptcha(session, response);
     }
 }

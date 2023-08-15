@@ -10,13 +10,13 @@ import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.api.sms.consumer.CaptchaFeignConsumer;
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
-import com.lingyi.mall.auth.app.converter.AppConverter;
-import com.lingyi.mall.auth.app.dto.AppLoginDTO;
-import com.lingyi.mall.auth.app.dto.AppSendDTO;
-import com.lingyi.mall.auth.app.enums.AppFailEnum;
+import com.lingyi.mall.auth.app.converter.AuthAppConverter;
+import com.lingyi.mall.auth.app.dto.AuthAppLoginDTO;
+import com.lingyi.mall.auth.app.dto.AuthAppSendDTO;
+import com.lingyi.mall.auth.app.enums.AuthAppFailEnum;
 import com.lingyi.mall.auth.app.properties.SmsCaptchaProperties;
-import com.lingyi.mall.auth.app.service.AppService;
-import com.lingyi.mall.auth.app.vo.AppLoginVO;
+import com.lingyi.mall.auth.app.service.AuthAppService;
+import com.lingyi.mall.auth.app.vo.AuthAppLoginVO;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.base.util.ConverterUtil;
 import com.lingyi.mall.common.base.util.HttpUtil;
@@ -39,7 +39,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 @RequiredArgsConstructor
-public class AppServiceImpl implements AppService {
+public class AuthAppServiceImpl implements AuthAppService {
 
     private final MemberFeignConsumer memberFeignConsumer;
 
@@ -54,24 +54,24 @@ public class AppServiceImpl implements AppService {
     private final AppRedisKeyUtil appRedisKeyUtil;
 
     @Override
-    public void send(AppSendDTO appSendDTO) {
-        CaptchaSendReqDTO captchaSendReqDTO = AppConverter.INSTANCE.to(appSendDTO.getPhoneNumber(), properties);
+    public void send(AuthAppSendDTO authAppSendDTO) {
+        CaptchaSendReqDTO captchaSendReqDTO = AuthAppConverter.INSTANCE.to(authAppSendDTO.getPhoneNumber(), properties);
         captchaFeignConsumer.send(captchaSendReqDTO);
     }
 
     @Override
-    public AppLoginVO login(AppLoginDTO appLoginDTO) {
+    public AuthAppLoginVO login(AuthAppLoginDTO authAppLoginDTO) {
         //转换数据并且校验短信验证码
-        CaptchaVerifyReqDTO captchaVerifyReqDTO = AppConverter.INSTANCE.to(appLoginDTO, properties);
+        CaptchaVerifyReqDTO captchaVerifyReqDTO = AuthAppConverter.INSTANCE.to(authAppLoginDTO, properties);
         captchaFeignConsumer.verify(captchaVerifyReqDTO);
 
         //通过手机号校验用户是否存在，不存在注册
-        MemberRespDTO memberRespDTO = memberFeignConsumer.getByPhoneNumber(appLoginDTO.getPhoneNumber());
+        MemberRespDTO memberRespDTO = memberFeignConsumer.getByPhoneNumber(authAppLoginDTO.getPhoneNumber());
         if (Objects.isNull(memberRespDTO)) {
             Long memberLevelId = memberLevelFeignConsumer.getDefaultLevelId();
-            AssertUtil.notNull(memberLevelId, AppFailEnum.MEMBER_DEFAULT_LEVEL_ID_NULL_ERROR);
+            AssertUtil.notNull(memberLevelId, AuthAppFailEnum.MEMBER_DEFAULT_LEVEL_ID_NULL_ERROR);
             //注册会员
-            MemberReqDTO memberReqDTO = AppConverter.INSTANCE.to(appLoginDTO, memberLevelId);
+            MemberReqDTO memberReqDTO = AuthAppConverter.INSTANCE.to(authAppLoginDTO, memberLevelId);
             memberFeignConsumer.register(memberReqDTO);
             //转换数据
             memberRespDTO = ConverterUtil.to(memberReqDTO, MemberRespDTO.class);
@@ -81,7 +81,7 @@ public class AppServiceImpl implements AppService {
         
         //设置返回头token
         HttpUtil.addHeader(SecurityConstant.AUTHORIZATION, token);
-        return ConverterUtil.to(memberRespDTO, AppLoginVO.class);
+        return ConverterUtil.to(memberRespDTO, AuthAppLoginVO.class);
     }
 
     @Override

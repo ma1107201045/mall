@@ -4,7 +4,7 @@ import cn.hutool.captcha.AbstractCaptcha;
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.generator.MathGenerator;
 import com.lingyi.mall.auth.admin.properties.ImageCaptchaProperties;
-import com.lingyi.mall.auth.admin.service.AdminService;
+import com.lingyi.mall.auth.admin.service.AuthAdminService;
 import com.lingyi.mall.common.base.util.CodeGeneratorProxy;
 import com.lingyi.mall.common.security.admin.constant.SecurityConstant;
 import jakarta.servlet.http.HttpServletResponse;
@@ -26,7 +26,7 @@ import java.io.OutputStream;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class AdminServiceImpl implements AdminService {
+public class AuthAdminServiceImpl implements AuthAdminService {
 
     private final ImageCaptchaProperties properties;
 

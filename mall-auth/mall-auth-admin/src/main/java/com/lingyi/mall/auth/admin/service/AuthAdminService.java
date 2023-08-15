@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpSession;
  * @datetime 2023/6/29 8:51
  * @description
  */
-public interface AdminService {
+public interface AuthAdminService {
 
 
     /**

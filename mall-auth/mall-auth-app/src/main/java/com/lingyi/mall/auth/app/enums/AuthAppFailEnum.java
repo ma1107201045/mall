@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Getter
 @RequiredArgsConstructor
-public enum AppFailEnum implements BaseFailEnum {
+public enum AuthAppFailEnum implements BaseFailEnum {
 
     MEMBER_DEFAULT_LEVEL_ID_NULL_ERROR(8001, "会员默认等级id不能为空");
 
