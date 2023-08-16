@@ -40,7 +40,8 @@
         <mybatis-plus-boot-starter.version>3.5.3.1</mybatis-plus-boot-starter.version>
         <mybatis-flex-spring-boot-starter.version>1.4.6</mybatis-flex-spring-boot-starter.version>
         <minio-springboot-starter.version>1.0.1</minio-springboot-starter.version>
-
+        <!-- mall other -->
+        <snakeyaml.version>2.0</snakeyaml.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -136,6 +137,11 @@
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
                 <version>${knife4j-openapi3-jakarta-spring-boot-starte.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-gateway-spring-boot-starter</artifactId>
+                <version>${knife4j-gateway-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.redisson</groupId>
@@ -248,6 +254,11 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>${snakeyaml.version}</version>
         </dependency>
     </dependencies>
 </project>

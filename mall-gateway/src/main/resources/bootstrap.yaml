@@ -85,6 +85,7 @@ spring:
 knife4j:
   gateway:
     enabled: true
+    strategy: discover
     discover:
       excluded-services: ${spring.application.name}
       version: OpenAPI3
