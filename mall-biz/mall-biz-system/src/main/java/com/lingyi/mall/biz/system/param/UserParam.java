@@ -20,10 +20,7 @@ import java.io.Serial;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class UserParam extends BasePageParam {
-
-    @Serial
-    private static final long serialVersionUID = 2130693581899316460L;
-
+    
     @Schema(description = "用户名称")
     private String userName;
 

@@ -19,8 +19,6 @@ import java.io.Serial;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class LogParam extends BasePageParam {
-    @Serial
-    private static final long serialVersionUID = 4894563992625944943L;
 
     @Schema(description = "标题")
     private String title;

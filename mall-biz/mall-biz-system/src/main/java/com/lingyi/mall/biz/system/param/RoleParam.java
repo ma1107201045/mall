@@ -20,9 +20,6 @@ import java.io.Serial;
 @ToString(callSuper = true)
 public class RoleParam extends BasePageParam {
 
-    @Serial
-    private static final long serialVersionUID = 7120127170693422674L;
-
     @Schema(description = "角色名称")
     private String name;
 }

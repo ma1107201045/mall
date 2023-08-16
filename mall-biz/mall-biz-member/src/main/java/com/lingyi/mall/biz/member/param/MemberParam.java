@@ -20,8 +20,6 @@ import java.io.Serializable;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 public class MemberParam extends BasePageParam {
-    @Serial
-    private static final long serialVersionUID = 2889287473826593426L;
 
     @Schema(description = "用户名称")
     private String userName;
