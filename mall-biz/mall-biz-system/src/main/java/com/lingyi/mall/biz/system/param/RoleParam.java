@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import java.io.Serial;
-
 /**
  * @author maweiyan
  * @email 1107201045@qq.com

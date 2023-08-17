@@ -2,7 +2,6 @@ package com.lingyi.mall.auth.app.service.impl;
 
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.net.Ipv4Util;
 import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
 import com.lingyi.mall.api.member.consumer.MemberLevelFeignConsumer;
@@ -30,8 +29,6 @@ import com.lingyi.mall.common.security.app.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 

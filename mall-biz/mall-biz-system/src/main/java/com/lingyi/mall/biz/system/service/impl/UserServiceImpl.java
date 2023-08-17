@@ -117,12 +117,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Long
-
-
-
-
-    countByParam(UserParam userParam) {
+    public Long countByParam(UserParam userParam) {
         return userMapper.countByParam(userParam);
     }
 
