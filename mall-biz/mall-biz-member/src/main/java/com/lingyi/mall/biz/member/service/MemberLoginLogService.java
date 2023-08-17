@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.member.service;
 
+import com.lingyi.mall.api.member.dto.MemberLoginLogReqDTO;
 import com.lingyi.mall.biz.member.entity.MemberLoginLogDO;
 import com.lingyi.mall.biz.member.param.MemberLoginParam;
 import com.lingyi.mall.biz.member.vo.MemberLoginLogVO;
@@ -12,4 +13,12 @@ import com.lingyi.mall.common.base.util.BaseService;
  * @description
  */
 public interface MemberLoginLogService extends BaseService<MemberLoginLogDO, MemberLoginParam, MemberLoginLogVO, Long> {
+
+
+    /**
+     * 保存会员登录日志
+     *
+     * @param memberLoginLogReqDTO 。。
+     */
+    void save(MemberLoginLogReqDTO memberLoginLogReqDTO);
 }

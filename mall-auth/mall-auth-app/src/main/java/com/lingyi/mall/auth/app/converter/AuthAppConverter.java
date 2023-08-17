@@ -1,7 +1,10 @@
 package com.lingyi.mall.auth.app.converter;
 
 import cn.hutool.core.util.RandomUtil;
+import cn.hutool.core.util.StrUtil;
+import com.lingyi.mall.api.member.dto.MemberLoginLogReqDTO;
 import com.lingyi.mall.api.member.dto.MemberReqDTO;
+import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
 import com.lingyi.mall.api.sms.enums.BusinessTypeEnum;
@@ -62,6 +65,16 @@ public class AuthAppConverter {
         captchaSendReqDTO.setUpperLimit(properties.getUpperLimit());
         captchaSendReqDTO.setRemark(ServiceTypeEnum.MALL_AUTH_APP.getMessage() + BaseConstant.COLON_CHAR + BusinessTypeEnum.LOGIN.getMessage());
         return captchaSendReqDTO;
+    }
+
+    public MemberLoginLogReqDTO to(MemberRespDTO memberRespDTO) {
+        MemberLoginLogReqDTO memberLoginLogReqDTO = new MemberLoginLogReqDTO();
+        memberLoginLogReqDTO.setMemberUserId(memberRespDTO.getId());
+        memberLoginLogReqDTO.setMemberUserName(memberRespDTO.getUserName());
+        memberLoginLogReqDTO.setIp(StrUtil.EMPTY);
+        memberLoginLogReqDTO.setCity(StrUtil.EMPTY);
+        memberLoginLogReqDTO.setCreateDataTime(LocalDateTime.now());
+        return memberLoginLogReqDTO;
     }
 
 

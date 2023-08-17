@@ -65,12 +65,13 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void register(MemberReqDTO memberReqDTO) {
+    public Long register(MemberReqDTO memberReqDTO) {
         MemberDO memberDO = ConverterUtil.to(memberReqDTO, MemberDO.class);
         MemberLevelDO memberLevelDO = new MemberLevelDO();
         memberLevelDO.setId(memberReqDTO.getMemberLevelId());
         memberDO.setMemberLevelDO(memberLevelDO);
         create(memberDO);
+        return memberDO.getId();
     }
 
     @Override

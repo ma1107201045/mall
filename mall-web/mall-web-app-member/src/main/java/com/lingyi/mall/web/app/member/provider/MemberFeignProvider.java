@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "会员服务", description = "会员服务")
 @RequiredArgsConstructor
 @RestController
-public class MemberProvider implements MemberFeign {
+public class MemberFeignProvider implements MemberFeign {
 
     private final MemberService memberService;
 
     @Override
-    public ServerResponse<Void> register(MemberReqDTO memberReqDTO) {
-        memberService.register(memberReqDTO);
-        return ServerResponse.success();
+    public ServerResponse<Long> register(MemberReqDTO memberReqDTO) {
+        Long id = memberService.register(memberReqDTO);
+        return ServerResponse.success(id);
     }
 
 

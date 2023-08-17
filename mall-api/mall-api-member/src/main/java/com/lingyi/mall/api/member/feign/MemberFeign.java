@@ -28,7 +28,7 @@ public interface MemberFeign {
      * @return Void
      */
     @PostMapping(URL_PREFIX)
-    ServerResponse<Void> register(@RequestBody MemberReqDTO memberReqDTO);
+    ServerResponse<Long> register(@RequestBody MemberReqDTO memberReqDTO);
 
     /**
      * 按照用户名称查询用户信息和按钮权限标识

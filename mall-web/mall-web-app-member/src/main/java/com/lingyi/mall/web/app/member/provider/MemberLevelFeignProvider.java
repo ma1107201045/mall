@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "会员等级", description = "会员等级")
 @RequiredArgsConstructor
 @RestController
-public class MemberLevelProvider implements MemberLevelFeign {
+public class MemberLevelFeignProvider implements MemberLevelFeign {
 
     private final MemberLevelService memberLevelService;
 

@@ -23,12 +23,12 @@ public class MemberFeignConsumer {
 
     private final MemberFeign memberFeign;
 
-    public void register(MemberReqDTO memberReqDTO) {
+    public Long register(MemberReqDTO memberReqDTO) {
         log.info("入参:memberReqDTO:{}", JSON.toJSONString(memberReqDTO));
-        ServerResponse<Void> response = memberFeign.register(memberReqDTO);
+        ServerResponse<Long> response = memberFeign.register(memberReqDTO);
         if (response.getIsSuccess()) {
-            log.info("出参:void:{}", JSON.toJSONString(response.getData()));
-            return;
+            log.info("出参:id:{}", JSON.toJSONString(response.getData()));
+            return response.getData();
         }
         throw new OpenFeignException(response.getCode(), response.getMessage());
     }

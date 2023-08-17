@@ -1,5 +1,7 @@
 package com.lingyi.mall.biz.member.service.impl;
 
+import com.lingyi.mall.api.member.dto.MemberLoginLogReqDTO;
+import com.lingyi.mall.biz.member.entity.MemberDO;
 import com.lingyi.mall.biz.member.entity.MemberLoginLogDO;
 import com.lingyi.mall.biz.member.enums.MemberFailEnum;
 import com.lingyi.mall.biz.member.param.MemberLoginParam;
@@ -63,5 +65,15 @@ public class MemberLoginLogServiceImpl implements MemberLoginLogService {
     @Override
     public List<MemberLoginLogVO> readListByParam(MemberLoginParam memberLoginParam) {
         return memberLoginLogMapper.selectListByParam(memberLoginParam);
+    }
+
+
+    @Override
+    public void save(MemberLoginLogReqDTO memberLoginLogReqDTO) {
+        MemberLoginLogDO memberLoginLogDO = ConverterUtil.to(memberLoginLogReqDTO, MemberLoginLogDO.class);
+        MemberDO memberDO = new MemberDO();
+        memberDO.setId(memberLoginLogReqDTO.getMemberUserId());
+        memberLoginLogDO.setMemberDO(memberDO);
+        create(memberLoginLogDO);
     }
 }

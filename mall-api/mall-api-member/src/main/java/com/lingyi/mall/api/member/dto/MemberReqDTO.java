@@ -33,6 +33,7 @@ public class MemberReqDTO {
      * 手机号码
      */
     private String phoneNumber;
+
     /**
      * 是否启用 1 是 0 否
      */

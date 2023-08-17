@@ -19,8 +19,9 @@ public interface MemberService extends BaseService<MemberDO, MemberParam, Member
      * 注册会员
      *
      * @param memberReqDTO 。。
+     * @return Long 会员id
      */
-    void register(MemberReqDTO memberReqDTO);
+    Long register(MemberReqDTO memberReqDTO);
 
     /**
      * 按照手机号查询
