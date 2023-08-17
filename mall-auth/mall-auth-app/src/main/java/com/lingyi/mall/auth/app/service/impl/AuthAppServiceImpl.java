@@ -78,7 +78,7 @@ public class AuthAppServiceImpl implements AuthAppService {
         }
         //创建token
         String token = JwtUtil.createToken(memberRespDTO);
-        
+
         //设置返回头token
         HttpUtil.addHeader(SecurityConstant.AUTHORIZATION, token);
         return ConverterUtil.to(memberRespDTO, AuthAppLoginVO.class);
@@ -87,8 +87,7 @@ public class AuthAppServiceImpl implements AuthAppService {
     @Override
     public void logout() {
         String token = HttpUtil.getHeader(SecurityConstant.AUTHORIZATION);
-        Date expiresAt = JwtUtil.getJwtPayloadExp(token);
-        long expiryDate = DateUtil.between(expiresAt, DateUtil.date(), DateUnit.SECOND);
+        long expiryDate = DateUtil.between(JwtUtil.getJwtPayloadExp(token), DateUtil.date(), DateUnit.SECOND);
         String tokenBlacklistKey = appRedisKeyUtil.getTokenBlacklistKey(token);
         redisUtil.set(tokenBlacklistKey, RandomUtil.randomInt(), expiryDate, TimeUnit.MINUTES);
     }

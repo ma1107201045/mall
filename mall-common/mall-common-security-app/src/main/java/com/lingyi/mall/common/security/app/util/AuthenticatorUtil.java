@@ -5,6 +5,7 @@ import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTUtil;
 import com.lingyi.mall.common.base.constant.BaseConstant;
 import com.lingyi.mall.common.base.util.HttpUtil;
+import com.lingyi.mall.common.security.app.constant.SecurityConstant;
 import com.lingyi.mall.common.security.app.entity.MemberDetailsDO;
 import com.lingyi.mall.common.security.common.util.Authenticator;
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,7 +29,7 @@ public class AuthenticatorUtil {
      * @return UserDetailsEntity
      */
     public static MemberDetailsDO getMemberDetailsDO() {
-        String token = HttpUtil.getHeader(BaseConstant.AUTHORIZATION);
+        String token = HttpUtil.getHeader(SecurityConstant.AUTHORIZATION);
         if (StrUtil.isBlank(token)) {
             return MemberDetailsDO.builder().build();
         }
