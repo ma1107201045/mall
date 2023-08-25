@@ -3,13 +3,16 @@ package com.lingyi.mall.biz.product.entity;
 import com.lingyi.mall.common.base.entity.BaseIsDeleteDO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author maweiyan
@@ -22,6 +25,7 @@ import java.io.Serializable;
 @ToString(callSuper = true)
 @Entity
 @Table(name = "mp_category")
+@DynamicInsert
 public class CategoryDO extends BaseIsDeleteDO implements Serializable {
     @Serial
     private static final long serialVersionUID = 5024590028573249574L;
@@ -59,5 +63,9 @@ public class CategoryDO extends BaseIsDeleteDO implements Serializable {
     @Column(name = "seq", columnDefinition = "INT(11) UNSIGNED DEFAULT 1 COMMENT '排序号'")
     private Integer seq;
 
-
+    /**
+     * 屬性集
+     */
+    @ManyToMany(mappedBy = "categories")
+    private List<AttributeDO> attributes;
 }

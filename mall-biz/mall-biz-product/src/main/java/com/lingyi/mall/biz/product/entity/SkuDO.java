@@ -20,7 +20,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Entity
-@Table(name = "mp_sku", indexes = @Index(name = "fk_spu_id", columnList = "spu_id"))
+@Table(name = "mp_sku")
 @DynamicInsert
 public class SkuDO extends BaseIsDeleteDO implements Serializable {
     @Serial

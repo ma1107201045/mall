@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -20,7 +21,8 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Entity
-@Table(name = "mp_spu", indexes = @Index(name = "fk_category_id", columnList = "category_id"))
+@Table(name = "mp_spu")
+@DynamicInsert
 public class SpuDO extends BaseIsDeleteDO implements Serializable {
     @Serial
     private static final long serialVersionUID = -6759034725107108170L;
