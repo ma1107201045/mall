@@ -5,6 +5,7 @@ import com.lingyi.mall.api.system.dto.MenuRespDTO;
 import com.lingyi.mall.api.system.dto.UserPartReqDTO;
 import com.lingyi.mall.api.system.dto.UserRespDTO;
 import com.lingyi.mall.biz.system.constant.SystemConstant;
+import com.lingyi.mall.biz.system.converter.SystemConverter;
 import com.lingyi.mall.biz.system.dto.UserDTO;
 import com.lingyi.mall.biz.system.entity.UserDO;
 import com.lingyi.mall.biz.system.enums.MenuTypeEnum;
@@ -58,9 +59,8 @@ public class UserServiceImpl implements UserService {
         Long id = userMapper.selectIdByUserName(userDTO.getUserName());
         //判断用户名称不存在
         AssertUtil.isNull(id, SystemFailEnum.USER_NAME_EXIST_ERROR);
-        //密码加密
+        //密码作哈希
         String encodePassword = passwordEncoder.encode(userDTO.getPassword());
-        //设置加密密码
         userDTO.setPassword(encodePassword);
         //DTO转换Entity
         UserDO userDO = ConverterUtil.to(userDTO, UserDO.class);
@@ -97,9 +97,8 @@ public class UserServiceImpl implements UserService {
 
         //判断用户名称不存在
         AssertUtil.isFalse(flag, SystemFailEnum.USER_NAME_EXIST_ERROR);
-        //密码加密
+        //密码作哈希
         String encodePassword = passwordEncoder.encode(userDTO.getPassword());
-        //设置加密密码
         userDTO.setPassword(encodePassword);
         //DTO转换Entity
         ConverterUtil.to(userDTO, userDO);
@@ -133,16 +132,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updatePartById(UserPartReqDTO userPartDTO) {
-        UserVO userVO = userMapper.selectById(userPartDTO.getId());
-
-        AssertUtil.notNull(userVO, SystemFailEnum.USER_NULL_ERROR);
-
-        UserDO userDO = ConverterUtil.to(userVO, UserDO.class);
-
-        String encodePassword = passwordEncoder.encode(userPartDTO.getPassword());
-        userDO.setNickname(userPartDTO.getNickname());
-        userDO.setPassword(encodePassword);
+    public void updatePartById(UserPartReqDTO userPartReqDTO) {
+        //获取用户信息
+        Optional<UserDO> optional = userRepository.findById(userPartReqDTO.getId());
+        //断言用户是否不为空
+        AssertUtil.isFalse(optional.isEmpty(), SystemFailEnum.USER_NULL_ERROR);
+        //获取用户
+        UserDO userDO = optional.get();
+        //密码作哈希
+        String encodePassword = passwordEncoder.encode(userPartReqDTO.getPassword());
+        userPartReqDTO.setPassword(encodePassword);
+        //转换数据
+        userDO = SystemConverter.INSTANCE.transition(userDO, userPartReqDTO);
+        //保存数据
         userRepository.save(userDO);
     }
 

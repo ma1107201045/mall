@@ -39,9 +39,9 @@ public interface UserService extends BaseService<UserDTO, UserParam, UserVO, Lon
     /**
      * 更新部分信息
      *
-     * @param userPartDTO ..
+     * @param userPartReqDTO ..
      */
-    void updatePartById(UserPartReqDTO userPartDTO);
+    void updatePartById(UserPartReqDTO userPartReqDTO);
 
 
     /**
