@@ -184,12 +184,12 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    private List<MenuRespDTO> toMenuTree(Long menuParentId, List<MenuRespDTO> menuRespDTOList) {
-        List<MenuRespDTO> menus = menuRespDTOList.stream()
+    private List<MenuRespDTO> toMenuTree(Long menuParentId, List<MenuRespDTO> menuList) {
+        List<MenuRespDTO> menus = menuList.stream()
                 .filter(menuResDTO -> menuResDTO.getParentId().equals(menuParentId))
                 .sorted(Comparator.comparing(MenuRespDTO::getSort))
                 .toList();
-        menus.forEach(menuResDTO -> menuResDTO.setChildren(toMenuTree(menuResDTO.getId(), menuRespDTOList)));
+        menus.forEach(menuResDTO -> menuResDTO.setChildren(toMenuTree(menuResDTO.getId(), menuList)));
         return menus;
     }
 
