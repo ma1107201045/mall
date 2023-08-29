@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.system.constant;
 
 /**
  * @Author: maweiyan
- * @Email 1107201045@qq.com
+ * @Email: 1107201045@qq.com
  * @DateTime: 2023/5/7 15:37
  * @Description:
  */
