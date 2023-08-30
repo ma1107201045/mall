@@ -143,7 +143,7 @@ public class UserServiceImpl implements UserService {
         String encodePassword = passwordEncoder.encode(userPartReqDTO.getPassword());
         userPartReqDTO.setPassword(encodePassword);
         //转换数据
-        userDO = SystemConverter.INSTANCE.transition(userDO, userPartReqDTO);
+        userDO = SystemConverter.INSTANCE.to(userDO, userPartReqDTO);
         //保存数据
         userRepository.save(userDO);
     }

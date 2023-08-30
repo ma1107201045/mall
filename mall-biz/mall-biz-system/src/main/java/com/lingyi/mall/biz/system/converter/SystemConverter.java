@@ -17,7 +17,7 @@ public class SystemConverter {
 
     }
 
-    public UserDO transition(UserDO userDO, UserPartReqDTO userPartReqDTO) {
+    public UserDO to(UserDO userDO, UserPartReqDTO userPartReqDTO) {
         userDO.setNickname(userPartReqDTO.getNickname());
         userDO.setPassword(userPartReqDTO.getPassword());
         return userDO;
