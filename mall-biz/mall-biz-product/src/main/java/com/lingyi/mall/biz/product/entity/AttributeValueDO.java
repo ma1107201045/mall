@@ -1,6 +1,5 @@
 package com.lingyi.mall.biz.product.entity;
 
-import com.lingyi.mall.common.base.entity.BaseCommonDO;
 import com.lingyi.mall.common.base.entity.BaseIsDeleteDO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
