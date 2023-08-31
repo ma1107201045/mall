@@ -1,5 +1,8 @@
 package com.lingyi.mall.biz.product.mapper;
 
+import com.lingyi.mall.biz.product.param.SpuParam;
+import com.lingyi.mall.biz.product.vo.SpuVO;
+import com.lingyi.mall.common.base.util.MybatisMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -9,5 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @description
  */
 @Mapper
-public interface SpuMapper {
+public interface SpuMapper extends MybatisMapper<Long, SpuParam, SpuVO> {
 }

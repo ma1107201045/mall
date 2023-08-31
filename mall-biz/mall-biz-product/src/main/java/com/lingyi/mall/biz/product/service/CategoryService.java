@@ -1,6 +1,5 @@
 package com.lingyi.mall.biz.product.service;
 
-import com.lingyi.mall.biz.product.entity.CategoryAttributeDO;
 import com.lingyi.mall.biz.product.entity.CategoryDO;
 import com.lingyi.mall.common.base.param.BasePageParam;
 import com.lingyi.mall.common.base.util.BaseService;
