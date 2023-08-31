@@ -6,7 +6,7 @@ import com.lingyi.mall.common.redis.util.RedisUtil;
 import com.lingyi.mall.common.security.app.filter.JwtTokenAuthorizationFilter;
 import com.lingyi.mall.common.security.app.filter.JwtTokenBlacklistFilter;
 import com.lingyi.mall.common.security.app.filter.JwtTokenRenewalFilter;
-import com.lingyi.mall.common.security.app.util.AppRedisKeyUtil;
+import com.lingyi.mall.common.security.app.util.RedisKeyUtil;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -35,11 +35,11 @@ public class SecurityConfig {
     }
 
     @Bean
-    public JwtTokenBlacklistFilter jwtTokenBlacklistFilter(MessageSourceAccessor messageSourceAccessor, RedisUtil redisUtil, AppRedisKeyUtil appRedisKeyUtil) {
+    public JwtTokenBlacklistFilter jwtTokenBlacklistFilter(MessageSourceAccessor messageSourceAccessor, RedisUtil redisUtil, RedisKeyUtil redisKeyUtil) {
         JwtTokenBlacklistFilter jwtTokenBlacklistFilter = new JwtTokenBlacklistFilter();
         jwtTokenBlacklistFilter.setMessageSourceAccessor(messageSourceAccessor);
         jwtTokenBlacklistFilter.setRedisUtil(redisUtil);
-        jwtTokenBlacklistFilter.setAppRedisKeyUtil(appRedisKeyUtil);
+        jwtTokenBlacklistFilter.setAppRedisKeyUtil(redisKeyUtil);
         return jwtTokenBlacklistFilter;
     }
 

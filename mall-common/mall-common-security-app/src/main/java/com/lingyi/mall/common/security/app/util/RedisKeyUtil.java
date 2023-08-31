@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @Description:
  */
 @Component
-public class AppRedisKeyUtil {
+public class RedisKeyUtil {
 
     private static final String TOKEN_BLACKLIST_KEY_FORMAT = "%s:token-blacklist:%s";
 

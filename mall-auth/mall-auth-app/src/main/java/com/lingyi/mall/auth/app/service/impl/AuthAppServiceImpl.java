@@ -24,7 +24,7 @@ import com.lingyi.mall.common.base.util.ConverterUtil;
 import com.lingyi.mall.common.base.util.HttpUtil;
 import com.lingyi.mall.common.redis.util.RedisUtil;
 import com.lingyi.mall.common.security.app.constant.SecurityConstant;
-import com.lingyi.mall.common.security.app.util.AppRedisKeyUtil;
+import com.lingyi.mall.common.security.app.util.RedisKeyUtil;
 import com.lingyi.mall.common.security.app.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -54,7 +54,7 @@ public class AuthAppServiceImpl implements AuthAppService {
 
     private final RedisUtil redisUtil;
 
-    private final AppRedisKeyUtil appRedisKeyUtil;
+    private final RedisKeyUtil redisKeyUtil;
 
     @Override
     public void send(AuthAppSendDTO authAppSendDTO) {
@@ -101,7 +101,7 @@ public class AuthAppServiceImpl implements AuthAppService {
     public void logout() {
         String token = HttpUtil.getHeader(SecurityConstant.AUTHORIZATION);
         long expiryDate = DateUtil.between(JwtUtil.getJwtPayloadExp(token), DateUtil.date(), DateUnit.SECOND);
-        String tokenBlacklistKey = appRedisKeyUtil.getTokenBlacklistKey(token);
+        String tokenBlacklistKey = redisKeyUtil.getTokenBlacklistKey(token);
         redisUtil.set(tokenBlacklistKey, RandomUtil.randomInt(), expiryDate, TimeUnit.MINUTES);
     }
 

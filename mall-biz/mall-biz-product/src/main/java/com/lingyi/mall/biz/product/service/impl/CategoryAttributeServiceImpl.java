@@ -5,6 +5,7 @@ import com.lingyi.mall.biz.product.mapper.CategoryAttributeMapper;
 import com.lingyi.mall.biz.product.repository.CategoryAttributeRepository;
 import com.lingyi.mall.biz.product.service.CategoryAttributeService;
 import com.lingyi.mall.common.base.param.BasePageParam;
+import com.lingyi.mall.common.base.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,17 +27,23 @@ public class CategoryAttributeServiceImpl implements CategoryAttributeService {
 
     @Override
     public void create(CategoryAttributeDO categoryAttributeDO) {
-
+        categoryAttributeRepository.save(categoryAttributeDO);
     }
 
     @Override
-    public void deleteByIds(List<Long> longs) {
-
+    public void deleteByIds(List<Long> ids) {
+        categoryAttributeRepository.deleteAllById(ids);
     }
 
     @Override
     public void updateById(CategoryAttributeDO categoryAttributeDO) {
-
+        var optional = categoryAttributeRepository.findById(categoryAttributeDO.getId());
+        if (optional.isEmpty()) {
+            return;
+        }
+        var newCategoryAttributeDO = optional.get();
+        ConverterUtil.to(categoryAttributeDO, newCategoryAttributeDO);
+        categoryAttributeRepository.save(newCategoryAttributeDO);
     }
 
     @Override

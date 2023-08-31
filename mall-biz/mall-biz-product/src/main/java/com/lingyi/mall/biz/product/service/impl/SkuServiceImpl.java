@@ -5,10 +5,12 @@ import com.lingyi.mall.biz.product.mapper.SkuMapper;
 import com.lingyi.mall.biz.product.repository.SkuRepository;
 import com.lingyi.mall.biz.product.service.SkuService;
 import com.lingyi.mall.common.base.param.BasePageParam;
+import com.lingyi.mall.common.base.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Author: maweiyan
@@ -26,21 +28,27 @@ public class SkuServiceImpl implements SkuService {
 
     @Override
     public void create(SkuDO skuDO) {
-
+        skuRepository.save(skuDO);
     }
 
     @Override
-    public void deleteByIds(List<Long> longs) {
-
+    public void deleteByIds(List<Long> ids) {
+        skuRepository.deleteAllById(ids);
     }
 
     @Override
     public void updateById(SkuDO skuDO) {
-
+        var optional  = skuRepository.findById(skuDO.getId());
+        if (optional.isEmpty()) {
+            return;
+        }
+        var newSkuDO = optional.get();
+        ConverterUtil.to(skuDO, newSkuDO);
+        skuRepository.save(skuDO);
     }
 
     @Override
-    public SkuDO readById(Long aLong) {
+    public SkuDO readById(Long id) {
         return null;
     }
 

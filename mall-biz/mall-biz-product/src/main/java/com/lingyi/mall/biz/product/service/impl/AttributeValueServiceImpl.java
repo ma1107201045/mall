@@ -5,6 +5,7 @@ import com.lingyi.mall.biz.product.mapper.AttributeValueMapper;
 import com.lingyi.mall.biz.product.repository.AttributeValueRepository;
 import com.lingyi.mall.biz.product.service.AttributeValueService;
 import com.lingyi.mall.common.base.param.BasePageParam;
+import com.lingyi.mall.common.base.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,17 +28,23 @@ public class AttributeValueServiceImpl implements AttributeValueService {
 
     @Override
     public void create(AttributeValueDO attributeValueDO) {
-
+        attributeValueRepository.save(attributeValueDO);
     }
 
     @Override
-    public void deleteByIds(List<Long> longs) {
-
+    public void deleteByIds(List<Long> ids) {
+        attributeValueRepository.deleteAllById(ids);
     }
 
     @Override
     public void updateById(AttributeValueDO attributeValueDO) {
-
+        var optional = attributeValueRepository.findById(attributeValueDO.getId());
+        if (optional.isEmpty()) {
+            return;
+        }
+        var newAttributeValueDO = optional.get();
+        ConverterUtil.to(attributeValueDO, newAttributeValueDO);
+        attributeValueRepository.save(newAttributeValueDO);
     }
 
     @Override

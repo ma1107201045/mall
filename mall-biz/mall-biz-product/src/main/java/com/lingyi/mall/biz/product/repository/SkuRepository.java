@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.product.repository;
 
+import com.lingyi.mall.biz.product.entity.SkuDO;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.stereotype.Repository;
 
@@ -10,5 +11,5 @@ import org.springframework.stereotype.Repository;
  * @Description:
  */
 @Repository
-public interface SkuRepository extends JpaRepositoryImplementation<SkuRepository, Long> {
+public interface SkuRepository extends JpaRepositoryImplementation<SkuDO, Long> {
 }

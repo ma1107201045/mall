@@ -4,7 +4,7 @@ import cn.hutool.core.util.ObjUtil;
 import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.common.redis.util.RedisUtil;
 import com.lingyi.mall.common.security.app.constant.SecurityConstant;
-import com.lingyi.mall.common.security.app.util.AppRedisKeyUtil;
+import com.lingyi.mall.common.security.app.util.RedisKeyUtil;
 import com.lingyi.mall.common.security.app.util.CommonWriteUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -27,13 +27,13 @@ public class JwtTokenBlacklistFilter extends AbstractJwtTokenFilter {
 
     protected MessageSourceAccessor message = SpringSecurityMessageSource.getAccessor();
     private RedisUtil redisUtil;
-    private AppRedisKeyUtil appRedisKeyUtil;
+    private RedisKeyUtil redisKeyUtil;
 
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         String token = request.getHeader(SecurityConstant.AUTHORIZATION);
         if (StrUtil.isNotBlank(token)) {
-            String tokenKey = appRedisKeyUtil.getTokenBlacklistKey(token);
+            String tokenKey = redisKeyUtil.getTokenBlacklistKey(token);
             Integer tokenValue = redisUtil.get(tokenKey, Integer.class);
             if (ObjUtil.isNull(tokenValue)) {
                 chain.doFilter(request, response);
@@ -51,7 +51,7 @@ public class JwtTokenBlacklistFilter extends AbstractJwtTokenFilter {
         this.redisUtil = redisUtil;
     }
 
-    public void setAppRedisKeyUtil(AppRedisKeyUtil appRedisKeyUtil) {
-        this.appRedisKeyUtil = appRedisKeyUtil;
+    public void setAppRedisKeyUtil(RedisKeyUtil redisKeyUtil) {
+        this.redisKeyUtil = redisKeyUtil;
     }
 }

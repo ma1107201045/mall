@@ -4,6 +4,9 @@ package com.lingyi.mall.common.base.util;
 import com.lingyi.mall.common.base.param.BasePageParam;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -27,6 +30,16 @@ public interface BaseService<DTO, PARAM extends BasePageParam, VO, ID extends Se
      * @param ids ids
      */
     void deleteByIds(List<ID> ids);
+
+
+    /**
+     * 删除
+     *
+     * @param id id
+     */
+    default void deleteById(ID id) {
+        this.deleteByIds(Collections.singletonList(id));
+    }
 
     /**
      * 修改

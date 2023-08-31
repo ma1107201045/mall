@@ -1,14 +1,17 @@
 package com.lingyi.mall.biz.product.service.impl;
 
 import com.lingyi.mall.biz.product.entity.BrandDO;
+import com.lingyi.mall.biz.product.entity.SpuDO;
 import com.lingyi.mall.biz.product.mapper.BrandMapper;
 import com.lingyi.mall.biz.product.repository.BrandRepository;
 import com.lingyi.mall.biz.product.service.BrandService;
 import com.lingyi.mall.common.base.param.BasePageParam;
+import com.lingyi.mall.common.base.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Author: maweiyan
@@ -26,17 +29,23 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public void create(BrandDO brandDO) {
-
+        brandRepository.save(brandDO);
     }
 
     @Override
-    public void deleteByIds(List<Long> longs) {
-
+    public void deleteByIds(List<Long> ids) {
+        brandRepository.deleteAllById(ids);
     }
 
     @Override
     public void updateById(BrandDO brandDO) {
-
+        var optional = brandRepository.findById(brandDO.getId());
+        if (optional.isEmpty()) {
+            return;
+        }
+        var newBrandDO = optional.get();
+        ConverterUtil.to(brandDO, newBrandDO);
+        brandRepository.save(newBrandDO);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.lingyi.mall.biz.product.repository;
 
 import com.lingyi.mall.biz.product.entity.CategoryDO;
+import com.lingyi.mall.biz.product.entity.SpuDO;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +12,5 @@ import org.springframework.stereotype.Repository;
  * @description
  */
 @Repository
-public interface SpuRepository extends JpaRepositoryImplementation<CategoryDO, Long> {
+public interface SpuRepository extends JpaRepositoryImplementation<SpuDO, Long> {
 }
