@@ -17,9 +17,9 @@ public interface BaseService {
      * 按照用户id更改用户信息
      *
      * @param userId      用户id
-     * @param userPartDTO 用户信息
+     * @param userPartReqDTO 用户信息
      */
-    void updateUserByUserId(Long userId, UserPartReqDTO userPartDTO);
+    void updateUserByUserId(Long userId, UserPartReqDTO userPartReqDTO);
 
     /**
      * 按照用户名称查询菜单树

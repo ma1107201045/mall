@@ -23,8 +23,8 @@ public class BaseServiceImpl implements BaseService {
     private final UserFeignConsumer userFeignConsumer;
 
     @Override
-    public void updateUserByUserId(Long userId, UserPartReqDTO userPartDTO) {
-        userFeignConsumer.updatePartById(userId, userPartDTO);
+    public void updateUserByUserId(Long userId, UserPartReqDTO userPartReqDTO) {
+        userFeignConsumer.updatePartById(userId, userPartReqDTO);
     }
 
     @Override
