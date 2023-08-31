@@ -1,7 +1,6 @@
 package com.lingyi.mall.biz.product.repository;
 
 import com.lingyi.mall.biz.product.entity.CategoryAttributeDO;
-import com.lingyi.mall.biz.product.entity.CategoryDO;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.stereotype.Repository;
 
