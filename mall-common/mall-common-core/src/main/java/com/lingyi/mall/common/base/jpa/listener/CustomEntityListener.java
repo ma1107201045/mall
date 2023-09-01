@@ -45,7 +45,7 @@ public class CustomEntityListener {
 
     private void insertHandle(Object target) {
         if (target instanceof BaseCommonDO baseCommonDO && StrUtil.isBlank(baseCommonDO.getCreateBy())) {
-            String auditor = auditorAware.getCurrentAuditor().orElse(BaseConstant.UNKNOWN);
+            var auditor = auditorAware.getCurrentAuditor().orElse(BaseConstant.UNKNOWN);
             baseCommonDO.setCreateBy(auditor);
             baseCommonDO.setCreateDateTime(LocalDateTime.now());
             baseCommonDO.setLastModifyBy(auditor);
@@ -55,7 +55,7 @@ public class CustomEntityListener {
 
     private void updateHandle(Object target) {
         if (target instanceof BaseCommonDO baseCommonDO && StrUtil.isBlank(baseCommonDO.getLastModifyBy())) {
-            String auditor = auditorAware.getCurrentAuditor().orElse(BaseConstant.UNKNOWN);
+            var auditor = auditorAware.getCurrentAuditor().orElse(BaseConstant.UNKNOWN);
             baseCommonDO.setLastModifyBy(auditor);
             baseCommonDO.setLastModifyDateTime(LocalDateTime.now());
         }

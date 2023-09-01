@@ -44,7 +44,7 @@ public class MenuServiceImpl implements MenuService {
         //校验数据
         verifyAndGet(menuDTO, false);
         //DTO转换Entity
-        MenuDO menuDO = ConverterUtil.to(menuDTO, MenuDO.class);
+        var menuDO = ConverterUtil.to(menuDTO, MenuDO.class);
         //保存
         menuRepository.save(menuDO);
     }
@@ -62,7 +62,7 @@ public class MenuServiceImpl implements MenuService {
     @Transactional(rollbackFor = Exception.class)
     public void updateById(MenuDTO menuDTO) {
         //校验数据并且获取菜单
-        MenuDO menuDO = verifyAndGet(menuDTO, true);
+        var menuDO = verifyAndGet(menuDTO, true);
         //DTO转换Entity
         ConverterUtil.to(menuDTO, menuDO);
         //更新
@@ -81,7 +81,7 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public List<MenuVO> readTree() {
-        List<MenuVO> menuVOList = readListByParam(ObjectUtil.newInstance(MenuParam.class));
+        var menuVOList = readListByParam(ObjectUtil.newInstance(MenuParam.class));
         return toTree(SystemConstant.MENU_ROOT_ID, menuVOList);
     }
 
@@ -93,32 +93,32 @@ public class MenuServiceImpl implements MenuService {
 
 
     private MenuDO verifyAndGet(MenuDTO menuDTO, boolean isUpdate) {
-        Integer type = menuDTO.getType();
-        Long parentId = menuDTO.getParentId();
+        var type = menuDTO.getType();
+        var parentId = menuDTO.getParentId();
         //断言目录父级为root
         if (Objects.equals(MenuTypeEnum.DIRECTORY.getCode(), type)) {
             boolean result = Objects.equals(SystemConstant.MENU_ROOT_ID, parentId);
             AssertUtil.isTrue(result, SystemFailEnum.MENU_DIRECTORY_PARENT_ERROR);
         }
         //断言菜单类型不能为空
-        Integer newType = menuMapper.selectTypeById(parentId);
+        var newType = menuMapper.selectTypeById(parentId);
         AssertUtil.notNull(newType, SystemFailEnum.MENU_TYPE_NOT_EXIST_ERROR);
 
         //断言菜单父级为root或者为目录
         if (Objects.equals(MenuTypeEnum.MENU.getCode(), type)) {
-            boolean result = Objects.equals(SystemConstant.MENU_ROOT_ID, parentId) ||
+            var result = Objects.equals(SystemConstant.MENU_ROOT_ID, parentId) ||
                     Objects.equals(MenuTypeEnum.MENU.getCode(), type) && Objects.equals(MenuTypeEnum.DIRECTORY.getCode(), newType);
             AssertUtil.isTrue(result, SystemFailEnum.MENU_MENU_PARENT_ERROR);
         }
 
         //断言按钮父级为菜单
         if (Objects.equals(MenuTypeEnum.BUTTON.getCode(), type)) {
-            boolean result = Objects.equals(MenuTypeEnum.MENU.getCode(), newType);
+            var result = Objects.equals(MenuTypeEnum.MENU.getCode(), newType);
             AssertUtil.isTrue(result, SystemFailEnum.MENU_BUTTON_PARENT_ERROR);
         }
         MenuDO menuDO = null;
         if (isUpdate) {
-            Optional<MenuDO> optional = menuRepository.findById(menuDTO.getId());
+            var optional = menuRepository.findById(menuDTO.getId());
             //判断用户是否不为空
             AssertUtil.isFalse(optional.isEmpty(), SystemFailEnum.MENU_NULL_ERROR);
             menuDO = optional.get();
@@ -128,7 +128,7 @@ public class MenuServiceImpl implements MenuService {
 
 
     private List<MenuVO> toTree(Long parentId, List<MenuVO> menuVOList) {
-        List<MenuVO> menus = menuVOList.stream()
+        var menus = menuVOList.stream()
                 .filter(menuVO -> menuVO.getParentId().equals(parentId))
                 .sorted(Comparator.comparing(MenuVO::getSort))
                 .toList();

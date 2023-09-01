@@ -48,7 +48,7 @@ public class AttributeValueServiceImpl implements AttributeValueService {
     }
 
     @Override
-    public AttributeValueDO readById(Long aLong) {
+    public AttributeValueDO readById(Long id) {
         return null;
     }
 

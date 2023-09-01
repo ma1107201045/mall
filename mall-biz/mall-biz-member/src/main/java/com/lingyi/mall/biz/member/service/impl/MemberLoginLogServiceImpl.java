@@ -44,13 +44,13 @@ public class MemberLoginLogServiceImpl implements MemberLoginLogService {
     @Override
     public void updateById(MemberLoginLogDO memberLoginLogDO) {
         //获取日志信息
-        Optional<MemberLoginLogDO> optional = memberLoginLogRepository.findById(memberLoginLogDO.getId());
+        var optional = memberLoginLogRepository.findById(memberLoginLogDO.getId());
         //判断日志是否为空
         if (optional.isEmpty()) {
             throw new BizException(MemberFailEnum.MEMBER_LOGIN_LOG_NULL_ERROR);
         }
         //获取用户
-        MemberLoginLogDO newMemberLoginLogDO = optional.get();
+        var newMemberLoginLogDO = optional.get();
         //DTO转换Entity
         ConverterUtil.to(memberLoginLogDO, newMemberLoginLogDO);
         //更新
@@ -70,8 +70,8 @@ public class MemberLoginLogServiceImpl implements MemberLoginLogService {
 
     @Override
     public void save(MemberLoginLogReqDTO memberLoginLogReqDTO) {
-        MemberLoginLogDO memberLoginLogDO = ConverterUtil.to(memberLoginLogReqDTO, MemberLoginLogDO.class);
-        MemberDO memberDO = new MemberDO();
+        var memberLoginLogDO = ConverterUtil.to(memberLoginLogReqDTO, MemberLoginLogDO.class);
+        var memberDO = new MemberDO();
         memberDO.setId(memberLoginLogReqDTO.getMemberUserId());
         memberLoginLogDO.setMemberDO(memberDO);
         create(memberLoginLogDO);

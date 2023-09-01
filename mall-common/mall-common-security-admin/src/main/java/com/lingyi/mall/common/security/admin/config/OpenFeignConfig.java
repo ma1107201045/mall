@@ -46,11 +46,11 @@ public class OpenFeignConfig {
             // 获取原请求
             HttpServletRequest request = HttpUtil.getRequest();
             //解决记住密码bug（Authentication是null或者其他排除 REMEMBER_ME_COOKIE_NAME，Authentication是RememberMeAuthenticationToken带REMEMBER_ME_COOKIE_NAME）
-            Cookie[] cookies = request.getCookies();
+            var cookies = request.getCookies();
             if (ArrayUtil.isNotEmpty(cookies)) {
                 //获取授权者类型
-                Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-                List<String> cookieList = Arrays.stream(cookies)
+                var authentication = SecurityContextHolder.getContext().getAuthentication();
+                var cookieList = Arrays.stream(cookies)
                         .filter(cookie -> !cookie.getName().equals(SecurityConstant.REMEMBER_ME_COOKIE_NAME) || authentication instanceof RememberMeAuthenticationToken)
                         .map(cookie -> cookie.getName() + BaseConstant.EQUAL_SIGN_CHAR + cookie.getValue())
                         .toList();

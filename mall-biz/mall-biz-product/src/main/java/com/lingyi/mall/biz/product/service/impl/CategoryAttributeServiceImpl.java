@@ -47,7 +47,7 @@ public class CategoryAttributeServiceImpl implements CategoryAttributeService {
     }
 
     @Override
-    public CategoryAttributeDO readById(Long aLong) {
+    public CategoryAttributeDO readById(Long id) {
         return null;
     }
 

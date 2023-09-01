@@ -35,13 +35,13 @@ public class JwtTokenRenewalFilter extends AbstractJwtTokenFilter {
 
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        String oldToken = request.getHeader(SecurityConstant.AUTHORIZATION);
+        var oldToken = request.getHeader(SecurityConstant.AUTHORIZATION);
         if (StrUtil.isNotBlank(oldToken)) {
-            Date expiresAt = JwtUtil.getJwtPayloadExp(oldToken);
+            var expiresAt = JwtUtil.getJwtPayloadExp(oldToken);
             if (!DateUtil.date().after(expiresAt)) {
-                String phoneNumber = JwtUtil.getJwtPayloadPhoneNumber(oldToken);
+                var phoneNumber = JwtUtil.getJwtPayloadPhoneNumber(oldToken);
                 MemberRespDTO memberRespDTO = memberFeignConsumer.getByPhoneNumber(phoneNumber);
-                String token = JwtUtil.createToken(memberRespDTO);
+                var token = JwtUtil.createToken(memberRespDTO);
                 response.setHeader(SecurityConstant.AUTHORIZATION, token);
             }
         }

@@ -28,7 +28,7 @@ public class UserFeignConsumer {
 
     public void updatePartById(Long id, UserPartReqDTO userPartDTO) {
         log.info("入参:userPartDTO:{}", userPartDTO);
-        ServerResponse<Void> response = userFeign.updatePartById(id, userPartDTO);
+        var response = userFeign.updatePartById(id, userPartDTO);
         if (response.getIsSuccess()) {
             log.info("出参:Void:{}", JSON.toJSONString(response.getData()));
             return;
@@ -38,7 +38,7 @@ public class UserFeignConsumer {
 
     public UserRespDTO getUserAndMenuPermissionsByUserName(String userName) {
         log.info("入参:userName:{}", userName);
-        ServerResponse<UserRespDTO> response = userFeign.getUserAndMenuPermissionsByUserName(userName);
+        var response = userFeign.getUserAndMenuPermissionsByUserName(userName);
         if (response.getIsSuccess()) {
             log.info("出参:UserVO:{}", JSON.toJSONString(response.getData()));
             return response.getData();
@@ -48,7 +48,7 @@ public class UserFeignConsumer {
 
     public List<MenuRespDTO> getMenuTreeByUserName(String userName) {
         log.info("入参:userName:{}", userName);
-        ServerResponse<List<MenuRespDTO>> response = userFeign.getMenuTreeByUserName(userName);
+        var response = userFeign.getMenuTreeByUserName(userName);
         if (response.getIsSuccess()) {
             log.info("出参:UserVO:{}", JSON.toJSONString(response.getData()));
             return response.getData();
@@ -58,7 +58,7 @@ public class UserFeignConsumer {
 
     public List<String> getMenuPermissionsByUserName(String userName) {
         log.info("入参:userName:{}", userName);
-        ServerResponse<List<String>> response = userFeign.getMenuPermissionsByUserName(userName);
+        var response = userFeign.getMenuPermissionsByUserName(userName);
         if (response.getIsSuccess()) {
             log.info("出参:permissions:{}", JSON.toJSONString(response.getData()));
             return response.getData();

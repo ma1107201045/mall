@@ -22,7 +22,7 @@ public final class RequestUtil {
      * @return 当前请求的ip
      */
     public static String getRemoteHost(HttpServletRequest request) {
-        String ip = request.getHeader("X-Forwarded-For");
+        var ip = request.getHeader("X-Forwarded-For");
         if (isNotRealIp(ip)) {
             if (isNotRealIp(ip)) {
                 ip = request.getHeader("Proxy-Client-IP");
@@ -50,6 +50,6 @@ public final class RequestUtil {
     }
 
     private static boolean isNotRealIp(String ip) {
-        return ip == null || ip.length() == 0 || UNKNOWN.equalsIgnoreCase(ip);
+        return ip == null || ip.isEmpty() || UNKNOWN.equalsIgnoreCase(ip);
     }
 }

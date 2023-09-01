@@ -31,10 +31,10 @@ public class JwtTokenBlacklistFilter extends AbstractJwtTokenFilter {
 
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        String token = request.getHeader(SecurityConstant.AUTHORIZATION);
+        var token = request.getHeader(SecurityConstant.AUTHORIZATION);
         if (StrUtil.isNotBlank(token)) {
-            String tokenKey = redisKeyUtil.getTokenBlacklistKey(token);
-            Integer tokenValue = redisUtil.get(tokenKey, Integer.class);
+            var tokenKey = redisKeyUtil.getTokenBlacklistKey(token);
+            var tokenValue = redisUtil.get(tokenKey, Integer.class);
             if (ObjUtil.isNull(tokenValue)) {
                 chain.doFilter(request, response);
                 return;

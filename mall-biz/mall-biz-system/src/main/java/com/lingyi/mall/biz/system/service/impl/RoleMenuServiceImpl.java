@@ -23,7 +23,7 @@ public class RoleMenuServiceImpl implements RoleMenuService {
 
     @Override
     public void createList(Long roleId, List<Long> menuIds) {
-        List<RoleMenuDO> roleMenuDOList = menuIds.stream()
+        var roleMenuDOList = menuIds.stream()
                 .map(menuId -> RoleMenuDO.of(roleId, menuId))
                 .toList();
         roleMenuRepository.saveAll(roleMenuDOList);

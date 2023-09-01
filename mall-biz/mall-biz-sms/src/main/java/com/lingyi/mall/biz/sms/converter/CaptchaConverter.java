@@ -21,7 +21,7 @@ public class CaptchaConverter {
     }
 
     public CaptchaLogDO to(CaptchaSendReqDTO captchaSendReqDTO) {
-        CaptchaLogDO captchaLogDO = ConverterUtil.to(captchaSendReqDTO, CaptchaLogDO.class);
+        var captchaLogDO = ConverterUtil.to(captchaSendReqDTO, CaptchaLogDO.class);
         captchaLogDO.setServiceName(ServiceTypeEnum.getMessageByCode(captchaSendReqDTO.getServiceType()));
         captchaLogDO.setBusinessName(BusinessTypeEnum.getMessageByCode(captchaSendReqDTO.getBusinessType()));
         return captchaLogDO;

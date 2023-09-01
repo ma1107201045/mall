@@ -47,7 +47,7 @@ public class AttributeServiceImpl implements AttributeService {
     }
 
     @Override
-    public AttributeDO readById(Long aLong) {
+    public AttributeDO readById(Long id) {
         return null;
     }
 

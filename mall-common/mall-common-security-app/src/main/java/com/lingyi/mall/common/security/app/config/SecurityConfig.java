@@ -7,6 +7,7 @@ import com.lingyi.mall.common.security.app.filter.JwtTokenAuthorizationFilter;
 import com.lingyi.mall.common.security.app.filter.JwtTokenBlacklistFilter;
 import com.lingyi.mall.common.security.app.filter.JwtTokenRenewalFilter;
 import com.lingyi.mall.common.security.app.util.RedisKeyUtil;
+import jakarta.servlet.Filter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -36,7 +37,7 @@ public class SecurityConfig {
 
     @Bean
     public JwtTokenBlacklistFilter jwtTokenBlacklistFilter(MessageSourceAccessor messageSourceAccessor, RedisUtil redisUtil, RedisKeyUtil redisKeyUtil) {
-        JwtTokenBlacklistFilter jwtTokenBlacklistFilter = new JwtTokenBlacklistFilter();
+        var jwtTokenBlacklistFilter = new JwtTokenBlacklistFilter();
         jwtTokenBlacklistFilter.setMessageSourceAccessor(messageSourceAccessor);
         jwtTokenBlacklistFilter.setRedisUtil(redisUtil);
         jwtTokenBlacklistFilter.setAppRedisKeyUtil(redisKeyUtil);
@@ -45,14 +46,14 @@ public class SecurityConfig {
 
     @Bean
     public JwtTokenAuthorizationFilter jwtTokenAuthorizationFilter(MessageSourceAccessor messageSourceAccessor) {
-        JwtTokenAuthorizationFilter jwtTokenAuthorizationFilter = new JwtTokenAuthorizationFilter();
+        var jwtTokenAuthorizationFilter = new JwtTokenAuthorizationFilter();
         jwtTokenAuthorizationFilter.setMessageSourceAccessor(messageSourceAccessor);
         return jwtTokenAuthorizationFilter;
     }
 
     @Bean
     public JwtTokenRenewalFilter jwtTokenRenewalFilter(MessageSourceAccessor messageSourceAccessor, MemberFeignConsumer memberFeignConsumer) {
-        JwtTokenRenewalFilter jwtTokenRenewalFilter = new JwtTokenRenewalFilter();
+        var jwtTokenRenewalFilter = new JwtTokenRenewalFilter();
         jwtTokenRenewalFilter.setMessageSourceAccessor(messageSourceAccessor);
         jwtTokenRenewalFilter.setMemberFeignConsumer(memberFeignConsumer);
         return jwtTokenRenewalFilter;
@@ -60,8 +61,8 @@ public class SecurityConfig {
 
 
     @Bean
-    public FilterRegistrationBean<TrackIdFilter> trackIdFilterFilterRegistrationBean(TrackIdFilter trackIdFilter) {
-        FilterRegistrationBean<TrackIdFilter> bean = new FilterRegistrationBean<>();
+    public FilterRegistrationBean<Filter> trackIdFilterFilterRegistrationBean(TrackIdFilter trackIdFilter) {
+        var bean = new FilterRegistrationBean<>();
         bean.addUrlPatterns("/*");
         bean.setFilter(trackIdFilter);
         bean.setOrder(1);
@@ -70,8 +71,8 @@ public class SecurityConfig {
 
 
     @Bean
-    public FilterRegistrationBean<JwtTokenBlacklistFilter> jwtTokenBlacklistFilterFilterRegistrationBean(JwtTokenBlacklistFilter jwtTokenBlacklistFilter) {
-        FilterRegistrationBean<JwtTokenBlacklistFilter> bean = new FilterRegistrationBean<>();
+    public FilterRegistrationBean<Filter> jwtTokenBlacklistFilterFilterRegistrationBean(JwtTokenBlacklistFilter jwtTokenBlacklistFilter) {
+        var bean = new FilterRegistrationBean<>();
         bean.setFilter(jwtTokenBlacklistFilter);
         bean.addUrlPatterns("/*");
         bean.setOrder(2);
@@ -79,8 +80,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public FilterRegistrationBean<JwtTokenAuthorizationFilter> jwtAuthorizationFilterFilterRegistrationBean(JwtTokenAuthorizationFilter jwtTokenAuthorizationFilter) {
-        FilterRegistrationBean<JwtTokenAuthorizationFilter> bean = new FilterRegistrationBean<>();
+    public FilterRegistrationBean<Filter> jwtAuthorizationFilterFilterRegistrationBean(JwtTokenAuthorizationFilter jwtTokenAuthorizationFilter) {
+        var bean = new FilterRegistrationBean<>();
         bean.addUrlPatterns("/*");
         bean.setFilter(jwtTokenAuthorizationFilter);
         bean.setOrder(3);
@@ -88,8 +89,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public FilterRegistrationBean<JwtTokenRenewalFilter> jwtTokenRenewalFilterRegistrationBean(JwtTokenRenewalFilter jwtTokenRenewalFilter) {
-        FilterRegistrationBean<JwtTokenRenewalFilter> bean = new FilterRegistrationBean<>();
+    public FilterRegistrationBean<Filter> jwtTokenRenewalFilterRegistrationBean(JwtTokenRenewalFilter jwtTokenRenewalFilter) {
+        var bean = new FilterRegistrationBean<>();
         bean.addUrlPatterns("/*");
         bean.setFilter(jwtTokenRenewalFilter);
         bean.setOrder(4);

@@ -84,14 +84,14 @@ public class LogAspect {
         Object returnValue = null;
         Throwable throwable = null;
         String methodName = null;
-        StopWatch sw = CONSOLE_STOP_WATCH_THREAD_LOCAL.get();
+        var sw = CONSOLE_STOP_WATCH_THREAD_LOCAL.get();
         try {
             sw.start();
-            MethodSignature ms = (MethodSignature) joinPoint.getSignature();
+            var ms = (MethodSignature) joinPoint.getSignature();
             methodName = ms.getName();
-            HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
+            var request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
             this.printUrlAndMethod(request);
-            List<ParamDescription> paramDescriptionList = this.analysisInParameter(ms.getMethod().getParameterAnnotations(), ms.getParameterTypes(), ms.getMethod().getParameters(), joinPoint.getArgs());
+            var paramDescriptionList = this.analysisInParameter(ms.getMethod().getParameterAnnotations(), ms.getParameterTypes(), ms.getMethod().getParameters(), joinPoint.getArgs());
             this.printRequest(paramDescriptionList);
             returnValue = joinPoint.proceed(joinPoint.getArgs());
             return returnValue;
@@ -114,7 +114,7 @@ public class LogAspect {
         Object result = null;
         boolean isSuccess = false;
         String failReason = null;
-        StopWatch sw = DATABASE_STOP_WATCH_THREAD_LOCAL.get();
+        var sw = DATABASE_STOP_WATCH_THREAD_LOCAL.get();
         try {
             sw.start();
             result = joinPoint.proceed(joinPoint.getArgs());
@@ -126,9 +126,9 @@ public class LogAspect {
         } finally {
             sw.stop();
             // 获取该方法上的 Log注解
-            Log log = ((MethodSignature) joinPoint.getSignature()).getMethod().getAnnotation(Log.class);
+            var log = ((MethodSignature) joinPoint.getSignature()).getMethod().getAnnotation(Log.class);
             //组装
-            LogReqDTO logDTO = buildLogDTO(log, joinPoint, result, isSuccess, sw.getLastTaskTimeMillis(), failReason);
+            var logDTO = buildLogDTO(log, joinPoint, result, isSuccess, sw.getLastTaskTimeMillis(), failReason);
             //异步保存
             baseAsyncTask.saveLog(logDTO);
             DATABASE_STOP_WATCH_THREAD_LOCAL.remove();
@@ -136,7 +136,7 @@ public class LogAspect {
     }
 
     private boolean isFeign(ProceedingJoinPoint joinPoint) {
-        Class<?>[] interfaces = joinPoint.getTarget().getClass().getInterfaces();
+        var interfaces = joinPoint.getTarget().getClass().getInterfaces();
         return interfaces.length > 0 && Arrays.stream(interfaces).allMatch(clazz -> Objects.nonNull(clazz.getAnnotation(FeignClient.class)));
     }
 
@@ -152,26 +152,26 @@ public class LogAspect {
             }
             Class<? extends Annotation> paramAnnoClass = RequestParam.class;
             String paramAnnoAliasName = null;
-            Class<?> paramType = paramTypes[i];
-            boolean isBaseType = this.isBaseType(paramType);
+            var paramType = paramTypes[i];
+            var isBaseType = this.isBaseType(paramType);
             String paramName = parameters[i].getName();
             Object paramValue = paramValues[i];
             for (int j = 0; j < paramAnnos[i].length; j++) {
                 if (paramAnnos[i][j].annotationType() == PathVariable.class) {
                     paramAnnoClass = PathVariable.class;
-                    PathVariable pathVariable = (PathVariable) paramAnnos[i][j];
+                    var pathVariable = (PathVariable) paramAnnos[i][j];
                     paramAnnoAliasName = StrUtil.isNotBlank(pathVariable.name()) ? pathVariable.name() : StrUtil.isBlank(pathVariable.value()) ? null : pathVariable.value();
                     isBaseType = true;
                     break;
                 }
                 if (paramAnnos[i][j].annotationType() == RequestHeader.class) {
                     paramAnnoClass = RequestHeader.class;
-                    RequestHeader requestHeader = (RequestHeader) paramAnnos[i][j];
+                    var requestHeader = (RequestHeader) paramAnnos[i][j];
                     paramAnnoAliasName = StrUtil.isNotBlank(requestHeader.name()) ? requestHeader.name() : StrUtil.isBlank(requestHeader.value()) ? null : requestHeader.value();
                     break;
                 }
                 if (paramAnnos[i][j].annotationType() == RequestParam.class) {
-                    RequestParam requestParam = (RequestParam) paramAnnos[i][j];
+                    var requestParam = (RequestParam) paramAnnos[i][j];
                     paramAnnoAliasName = StrUtil.isNotBlank(requestParam.name()) ? requestParam.name() : StrUtil.isBlank(requestParam.value()) ? null : requestParam.value();
                     isBaseType = this.isBaseType(paramTypes[i]);
                     break;
@@ -181,7 +181,7 @@ public class LogAspect {
                     break;
                 }
             }
-            ParamDescription paramDesc = new ParamDescription();
+            var paramDesc = new ParamDescription();
             paramDesc.setParamAnnoClass(paramAnnoClass);
             paramDesc.setParamAnnoAliasName(paramAnnoAliasName);
             paramDesc.setParamType(paramType);
@@ -201,33 +201,33 @@ public class LogAspect {
                 return;
             }
         }
-        Map<Class<? extends Annotation>, List<ParamDescription>> map = paramDescList.stream().collect(Collectors.groupingBy(ParamDescription::getParamAnnoClass));
+        var map = paramDescList.stream().collect(Collectors.groupingBy(ParamDescription::getParamAnnoClass));
         StringBuilder sb1 = new StringBuilder();
         StringBuilder sb2 = new StringBuilder();
         StringBuilder sb3 = new StringBuilder();
         StringBuilder sb4 = new StringBuilder();
-        for (Class<? extends Annotation> clazz : map.keySet()) {
+        for (var clazz : map.keySet()) {
             if (clazz == PathVariable.class) {
-                List<ParamDescription> list1 = map.get(PathVariable.class);
-                for (ParamDescription desc : list1) {
+                var list1 = map.get(PathVariable.class);
+                for (var desc : list1) {
                     sb1.append(StrUtil.isNotBlank(desc.getParamAnnoAliasName()) ? desc.getParamAnnoAliasName() : desc.getParamName()).append("=").append(desc.getParamValue());
                 }
             }
             if (clazz == RequestHeader.class) {
-                List<ParamDescription> list2 = map.get(RequestHeader.class);
-                for (ParamDescription desc : list2) {
+                var list2 = map.get(RequestHeader.class);
+                for (var desc : list2) {
                     sb2.append(!desc.getIsBaseType() ? this.getBeanStr(desc.getParamValue()) : (StrUtil.isNotBlank(desc.getParamAnnoAliasName()) ? desc.getParamAnnoAliasName() : desc.getParamName()) + "=" + desc.getParamValue());
                 }
             }
             if (clazz == RequestParam.class) {
-                List<ParamDescription> list3 = map.get(RequestParam.class);
-                for (ParamDescription desc : list3) {
+                var list3 = map.get(RequestParam.class);
+                for (var desc : list3) {
                     sb3.append(!desc.getIsBaseType() ? this.getBeanStr(desc.getParamValue()) : (StrUtil.isNotBlank(desc.getParamAnnoAliasName()) ? desc.getParamAnnoAliasName() : desc.getParamName()) + "=" + desc.getParamValue());
                 }
             }
             if (clazz == RequestBody.class) {
-                List<ParamDescription> list4 = map.get(RequestBody.class);
-                for (ParamDescription desc : list4) {
+                var list4 = map.get(RequestBody.class);
+                for (var desc : list4) {
                     sb4.append(JSON.toJSONString(desc.getParamValue()));
                 }
             }
@@ -251,9 +251,9 @@ public class LogAspect {
     }
 
     private String getBeanStr(Object paramValue) {
-        StringBuilder sb = new StringBuilder();
-        Map<String, Object> map = BeanUtil.beanToMap(paramValue);
-        for (String key : map.keySet()) {
+        var sb = new StringBuilder();
+        var map = BeanUtil.beanToMap(paramValue);
+        for (var key : map.keySet()) {
             sb.append(key).append("=").append(map.get(key)).append(" ");
         }
         return sb.toString();

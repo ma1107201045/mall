@@ -56,14 +56,14 @@ public class UserServiceImpl implements UserService {
     @Transactional(rollbackFor = Exception.class)
     public void create(UserDTO userDTO) {
         //通过用户名称获取用户id
-        Long id = userMapper.selectIdByUserName(userDTO.getUserName());
+        var id = userMapper.selectIdByUserName(userDTO.getUserName());
         //判断用户名称不存在
         AssertUtil.isNull(id, SystemFailEnum.USER_NAME_EXIST_ERROR);
         //密码作哈希
-        String encodePassword = passwordEncoder.encode(userDTO.getPassword());
+        var encodePassword = passwordEncoder.encode(userDTO.getPassword());
         userDTO.setPassword(encodePassword);
         //DTO转换Entity
-        UserDO userDO = ConverterUtil.to(userDTO, UserDO.class);
+        var userDO = ConverterUtil.to(userDTO, UserDO.class);
         //保存
         userRepository.save(userDO);
         //保存用户角色信息
@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteByIds(List<Long> ids) {
-        boolean flag = userRepository.findAllById(ids).stream()
+        var flag = userRepository.findAllById(ids).stream()
                 .anyMatch(userDO -> SystemConstant.USER_NAME_ADMIN.equals(userDO.getUserName()));
         AssertUtil.isFalse(flag, SystemFailEnum.USER_NAME_ADMIN_DELETE_ERROR);
         userRepository.deleteAllById(ids);
@@ -82,23 +82,23 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateById(UserDTO userDTO) {
-        Long id = userDTO.getId();
+        var id = userDTO.getId();
         //获取用户信息
-        Optional<UserDO> optional = userRepository.findById(id);
+        var optional = userRepository.findById(id);
         //断言用户是否不为空
         AssertUtil.isFalse(optional.isEmpty(), SystemFailEnum.USER_NULL_ERROR);
         //获取用户
-        UserDO userDO = optional.get();
+        var userDO = optional.get();
         //断言用户是否admin
         AssertUtil.isFalse(SystemConstant.USER_NAME_ADMIN.equals(userDO.getUserName()), SystemFailEnum.USER_NAME_ADMIN_UPDATE_ERROR);
         //断言用户名称是否相同
-        Long newId = userMapper.selectIdByUserName(userDTO.getUserName());
-        boolean flag = Objects.nonNull(newId) && !Objects.equals(id, newId);
+        var newId = userMapper.selectIdByUserName(userDTO.getUserName());
+        var flag = Objects.nonNull(newId) && !Objects.equals(id, newId);
 
         //判断用户名称不存在
         AssertUtil.isFalse(flag, SystemFailEnum.USER_NAME_EXIST_ERROR);
         //密码作哈希
-        String encodePassword = passwordEncoder.encode(userDTO.getPassword());
+        var encodePassword = passwordEncoder.encode(userDTO.getPassword());
         userDTO.setPassword(encodePassword);
         //DTO转换Entity
         ConverterUtil.to(userDTO, userDO);
@@ -134,13 +134,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updatePartById(UserPartReqDTO userPartReqDTO) {
         //获取用户信息
-        Optional<UserDO> optional = userRepository.findById(userPartReqDTO.getId());
+        var optional = userRepository.findById(userPartReqDTO.getId());
         //断言用户是否不为空
         AssertUtil.isFalse(optional.isEmpty(), SystemFailEnum.USER_NULL_ERROR);
         //获取用户
-        UserDO userDO = optional.get();
+        var userDO = optional.get();
         //密码作哈希
-        String encodePassword = passwordEncoder.encode(userPartReqDTO.getPassword());
+        var encodePassword = passwordEncoder.encode(userPartReqDTO.getPassword());
         userPartReqDTO.setPassword(encodePassword);
         //转换数据
         userDO = SystemConverter.INSTANCE.to(userDO, userPartReqDTO);
@@ -150,11 +150,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserRespDTO readUserAndMenuPermissionsByUserName(String userName) {
-        UserRespDTO userRespDTO = userMapper.selectByUserName(userName);
+        var userRespDTO = userMapper.selectByUserName(userName);
         if (ObjUtil.isNull(userRespDTO)) {
             return userRespDTO;
         }
-        List<String> permissions = readMenuPermissionsByUserName(userName);
+        var permissions = readMenuPermissionsByUserName(userName);
         userRespDTO.setPermissions(permissions);
         return userRespDTO;
     }
@@ -174,7 +174,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<String> readMenuPermissionsByUserName(String userName) {
         List<MenuRespDTO> menuRespDTOList;
-        List<Integer> menuTypes = Collections.singletonList(MenuTypeEnum.BUTTON.getCode());
+        var menuTypes = Collections.singletonList(MenuTypeEnum.BUTTON.getCode());
         if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
             menuRespDTOList = userMapper.selectMenusByUserNameAndMenuTypes(userName, menuTypes);
         } else {
@@ -185,7 +185,7 @@ public class UserServiceImpl implements UserService {
 
 
     private List<MenuRespDTO> toMenuTree(Long menuParentId, List<MenuRespDTO> menuList) {
-        List<MenuRespDTO> menus = menuList.stream()
+        var menus = menuList.stream()
                 .filter(menuResDTO -> menuResDTO.getParentId().equals(menuParentId))
                 .sorted(Comparator.comparing(MenuRespDTO::getSort))
                 .toList();

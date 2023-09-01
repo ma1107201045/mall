@@ -56,7 +56,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.OK)
     public ServerResponse<Void> constraintViolationException(ConstraintViolationException e) {
         log.error("ConstraintViolationException：", e);
-        Set<ConstraintViolation<?>> constraintViolations = e.getConstraintViolations();
+        var constraintViolations = e.getConstraintViolations();
         return ServerResponse.fail(PARAMETER_CODE, constraintViolations.stream().map(ConstraintViolation::getMessage).toList().toString());
     }
 
@@ -64,7 +64,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.OK)
     public ServerResponse<Void> methodArgumentNotValidException(MethodArgumentNotValidException e) {
         log.error("MethodArgumentNotValidException：", e);
-        List<ObjectError> objectErrors = e.getBindingResult().getAllErrors();
+        var objectErrors = e.getBindingResult().getAllErrors();
         return ServerResponse.fail(PARAMETER_CODE, objectErrors.stream().map(ObjectError::getDefaultMessage).toList().toString());
     }
 

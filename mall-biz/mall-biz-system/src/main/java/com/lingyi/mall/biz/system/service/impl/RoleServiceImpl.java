@@ -45,7 +45,7 @@ public class RoleServiceImpl implements RoleService {
     @Transactional(rollbackFor = Exception.class)
     public void create(RoleDTO roleDTO) {
         //DTO转换Entity
-        RoleDO roleDO = BeanUtil.copyProperties(roleDTO, RoleDO.class);
+        var roleDO = BeanUtil.copyProperties(roleDTO, RoleDO.class);
         //保存
         roleRepository.save(roleDO);
         //保存角色菜单信息
@@ -64,11 +64,11 @@ public class RoleServiceImpl implements RoleService {
         //获取id
         Long id = roleDTO.getId();
         //获取角色信息
-        Optional<RoleDO> optional = roleRepository.findById(id);
+        var optional = roleRepository.findById(id);
         //判断用户是否不为空
         AssertUtil.isFalse(optional.isEmpty(), SystemFailEnum.ROLE_NULL_ERROR);
         //获取用户
-        RoleDO roleDO = optional.get();
+        var roleDO = optional.get();
         //DTO转换Entity
         ConverterUtil.to(roleDTO, roleDO);
         //保存

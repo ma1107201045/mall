@@ -37,7 +37,7 @@ public class AuthAppController {
     @Operation(summary = "手机号登录", description = "手机号登录")
     @PostMapping("/login")
     public ServerResponse<AuthAppLoginVO> login(@Valid @RequestBody AuthAppLoginDTO authAppLoginDTO) {
-        AuthAppLoginVO authAppLoginVO = authAppService.login(authAppLoginDTO);
+        var authAppLoginVO = authAppService.login(authAppLoginDTO);
         return ServerResponse.success(authAppLoginVO);
     }
 

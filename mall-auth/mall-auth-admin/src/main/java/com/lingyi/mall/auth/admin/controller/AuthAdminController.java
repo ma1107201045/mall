@@ -35,7 +35,7 @@ public class AuthAdminController {
     @GetMapping("/get-base64-image-captcha")
     @ResponseBody
     public ServerResponse<String> getBase64ImageCaptcha(HttpSession session) {
-        String imageCaptcha = authAdminService.readImageCaptcha(session);
+        var imageCaptcha = authAdminService.readImageCaptcha(session);
         return ServerResponse.success(imageCaptcha);
 
     }

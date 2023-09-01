@@ -49,7 +49,7 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public BrandDO readById(Long aLong) {
+    public BrandDO readById(Long id) {
         return null;
     }
 

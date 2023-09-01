@@ -38,7 +38,7 @@ public class OpenFeignConfig {
         return requestTemplate -> {
             // 将trackId 同步到新的请求的请求头中
             requestTemplate.header(BaseConstant.TRACK_ID_NAME, MDC.get(BaseConstant.TRACK_ID_NAME));
-            String token = HttpUtil.getHeader(SecurityConstant.AUTHORIZATION);
+            var token = HttpUtil.getHeader(SecurityConstant.AUTHORIZATION);
             if (StrUtil.isBlank(token)) {
                 return;
             }
@@ -51,11 +51,11 @@ public class OpenFeignConfig {
     @NonNull
     public ResponseInterceptor responseInterceptor() {
         return invocationContext -> {
-            Response response = invocationContext.response();
-            Map<String, Collection<String>> headers = response.headers();
-            Collection<String> values = headers.get(SecurityConstant.AUTHORIZATION);
+            var response = invocationContext.response();
+            var headers = response.headers();
+            var values = headers.get(SecurityConstant.AUTHORIZATION);
             if (CollUtil.isNotEmpty(values)) {
-                String token = values.toArray(new String[]{})[0];
+                var token = values.toArray(new String[]{})[0];
                 if (StrUtil.isNotBlank(token)) {
                     HttpUtil.addHeader(SecurityConstant.AUTHORIZATION, token);
                 }

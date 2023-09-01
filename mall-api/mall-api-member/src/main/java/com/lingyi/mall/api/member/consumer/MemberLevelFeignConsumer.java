@@ -21,7 +21,7 @@ public class MemberLevelFeignConsumer {
     private final MemberLevelFeign memberLevelFeign;
 
     public Long getDefaultLevelId() {
-        ServerResponse<Long> response = memberLevelFeign.getDefaultLevelId();
+        var response = memberLevelFeign.getDefaultLevelId();
         if (response.getIsSuccess()) {
             log.info("出参:id:{}", response.getData());
             return response.getData();

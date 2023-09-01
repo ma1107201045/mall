@@ -45,11 +45,11 @@ public class MemberLevelServiceImpl implements MemberLevelService {
 
     @Override
     public void updateById(MemberLevelDO memberLevelDO) {
-        Optional<MemberLevelDO> optional = memberLevelRepository.findById(memberLevelDO.getId());
+        var optional = memberLevelRepository.findById(memberLevelDO.getId());
         if (optional.isEmpty()) {
             throw new BizException(MemberFailEnum.MEMBER_LEVEL_NULL_ERROR);
         }
-        MemberLevelDO newMemberLevelDO = optional.get();
+        var newMemberLevelDO = optional.get();
         ConverterUtil.to(memberLevelDO, newMemberLevelDO);
         memberLevelRepository.save(newMemberLevelDO);
     }
@@ -66,9 +66,9 @@ public class MemberLevelServiceImpl implements MemberLevelService {
 
     @Override
     public Long readDefaultLevelId() {
-        MemberLevelDO memberLevelDO = new MemberLevelDO();
+        var memberLevelDO = new MemberLevelDO();
         memberLevelDO.setIsDefaultLevel(WhetherEnum.Y.getCode());
-        Optional<MemberLevelDO> optional = memberLevelRepository.findOne(Example.of(memberLevelDO));
+        var optional = memberLevelRepository.findOne(Example.of(memberLevelDO));
         return optional.isPresent() ? optional.get().getId() : ObjectUtil.getNull();
     }
 }

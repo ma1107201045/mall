@@ -34,15 +34,15 @@ public class SpelUtil {
             return StrUtil.EMPTY;
         }
         //获取被拦截方法参数名列表(使用Spring支持类库)
-        ParameterNameDiscoverer parameterNameDiscoverer = new DefaultParameterNameDiscoverer();
-        String[] paraNames = parameterNameDiscoverer.getParameterNames(method);
+        var parameterNameDiscoverer = new DefaultParameterNameDiscoverer();
+        var paraNames = parameterNameDiscoverer.getParameterNames(method);
         if (ArrayUtil.isEmpty(paraNames)) {
             return spel;
         }
         //使用SPEL进行key的解析
-        ExpressionParser parser = new SpelExpressionParser();
+        var parser = new SpelExpressionParser();
         //SPEL上下文
-        StandardEvaluationContext context = new MethodBasedEvaluationContext(rootObject, method, args, parameterNameDiscoverer);
+        var context = new MethodBasedEvaluationContext(rootObject, method, args, parameterNameDiscoverer);
         //把方法参数放入SPEL上下文中
         for (int i = 0; i < paraNames.length; i++) {
             context.setVariable(paraNames[i], args[i]);

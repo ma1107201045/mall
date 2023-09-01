@@ -36,11 +36,11 @@ public class ImageCaptchaFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
-        HttpSession session = request.getSession();
+        var session = request.getSession();
         if (this.isNeedAuthentication(request)) {
             try {
-                String imageCaptcha = request.getParameter(SecurityConstant.IMAGE_CAPTCHA_PARAMETER);
-                ICaptcha iCaptcha = (ICaptcha) session.getAttribute(SecurityConstant.SESSION_ATTRIBUTE_NAME);
+                var imageCaptcha = request.getParameter(SecurityConstant.IMAGE_CAPTCHA_PARAMETER);
+                var iCaptcha = (ICaptcha) session.getAttribute(SecurityConstant.SESSION_ATTRIBUTE_NAME);
                 if (StrUtil.isBlank(imageCaptcha) || Objects.isNull(iCaptcha)) {
                     throw new ImageCaptchaException(this.message.getMessage("ImageCaptchaFilter.captchaNull", "ImageCaptcha is null"));
                 }

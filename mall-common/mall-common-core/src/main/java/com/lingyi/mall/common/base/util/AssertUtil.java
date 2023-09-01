@@ -120,9 +120,9 @@ public final class AssertUtil {
     }
 
     public static Object[] getFailEnumValues(BaseFailEnum failEnum) {
-        Object[] objects = new Object[2];
+        var objects = new Object[2];
         try {
-            Class<?> clazz = failEnum.getClass();
+            var clazz = failEnum.getClass();
             Object code = clazz.getMethod(BaseConstant.CODE_GET_METHOD_NAME).invoke(failEnum);
             Object message = clazz.getMethod(BaseConstant.MESSAGE_GET_METHOD_NAME).invoke(failEnum);
             if (code instanceof Integer && message instanceof String) {

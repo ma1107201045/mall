@@ -28,7 +28,7 @@ public class AuthenticatorUtil {
      * @return UserDetailsEntity
      */
     public static UserDetailsDO getUserDetailsDO() {
-        Object principal = getAuthentication().getPrincipal();
+        var principal = getAuthentication().getPrincipal();
         return principal instanceof UserDetailsDO userDetailsDO ? userDetailsDO :
                 UserDetailsDO.builder()
                         .userId(-1L)

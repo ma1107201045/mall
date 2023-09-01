@@ -37,8 +37,8 @@ public class RedisLockAspect {
 
     @Around("@annotation(redisLock)")
     public Object around(ProceedingJoinPoint joinPoint, RedisLock redisLock) throws Throwable {
-        String keySuffix = SpelUtil.parse(joinPoint.getTarget(), redisLock.keySuffix(), getMethod(joinPoint), joinPoint.getArgs());
-        RLock rLock = redissonClient.getLock(String.format(KEY_FORMAT, applicationName, KEY_PREFIX, keySuffix));
+        var keySuffix = SpelUtil.parse(joinPoint.getTarget(), redisLock.keySuffix(), getMethod(joinPoint), joinPoint.getArgs());
+        var rLock = redissonClient.getLock(String.format(KEY_FORMAT, applicationName, KEY_PREFIX, keySuffix));
         if (redisLock.isRenewal()) {
             rLock.lock();
         } else {
@@ -54,7 +54,7 @@ public class RedisLockAspect {
     }
 
     private Method getMethod(ProceedingJoinPoint joinPoint) {
-        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+        var methodSignature = (MethodSignature) joinPoint.getSignature();
         return methodSignature.getMethod();
     }
 }

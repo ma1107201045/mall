@@ -43,7 +43,7 @@ public final class SnowFlakeIdUtil {
 
 
     private static long getWorkerId() {
-        String localhostStr = NetUtil.getLocalhostStr();
+        var localhostStr = NetUtil.getLocalhostStr();
         if (!NetUtil.isInnerIP(localhostStr)) {
             return BaseConstant.WORKER_ID;
         }
@@ -60,7 +60,7 @@ public final class SnowFlakeIdUtil {
 //    }
 //
 //    private static String getBinaryStr(long value) {
-//        String str = StrUtil.fillBefore(NumberUtil.getBinaryStr(value), '0', 64);
+//        var str = StrUtil.fillBefore(NumberUtil.getBinaryStr(value), '0', 64);
 //        System.out.println(str.length());
 //        return str.charAt(0) + " - " + str.substring(1, 42) + " - " + str.substring(42, 47) + " " + str.substring(47, 57) + " - " + str.substring(57);
 //    }

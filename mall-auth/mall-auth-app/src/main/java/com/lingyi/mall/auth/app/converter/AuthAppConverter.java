@@ -33,7 +33,7 @@ public class AuthAppConverter {
     }
 
     public CaptchaVerifyReqDTO to(AuthAppLoginDTO authAppLoginDTO, SmsCaptchaProperties properties) {
-        String phoneNumber = authAppLoginDTO.getPhoneNumber();
+        var phoneNumber = authAppLoginDTO.getPhoneNumber();
         CaptchaVerifyReqDTO captchaVerifyReqDTO = new CaptchaVerifyReqDTO();
         captchaVerifyReqDTO.setPhoneNumber(phoneNumber);
         captchaVerifyReqDTO.setServiceType(properties.getServiceTypeEnum().getCode());
@@ -43,7 +43,7 @@ public class AuthAppConverter {
     }
 
     public MemberReqDTO to(AuthAppLoginDTO authAppLoginDTO, Long memberLevelId) {
-        MemberReqDTO memberReqDTO = new MemberReqDTO();
+        var memberReqDTO = new MemberReqDTO();
         memberReqDTO.setMemberLevelId(memberLevelId);
         memberReqDTO.setNickname(UserNameUtil.getRightFourBit(authAppLoginDTO.getPhoneNumber()));
         memberReqDTO.setPhoneNumber(authAppLoginDTO.getPhoneNumber());
@@ -54,7 +54,7 @@ public class AuthAppConverter {
     }
 
     public CaptchaSendReqDTO to(String phoneNumber, SmsCaptchaProperties properties) {
-        CaptchaSendReqDTO captchaSendReqDTO = new CaptchaSendReqDTO();
+        var captchaSendReqDTO = new CaptchaSendReqDTO();
         captchaSendReqDTO.setServiceType(properties.getServiceTypeEnum().getCode());
         captchaSendReqDTO.setBusinessType(properties.getBusinessTypeEnum().getCode());
         captchaSendReqDTO.setPhoneNumber(phoneNumber);
@@ -68,7 +68,7 @@ public class AuthAppConverter {
     }
 
     public MemberLoginLogReqDTO to(MemberRespDTO memberRespDTO) {
-        MemberLoginLogReqDTO memberLoginLogReqDTO = new MemberLoginLogReqDTO();
+        var memberLoginLogReqDTO = new MemberLoginLogReqDTO();
         memberLoginLogReqDTO.setMemberUserId(memberRespDTO.getId());
         memberLoginLogReqDTO.setMemberUserName(memberRespDTO.getUserName());
         memberLoginLogReqDTO.setIp(StrUtil.EMPTY);

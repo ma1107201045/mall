@@ -25,7 +25,7 @@ public class MemberFeignConsumer {
 
     public Long register(MemberReqDTO memberReqDTO) {
         log.info("入参:memberReqDTO:{}", JSON.toJSONString(memberReqDTO));
-        ServerResponse<Long> response = memberFeign.register(memberReqDTO);
+        var response = memberFeign.register(memberReqDTO);
         if (response.getIsSuccess()) {
             log.info("出参:id:{}", JSON.toJSONString(response.getData()));
             return response.getData();
@@ -35,7 +35,7 @@ public class MemberFeignConsumer {
 
     public MemberRespDTO getByPhoneNumber(String phoneNumber) {
         log.info("入参:phoneNumber:{}", phoneNumber);
-        ServerResponse<MemberRespDTO> response = memberFeign.getByPhoneNumber(phoneNumber);
+        var response = memberFeign.getByPhoneNumber(phoneNumber);
         if (response.getIsSuccess()) {
             log.info("出参:MemberRespDTO:{}", JSON.toJSONString(response.getData()));
             return response.getData();

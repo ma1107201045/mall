@@ -45,7 +45,7 @@ public class SecurityConfig {
 
     @Bean
     public ImageCaptchaFilter imageCaptchaFilter(MessageSourceAccessor messageSourceAccessor) {
-        ImageCaptchaFilter imageCaptchaFilter = new ImageCaptchaFilter();
+        var imageCaptchaFilter = new ImageCaptchaFilter();
         imageCaptchaFilter.setMessageSourceAccessor(messageSourceAccessor);
         return imageCaptchaFilter;
     }

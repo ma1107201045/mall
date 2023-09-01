@@ -22,7 +22,7 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     @Override
     public void createList(Long userId, List<Long> roleIds) {
-        List<UserRoleDO> userRoleDOList = roleIds.stream()
+        var userRoleDOList = roleIds.stream()
                 .map(roleId -> UserRoleDO.of(userId, roleId))
                 .toList();
         userRoleRepository.saveAll(userRoleDOList);

@@ -33,7 +33,7 @@ public class RedisConfig {
      */
     @Bean
     public RedisSerializer<Object> jackson2JsonRedisSerializer() {
-        ObjectMapper objectMapper = new ObjectMapper();
+        var objectMapper = new ObjectMapper();
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         return new Jackson2JsonRedisSerializer<>(objectMapper, Object.class);
     }

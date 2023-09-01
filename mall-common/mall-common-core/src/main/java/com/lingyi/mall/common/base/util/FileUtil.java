@@ -18,9 +18,9 @@ public class FileUtil {
     private static final String DIRECTORY_NAME_FORMAT = "%s/%s/%s/%s/%s/%s/%s/%s/%s/";
 
     public static String getDirectoryName(ClientTypeEnum clientTypeEnum, String username) {
-        String applicationName = SpringUtil.getProperty("spring.application.name");
-        String nowFormat = LocalDateTime.now().format(DateTimeFormatter.ofPattern(BaseConstant.DATE_TIME_PATTERN));
-        String[] splitArr = nowFormat.split(BaseConstant.COLON_CHAR);
+        var applicationName = SpringUtil.getProperty("spring.application.name");
+        var nowFormat = LocalDateTime.now().format(DateTimeFormatter.ofPattern(BaseConstant.DATE_TIME_PATTERN));
+        var splitArr = nowFormat.split(BaseConstant.COLON_CHAR);
         return String.format(DIRECTORY_NAME_FORMAT,
                 applicationName,
                 clientTypeEnum.toString().toLowerCase(),

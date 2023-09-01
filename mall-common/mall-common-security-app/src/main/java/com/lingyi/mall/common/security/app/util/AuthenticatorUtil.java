@@ -20,7 +20,7 @@ public class AuthenticatorUtil {
      * @return UserDetailsEntity
      */
     public static MemberDetailsDO getMemberDetailsDO() {
-        String token = HttpUtil.getHeader(SecurityConstant.AUTHORIZATION);
+        var token = HttpUtil.getHeader(SecurityConstant.AUTHORIZATION);
         if (StrUtil.isBlank(token)) {
             return MemberDetailsDO.builder().build();
         }

@@ -45,11 +45,11 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void updateById(MemberDO memberDO) {
-        Optional<MemberDO> optional = memberRepository.findById(memberDO.getId());
+        var optional = memberRepository.findById(memberDO.getId());
         if (optional.isEmpty()) {
             throw new BizException(MemberFailEnum.MEMBER_NULL_ERROR);
         }
-        MemberDO newMemberDO = optional.get();
+        var newMemberDO = optional.get();
         ConverterUtil.to(memberDO, newMemberDO);
         memberRepository.save(newMemberDO);
     }
@@ -66,8 +66,8 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Long register(MemberReqDTO memberReqDTO) {
-        MemberDO memberDO = ConverterUtil.to(memberReqDTO, MemberDO.class);
-        MemberLevelDO memberLevelDO = new MemberLevelDO();
+        var memberDO = ConverterUtil.to(memberReqDTO, MemberDO.class);
+        var memberLevelDO = new MemberLevelDO();
         memberLevelDO.setId(memberReqDTO.getMemberLevelId());
         memberDO.setMemberLevelDO(memberLevelDO);
         create(memberDO);

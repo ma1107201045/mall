@@ -22,13 +22,13 @@ public class BaseErrorController implements ErrorController {
 
     @RequestMapping
     public ServerResponse<Void> error(HttpServletRequest request) {
-        HttpStatus status = this.getStatus(request);
+        var status = this.getStatus(request);
         return ServerResponse.fail(status.value(), status.getReasonPhrase());
     }
 
 
     protected HttpStatus getStatus(HttpServletRequest request) {
-        Integer statusCode = (Integer) request.getAttribute("jakarta.servlet.error.status_code");
+        var statusCode = (Integer) request.getAttribute("jakarta.servlet.error.status_code");
         if (statusCode == null) {
             return HttpStatus.INTERNAL_SERVER_ERROR;
         } else {

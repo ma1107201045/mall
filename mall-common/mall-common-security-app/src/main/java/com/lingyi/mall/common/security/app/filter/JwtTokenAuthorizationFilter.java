@@ -29,10 +29,10 @@ public class JwtTokenAuthorizationFilter extends AbstractJwtTokenFilter {
 
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        String token = request.getHeader(SecurityConstant.AUTHORIZATION);
+        var token = request.getHeader(SecurityConstant.AUTHORIZATION);
         if (StrUtil.isNotBlank(token)) {
             try {
-                boolean flag = JwtUtil.verifyToken(token);
+                var flag = JwtUtil.verifyToken(token);
                 if (flag) {
                     chain.doFilter(request, response);
                     return;

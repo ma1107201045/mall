@@ -41,13 +41,13 @@ public class LogServiceImpl implements LogService {
     @Override
     public void updateById(LogDO logDO) {
         //获取日志信息
-        Optional<LogDO> optional = logRepository.findById(logDO.getId());
+        var optional = logRepository.findById(logDO.getId());
         //判断日志是否为空
         if (optional.isEmpty()) {
             throw new BizException(SystemFailEnum.LOG_NULL_ERROR);
         }
         //获取用户
-        LogDO newLogDO = optional.get();
+        var newLogDO = optional.get();
         //DTO转换Entity
         ConverterUtil.to(logDO, newLogDO);
         //更新

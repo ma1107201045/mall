@@ -27,9 +27,9 @@ public class JwtUtil {
 
 
     public static String createToken(MemberRespDTO memberRespDTO) {
-        Map<String, Object> map = BeanUtil.beanToMap(memberRespDTO);
-        Date date = new Date();
-        JWTPayload jwtPayload = new JWTPayload();
+        var map = BeanUtil.beanToMap(memberRespDTO);
+        var date = new Date();
+        var jwtPayload = new JWTPayload();
         jwtPayload.addPayloads(map);
         jwtPayload.setIssuer(memberRespDTO.getUserName());
         jwtPayload.setSubject(StrUtil.EMPTY);

@@ -26,7 +26,7 @@ public class MemberLoginLogFeignConsumer {
 
     public void save(MemberLoginLogReqDTO memberLoginLogReqDTO) {
         log.info("入参:memberLoginLogReqDTO:{}", JSON.toJSONString(memberLoginLogReqDTO));
-        ServerResponse<Void> response = memberLoginLogFeign.save(memberLoginLogReqDTO);
+        var response = memberLoginLogFeign.save(memberLoginLogReqDTO);
         if (response.getIsSuccess()) {
             log.info("出参:void:{}", JSON.toJSONString(response.getData()));
             return;

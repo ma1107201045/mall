@@ -29,8 +29,8 @@ public class JsonLogoutSuccessHandler implements LogoutSuccessHandler {
         response.setStatus(HttpStatus.OK.value());
         response.setContentType(MediaType.APPLICATION_JSON.toString());
         response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
-        PrintWriter writer = response.getWriter();
-        ServerResponse<?> serverResponse = ServerResponse.success();
+        var writer = response.getWriter();
+        var serverResponse = ServerResponse.success();
         writer.write(JSON.toJSONString(serverResponse));
     }
 }

@@ -22,7 +22,7 @@ public class SpringSecurityAuditorAware implements CustomAuditorAware<String> {
     @Override
     @NonNull
     public Optional<String> getCurrentAuditor() {
-        String userName = AuthenticatorUtil.getUserName();
+        var userName = AuthenticatorUtil.getUserName();
         return StrUtil.isBlank(userName) ? Optional.of(SecurityConstant.UNKNOWN) : Optional.of(userName);
     }
 }

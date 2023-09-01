@@ -25,7 +25,7 @@ public class CaptchaFeignConsumer {
 
     public void send(CaptchaSendReqDTO captchaSendReqDTO) {
         log.info("入参:captchaReqDTO:{}", captchaSendReqDTO);
-        ServerResponse<Void> response = captchaFeign.send(captchaSendReqDTO);
+        var response = captchaFeign.send(captchaSendReqDTO);
         if (response.getIsSuccess()) {
             log.info("出参:Void:{}", JSON.toJSONString(response.getData()));
             return;
@@ -35,7 +35,7 @@ public class CaptchaFeignConsumer {
 
     public void verify(CaptchaVerifyReqDTO captchaVerifyReqDTO) {
         log.info("入参:captchaVerifyReqDTO:{}", captchaVerifyReqDTO);
-        ServerResponse<Void> response = captchaFeign.verify(captchaVerifyReqDTO);
+        var response = captchaFeign.verify(captchaVerifyReqDTO);
         if (response.getIsSuccess()) {
             log.info("出参:Void:{}", JSON.toJSONString(response.getData()));
             return;

@@ -41,11 +41,11 @@ public class CaptchaLogServiceImpl implements CaptchaLogService {
     public void updateById(CaptchaLogDO captchaLogDO) {
         Long id = captchaLogDO.getId();
         //获取验证码日志信息
-        Optional<CaptchaLogDO> optional = captchaLogRepository.findById(id);
+        var optional = captchaLogRepository.findById(id);
         //断言验证码日志是否不为空
         AssertUtil.isFalse(optional.isEmpty(), SmsFailEnum.CAPTCHA_LOG_NULL_ERROR);
         //获取用户
-        CaptchaLogDO newCaptchaLogDO = optional.get();
+        var newCaptchaLogDO = optional.get();
         //更新验证码日志信息
         captchaLogRepository.save(newCaptchaLogDO);
     }

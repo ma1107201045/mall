@@ -72,13 +72,13 @@ public class RedisUtil {
 
     @SuppressWarnings("unchecked")
     public <T> T get(String key, Class<T> clazz) {
-        Object obj = redisTemplate.opsForValue().get(key);
+        var obj = redisTemplate.opsForValue().get(key);
         return (T) obj;
     }
 
     public <T> boolean leftPush(String key, T value) {
         try {
-            Long result = redisTemplate.opsForList().leftPush(key, value);
+            var result = redisTemplate.opsForList().leftPush(key, value);
             return result != null && result > 0;
         } catch (Exception e) {
             log.error("redis left push error. ", e);
@@ -90,7 +90,7 @@ public class RedisUtil {
     @SafeVarargs
     public final <T> boolean leftPushAll(String key, T... values) {
         try {
-            Long result = redisTemplate.opsForList().leftPush(key, values);
+            var result = redisTemplate.opsForList().leftPush(key, values);
             return result != null && result > 0;
         } catch (Exception e) {
             log.error("redis left push error. ", e);
@@ -100,7 +100,7 @@ public class RedisUtil {
 
     public <T> boolean leftPushAll(String key, Collection<T> values) {
         try {
-            Long result = redisTemplate.opsForList().leftPush(key, values);
+            var result = redisTemplate.opsForList().leftPush(key, values);
             return result != null && result > 0;
         } catch (Exception e) {
             log.error("redis left push  error. ", e);

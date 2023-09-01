@@ -225,7 +225,7 @@ public class Snowflake implements Serializable {
      * @return ID
      */
     public synchronized long nextId() {
-        long timestamp = genTime();
+        var timestamp = genTime();
         if (timestamp < this.lastTimestamp) {
             if (this.lastTimestamp - timestamp < timeOffset) {
                 // 容忍指定的回拨，避免NTP校时造成的异常
@@ -237,7 +237,7 @@ public class Snowflake implements Serializable {
         }
 
         if (timestamp == this.lastTimestamp) {
-            final long sequence = (this.sequence + 1) & SEQUENCE_MASK;
+            final var sequence = (this.sequence + 1) & SEQUENCE_MASK;
             if (sequence == 0) {
                 timestamp = tilNextMillis(lastTimestamp);
             }
@@ -277,7 +277,7 @@ public class Snowflake implements Serializable {
      * @return 下一个时间
      */
     private long tilNextMillis(long lastTimestamp) {
-        long timestamp = genTime();
+        var timestamp = genTime();
         // 循环直到操作系统时间戳变化
         while (timestamp == lastTimestamp) {
             timestamp = genTime();

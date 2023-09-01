@@ -32,23 +32,23 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         //校验用户名称
         AssertUtil.notBlack(username, new UsernameNotFoundException(FailEnum.USER_NAME_NOT_NULL_ERROR.getMessage()));
         //查询用户信息和菜单权限
-        UserRespDTO userDTO = userFeignConsumer.getUserAndMenuPermissionsByUserName(username);
+        var userRespDTO = userFeignConsumer.getUserAndMenuPermissionsByUserName(username);
         //校验用用户信息
-        AssertUtil.notNull(userDTO, new UsernameNotFoundException(FailEnum.USER_NAME_NOT_FOUND_ERROR.getMessage()));
+        AssertUtil.notNull(userRespDTO, new UsernameNotFoundException(FailEnum.USER_NAME_NOT_FOUND_ERROR.getMessage()));
         //获取菜单权限中的权限标识
-        List<SimpleGrantedAuthority> simpleGrantedAuthorities = userDTO.getPermissions().stream()
+        var simpleGrantedAuthorities = userRespDTO.getPermissions().stream()
                 .map(SimpleGrantedAuthority::new)
                 .toList();
         //组装UserDetailsEntity
         return UserDetailsDO.builder()
                 .authorities(simpleGrantedAuthorities)
-                .password(userDTO.getPassword())
-                .username(userDTO.getUserName())
+                .password(userRespDTO.getPassword())
+                .username(userRespDTO.getUserName())
                 .accountNonExpired(true)
                 .accountNonLocked(true)
                 .credentialsNonExpired(true)
-                .enabled(WhetherEnum.Y.getCode().equals(userDTO.getIsEnable()))
-                .userId(userDTO.getUserId())
+                .enabled(WhetherEnum.Y.getCode().equals(userRespDTO.getIsEnable()))
+                .userId(userRespDTO.getUserId())
                 .build();
     }
 }

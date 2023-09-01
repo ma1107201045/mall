@@ -23,7 +23,7 @@ public class CodeGeneratorProxy implements CodeGenerator {
 
     @Override
     public String generate() {
-        String code = generator.generate();
+        var code = generator.generate();
         return generator instanceof MathGenerator ? code + BaseConstant.QUESTION_CHAR : code;
     }
 
