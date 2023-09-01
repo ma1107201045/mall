@@ -161,35 +161,35 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<MenuRespDTO> readMenuTreeByUserName(String userName) {
-        List<MenuRespDTO> menuRespDTOList;
+        List<MenuRespDTO> menus;
         List<Integer> menuTypes = Arrays.asList(MenuTypeEnum.DIRECTORY.getCode(), MenuTypeEnum.MENU.getCode());
-        if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
-            menuRespDTOList = userMapper.selectMenusByUserNameAndMenuTypes(userName, menuTypes);
+        if (SystemConstant.USER_NAME_ADMIN.equals(userName)) {
+            menus = menuService.readListByTypes(menuTypes);
         } else {
-            menuRespDTOList = menuService.readListByTypes(menuTypes);
+            menus = userMapper.selectMenusByUserNameAndMenuTypes(userName, menuTypes);
         }
-        return toMenuTree(SystemConstant.MENU_ROOT_ID, menuRespDTOList);
+        return toMenuTree(SystemConstant.MENU_ROOT_ID, menus);
     }
 
     @Override
     public List<String> readMenuPermissionsByUserName(String userName) {
-        List<MenuRespDTO> menuRespDTOList;
+        List<MenuRespDTO> menus;
         var menuTypes = Collections.singletonList(MenuTypeEnum.BUTTON.getCode());
         if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
-            menuRespDTOList = userMapper.selectMenusByUserNameAndMenuTypes(userName, menuTypes);
+            menus = menuService.readListByTypes(menuTypes);
         } else {
-            menuRespDTOList = menuService.readListByTypes(menuTypes);
+            menus = userMapper.selectMenusByUserNameAndMenuTypes(userName, menuTypes);
         }
-        return menuRespDTOList.stream().map(MenuRespDTO::getPermission).toList();
+        return menus.stream().map(MenuRespDTO::getPermission).toList();
     }
 
 
-    private List<MenuRespDTO> toMenuTree(Long menuParentId, List<MenuRespDTO> menuList) {
-        var menus = menuList.stream()
+    private List<MenuRespDTO> toMenuTree(Long menuParentId, List<MenuRespDTO> menus) {
+        var menuList = menus.stream()
                 .filter(menuResDTO -> menuResDTO.getParentId().equals(menuParentId))
                 .sorted(Comparator.comparing(MenuRespDTO::getSort))
                 .toList();
-        menus.forEach(menuResDTO -> menuResDTO.setChildren(toMenuTree(menuResDTO.getId(), menuList)));
+        menuList.forEach(menuResDTO -> menuResDTO.setChildren(toMenuTree(menuResDTO.getId(), menuList)));
         return menus;
     }
 
