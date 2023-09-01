@@ -1,4 +1,4 @@
-package com.lingyi.mall;
+package com.lingyi.mall.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,17 +6,18 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
- * @author maweiyan
- * @email 1107201045@qq.com
- * @datetime 2023/5/25 15:24
- * @description
+ * @Author: maweiyan
+ * @Email: 1107201045@qq.com
+ * @DateTime: 2023/9/1 15:07
+ * @Description: 网关服务
  */
 @EnableFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication
-public class MallAuthAppApplication {
+public class MallGatewayApplication {
+
 
     public static void main(String[] args) {
-        SpringApplication.run(MallAuthAppApplication.class, args);
+        SpringApplication.run(MallGatewayApplication.class, args);
     }
 }
