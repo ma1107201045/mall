@@ -37,7 +37,11 @@ public class SpuDO extends BaseIsDeleteDO implements Serializable {
     private Long shopId;
 
     @ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "category_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '分类id'", foreignKey = @ForeignKey(name = "fk_category_id"))
+    @JoinColumn(name = "brand_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '品牌id'", foreignKey = @ForeignKey(name = "fk_brand_id"))
+    private BrandDO brandDO;
+
+    @ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "category_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '分类id'", foreignKey = @ForeignKey(name = "fk_category_id2"))
     private CategoryDO categoryDO;
 
     @Column(name = "name", columnDefinition = "VARCHAR(50) NOT NULL COMMENT '商品名称'")

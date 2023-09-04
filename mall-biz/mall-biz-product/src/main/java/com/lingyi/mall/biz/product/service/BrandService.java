@@ -1,6 +1,8 @@
 package com.lingyi.mall.biz.product.service;
 
+import com.lingyi.mall.biz.product.dto.BrandDTO;
 import com.lingyi.mall.biz.product.entity.BrandDO;
+import com.lingyi.mall.biz.product.vo.BrandVO;
 import com.lingyi.mall.common.base.param.BasePageParam;
 import com.lingyi.mall.common.base.util.BaseService;
 
@@ -10,5 +12,5 @@ import com.lingyi.mall.common.base.util.BaseService;
  * @DateTime: 2023/8/31 9:41
  * @Description:
  */
-public interface BrandService extends BaseService<BrandDO, BasePageParam, BrandDO, Long> {
+public interface BrandService extends BaseService<BrandDTO, BasePageParam, BrandVO, Long> {
 }

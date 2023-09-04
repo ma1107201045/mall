@@ -1,10 +1,12 @@
 package com.lingyi.mall.biz.product.service.impl;
 
+import com.lingyi.mall.biz.product.dto.BrandDTO;
 import com.lingyi.mall.biz.product.entity.BrandDO;
 import com.lingyi.mall.biz.product.entity.SpuDO;
 import com.lingyi.mall.biz.product.mapper.BrandMapper;
 import com.lingyi.mall.biz.product.repository.BrandRepository;
 import com.lingyi.mall.biz.product.service.BrandService;
+import com.lingyi.mall.biz.product.vo.BrandVO;
 import com.lingyi.mall.common.base.param.BasePageParam;
 import com.lingyi.mall.common.base.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +30,8 @@ public class BrandServiceImpl implements BrandService {
     private final BrandMapper brandMapper;
 
     @Override
-    public void create(BrandDO brandDO) {
+    public void create(BrandDTO brandDTO) {
+        BrandDO brandDO = ConverterUtil.to(brandDTO, BrandDO.class);
         brandRepository.save(brandDO);
     }
 
@@ -38,23 +41,23 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public void updateById(BrandDO brandDO) {
-        var optional = brandRepository.findById(brandDO.getId());
+    public void updateById(BrandDTO brandDTO) {
+        var optional = brandRepository.findById(brandDTO.getId());
         if (optional.isEmpty()) {
             return;
         }
-        var newBrandDO = optional.get();
-        ConverterUtil.to(brandDO, newBrandDO);
-        brandRepository.save(newBrandDO);
+        var brandDO = optional.get();
+        ConverterUtil.to(brandDTO, brandDO);
+        brandRepository.save(brandDO);
     }
 
     @Override
-    public BrandDO readById(Long id) {
+    public BrandVO readById(Long id) {
         return null;
     }
 
     @Override
-    public List<BrandDO> readListByParam(BasePageParam param) {
+    public List<BrandVO> readListByParam(BasePageParam param) {
         return null;
     }
 }

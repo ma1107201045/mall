@@ -2,7 +2,10 @@ package com.lingyi.mall.biz.system.mapper;
 
 import com.lingyi.mall.api.system.dto.MenuRespDTO;
 import com.lingyi.mall.biz.system.param.MenuParam;
+import com.lingyi.mall.biz.system.param.UserParam;
 import com.lingyi.mall.biz.system.vo.MenuVO;
+import com.lingyi.mall.biz.system.vo.UserVO;
+import com.lingyi.mall.common.base.util.MybatisMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -14,25 +17,7 @@ import java.util.List;
  * @description
  */
 @Mapper
-public interface MenuMapper {
-
-
-    /**
-     * 按照id查询
-     *
-     * @param id id
-     * @return MenuVO
-     */
-    MenuVO selectById(Long id);
-
-    /**
-     * 按照分页信息和条件查询
-     *
-     * @param menuParam 菜单信息
-     * @return List<MenuVO>
-     */
-    List<MenuVO> selectListByParam(MenuParam menuParam);
-
+public interface MenuMapper extends MybatisMapper<Long, MenuParam, MenuVO> {
 
     /**
      * 按照id查询菜单类型

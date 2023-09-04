@@ -2,6 +2,7 @@ package com.lingyi.mall.common.base.util;
 
 import com.lingyi.mall.common.base.param.BasePageParam;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
  * @DateTime: 2023/8/31 16:07
  * @Description:
  */
-public interface MybatisMapper<ID, PARMA extends BasePageParam, VO> {
+public interface MybatisMapper<ID extends Serializable, PARMA extends BasePageParam, VO> {
 
     /**
      * 按照id查询
@@ -19,6 +20,14 @@ public interface MybatisMapper<ID, PARMA extends BasePageParam, VO> {
      * @return VO
      */
     VO selectById(ID id);
+
+    /**
+     * 按照分页信息和条件查询统计数量
+     *
+     * @param parma 参数
+     * @return 条目
+     */
+    Long countByParam(PARMA parma);
 
     /**
      * 按照分页信息和条件查询

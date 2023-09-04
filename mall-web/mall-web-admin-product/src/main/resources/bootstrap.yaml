@@ -10,48 +10,66 @@ spring:
     database: mysql
     show-sql: true
     openInView: true
-    generate-ddl: true
+    hibernate:
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://rm-2ze09g9o0bb02q5r54o.mysql.rds.aliyuncs.com:3306/mall-product?serverTimezone=GMT%2B8
-    username: jinbihu_shop
-    password: Jinbihu_2023
+    url: jdbc:mysql://36.137.103.166:3306/mall-product?serverTimezone=GMT%2B8
+    username: root
+    password: TfbY820tfp3d31rb@
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 3
   data:
     redis:
-      host: 182.92.64.247
-      password: jinbihu2023
+      host: 36.137.103.166
+      password: j53BDRarSwtWvdDZ
       client-type: lettuce
       database: 1
+      jedis:
+        pool:
+          enabled: true
+          min-idle: 2
   cloud:
     nacos:
       discovery:
         # 服务注册地址
-        server-addr: 182.92.64.247:8848
+        server-addr: 36.137.103.166:8848
         username: nacos
         password: nacos
         access-key: ThisIsMyCustomSecretKey012345678
+        namespace: dev
       config:
         # 配置中心地址
-        server-addr: 182.92.64.247:8848
+        server-addr: 36.137.103.166:8848
         username: nacos
         password: nacos
         access-key: ThisIsMyCustomSecretKey012345678
+        namespace: dev
     openfeign:
       client:
         config:
-          mall-web-admin-product:
+          mall-web-admin-system:
             loggerLevel: FULL
-            connectTimeout: 5
-            readTimeout: 4
+            connectTimeout: 5000
+            readTimeout: 5000
+    stream:
+      binding-retry-interval: 7200
+      rocketmq:
+        binder:
+          name-server: 36.137.103.166:9876
 # springdoc-openapi项目配置
 springdoc:
   swagger-ui:
     tags-sorter: alpha
     operations-sorter: alpha
   group-configs:
-    - group: '系统管理服务【后台】'
+    - group: 'ADMIN-商品服务'
       paths-to-match: '/**'
-      packages-to-scan: com.lingyi.mall.biz.system.b.controller
+      packages-to-scan: com.lingyi.mall.web.admin.product.controller
+#    - group: 'ADMIN-商品服务-provider'
+#      paths-to-match: '/**'
+#      packages-to-scan: com.lingyi.mall.web.admin.product.provider

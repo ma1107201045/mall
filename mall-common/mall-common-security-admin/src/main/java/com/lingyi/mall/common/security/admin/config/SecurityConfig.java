@@ -93,7 +93,7 @@ public class SecurityConfig {
         return http.addFilterBefore(trackIdFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(imageCaptchaFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(authorizeHttpRequestsConfigurer -> authorizeHttpRequestsConfigurer
-                        .requestMatchers(HttpMethod.GET, "/swagger-ui/**", "/doc.html", "/webjars/**", "/v3/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/swagger-ui/**", "/doc.html", "/favicon.ico", "/webjars/**", "/v3/**").permitAll()
                         .requestMatchers("/auth/admin/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/admin/system/users/permissions").permitAll()
                         .requestMatchers(HttpMethod.POST, "/admin/system/logs").permitAll()

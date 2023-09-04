@@ -3,6 +3,7 @@ package com.lingyi.mall.biz.member.mapper;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.biz.member.param.MemberParam;
 import com.lingyi.mall.biz.member.vo.MemberVO;
+import com.lingyi.mall.common.base.util.MybatisMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -14,23 +15,7 @@ import java.util.List;
  * @description
  */
 @Mapper
-public interface MemberMapper {
-
-    /**
-     * 按照id查询
-     *
-     * @param id 主键id
-     * @return MemberVO
-     */
-    MemberVO selectById(Long id);
-
-    /**
-     * 按照分页信息和条件查询
-     *
-     * @param memberParam 会员信息
-     * @return List<UserVO>
-     */
-    List<MemberVO> selectListByParam(MemberParam memberParam);
+public interface MemberMapper extends MybatisMapper<Long, MemberParam, MemberVO> {
 
     /**
      * 按照手机号查询

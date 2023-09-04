@@ -5,6 +5,7 @@ import com.lingyi.mall.api.system.dto.MenuRespDTO;
 import com.lingyi.mall.api.system.dto.UserRespDTO;
 import com.lingyi.mall.biz.system.param.UserParam;
 import com.lingyi.mall.biz.system.vo.UserVO;
+import com.lingyi.mall.common.base.util.MybatisMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -17,32 +18,7 @@ import java.util.List;
  * @description
  */
 @Mapper
-public interface UserMapper {
-    /**
-     * 通过id查询
-     *
-     * @param id id
-     * @return UserVO
-     */
-    UserVO selectById(Long id);
-
-
-    /**
-     * count
-     *
-     * @param userParam 用户信息
-     * @return 条目
-     */
-    Long countByParam(UserParam userParam);
-
-    /**
-     * 按照分页信息和条件查询
-     *
-     * @param userParam 用户信息
-     * @return List<UserVO>
-     */
-    List<UserVO> selectListByParam(UserParam userParam);
-
+public interface UserMapper extends MybatisMapper<Long, UserParam, UserVO> {
 
     /**
      * 按照用户名称查询id
