@@ -18,6 +18,7 @@ public class SecurityConstant {
     public static final List<RequestMatcher> REQUEST_MATCHER_LIST = Arrays.asList(
             new AntPathRequestMatcher("/swagger-ui/**", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/doc.html", HttpMethod.GET.name()),
+            new AntPathRequestMatcher("/favicon.ico", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/webjars/**", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/v3/**", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/auth/app/send", HttpMethod.POST.name()),
