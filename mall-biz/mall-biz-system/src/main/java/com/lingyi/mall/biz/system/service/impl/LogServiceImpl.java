@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.system.service.impl;
 
+import com.lingyi.mall.api.system.dto.LogReqDTO;
 import com.lingyi.mall.biz.system.entity.LogDO;
 import com.lingyi.mall.biz.system.enums.SystemFailEnum;
 import com.lingyi.mall.biz.system.mapper.LogMapper;
@@ -9,6 +10,7 @@ import com.lingyi.mall.biz.system.service.LogService;
 import com.lingyi.mall.common.base.exception.BizException;
 import com.lingyi.mall.common.base.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.var;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +31,8 @@ public class LogServiceImpl implements LogService {
     private final LogMapper logMapper;
 
     @Override
-    public void create(LogDO logDO) {
+    public void create(LogReqDTO logReqDTO) {
+        var logDO = ConverterUtil.to(logReqDTO, LogDO.class);
         logRepository.save(logDO);
     }
 
@@ -39,19 +42,18 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public void updateById(LogDO logDO) {
+    public void updateById(LogReqDTO logReqDTO) {
         //获取日志信息
-        var optional = logRepository.findById(logDO.getId());
+        var optional = logRepository.findById(logReqDTO.getId());
         //判断日志是否为空
         if (optional.isEmpty()) {
             throw new BizException(SystemFailEnum.LOG_NULL_ERROR);
         }
-        //获取用户
-        var newLogDO = optional.get();
-        //DTO转换Entity
-        ConverterUtil.to(logDO, newLogDO);
-        //更新
-        logRepository.save(newLogDO);
+        var logDO = optional.get();
+        //转换
+        ConverterUtil.to(logReqDTO, logDO);
+        //保存
+        logRepository.save(logDO);
     }
 
     @Override

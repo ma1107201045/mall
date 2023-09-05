@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.product.entity;
 
+import com.lingyi.mall.common.base.entity.BaseCommonDO;
 import com.lingyi.mall.common.base.entity.BaseIsDeleteDO;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -23,7 +24,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "mp_spu")
 @DynamicInsert
-public class SpuDO extends BaseIsDeleteDO implements Serializable {
+public class SpuDO extends BaseCommonDO implements Serializable {
     @Serial
     private static final long serialVersionUID = -6759034725107108170L;
 
@@ -37,11 +38,11 @@ public class SpuDO extends BaseIsDeleteDO implements Serializable {
     private Long shopId;
 
     @ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "brand_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '品牌id'", foreignKey = @ForeignKey(name = "fk_brand_id"))
+    @JoinColumn(name = "brand_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '品牌id'", foreignKey = @ForeignKey(name = "mp_spu_fk_brand_id"))
     private BrandDO brandDO;
 
     @ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "category_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '分类id'", foreignKey = @ForeignKey(name = "fk_category_id2"))
+    @JoinColumn(name = "category_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '分类id'", foreignKey = @ForeignKey(name = "mp_spu_fk_category_id"))
     private CategoryDO categoryDO;
 
     @Column(name = "name", columnDefinition = "VARCHAR(50) NOT NULL COMMENT '商品名称'")

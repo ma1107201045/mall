@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.product.entity;
 
+import com.lingyi.mall.common.base.entity.BaseCommonDO;
 import com.lingyi.mall.common.base.entity.BaseIsDeleteDO;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -22,7 +23,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "mp_sku")
 @DynamicInsert
-public class SkuDO extends BaseIsDeleteDO implements Serializable {
+public class SkuDO extends BaseCommonDO implements Serializable {
     @Serial
     private static final long serialVersionUID = -8717730792380645075L;
 
@@ -36,6 +37,6 @@ public class SkuDO extends BaseIsDeleteDO implements Serializable {
     private Long shopId;
 
     @ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "spu_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '商品id'", foreignKey = @ForeignKey(name = "fk_spu_id"))
+    @JoinColumn(name = "spu_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '商品id'", foreignKey = @ForeignKey(name = "mp_sku_fk_spu_id"))
     private SpuDO spuDO;
 }

@@ -1,10 +1,12 @@
 package com.lingyi.mall.biz.product.service.impl;
 
+import com.lingyi.mall.biz.product.converter.AttributeValueConverter;
 import com.lingyi.mall.biz.product.entity.AttributeValueDO;
 import com.lingyi.mall.biz.product.mapper.AttributeValueMapper;
+import com.lingyi.mall.biz.product.param.AttributeValueParam;
 import com.lingyi.mall.biz.product.repository.AttributeValueRepository;
 import com.lingyi.mall.biz.product.service.AttributeValueService;
-import com.lingyi.mall.common.base.param.BasePageParam;
+import com.lingyi.mall.biz.product.vo.AttributeValueVO;
 import com.lingyi.mall.common.base.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -48,12 +50,21 @@ public class AttributeValueServiceImpl implements AttributeValueService {
     }
 
     @Override
-    public AttributeValueDO readById(Long id) {
-        return null;
+    public AttributeValueVO readById(Long id) {
+        return attributeValueMapper.selectById(id);
     }
 
     @Override
-    public List<AttributeValueDO> readListByParam(BasePageParam param) {
-        return null;
+    public List<AttributeValueVO> readListByParam(AttributeValueParam attributeValueParam) {
+        return attributeValueMapper.selectListByParam(attributeValueParam);
+    }
+
+
+    @Override
+    public void createList(Long attributeId, List<String> attributeValueNames) {
+        var attributeValues = attributeValueNames.stream()
+                .map(name -> AttributeValueConverter.INSTANCE.of(attributeId, name))
+                .toList();
+        attributeValueRepository.saveAll(attributeValues);
     }
 }

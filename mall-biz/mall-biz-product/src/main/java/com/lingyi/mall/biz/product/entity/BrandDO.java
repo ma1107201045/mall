@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.product.entity;
 
+import com.lingyi.mall.common.base.entity.BaseCommonDO;
 import com.lingyi.mall.common.base.entity.BaseIsDeleteDO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,7 +20,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "mp_brand")
 @DynamicInsert
-public class BrandDO extends BaseIsDeleteDO implements Serializable {
+public class BrandDO extends BaseCommonDO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 9200613963397364846L;

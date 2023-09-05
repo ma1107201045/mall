@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.product.entity;
 
+import com.lingyi.mall.common.base.entity.BaseCommonDO;
 import com.lingyi.mall.common.base.entity.BaseIsDeleteDO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,7 +27,7 @@ import java.util.List;
 @Entity
 @Table(name = "mp_category")
 @DynamicInsert
-public class CategoryDO extends BaseIsDeleteDO implements Serializable {
+public class CategoryDO extends BaseCommonDO implements Serializable {
     @Serial
     private static final long serialVersionUID = 5024590028573249574L;
 

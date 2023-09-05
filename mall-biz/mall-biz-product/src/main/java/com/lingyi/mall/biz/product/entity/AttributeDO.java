@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.product.entity;
 
+import com.lingyi.mall.common.base.entity.BaseCommonDO;
 import com.lingyi.mall.common.base.entity.BaseIsDeleteDO;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -17,7 +18,7 @@ import java.util.List;
 @Entity
 @Table(name = "mp_attribute")
 @DynamicInsert
-public class AttributeDO extends BaseIsDeleteDO implements Serializable {
+public class AttributeDO extends BaseCommonDO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1307758237932556955L;
@@ -30,6 +31,9 @@ public class AttributeDO extends BaseIsDeleteDO implements Serializable {
 
     @Column(name = "shop_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '商铺id'")
     private Long shopId;
+
+    @Column(name = "name", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '属性名称'")
+    private String name;
 
     /**
      * 分类集

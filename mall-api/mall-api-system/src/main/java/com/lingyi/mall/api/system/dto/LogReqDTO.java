@@ -20,6 +20,11 @@ import java.time.LocalDateTime;
 public class LogReqDTO {
 
     /**
+     * id
+     */
+    private Long id;
+
+    /**
      * 标题
      */
     private String title;

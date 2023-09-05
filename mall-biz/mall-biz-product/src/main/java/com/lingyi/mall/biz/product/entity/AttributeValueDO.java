@@ -1,9 +1,8 @@
 package com.lingyi.mall.biz.product.entity;
 
+import com.lingyi.mall.common.base.entity.BaseCommonDO;
 import com.lingyi.mall.common.base.entity.BaseIsDeleteDO;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -19,7 +18,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "mp_attribute_value")
 @DynamicInsert
-public class AttributeValueDO extends BaseIsDeleteDO implements Serializable {
+public class AttributeValueDO extends BaseCommonDO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 5137114203291281971L;
@@ -32,4 +31,11 @@ public class AttributeValueDO extends BaseIsDeleteDO implements Serializable {
 
     @Column(name = "shop_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '商铺id'")
     private Long shopId;
+
+    @ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "attribute_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '属性id'", foreignKey = @ForeignKey(name = "mp_attribute_value_fk_attribute_id"))
+    private AttributeDO attributeDO;
+
+    @Column(name = "name", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '属性值名称'")
+    private String name;
 }
