@@ -45,6 +45,7 @@ public class AttributeServiceImpl implements AttributeService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteByIds(List<Long> ids) {
+        //删除
         attributeRepository.deleteAllById(ids);
         attributeValueService.deleteByAttributeIds(ids);
     }

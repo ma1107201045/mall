@@ -25,7 +25,7 @@ import java.util.List;
  */
 @Tag(name = "商品品牌", description = "商品品牌")
 @RestController
-@RequestMapping("/admin/system/users")
+@RequestMapping("/admin/product/brands")
 @RequiredArgsConstructor
 public class BrandController {
 

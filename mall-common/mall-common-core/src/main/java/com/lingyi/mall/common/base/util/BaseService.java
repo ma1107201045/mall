@@ -37,7 +37,7 @@ public interface BaseService<DTO, PARAM extends BasePageParam, VO, ID extends Se
      *
      * @param id id
      */
-    default void deleteById(ID id) {
+     default void deleteById(ID id) {
         this.deleteByIds(Collections.singletonList(id));
     }
 
