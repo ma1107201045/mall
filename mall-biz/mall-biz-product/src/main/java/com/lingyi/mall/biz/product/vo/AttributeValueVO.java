@@ -16,7 +16,7 @@ public class AttributeValueVO {
     @Schema(description = "主键id")
     private Long id;
 
-    @Schema(description = "属性名称")
+    @Schema(description = "属性值名称")
     private String name;
 
 
