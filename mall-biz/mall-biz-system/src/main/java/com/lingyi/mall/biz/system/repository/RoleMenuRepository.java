@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
@@ -18,9 +20,9 @@ public interface RoleMenuRepository extends JpaRepositoryImplementation<RoleMenu
     /**
      * 按照角色id删除
      *
-     * @param roleId 角色id
+     * @param roleIds 角色id集
      */
     @Modifying
-    @Query("DELETE FROM RoleMenuDO WHERE roleDO.id = ?1")
-    void deleteByRoleId(Long roleId);
+    @Query("DELETE FROM RoleMenuDO WHERE roleDO.id in ?1")
+    void deleteByRoleIds(List<Long> roleIds);
 }

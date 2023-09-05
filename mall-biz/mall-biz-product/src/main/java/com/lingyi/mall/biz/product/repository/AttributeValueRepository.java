@@ -1,8 +1,12 @@
 package com.lingyi.mall.biz.product.repository;
 
 import com.lingyi.mall.biz.product.entity.AttributeValueDO;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @Author: maweiyan
@@ -12,4 +16,14 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface AttributeValueRepository extends JpaRepositoryImplementation<AttributeValueDO, Long> {
+
+    /**
+     * 按照用户id删除
+     *
+     * @param attributeIds 属性id
+     */
+    @Modifying
+    @Query("DELETE FROM AttributeValueDO WHERE attributeDO.id in ?1")
+    void deleteByAttributeIds(List<Long> attributeIds);
+
 }

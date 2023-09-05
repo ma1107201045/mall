@@ -77,6 +77,7 @@ public class UserServiceImpl implements UserService {
                 .anyMatch(userDO -> SystemConstant.USER_NAME_ADMIN.equals(userDO.getUserName()));
         AssertUtil.isFalse(flag, SystemFailEnum.USER_NAME_ADMIN_DELETE_ERROR);
         userRepository.deleteAllById(ids);
+        userRoleService.deleteByUserIds(ids);
     }
 
     @Override
@@ -105,7 +106,7 @@ public class UserServiceImpl implements UserService {
         //更新
         userRepository.save(userDO);
         //删除用户角色集
-        userRoleService.deleteByUserId(id);
+        userRoleService.deleteByUserIds(Collections.singletonList(id));
         //保存用户角色信息
         userRoleService.createList(id, userDTO.getRoleIds());
     }

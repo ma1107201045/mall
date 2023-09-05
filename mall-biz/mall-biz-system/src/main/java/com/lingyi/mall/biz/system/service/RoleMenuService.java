@@ -22,7 +22,7 @@ public interface RoleMenuService {
     /**
      * 按照角色id删除角色菜单
      *
-     * @param roleId 角色id
+     * @param roleIds 角色id集
      */
-    void deleteByRoleId(Long roleId);
+    void deleteByRoleIds(List<Long> roleIds);
 }

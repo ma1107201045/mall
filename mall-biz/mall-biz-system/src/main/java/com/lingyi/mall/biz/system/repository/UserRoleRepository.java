@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
@@ -19,9 +21,9 @@ public interface UserRoleRepository extends JpaRepositoryImplementation<UserRole
     /**
      * 按照用户id删除
      *
-     * @param userId 用户id
+     * @param userIds 用户id集
      */
     @Modifying
-    @Query("DELETE FROM UserRoleDO WHERE userDO.id = ?1")
-    void deleteByUserId(Long userId);
+    @Query("DELETE FROM UserRoleDO WHERE userDO.id in ?1")
+    void deleteByUserIds(List<Long> userIds);
 }

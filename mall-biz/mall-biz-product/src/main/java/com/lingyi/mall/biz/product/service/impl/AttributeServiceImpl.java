@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -42,19 +43,29 @@ public class AttributeServiceImpl implements AttributeService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void deleteByIds(List<Long> ids) {
         attributeRepository.deleteAllById(ids);
+        attributeValueService.deleteByAttributeIds(ids);
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void updateById(AttributeDTO attributeDTO) {
-        var optional = attributeRepository.findById(attributeDTO.getId());
+        Long id = attributeDTO.getId();
+        var optional = attributeRepository.findById(id);
         if (optional.isEmpty()) {
             return;
         }
         var attributeDO = optional.get();
+
         ConverterUtil.to(attributeDTO, attributeDO);
+        //保存属性信息
         attributeRepository.save(attributeDO);
+        //批量删除属性值信息
+        attributeValueService.deleteByAttributeIds(Collections.singletonList(id));
+        //批量保存属性值信息
+        attributeValueService.createList(id, attributeDTO.getAttributeValueNames());
     }
 
     @Override

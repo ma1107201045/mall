@@ -8,7 +8,12 @@ import com.lingyi.mall.biz.product.repository.AttributeValueRepository;
 import com.lingyi.mall.biz.product.service.AttributeValueService;
 import com.lingyi.mall.biz.product.vo.AttributeValueVO;
 import com.lingyi.mall.common.base.util.ConverterUtil;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +27,6 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class AttributeValueServiceImpl implements AttributeValueService {
-
 
     private final AttributeValueRepository attributeValueRepository;
 
@@ -61,10 +65,16 @@ public class AttributeValueServiceImpl implements AttributeValueService {
 
 
     @Override
-    public void createList(Long attributeId, List<String> attributeValueNames) {
-        var attributeValues = attributeValueNames.stream()
+    public void createList(Long attributeId, List<String> names) {
+        var attributeValues = names.stream()
                 .map(name -> AttributeValueConverter.INSTANCE.of(attributeId, name))
                 .toList();
         attributeValueRepository.saveAll(attributeValues);
+    }
+
+
+    @Override
+    public void deleteByAttributeIds(List<Long> attributeIds) {
+        attributeValueRepository.deleteByAttributeIds(attributeIds);
     }
 }

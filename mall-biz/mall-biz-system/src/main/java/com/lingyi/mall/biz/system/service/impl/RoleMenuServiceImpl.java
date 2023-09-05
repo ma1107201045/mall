@@ -30,7 +30,7 @@ public class RoleMenuServiceImpl implements RoleMenuService {
     }
 
     @Override
-    public void deleteByRoleId(Long roleId) {
-        roleMenuRepository.deleteByRoleId(roleId);
+    public void deleteByRoleIds(List<Long> roleIds) {
+        roleMenuRepository.deleteByRoleIds(roleIds);
     }
 }

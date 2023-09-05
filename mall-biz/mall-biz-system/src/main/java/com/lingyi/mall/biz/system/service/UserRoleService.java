@@ -22,7 +22,7 @@ public interface UserRoleService {
     /**
      * 按照用户id删除用户角色
      *
-     * @param userId 用户id
+     * @param userIds 用户id集合
      */
-    void deleteByUserId(Long userId);
+    void deleteByUserIds(List<Long> userIds);
 }

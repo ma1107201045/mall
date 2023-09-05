@@ -29,7 +29,7 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
-    public void deleteByUserId(Long userId) {
-        userRoleRepository.deleteByUserId(userId);
+    public void deleteByUserIds(List<Long> userIds) {
+        userRoleRepository.deleteByUserIds(userIds);
     }
 }

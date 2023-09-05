@@ -20,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,8 +55,10 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void deleteByIds(List<Long> ids) {
         roleRepository.deleteAllById(ids);
+        roleMenuService.deleteByRoleIds(ids);
     }
 
     @Override
@@ -74,7 +77,7 @@ public class RoleServiceImpl implements RoleService {
         //保存
         roleRepository.save(roleDO);
         //删除角色菜单集
-        roleMenuService.deleteByRoleId(id);
+        roleMenuService.deleteByRoleIds(Collections.singletonList(id));
         //保存角色菜单信息
         roleMenuService.createList(id, roleDTO.getMenuIds());
     }
