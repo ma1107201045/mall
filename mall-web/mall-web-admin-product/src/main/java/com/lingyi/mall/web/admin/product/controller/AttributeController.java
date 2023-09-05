@@ -37,7 +37,7 @@ public class AttributeController {
     @Operation(summary = "保存", description = "保存")
     @PostMapping
     @PreAuthorize("@ps.hasAnyAuthority('admin:product:attributes:save')")
-    @Log(title = "保存品牌", operationType = OperationTypeEnum.CREATE)
+    @Log(title = "保存属性", operationType = OperationTypeEnum.CREATE)
     public ServerResponse<Void> save(@Valid @RequestBody AttributeDTO attributeDTO) {
         attributeService.create(attributeDTO);
         return ServerResponse.success();
@@ -46,7 +46,7 @@ public class AttributeController {
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:attributes:delete')")
-    @Log(title = "删除品牌", operationType = OperationTypeEnum.DELETE)
+    @Log(title = "删除属性", operationType = OperationTypeEnum.DELETE)
     public ServerResponse<Void> deleteByIds(@PathVariable List<Long> ids) {
         attributeService.deleteByIds(ids);
         return ServerResponse.success();
@@ -55,7 +55,7 @@ public class AttributeController {
     @Operation(summary = "更新", description = "更新")
     @PutMapping("/{id}")
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:attributes:update')")
-    @Log(title = "更新品牌", operationType = OperationTypeEnum.UPDATE)
+    @Log(title = "更新属性", operationType = OperationTypeEnum.UPDATE)
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody AttributeDTO attributeDTO) {
         attributeDTO.setId(id);
         attributeService.updateById(attributeDTO);
@@ -65,7 +65,7 @@ public class AttributeController {
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:attributes:get')")
-    @Log(title = "查询品牌", operationType = OperationTypeEnum.READ)
+    @Log(title = "查询属性", operationType = OperationTypeEnum.READ)
     public ServerResponse<AttributeVO> getById(@PathVariable Long id) {
         var attributeVO = attributeService.readById(id);
         return ServerResponse.success(attributeVO);
@@ -74,7 +74,7 @@ public class AttributeController {
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:attributes:getList')")
-    @Log(title = "查询品牌列表", operationType = OperationTypeEnum.READ)
+    @Log(title = "查询属性列表", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<AttributeVO>> getListByPageAndParam(@Valid AttributeParam attributeParam) {
         var page = PageHelper.startPage(attributeParam.getCurrentPage(), attributeParam.getPageSize());
         var attributes = attributeService.readListByParam(attributeParam);

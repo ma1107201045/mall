@@ -10,11 +10,9 @@ import com.lingyi.mall.biz.system.service.LogService;
 import com.lingyi.mall.common.base.exception.BizException;
 import com.lingyi.mall.common.base.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
-import lombok.var;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author maweiyan
