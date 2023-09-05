@@ -66,7 +66,7 @@ public class MenuController {
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:menus:get')")
     @Log(title = "查询菜单", operationType = OperationTypeEnum.READ)
     public ServerResponse<MenuVO> getById(@PathVariable Long id) {
-        MenuVO menuVO = menuService.readById(id);
+        var menuVO = menuService.readById(id);
         return ServerResponse.success(menuVO);
     }
 
@@ -75,8 +75,8 @@ public class MenuController {
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:menus:getList')")
     @Log(title = "查询菜单列表", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<MenuVO>> getListByPageAndParam(@Valid MenuParam menuParam) {
-        Page<LogDO> page = PageHelper.startPage(menuParam.getCurrentPage(), menuParam.getPageSize(), menuParam.getSort());
-        List<MenuVO> menus = menuService.readListByParam(menuParam);
+        var page = PageHelper.startPage(menuParam.getCurrentPage(), menuParam.getPageSize(), menuParam.getSort());
+        var menus = menuService.readListByParam(menuParam);
         return ServerResponse.success(menus, page.getTotal());
     }
 
@@ -85,7 +85,7 @@ public class MenuController {
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:menus:getTree')")
     @Log(title = "查询菜单树", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<MenuVO>> getTree() {
-        List<MenuVO> menus = menuService.readTree();
+        var menus = menuService.readTree();
         return ServerResponse.success(menus);
     }
 

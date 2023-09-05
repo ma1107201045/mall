@@ -76,8 +76,8 @@ public class AttributeController {
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:attributes:getList')")
     @Log(title = "查询属性列表", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<AttributeVO>> getListByPageAndParam(@Valid AttributeParam attributeParam) {
-        var page = PageHelper.startPage(attributeParam.getCurrentPage(), attributeParam.getPageSize());
+        var total = attributeService.countByParam(attributeParam);
         var attributes = attributeService.readListByParam(attributeParam);
-        return ServerResponse.success(attributes, page.getTotal());
+        return ServerResponse.success(attributes, total);
     }
 }

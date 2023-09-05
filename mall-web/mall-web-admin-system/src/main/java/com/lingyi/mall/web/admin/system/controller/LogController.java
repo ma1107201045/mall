@@ -41,16 +41,16 @@ public class LogController {
     @GetMapping("/{id}")
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:logs:get')")
     public ServerResponse<LogDO> getById(@PathVariable Long id) {
-        LogDO log = logService.readById(id);
-        return ServerResponse.success(log);
+        var logDO = logService.readById(id);
+        return ServerResponse.success(logDO);
     }
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:logs:getList')")
     public ServerResponse<List<LogDO>> getListByPageAndParam(@Valid LogParam logParam) {
-        Page<LogDO> page = PageHelper.startPage(logParam.getCurrentPage(), logParam.getPageSize(), logParam.getSort());
-        List<LogDO> logs = logService.readListByParam(logParam);
+        var page = PageHelper.startPage(logParam.getCurrentPage(), logParam.getPageSize(), logParam.getSort());
+        var logs = logService.readListByParam(logParam);
         return ServerResponse.success(logs, page.getTotal());
     }
 

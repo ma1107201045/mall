@@ -23,14 +23,14 @@ public class AttributeDO extends BaseCommonDO implements Serializable {
     @Serial
     private static final long serialVersionUID = 1307758237932556955L;
 
-    @Column(name = "user_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '用户id'")
-    private Long userId;
-
     @Column(name = "merchant_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '商家id'")
     private Long merchantId;
 
     @Column(name = "shop_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '商铺id'")
     private Long shopId;
+
+    @Column(name = "user_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '用户id'")
+    private Long userId;
 
     @Column(name = "name", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '属性名称'")
     private String name;

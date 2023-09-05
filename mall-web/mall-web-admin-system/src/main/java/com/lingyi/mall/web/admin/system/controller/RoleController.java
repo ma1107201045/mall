@@ -64,7 +64,7 @@ public class RoleController {
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:roles:get')")
     @Log(title = "查询角色", operationType = OperationTypeEnum.READ)
     public ServerResponse<RoleVO> getById(@PathVariable Long id) {
-        RoleVO roleVO = roleService.readById(id);
+        var roleVO = roleService.readById(id);
         return ServerResponse.success(roleVO);
     }
 
@@ -73,8 +73,8 @@ public class RoleController {
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:roles:getList')")
     @Log(title = "查询角色列表", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<RoleVO>> getListByPageAndParam(@Valid RoleParam roleParam) {
-        Long total = roleService.countByParam(roleParam);
-        List<RoleVO> roles = roleService.readListByParam(roleParam);
+        var total = roleService.countByParam(roleParam);
+        var roles = roleService.readListByParam(roleParam);
         return ServerResponse.success(roles, total);
     }
 
@@ -83,7 +83,7 @@ public class RoleController {
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:roles:menus:getTree')")
     @Log(title = "查询角色菜单树", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<MenuVO>> getMenuTree() {
-        List<MenuVO> menuTree = roleService.readMenuTree();
+        var menuTree = roleService.readMenuTree();
         return ServerResponse.success(menuTree);
     }
 }

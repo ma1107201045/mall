@@ -65,7 +65,7 @@ public class UserController {
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:get')")
     @Log(title = "查询用户", operationType = OperationTypeEnum.READ)
     public ServerResponse<UserVO> getById(@PathVariable Long id) {
-        UserVO userVO = userService.readById(id);
+        var userVO = userService.readById(id);
         return ServerResponse.success(userVO);
     }
 
@@ -74,8 +74,8 @@ public class UserController {
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:getList')")
     @Log(title = "查询用户列表", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<UserVO>> getListByPageAndParam(@Valid UserParam userParam) {
-        Long total = userService.countByParam(userParam);
-        List<UserVO> users = userService.readListByParam(userParam);
+        var total = userService.countByParam(userParam);
+        var users = userService.readListByParam(userParam);
         return ServerResponse.success(users, total);
     }
 
@@ -84,7 +84,7 @@ public class UserController {
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:roles:getList')")
     @Log(title = "查询角色列表", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<RoleVO>> getRoleList(@Valid BasePageParam basePageParam) {
-        List<RoleVO> roles = userService.readRoleList(basePageParam);
+        var roles = userService.readRoleList(basePageParam);
         return ServerResponse.success(roles);
     }
 

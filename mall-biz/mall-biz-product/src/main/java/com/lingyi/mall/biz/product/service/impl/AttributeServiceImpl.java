@@ -77,4 +77,10 @@ public class AttributeServiceImpl implements AttributeService {
     public List<AttributeVO> readListByParam(AttributeParam attributeParam) {
         return attributeMapper.selectListByParam(attributeParam);
     }
+
+    @Override
+    public Long countByParam(AttributeParam attributeParam) {
+        return attributeMapper.countByParam(attributeParam);
+    }
+
 }

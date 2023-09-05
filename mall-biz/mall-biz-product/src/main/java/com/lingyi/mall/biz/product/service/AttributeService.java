@@ -16,4 +16,6 @@ import java.util.List;
  * @Description:
  */
 public interface AttributeService extends BaseService<AttributeDTO, AttributeParam, AttributeVO, Long> {
+
+    Long countByParam(AttributeParam attributeParam);
 }
