@@ -37,21 +37,21 @@ public class UserFeignProvider implements UserFeign {
     @Operation(summary = "查询用户和权限标识", description = "查询用户和权限标识")
     @Override
     public ServerResponse<UserRespDTO> getUserAndMenuPermissionsByUserName(String userName) {
-        UserRespDTO userRespDTO = userService.readUserAndMenuPermissionsByUserName(userName);
+        var userRespDTO = userService.readUserAndMenuPermissionsByUserName(userName);
         return ServerResponse.success(userRespDTO);
     }
 
     @Operation(summary = "查询菜单树", description = "查询菜单树")
     @Override
-    public ServerResponse<List<MenuRespDTO>> getMenuTreeByUserName(String userName) {
-        List<MenuRespDTO> menuRespDTOList = userService.readMenuTreeByUserName(userName);
-        return ServerResponse.success(menuRespDTOList);
+    public ServerResponse<List<MenuRespDTO>> getMenuTreesByUserName(String userName) {
+        var menus = userService.readMenuTreesByUserName(userName);
+        return ServerResponse.success(menus);
     }
 
     @Operation(summary = "查询权限集", description = "查询权限集")
     @Override
     public ServerResponse<List<String>> getMenuPermissionsByUserName(String userName) {
-        List<String> permissions = userService.readMenuPermissionsByUserName(userName);
+        var permissions = userService.readMenuPermissionsByUserName(userName);
         return ServerResponse.success(permissions);
     }
 }

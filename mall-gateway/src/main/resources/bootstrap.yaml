@@ -43,7 +43,7 @@ spring:
           uri: http://localhost:9001
           predicates:
             - Path=/auth/merchant/**
-
+        #后台admin端其他服务
         - id: mall-web-admin-base
           uri: http://localhost:7002
           predicates:
@@ -58,6 +58,11 @@ spring:
           uri: http://localhost:7004
           predicates:
             - Path=/admin/file/**
+
+        - id: mall-web-admin-product
+          uri: http://localhost:7005
+          predicates:
+            - Path=/admin/product/**
 
         - id: mall-web-app-base
           uri: http://localhost:8002

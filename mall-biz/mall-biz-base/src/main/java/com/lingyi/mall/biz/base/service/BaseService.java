@@ -27,7 +27,7 @@ public interface BaseService {
      * @param userName 用户名称
      * @return 菜单树
      */
-    List<MenuRespDTO> readMenuTreeByUserName(String userName);
+    List<MenuRespDTO> readMenuTreesByUserName(String userName);
 
 
     /**

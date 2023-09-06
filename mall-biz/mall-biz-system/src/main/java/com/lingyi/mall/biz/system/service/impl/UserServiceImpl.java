@@ -161,7 +161,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<MenuRespDTO> readMenuTreeByUserName(String userName) {
+    public List<MenuRespDTO> readMenuTreesByUserName(String userName) {
         List<MenuRespDTO> menus;
         List<Integer> menuTypes = Arrays.asList(MenuTypeEnum.DIRECTORY.getCode(), MenuTypeEnum.MENU.getCode());
         if (SystemConstant.USER_NAME_ADMIN.equals(userName)) {
@@ -187,11 +187,11 @@ public class UserServiceImpl implements UserService {
 
     private List<MenuRespDTO> toMenuTree(Long menuParentId, List<MenuRespDTO> menus) {
         var menuList = menus.stream()
-                .filter(menuResDTO -> menuResDTO.getParentId().equals(menuParentId))
+                .filter(menu -> menu.getParentId().equals(menuParentId))
                 .sorted(Comparator.comparing(MenuRespDTO::getSort))
                 .toList();
-        menuList.forEach(menuResDTO -> menuResDTO.setChildren(toMenuTree(menuResDTO.getId(), menuList)));
-        return menus;
+        menuList.forEach(menu -> menu.setChildren(toMenuTree(menu.getId(), menus)));
+        return menuList;
     }
 
 

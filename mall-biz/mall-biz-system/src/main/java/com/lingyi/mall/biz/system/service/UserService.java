@@ -58,7 +58,7 @@ public interface UserService extends BaseService<UserDTO, UserParam, UserVO, Lon
      * @param userName 用户名称
      * @return List<MenuResDTO>
      */
-    List<MenuRespDTO> readMenuTreeByUserName(String userName);
+    List<MenuRespDTO> readMenuTreesByUserName(String userName);
 
     /**
      * 按照用户id和用户名称查询权限

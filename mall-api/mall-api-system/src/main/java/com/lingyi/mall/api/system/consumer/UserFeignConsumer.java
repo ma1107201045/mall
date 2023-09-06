@@ -2,11 +2,10 @@ package com.lingyi.mall.api.system.consumer;
 
 import com.alibaba.fastjson2.JSON;
 import com.lingyi.mall.api.system.dto.MenuRespDTO;
-import com.lingyi.mall.api.system.dto.UserRespDTO;
 import com.lingyi.mall.api.system.dto.UserPartReqDTO;
+import com.lingyi.mall.api.system.dto.UserRespDTO;
 import com.lingyi.mall.api.system.feign.UserFeign;
 import com.lingyi.mall.common.base.exception.OpenFeignException;
-import com.lingyi.mall.common.base.util.ServerResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -48,7 +47,7 @@ public class UserFeignConsumer {
 
     public List<MenuRespDTO> getMenuTreeByUserName(String userName) {
         log.info("入参:userName:{}", userName);
-        var response = userFeign.getMenuTreeByUserName(userName);
+        var response = userFeign.getMenuTreesByUserName(userName);
         if (response.getIsSuccess()) {
             log.info("出参:UserVO:{}", JSON.toJSONString(response.getData()));
             return response.getData();

@@ -127,13 +127,13 @@ public class MenuServiceImpl implements MenuService {
     }
 
 
-    private List<MenuVO> toTree(Long parentId, List<MenuVO> menuVOList) {
-        var menus = menuVOList.stream()
-                .filter(menuVO -> menuVO.getParentId().equals(parentId))
+    private List<MenuVO> toTree(Long parentId, List<MenuVO> menus) {
+        var menuList = menus.stream()
+                .filter(menu -> menu.getParentId().equals(parentId))
                 .sorted(Comparator.comparing(MenuVO::getSort))
                 .toList();
-        menus.forEach(menuVO -> menuVO.setChildren(toTree(menuVO.getId(), menuVOList)));
-        return menus;
+        menuList.forEach(menu -> menu.setChildren(toTree(menu.getId(), menus)));
+        return menuList;
     }
 }
 

@@ -28,7 +28,7 @@ public class BaseServiceImpl implements BaseService {
     }
 
     @Override
-    public List<MenuRespDTO> readMenuTreeByUserName(String userName) {
+    public List<MenuRespDTO> readMenuTreesByUserName(String userName) {
         return userFeignConsumer.getMenuTreeByUserName(userName);
     }
 

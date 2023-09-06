@@ -35,17 +35,17 @@ public class BaseController {
     @PatchMapping("/user")
     @Log(title = "更新当前用户信息", operationType = OperationTypeEnum.UPDATE)
     public ServerResponse<Void> updateUser(UserPartReqDTO userPartReqDTO) {
-        Long userId = AuthenticatorUtil.getUserId();
+        var userId = AuthenticatorUtil.getUserId();
         baseService.updateUserByUserId(userId, userPartReqDTO);
         return ServerResponse.success();
     }
 
     @Operation(summary = "获取当前用户菜单树", description = "获取当前用户菜单树")
-    @GetMapping("/menu-tree")
+    @GetMapping("/menu-trees")
     @Log(title = "获取当前用户菜单树", operationType = OperationTypeEnum.READ)
-    public ServerResponse<List<MenuRespDTO>> getMenuTree() {
-        String userName = AuthenticatorUtil.getUserName();
-        List<MenuRespDTO> menus = baseService.readMenuTreeByUserName(userName);
+    public ServerResponse<List<MenuRespDTO>> getMenuTrees() {
+        var userName = AuthenticatorUtil.getUserName();
+        var menus = baseService.readMenuTreesByUserName(userName);
         return ServerResponse.success(menus);
     }
 
@@ -53,8 +53,8 @@ public class BaseController {
     @GetMapping("/menu-permissions")
     @Log(title = "获取当前用户菜单权限标识集", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<String>> getMenuPermissions() {
-        String userName = AuthenticatorUtil.getUserName();
-        List<String> permissions = baseService.readMenuPermissionsByUserName(userName);
+        var userName = AuthenticatorUtil.getUserName();
+        var permissions = baseService.readMenuPermissionsByUserName(userName);
         return ServerResponse.success(permissions);
     }
 

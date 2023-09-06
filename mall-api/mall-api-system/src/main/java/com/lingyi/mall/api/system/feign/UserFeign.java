@@ -47,8 +47,8 @@ public interface UserFeign {
      * @param userName 用户名称
      * @return 菜单树
      */
-    @GetMapping(URL_PREFIX + "/menu-tree")
-    ServerResponse<List<MenuRespDTO>> getMenuTreeByUserName(@RequestParam(name = "userName") String userName);
+    @GetMapping(URL_PREFIX + "/menu-trees")
+    ServerResponse<List<MenuRespDTO>> getMenuTreesByUserName(@RequestParam(name = "userName") String userName);
 
 
     /**

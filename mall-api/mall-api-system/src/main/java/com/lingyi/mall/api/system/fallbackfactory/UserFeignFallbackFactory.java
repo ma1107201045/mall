@@ -33,9 +33,10 @@ public class UserFeignFallbackFactory implements FallbackFactory<UserFeign> {
             }
 
             @Override
-            public ServerResponse<List<MenuRespDTO>> getMenuTreeByUserName(String userName) {
+            public ServerResponse<List<MenuRespDTO>> getMenuTreesByUserName(String userName) {
                 return null;
             }
+
 
             @Override
             public ServerResponse<List<String>> getMenuPermissionsByUserName(String userName) {

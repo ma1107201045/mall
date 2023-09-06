@@ -1,5 +1,5 @@
 server:
-  port: 8003
+  port: 7005
 spring:
   application:
     name: mall-web-admin-product
