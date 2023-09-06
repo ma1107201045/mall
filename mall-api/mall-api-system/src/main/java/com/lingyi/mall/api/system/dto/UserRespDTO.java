@@ -1,5 +1,6 @@
 package com.lingyi.mall.api.system.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -12,82 +13,63 @@ import java.util.List;
  * @description 用户
  */
 @Data
+@Schema(description = "用户")
 public class UserRespDTO {
 
-    /**
-     * 用户id
-     */
+    @Schema(description = "用户id")
     private Long userId;
-    /**
-     * 用户名称
-     */
+
+    @Schema(description = "用户名称")
     private String userName;
-    /**
-     * 真实姓名
-     */
+
+    @Schema(description = "真实姓名")
     private String realName;
-    /**
-     * 昵称
-     */
+
+    @Schema(description = "昵称")
     private String nickname;
-    /**
-     * 性别 1 男 2 女
-     */
+
+    @Schema(description = "性别 1 男 2 女")
     private Integer sex;
-    /**
-     * 密码
-     */
+
+    @Schema(description = "密码")
     private String password;
-    /**
-     * 头像
-     */
+
+    @Schema(description = "头像")
     private String headPortrait;
-    /**
-     * 邮箱
-     */
+
+    @Schema(description = "邮箱")
     private String email;
-    /**
-     * 手机号
-     */
+
+    @Schema(description = "手机号")
     private String phoneNumber;
-    /**
-     * 最后登录IP
-     */
+
+    @Schema(description = "最后登录IP")
     private String lastLoginIp;
-    /**
-     * 是否启用 1 是 0 否
-     */
+
+    @Schema(description = "是否启用 1 是 0 否")
     private Integer isEnable;
-    /**
-     * 备注
-     */
+
+    @Schema(description = "备注")
     private String remark;
-    /**
-     * 创建人
-     */
+
+    @Schema(description = "创建人")
     private String createBy;
-    /**
-     * 创建时间
-     */
+
+    @Schema(description = "创建时间")
     private LocalDateTime createDateTime;
-    /**
-     * 最后一次更新人
-     */
+
+    @Schema(description = "最后一次更新人")
     private String lastModifyBy;
-    /**
-     * 最后一次更新时间
-     */
+
+    @Schema(description = "最后一次更新时间")
     private LocalDateTime lastModifyDateTime;
-    /**
-     * 是否删除 1是 0否
-     */
+
+    @Schema(description = " 是否删除 1是 0否")
     private Integer isDelete;
-    /**
-     * 角色id集
-     */
+
+    @Schema(description = " 角色id集")
     private List<Long> roleIds;
-    /**
-     * 按钮权限标识集
-     */
+
+    @Schema(description = " 按钮权限标识集")
     private List<String> permissions;
 }

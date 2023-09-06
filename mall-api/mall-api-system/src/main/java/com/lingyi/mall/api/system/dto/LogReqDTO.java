@@ -23,7 +23,6 @@ public class LogReqDTO {
      * id
      */
     private Long id;
-
     /**
      * 标题
      */

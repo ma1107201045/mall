@@ -1,5 +1,6 @@
 package com.lingyi.mall.api.system.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -12,11 +13,11 @@ import java.util.List;
  * @description 菜单
  */
 @Data
+@Schema(description = "按钮")
 public class MenuRespDTO {
 
-    /**
-     * 菜单id
-     */
+
+    @Schema(description = "菜单id")
     private Long id;
     /**
      * 父级菜单id

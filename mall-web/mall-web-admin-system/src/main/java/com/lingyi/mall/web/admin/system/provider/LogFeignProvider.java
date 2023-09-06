@@ -7,6 +7,7 @@ import com.lingyi.mall.biz.system.service.LogService;
 import com.lingyi.mall.common.base.util.ConverterUtil;
 import com.lingyi.mall.common.base.util.ServerResponse;
 import feign.Request;
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -20,14 +21,14 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description:
  */
 @Slf4j
-@Tag(name = "后台【系统管理服务-日志-Provider】", description = "后台【系统管理服务-日志-Provider】")
+@Hidden
 @RequiredArgsConstructor
 @RestController
 public class LogFeignProvider implements LogFeign {
 
     private final LogService logService;
 
-    @Operation(summary = "添加", description = "添加")
+
     @Override
     public ServerResponse<Void> save(LogReqDTO logReqDTO, Request.Options options) {
         log.info("save log begin");

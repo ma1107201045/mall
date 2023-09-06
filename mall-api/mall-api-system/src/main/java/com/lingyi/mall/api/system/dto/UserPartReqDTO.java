@@ -1,5 +1,6 @@
 package com.lingyi.mall.api.system.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -9,18 +10,16 @@ import lombok.Data;
  * @description 用户
  */
 @Data
+@Schema(description = "部分用户")
 public class UserPartReqDTO {
 
-    /**
-     * 用户id
-     */
+
+    @Schema(description = "用户id", requiredMode = Schema.RequiredMode.REQUIRED)
     private Long id;
-    /**
-     * 昵称
-     */
+
+    @Schema(description = "昵称")
     private String nickname;
-    /**
-     * 密码
-     */
+
+    @Schema(description = "密码", requiredMode = Schema.RequiredMode.REQUIRED)
     private String password;
 }
