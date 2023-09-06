@@ -163,11 +163,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<MenuRespDTO> readMenuTreesByUserName(String userName) {
         List<MenuRespDTO> menus;
-        List<Integer> menuTypes = Arrays.asList(MenuTypeEnum.DIRECTORY.getCode(), MenuTypeEnum.MENU.getCode());
-        if (SystemConstant.USER_NAME_ADMIN.equals(userName)) {
-            menus = menuService.readListByTypes(menuTypes);
-        } else {
+        var menuTypes = Arrays.asList(MenuTypeEnum.DIRECTORY.getCode(), MenuTypeEnum.MENU.getCode());
+        if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
             menus = userMapper.selectMenusByUserNameAndMenuTypes(userName, menuTypes);
+        } else {
+            menus = menuService.readListByTypes(menuTypes);
         }
         return toMenuTree(SystemConstant.MENU_ROOT_ID, menus);
     }
@@ -177,9 +177,9 @@ public class UserServiceImpl implements UserService {
         List<MenuRespDTO> menus;
         var menuTypes = Collections.singletonList(MenuTypeEnum.BUTTON.getCode());
         if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
-            menus = menuService.readListByTypes(menuTypes);
-        } else {
             menus = userMapper.selectMenusByUserNameAndMenuTypes(userName, menuTypes);
+        } else {
+            menus = menuService.readListByTypes(menuTypes);
         }
         return menus.stream().map(MenuRespDTO::getPermission).toList();
     }

@@ -1,13 +1,9 @@
 package com.lingyi.mall.web.admin.product.controller;
 
-import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.biz.product.dto.AttributeDTO;
-import com.lingyi.mall.biz.product.dto.BrandDTO;
 import com.lingyi.mall.biz.product.param.AttributeParam;
-import com.lingyi.mall.biz.product.param.BrandParam;
 import com.lingyi.mall.biz.product.service.AttributeService;
 import com.lingyi.mall.biz.product.vo.AttributeVO;
-import com.lingyi.mall.biz.product.vo.BrandVO;
 import com.lingyi.mall.common.base.enums.OperationTypeEnum;
 import com.lingyi.mall.common.base.util.ServerResponse;
 import com.lingyi.mall.common.security.common.aspetct.Log;

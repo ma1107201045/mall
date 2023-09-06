@@ -23,5 +23,4 @@
             <artifactId>mall-api-system</artifactId>
         </dependency>
     </dependencies>
-
 </project>
