@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.system.service.impl;
 
-import com.lingyi.mall.biz.system.entity.UserRoleDO;
+import com.lingyi.mall.biz.system.converter.UserRoleConverter;
 import com.lingyi.mall.biz.system.repository.UserRoleRepository;
 import com.lingyi.mall.biz.system.service.UserRoleService;
 import lombok.RequiredArgsConstructor;
@@ -22,11 +22,10 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     @Override
     public void createList(Long userId, List<Long> roleIds) {
-        var userRoleDOList = roleIds.stream()
-                .map(roleId -> UserRoleDO.of(userId, roleId))
-                .toList();
-        userRoleRepository.saveAll(userRoleDOList);
+        var userRoles = UserRoleConverter.INSTANCE.of(userId, roleIds);
+        userRoleRepository.saveAll(userRoles);
     }
+
 
     @Override
     public void deleteByUserIds(List<Long> userIds) {

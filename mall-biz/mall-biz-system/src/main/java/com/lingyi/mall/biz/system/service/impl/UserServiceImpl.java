@@ -1,11 +1,10 @@
 package com.lingyi.mall.biz.system.service.impl;
 
-import cn.hutool.core.util.ObjUtil;
 import com.lingyi.mall.api.system.dto.MenuRespDTO;
 import com.lingyi.mall.api.system.dto.UserPartReqDTO;
 import com.lingyi.mall.api.system.dto.UserRespDTO;
 import com.lingyi.mall.biz.system.constant.SystemConstant;
-import com.lingyi.mall.biz.system.converter.SystemConverter;
+import com.lingyi.mall.biz.system.converter.UserConverter;
 import com.lingyi.mall.biz.system.dto.UserDTO;
 import com.lingyi.mall.biz.system.entity.UserDO;
 import com.lingyi.mall.biz.system.enums.MenuTypeEnum;
@@ -22,6 +21,7 @@ import com.lingyi.mall.biz.system.vo.UserVO;
 import com.lingyi.mall.common.base.param.BasePageParam;
 import com.lingyi.mall.common.base.util.AssertUtil;
 import com.lingyi.mall.common.base.util.ConverterUtil;
+import com.lingyi.mall.common.base.util.ObjectUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -144,20 +144,20 @@ public class UserServiceImpl implements UserService {
         var encodePassword = passwordEncoder.encode(userPartReqDTO.getPassword());
         userPartReqDTO.setPassword(encodePassword);
         //转换数据
-        userDO = SystemConverter.INSTANCE.to(userDO, userPartReqDTO);
+        UserConverter.INSTANCE.convert(userDO, userPartReqDTO);
         //保存数据
         userRepository.save(userDO);
     }
 
     @Override
     public UserRespDTO readUserAndMenuPermissionsByUserName(String userName) {
-        var userRespDTO = userMapper.selectByUserName(userName);
-        if (ObjUtil.isNull(userRespDTO)) {
-            return userRespDTO;
+        var userResp = userMapper.selectByUserName(userName);
+        if (Objects.isNull(userResp)) {
+            return ObjectUtil.getNull();
         }
         var permissions = readMenuPermissionsByUserName(userName);
-        userRespDTO.setPermissions(permissions);
-        return userRespDTO;
+        userResp.setPermissions(permissions);
+        return userResp;
     }
 
     @Override

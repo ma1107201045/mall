@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.system.converter;
 
 import com.lingyi.mall.api.system.dto.UserPartReqDTO;
-import com.lingyi.mall.biz.system.entity.UserDO;
+import com.lingyi.mall.biz.system.entity.*;
 
 /**
  * @Author maweiyan
@@ -9,17 +9,18 @@ import com.lingyi.mall.biz.system.entity.UserDO;
  * @DateTime 2023/8/26 10:25
  * @Description
  */
-public class SystemConverter {
+public final class UserConverter {
 
-    public static final SystemConverter INSTANCE = new SystemConverter();
+    public static final UserConverter INSTANCE = new UserConverter();
 
-    private SystemConverter() {
+    private UserConverter() {
 
     }
 
-    public UserDO to(UserDO userDO, UserPartReqDTO userPartReqDTO) {
+    public void convert(UserDO userDO, UserPartReqDTO userPartReqDTO) {
         userDO.setNickname(userPartReqDTO.getNickname());
         userDO.setPassword(userPartReqDTO.getPassword());
-        return userDO;
     }
+
+
 }

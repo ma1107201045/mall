@@ -29,7 +29,7 @@ public class CustomAsyncConfigurer implements AsyncConfigurer {
 
     @Override
     public ThreadPoolTaskExecutor getAsyncExecutor() {
-        ThreadPoolTaskExecutor pool = new ThreadPoolTaskExecutor();
+        var pool = new ThreadPoolTaskExecutor();
         pool.setMaxPoolSize(MAX_SIZE);
         pool.setCorePoolSize(CORE_SIZE);
         pool.setQueueCapacity(QUEUE_SIZE);

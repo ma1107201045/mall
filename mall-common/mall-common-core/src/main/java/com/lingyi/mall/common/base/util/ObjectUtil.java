@@ -15,7 +15,7 @@ public class ObjectUtil {
         return null;
     }
 
-    public static <T> T newInstance(Class<T> tClass) {
-        return ReflectUtil.newInstance(tClass);
+    public static <T> T newInstance(Class<T> clazz) {
+        return ReflectUtil.newInstance(clazz);
     }
 }

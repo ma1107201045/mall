@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.system.service.impl;
 
-import com.lingyi.mall.biz.system.entity.RoleMenuDO;
+import com.lingyi.mall.biz.system.converter.RoleMenuConverter;
 import com.lingyi.mall.biz.system.repository.RoleMenuRepository;
 import com.lingyi.mall.biz.system.service.RoleMenuService;
 import lombok.RequiredArgsConstructor;
@@ -23,10 +23,8 @@ public class RoleMenuServiceImpl implements RoleMenuService {
 
     @Override
     public void createList(Long roleId, List<Long> menuIds) {
-        var roleMenuDOList = menuIds.stream()
-                .map(menuId -> RoleMenuDO.of(roleId, menuId))
-                .toList();
-        roleMenuRepository.saveAll(roleMenuDOList);
+        var roleMenus = RoleMenuConverter.INSTANCE.of(roleId, menuIds);
+        roleMenuRepository.saveAll(roleMenus);
     }
 
     @Override

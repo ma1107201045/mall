@@ -123,8 +123,8 @@ public final class AssertUtil {
         var objects = new Object[2];
         try {
             var clazz = failEnum.getClass();
-            Object code = clazz.getMethod(BaseConstant.CODE_GET_METHOD_NAME).invoke(failEnum);
-            Object message = clazz.getMethod(BaseConstant.MESSAGE_GET_METHOD_NAME).invoke(failEnum);
+            var code = clazz.getMethod(BaseConstant.CODE_GET_METHOD_NAME).invoke(failEnum);
+            var message = clazz.getMethod(BaseConstant.MESSAGE_GET_METHOD_NAME).invoke(failEnum);
             if (code instanceof Integer && message instanceof String) {
                 objects[0] = code;
                 objects[1] = message;

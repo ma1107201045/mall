@@ -44,7 +44,7 @@ public class SpelUtil {
         //SPEL上下文
         var context = new MethodBasedEvaluationContext(rootObject, method, args, parameterNameDiscoverer);
         //把方法参数放入SPEL上下文中
-        for (int i = 0; i < paraNames.length; i++) {
+        for (var i = 0; i < paraNames.length; i++) {
             context.setVariable(paraNames[i], args[i]);
         }
         return parser.parseExpression(spel).getValue(context, String.class);
