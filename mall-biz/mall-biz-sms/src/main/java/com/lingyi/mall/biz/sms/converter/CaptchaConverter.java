@@ -12,7 +12,7 @@ import com.lingyi.mall.common.base.util.ConverterUtil;
  * @datetime 2023/8/11 15:42
  * @description
  */
-public class CaptchaConverter {
+public final class CaptchaConverter {
 
     public static final CaptchaConverter INSTANCE = new CaptchaConverter();
 
