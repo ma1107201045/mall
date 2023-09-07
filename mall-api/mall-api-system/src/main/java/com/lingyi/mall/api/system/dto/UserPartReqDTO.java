@@ -3,6 +3,9 @@ package com.lingyi.mall.api.system.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
@@ -11,8 +14,11 @@ import lombok.Data;
  */
 @Data
 @Schema(description = "部分用户")
-public class UserPartReqDTO {
+public class UserPartReqDTO implements Serializable {
 
+
+    @Serial
+    private static final long serialVersionUID = 2571778543426443661L;
 
     @Schema(description = "用户id", requiredMode = Schema.RequiredMode.REQUIRED)
     private Long id;

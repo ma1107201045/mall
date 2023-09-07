@@ -3,6 +3,8 @@ package com.lingyi.mall.api.system.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -14,7 +16,10 @@ import java.util.List;
  */
 @Data
 @Schema(description = "用户")
-public class UserRespDTO {
+public class UserRespDTO implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1923376838194587664L;
 
     @Schema(description = "用户id")
     private Long userId;

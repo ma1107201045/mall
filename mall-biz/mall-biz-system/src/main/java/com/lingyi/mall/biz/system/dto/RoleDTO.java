@@ -19,7 +19,10 @@ import java.util.List;
  */
 @Schema(description = "角色")
 @Data
-public class RoleDTO  {
+public class RoleDTO implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = -1734876026099102192L;
 
     @Schema(description = "角色id")
     private Long id;

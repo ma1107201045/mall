@@ -3,6 +3,8 @@ package com.lingyi.mall.biz.system.vo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -14,7 +16,10 @@ import java.util.List;
  */
 @Schema(description = "角色")
 @Data
-public class RoleVO  {
+public class RoleVO  implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = -5168941944091925577L;
 
     @Schema(description = "角色id")
     private Long id;

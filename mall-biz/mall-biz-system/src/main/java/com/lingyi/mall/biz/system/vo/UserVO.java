@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,7 +18,10 @@ import java.util.List;
  */
 @Schema(description = "用户")
 @Data
-public class UserVO  {
+public class UserVO implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = -3304014757506293947L;
 
     @Schema(description = "用户id")
     private Long id;

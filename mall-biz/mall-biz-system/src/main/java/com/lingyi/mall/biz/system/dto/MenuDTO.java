@@ -17,7 +17,10 @@ import java.io.Serializable;
  */
 @Schema(description = "菜单")
 @Data
-public class MenuDTO {
+public class MenuDTO implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 6600055303935076131L;
 
     @Schema(description = "菜单id")
     private Long id;
