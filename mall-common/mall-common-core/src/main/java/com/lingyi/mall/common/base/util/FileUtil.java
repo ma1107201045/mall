@@ -15,9 +15,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class FileUtil {
 
-    private static final String DIRECTORY_NAME_FORMAT = "%s/%s/%s/%s/%s/%s/%s/%s/%s/";
-
     private static final String DATE_TIME_PATTERN = "yyyy:MM:dd:HH:mm:ss";
+    private static final String DIRECTORY_NAME_FORMAT = "%s/%s/%s/%s/%s/%s/%s/%s/%s/";
 
     public static String getDirectoryName(ClientTypeEnum clientTypeEnum, String username) {
         var applicationName = SpringUtil.getProperty("spring.application.name");
