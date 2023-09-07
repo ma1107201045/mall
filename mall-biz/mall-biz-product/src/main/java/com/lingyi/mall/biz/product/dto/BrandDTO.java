@@ -3,6 +3,9 @@ package com.lingyi.mall.biz.product.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 /**
  * @Author: maweiyan
  * @Email: 1107201045@qq.com
@@ -11,7 +14,10 @@ import lombok.Data;
  */
 @Schema(description = "品牌")
 @Data
-public class BrandDTO {
+public class BrandDTO implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = -6549591740358899349L;
 
     @Schema(description = "品牌id")
     private Long id;

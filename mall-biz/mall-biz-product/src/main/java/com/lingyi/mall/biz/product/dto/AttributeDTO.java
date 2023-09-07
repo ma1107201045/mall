@@ -3,6 +3,8 @@ package com.lingyi.mall.biz.product.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -13,7 +15,10 @@ import java.util.List;
  */
 @Data
 @Schema(description = "属性")
-public class AttributeDTO {
+public class AttributeDTO implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1685677374901217723L;
 
     @Schema(description = "品牌id")
     private Long id;

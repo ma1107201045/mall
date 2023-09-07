@@ -15,7 +15,7 @@ import java.util.List;
  * @datetime 2023/5/4 17:08
  * @description
  */
-public interface BaseService<DTO, PARAM extends BasePageParam, VO, ID extends Serializable> {
+public interface BaseService<DTO extends Serializable, PARAM extends BasePageParam, VO, ID extends Serializable> {
 
     /**
      * 添加
@@ -37,7 +37,7 @@ public interface BaseService<DTO, PARAM extends BasePageParam, VO, ID extends Se
      *
      * @param id id
      */
-     default void deleteById(ID id) {
+    default void deleteById(ID id) {
         this.deleteByIds(Collections.singletonList(id));
     }
 
