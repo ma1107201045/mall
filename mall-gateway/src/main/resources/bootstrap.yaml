@@ -19,6 +19,10 @@ spring:
         password: nacos
         access-key: ThisIsMyCustomSecretKey012345678
         namespace: dev
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: 36.137.103.166:8080
     gateway:
       globalcors:
         cors-configurations:

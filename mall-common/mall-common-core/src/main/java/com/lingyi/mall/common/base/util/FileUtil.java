@@ -17,10 +17,12 @@ public class FileUtil {
 
     private static final String DIRECTORY_NAME_FORMAT = "%s/%s/%s/%s/%s/%s/%s/%s/%s/";
 
+    private static final String DATE_TIME_PATTERN = "yyyy:MM:dd:HH:mm:ss";
+
     public static String getDirectoryName(ClientTypeEnum clientTypeEnum, String username) {
         var applicationName = SpringUtil.getProperty("spring.application.name");
-        var nowFormat = LocalDateTime.now().format(DateTimeFormatter.ofPattern(BaseConstant.DATE_TIME_PATTERN));
-        var splitArr = nowFormat.split(BaseConstant.COLON_CHAR);
+        var nowDateTimeStr = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DATE_TIME_PATTERN));
+        var splitArr = nowDateTimeStr.split(BaseConstant.COLON_CHAR);
         return String.format(DIRECTORY_NAME_FORMAT,
                 applicationName,
                 clientTypeEnum.toString().toLowerCase(),

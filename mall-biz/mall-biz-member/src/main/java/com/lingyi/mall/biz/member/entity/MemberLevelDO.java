@@ -60,7 +60,7 @@ public class MemberLevelDO extends BaseIdDO implements Serializable {
     @Column(name = "is_priviledge_birthday", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '是否有生日特权:1 是 0 否'")
     private Integer isPriviledgeBirthday;
 
-    @Column(name = "free_freight_point", columnDefinition = "DECIMAL(15,2) UNSIGNED NOT NULL COMMENT '免运费标准")
+    @Column(name = "free_freight_point", columnDefinition = "DECIMAL(15,2) UNSIGNED NOT NULL COMMENT '免运费标准'")
     private BigDecimal freeFreightPoint;
 
     @Column(name = "remark", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '备注'")

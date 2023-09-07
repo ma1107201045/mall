@@ -1,6 +1,6 @@
 package com.lingyi.mall.api.member.feign;
 
-import com.lingyi.mall.api.member.fallbackfactory.MemberFeignFallbackFactory;
+import com.lingyi.mall.api.member.fallbackfactory.MemberLevelFeignFallbackFactory;
 import com.lingyi.mall.common.base.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @datetime 2023/7/21 9:24
  * @description
  */
-@FeignClient(value = "mall-web-app-member", fallbackFactory = MemberFeignFallbackFactory.class)
+@FeignClient(value = "mall-web-app-member", fallbackFactory = MemberLevelFeignFallbackFactory.class)
 public interface MemberLevelFeign {
 
     String URL_PREFIX = "/app/member/member-levels";
