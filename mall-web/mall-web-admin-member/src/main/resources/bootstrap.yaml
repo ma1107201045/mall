@@ -51,7 +51,6 @@ spring:
         namespace: dev
     sentinel:
       transport:
-        port: 8719
         dashboard: 36.137.103.166:8080
     openfeign:
       client:
