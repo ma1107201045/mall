@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.member.entity;
 
-import com.lingyi.mall.common.base.entity.BaseIdDO;
+import com.lingyi.mall.common.jdbc.entity.BaseIdDO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

@@ -1,6 +1,7 @@
-package com.lingyi.mall.common.base.util;
+package com.lingyi.mall.common.jdbc.util;
 
-import com.lingyi.mall.common.base.param.BasePageParam;
+
+import com.lingyi.mall.common.jdbc.param.BasePageParam;
 
 import java.io.Serializable;
 import java.util.List;

@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.sms.service;
 
 import com.lingyi.mall.biz.sms.entity.CaptchaLogDO;
 import com.lingyi.mall.biz.sms.param.CaptchaLogParam;
-import com.lingyi.mall.common.base.util.BaseService;
+import com.lingyi.mall.common.jdbc.util.BaseService;
 import org.springframework.stereotype.Service;
 
 /**

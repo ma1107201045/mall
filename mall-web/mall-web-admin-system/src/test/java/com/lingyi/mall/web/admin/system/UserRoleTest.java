@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
+
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
@@ -18,12 +20,12 @@ public class UserRoleTest implements MallBizSystemApplicationTest {
 
 
     @Autowired
-    private UserRoleRepository mbsUserRoleRepository;
+    private UserRoleRepository userRoleRepository;
 
     @Test
     @Transactional(rollbackFor = Exception.class)
     public void testUserRemove() {
-        mbsUserRoleRepository.deleteByUserId(111L);
+        userRoleRepository.deleteByUserIds(Collections.singletonList(111L));
         System.out.println("删除成功");
     }
 }

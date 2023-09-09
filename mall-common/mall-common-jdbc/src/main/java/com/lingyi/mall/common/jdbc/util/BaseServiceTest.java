@@ -1,28 +1,34 @@
-package com.lingyi.mall.common.base.util;
+package com.lingyi.mall.common.jdbc.util;
 
 
-import com.lingyi.mall.common.base.param.BasePageParam;
+
+import com.lingyi.mall.common.jdbc.dto.BaseDTO;
+import com.lingyi.mall.common.jdbc.entity.BaseIdDO;
+import com.lingyi.mall.common.jdbc.param.BasePageParam;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 /**
- * @author maweiyan
- * @email 1107201045@qq.com
- * @datetime 2023/5/4 17:08
- * @description
+ * @Author: maweiyan
+ * @Email: 1107201045@qq.com
+ * @DateTime: 2023/9/9 10:07
+ * @Description:
  */
-public interface BaseService<DTO extends Serializable, PARAM extends BasePageParam, VO, ID extends Serializable> {
+public interface BaseServiceTest<
+        T extends BaseIdDO,
+        DTO extends BaseDTO<ID>,
+        PARAM extends BasePageParam,
+        VO,
+        ID extends Serializable> {
 
     /**
      * 添加
      *
      * @param dto dto
      */
-    void create(DTO dto);
+    void create(DTO dto, Class<T> clazz);
 
     /**
      * 批量删除

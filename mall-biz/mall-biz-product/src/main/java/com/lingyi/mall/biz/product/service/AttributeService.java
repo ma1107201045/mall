@@ -1,13 +1,10 @@
 package com.lingyi.mall.biz.product.service;
 
 import com.lingyi.mall.biz.product.dto.AttributeDTO;
-import com.lingyi.mall.biz.product.entity.AttributeDO;
 import com.lingyi.mall.biz.product.param.AttributeParam;
 import com.lingyi.mall.biz.product.vo.AttributeVO;
-import com.lingyi.mall.common.base.param.BasePageParam;
-import com.lingyi.mall.common.base.util.BaseService;
-
-import java.util.List;
+import com.lingyi.mall.common.jdbc.param.BasePageParam;
+import com.lingyi.mall.common.jdbc.util.BaseService;
 
 /**
  * @Author: maweiyan

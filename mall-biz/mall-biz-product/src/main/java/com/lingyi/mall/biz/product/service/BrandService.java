@@ -1,10 +1,9 @@
 package com.lingyi.mall.biz.product.service;
 
 import com.lingyi.mall.biz.product.dto.BrandDTO;
-import com.lingyi.mall.biz.product.entity.BrandDO;
 import com.lingyi.mall.biz.product.vo.BrandVO;
-import com.lingyi.mall.common.base.param.BasePageParam;
-import com.lingyi.mall.common.base.util.BaseService;
+import com.lingyi.mall.common.jdbc.param.BasePageParam;
+import com.lingyi.mall.common.jdbc.util.BaseService;
 
 /**
  * @Author: maweiyan

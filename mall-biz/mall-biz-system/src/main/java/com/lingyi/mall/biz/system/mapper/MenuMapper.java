@@ -2,10 +2,8 @@ package com.lingyi.mall.biz.system.mapper;
 
 import com.lingyi.mall.api.system.dto.MenuRespDTO;
 import com.lingyi.mall.biz.system.param.MenuParam;
-import com.lingyi.mall.biz.system.param.UserParam;
 import com.lingyi.mall.biz.system.vo.MenuVO;
-import com.lingyi.mall.biz.system.vo.UserVO;
-import com.lingyi.mall.common.base.util.MybatisMapper;
+import com.lingyi.mall.common.jdbc.util.MybatisMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

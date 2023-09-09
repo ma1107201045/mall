@@ -11,9 +11,8 @@ import cn.hutool.core.bean.copier.CopyOptions;
  */
 public class ConverterUtil {
 
-    public static <S, T> T to(S source, T target) {
+    public static <S, T> void to(S source, T target) {
         BeanUtil.copyProperties(source, target, CopyOptions.create().setIgnoreNullValue(true));
-        return target;
     }
 
     public static <S, T> T to(S source, Class<T> clazz) {

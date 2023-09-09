@@ -1,18 +1,15 @@
 package com.lingyi.mall.biz.product.service.impl;
 
 import com.lingyi.mall.biz.product.entity.SpuDO;
-import com.lingyi.mall.biz.product.mapper.SkuMapper;
 import com.lingyi.mall.biz.product.mapper.SpuMapper;
-import com.lingyi.mall.biz.product.repository.SkuRepository;
 import com.lingyi.mall.biz.product.repository.SpuRepository;
 import com.lingyi.mall.biz.product.service.SpuService;
-import com.lingyi.mall.common.base.param.BasePageParam;
+import com.lingyi.mall.common.jdbc.param.BasePageParam;
 import com.lingyi.mall.common.base.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @Author: maweiyan

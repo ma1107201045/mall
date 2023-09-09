@@ -1,10 +1,10 @@
-package com.lingyi.mall.common.base.entity;
+package com.lingyi.mall.common.jdbc.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import lombok.*;
-
-import java.util.Objects;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * @author maweiyan

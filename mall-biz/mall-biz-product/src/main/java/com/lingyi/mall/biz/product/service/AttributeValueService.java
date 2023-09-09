@@ -3,7 +3,7 @@ package com.lingyi.mall.biz.product.service;
 import com.lingyi.mall.biz.product.entity.AttributeValueDO;
 import com.lingyi.mall.biz.product.param.AttributeValueParam;
 import com.lingyi.mall.biz.product.vo.AttributeValueVO;
-import com.lingyi.mall.common.base.util.BaseService;
+import com.lingyi.mall.common.jdbc.util.BaseService;
 
 import java.util.List;
 

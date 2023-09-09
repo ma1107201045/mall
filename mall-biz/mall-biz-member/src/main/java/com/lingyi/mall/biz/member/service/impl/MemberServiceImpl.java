@@ -2,6 +2,7 @@ package com.lingyi.mall.biz.member.service.impl;
 
 import com.lingyi.mall.api.member.dto.MemberReqDTO;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
+import com.lingyi.mall.biz.member.dto.MemberDTO;
 import com.lingyi.mall.biz.member.entity.MemberDO;
 import com.lingyi.mall.biz.member.entity.MemberLevelDO;
 import com.lingyi.mall.biz.member.enums.MemberFailEnum;
@@ -16,7 +17,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author maweiyan
@@ -62,6 +62,11 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public List<MemberVO> readListByParam(MemberParam memberParam) {
         return memberMapper.selectListByParam(memberParam);
+    }
+
+    @Override
+    public void updateIsEnableById(MemberDTO memberDTO) {
+
     }
 
     @Override

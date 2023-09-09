@@ -5,7 +5,7 @@ import com.lingyi.mall.api.system.dto.MenuRespDTO;
 import com.lingyi.mall.api.system.dto.UserRespDTO;
 import com.lingyi.mall.biz.system.param.UserParam;
 import com.lingyi.mall.biz.system.vo.UserVO;
-import com.lingyi.mall.common.base.util.MybatisMapper;
+import com.lingyi.mall.common.jdbc.util.MybatisMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

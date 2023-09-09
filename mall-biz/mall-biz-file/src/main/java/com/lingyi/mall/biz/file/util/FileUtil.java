@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.base.util;
+package com.lingyi.mall.biz.file.util;
 
 import cn.hutool.extra.spring.SpringUtil;
 import com.lingyi.mall.common.base.constant.BaseConstant;

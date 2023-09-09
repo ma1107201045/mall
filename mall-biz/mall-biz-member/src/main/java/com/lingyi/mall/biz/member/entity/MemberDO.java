@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.member.entity;
 
-import com.lingyi.mall.common.base.entity.BaseIdDO;
+import com.lingyi.mall.common.jdbc.entity.BaseIdDO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;

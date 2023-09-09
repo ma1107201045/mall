@@ -1,6 +1,6 @@
-package com.lingyi.mall.common.base.entity;
+package com.lingyi.mall.common.jdbc.entity;
 
-import com.lingyi.mall.common.base.jpa.listener.CustomEntityListener;
+import com.lingyi.mall.common.jdbc.jpa.listener.CustomEntityListener;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;

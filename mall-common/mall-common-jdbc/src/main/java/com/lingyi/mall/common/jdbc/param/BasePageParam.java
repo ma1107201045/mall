@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.base.param;
+package com.lingyi.mall.common.jdbc.param;
 
 import com.lingyi.mall.common.base.constant.BaseConstant;
 import io.swagger.v3.oas.annotations.media.Schema;

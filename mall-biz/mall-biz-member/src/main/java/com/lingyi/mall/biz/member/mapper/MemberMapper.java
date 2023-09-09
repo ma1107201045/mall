@@ -3,7 +3,7 @@ package com.lingyi.mall.biz.member.mapper;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.biz.member.param.MemberParam;
 import com.lingyi.mall.biz.member.vo.MemberVO;
-import com.lingyi.mall.common.base.util.MybatisMapper;
+import com.lingyi.mall.common.jdbc.util.MybatisMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

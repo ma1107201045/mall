@@ -1,5 +1,6 @@
 package com.lingyi.mall.web.admin.system.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.biz.system.entity.LogDO;
 import com.lingyi.mall.biz.system.param.LogParam;
@@ -24,6 +25,7 @@ import java.util.List;
 @RequestMapping("/admin/system/logs")
 @RestController
 @RequiredArgsConstructor
+@SentinelResource
 public class LogController {
 
     private final LogService logService;

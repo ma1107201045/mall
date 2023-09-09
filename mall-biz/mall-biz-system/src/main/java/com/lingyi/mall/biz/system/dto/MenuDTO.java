@@ -52,14 +52,14 @@ public class MenuDTO implements Serializable {
     @NotNull(message = "是否启用不能为空")
     private Integer isEnable;
 
-    @Schema(description = " 路由地址")
-    private String path;
+    @Schema(description = " 路由名称")
+    private String routeName;
+
+    @Schema(description = " 路由路径")
+    private String routePath;
 
     @Schema(description = " 组件路径")
     private String componentPath;
-
-    @Schema(description = " 组件名称")
-    private String componentName;
 
     @Schema(description = " 按钮权限标识")
     private String permission;

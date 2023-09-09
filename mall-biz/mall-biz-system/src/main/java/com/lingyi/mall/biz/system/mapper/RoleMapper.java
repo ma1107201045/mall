@@ -4,8 +4,8 @@ import com.lingyi.mall.biz.system.param.RoleParam;
 import com.lingyi.mall.biz.system.param.UserParam;
 import com.lingyi.mall.biz.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.vo.UserVO;
-import com.lingyi.mall.common.base.param.BasePageParam;
-import com.lingyi.mall.common.base.util.MybatisMapper;
+import com.lingyi.mall.common.jdbc.param.BasePageParam;
+import com.lingyi.mall.common.jdbc.util.MybatisMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

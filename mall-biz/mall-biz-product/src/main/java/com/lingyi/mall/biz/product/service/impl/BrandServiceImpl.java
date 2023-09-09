@@ -7,7 +7,7 @@ import com.lingyi.mall.biz.product.mapper.BrandMapper;
 import com.lingyi.mall.biz.product.repository.BrandRepository;
 import com.lingyi.mall.biz.product.service.BrandService;
 import com.lingyi.mall.biz.product.vo.BrandVO;
-import com.lingyi.mall.common.base.param.BasePageParam;
+import com.lingyi.mall.common.jdbc.param.BasePageParam;
 import com.lingyi.mall.common.base.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
