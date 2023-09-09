@@ -8,6 +8,7 @@ import cn.hutool.core.util.StrUtil;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -37,6 +38,8 @@ import java.util.Date;
  * @description
  */
 public class Snowflake implements Serializable {
+
+
     @Serial
     private static final long serialVersionUID = 2114902450896590702L;
 

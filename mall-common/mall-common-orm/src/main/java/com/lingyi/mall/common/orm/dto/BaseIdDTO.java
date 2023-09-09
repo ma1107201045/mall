@@ -13,7 +13,7 @@ import java.io.Serializable;
  * @Description:
  */
 @Data
-public class BaseIdDTO<ID> implements Serializable {
+public abstract class BaseIdDTO<ID> implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 3559017198770861533L;

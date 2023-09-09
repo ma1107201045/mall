@@ -12,7 +12,6 @@ import lombok.Data;
  * @datetime 2023/4/30 13:52
  * @description
  */
-@Schema(description = "后台分页信息")
 @Data
 public class BasePageParam {
 

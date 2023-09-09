@@ -31,18 +31,6 @@ public class CustomEntityListener {
 
     @PrePersist
     protected void preInsert(Object target) {
-        insertHandle(target);
-        setIsDelete(target);
-    }
-
-
-    @PreUpdate
-    protected void preUpdate(Object target) {
-        updateHandle(target);
-    }
-
-
-    private void insertHandle(Object target) {
         if (target instanceof BaseCommonDO baseCommonDO && StrUtil.isBlank(baseCommonDO.getCreateBy())) {
             var auditor = auditorAware.getCurrentAuditor().orElse(BaseConstant.UNKNOWN);
             baseCommonDO.setCreateBy(auditor);
@@ -50,19 +38,18 @@ public class CustomEntityListener {
             baseCommonDO.setLastModifyBy(auditor);
             baseCommonDO.setLastModifyDateTime(LocalDateTime.now());
         }
+        if (target instanceof BaseIsDeleteDO baseIsDeleteEntity && Objects.isNull(baseIsDeleteEntity.getIsDelete())) {
+            baseIsDeleteEntity.setIsDelete(WhetherEnum.N.getCode());
+        }
     }
 
-    private void updateHandle(Object target) {
+
+    @PreUpdate
+    protected void preUpdate(Object target) {
         if (target instanceof BaseCommonDO baseCommonDO && StrUtil.isBlank(baseCommonDO.getLastModifyBy())) {
             var auditor = auditorAware.getCurrentAuditor().orElse(BaseConstant.UNKNOWN);
             baseCommonDO.setLastModifyBy(auditor);
             baseCommonDO.setLastModifyDateTime(LocalDateTime.now());
-        }
-    }
-
-    private void setIsDelete(Object target) {
-        if (target instanceof BaseIsDeleteDO baseIsDeleteEntity && Objects.isNull(baseIsDeleteEntity.getIsDelete())) {
-            baseIsDeleteEntity.setIsDelete(WhetherEnum.N.getCode());
         }
     }
 }

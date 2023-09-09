@@ -3,9 +3,12 @@ package com.lingyi.mall.common.orm.util;
 
 import cn.hutool.core.lang.Singleton;
 import cn.hutool.core.net.NetUtil;
+import cn.hutool.setting.dialect.Props;
+import cn.hutool.setting.dialect.PropsUtil;
 import com.lingyi.mall.common.core.constant.BaseConstant;
 
 import java.util.Arrays;
+import java.util.Enumeration;
 
 /**
  * @author maweiyan
@@ -15,15 +18,22 @@ import java.util.Arrays;
  */
 public final class SnowFlakeIdUtil {
 
+    private static final String API_PROPERTIES_FILE_NAME = "api.properties";
+    private static final String WORK_ID_KEY = "api.workerId";
+    private static final String DATA_CENTER_ID_KEY = "api.dataCenterId";
+    private static final long WORKER_ID = 0L;
+    private static final long DATACENTER_ID = 0L;
+
+
     private SnowFlakeIdUtil() {
     }
 
     public static String nextStr() {
-        return nextStr(getWorkerId(), BaseConstant.DATACENTER_ID);
+        return nextStr(getWorkerId(), getDataCenterId());
     }
 
     public static String nextStr(long workerId) {
-        return nextStr(workerId, BaseConstant.DATACENTER_ID);
+        return nextStr(workerId, getDataCenterId());
     }
 
     public static String nextStr(long workerId, long datacenterId) {
@@ -31,11 +41,11 @@ public final class SnowFlakeIdUtil {
     }
 
     public static long nextId() {
-        return nextId(getWorkerId(), BaseConstant.DATACENTER_ID);
+        return nextId(getWorkerId(), getDataCenterId());
     }
 
     public static long nextId(long workerId) {
-        return nextId(workerId, BaseConstant.DATACENTER_ID);
+        return nextId(workerId, getDataCenterId());
     }
 
     public static long nextId(long workerId, long datacenterId) {
@@ -43,12 +53,43 @@ public final class SnowFlakeIdUtil {
     }
 
 
-    private static long getWorkerId() {
-        var localhostStr = NetUtil.getLocalhostStr();
-        if (!NetUtil.isInnerIP(localhostStr)) {
-            return BaseConstant.WORKER_ID;
+    public static long getWorkerId() {
+        try {
+            long[] params = getParams();
+            return params[0];
+        } catch (Exception e) {
+            var localhostStr = NetUtil.getLocalhostStr();
+            if (!NetUtil.isInnerIP(localhostStr)) {
+                return WORKER_ID;
+            }
+            return Arrays.stream(localhostStr.split(BaseConstant.POINT_CHAR_REGEX)).mapToLong(Long::parseLong).sum();
         }
-        return Arrays.stream(localhostStr.split(BaseConstant.POINT_CHAR_REGEX)).mapToLong(Long::parseLong).sum();
+    }
+
+    public static long getDataCenterId() {
+        try {
+            long[] params = getParams();
+            return params[0];
+        } catch (Exception e) {
+            return DATACENTER_ID;
+        }
+    }
+
+
+    private static long[] getParams() {
+        long[] params = new long[2];
+        Props props = PropsUtil.get(API_PROPERTIES_FILE_NAME);
+        Enumeration<Object> keys = props.keys();
+        while (keys.hasMoreElements()) {
+            Object key = keys.nextElement();
+            if (key.equals(WORK_ID_KEY)) {
+                params[0] = Long.parseLong((String) props.get(key));
+            }
+            if (key.equals(DATA_CENTER_ID_KEY)) {
+                params[1] = Long.parseLong((String) props.get(key));
+            }
+        }
+        return params;
     }
 
 //    public static void main(String[] args) {

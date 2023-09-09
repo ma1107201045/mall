@@ -11,8 +11,6 @@ public final class BaseConstant {
 
     public static final String TRACK_ID_NAME = "trackId";
     public static final String TRACK_ID_PREFIX = "PROVIDER_";
-    public static final long DATACENTER_ID = 0L;
-    public static final long WORKER_ID = 0L;
     public static final String CODE_GET_METHOD_NAME = "getCode";
     public static final String MESSAGE_GET_METHOD_NAME = "getMessage";
 
