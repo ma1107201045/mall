@@ -6,6 +6,7 @@ import cn.hutool.core.net.NetUtil;
 import cn.hutool.setting.dialect.Props;
 import cn.hutool.setting.dialect.PropsUtil;
 import com.lingyi.mall.common.core.constant.BaseConstant;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
 import java.util.Enumeration;
@@ -16,6 +17,7 @@ import java.util.Enumeration;
  * @datetime 2023/04/30 0:58
  * @description
  */
+@Slf4j
 public final class SnowFlakeIdUtil {
 
     private static final String API_PROPERTIES_FILE_NAME = "api.properties";
@@ -58,6 +60,7 @@ public final class SnowFlakeIdUtil {
             long[] params = getParams();
             return params[0];
         } catch (Exception e) {
+            log.warn("api.properties not exist or error");
             var localhostStr = NetUtil.getLocalhostStr();
             if (!NetUtil.isInnerIP(localhostStr)) {
                 return WORKER_ID;
@@ -69,8 +72,9 @@ public final class SnowFlakeIdUtil {
     public static long getDataCenterId() {
         try {
             long[] params = getParams();
-            return params[0];
+            return params[1];
         } catch (Exception e) {
+            log.warn("api.properties not exist or error");
             return DATACENTER_ID;
         }
     }
