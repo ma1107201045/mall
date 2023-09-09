@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.member.mapper;
 
 import com.lingyi.mall.biz.member.param.MemberLoginParam;
 import com.lingyi.mall.biz.member.vo.MemberLoginLogVO;
-import com.lingyi.mall.common.jdbc.util.MybatisMapper;
+import com.lingyi.mall.common.jdbc.util.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @description
  */
 @Mapper
-public interface MemberLoginLogMapper extends MybatisMapper<Long, MemberLoginParam, MemberLoginLogVO> {
+public interface MemberLoginLogMapper extends MybatisMapperImplementation<Long, MemberLoginParam, MemberLoginLogVO> {
 
 
 }

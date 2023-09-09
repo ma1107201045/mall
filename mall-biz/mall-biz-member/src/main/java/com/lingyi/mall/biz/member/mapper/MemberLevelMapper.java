@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.member.mapper;
 
 import com.lingyi.mall.biz.member.param.MemberLevelParam;
 import com.lingyi.mall.biz.member.vo.MemberLevelVO;
-import com.lingyi.mall.common.jdbc.util.MybatisMapper;
+import com.lingyi.mall.common.jdbc.util.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @description
  */
 @Mapper
-public interface MemberLevelMapper extends MybatisMapper<Long, MemberLevelParam, MemberLevelVO> {
+public interface MemberLevelMapper extends MybatisMapperImplementation<Long, MemberLevelParam, MemberLevelVO> {
 
     Long selectIdByIsDefaultLevel(Integer isDefaultLevel);
 }

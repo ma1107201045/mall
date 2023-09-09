@@ -12,7 +12,7 @@ import java.util.List;
  * @DateTime: 2023/8/31 16:07
  * @Description:
  */
-public interface MybatisMapper<ID extends Serializable, PARMA extends BasePageParam, VO> {
+public interface MybatisMapperImplementation<ID extends Serializable, PARMA extends BasePageParam, VO> {
 
     /**
      * 按照id查询

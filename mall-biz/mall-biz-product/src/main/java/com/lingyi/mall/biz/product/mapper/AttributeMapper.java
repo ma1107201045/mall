@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.product.mapper;
 
 import com.lingyi.mall.biz.product.param.AttributeParam;
 import com.lingyi.mall.biz.product.vo.AttributeVO;
-import com.lingyi.mall.common.jdbc.util.MybatisMapper;
+import com.lingyi.mall.common.jdbc.util.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -12,6 +12,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @Description:
  */
 @Mapper
-public interface AttributeMapper extends MybatisMapper<Long, AttributeParam, AttributeVO> {
+public interface AttributeMapper extends MybatisMapperImplementation<Long, AttributeParam, AttributeVO> {
 
 }

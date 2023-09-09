@@ -5,7 +5,9 @@ import com.lingyi.mall.common.base.util.ConverterUtil;
 import com.lingyi.mall.common.jdbc.dto.BaseIdDTO;
 import com.lingyi.mall.common.jdbc.entity.BaseIdDO;
 import com.lingyi.mall.common.jdbc.param.BasePageParam;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.lingyi.mall.common.jdbc.vo.BaseIdVO;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 
 import java.io.Serializable;
@@ -18,19 +20,19 @@ import java.util.Optional;
  * @DateTime: 2023/9/9 9:51
  * @Description:
  */
+@Getter
+@Setter
 public class BaseServicePlusImpl<J extends JpaRepositoryImplementation<T, ID>,
-        M extends MybatisMapper<ID, PARAM, VO>,
+        M extends MybatisMapperImplementation<ID, PARAM, VO>,
         T extends BaseIdDO,
         DTO extends BaseIdDTO<ID>,
         PARAM extends BasePageParam,
-        VO,
+        VO extends BaseIdVO<ID>,
         ID extends Serializable> implements BaseServicePlus<T, DTO, PARAM, VO, ID> {
 
-    @Autowired
-    private J jpaRepositoryImplementation;
+    protected J jpaRepositoryImplementation;
 
-    @Autowired
-    private M mybatisMapper;
+    protected M mybatisMapper;
 
 
     public void create(DTO dto, Class<T> clazz) {

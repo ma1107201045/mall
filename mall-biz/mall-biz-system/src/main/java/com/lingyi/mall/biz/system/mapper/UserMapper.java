@@ -5,7 +5,7 @@ import com.lingyi.mall.api.system.dto.MenuRespDTO;
 import com.lingyi.mall.api.system.dto.UserRespDTO;
 import com.lingyi.mall.biz.system.param.UserParam;
 import com.lingyi.mall.biz.system.vo.UserVO;
-import com.lingyi.mall.common.jdbc.util.MybatisMapper;
+import com.lingyi.mall.common.jdbc.util.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -18,7 +18,7 @@ import java.util.List;
  * @description
  */
 @Mapper
-public interface UserMapper extends MybatisMapper<Long, UserParam, UserVO> {
+public interface UserMapper extends MybatisMapperImplementation<Long, UserParam, UserVO> {
 
     /**
      * 按照用户名称查询id

@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.product.mapper;
 
 import com.lingyi.mall.biz.product.param.SkuParam;
 import com.lingyi.mall.biz.product.vo.SkuVO;
-import com.lingyi.mall.common.jdbc.util.MybatisMapper;
+import com.lingyi.mall.common.jdbc.util.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -12,5 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @Description:
  */
 @Mapper
-public interface SkuMapper extends MybatisMapper<Long, SkuParam, SkuVO> {
+public interface SkuMapper extends MybatisMapperImplementation<Long, SkuParam, SkuVO> {
 }

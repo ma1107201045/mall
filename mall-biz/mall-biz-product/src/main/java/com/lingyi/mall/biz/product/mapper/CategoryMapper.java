@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.product.mapper;
 
 import com.lingyi.mall.biz.product.param.CategoryParam;
 import com.lingyi.mall.biz.product.vo.CategoryVO;
-import com.lingyi.mall.common.jdbc.util.MybatisMapper;
+import com.lingyi.mall.common.jdbc.util.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -12,5 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @description
  */
 @Mapper
-public interface CategoryMapper extends MybatisMapper<Long, CategoryParam, CategoryVO> {
+public interface CategoryMapper extends MybatisMapperImplementation<Long, CategoryParam, CategoryVO> {
 }

@@ -3,7 +3,7 @@ package com.lingyi.mall.biz.system.mapper;
 import com.lingyi.mall.api.system.dto.MenuRespDTO;
 import com.lingyi.mall.biz.system.param.MenuParam;
 import com.lingyi.mall.biz.system.vo.MenuVO;
-import com.lingyi.mall.common.jdbc.util.MybatisMapper;
+import com.lingyi.mall.common.jdbc.util.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
  * @description
  */
 @Mapper
-public interface MenuMapper extends MybatisMapper<Long, MenuParam, MenuVO> {
+public interface MenuMapper extends MybatisMapperImplementation<Long, MenuParam, MenuVO> {
 
     /**
      * 按照id查询菜单类型

@@ -3,10 +3,8 @@ package com.lingyi.mall.biz.member.mapper;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.biz.member.param.MemberParam;
 import com.lingyi.mall.biz.member.vo.MemberVO;
-import com.lingyi.mall.common.jdbc.util.MybatisMapper;
+import com.lingyi.mall.common.jdbc.util.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
-
-import java.util.List;
 
 /**
  * @author maweiyan
@@ -15,7 +13,7 @@ import java.util.List;
  * @description
  */
 @Mapper
-public interface MemberMapper extends MybatisMapper<Long, MemberParam, MemberVO> {
+public interface MemberMapper extends MybatisMapperImplementation<Long, MemberParam, MemberVO> {
 
     /**
      * 按照手机号查询

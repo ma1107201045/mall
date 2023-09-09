@@ -1,11 +1,9 @@
 package com.lingyi.mall.biz.system.mapper;
 
 import com.lingyi.mall.biz.system.param.RoleParam;
-import com.lingyi.mall.biz.system.param.UserParam;
 import com.lingyi.mall.biz.system.vo.RoleVO;
-import com.lingyi.mall.biz.system.vo.UserVO;
 import com.lingyi.mall.common.jdbc.param.BasePageParam;
-import com.lingyi.mall.common.jdbc.util.MybatisMapper;
+import com.lingyi.mall.common.jdbc.util.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -17,7 +15,7 @@ import java.util.List;
  * @description
  */
 @Mapper
-public interface RoleMapper extends MybatisMapper<Long, RoleParam, RoleVO> {
+public interface RoleMapper extends MybatisMapperImplementation<Long, RoleParam, RoleVO> {
 
 
     /**
