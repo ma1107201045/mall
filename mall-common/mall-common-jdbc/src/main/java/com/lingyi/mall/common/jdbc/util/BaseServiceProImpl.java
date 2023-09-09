@@ -36,7 +36,7 @@ public class BaseServiceProImpl<J extends JpaRepositoryImplementation<DO, ID>,
 
 
     public void create(DTO dto, Class<DO> clazz) {
-        DO doEntity = ConverterUtil.to(dto, clazz);
+        var doEntity = ConverterUtil.to(dto, clazz);
         jpaRepositoryImplementation.save(doEntity);
     }
 
@@ -48,9 +48,9 @@ public class BaseServiceProImpl<J extends JpaRepositoryImplementation<DO, ID>,
 
 
     public void updateById(DTO dto) {
-        Optional<DO> optional = jpaRepositoryImplementation.findById(dto.getId());
+        var optional = jpaRepositoryImplementation.findById(dto.getId());
         if (optional.isPresent()) {
-            DO doEntity = optional.get();
+            var doEntity = optional.get();
             ConverterUtil.to(dto, doEntity);
             jpaRepositoryImplementation.save(doEntity);
         }
