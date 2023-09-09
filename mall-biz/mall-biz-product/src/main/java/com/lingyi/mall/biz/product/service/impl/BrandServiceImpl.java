@@ -2,18 +2,16 @@ package com.lingyi.mall.biz.product.service.impl;
 
 import com.lingyi.mall.biz.product.dto.BrandDTO;
 import com.lingyi.mall.biz.product.entity.BrandDO;
-import com.lingyi.mall.biz.product.entity.SpuDO;
 import com.lingyi.mall.biz.product.mapper.BrandMapper;
 import com.lingyi.mall.biz.product.repository.BrandRepository;
 import com.lingyi.mall.biz.product.service.BrandService;
 import com.lingyi.mall.biz.product.vo.BrandVO;
 import com.lingyi.mall.common.jdbc.param.BasePageParam;
-import com.lingyi.mall.common.base.util.ConverterUtil;
+import com.lingyi.mall.common.core.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @Author: maweiyan

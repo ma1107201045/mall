@@ -6,9 +6,9 @@ import cn.hutool.core.date.StopWatch;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
 import com.lingyi.mall.api.system.dto.LogReqDTO;
-import com.lingyi.mall.common.base.constant.BaseConstant;
-import com.lingyi.mall.common.base.enums.WhetherEnum;
-import com.lingyi.mall.common.base.util.RequestUtil;
+import com.lingyi.mall.common.core.constant.BaseConstant;
+import com.lingyi.mall.common.core.enums.WhetherEnum;
+import com.lingyi.mall.common.core.util.RequestUtil;
 import com.lingyi.mall.common.security.common.task.BaseAsyncTask;
 import com.lingyi.mall.common.security.common.util.Authenticator;
 import jakarta.servlet.ServletRequest;
@@ -62,7 +62,7 @@ public class LogAspect {
      * 控制台日志切点
      */
 
-    @Pointcut("execution(public com.lingyi.mall.common.base.util.ServerResponse com.lingyi.mall..*(..))")
+    @Pointcut("execution(public com.lingyi.mall.common.core.util.ServerResponse com.lingyi.mall..*(..))")
     private void consolePointcut() {
 
 

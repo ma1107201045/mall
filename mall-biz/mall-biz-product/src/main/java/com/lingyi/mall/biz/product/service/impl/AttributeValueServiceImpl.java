@@ -7,7 +7,7 @@ import com.lingyi.mall.biz.product.param.AttributeValueParam;
 import com.lingyi.mall.biz.product.repository.AttributeValueRepository;
 import com.lingyi.mall.biz.product.service.AttributeValueService;
 import com.lingyi.mall.biz.product.vo.AttributeValueVO;
-import com.lingyi.mall.common.base.util.ConverterUtil;
+import com.lingyi.mall.common.core.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

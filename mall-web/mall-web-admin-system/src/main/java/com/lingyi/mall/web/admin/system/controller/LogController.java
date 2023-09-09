@@ -5,7 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.biz.system.entity.LogDO;
 import com.lingyi.mall.biz.system.param.LogParam;
 import com.lingyi.mall.biz.system.service.LogService;
-import com.lingyi.mall.common.base.util.ServerResponse;
+import com.lingyi.mall.common.core.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

@@ -8,7 +8,7 @@ import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.api.sms.enums.BusinessTypeEnum;
 import com.lingyi.mall.api.sms.enums.ServiceTypeEnum;
 import com.lingyi.mall.biz.sms.service.CaptchaService;
-import com.lingyi.mall.common.base.constant.BaseConstant;
+import com.lingyi.mall.common.core.constant.BaseConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

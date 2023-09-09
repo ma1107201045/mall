@@ -1,8 +1,8 @@
 package com.lingyi.mall.biz.file.util;
 
 import cn.hutool.extra.spring.SpringUtil;
-import com.lingyi.mall.common.base.constant.BaseConstant;
-import com.lingyi.mall.common.base.enums.ClientTypeEnum;
+import com.lingyi.mall.common.core.constant.BaseConstant;
+import com.lingyi.mall.common.core.enums.ClientTypeEnum;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

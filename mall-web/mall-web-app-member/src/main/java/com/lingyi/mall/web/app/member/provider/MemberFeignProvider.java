@@ -4,7 +4,7 @@ import com.lingyi.mall.api.member.dto.MemberReqDTO;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.api.member.feign.MemberFeign;
 import com.lingyi.mall.biz.member.service.MemberService;
-import com.lingyi.mall.common.base.util.ServerResponse;
+import com.lingyi.mall.common.core.util.ServerResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;

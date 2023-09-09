@@ -5,12 +5,11 @@ import com.lingyi.mall.biz.product.mapper.SkuMapper;
 import com.lingyi.mall.biz.product.repository.SkuRepository;
 import com.lingyi.mall.biz.product.service.SkuService;
 import com.lingyi.mall.common.jdbc.param.BasePageParam;
-import com.lingyi.mall.common.base.util.ConverterUtil;
+import com.lingyi.mall.common.core.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @Author: maweiyan

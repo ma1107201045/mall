@@ -83,7 +83,7 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>mall-common-jdbc</artifactId>
+                <artifactId>mall-common-orm</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

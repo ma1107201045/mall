@@ -1,12 +1,11 @@
 package com.lingyi.mall.common.redis.aspect;
 
-import com.lingyi.mall.common.base.util.SpelUtil;
+import com.lingyi.mall.common.core.util.SpelUtil;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

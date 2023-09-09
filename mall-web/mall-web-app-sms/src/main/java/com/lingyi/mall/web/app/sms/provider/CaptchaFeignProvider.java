@@ -4,7 +4,7 @@ import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
 import com.lingyi.mall.api.sms.feign.CaptchaFeign;
 import com.lingyi.mall.biz.sms.service.CaptchaService;
-import com.lingyi.mall.common.base.util.ServerResponse;
+import com.lingyi.mall.common.core.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

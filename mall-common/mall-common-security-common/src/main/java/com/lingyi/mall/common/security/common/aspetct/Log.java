@@ -1,8 +1,8 @@
 package com.lingyi.mall.common.security.common.aspetct;
 
-import com.lingyi.mall.common.base.constant.BaseConstant;
-import com.lingyi.mall.common.base.enums.ClientTypeEnum;
-import com.lingyi.mall.common.base.enums.OperationTypeEnum;
+import com.lingyi.mall.common.core.constant.BaseConstant;
+import com.lingyi.mall.common.core.enums.ClientTypeEnum;
+import com.lingyi.mall.common.core.enums.OperationTypeEnum;
 
 import java.lang.annotation.*;
 

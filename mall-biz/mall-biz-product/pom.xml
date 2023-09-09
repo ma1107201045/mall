@@ -14,7 +14,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-jdbc</artifactId>
+            <artifactId>mall-common-orm</artifactId>
         </dependency>
         <dependency>
             <groupId>com.mysql</groupId>

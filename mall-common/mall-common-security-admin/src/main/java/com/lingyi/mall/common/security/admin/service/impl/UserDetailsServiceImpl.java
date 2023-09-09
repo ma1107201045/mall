@@ -1,9 +1,8 @@
 package com.lingyi.mall.common.security.admin.service.impl;
 
 import com.lingyi.mall.api.system.consumer.UserFeignConsumer;
-import com.lingyi.mall.api.system.dto.UserRespDTO;
-import com.lingyi.mall.common.base.enums.WhetherEnum;
-import com.lingyi.mall.common.base.util.AssertUtil;
+import com.lingyi.mall.common.core.enums.WhetherEnum;
+import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.security.admin.entity.UserDetailsDO;
 import com.lingyi.mall.common.security.admin.enums.FailEnum;
 import lombok.RequiredArgsConstructor;
@@ -12,8 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @author maweiyan

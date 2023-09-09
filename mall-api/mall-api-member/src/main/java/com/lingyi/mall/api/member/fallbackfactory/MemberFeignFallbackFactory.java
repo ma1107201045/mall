@@ -3,7 +3,7 @@ package com.lingyi.mall.api.member.fallbackfactory;
 import com.lingyi.mall.api.member.dto.MemberReqDTO;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.api.member.feign.MemberFeign;
-import com.lingyi.mall.common.base.util.ServerResponse;
+import com.lingyi.mall.common.core.util.ServerResponse;
 import org.springframework.cloud.openfeign.FallbackFactory;
 
 /**

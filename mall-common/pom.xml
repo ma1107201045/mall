@@ -13,7 +13,7 @@
     <modules>
         <module>mall-common-core</module>
         <module>mall-common-elasticsearch</module>
-        <module>mall-common-jdbc</module>
+        <module>mall-common-orm</module>
         <module>mall-common-redis</module>
         <module>mall-common-rocketmq</module>
         <module>mall-common-security-admin</module>

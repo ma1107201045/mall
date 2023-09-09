@@ -13,8 +13,8 @@ import com.lingyi.mall.auth.app.dto.AuthAppLoginDTO;
 import com.lingyi.mall.auth.app.enums.RegisterSourceEnum;
 import com.lingyi.mall.auth.app.properties.SmsCaptchaProperties;
 import com.lingyi.mall.auth.app.util.UserNameUtil;
-import com.lingyi.mall.common.base.constant.BaseConstant;
-import com.lingyi.mall.common.base.enums.WhetherEnum;
+import com.lingyi.mall.common.core.constant.BaseConstant;
+import com.lingyi.mall.common.core.enums.WhetherEnum;
 
 import java.time.LocalDateTime;
 

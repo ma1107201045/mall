@@ -1,7 +1,7 @@
 package com.lingyi.mall.common.security.app.util;
 
 import cn.hutool.core.util.StrUtil;
-import com.lingyi.mall.common.base.util.HttpUtil;
+import com.lingyi.mall.common.core.util.HttpUtil;
 import com.lingyi.mall.common.security.app.constant.SecurityConstant;
 import com.lingyi.mall.common.security.app.entity.MemberDetailsDO;
 

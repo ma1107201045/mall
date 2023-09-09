@@ -2,20 +2,16 @@ package com.lingyi.mall.common.security.app.config;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
-import com.lingyi.mall.common.base.constant.BaseConstant;
-import com.lingyi.mall.common.base.util.HttpUtil;
+import com.lingyi.mall.common.core.constant.BaseConstant;
+import com.lingyi.mall.common.core.util.HttpUtil;
 import com.lingyi.mall.common.security.app.constant.SecurityConstant;
 import feign.Logger;
 import feign.RequestInterceptor;
-import feign.Response;
 import feign.ResponseInterceptor;
 import org.slf4j.MDC;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;
-
-import java.util.Collection;
-import java.util.Map;
 
 /**
  * @Author: maweiyan

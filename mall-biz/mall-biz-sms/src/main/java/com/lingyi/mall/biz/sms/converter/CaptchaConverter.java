@@ -4,7 +4,7 @@ import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.api.sms.enums.BusinessTypeEnum;
 import com.lingyi.mall.api.sms.enums.ServiceTypeEnum;
 import com.lingyi.mall.biz.sms.entity.CaptchaLogDO;
-import com.lingyi.mall.common.base.util.ConverterUtil;
+import com.lingyi.mall.common.core.util.ConverterUtil;
 
 /**
  * @author maweiyan

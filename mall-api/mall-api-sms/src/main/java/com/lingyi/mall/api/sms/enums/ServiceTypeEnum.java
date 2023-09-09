@@ -1,9 +1,8 @@
 package com.lingyi.mall.api.sms.enums;
 
-import com.lingyi.mall.common.base.constant.BaseConstant;
+import com.lingyi.mall.common.core.constant.BaseConstant;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.apache.bcel.classfile.Unknown;
 
 import java.util.Arrays;
 

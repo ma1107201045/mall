@@ -1,7 +1,7 @@
 package com.lingyi.mall.common.security.admin.config;
 
 import com.lingyi.mall.common.security.admin.constant.SecurityConstant;
-import com.lingyi.mall.common.base.filter.TrackIdFilter;
+import com.lingyi.mall.common.core.filter.TrackIdFilter;
 import com.lingyi.mall.common.security.admin.filter.ImageCaptchaFilter;
 import com.lingyi.mall.common.security.admin.handler.*;
 import org.springframework.context.MessageSource;

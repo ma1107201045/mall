@@ -3,10 +3,8 @@ package com.lingyi.mall.api.sms.feign;
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
 import com.lingyi.mall.api.sms.fallbackfactory.CaptchaFeignFallbackFactory;
-import com.lingyi.mall.common.base.util.ServerResponse;
-import lombok.Getter;
+import com.lingyi.mall.common.core.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 

@@ -1,7 +1,6 @@
 package com.lingyi.mall.biz.system.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.lingyi.mall.biz.system.constant.SystemConstant;
 import com.lingyi.mall.biz.system.dto.RoleDTO;
 import com.lingyi.mall.biz.system.entity.RoleDO;
 import com.lingyi.mall.biz.system.enums.SystemFailEnum;
@@ -14,15 +13,14 @@ import com.lingyi.mall.biz.system.repository.RoleRepository;
 import com.lingyi.mall.biz.system.service.RoleMenuService;
 import com.lingyi.mall.biz.system.service.RoleService;
 import com.lingyi.mall.common.jdbc.param.BasePageParam;
-import com.lingyi.mall.common.base.util.AssertUtil;
-import com.lingyi.mall.common.base.util.ConverterUtil;
+import com.lingyi.mall.common.core.util.AssertUtil;
+import com.lingyi.mall.common.core.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @Author: maweiyan

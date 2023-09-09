@@ -2,7 +2,7 @@ package com.lingyi.mall.common.security.common.task;
 
 import com.lingyi.mall.api.system.consumer.LogFeignConsumer;
 import com.lingyi.mall.api.system.dto.LogReqDTO;
-import com.lingyi.mall.common.base.constant.BaseConstant;
+import com.lingyi.mall.common.core.constant.BaseConstant;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;

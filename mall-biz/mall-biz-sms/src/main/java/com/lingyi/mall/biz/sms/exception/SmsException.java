@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.sms.exception;
 
-import com.lingyi.mall.common.base.enums.BaseFailEnum;
-import com.lingyi.mall.common.base.exception.BizException;
+import com.lingyi.mall.common.core.enums.BaseFailEnum;
+import com.lingyi.mall.common.core.exception.BizException;
 
 import java.io.Serial;
 

@@ -1,6 +1,5 @@
 package com.lingyi.mall.biz.member.service.impl;
 
-import com.lingyi.mall.biz.member.entity.MemberDO;
 import com.lingyi.mall.biz.member.entity.MemberLevelDO;
 import com.lingyi.mall.biz.member.enums.MemberFailEnum;
 import com.lingyi.mall.biz.member.mapper.MemberLevelMapper;
@@ -8,16 +7,15 @@ import com.lingyi.mall.biz.member.param.MemberLevelParam;
 import com.lingyi.mall.biz.member.repository.MemberLevelRepository;
 import com.lingyi.mall.biz.member.service.MemberLevelService;
 import com.lingyi.mall.biz.member.vo.MemberLevelVO;
-import com.lingyi.mall.common.base.enums.WhetherEnum;
-import com.lingyi.mall.common.base.exception.BizException;
-import com.lingyi.mall.common.base.util.ConverterUtil;
-import com.lingyi.mall.common.base.util.ObjectUtil;
+import com.lingyi.mall.common.core.enums.WhetherEnum;
+import com.lingyi.mall.common.core.exception.BizException;
+import com.lingyi.mall.common.core.util.ConverterUtil;
+import com.lingyi.mall.common.core.util.ObjectUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author maweiyan

@@ -2,26 +2,20 @@ package com.lingyi.mall.common.security.admin.config;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ArrayUtil;
-import com.lingyi.mall.common.base.constant.BaseConstant;
-import com.lingyi.mall.common.base.util.HttpUtil;
+import com.lingyi.mall.common.core.constant.BaseConstant;
+import com.lingyi.mall.common.core.util.HttpUtil;
 import com.lingyi.mall.common.security.admin.constant.SecurityConstant;
 import feign.Logger;
 import feign.RequestInterceptor;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.MDC;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.RememberMeAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * @Author: maweiyan

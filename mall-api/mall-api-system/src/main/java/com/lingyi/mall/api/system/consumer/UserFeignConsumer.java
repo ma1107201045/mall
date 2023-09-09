@@ -5,7 +5,7 @@ import com.lingyi.mall.api.system.dto.MenuRespDTO;
 import com.lingyi.mall.api.system.dto.UserPartReqDTO;
 import com.lingyi.mall.api.system.dto.UserRespDTO;
 import com.lingyi.mall.api.system.feign.UserFeign;
-import com.lingyi.mall.common.base.exception.OpenFeignException;
+import com.lingyi.mall.common.core.exception.OpenFeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

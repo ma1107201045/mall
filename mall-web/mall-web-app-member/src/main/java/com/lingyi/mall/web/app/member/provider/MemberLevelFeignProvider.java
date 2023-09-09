@@ -2,7 +2,7 @@ package com.lingyi.mall.web.app.member.provider;
 
 import com.lingyi.mall.api.member.feign.MemberLevelFeign;
 import com.lingyi.mall.biz.member.service.MemberLevelService;
-import com.lingyi.mall.common.base.util.ServerResponse;
+import com.lingyi.mall.common.core.util.ServerResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;

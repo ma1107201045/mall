@@ -1,13 +1,11 @@
 package com.lingyi.mall.common.security.app.util;
 
 import com.alibaba.fastjson2.JSON;
-import com.lingyi.mall.common.base.util.ServerResponse;
+import com.lingyi.mall.common.core.util.ServerResponse;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.security.core.AuthenticationException;
 
 import java.io.IOException;
 import java.io.PrintWriter;

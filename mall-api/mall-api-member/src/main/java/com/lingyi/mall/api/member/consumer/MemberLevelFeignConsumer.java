@@ -1,8 +1,7 @@
 package com.lingyi.mall.api.member.consumer;
 
 import com.lingyi.mall.api.member.feign.MemberLevelFeign;
-import com.lingyi.mall.common.base.exception.OpenFeignException;
-import com.lingyi.mall.common.base.util.ServerResponse;
+import com.lingyi.mall.common.core.exception.OpenFeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

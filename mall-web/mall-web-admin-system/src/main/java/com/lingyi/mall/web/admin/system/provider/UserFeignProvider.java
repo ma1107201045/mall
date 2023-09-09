@@ -5,7 +5,7 @@ import com.lingyi.mall.api.system.dto.UserPartReqDTO;
 import com.lingyi.mall.api.system.dto.UserRespDTO;
 import com.lingyi.mall.api.system.feign.UserFeign;
 import com.lingyi.mall.biz.system.service.UserService;
-import com.lingyi.mall.common.base.util.ServerResponse;
+import com.lingyi.mall.common.core.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

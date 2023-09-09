@@ -1,7 +1,7 @@
 package com.lingyi.mall.auth.app.util;
 
 import cn.hutool.core.util.StrUtil;
-import com.lingyi.mall.common.base.util.ObjectUtil;
+import com.lingyi.mall.common.core.util.ObjectUtil;
 
 /**
  * @author maweiyan

@@ -3,7 +3,7 @@ package com.lingyi.mall.web.app.member;
 import com.lingyi.mall.MallWebAppMemberTest;
 import com.lingyi.mall.biz.member.entity.MemberDO;
 import com.lingyi.mall.biz.member.service.MemberService;
-import com.lingyi.mall.common.base.enums.WhetherEnum;
+import com.lingyi.mall.common.core.enums.WhetherEnum;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

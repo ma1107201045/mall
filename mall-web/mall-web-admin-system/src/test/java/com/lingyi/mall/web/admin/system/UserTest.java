@@ -5,7 +5,7 @@ import com.lingyi.mall.MallBizSystemApplicationTest;
 import com.lingyi.mall.biz.system.entity.UserDO;
 import com.lingyi.mall.biz.system.mapper.UserMapper;
 import com.lingyi.mall.biz.system.repository.UserRepository;
-import com.lingyi.mall.common.base.enums.WhetherEnum;
+import com.lingyi.mall.common.core.enums.WhetherEnum;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

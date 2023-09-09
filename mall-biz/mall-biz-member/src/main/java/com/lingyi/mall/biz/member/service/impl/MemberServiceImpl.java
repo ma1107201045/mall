@@ -11,8 +11,8 @@ import com.lingyi.mall.biz.member.param.MemberParam;
 import com.lingyi.mall.biz.member.repository.MemberRepository;
 import com.lingyi.mall.biz.member.service.MemberService;
 import com.lingyi.mall.biz.member.vo.MemberVO;
-import com.lingyi.mall.common.base.exception.BizException;
-import com.lingyi.mall.common.base.util.ConverterUtil;
+import com.lingyi.mall.common.core.exception.BizException;
+import com.lingyi.mall.common.core.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
