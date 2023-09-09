@@ -16,11 +16,11 @@ import java.util.List;
  * @DateTime: 2023/9/9 10:07
  * @Description:
  */
-public interface BaseServicePlus<
-        T extends BaseIdDO,
+public interface BaseServicePro<
         DTO extends BaseIdDTO<ID>,
-        PARAM extends BasePageParam,
         VO extends BaseIdVO<ID>,
+        PARAM extends BasePageParam,
+        DO extends BaseIdDO,
         ID extends Serializable> {
 
     /**
@@ -28,7 +28,7 @@ public interface BaseServicePlus<
      *
      * @param dto dto
      */
-    void create(DTO dto, Class<T> clazz);
+    void create(DTO dto, Class<DO> clazz);
 
     /**
      * 批量删除
@@ -61,6 +61,15 @@ public interface BaseServicePlus<
      * @return t
      */
     VO readById(ID id);
+
+
+    /**
+     * 统计列表
+     *
+     * @param param ..
+     * @return Long
+     */
+    Long totalByParam(PARAM param);
 
     /**
      * 查找列表

@@ -16,7 +16,7 @@ import java.io.Serializable;
  */
 @Schema(description = "前台分页信息")
 @Data
-public class BasePagePlusParam implements Serializable {
+public class BasePageProParam implements Serializable {
     @Serial
     private static final long serialVersionUID = -1740204284407483348L;
 

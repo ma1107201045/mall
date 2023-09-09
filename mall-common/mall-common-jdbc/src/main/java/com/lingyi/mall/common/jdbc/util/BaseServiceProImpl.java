@@ -22,22 +22,22 @@ import java.util.Optional;
  */
 @Getter
 @Setter
-public class BaseServicePlusImpl<J extends JpaRepositoryImplementation<T, ID>,
+public class BaseServiceProImpl<J extends JpaRepositoryImplementation<DO, ID>,
         M extends MybatisMapperImplementation<ID, PARAM, VO>,
-        T extends BaseIdDO,
         DTO extends BaseIdDTO<ID>,
-        PARAM extends BasePageParam,
         VO extends BaseIdVO<ID>,
-        ID extends Serializable> implements BaseServicePlus<T, DTO, PARAM, VO, ID> {
+        PARAM extends BasePageParam,
+        DO extends BaseIdDO,
+        ID extends Serializable> implements BaseServicePro<DTO, VO, PARAM, DO, ID> {
 
     protected J jpaRepositoryImplementation;
 
-    protected M mybatisMapper;
+    protected M mybatisMapperImplementation;
 
 
-    public void create(DTO dto, Class<T> clazz) {
-        T t = ConverterUtil.to(dto, clazz);
-        jpaRepositoryImplementation.save(t);
+    public void create(DTO dto, Class<DO> clazz) {
+        DO doEntity = ConverterUtil.to(dto, clazz);
+        jpaRepositoryImplementation.save(doEntity);
     }
 
 
@@ -48,21 +48,25 @@ public class BaseServicePlusImpl<J extends JpaRepositoryImplementation<T, ID>,
 
 
     public void updateById(DTO dto) {
-        Optional<T> optional = jpaRepositoryImplementation.findById(dto.getId());
+        Optional<DO> optional = jpaRepositoryImplementation.findById(dto.getId());
         if (optional.isPresent()) {
-            T t = optional.get();
-            ConverterUtil.to(dto, t);
-            jpaRepositoryImplementation.save(t);
+            DO doEntity = optional.get();
+            ConverterUtil.to(dto, doEntity);
+            jpaRepositoryImplementation.save(doEntity);
         }
     }
 
     public VO readById(ID id) {
-        return mybatisMapper.selectById(id);
+        return mybatisMapperImplementation.selectById(id);
+    }
 
+    @Override
+    public Long totalByParam(PARAM param) {
+        return mybatisMapperImplementation.countByParam(param);
     }
 
     public List<VO> readListByParam(PARAM param) {
-        return mybatisMapper.selectListByParam(param);
+        return mybatisMapperImplementation.selectListByParam(param);
     }
 
 
