@@ -1,10 +1,10 @@
 package com.lingyi.mall.common.jdbc.util;
 
 
-
-import com.lingyi.mall.common.jdbc.dto.BaseDTO;
+import com.lingyi.mall.common.jdbc.dto.BaseIdDTO;
 import com.lingyi.mall.common.jdbc.entity.BaseIdDO;
 import com.lingyi.mall.common.jdbc.param.BasePageParam;
+import com.lingyi.mall.common.jdbc.vo.BaseIdVO;
 
 import java.io.Serializable;
 import java.util.Collections;
@@ -16,11 +16,11 @@ import java.util.List;
  * @DateTime: 2023/9/9 10:07
  * @Description:
  */
-public interface BaseServiceTest<
+public interface BaseServicePlus<
         T extends BaseIdDO,
-        DTO extends BaseDTO<ID>,
+        DTO extends BaseIdDTO<ID>,
         PARAM extends BasePageParam,
-        VO,
+        VO extends BaseIdVO<ID>,
         ID extends Serializable> {
 
     /**

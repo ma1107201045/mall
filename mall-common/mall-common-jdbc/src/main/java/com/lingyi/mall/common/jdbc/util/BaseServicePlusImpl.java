@@ -2,7 +2,7 @@ package com.lingyi.mall.common.jdbc.util;
 
 
 import com.lingyi.mall.common.base.util.ConverterUtil;
-import com.lingyi.mall.common.jdbc.dto.BaseDTO;
+import com.lingyi.mall.common.jdbc.dto.BaseIdDTO;
 import com.lingyi.mall.common.jdbc.entity.BaseIdDO;
 import com.lingyi.mall.common.jdbc.param.BasePageParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +18,13 @@ import java.util.Optional;
  * @DateTime: 2023/9/9 9:51
  * @Description:
  */
-public class BaseServiceImplTest<J extends JpaRepositoryImplementation<T, ID>,
+public class BaseServicePlusImpl<J extends JpaRepositoryImplementation<T, ID>,
         M extends MybatisMapper<ID, PARAM, VO>,
         T extends BaseIdDO,
-        DTO extends BaseDTO<ID>,
+        DTO extends BaseIdDTO<ID>,
         PARAM extends BasePageParam,
         VO,
-        ID extends Serializable> implements BaseServiceTest<T, DTO, PARAM, VO, ID> {
+        ID extends Serializable> implements BaseServicePlus<T, DTO, PARAM, VO, ID> {
 
     @Autowired
     private J jpaRepositoryImplementation;
