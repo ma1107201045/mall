@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.jdbc.jpa.listener.auditor;
+package com.lingyi.mall.common.orm.jpa.listener.auditor;
 
 import java.util.Optional;
 

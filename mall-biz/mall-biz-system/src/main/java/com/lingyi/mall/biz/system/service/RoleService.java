@@ -4,8 +4,8 @@ import com.lingyi.mall.biz.system.dto.RoleDTO;
 import com.lingyi.mall.biz.system.param.RoleParam;
 import com.lingyi.mall.biz.system.vo.MenuVO;
 import com.lingyi.mall.biz.system.vo.RoleVO;
-import com.lingyi.mall.common.jdbc.param.BasePageParam;
-import com.lingyi.mall.common.jdbc.util.BaseService;
+import com.lingyi.mall.common.orm.param.BasePageParam;
+import com.lingyi.mall.common.orm.util.BaseService;
 
 import java.util.List;
 

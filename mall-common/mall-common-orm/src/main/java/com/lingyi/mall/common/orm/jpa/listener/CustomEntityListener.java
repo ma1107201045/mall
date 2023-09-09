@@ -1,11 +1,11 @@
-package com.lingyi.mall.common.jdbc.jpa.listener;
+package com.lingyi.mall.common.orm.jpa.listener;
 
 import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.common.core.constant.BaseConstant;
 import com.lingyi.mall.common.core.enums.WhetherEnum;
-import com.lingyi.mall.common.jdbc.entity.BaseCommonDO;
-import com.lingyi.mall.common.jdbc.entity.BaseIsDeleteDO;
-import com.lingyi.mall.common.jdbc.jpa.listener.auditor.CustomAuditorAware;
+import com.lingyi.mall.common.orm.entity.BaseCommonDO;
+import com.lingyi.mall.common.orm.entity.BaseIsDeleteDO;
+import com.lingyi.mall.common.orm.jpa.listener.auditor.CustomAuditorAware;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import lombok.AllArgsConstructor;

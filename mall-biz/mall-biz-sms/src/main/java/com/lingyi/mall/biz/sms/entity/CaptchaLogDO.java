@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.sms.entity;
 
-import com.lingyi.mall.common.jdbc.entity.BaseCommonDO;
+import com.lingyi.mall.common.orm.entity.BaseCommonDO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -11,7 +11,6 @@ import org.hibernate.annotations.DynamicInsert;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.math.BigInteger;
 
 /**
  * @author maweiyan

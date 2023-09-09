@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.system.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.lingyi.mall.common.jdbc.entity.BaseCommonDO;
+import com.lingyi.mall.common.orm.entity.BaseCommonDO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;

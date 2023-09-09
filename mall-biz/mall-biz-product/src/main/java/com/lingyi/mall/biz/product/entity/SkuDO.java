@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.product.entity;
 
 
-import com.lingyi.mall.common.jdbc.entity.BaseCommonDO;
+import com.lingyi.mall.common.orm.entity.BaseCommonDO;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

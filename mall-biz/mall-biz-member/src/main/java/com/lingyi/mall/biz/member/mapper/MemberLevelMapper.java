@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.member.mapper;
 
 import com.lingyi.mall.biz.member.param.MemberLevelParam;
 import com.lingyi.mall.biz.member.vo.MemberLevelVO;
-import com.lingyi.mall.common.jdbc.util.MybatisMapperImplementation;
+import com.lingyi.mall.common.orm.util.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

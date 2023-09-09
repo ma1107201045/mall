@@ -3,7 +3,7 @@ package com.lingyi.mall.biz.member.service;
 import com.lingyi.mall.biz.member.entity.MemberLevelDO;
 import com.lingyi.mall.biz.member.param.MemberLevelParam;
 import com.lingyi.mall.biz.member.vo.MemberLevelVO;
-import com.lingyi.mall.common.jdbc.util.BaseService;
+import com.lingyi.mall.common.orm.util.BaseService;
 
 /**
  * @author maweiyan

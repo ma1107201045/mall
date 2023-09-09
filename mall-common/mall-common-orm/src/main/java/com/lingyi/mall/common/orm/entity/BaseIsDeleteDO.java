@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.jdbc.entity;
+package com.lingyi.mall.common.orm.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;

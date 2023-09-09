@@ -4,7 +4,7 @@ import com.lingyi.mall.biz.product.entity.SkuDO;
 import com.lingyi.mall.biz.product.mapper.SkuMapper;
 import com.lingyi.mall.biz.product.repository.SkuRepository;
 import com.lingyi.mall.biz.product.service.SkuService;
-import com.lingyi.mall.common.jdbc.param.BasePageParam;
+import com.lingyi.mall.common.orm.param.BasePageParam;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

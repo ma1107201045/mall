@@ -1,11 +1,11 @@
-package com.lingyi.mall.common.jdbc.util;
+package com.lingyi.mall.common.orm.util;
 
 
 import com.lingyi.mall.common.core.util.ConverterUtil;
-import com.lingyi.mall.common.jdbc.dto.BaseIdDTO;
-import com.lingyi.mall.common.jdbc.entity.BaseIdDO;
-import com.lingyi.mall.common.jdbc.param.BasePageParam;
-import com.lingyi.mall.common.jdbc.vo.BaseIdVO;
+import com.lingyi.mall.common.orm.dto.BaseIdDTO;
+import com.lingyi.mall.common.orm.entity.BaseIdDO;
+import com.lingyi.mall.common.orm.param.BasePageParam;
+import com.lingyi.mall.common.orm.vo.BaseIdVO;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;

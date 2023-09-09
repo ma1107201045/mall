@@ -12,7 +12,7 @@ import com.lingyi.mall.biz.system.mapper.RoleMapper;
 import com.lingyi.mall.biz.system.repository.RoleRepository;
 import com.lingyi.mall.biz.system.service.RoleMenuService;
 import com.lingyi.mall.biz.system.service.RoleService;
-import com.lingyi.mall.common.jdbc.param.BasePageParam;
+import com.lingyi.mall.common.orm.param.BasePageParam;
 import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;

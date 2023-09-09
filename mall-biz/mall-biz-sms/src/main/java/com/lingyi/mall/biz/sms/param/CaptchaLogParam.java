@@ -1,8 +1,7 @@
 package com.lingyi.mall.biz.sms.param;
 
-import com.lingyi.mall.common.jdbc.param.BasePageParam;
+import com.lingyi.mall.common.orm.param.BasePageParam;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Column;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

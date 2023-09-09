@@ -1,8 +1,8 @@
 package com.lingyi.mall.biz.product.service;
 
 import com.lingyi.mall.biz.product.entity.CategoryAttributeDO;
-import com.lingyi.mall.common.jdbc.param.BasePageParam;
-import com.lingyi.mall.common.jdbc.util.BaseService;
+import com.lingyi.mall.common.orm.param.BasePageParam;
+import com.lingyi.mall.common.orm.util.BaseService;
 
 /**
  * @Author: maweiyan

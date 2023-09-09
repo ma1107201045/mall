@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.jdbc.util;
+package com.lingyi.mall.common.orm.util;
 
 import cn.hutool.core.date.SystemClock;
 import cn.hutool.core.lang.Assert;

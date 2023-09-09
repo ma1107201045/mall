@@ -18,7 +18,7 @@ import com.lingyi.mall.biz.system.service.UserRoleService;
 import com.lingyi.mall.biz.system.service.UserService;
 import com.lingyi.mall.biz.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.vo.UserVO;
-import com.lingyi.mall.common.jdbc.param.BasePageParam;
+import com.lingyi.mall.common.orm.param.BasePageParam;
 import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.core.util.ObjectUtil;

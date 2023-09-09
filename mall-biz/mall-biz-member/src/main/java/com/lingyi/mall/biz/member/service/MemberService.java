@@ -6,7 +6,7 @@ import com.lingyi.mall.biz.member.dto.MemberDTO;
 import com.lingyi.mall.biz.member.entity.MemberDO;
 import com.lingyi.mall.biz.member.param.MemberParam;
 import com.lingyi.mall.biz.member.vo.MemberVO;
-import com.lingyi.mall.common.jdbc.util.BaseService;
+import com.lingyi.mall.common.orm.util.BaseService;
 
 /**
  * @author maweiyan

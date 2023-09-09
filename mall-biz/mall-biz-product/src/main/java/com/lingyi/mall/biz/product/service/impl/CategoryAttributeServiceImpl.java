@@ -4,7 +4,7 @@ import com.lingyi.mall.biz.product.entity.CategoryAttributeDO;
 import com.lingyi.mall.biz.product.mapper.CategoryAttributeMapper;
 import com.lingyi.mall.biz.product.repository.CategoryAttributeRepository;
 import com.lingyi.mall.biz.product.service.CategoryAttributeService;
-import com.lingyi.mall.common.jdbc.param.BasePageParam;
+import com.lingyi.mall.common.orm.param.BasePageParam;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

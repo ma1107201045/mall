@@ -7,7 +7,7 @@ import com.lingyi.mall.biz.system.vo.UserVO;
 import com.lingyi.mall.biz.system.service.UserService;
 import com.lingyi.mall.common.security.common.aspetct.Log;
 import com.lingyi.mall.common.core.enums.OperationTypeEnum;
-import com.lingyi.mall.common.jdbc.param.BasePageParam;
+import com.lingyi.mall.common.orm.param.BasePageParam;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

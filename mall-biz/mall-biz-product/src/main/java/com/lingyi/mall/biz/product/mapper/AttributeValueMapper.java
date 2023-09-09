@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.product.mapper;
 
 import com.lingyi.mall.biz.product.param.AttributeValueParam;
 import com.lingyi.mall.biz.product.vo.AttributeValueVO;
-import com.lingyi.mall.common.jdbc.util.MybatisMapperImplementation;
+import com.lingyi.mall.common.orm.util.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

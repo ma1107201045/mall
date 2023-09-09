@@ -1,6 +1,6 @@
-package com.lingyi.mall.common.jdbc.entity;
+package com.lingyi.mall.common.orm.entity;
 
-import com.lingyi.mall.common.jdbc.jpa.generator.SnowflakeIdentifierGenerator;
+import com.lingyi.mall.common.orm.jpa.generator.SnowflakeIdentifierGenerator;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;

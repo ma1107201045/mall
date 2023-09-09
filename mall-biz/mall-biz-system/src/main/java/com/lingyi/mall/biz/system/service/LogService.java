@@ -3,7 +3,7 @@ package com.lingyi.mall.biz.system.service;
 import com.lingyi.mall.api.system.dto.LogReqDTO;
 import com.lingyi.mall.biz.system.entity.LogDO;
 import com.lingyi.mall.biz.system.param.LogParam;
-import com.lingyi.mall.common.jdbc.util.BaseService;
+import com.lingyi.mall.common.orm.util.BaseService;
 
 /**
  * @author maweiyan

@@ -1,26 +1,34 @@
-package com.lingyi.mall.common.jdbc.util;
+package com.lingyi.mall.common.orm.util;
 
 
-import com.lingyi.mall.common.jdbc.param.BasePageParam;
+import com.lingyi.mall.common.orm.dto.BaseIdDTO;
+import com.lingyi.mall.common.orm.entity.BaseIdDO;
+import com.lingyi.mall.common.orm.param.BasePageParam;
+import com.lingyi.mall.common.orm.vo.BaseIdVO;
 
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
 /**
- * @author maweiyan
- * @email 1107201045@qq.com
- * @datetime 2023/5/4 17:08
- * @description
+ * @Author: maweiyan
+ * @Email: 1107201045@qq.com
+ * @DateTime: 2023/9/9 10:07
+ * @Description:
  */
-public interface BaseService<DTO extends Serializable, PARAM extends BasePageParam, VO, ID extends Serializable> {
+public interface BaseServicePro<
+        DTO extends BaseIdDTO<ID>,
+        VO extends BaseIdVO<ID>,
+        PARAM extends BasePageParam,
+        DO extends BaseIdDO,
+        ID extends Serializable> {
 
     /**
      * 添加
      *
      * @param dto dto
      */
-    void create(DTO dto);
+    void create(DTO dto, Class<DO> clazz);
 
     /**
      * 批量删除
@@ -53,6 +61,15 @@ public interface BaseService<DTO extends Serializable, PARAM extends BasePagePar
      * @return t
      */
     VO readById(ID id);
+
+
+    /**
+     * 统计列表
+     *
+     * @param param ..
+     * @return Long
+     */
+    Long totalByParam(PARAM param);
 
     /**
      * 查找列表

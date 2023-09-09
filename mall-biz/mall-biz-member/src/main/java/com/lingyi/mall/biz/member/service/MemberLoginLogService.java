@@ -4,7 +4,7 @@ import com.lingyi.mall.api.member.dto.MemberLoginLogReqDTO;
 import com.lingyi.mall.biz.member.entity.MemberLoginLogDO;
 import com.lingyi.mall.biz.member.param.MemberLoginParam;
 import com.lingyi.mall.biz.member.vo.MemberLoginLogVO;
-import com.lingyi.mall.common.jdbc.util.BaseService;
+import com.lingyi.mall.common.orm.util.BaseService;
 
 /**
  * @author maweiyan
