@@ -1,7 +1,8 @@
 package com.lingyi.mall.common.orm.jpa.generator;
 
-import com.lingyi.mall.common.core.util.SnowFlakeIdUtil;
+
 import com.lingyi.mall.common.orm.entity.BaseIdDO;
+import com.lingyi.mall.common.orm.util.SnowFlakeIdUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.IdentifierGenerator;

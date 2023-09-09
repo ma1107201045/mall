@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.core.util;
+package com.lingyi.mall.auth.admin.util;
 
 import cn.hutool.captcha.generator.CodeGenerator;
 import cn.hutool.captcha.generator.MathGenerator;
