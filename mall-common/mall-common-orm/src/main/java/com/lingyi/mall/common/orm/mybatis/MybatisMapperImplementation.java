@@ -2,6 +2,7 @@ package com.lingyi.mall.common.orm.mybatis;
 
 
 import com.lingyi.mall.common.orm.param.BasePageParam;
+import com.lingyi.mall.common.orm.vo.BaseIdVO;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  * @DateTime: 2023/8/31 16:07
  * @Description:
  */
-public interface MybatisMapperImplementation<ID extends Serializable, PARMA extends BasePageParam, VO extends Serializable> {
+public interface MybatisMapperImplementation<ID extends Serializable, PARMA extends BasePageParam, VO extends BaseIdVO<ID>> {
 
     /**
      * 按照id查询

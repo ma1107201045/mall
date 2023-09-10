@@ -1,7 +1,10 @@
 package com.lingyi.mall.biz.system.vo;
 
+import com.lingyi.mall.common.orm.vo.BaseIdVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -14,12 +17,14 @@ import java.util.List;
  * @datetime 2023/5/5 16:25
  * @description
  */
-@Schema(description = "菜单")
 @Data
-public class MenuVO implements Serializable {
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@Schema(description = "菜单")
+public class MenuVO extends BaseIdVO<Long> {
 
     @Serial
-    private static final long serialVersionUID = 8228287144044998326L;
+    private static final long serialVersionUID = -7797871902157113255L;
 
     @Schema(description = "菜单id")
     private Long id;

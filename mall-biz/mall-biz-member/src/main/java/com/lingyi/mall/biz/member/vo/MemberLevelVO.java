@@ -1,10 +1,14 @@
 package com.lingyi.mall.biz.member.vo;
 
+import com.lingyi.mall.common.orm.vo.BaseIdVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.annotations.DynamicInsert;
 
+import java.io.Serial;
 import java.math.BigDecimal;
 
 /**
@@ -13,13 +17,14 @@ import java.math.BigDecimal;
  * @datetime 2023/8/14 15:27
  * @description
  */
-@Schema(description = "会员等级")
 @Data
-@DynamicInsert
-public class MemberLevelVO {
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@Schema(description = "会员等级")
+public class MemberLevelVO extends BaseIdVO<Long> {
 
-    @Schema(description = "主键id")
-    private String id;
+    @Serial
+    private static final long serialVersionUID = 5004987282353659490L;
 
     @Schema(description = "等级名称")
     private String name;

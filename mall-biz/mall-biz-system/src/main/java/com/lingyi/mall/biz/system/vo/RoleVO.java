@@ -1,7 +1,10 @@
 package com.lingyi.mall.biz.system.vo;
 
+import com.lingyi.mall.common.orm.vo.BaseIdVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -14,12 +17,14 @@ import java.util.List;
  * @datetime 2023/5/15 14:20
  * @description
  */
-@Schema(description = "角色")
 @Data
-public class RoleVO  implements Serializable {
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@Schema(description = "角色")
+public class RoleVO extends BaseIdVO<Long> {
 
     @Serial
-    private static final long serialVersionUID = -5168941944091925577L;
+    private static final long serialVersionUID = -855349452886457254L;
 
     @Schema(description = "角色id")
     private Long id;

@@ -1,8 +1,12 @@
 package com.lingyi.mall.biz.product.vo;
 
+import com.lingyi.mall.common.orm.vo.BaseIdVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
+import java.io.Serial;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,11 +17,13 @@ import java.util.List;
  * @Description:
  */
 @Data
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @Schema(description = "属性")
-public class AttributeVO {
+public class AttributeVO extends BaseIdVO<Long> {
 
-    @Schema(description = "主键id")
-    private Long id;
+    @Serial
+    private static final long serialVersionUID = 7708345973399103114L;
 
     @Schema(description = "商家id")
     private Long merchantId;

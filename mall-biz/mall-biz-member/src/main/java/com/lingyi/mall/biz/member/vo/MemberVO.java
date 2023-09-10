@@ -1,8 +1,13 @@
 package com.lingyi.mall.biz.member.vo;
 
+import com.lingyi.mall.common.orm.vo.BaseIdVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -12,12 +17,13 @@ import java.time.LocalDateTime;
  * @datetime 2023/6/1 15:20
  * @description
  */
-@Schema(description = "会员")
 @Data
-public class MemberVO  {
-
-    @Schema(description = "会员id")
-    private Long memberId;
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@Schema(description = "会员")
+public class MemberVO extends BaseIdVO<Long> {
+    @Serial
+    private static final long serialVersionUID = 2401826499005170171L;
 
     @Schema(description = "会员等级id")
     private Long memberLevelId;

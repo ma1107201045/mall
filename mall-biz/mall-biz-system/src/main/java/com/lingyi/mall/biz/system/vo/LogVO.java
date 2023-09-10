@@ -2,6 +2,9 @@ package com.lingyi.mall.biz.system.vo;
 
 import com.lingyi.mall.common.orm.vo.BaseIdVO;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.io.Serial;
 import java.time.LocalDateTime;
@@ -12,6 +15,10 @@ import java.time.LocalDateTime;
  * @DateTime: 2023/9/10 20:34
  * @Description:
  */
+
+@Data
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @Schema(description = "日志")
 public class LogVO extends BaseIdVO<Long> {
 

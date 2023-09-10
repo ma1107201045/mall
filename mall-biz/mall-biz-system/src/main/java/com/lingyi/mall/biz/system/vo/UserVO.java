@@ -2,8 +2,11 @@
 package com.lingyi.mall.biz.system.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.lingyi.mall.common.orm.vo.BaseIdVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -16,12 +19,14 @@ import java.util.List;
  * @DateTime: 2023/5/3 21:32
  * @Description:
  */
-@Schema(description = "用户")
 @Data
-public class UserVO implements Serializable {
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@Schema(description = "用户")
+public class UserVO extends BaseIdVO<Long> {
 
     @Serial
-    private static final long serialVersionUID = -3304014757506293947L;
+    private static final long serialVersionUID = -5501894157954555575L;
 
     @Schema(description = "用户id")
     private Long id;
