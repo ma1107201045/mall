@@ -1,14 +1,18 @@
 package com.lingyi.mall.biz.system.service.impl;
 
 import com.lingyi.mall.api.system.dto.LogReqDTO;
+import com.lingyi.mall.biz.system.dto.LogDTO;
 import com.lingyi.mall.biz.system.entity.LogDO;
 import com.lingyi.mall.biz.system.enums.SystemFailEnum;
 import com.lingyi.mall.biz.system.mapper.LogMapper;
 import com.lingyi.mall.biz.system.param.LogParam;
 import com.lingyi.mall.biz.system.repository.LogRepository;
 import com.lingyi.mall.biz.system.service.LogService;
+import com.lingyi.mall.biz.system.vo.LogVO;
 import com.lingyi.mall.common.core.exception.BizException;
 import com.lingyi.mall.common.core.util.ConverterUtil;
+import com.lingyi.mall.common.orm.util.BaseServicePro;
+import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,47 +25,13 @@ import java.util.List;
  * @description
  */
 @Service
-@RequiredArgsConstructor
-public class LogServiceImpl implements LogService {
-
-    private final LogRepository logRepository;
-
-    private final LogMapper logMapper;
+public class LogServiceImpl extends BaseServiceProImpl<LogRepository, LogMapper, LogDTO, LogVO, LogParam, LogDO, Long> implements LogService {
 
     @Override
-    public void create(LogReqDTO logReqDTO) {
-        var logDO = ConverterUtil.to(logReqDTO, LogDO.class);
-        logRepository.save(logDO);
+    public void save(LogReqDTO logReqDTO) {
+        var logDTO = ConverterUtil.to(logReqDTO, LogDTO.class);
+        create(logDTO, LogDO.class);
     }
 
-    @Override
-    public void deleteByIds(List<Long> ids) {
-        logRepository.deleteAllById(ids);
-    }
-
-    @Override
-    public void updateById(LogReqDTO logReqDTO) {
-        //获取日志信息
-        var optional = logRepository.findById(logReqDTO.getId());
-        //判断日志是否为空
-        if (optional.isEmpty()) {
-            throw new BizException(SystemFailEnum.LOG_NULL_ERROR);
-        }
-        var logDO = optional.get();
-        //转换
-        ConverterUtil.to(logReqDTO, logDO);
-        //保存
-        logRepository.save(logDO);
-    }
-
-    @Override
-    public LogDO readById(Long id) {
-        return logMapper.selectById(id);
-    }
-
-    @Override
-    public List<LogDO> readListByParam(LogParam logParam) {
-        return logMapper.selectListByParam(logParam);
-    }
 
 }

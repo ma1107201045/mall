@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.product.mapper;
 
 import com.lingyi.mall.biz.product.param.BrandParam;
 import com.lingyi.mall.biz.product.vo.BrandVO;
-import com.lingyi.mall.common.orm.util.MybatisMapperImplementation;
+import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

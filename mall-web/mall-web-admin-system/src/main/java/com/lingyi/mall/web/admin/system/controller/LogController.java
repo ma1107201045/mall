@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.biz.system.entity.LogDO;
 import com.lingyi.mall.biz.system.param.LogParam;
 import com.lingyi.mall.biz.system.service.LogService;
+import com.lingyi.mall.biz.system.vo.LogVO;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -41,15 +42,15 @@ public class LogController {
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:logs:get')")
-    public ServerResponse<LogDO> getById(@PathVariable Long id) {
-        var logDO = logService.readById(id);
-        return ServerResponse.success(logDO);
+    public ServerResponse<LogVO> getById(@PathVariable Long id) {
+        var logVO = logService.readById(id);
+        return ServerResponse.success(logVO);
     }
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:logs:getList')")
-    public ServerResponse<List<LogDO>> getListByPageAndParam(@Valid LogParam logParam) {
+    public ServerResponse<List<LogVO>> getListByPageAndParam(@Valid LogParam logParam) {
         var page = PageHelper.startPage(logParam.getCurrentPage(), logParam.getPageSize(), logParam.getSort());
         var logs = logService.readListByParam(logParam);
         return ServerResponse.success(logs, page.getTotal());

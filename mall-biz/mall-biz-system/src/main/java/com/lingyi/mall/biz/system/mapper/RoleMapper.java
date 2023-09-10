@@ -3,7 +3,7 @@ package com.lingyi.mall.biz.system.mapper;
 import com.lingyi.mall.biz.system.param.RoleParam;
 import com.lingyi.mall.biz.system.vo.RoleVO;
 import com.lingyi.mall.common.orm.param.BasePageParam;
-import com.lingyi.mall.common.orm.util.MybatisMapperImplementation;
+import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

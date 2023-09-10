@@ -1,10 +1,9 @@
 package com.lingyi.mall.biz.system.mapper;
 
-import com.lingyi.mall.biz.system.entity.LogDO;
 import com.lingyi.mall.biz.system.param.LogParam;
+import com.lingyi.mall.biz.system.vo.LogVO;
+import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
-
-import java.util.List;
 
 /**
  * @author maweiyan
@@ -13,22 +12,6 @@ import java.util.List;
  * @description
  */
 @Mapper
-public interface LogMapper {
+public interface LogMapper extends MybatisMapperImplementation<Long, LogParam, LogVO> {
 
-
-    /**
-     * 按照id查询
-     *
-     * @param id 主键id
-     * @return 日志
-     */
-    LogDO selectById(Long id);
-
-    /**
-     * 按照分页信息和条件查询
-     *
-     * @param logParam 日志信息
-     * @return List<Log>
-     */
-    List<LogDO> selectListByParam(LogParam logParam);
 }

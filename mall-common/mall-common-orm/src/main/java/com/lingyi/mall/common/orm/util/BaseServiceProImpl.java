@@ -4,6 +4,7 @@ package com.lingyi.mall.common.orm.util;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.orm.dto.BaseIdDTO;
 import com.lingyi.mall.common.orm.entity.BaseIdDO;
+import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
 import com.lingyi.mall.common.orm.param.BasePageParam;
 import com.lingyi.mall.common.orm.vo.BaseIdVO;
 import lombok.Getter;
