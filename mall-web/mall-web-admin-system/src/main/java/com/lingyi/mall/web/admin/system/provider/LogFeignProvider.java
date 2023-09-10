@@ -28,7 +28,7 @@ public class LogFeignProvider implements LogFeign {
     @Override
     public ServerResponse<Void> save(LogReqDTO logReqDTO, Request.Options options) {
         log.info("save log begin");
-        logService.create(logReqDTO);
+        logService.save(logReqDTO);
         log.info("save log end");
         return ServerResponse.success();
     }
