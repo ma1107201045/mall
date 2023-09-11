@@ -60,7 +60,7 @@ public final class SnowFlakeIdUtil {
             long[] params = getParams();
             return params[0];
         } catch (Exception e) {
-            log.warn("api.properties not exist or error");
+            log.warn("api.properties or api.workId not exist or error");
             var localhostStr = NetUtil.getLocalhostStr();
             if (!NetUtil.isInnerIP(localhostStr)) {
                 return WORKER_ID;
@@ -74,7 +74,7 @@ public final class SnowFlakeIdUtil {
             long[] params = getParams();
             return params[1];
         } catch (Exception e) {
-            log.warn("api.properties not exist or error");
+            log.warn("api.properties or api.dataCenterId not exist or error");
             return DATACENTER_ID;
         }
     }

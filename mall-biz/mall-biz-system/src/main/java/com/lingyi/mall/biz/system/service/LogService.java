@@ -5,8 +5,6 @@ import com.lingyi.mall.biz.system.dto.LogDTO;
 import com.lingyi.mall.biz.system.entity.LogDO;
 import com.lingyi.mall.biz.system.param.LogParam;
 import com.lingyi.mall.biz.system.vo.LogVO;
-import com.lingyi.mall.common.core.util.ConverterUtil;
-import com.lingyi.mall.common.orm.util.BaseService;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
 
 /**
