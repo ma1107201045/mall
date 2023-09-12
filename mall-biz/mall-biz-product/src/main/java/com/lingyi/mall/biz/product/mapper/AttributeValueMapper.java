@@ -12,5 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @Description:
  */
 @Mapper
-public interface AttributeValueMapper extends MybatisMapperImplementation<Long, AttributeValueParam, AttributeValueVO> {
+public interface AttributeValueMapper extends MybatisMapperImplementation<AttributeValueVO, AttributeValueParam, Long> {
 }

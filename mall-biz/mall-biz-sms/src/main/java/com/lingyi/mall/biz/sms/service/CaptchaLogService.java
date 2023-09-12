@@ -1,8 +1,11 @@
 package com.lingyi.mall.biz.sms.service;
 
+import com.lingyi.mall.biz.sms.dto.CaptchaLogDTO;
 import com.lingyi.mall.biz.sms.entity.CaptchaLogDO;
 import com.lingyi.mall.biz.sms.param.CaptchaLogParam;
+import com.lingyi.mall.biz.sms.vo.CaptchaLogVO;
 import com.lingyi.mall.common.orm.util.BaseService;
+import com.lingyi.mall.common.orm.util.BaseServicePro;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,7 +15,7 @@ import org.springframework.stereotype.Service;
  * @description
  */
 @Service
-public interface CaptchaLogService extends BaseService<CaptchaLogDO, CaptchaLogParam, CaptchaLogDO, Long> {
+public interface CaptchaLogService extends BaseServicePro<CaptchaLogDTO, CaptchaLogVO, CaptchaLogParam, CaptchaLogDO, Long> {
 
 
 }

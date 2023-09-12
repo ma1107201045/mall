@@ -11,7 +11,7 @@ import com.lingyi.mall.common.orm.util.BaseService;
  * @DateTime: 2023/8/31 9:46
  * @Description:
  */
-public interface AttributeService extends BaseService<AttributeDTO, AttributeParam, AttributeVO, Long> {
+public interface AttributeService extends BaseService<AttributeDTO, AttributeVO, AttributeParam, Long> {
 
     Long countByParam(AttributeParam attributeParam);
 }

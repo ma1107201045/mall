@@ -12,5 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @description
  */
 @Mapper
-public interface CategoryMapper extends MybatisMapperImplementation<Long, CategoryParam, CategoryVO> {
+public interface CategoryMapper extends MybatisMapperImplementation<CategoryVO, CategoryParam, Long> {
 }

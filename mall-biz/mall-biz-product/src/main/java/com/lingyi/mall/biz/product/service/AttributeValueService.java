@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.product.service;
 
+import com.lingyi.mall.biz.product.dto.AttributeValueDTO;
 import com.lingyi.mall.biz.product.entity.AttributeValueDO;
 import com.lingyi.mall.biz.product.param.AttributeValueParam;
 import com.lingyi.mall.biz.product.vo.AttributeValueVO;
@@ -13,7 +14,7 @@ import java.util.List;
  * @DateTime: 2023/8/31 9:48
  * @Description:
  */
-public interface AttributeValueService extends BaseService<AttributeValueDO, AttributeValueParam, AttributeValueVO, Long> {
+public interface AttributeValueService extends BaseService<AttributeValueDTO, AttributeValueVO, AttributeValueParam, Long> {
 
     /**
      * 批量创建属性值
@@ -25,6 +26,7 @@ public interface AttributeValueService extends BaseService<AttributeValueDO, Att
 
     /**
      * 通过屬性名id删除
+     *
      * @param attributeIds 屬性名id集合
      */
     void deleteByAttributeIds(List<Long> attributeIds);

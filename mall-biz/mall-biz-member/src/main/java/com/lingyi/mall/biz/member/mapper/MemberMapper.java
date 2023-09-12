@@ -13,7 +13,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @description
  */
 @Mapper
-public interface MemberMapper extends MybatisMapperImplementation<Long, MemberParam, MemberVO> {
+public interface MemberMapper extends MybatisMapperImplementation<MemberVO, MemberParam, Long> {
 
     /**
      * 按照手机号查询

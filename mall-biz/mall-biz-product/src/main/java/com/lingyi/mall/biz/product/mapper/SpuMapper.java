@@ -12,5 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @description
  */
 @Mapper
-public interface SpuMapper extends MybatisMapperImplementation<Long, SpuParam, SpuVO> {
+public interface SpuMapper extends MybatisMapperImplementation<SpuVO, SpuParam, Long> {
 }

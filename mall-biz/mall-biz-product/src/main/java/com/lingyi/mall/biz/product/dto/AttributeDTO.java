@@ -1,7 +1,10 @@
 package com.lingyi.mall.biz.product.dto;
 
+import com.lingyi.mall.common.orm.dto.BaseIdDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -13,9 +16,12 @@ import java.util.List;
  * @DateTime: 2023/8/31 16:03
  * @Description:
  */
+
 @Data
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @Schema(description = "属性")
-public class AttributeDTO implements Serializable {
+public class AttributeDTO extends BaseIdDTO<Long> {
 
     @Serial
     private static final long serialVersionUID = 1685677374901217723L;

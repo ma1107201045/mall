@@ -12,6 +12,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @description
  */
 @Mapper
-public interface LogMapper extends MybatisMapperImplementation<Long, LogParam, LogVO> {
+public interface LogMapper extends MybatisMapperImplementation<LogVO, LogParam, Long> {
 
 }

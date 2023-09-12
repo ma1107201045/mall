@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @description
  */
 @Mapper
-public interface MemberLevelMapper extends MybatisMapperImplementation<Long, MemberLevelParam, MemberLevelVO> {
+public interface MemberLevelMapper extends MybatisMapperImplementation<MemberLevelVO, MemberLevelParam, Long> {
 
     Long selectIdByIsDefaultLevel(Integer isDefaultLevel);
 }

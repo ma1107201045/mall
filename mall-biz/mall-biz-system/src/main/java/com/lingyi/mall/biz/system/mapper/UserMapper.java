@@ -18,7 +18,7 @@ import java.util.List;
  * @description
  */
 @Mapper
-public interface UserMapper extends MybatisMapperImplementation<Long, UserParam, UserVO> {
+public interface UserMapper extends MybatisMapperImplementation<UserVO, UserParam, Long> {
 
     /**
      * 按照用户名称查询id

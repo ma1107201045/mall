@@ -22,7 +22,8 @@ import java.util.List;
  */
 @Getter
 @Setter
-public class BaseServiceProImpl<J extends JpaRepositoryImplementation<DO, ID>,
+public class BaseServiceProImpl<
+        J extends JpaRepositoryImplementation<DO, ID>,
         M extends MybatisMapperImplementation<ID, PARAM, VO>,
         DTO extends BaseIdDTO<ID>,
         VO extends BaseIdVO<ID>,
@@ -40,11 +41,17 @@ public class BaseServiceProImpl<J extends JpaRepositoryImplementation<DO, ID>,
         jpaRepositoryImplementation.save(doEntity);
     }
 
+    public void create(DTO dto, DO doEntity) {
+        ConverterUtil.to(dto, doEntity);
+        jpaRepositoryImplementation.save(doEntity);
+    }
+
 
     @Override
     public void deleteByIds(List<ID> ids) {
         jpaRepositoryImplementation.deleteAllByIdInBatch(ids);
     }
+
 
 
     public void updateById(DTO dto) {
@@ -53,6 +60,14 @@ public class BaseServiceProImpl<J extends JpaRepositoryImplementation<DO, ID>,
             var doEntity = optional.get();
             ConverterUtil.to(dto, doEntity);
             jpaRepositoryImplementation.save(doEntity);
+        }
+    }
+    public void updateById(DTO dto,DO doEntity) {
+        var optional = jpaRepositoryImplementation.findById(dto.getId());
+        if (optional.isPresent()) {
+            var newDoEntity = optional.get();
+            ConverterUtil.to(doEntity, newDoEntity);
+            jpaRepositoryImplementation.save(newDoEntity);
         }
     }
 

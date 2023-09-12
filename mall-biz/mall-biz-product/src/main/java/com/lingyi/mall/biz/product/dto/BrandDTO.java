@@ -1,7 +1,10 @@
 package com.lingyi.mall.biz.product.dto;
 
+import com.lingyi.mall.common.orm.dto.BaseIdDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -12,12 +15,14 @@ import java.io.Serializable;
  * @DateTime: 2023/8/31 16:03
  * @Description:
  */
-@Schema(description = "品牌")
 @Data
-public class BrandDTO implements Serializable {
-
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@Schema(description = "品牌")
+public class BrandDTO extends BaseIdDTO<Long> {
+    
     @Serial
-    private static final long serialVersionUID = -6549591740358899349L;
+    private static final long serialVersionUID = -56296642078945734L;
 
     @Schema(description = "品牌id")
     private Long id;

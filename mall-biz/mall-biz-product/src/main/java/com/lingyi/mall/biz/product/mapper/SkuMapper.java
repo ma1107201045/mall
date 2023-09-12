@@ -12,5 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @Description:
  */
 @Mapper
-public interface SkuMapper extends MybatisMapperImplementation<Long, SkuParam, SkuVO> {
+public interface SkuMapper extends MybatisMapperImplementation<SkuVO, SkuParam, Long> {
 }

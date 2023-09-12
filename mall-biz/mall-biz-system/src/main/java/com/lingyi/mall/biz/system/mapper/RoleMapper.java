@@ -15,7 +15,7 @@ import java.util.List;
  * @description
  */
 @Mapper
-public interface RoleMapper extends MybatisMapperImplementation<Long, RoleParam, RoleVO> {
+public interface RoleMapper extends MybatisMapperImplementation<RoleVO, RoleParam, Long> {
 
 
     /**

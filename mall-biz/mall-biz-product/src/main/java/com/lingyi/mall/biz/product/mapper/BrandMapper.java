@@ -12,6 +12,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @Description:
  */
 @Mapper
-public interface BrandMapper extends MybatisMapperImplementation<Long, BrandParam, BrandVO> {
+public interface BrandMapper extends MybatisMapperImplementation<BrandVO, BrandParam, Long> {
 
 }

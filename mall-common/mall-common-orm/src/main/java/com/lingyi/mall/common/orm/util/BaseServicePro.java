@@ -24,14 +24,22 @@ public interface BaseServicePro<
         ID extends Serializable> {
 
     /**
-     * 添加
+     * 增
      *
      * @param dto dto
      */
     void create(DTO dto, Class<DO> clazz);
 
     /**
-     * 批量删除
+     * 增
+     *
+     * @param dto      dto
+     * @param doEntity do
+     */
+    void create(DTO dto, DO doEntity);
+
+    /**
+     * 批量删
      *
      * @param ids ids
      */
@@ -48,14 +56,20 @@ public interface BaseServicePro<
     }
 
     /**
-     * 修改
+     * 改
      *
      * @param dto dto
      */
     void updateById(DTO dto);
 
     /**
-     * 查找
+     * 改
+     * @param dto dto
+     * @param doEntity do
+     */
+    void updateById(DTO dto,DO doEntity);
+    /**
+     * 查
      *
      * @param id id
      * @return t
@@ -64,7 +78,7 @@ public interface BaseServicePro<
 
 
     /**
-     * 统计列表
+     * 统计
      *
      * @param param ..
      * @return Long
@@ -72,7 +86,7 @@ public interface BaseServicePro<
     Long totalByParam(PARAM param);
 
     /**
-     * 查找列表
+     * 查多条
      *
      * @param param 参数
      * @return List<VO> List<VO>

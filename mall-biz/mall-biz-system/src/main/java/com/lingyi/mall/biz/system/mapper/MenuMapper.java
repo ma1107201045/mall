@@ -15,7 +15,7 @@ import java.util.List;
  * @description
  */
 @Mapper
-public interface MenuMapper extends MybatisMapperImplementation<Long, MenuParam, MenuVO> {
+public interface MenuMapper extends MybatisMapperImplementation<MenuVO, MenuParam, Long> {
 
     /**
      * 按照id查询菜单类型

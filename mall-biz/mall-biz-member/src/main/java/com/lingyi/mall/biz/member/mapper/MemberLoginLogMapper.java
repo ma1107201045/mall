@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @description
  */
 @Mapper
-public interface MemberLoginLogMapper extends MybatisMapperImplementation<Long, MemberLoginParam, MemberLoginLogVO> {
+public interface MemberLoginLogMapper extends MybatisMapperImplementation<MemberLoginLogVO, MemberLoginParam, Long> {
 
 
 }
