@@ -4,6 +4,7 @@ import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
 import com.lingyi.mall.biz.sms.converter.CaptchaConverter;
+import com.lingyi.mall.biz.sms.entity.CaptchaLogDO;
 import com.lingyi.mall.biz.sms.enums.SmsFailEnum;
 import com.lingyi.mall.biz.sms.exception.SmsException;
 import com.lingyi.mall.biz.sms.service.CaptchaLogService;
@@ -69,9 +70,9 @@ public class CaptchaServiceImpl implements CaptchaService {
             redisUtil.expire(captchaUpperLimitKey, getSubTimestamp(), TimeUnit.MILLISECONDS);
         }
         //转换成验证码日志信息
-        var captchaLogDO = CaptchaConverter.INSTANCE.to(captchaSendReqDTO);
+        var captchaLogDTO = CaptchaConverter.INSTANCE.to(captchaSendReqDTO);
         //保存验证码日志
-        captchaLogService.create(captchaLogDO);
+        captchaLogService.create(captchaLogDTO, CaptchaLogDO.class);
     }
 
 

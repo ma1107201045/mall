@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.member.service.impl;
 
+import com.lingyi.mall.biz.member.dto.MemberLevelDTO;
 import com.lingyi.mall.biz.member.entity.MemberLevelDO;
 import com.lingyi.mall.biz.member.enums.MemberFailEnum;
 import com.lingyi.mall.biz.member.mapper.MemberLevelMapper;
@@ -11,6 +12,7 @@ import com.lingyi.mall.common.core.enums.WhetherEnum;
 import com.lingyi.mall.common.core.exception.BizException;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.core.util.ObjectUtil;
+import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
@@ -25,48 +27,13 @@ import java.util.List;
  */
 @Service
 @RequiredArgsConstructor
-public class MemberLevelServiceImpl implements MemberLevelService {
-
-    private final MemberLevelRepository memberLevelRepository;
-
-    private final MemberLevelMapper memberLevelMapper;
+public class MemberLevelServiceImpl extends BaseServiceProImpl<MemberLevelRepository, MemberLevelMapper, MemberLevelDTO, MemberLevelVO, MemberLevelParam, MemberLevelDO, Long> implements MemberLevelService {
 
     @Override
-    public void create(MemberLevelDO memberLevelDO) {
-        memberLevelRepository.save(memberLevelDO);
-    }
-
-    @Override
-    public void deleteByIds(List<Long> ids) {
-        memberLevelRepository.deleteAllById(ids);
-    }
-
-    @Override
-    public void updateById(MemberLevelDO memberLevelDO) {
-        var optional = memberLevelRepository.findById(memberLevelDO.getId());
-        if (optional.isEmpty()) {
-            throw new BizException(MemberFailEnum.MEMBER_LEVEL_NULL_ERROR);
-        }
-        var newMemberLevelDO = optional.get();
-        ConverterUtil.to(memberLevelDO, newMemberLevelDO);
-        memberLevelRepository.save(newMemberLevelDO);
-    }
-
-    @Override
-    public MemberLevelVO readById(Long id) {
-        return memberLevelMapper.selectById(id);
-    }
-
-    @Override
-    public List<MemberLevelVO> readListByParam(MemberLevelParam memberLevelParam) {
-        return memberLevelMapper.selectListByParam(memberLevelParam);
-    }
-
-    @Override
-    public Long readDefaultLevelId() {
+    public Long queryDefaultLevelId() {
         var memberLevelDO = new MemberLevelDO();
         memberLevelDO.setIsDefaultLevel(WhetherEnum.Y.getCode());
-        var optional = memberLevelRepository.findOne(Example.of(memberLevelDO));
+        var optional = japRepository.findOne(Example.of(memberLevelDO));
         return optional.isPresent() ? optional.get().getId() : ObjectUtil.getNull();
     }
 }
