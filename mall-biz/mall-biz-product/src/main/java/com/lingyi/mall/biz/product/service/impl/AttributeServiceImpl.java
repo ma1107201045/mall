@@ -9,6 +9,7 @@ import com.lingyi.mall.biz.product.service.AttributeService;
 import com.lingyi.mall.biz.product.service.AttributeValueService;
 import com.lingyi.mall.biz.product.vo.AttributeVO;
 import com.lingyi.mall.common.core.util.ConverterUtil;
+import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,64 +25,31 @@ import java.util.List;
  */
 @Service
 @RequiredArgsConstructor
-public class AttributeServiceImpl implements AttributeService {
-
-    private final AttributeRepository attributeRepository;
-
-    private final AttributeMapper attributeMapper;
+public class AttributeServiceImpl extends BaseServiceProImpl<AttributeRepository, AttributeMapper, AttributeDTO, AttributeVO, AttributeParam, AttributeDO, Long>
+        implements AttributeService {
 
     private final AttributeValueService attributeValueService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void create(AttributeDTO attributeDTO) {
-        var attributeDO = ConverterUtil.to(attributeDTO, AttributeDO.class);
-        //保存属性信息
-        attributeRepository.save(attributeDO);
+    public void save(AttributeDTO attributeDTO) {
+        //保存属性
+        create(attributeDTO, AttributeDO.class);
         //批量保存属性值信息
-        attributeValueService.createList(attributeDO.getId(), attributeDTO.getAttributeValueNames());
-    }
-
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public void deleteByIds(List<Long> ids) {
-        //删除
-        attributeRepository.deleteAllById(ids);
-        attributeValueService.deleteByAttributeIds(ids);
+        attributeValueService.createList(attributeDTO.getId(), attributeDTO.getAttributeValueNames());
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateById(AttributeDTO attributeDTO) {
         Long id = attributeDTO.getId();
-        var optional = attributeRepository.findById(id);
-        if (optional.isEmpty()) {
-            return;
-        }
-        var attributeDO = optional.get();
-
-        ConverterUtil.to(attributeDTO, attributeDO);
-        //保存属性信息
-        attributeRepository.save(attributeDO);
+        //保存属性
+        super.updateById(attributeDTO);
         //批量删除属性值信息
         attributeValueService.deleteByAttributeIds(Collections.singletonList(id));
         //批量保存属性值信息
         attributeValueService.createList(id, attributeDTO.getAttributeValueNames());
     }
 
-    @Override
-    public AttributeVO readById(Long id) {
-        return attributeMapper.selectById(id);
-    }
-
-    @Override
-    public List<AttributeVO> readListByParam(AttributeParam attributeParam) {
-        return attributeMapper.selectListByParam(attributeParam);
-    }
-
-    @Override
-    public Long countByParam(AttributeParam attributeParam) {
-        return attributeMapper.countByParam(attributeParam);
-    }
 
 }

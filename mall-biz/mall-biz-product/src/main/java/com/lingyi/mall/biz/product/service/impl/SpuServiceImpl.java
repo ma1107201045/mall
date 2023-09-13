@@ -1,11 +1,15 @@
 package com.lingyi.mall.biz.product.service.impl;
 
+import com.lingyi.mall.biz.product.dto.SpuDTO;
 import com.lingyi.mall.biz.product.entity.SpuDO;
 import com.lingyi.mall.biz.product.mapper.SpuMapper;
+import com.lingyi.mall.biz.product.param.SpuParam;
 import com.lingyi.mall.biz.product.repository.SpuRepository;
 import com.lingyi.mall.biz.product.service.SpuService;
+import com.lingyi.mall.biz.product.vo.SpuVO;
 import com.lingyi.mall.common.orm.param.BasePageParam;
 import com.lingyi.mall.common.core.util.ConverterUtil;
+import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,41 +22,7 @@ import java.util.List;
  * @Description:
  */
 @Service
-@RequiredArgsConstructor
-public class SpuServiceImpl implements SpuService {
+public class SpuServiceImpl extends BaseServiceProImpl<SpuRepository, SpuMapper, SpuDTO, SpuVO, SpuParam, SpuDO, Long> implements SpuService {
 
-    private final SpuRepository spuRepository;
 
-    private final SpuMapper spuMapper;
-
-    @Override
-    public void create(SpuDO spuDO) {
-        spuRepository.save(spuDO);
-    }
-
-    @Override
-    public void deleteByIds(List<Long> ids) {
-        spuRepository.deleteAllById(ids);
-    }
-
-    @Override
-    public void updateById(SpuDO spuDO) {
-        var optional = spuRepository.findById(spuDO.getId());
-        if (optional.isEmpty()) {
-            return;
-        }
-        var newSpuDO = optional.get();
-        ConverterUtil.to(spuDO, newSpuDO);
-        spuRepository.save(newSpuDO);
-    }
-
-    @Override
-    public SpuDO readById(Long id) {
-        return null;
-    }
-
-    @Override
-    public List<SpuDO> readListByParam(BasePageParam param) {
-        return null;
-    }
 }

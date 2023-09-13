@@ -1,11 +1,15 @@
 package com.lingyi.mall.biz.product.service.impl;
 
+import com.lingyi.mall.biz.product.dto.CategoryAttributeDTO;
 import com.lingyi.mall.biz.product.entity.CategoryAttributeDO;
 import com.lingyi.mall.biz.product.mapper.CategoryAttributeMapper;
+import com.lingyi.mall.biz.product.param.CategoryAttributeParam;
 import com.lingyi.mall.biz.product.repository.CategoryAttributeRepository;
 import com.lingyi.mall.biz.product.service.CategoryAttributeService;
+import com.lingyi.mall.biz.product.vo.CategoryAttributeVO;
 import com.lingyi.mall.common.orm.param.BasePageParam;
 import com.lingyi.mall.common.core.util.ConverterUtil;
+import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,41 +22,7 @@ import java.util.List;
  * @Description:
  */
 @Service
-@RequiredArgsConstructor
-public class CategoryAttributeServiceImpl implements CategoryAttributeService {
+public class CategoryAttributeServiceImpl extends BaseServiceProImpl<CategoryAttributeRepository, CategoryAttributeMapper, CategoryAttributeDTO, CategoryAttributeVO, CategoryAttributeParam, CategoryAttributeDO, Long>
+        implements CategoryAttributeService {
 
-    private final CategoryAttributeRepository categoryAttributeRepository;
-
-    private final CategoryAttributeMapper categoryAttributeMapper;
-
-    @Override
-    public void create(CategoryAttributeDO categoryAttributeDO) {
-        categoryAttributeRepository.save(categoryAttributeDO);
-    }
-
-    @Override
-    public void deleteByIds(List<Long> ids) {
-        categoryAttributeRepository.deleteAllById(ids);
-    }
-
-    @Override
-    public void updateById(CategoryAttributeDO categoryAttributeDO) {
-        var optional = categoryAttributeRepository.findById(categoryAttributeDO.getId());
-        if (optional.isEmpty()) {
-            return;
-        }
-        var newCategoryAttributeDO = optional.get();
-        ConverterUtil.to(categoryAttributeDO, newCategoryAttributeDO);
-        categoryAttributeRepository.save(newCategoryAttributeDO);
-    }
-
-    @Override
-    public CategoryAttributeDO readById(Long id) {
-        return null;
-    }
-
-    @Override
-    public List<CategoryAttributeDO> readListByParam(BasePageParam param) {
-        return null;
-    }
 }

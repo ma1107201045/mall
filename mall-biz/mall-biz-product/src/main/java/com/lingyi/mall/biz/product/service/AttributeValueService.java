@@ -5,6 +5,7 @@ import com.lingyi.mall.biz.product.entity.AttributeValueDO;
 import com.lingyi.mall.biz.product.param.AttributeValueParam;
 import com.lingyi.mall.biz.product.vo.AttributeValueVO;
 import com.lingyi.mall.common.orm.util.BaseService;
+import com.lingyi.mall.common.orm.util.BaseServicePro;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
  * @DateTime: 2023/8/31 9:48
  * @Description:
  */
-public interface AttributeValueService extends BaseService<AttributeValueDTO, AttributeValueVO, AttributeValueParam, Long> {
+public interface AttributeValueService extends BaseServicePro<AttributeValueDTO, AttributeValueVO, AttributeValueParam, AttributeValueDO, Long> {
 
     /**
      * 批量创建属性值

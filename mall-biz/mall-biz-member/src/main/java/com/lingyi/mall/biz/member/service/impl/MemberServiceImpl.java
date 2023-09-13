@@ -2,7 +2,9 @@ package com.lingyi.mall.biz.member.service.impl;
 
 import com.lingyi.mall.api.member.dto.MemberReqDTO;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
+import com.lingyi.mall.biz.member.converter.MemberConverter;
 import com.lingyi.mall.biz.member.dto.MemberDTO;
+import com.lingyi.mall.biz.member.dto.MemberPartDTO;
 import com.lingyi.mall.biz.member.entity.MemberDO;
 import com.lingyi.mall.biz.member.entity.MemberLevelDO;
 import com.lingyi.mall.biz.member.enums.MemberFailEnum;
@@ -13,6 +15,7 @@ import com.lingyi.mall.biz.member.service.MemberService;
 import com.lingyi.mall.biz.member.vo.MemberVO;
 import com.lingyi.mall.common.core.exception.BizException;
 import com.lingyi.mall.common.core.util.ConverterUtil;
+import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,62 +29,24 @@ import java.util.List;
  */
 @Service
 @RequiredArgsConstructor
-public class MemberServiceImpl implements MemberService {
-
-    private final MemberRepository memberRepository;
-
-    private final MemberMapper memberMapper;
-
+public class MemberServiceImpl extends BaseServiceProImpl<MemberRepository, MemberMapper, MemberDTO, MemberVO, MemberParam, MemberDO, Long> implements MemberService {
 
     @Override
-    public void create(MemberDO memberDO) {
-        memberRepository.save(memberDO);
-    }
-
-    @Override
-    public void deleteByIds(List<Long> ids) {
-        memberRepository.deleteAllById(ids);
-    }
-
-    @Override
-    public void updateById(MemberDO memberDO) {
-        var optional = memberRepository.findById(memberDO.getId());
-        if (optional.isEmpty()) {
-            throw new BizException(MemberFailEnum.MEMBER_NULL_ERROR);
-        }
-        var newMemberDO = optional.get();
-        ConverterUtil.to(memberDO, newMemberDO);
-        memberRepository.save(newMemberDO);
-    }
-
-    @Override
-    public MemberVO readById(Long id) {
-        return memberMapper.selectById(id);
-    }
-
-    @Override
-    public List<MemberVO> readListByParam(MemberParam memberParam) {
-        return memberMapper.selectListByParam(memberParam);
-    }
-
-    @Override
-    public void updateIsEnableById(MemberDTO memberDTO) {
+    public void updateIsEnableById(MemberPartDTO memberPartDTO) {
 
     }
 
     @Override
     public Long register(MemberReqDTO memberReqDTO) {
-        var memberDO = ConverterUtil.to(memberReqDTO, MemberDO.class);
-        var memberLevelDO = new MemberLevelDO();
-        memberLevelDO.setId(memberReqDTO.getMemberLevelId());
-        memberDO.setMemberLevelDO(memberLevelDO);
-        create(memberDO);
+        var memberDTO = ConverterUtil.to(memberReqDTO, MemberDTO.class);
+        var memberDO = MemberConverter.INSTANCE.of(memberDTO);
+        create(memberDTO, memberDO);
         return memberDO.getId();
     }
 
     @Override
     public MemberRespDTO readByPhoneNumber(String phoneNumber) {
-        return memberMapper.selectByPhoneNumber(phoneNumber);
+        return mybatisMapper.selectByPhoneNumber(phoneNumber);
     }
 
 

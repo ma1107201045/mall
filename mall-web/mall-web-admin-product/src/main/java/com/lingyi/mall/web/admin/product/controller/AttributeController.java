@@ -35,7 +35,7 @@ public class AttributeController {
     @PreAuthorize("@ps.hasAnyAuthority('admin:product:attributes:save')")
     @Log(title = "保存属性", operationType = OperationTypeEnum.CREATE)
     public ServerResponse<Void> save(@Valid @RequestBody AttributeDTO attributeDTO) {
-        attributeService.create(attributeDTO);
+        attributeService.save(attributeDTO);
         return ServerResponse.success();
     }
 
@@ -72,7 +72,7 @@ public class AttributeController {
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:attributes:getList')")
     @Log(title = "查询属性列表", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<AttributeVO>> getListByPageAndParam(@Valid AttributeParam attributeParam) {
-        var total = attributeService.countByParam(attributeParam);
+        var total = attributeService.totalByParam(attributeParam);
         var attributes = attributeService.readListByParam(attributeParam);
         return ServerResponse.success(attributes, total);
     }

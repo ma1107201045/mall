@@ -1,9 +1,11 @@
 package com.lingyi.mall.biz.product.service;
 
 import com.lingyi.mall.biz.product.dto.AttributeDTO;
+import com.lingyi.mall.biz.product.entity.AttributeDO;
 import com.lingyi.mall.biz.product.param.AttributeParam;
 import com.lingyi.mall.biz.product.vo.AttributeVO;
 import com.lingyi.mall.common.orm.util.BaseService;
+import com.lingyi.mall.common.orm.util.BaseServicePro;
 
 /**
  * @Author: maweiyan
@@ -11,7 +13,12 @@ import com.lingyi.mall.common.orm.util.BaseService;
  * @DateTime: 2023/8/31 9:46
  * @Description:
  */
-public interface AttributeService extends BaseService<AttributeDTO, AttributeVO, AttributeParam, Long> {
+public interface AttributeService extends BaseServicePro<AttributeDTO, AttributeVO, AttributeParam, AttributeDO, Long> {
 
-    Long countByParam(AttributeParam attributeParam);
+    /**
+     * 保存属性以及属性值
+     *
+     * @param attributeDTO 。。
+     */
+    void save(AttributeDTO attributeDTO);
 }

@@ -1,10 +1,8 @@
 package com.lingyi.mall.web.admin.member.controller;
 
-import com.lingyi.mall.biz.member.dto.MemberDTO;
-import com.lingyi.mall.biz.member.entity.MemberDO;
+import com.lingyi.mall.biz.member.dto.MemberPartDTO;
 import com.lingyi.mall.biz.member.service.MemberService;
 import com.lingyi.mall.common.core.enums.OperationTypeEnum;
-import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import com.lingyi.mall.common.security.common.aspetct.Log;
 import io.swagger.v3.oas.annotations.Operation;
@@ -26,16 +24,15 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class MemberController {
 
-
     private final MemberService memberService;
 
-    @Operation(summary = "更新状态", description = "更新")
-    @PatchMapping("/{memberId}")
+    @Operation(summary = "更新状态", description = "更新状态")
+    @PatchMapping("/{id}")
     @PreAuthorize("@ps.hasAnyAuthority('admin:member:members:updateIsEnable')")
     @Log(title = "更新会员", operationType = OperationTypeEnum.UPDATE)
-    public ServerResponse<Void> updateIsEnableById(@PathVariable("memberId") Long id, @Valid MemberDTO memberDTO) {
-        memberDTO.setId(id);
-        memberService.updateById(ConverterUtil.to(memberDTO, MemberDO.class));
+    public ServerResponse<Void> updateIsEnableById(@PathVariable Long id, @Valid @RequestBody MemberPartDTO memberPartDTO) {
+        memberPartDTO.setId(id);
+        memberService.updateIsEnableById(memberPartDTO);
         return ServerResponse.success();
     }
 }

@@ -1,12 +1,13 @@
 package com.lingyi.mall.biz.member.dto;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.lingyi.mall.biz.member.entity.MemberDO;
+import com.lingyi.mall.common.orm.dto.BaseIdDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.io.Serial;
+import java.time.LocalDateTime;
 
 /**
  * @author maweiyan
@@ -14,16 +15,45 @@ import lombok.Data;
  * @datetime 2023/5/25 15:11
  * @description
  */
-@Schema(description = "会员")
 @Data
-public class MemberDTO {
+@EqualsAndHashCode(callSuper = true)
+@Schema(description = "会员")
+public class MemberDTO extends BaseIdDTO<Long> {
 
-    @Schema(name = "memberId", description = "会员id", requiredMode = Schema.RequiredMode.REQUIRED)
-    @NotNull(message = "会员id不能为空")
-    @JsonAlias("memberId")
-    private Long id;
+    @Serial
+    private static final long serialVersionUID = -3560384472754676701L;
+    /**
+     * 会员等级id
+     */
+    private Long memberLevelId;
 
-    @Schema(description = "是否启用 1 是 0 否", requiredMode = Schema.RequiredMode.REQUIRED)
-    @NotNull(message = "是否启用不能为空")
-    private Long isEnable;
+    /**
+     * 用户名称
+     */
+    private String userName;
+
+    /**
+     * 昵称
+     */
+    private String nickname;
+
+    /**
+     * 手机号码
+     */
+    private String phoneNumber;
+
+    /**
+     * 是否启用 1 是 0 否
+     */
+    private Integer isEnable;
+
+    /**
+     * 注册来源 1.H5端 2.Android端 3.IOS端 4.PC端
+     */
+    private Integer registerSource;
+
+    /**
+     * 注册时间
+     */
+    private LocalDateTime registerDataTime;
 }

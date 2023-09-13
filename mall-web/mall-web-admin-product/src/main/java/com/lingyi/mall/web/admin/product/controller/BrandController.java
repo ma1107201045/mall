@@ -2,6 +2,7 @@ package com.lingyi.mall.web.admin.product.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.biz.product.dto.BrandDTO;
+import com.lingyi.mall.biz.product.entity.BrandDO;
 import com.lingyi.mall.biz.product.param.BrandParam;
 import com.lingyi.mall.biz.product.service.BrandService;
 import com.lingyi.mall.biz.product.vo.BrandVO;
@@ -36,7 +37,7 @@ public class BrandController {
     @PreAuthorize("@ps.hasAnyAuthority('admin:product:brands:save')")
     @Log(title = "保存品牌", operationType = OperationTypeEnum.CREATE)
     public ServerResponse<Void> save(@Valid @RequestBody BrandDTO brandDTO) {
-        brandService.create(brandDTO);
+        brandService.create(brandDTO, BrandDO.class);
         return ServerResponse.success();
     }
 

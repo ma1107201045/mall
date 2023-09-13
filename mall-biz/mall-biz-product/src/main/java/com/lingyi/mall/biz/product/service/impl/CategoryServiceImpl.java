@@ -1,11 +1,15 @@
 package com.lingyi.mall.biz.product.service.impl;
 
+import com.lingyi.mall.biz.product.dto.CategoryDTO;
 import com.lingyi.mall.biz.product.entity.CategoryDO;
 import com.lingyi.mall.biz.product.mapper.CategoryMapper;
+import com.lingyi.mall.biz.product.param.CategoryParam;
 import com.lingyi.mall.biz.product.repository.CategoryRepository;
 import com.lingyi.mall.biz.product.service.CategoryService;
+import com.lingyi.mall.biz.product.vo.CategoryVO;
 import com.lingyi.mall.common.orm.param.BasePageParam;
 import com.lingyi.mall.common.core.util.ConverterUtil;
+import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,41 +22,6 @@ import java.util.List;
  * @Description:
  */
 @Service
-@RequiredArgsConstructor
-public class CategoryServiceImpl implements CategoryService {
+public class CategoryServiceImpl extends BaseServiceProImpl<CategoryRepository, CategoryMapper, CategoryDTO, CategoryVO, CategoryParam, CategoryDO, Long> implements CategoryService {
 
-    private final CategoryRepository categoryRepository;
-
-    private final CategoryMapper categoryMapper;
-
-    @Override
-    public void create(CategoryDO categoryDO) {
-        categoryRepository.save(categoryDO);
-    }
-
-    @Override
-    public void deleteByIds(List<Long> ids) {
-        categoryRepository.deleteAllById(ids);
-    }
-
-    @Override
-    public void updateById(CategoryDO categoryDO) {
-        var optional = categoryRepository.findById(categoryDO.getId());
-        if (optional.isEmpty()) {
-            return;
-        }
-        var newCategoryDO = optional.get();
-        ConverterUtil.to(categoryDO, newCategoryDO);
-        categoryRepository.save(newCategoryDO);
-    }
-
-    @Override
-    public CategoryDO readById(Long id) {
-        return null;
-    }
-
-    @Override
-    public List<CategoryDO> readListByParam(BasePageParam param) {
-        return null;
-    }
 }
