@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class MemberLoginLogReqDTO {
 
     @Schema(requiredMode = Schema.RequiredMode.REQUIRED, description = "会员用户id")
-    private Long memberUserId;
+    private Long memberId;
 
     @Schema(requiredMode = Schema.RequiredMode.REQUIRED, description = "会员用户名称")
     private String memberUserName;

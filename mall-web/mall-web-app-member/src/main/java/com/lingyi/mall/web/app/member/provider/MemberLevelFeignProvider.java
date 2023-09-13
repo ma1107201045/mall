@@ -22,7 +22,7 @@ public class MemberLevelFeignProvider implements MemberLevelFeign {
 
     @Override
     public ServerResponse<Long> getDefaultLevelId() {
-        Long id = memberLevelService.readDefaultLevelId();
+        Long id = memberLevelService.queryDefaultLevelId();
         return ServerResponse.success(id);
     }
 }
