@@ -1,10 +1,13 @@
 package com.lingyi.mall.biz.system.dto;
 
+import com.lingyi.mall.common.orm.dto.BaseIdDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -15,9 +18,13 @@ import java.io.Serializable;
  * @datetime 2023/5/16 15:41
  * @description
  */
-@Schema(description = "菜单")
+
 @Data
-public class MenuDTO implements Serializable {
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@Schema(description = "菜单")
+
+public class MenuDTO extends BaseIdDTO<Long> {
 
     @Serial
     private static final long serialVersionUID = 6600055303935076131L;

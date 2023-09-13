@@ -2,9 +2,11 @@ package com.lingyi.mall.biz.system.service;
 
 import com.lingyi.mall.api.system.dto.MenuRespDTO;
 import com.lingyi.mall.biz.system.dto.MenuDTO;
+import com.lingyi.mall.biz.system.entity.MenuDO;
 import com.lingyi.mall.biz.system.param.MenuParam;
 import com.lingyi.mall.biz.system.vo.MenuVO;
 import com.lingyi.mall.common.orm.util.BaseService;
+import com.lingyi.mall.common.orm.util.BaseServicePro;
 
 import java.util.List;
 
@@ -14,7 +16,13 @@ import java.util.List;
  * @DateTime: 2023/5/7 15:28
  * @Description:
  */
-public interface MenuService extends BaseService<MenuDTO, MenuParam, MenuVO, Long> {
+public interface MenuService extends BaseServicePro<MenuDTO, MenuVO, MenuParam, MenuDO, Long> {
+    /**
+     * 创建
+     *
+     * @param menuDTO 按钮
+     */
+    void create(MenuDTO menuDTO);
 
     /**
      * 通过父级id查询菜单树
@@ -22,7 +30,6 @@ public interface MenuService extends BaseService<MenuDTO, MenuParam, MenuVO, Lon
      * @return List<MenuVO>
      */
     List<MenuVO> readTree();
-
 
 
     /**

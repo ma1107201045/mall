@@ -73,7 +73,7 @@ public class RoleController {
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:roles:getList')")
     @Log(title = "查询角色列表", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<RoleVO>> getListByPageAndParam(@Valid RoleParam roleParam) {
-        var total = roleService.countByParam(roleParam);
+        var total = roleService.totalByParam(roleParam);
         var roles = roleService.readListByParam(roleParam);
         return ServerResponse.success(roles, total);
     }

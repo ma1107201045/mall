@@ -1,11 +1,13 @@
 package com.lingyi.mall.biz.system.service;
 
 import com.lingyi.mall.biz.system.dto.RoleDTO;
+import com.lingyi.mall.biz.system.entity.RoleDO;
 import com.lingyi.mall.biz.system.param.RoleParam;
 import com.lingyi.mall.biz.system.vo.MenuVO;
 import com.lingyi.mall.biz.system.vo.RoleVO;
 import com.lingyi.mall.common.orm.param.BasePageParam;
 import com.lingyi.mall.common.orm.util.BaseService;
+import com.lingyi.mall.common.orm.util.BaseServicePro;
 
 import java.util.List;
 
@@ -15,23 +17,15 @@ import java.util.List;
  * @DateTime: 2023/5/10 23:14
  * @Description:
  */
-public interface RoleService extends BaseService<RoleDTO, RoleParam, RoleVO, Long> {
-
+public interface RoleService extends BaseServicePro<RoleDTO, RoleVO, RoleParam, RoleDO, Long> {
     /**
-     * count
+     * 保存
      *
-     * @param roleParam 角色条件
-     * @return 条数
+     * @param roleDTO ..
      */
-    Long countByParam(RoleParam roleParam);
+    void create(RoleDTO roleDTO);
 
-    /**
-     * 读取角色集
-     * BasePageParam basePageParam
-     *
-     * @return List<RoleVO>
-     */
-    List<RoleVO> readList(BasePageParam basePageParam);
+
 
     /**
      * 读取菜单树

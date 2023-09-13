@@ -16,7 +16,7 @@ public interface RoleMenuService {
      * @param roleId  角色id
      * @param menuIds 菜单id集
      */
-    void createList(Long roleId, List<Long> menuIds);
+    void saveList(Long roleId, List<Long> menuIds);
 
 
     /**
@@ -24,5 +24,5 @@ public interface RoleMenuService {
      *
      * @param roleIds 角色id集
      */
-    void deleteByRoleIds(List<Long> roleIds);
+    void removeByRoleIds(List<Long> roleIds);
 }

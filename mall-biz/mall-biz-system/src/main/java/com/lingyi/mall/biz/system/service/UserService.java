@@ -5,6 +5,7 @@ import com.lingyi.mall.api.system.dto.UserPartReqDTO;
 import com.lingyi.mall.api.system.dto.UserRespDTO;
 import com.lingyi.mall.biz.system.dto.UserDTO;
 import com.lingyi.mall.biz.system.entity.UserDO;
+import com.lingyi.mall.biz.system.param.RoleParam;
 import com.lingyi.mall.biz.system.param.UserParam;
 import com.lingyi.mall.biz.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.vo.UserVO;
@@ -23,17 +24,19 @@ import java.util.List;
 public interface UserService extends BaseServicePro<UserDTO, UserVO, UserParam, UserDO, Long> {
     /**
      * 保存
+     *
      * @param userDTO 。。
      */
-    void save(UserDTO userDTO);
+    void create(UserDTO userDTO);
+
 
     /**
      * 读取角色集
      *
-     * @param basePageParam ..
+     * @param roleParam ..
      * @return List<RoleVO>
      */
-    List<RoleVO> readRoleList(BasePageParam basePageParam);
+    List<RoleVO> readRoleList(RoleParam roleParam);
 
     /**
      * 更新部分信息

@@ -1,6 +1,7 @@
 package com.lingyi.mall.web.admin.system.controller;
 
 import com.lingyi.mall.biz.system.dto.UserDTO;
+import com.lingyi.mall.biz.system.param.RoleParam;
 import com.lingyi.mall.biz.system.param.UserParam;
 import com.lingyi.mall.biz.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.vo.UserVO;
@@ -74,7 +75,7 @@ public class UserController {
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:getList')")
     @Log(title = "查询用户列表", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<UserVO>> getListByPageAndParam(@Valid UserParam userParam) {
-        var total = userService.countByParam(userParam);
+        var total = userService.totalByParam(userParam);
         var users = userService.readListByParam(userParam);
         return ServerResponse.success(users, total);
     }
@@ -83,8 +84,8 @@ public class UserController {
     @GetMapping("/roles")
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:roles:getList')")
     @Log(title = "查询角色列表", operationType = OperationTypeEnum.READ)
-    public ServerResponse<List<RoleVO>> getRoleList(@Valid BasePageParam basePageParam) {
-        var roles = userService.readRoleList(basePageParam);
+    public ServerResponse<List<RoleVO>> getRoleList(@Valid RoleParam roleParam) {
+        var roles = userService.readRoleList(roleParam);
         return ServerResponse.success(roles);
     }
 

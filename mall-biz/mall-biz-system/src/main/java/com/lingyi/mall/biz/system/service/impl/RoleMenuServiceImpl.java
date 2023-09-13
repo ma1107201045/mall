@@ -22,13 +22,13 @@ public class RoleMenuServiceImpl implements RoleMenuService {
 
 
     @Override
-    public void createList(Long roleId, List<Long> menuIds) {
+    public void saveList(Long roleId, List<Long> menuIds) {
         var roleMenus = RoleMenuConverter.INSTANCE.of(roleId, menuIds);
         roleMenuRepository.saveAll(roleMenus);
     }
 
     @Override
-    public void deleteByRoleIds(List<Long> roleIds) {
+    public void removeByRoleIds(List<Long> roleIds) {
         roleMenuRepository.deleteByRoleIds(roleIds);
     }
 }

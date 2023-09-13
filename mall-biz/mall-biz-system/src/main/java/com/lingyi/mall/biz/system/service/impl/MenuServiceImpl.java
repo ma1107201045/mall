@@ -15,6 +15,7 @@ import com.lingyi.mall.biz.system.vo.MenuVO;
 import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.core.util.ObjectUtil;
+import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +32,8 @@ import java.util.Objects;
  */
 @Service
 @RequiredArgsConstructor
-public class MenuServiceImpl implements MenuService {
+public class MenuServiceImpl extends BaseServiceProImpl<MenuRepository, MenuMapper, MenuDTO, MenuVO, MenuParam, MenuDO, Long>
+        implements MenuService {
 
     private final MenuRepository menuRepository;
 
@@ -53,7 +55,7 @@ public class MenuServiceImpl implements MenuService {
     public void deleteByIds(List<Long> ids) {
         if (CollUtil.isNotEmpty(ids)) {
             menuRepository.deleteAllById(ids);
-            deleteByIds(menuMapper.selectIdsByParentIds(ids));
+            super.deleteByIds(menuMapper.selectIdsByParentIds(ids));
         }
     }
 

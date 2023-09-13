@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.system.service.impl;
 
+import cn.hutool.core.collection.CollUtil;
 import com.lingyi.mall.api.system.dto.MenuRespDTO;
 import com.lingyi.mall.api.system.dto.UserPartReqDTO;
 import com.lingyi.mall.api.system.dto.UserRespDTO;
@@ -10,6 +11,7 @@ import com.lingyi.mall.biz.system.entity.UserDO;
 import com.lingyi.mall.biz.system.enums.MenuTypeEnum;
 import com.lingyi.mall.biz.system.enums.SystemFailEnum;
 import com.lingyi.mall.biz.system.mapper.UserMapper;
+import com.lingyi.mall.biz.system.param.RoleParam;
 import com.lingyi.mall.biz.system.param.UserParam;
 import com.lingyi.mall.biz.system.repository.UserRepository;
 import com.lingyi.mall.biz.system.service.MenuService;
@@ -40,7 +42,8 @@ import java.util.*;
  */
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapper, UserDTO, UserVO, UserParam, UserDO, Long> implements UserService {
+public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapper, UserDTO, UserVO, UserParam, UserDO, Long>
+        implements UserService {
 
     private final PasswordEncoder passwordEncoder;
 
@@ -53,7 +56,7 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void save(UserDTO userDTO) {
+    public void create(UserDTO userDTO) {
         //通过用户名称获取用户id
         var id = mybatisMapper.selectIdByUserName(userDTO.getUserName());
         //判断用户名称不存在
@@ -70,11 +73,13 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteByIds(List<Long> ids) {
-        var flag = jpaRepository.findAllById(ids).stream()
-                .anyMatch(userDO -> SystemConstant.USER_NAME_ADMIN.equals(userDO.getUserName()));
-        AssertUtil.isFalse(flag, SystemFailEnum.USER_NAME_ADMIN_DELETE_ERROR);
-        jpaRepository.deleteAllById(ids);
-        userRoleService.deleteByUserIds(ids);
+        if (CollUtil.isNotEmpty(ids)) {
+            var flag = jpaRepository.findAllById(ids).stream()
+                    .anyMatch(userDO -> SystemConstant.USER_NAME_ADMIN.equals(userDO.getUserName()));
+            AssertUtil.isFalse(flag, SystemFailEnum.USER_NAME_ADMIN_DELETE_ERROR);
+            super.deleteByIds(ids);
+            userRoleService.deleteByUserIds(ids);
+        }
     }
 
     @Override
@@ -107,8 +112,8 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
     }
 
     @Override
-    public List<RoleVO> readRoleList(BasePageParam basePageParam) {
-        return roleService.readList(basePageParam);
+    public List<RoleVO> readRoleList(RoleParam roleParam) {
+        return roleService.readListByParam(roleParam);
     }
 
     @Override

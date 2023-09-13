@@ -1,11 +1,14 @@
 package com.lingyi.mall.biz.system.dto;
 
+import com.lingyi.mall.common.orm.dto.BaseIdDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -17,15 +20,15 @@ import java.util.List;
  * @datetime 2023/5/15 14:17
  * @description
  */
-@Schema(description = "角色")
+
 @Data
-public class RoleDTO implements Serializable {
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@Schema(description = "角色")
+public class RoleDTO extends BaseIdDTO<Long> {
 
     @Serial
     private static final long serialVersionUID = -1734876026099102192L;
-
-    @Schema(description = "角色id")
-    private Long id;
 
     @Schema(description = "角色名称")
     @NotBlank(message = "角色名称不能为空")

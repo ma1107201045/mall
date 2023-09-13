@@ -1,20 +1,20 @@
 package com.lingyi.mall.biz.system.service.impl;
 
-import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import com.lingyi.mall.biz.system.dto.RoleDTO;
 import com.lingyi.mall.biz.system.entity.RoleDO;
 import com.lingyi.mall.biz.system.enums.SystemFailEnum;
-import com.lingyi.mall.biz.system.param.RoleParam;
-import com.lingyi.mall.biz.system.service.MenuService;
-import com.lingyi.mall.biz.system.vo.MenuVO;
-import com.lingyi.mall.biz.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.mapper.RoleMapper;
+import com.lingyi.mall.biz.system.param.RoleParam;
 import com.lingyi.mall.biz.system.repository.RoleRepository;
+import com.lingyi.mall.biz.system.service.MenuService;
 import com.lingyi.mall.biz.system.service.RoleMenuService;
 import com.lingyi.mall.biz.system.service.RoleService;
-import com.lingyi.mall.common.orm.param.BasePageParam;
+import com.lingyi.mall.biz.system.vo.MenuVO;
+import com.lingyi.mall.biz.system.vo.RoleVO;
 import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ConverterUtil;
+import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,11 +30,8 @@ import java.util.List;
  */
 @Service
 @RequiredArgsConstructor
-public class RoleServiceImpl implements RoleService {
-
-    private final RoleRepository roleRepository;
-
-    private final RoleMapper roleMapper;
+public class RoleServiceImpl extends BaseServiceProImpl<RoleRepository, RoleMapper, RoleDTO, RoleVO, RoleParam, RoleDO, Long>
+        implements RoleService {
 
     private final RoleMenuService roleMenuService;
 
@@ -43,20 +40,20 @@ public class RoleServiceImpl implements RoleService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void create(RoleDTO roleDTO) {
-        //DTO转换Entity
-        var roleDO = BeanUtil.copyProperties(roleDTO, RoleDO.class);
         //保存
-        roleRepository.save(roleDO);
+        create(roleDTO, RoleDO.class);
         //保存角色菜单信息
-        roleMenuService.createList(roleDO.getId(), roleDTO.getMenuIds());
-
+        roleMenuService.saveList(roleDTO.getId(), roleDTO.getMenuIds());
     }
+
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteByIds(List<Long> ids) {
-        roleRepository.deleteAllById(ids);
-        roleMenuService.deleteByRoleIds(ids);
+        if (CollUtil.isNotEmpty(ids)) {
+            super.deleteByIds(ids);
+            roleMenuService.removeByRoleIds(ids);
+        }
     }
 
     @Override
@@ -65,39 +62,19 @@ public class RoleServiceImpl implements RoleService {
         //获取id
         Long id = roleDTO.getId();
         //获取角色信息
-        var optional = roleRepository.findById(id);
+        var optional = jpaRepository.findById(id);
         //判断用户是否不为空
         AssertUtil.isFalse(optional.isEmpty(), SystemFailEnum.ROLE_NULL_ERROR);
         //获取用户
         var roleDO = optional.get();
         //DTO转换Entity
         ConverterUtil.to(roleDTO, roleDO);
-        //保存
-        roleRepository.save(roleDO);
+        //更新
+        updateById(roleDO);
         //删除角色菜单集
-        roleMenuService.deleteByRoleIds(Collections.singletonList(id));
+        roleMenuService.removeByRoleIds(Collections.singletonList(id));
         //保存角色菜单信息
-        roleMenuService.createList(id, roleDTO.getMenuIds());
-    }
-
-    @Override
-    public RoleVO readById(Long id) {
-        return roleMapper.selectById(id);
-    }
-
-    @Override
-    public Long countByParam(RoleParam roleParam) {
-        return roleMapper.countByParam(roleParam);
-    }
-
-    @Override
-    public List<RoleVO> readList(BasePageParam basePageParam) {
-        return roleMapper.selectList(basePageParam);
-    }
-
-    @Override
-    public List<RoleVO> readListByParam(RoleParam roleParam) {
-        return roleMapper.selectListByParam(roleParam);
+        roleMenuService.saveList(id, roleDTO.getMenuIds());
     }
 
 
