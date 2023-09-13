@@ -43,7 +43,7 @@ public class MenuController {
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:menus:delete')")
-    @Log(title = "删除/批量删除菜单", operationType = OperationTypeEnum.UPDATE)
+    @Log(title = "删除/批量删除菜单", operationType = OperationTypeEnum.DELETE)
     public ServerResponse<Void> deleteByIds(@PathVariable List<Long> ids) {
         menuService.deleteByIds(ids);
         return ServerResponse.success();

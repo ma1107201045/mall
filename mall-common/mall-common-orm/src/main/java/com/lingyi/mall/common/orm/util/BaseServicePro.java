@@ -20,7 +20,7 @@ public interface BaseServicePro<
         DTO extends BaseIdDTO<ID>,
         VO extends BaseIdVO<ID>,
         PARAM extends BasePageParam,
-        DO extends BaseIdDO,
+        DO extends BaseIdDO<ID>,
         ID extends Serializable> {
 
     /**
