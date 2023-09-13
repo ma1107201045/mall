@@ -33,7 +33,7 @@ public class MemberLevelServiceImpl extends BaseServiceProImpl<MemberLevelReposi
     public Long queryDefaultLevelId() {
         var memberLevelDO = new MemberLevelDO();
         memberLevelDO.setIsDefaultLevel(WhetherEnum.Y.getCode());
-        var optional = japRepository.findOne(Example.of(memberLevelDO));
+        var optional = jpaRepository.findOne(Example.of(memberLevelDO));
         return optional.isPresent() ? optional.get().getId() : ObjectUtil.getNull();
     }
 }

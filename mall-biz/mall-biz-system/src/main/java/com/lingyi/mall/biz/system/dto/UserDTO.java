@@ -1,10 +1,13 @@
 package com.lingyi.mall.biz.system.dto;
 
+import com.lingyi.mall.common.orm.dto.BaseIdDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -16,15 +19,14 @@ import java.util.List;
  * @DateTime: 2023/5/14 19:11
  * @Description:
  */
-@Schema(description = "用户")
 @Data
-public class UserDTO  implements Serializable{
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@Schema(description = "用户")
+public class UserDTO extends BaseIdDTO<Long> {
 
     @Serial
     private static final long serialVersionUID = 6172702298178663383L;
-
-    @Schema(description = "用户id")
-    private Long id;
 
     @Schema(description = "用户名称", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank(message = "用户名称不能为空")

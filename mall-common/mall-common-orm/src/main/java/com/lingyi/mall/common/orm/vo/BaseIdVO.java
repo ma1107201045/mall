@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @DateTime: 2023/9/9 11:26
  * @Description:
  */
-public abstract class BaseIdVO<ID> implements Serializable {
+public abstract class BaseIdVO<ID extends Serializable> implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -3848680408431067011L;

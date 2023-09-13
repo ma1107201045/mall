@@ -31,8 +31,7 @@ public class MemberLoginLogServiceImpl extends BaseServiceProImpl<MemberLoginLog
 
     @Override
     public void save(MemberLoginLogReqDTO memberLoginLogReqDTO) {
-        var memberLoginLogDTO = ConverterUtil.to(memberLoginLogReqDTO, MemberLoginLogDTO.class);
-        var memberLoginLogDO = MemberLoginConverter.INSTANCE.of(memberLoginLogDTO);
-        create(memberLoginLogDTO, memberLoginLogDO);
+        var memberLoginLogDO = MemberLoginConverter.INSTANCE.of(memberLoginLogReqDTO);
+        create(memberLoginLogDO);
     }
 }

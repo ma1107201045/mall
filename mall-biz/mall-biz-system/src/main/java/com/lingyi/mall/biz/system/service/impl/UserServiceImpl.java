@@ -22,7 +22,10 @@ import com.lingyi.mall.common.orm.param.BasePageParam;
 import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.core.util.ObjectUtil;
+import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,13 +40,9 @@ import java.util.*;
  */
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapper, UserDTO, UserVO, UserParam, UserDO, Long> implements UserService {
 
     private final PasswordEncoder passwordEncoder;
-
-    private final UserRepository userRepository;
-
-    private final UserMapper userMapper;
 
     private final UserRoleService userRoleService;
 
@@ -54,29 +53,27 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void create(UserDTO userDTO) {
+    public void save(UserDTO userDTO) {
         //通过用户名称获取用户id
-        var id = userMapper.selectIdByUserName(userDTO.getUserName());
+        var id = mybatisMapper.selectIdByUserName(userDTO.getUserName());
         //判断用户名称不存在
         AssertUtil.isNull(id, SystemFailEnum.USER_NAME_EXIST_ERROR);
         //密码作哈希
         var encodePassword = passwordEncoder.encode(userDTO.getPassword());
         userDTO.setPassword(encodePassword);
-        //DTO转换Entity
-        var userDO = ConverterUtil.to(userDTO, UserDO.class);
         //保存
-        userRepository.save(userDO);
+        create(userDTO, UserDO.class);
         //保存用户角色信息
-        userRoleService.createList(userDO.getId(), userDTO.getRoleIds());
+        userRoleService.createList(userDTO.getId(), userDTO.getRoleIds());
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteByIds(List<Long> ids) {
-        var flag = userRepository.findAllById(ids).stream()
+        var flag = jpaRepository.findAllById(ids).stream()
                 .anyMatch(userDO -> SystemConstant.USER_NAME_ADMIN.equals(userDO.getUserName()));
         AssertUtil.isFalse(flag, SystemFailEnum.USER_NAME_ADMIN_DELETE_ERROR);
-        userRepository.deleteAllById(ids);
+        jpaRepository.deleteAllById(ids);
         userRoleService.deleteByUserIds(ids);
     }
 
@@ -85,47 +82,29 @@ public class UserServiceImpl implements UserService {
     public void updateById(UserDTO userDTO) {
         var id = userDTO.getId();
         //获取用户信息
-        var optional = userRepository.findById(id);
+        var optional = jpaRepository.findById(id);
         //断言用户是否不为空
         AssertUtil.isFalse(optional.isEmpty(), SystemFailEnum.USER_NULL_ERROR);
         //获取用户
         var userDO = optional.get();
         //断言用户是否admin
         AssertUtil.isFalse(SystemConstant.USER_NAME_ADMIN.equals(userDO.getUserName()), SystemFailEnum.USER_NAME_ADMIN_UPDATE_ERROR);
-        //断言用户名称是否相同
-        var newId = userMapper.selectIdByUserName(userDTO.getUserName());
-        var flag = Objects.nonNull(newId) && !Objects.equals(id, newId);
 
-        //判断用户名称不存在
+        //断言用户名称是否相同
+        var newId = mybatisMapper.selectIdByUserName(userDTO.getUserName());
+        var flag = Objects.nonNull(newId) && !Objects.equals(id, newId);
         AssertUtil.isFalse(flag, SystemFailEnum.USER_NAME_EXIST_ERROR);
+
         //密码作哈希
         var encodePassword = passwordEncoder.encode(userDTO.getPassword());
         userDTO.setPassword(encodePassword);
-        //DTO转换Entity
-        ConverterUtil.to(userDTO, userDO);
-        //更新
-        userRepository.save(userDO);
+
+        super.updateById(userDTO);
         //删除用户角色集
         userRoleService.deleteByUserIds(Collections.singletonList(id));
         //保存用户角色信息
         userRoleService.createList(id, userDTO.getRoleIds());
     }
-
-    @Override
-    public UserVO readById(Long id) {
-        return userMapper.selectById(id);
-    }
-
-    @Override
-    public Long countByParam(UserParam userParam) {
-        return userMapper.countByParam(userParam);
-    }
-
-    @Override
-    public List<UserVO> readListByParam(UserParam userParam) {
-        return userMapper.selectListByParam(userParam);
-    }
-
 
     @Override
     public List<RoleVO> readRoleList(BasePageParam basePageParam) {
@@ -135,7 +114,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updatePartById(UserPartReqDTO userPartReqDTO) {
         //获取用户信息
-        var optional = userRepository.findById(userPartReqDTO.getId());
+        var optional = jpaRepository.findById(userPartReqDTO.getId());
         //断言用户是否不为空
         AssertUtil.isFalse(optional.isEmpty(), SystemFailEnum.USER_NULL_ERROR);
         //获取用户
@@ -143,15 +122,15 @@ public class UserServiceImpl implements UserService {
         //密码作哈希
         var encodePassword = passwordEncoder.encode(userPartReqDTO.getPassword());
         userPartReqDTO.setPassword(encodePassword);
-        //转换数据
-        UserConverter.INSTANCE.convert(userDO, userPartReqDTO);
+
         //保存数据
-        userRepository.save(userDO);
+        userDO = ConverterUtil.to(userPartReqDTO, UserDO.class);
+        updateById(userDO);
     }
 
     @Override
     public UserRespDTO readUserAndMenuPermissionsByUserName(String userName) {
-        var userResp = userMapper.selectByUserName(userName);
+        var userResp = mybatisMapper.selectByUserName(userName);
         if (Objects.isNull(userResp)) {
             return ObjectUtil.getNull();
         }
@@ -165,7 +144,7 @@ public class UserServiceImpl implements UserService {
         List<MenuRespDTO> menus;
         var menuTypes = Arrays.asList(MenuTypeEnum.DIRECTORY.getCode(), MenuTypeEnum.MENU.getCode());
         if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
-            menus = userMapper.selectMenusByUserNameAndMenuTypes(userName, menuTypes);
+            menus = mybatisMapper.selectMenusByUserNameAndMenuTypes(userName, menuTypes);
         } else {
             menus = menuService.readListByTypes(menuTypes);
         }
@@ -177,7 +156,7 @@ public class UserServiceImpl implements UserService {
         List<MenuRespDTO> menus;
         var menuTypes = Collections.singletonList(MenuTypeEnum.BUTTON.getCode());
         if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
-            menus = userMapper.selectMenusByUserNameAndMenuTypes(userName, menuTypes);
+            menus = mybatisMapper.selectMenusByUserNameAndMenuTypes(userName, menuTypes);
         } else {
             menus = menuService.readListByTypes(menuTypes);
         }

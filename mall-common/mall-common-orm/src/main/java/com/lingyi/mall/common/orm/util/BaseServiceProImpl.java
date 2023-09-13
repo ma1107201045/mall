@@ -28,46 +28,52 @@ public class BaseServiceProImpl<
         DTO extends BaseIdDTO<ID>,
         VO extends BaseIdVO<ID>,
         PARAM extends BasePageParam,
-        DO extends BaseIdDO,
+        DO extends BaseIdDO<ID>,
         ID extends Serializable> implements BaseServicePro<DTO, VO, PARAM, DO, ID> {
 
-    protected J japRepository;
+    protected J jpaRepository;
 
     protected M mybatisMapper;
 
 
     public void create(DTO dto, Class<DO> clazz) {
         var doEntity = ConverterUtil.to(dto, clazz);
-        japRepository.save(doEntity);
+        jpaRepository.save(doEntity);
     }
 
     public void create(DTO dto, DO doEntity) {
         ConverterUtil.to(dto, doEntity);
-        japRepository.save(doEntity);
+        jpaRepository.save(doEntity);
+    }
+
+    @Override
+    public void create(DO doEntity) {
+        jpaRepository.save(doEntity);
     }
 
 
     @Override
     public void deleteByIds(List<ID> ids) {
-        japRepository.deleteAllByIdInBatch(ids);
+        jpaRepository.deleteAllByIdInBatch(ids);
     }
 
 
     public void updateById(DTO dto) {
-        var optional = japRepository.findById(dto.getId());
+        var optional = jpaRepository.findById(dto.getId());
         if (optional.isPresent()) {
             var doEntity = optional.get();
             ConverterUtil.to(dto, doEntity);
-            japRepository.save(doEntity);
+            jpaRepository.save(doEntity);
         }
     }
 
-    public void updateById(DTO dto, DO doEntity) {
-        var optional = japRepository.findById(dto.getId());
+    @Override
+    public void updateById(DO doEntity) {
+        var optional = jpaRepository.findById(doEntity.getId());
         if (optional.isPresent()) {
-            var newDoEntity = optional.get();
-            ConverterUtil.to(doEntity, newDoEntity);
-            japRepository.save(newDoEntity);
+            var newDOEntity = optional.get();
+            ConverterUtil.to(doEntity, newDOEntity);
+            jpaRepository.save(newDOEntity);
         }
     }
 

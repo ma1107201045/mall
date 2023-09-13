@@ -28,12 +28,12 @@ public class AttributeValueServiceImpl extends BaseServiceProImpl<AttributeValue
     @Override
     public void createList(Long attributeId, List<String> names) {
         var attributeValues = AttributeValueConverter.INSTANCE.of(attributeId, names);
-        japRepository.saveAll(attributeValues);
+        jpaRepository.saveAll(attributeValues);
     }
 
 
     @Override
     public void deleteByAttributeIds(List<Long> attributeIds) {
-        japRepository.deleteByAttributeIds(attributeIds);
+        jpaRepository.deleteByAttributeIds(attributeIds);
     }
 }

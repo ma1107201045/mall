@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "mm_member_login_log")
 @DynamicInsert
-public class MemberLoginLogDO extends BaseIdDO implements Serializable {
+public class MemberLoginLogDO extends BaseIdDO<Long> implements Serializable {
     @Serial
     private static final long serialVersionUID = 7083829914819620788L;
 

@@ -8,6 +8,8 @@ import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.io.Serializable;
+
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
@@ -16,13 +18,13 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Data
 @MappedSuperclass
-public abstract class BaseIdDO {
+public abstract class BaseIdDO<ID extends Serializable> {
 
 
     @Id
     @GeneratedValue(generator = "SnowflakeIdentifierGenerator")
     @GenericGenerator(name = "SnowflakeIdentifierGenerator", type = SnowflakeIdentifierGenerator.class)
     @Column(name = "id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '主键id'")
-    protected Long id;
+    protected ID id;
 
 }

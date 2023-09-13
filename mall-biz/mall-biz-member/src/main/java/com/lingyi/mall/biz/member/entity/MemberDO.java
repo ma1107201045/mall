@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 @Table(name = "mm_member", uniqueConstraints = {@UniqueConstraint(name = "uk_user_name", columnNames = "user_name"),
         @UniqueConstraint(name = "uk_phone_number", columnNames = "phone_number")})
 @DynamicInsert
-public class MemberDO extends BaseIdDO implements Serializable {
+public class MemberDO extends BaseIdDO<Long> implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -2724268672754765122L;

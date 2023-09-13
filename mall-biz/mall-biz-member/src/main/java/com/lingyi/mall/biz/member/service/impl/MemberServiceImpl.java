@@ -38,9 +38,8 @@ public class MemberServiceImpl extends BaseServiceProImpl<MemberRepository, Memb
 
     @Override
     public Long register(MemberReqDTO memberReqDTO) {
-        var memberDTO = ConverterUtil.to(memberReqDTO, MemberDTO.class);
-        var memberDO = MemberConverter.INSTANCE.of(memberDTO);
-        create(memberDTO, memberDO);
+        var memberDO = MemberConverter.INSTANCE.of(memberReqDTO);
+        create(memberDO);
         return memberDO.getId();
     }
 

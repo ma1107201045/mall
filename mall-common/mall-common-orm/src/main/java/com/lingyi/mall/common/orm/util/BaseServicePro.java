@@ -39,6 +39,13 @@ public interface BaseServicePro<
     void create(DTO dto, DO doEntity);
 
     /**
+     * 增
+     *
+     * @param doEntity do
+     */
+    void create(DO doEntity);
+
+    /**
      * 批量删
      *
      * @param ids ids
@@ -64,10 +71,11 @@ public interface BaseServicePro<
 
     /**
      * 改
-     * @param dto dto
+     *
      * @param doEntity do
      */
-    void updateById(DTO dto,DO doEntity);
+    void updateById(DO doEntity);
+
     /**
      * 查
      *

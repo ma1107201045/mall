@@ -20,9 +20,9 @@ import java.util.Enumeration;
 @Slf4j
 public final class SnowFlakeIdUtil {
 
-    private static final String API_PROPERTIES_FILE_NAME = "api.properties";
-    private static final String WORK_ID_KEY = "api.workerId";
-    private static final String DATA_CENTER_ID_KEY = "api.dataCenterId";
+    private static final String API_PROPERTIES_FILE_NAME = "snowflake-param.properties";
+    private static final String WORK_ID_KEY = "param.workerId";
+    private static final String DATA_CENTER_ID_KEY = "param.dataCenterId";
     private static final long WORKER_ID = 0L;
     private static final long DATACENTER_ID = 0L;
 

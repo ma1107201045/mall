@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.member.converter;
 
+import com.lingyi.mall.api.member.dto.MemberLoginLogReqDTO;
 import com.lingyi.mall.biz.member.dto.MemberLoginLogDTO;
 import com.lingyi.mall.biz.member.entity.MemberDO;
 import com.lingyi.mall.biz.member.entity.MemberLoginLogDO;
@@ -19,10 +20,10 @@ public class MemberLoginConverter {
 
     }
 
-    public MemberLoginLogDO of(MemberLoginLogDTO memberLoginLogDTO) {
-        var memberLoginLogDO = ConverterUtil.to(memberLoginLogDTO, MemberLoginLogDO.class);
+    public MemberLoginLogDO of(MemberLoginLogReqDTO memberLoginLogReqDTO) {
+        var memberLoginLogDO = ConverterUtil.to(memberLoginLogReqDTO, MemberLoginLogDO.class);
         var memberDO = new MemberDO();
-        memberDO.setId(memberLoginLogDTO.getMemberId());
+        memberDO.setId(memberLoginLogReqDTO.getMemberId());
         memberLoginLogDO.setMemberDO(memberDO);
         return memberLoginLogDO;
     }

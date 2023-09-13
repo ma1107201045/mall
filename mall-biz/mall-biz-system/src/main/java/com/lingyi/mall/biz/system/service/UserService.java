@@ -4,11 +4,13 @@ import com.lingyi.mall.api.system.dto.MenuRespDTO;
 import com.lingyi.mall.api.system.dto.UserPartReqDTO;
 import com.lingyi.mall.api.system.dto.UserRespDTO;
 import com.lingyi.mall.biz.system.dto.UserDTO;
+import com.lingyi.mall.biz.system.entity.UserDO;
 import com.lingyi.mall.biz.system.param.UserParam;
 import com.lingyi.mall.biz.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.vo.UserVO;
 import com.lingyi.mall.common.orm.param.BasePageParam;
 import com.lingyi.mall.common.orm.util.BaseService;
+import com.lingyi.mall.common.orm.util.BaseServicePro;
 
 import java.util.List;
 
@@ -18,15 +20,12 @@ import java.util.List;
  * @datetime 2023/5/4 17:28
  * @description
  */
-public interface UserService extends BaseService<UserDTO, UserParam, UserVO, Long> {
-
+public interface UserService extends BaseServicePro<UserDTO, UserVO, UserParam, UserDO, Long> {
     /**
-     * 按照参数统计数量
-     *
-     * @param userParam 参数
-     * @return 数量
+     * 保存
+     * @param userDTO 。。
      */
-    Long countByParam(UserParam userParam);
+    void save(UserDTO userDTO);
 
     /**
      * 读取角色集

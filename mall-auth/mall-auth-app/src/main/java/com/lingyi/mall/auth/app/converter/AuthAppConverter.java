@@ -69,7 +69,7 @@ public class AuthAppConverter {
 
     public MemberLoginLogReqDTO to(MemberRespDTO memberRespDTO) {
         var memberLoginLogReqDTO = new MemberLoginLogReqDTO();
-        memberLoginLogReqDTO.setMemberUserId(memberRespDTO.getId());
+        memberLoginLogReqDTO.setMemberId(memberRespDTO.getId());
         memberLoginLogReqDTO.setMemberUserName(memberRespDTO.getUserName());
         memberLoginLogReqDTO.setIp(StrUtil.EMPTY);
         memberLoginLogReqDTO.setCity(StrUtil.EMPTY);
