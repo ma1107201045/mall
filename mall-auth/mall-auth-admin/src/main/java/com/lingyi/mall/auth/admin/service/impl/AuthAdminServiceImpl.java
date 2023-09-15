@@ -6,7 +6,7 @@ import cn.hutool.captcha.generator.MathGenerator;
 import com.lingyi.mall.auth.admin.properties.ImageCaptchaProperties;
 import com.lingyi.mall.auth.admin.service.AuthAdminService;
 import com.lingyi.mall.auth.admin.util.CodeGeneratorProxy;
-import com.lingyi.mall.common.security.admin.constant.SecurityConstant;
+import com.lingyi.mall.security.admin.constant.SecurityConstant;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;

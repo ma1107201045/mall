@@ -19,9 +19,9 @@ import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.core.util.HttpUtil;
 import com.lingyi.mall.common.redis.util.RedisUtil;
-import com.lingyi.mall.common.security.app.constant.SecurityConstant;
-import com.lingyi.mall.common.security.app.util.RedisKeyUtil;
-import com.lingyi.mall.common.security.app.util.JwtUtil;
+import com.lingyi.mall.security.app.constant.SecurityConstant;
+import com.lingyi.mall.security.app.util.JwtUtil;
+import com.lingyi.mall.security.app.util.RedisKeyUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

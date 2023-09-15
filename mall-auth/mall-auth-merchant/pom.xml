@@ -12,7 +12,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-security-merchant</artifactId>
+            <artifactId>mall-security-merchant</artifactId>
         </dependency>
     </dependencies>
 </project>

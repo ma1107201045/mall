@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.lingyi</groupId>
+        <artifactId>mall</artifactId>
+        <version>${revision}</version>
+    </parent>
+    <artifactId>mall-security</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>mall-security-admin</module>
+        <module>mall-security-app</module>
+        <module>mall-security-core</module>
+        <module>mall-security-merchant</module>
+    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>mall-api-system</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>mall-common-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>mall-common-orm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>mall-common-redis</artifactId>
+        </dependency>
+    </dependencies>
+</project>

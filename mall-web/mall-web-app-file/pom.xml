@@ -14,7 +14,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-security-app</artifactId>
+            <artifactId>mall-security-app</artifactId>
         </dependency>
     </dependencies>
     <build>

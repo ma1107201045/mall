@@ -13,6 +13,7 @@
         <module>mall-biz</module>
         <module>mall-common</module>
         <module>mall-gateway</module>
+        <module>mall-security</module>
         <module>mall-web</module>
     </modules>
     <properties>
@@ -97,26 +98,6 @@
                 <version>${project.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>mall-common-security-admin</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>mall-common-security-app</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>mall-common-security-common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>mall-common-security-merchant</artifactId>
-                <version>${project.version}</version>
-            </dependency>
             <!-- mall common out jar -->
             <dependency>
                 <groupId>cn.hutool</groupId>
@@ -157,6 +138,27 @@
                 <groupId>org.apache.rocketmq</groupId>
                 <artifactId>rocketmq-spring-boot-starter</artifactId>
                 <version>${rocketmq-spring-boot-starter.version}</version>
+            </dependency>
+            <!-- mall security jar-->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>mall-security-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>mall-security-admin</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>mall-security-app</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>mall-security-merchant</artifactId>
+                <version>${project.version}</version>
             </dependency>
             <!-- mall api jar-->
             <dependency>

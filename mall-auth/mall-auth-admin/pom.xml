@@ -12,7 +12,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-security-admin</artifactId>
+            <artifactId>mall-security-admin</artifactId>
         </dependency>
     </dependencies>
     <build>

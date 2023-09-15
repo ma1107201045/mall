@@ -16,9 +16,5 @@
         <module>mall-common-orm</module>
         <module>mall-common-redis</module>
         <module>mall-common-rocketmq</module>
-        <module>mall-common-security-admin</module>
-        <module>mall-common-security-app</module>
-        <module>mall-common-security-common</module>
-        <module>mall-common-security-merchant</module>
     </modules>
 </project>

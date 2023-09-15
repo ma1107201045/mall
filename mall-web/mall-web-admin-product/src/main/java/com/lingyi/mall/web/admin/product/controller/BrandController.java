@@ -8,7 +8,7 @@ import com.lingyi.mall.biz.product.service.BrandService;
 import com.lingyi.mall.biz.product.vo.BrandVO;
 import com.lingyi.mall.common.core.enums.OperationTypeEnum;
 import com.lingyi.mall.common.core.util.ServerResponse;
-import com.lingyi.mall.common.security.common.aspetct.Log;
+import com.lingyi.mall.security.core.aspetct.Log;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
