@@ -6,6 +6,7 @@ import cn.hutool.core.date.StopWatch;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
 import com.lingyi.mall.api.system.dto.LogReqDTO;
+import com.lingyi.mall.common.core.annotation.Log;
 import com.lingyi.mall.common.core.constant.BaseConstant;
 import com.lingyi.mall.common.core.enums.WhetherEnum;
 import com.lingyi.mall.common.core.util.RequestUtil;
@@ -71,7 +72,7 @@ public class LogAspect {
     /**
      * 数据库日志切点
      */
-    @Pointcut("@annotation(com.lingyi.mall.security.core.aspetct.Log)")
+    @Pointcut("@annotation(com.lingyi.mall.common.core.annotation.Log)")
     private void dataBasePointcut() {
     }
 
