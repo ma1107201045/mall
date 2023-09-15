@@ -9,6 +9,7 @@ import org.hibernate.id.IdentifierGenerator;
 import org.springframework.stereotype.Component;
 
 import java.io.Serial;
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -24,7 +25,7 @@ public class SnowflakeIdentifierGenerator implements IdentifierGenerator {
 
     @Override
     public Object generate(SharedSessionContractImplementor sharedSessionContractImplementor, Object obj) throws HibernateException {
-        if (obj instanceof BaseIdDO baseIdDO) {
+        if (obj instanceof BaseIdDO<?> baseIdDO) {
             return Objects.isNull(baseIdDO.getId()) ? SnowFlakeIdUtil.nextId() : baseIdDO.getId();
         }
         return SnowFlakeIdUtil.nextId();

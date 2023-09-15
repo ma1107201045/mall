@@ -1,7 +1,7 @@
 package com.lingyi.mall.security.admin.auditor;
 
 import cn.hutool.core.util.StrUtil;
-import com.lingyi.mall.common.orm.jpa.listener.auditor.CustomAuditorAware;
+import com.lingyi.mall.common.core.util.CustomAuditorAware;
 import com.lingyi.mall.security.admin.constant.SecurityConstant;
 import com.lingyi.mall.security.admin.util.AuthenticatorUtil;
 import org.springframework.lang.NonNull;

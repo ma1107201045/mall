@@ -71,7 +71,7 @@ public class LogAspect {
     /**
      * 数据库日志切点
      */
-    @Pointcut("@annotation(com.lingyi.mall.common.security.common.aspetct.Log)")
+    @Pointcut("@annotation(com.lingyi.mall.security.core.aspetct.Log)")
     private void dataBasePointcut() {
     }
 

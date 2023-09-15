@@ -20,10 +20,6 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-orm</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>mall-common-redis</artifactId>
         </dependency>
     </dependencies>

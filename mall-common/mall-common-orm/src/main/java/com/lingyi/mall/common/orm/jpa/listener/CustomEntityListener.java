@@ -5,7 +5,7 @@ import com.lingyi.mall.common.core.constant.BaseConstant;
 import com.lingyi.mall.common.core.enums.WhetherEnum;
 import com.lingyi.mall.common.orm.entity.BaseCommonDO;
 import com.lingyi.mall.common.orm.entity.BaseIsDeleteDO;
-import com.lingyi.mall.common.orm.jpa.listener.auditor.CustomAuditorAware;
+import com.lingyi.mall.common.core.util.CustomAuditorAware;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import lombok.AllArgsConstructor;
