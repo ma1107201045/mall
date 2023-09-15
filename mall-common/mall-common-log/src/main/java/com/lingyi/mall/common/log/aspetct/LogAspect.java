@@ -1,4 +1,4 @@
-package com.lingyi.mall.security.core.aspetct;
+package com.lingyi.mall.common.log.aspetct;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
@@ -9,7 +9,7 @@ import com.lingyi.mall.api.system.dto.LogReqDTO;
 import com.lingyi.mall.common.core.constant.BaseConstant;
 import com.lingyi.mall.common.core.enums.WhetherEnum;
 import com.lingyi.mall.common.core.util.RequestUtil;
-import com.lingyi.mall.security.core.task.BaseAsyncTask;
+import com.lingyi.mall.common.log.task.BaseAsyncTask;
 import com.lingyi.mall.security.core.util.Authenticator;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;

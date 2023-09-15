@@ -1,4 +1,4 @@
-package com.lingyi.mall.security.core.task;
+package com.lingyi.mall.common.log.task;
 
 import com.lingyi.mall.api.system.consumer.LogFeignConsumer;
 import com.lingyi.mall.api.system.dto.LogReqDTO;

@@ -25,15 +25,6 @@ import org.springframework.context.support.MessageSourceAccessor;
 @Configuration(proxyBeanMethods = false)
 public class SecurityConfig {
 
-    @Bean
-    public MessageSourceAccessor messageSourceAccessor(MessageSource messageSource) {
-        return new MessageSourceAccessor(messageSource, LocaleContextHolder.getLocale());
-    }
-
-    @Bean
-    public TrackIdFilter trackIdFilter() {
-        return new TrackIdFilter();
-    }
 
     @Bean
     public JwtTokenBlacklistFilter jwtTokenBlacklistFilter(MessageSourceAccessor messageSourceAccessor, RedisUtil redisUtil, RedisKeyUtil redisKeyUtil) {

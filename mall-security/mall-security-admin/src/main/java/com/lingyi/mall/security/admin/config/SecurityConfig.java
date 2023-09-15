@@ -34,16 +34,6 @@ public class SecurityConfig {
 
 
     @Bean
-    public TrackIdFilter trackIdFilter() {
-        return new TrackIdFilter();
-    }
-
-    @Bean
-    public MessageSourceAccessor messageSourceAccessor(MessageSource messageSource) {
-        return new MessageSourceAccessor(messageSource, LocaleContextHolder.getLocale());
-    }
-
-    @Bean
     public ImageCaptchaFilter imageCaptchaFilter(MessageSourceAccessor messageSourceAccessor) {
         var imageCaptchaFilter = new ImageCaptchaFilter();
         imageCaptchaFilter.setMessageSourceAccessor(messageSourceAccessor);
