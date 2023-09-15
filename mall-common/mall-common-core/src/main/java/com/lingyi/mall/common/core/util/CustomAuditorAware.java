@@ -8,6 +8,7 @@ import java.util.Optional;
  * @datetime 2023/7/7 8:57
  * @description
  */
+@FunctionalInterface
 public interface CustomAuditorAware<T> {
 
     /**
