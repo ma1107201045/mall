@@ -22,10 +22,6 @@ import org.springframework.lang.NonNull;
 @Configuration(proxyBeanMethods = false)
 public class OpenFeignConfig {
 
-    @Bean
-    Logger.Level feignLevel() {
-        return Logger.Level.FULL;
-    }
 
     @Bean
     @NonNull
