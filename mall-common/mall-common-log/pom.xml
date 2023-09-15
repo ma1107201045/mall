@@ -6,11 +6,9 @@
     <parent>
         <groupId>com.lingyi</groupId>
         <artifactId>mall-common</artifactId>
-        <version>1.0.1</version>
+        <version>${revision}</version>
     </parent>
-
     <artifactId>mall-common-log</artifactId>
-
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>

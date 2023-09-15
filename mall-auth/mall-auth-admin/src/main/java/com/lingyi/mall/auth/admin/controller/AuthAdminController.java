@@ -1,9 +1,9 @@
 package com.lingyi.mall.auth.admin.controller;
 
 import com.lingyi.mall.auth.admin.service.AuthAdminService;
+import com.lingyi.mall.common.core.annotation.Log;
 import com.lingyi.mall.common.core.enums.OperationTypeEnum;
 import com.lingyi.mall.common.core.util.ServerResponse;
-import com.lingyi.mall.security.core.aspetct.Log;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
