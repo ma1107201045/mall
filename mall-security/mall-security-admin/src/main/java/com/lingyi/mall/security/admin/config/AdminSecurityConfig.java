@@ -4,10 +4,8 @@ import com.lingyi.mall.common.core.filter.TrackIdFilter;
 import com.lingyi.mall.security.admin.constant.SecurityConstant;
 import com.lingyi.mall.security.admin.filter.ImageCaptchaFilter;
 import com.lingyi.mall.security.admin.handler.*;
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -30,7 +28,7 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
  * @description
  */
 @Configuration(proxyBeanMethods = false)
-public class SecurityConfig {
+public class AdminSecurityConfig {
 
 
     @Bean

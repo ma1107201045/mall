@@ -5,7 +5,6 @@ import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.common.core.constant.BaseConstant;
 import com.lingyi.mall.common.core.util.HttpUtil;
 import com.lingyi.mall.security.app.constant.SecurityConstant;
-import feign.Logger;
 import feign.RequestInterceptor;
 import feign.ResponseInterceptor;
 import org.slf4j.MDC;
@@ -20,7 +19,7 @@ import org.springframework.lang.NonNull;
  * @Description:
  */
 @Configuration(proxyBeanMethods = false)
-public class OpenFeignConfig {
+public class AppOpenFeignConfig {
 
 
     @Bean

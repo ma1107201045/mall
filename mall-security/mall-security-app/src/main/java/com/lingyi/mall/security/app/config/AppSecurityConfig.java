@@ -9,10 +9,8 @@ import com.lingyi.mall.security.app.filter.JwtTokenRenewalFilter;
 import com.lingyi.mall.security.app.util.RedisKeyUtil;
 import jakarta.servlet.Filter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.MessageSourceAccessor;
 
 
@@ -23,7 +21,7 @@ import org.springframework.context.support.MessageSourceAccessor;
  * @description
  */
 @Configuration(proxyBeanMethods = false)
-public class SecurityConfig {
+public class AppSecurityConfig {
 
 
     @Bean

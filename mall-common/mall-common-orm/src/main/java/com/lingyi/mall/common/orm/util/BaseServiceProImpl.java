@@ -7,8 +7,8 @@ import com.lingyi.mall.common.orm.entity.BaseIdDO;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
 import com.lingyi.mall.common.orm.param.BasePageParam;
 import com.lingyi.mall.common.orm.vo.BaseIdVO;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 
 import java.io.Serializable;
@@ -20,8 +20,6 @@ import java.util.List;
  * @DateTime: 2023/9/9 9:51
  * @Description:
  */
-@Getter
-@Setter
 public class BaseServiceProImpl<
         J extends JpaRepositoryImplementation<DO, ID>,
         M extends MybatisMapperImplementation<VO, PARAM, ID>,
@@ -31,8 +29,10 @@ public class BaseServiceProImpl<
         DO extends BaseIdDO<ID>,
         ID extends Serializable> implements BaseServicePro<DTO, VO, PARAM, DO, ID> {
 
+    @Autowired
     protected J jpaRepository;
 
+    @Autowired
     protected M mybatisMapper;
 
 

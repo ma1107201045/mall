@@ -5,7 +5,6 @@ import cn.hutool.core.util.ArrayUtil;
 import com.lingyi.mall.common.core.constant.BaseConstant;
 import com.lingyi.mall.common.core.util.HttpUtil;
 import com.lingyi.mall.security.admin.constant.SecurityConstant;
-import feign.Logger;
 import feign.RequestInterceptor;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.MDC;
@@ -24,7 +23,7 @@ import java.util.Arrays;
  * @Description:
  */
 @Configuration(proxyBeanMethods = false)
-public class OpenFeignConfig {
+public class AdminOpenFeignConfig {
 
 
     @Bean
