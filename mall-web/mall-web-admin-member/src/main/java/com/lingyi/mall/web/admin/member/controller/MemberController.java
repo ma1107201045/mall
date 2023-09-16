@@ -1,7 +1,10 @@
 package com.lingyi.mall.web.admin.member.controller;
 
+import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.biz.member.dto.MemberPartDTO;
+import com.lingyi.mall.biz.member.param.MemberParam;
 import com.lingyi.mall.biz.member.service.MemberService;
+import com.lingyi.mall.biz.member.vo.MemberVO;
 import com.lingyi.mall.common.core.enums.OperationTypeEnum;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import com.lingyi.mall.common.core.annotation.Log;
@@ -11,6 +14,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @Author: maweiyan
@@ -34,5 +39,15 @@ public class MemberController {
         memberPartDTO.setId(id);
         memberService.updateIsEnableById(memberPartDTO);
         return ServerResponse.success();
+    }
+
+    @Operation(summary = "查询列表", description = "查询列表")
+    @GetMapping
+    @PreAuthorize("@ps.hasAnyAuthority('admin:member:members:getList')")
+    @Log(title = "查询会员列表", operationType = OperationTypeEnum.READ)
+    public ServerResponse<List<MemberVO>> getList(@Valid MemberParam memberParam) {
+        var page = PageHelper.startPage(memberParam.getCurrentPage(), memberParam.getPageSize(), memberParam.getSort());
+        List<MemberVO> members = memberService.readListByParam(memberParam);
+        return ServerResponse.success(members, page.getTotal());
     }
 }
