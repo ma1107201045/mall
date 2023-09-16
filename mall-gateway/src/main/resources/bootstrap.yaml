@@ -70,6 +70,11 @@ spring:
           predicates:
             - Path=/admin/product/**
 
+        - id: mall-web-admin-member
+          uri: http://localhost:7006
+          predicates:
+            - Path=/admin/member/**
+
         - id: mall-web-app-base
           uri: http://localhost:8002
           predicates:

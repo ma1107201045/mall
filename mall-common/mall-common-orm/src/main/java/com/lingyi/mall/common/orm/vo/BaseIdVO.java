@@ -1,6 +1,7 @@
 package com.lingyi.mall.common.orm.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -11,6 +12,7 @@ import java.io.Serializable;
  * @DateTime: 2023/9/9 11:26
  * @Description:
  */
+@Data
 public abstract class BaseIdVO<ID extends Serializable> implements Serializable {
 
     @Serial

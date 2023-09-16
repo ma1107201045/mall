@@ -26,9 +26,6 @@ public class MenuVO extends BaseIdVO<Long> {
     @Serial
     private static final long serialVersionUID = -7797871902157113255L;
 
-    @Schema(description = "菜单id")
-    private Long id;
-
     @Schema(description = "菜单名称")
     private String name;
 

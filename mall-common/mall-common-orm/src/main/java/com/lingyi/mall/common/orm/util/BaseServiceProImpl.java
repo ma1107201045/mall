@@ -7,7 +7,6 @@ import com.lingyi.mall.common.orm.entity.BaseIdDO;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
 import com.lingyi.mall.common.orm.param.BasePageParam;
 import com.lingyi.mall.common.orm.vo.BaseIdVO;
-import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 
