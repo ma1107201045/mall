@@ -11,7 +11,7 @@ import com.lingyi.mall.biz.sms.service.CaptchaLogService;
 import com.lingyi.mall.biz.sms.service.CaptchaService;
 import com.lingyi.mall.biz.sms.util.SmsRedisKeyUtil;
 import com.lingyi.mall.common.core.util.AssertUtil;
-import com.lingyi.mall.common.redis.aspect.RedisLock;
+import com.lingyi.mall.common.core.annotation.RedisLock;
 import com.lingyi.mall.common.redis.util.RedisUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
