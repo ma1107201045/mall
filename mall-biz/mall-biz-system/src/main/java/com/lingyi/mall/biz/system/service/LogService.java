@@ -1,7 +1,6 @@
 package com.lingyi.mall.biz.system.service;
 
 import com.lingyi.mall.api.system.dto.LogReqDTO;
-import com.lingyi.mall.biz.system.dto.LogDTO;
 import com.lingyi.mall.biz.system.entity.LogDO;
 import com.lingyi.mall.biz.system.param.LogParam;
 import com.lingyi.mall.biz.system.vo.LogVO;
