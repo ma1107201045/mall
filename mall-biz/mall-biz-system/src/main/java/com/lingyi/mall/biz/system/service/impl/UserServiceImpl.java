@@ -166,12 +166,11 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
 
 
     private List<MenuRespDTO> toMenuTree(Long menuParentId, List<MenuRespDTO> menus) {
-        var menuList = menus.stream()
+        return menus.stream()
                 .filter(menu -> menu.getParentId().equals(menuParentId))
-                .sorted(Comparator.comparing(MenuRespDTO::getSort))
+                .peek(menu -> menu.setChildren(toMenuTree(menu.getId(), menus)))
+//                .sorted(Comparator.comparing(MenuRespDTO::getSort))
                 .toList();
-        menuList.forEach(menu -> menu.setChildren(toMenuTree(menu.getId(), menus)));
-        return menuList;
     }
 
 

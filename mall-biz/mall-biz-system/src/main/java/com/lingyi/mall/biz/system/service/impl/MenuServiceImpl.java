@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @Author: maweiyan
@@ -117,12 +118,11 @@ public class MenuServiceImpl extends BaseServiceProImpl<MenuRepository, MenuMapp
 
 
     private List<MenuVO> toTree(Long parentId, List<MenuVO> menus) {
-        var menuList = menus.stream()
+        return menus.stream()
                 .filter(menu -> menu.getParentId().equals(parentId))
-                .sorted(Comparator.comparing(MenuVO::getSort))
-                .toList();
-        menuList.forEach(menu -> menu.setChildren(toTree(menu.getId(), menus)));
-        return menuList;
+                .peek(menu -> menu.setChildren(toTree(menu.getId(), menus)))
+//                .sorted(Comparator.comparing(MenuVO::getSort))
+                .collect(Collectors.toList());
     }
 }
 
