@@ -7,13 +7,8 @@ import com.lingyi.mall.biz.product.param.CategoryAttributeParam;
 import com.lingyi.mall.biz.product.repository.CategoryAttributeRepository;
 import com.lingyi.mall.biz.product.service.CategoryAttributeService;
 import com.lingyi.mall.biz.product.vo.CategoryAttributeVO;
-import com.lingyi.mall.common.orm.param.BasePageParam;
-import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @Author: maweiyan

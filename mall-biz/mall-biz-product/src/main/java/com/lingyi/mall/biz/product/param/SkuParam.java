@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.product.param;
 
-import com.lingyi.mall.common.orm.param.BasePageParam;
+import com.lingyi.mall.common.core.param.BasePageParam;
 
 /**
  * @Author: maweiyan

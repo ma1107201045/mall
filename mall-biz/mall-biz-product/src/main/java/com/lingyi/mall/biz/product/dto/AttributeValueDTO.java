@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.product.dto;
 
-import com.lingyi.mall.common.orm.dto.BaseIdDTO;
+import com.lingyi.mall.common.core.dto.BaseIdDTO;
 
 import java.io.Serial;
 

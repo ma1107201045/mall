@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.member.param;
 
-import com.lingyi.mall.common.orm.param.BasePageParam;
+import com.lingyi.mall.common.core.param.BasePageParam;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

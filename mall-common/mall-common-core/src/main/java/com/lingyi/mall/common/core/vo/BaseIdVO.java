@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.orm.vo;
+package com.lingyi.mall.common.core.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

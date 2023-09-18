@@ -9,8 +9,6 @@ import com.lingyi.mall.biz.system.param.RoleParam;
 import com.lingyi.mall.biz.system.param.UserParam;
 import com.lingyi.mall.biz.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.vo.UserVO;
-import com.lingyi.mall.common.orm.param.BasePageParam;
-import com.lingyi.mall.common.orm.util.BaseService;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
 
 import java.util.List;

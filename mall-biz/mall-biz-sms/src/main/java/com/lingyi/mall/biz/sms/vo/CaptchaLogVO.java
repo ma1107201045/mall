@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.sms.vo;
 
-import com.lingyi.mall.common.orm.vo.BaseIdVO;
+import com.lingyi.mall.common.core.vo.BaseIdVO;
 
 import java.io.Serial;
 

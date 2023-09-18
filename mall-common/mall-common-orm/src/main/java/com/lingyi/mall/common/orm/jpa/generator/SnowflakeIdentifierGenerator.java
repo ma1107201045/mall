@@ -9,7 +9,6 @@ import org.hibernate.id.IdentifierGenerator;
 import org.springframework.stereotype.Component;
 
 import java.io.Serial;
-import java.io.Serializable;
 import java.util.Objects;
 
 /**

@@ -1,9 +1,7 @@
 package com.lingyi.mall.api.system.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.lingyi.mall.common.core.dto.BaseIdDTO;
+import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -15,19 +13,16 @@ import java.time.LocalDateTime;
  * @datetime 2023/6/9 16:35
  * @description
  */
+
 @Data
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LogReqDTO implements Serializable {
+public class LogReqDTO extends BaseIdDTO<Long> {
 
-    @Serial
-    private static final long serialVersionUID = -836497663439889409L;
 
-    /**
-     * id
-     */
-    private Long id;
     /**
      * 标题
      */

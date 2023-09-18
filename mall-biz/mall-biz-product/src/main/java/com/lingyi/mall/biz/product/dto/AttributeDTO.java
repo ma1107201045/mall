@@ -1,13 +1,12 @@
 package com.lingyi.mall.biz.product.dto;
 
-import com.lingyi.mall.common.orm.dto.BaseIdDTO;
+import com.lingyi.mall.common.core.dto.BaseIdDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import java.io.Serial;
-import java.io.Serializable;
 import java.util.List;
 
 /**

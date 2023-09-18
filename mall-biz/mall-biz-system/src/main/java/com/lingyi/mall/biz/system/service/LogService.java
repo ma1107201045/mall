@@ -13,14 +13,7 @@ import com.lingyi.mall.common.orm.util.BaseServicePro;
  * @datetime 2023/6/3 9:32
  * @description
  */
-public interface LogService extends BaseServicePro<LogDTO, LogVO, LogParam, LogDO, Long> {
+public interface LogService extends BaseServicePro<LogReqDTO, LogVO, LogParam, LogDO, Long> {
 
-
-    /**
-     * 保存
-     *
-     * @param logReqDTO ..
-     */
-    void save(LogReqDTO logReqDTO);
 
 }

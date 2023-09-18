@@ -1,12 +1,10 @@
 package com.lingyi.mall.biz.member.vo;
 
-import com.lingyi.mall.common.orm.vo.BaseIdVO;
+import com.lingyi.mall.common.core.vo.BaseIdVO;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Column;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import org.hibernate.annotations.DynamicInsert;
 
 import java.io.Serial;
 import java.math.BigDecimal;

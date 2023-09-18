@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.system.dto;
 
-import com.lingyi.mall.common.orm.dto.BaseIdDTO;
+import com.lingyi.mall.common.core.dto.BaseIdDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -10,7 +10,6 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import java.io.Serial;
-import java.io.Serializable;
 
 /**
  * @author maweiyan
@@ -23,7 +22,6 @@ import java.io.Serializable;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Schema(description = "菜单")
-
 public class MenuDTO extends BaseIdDTO<Long> {
 
     @Serial

@@ -1,13 +1,12 @@
 package com.lingyi.mall.biz.system.vo;
 
-import com.lingyi.mall.common.orm.vo.BaseIdVO;
+import com.lingyi.mall.common.core.vo.BaseIdVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import java.io.Serial;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 

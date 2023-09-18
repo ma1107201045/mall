@@ -1,9 +1,7 @@
 package com.lingyi.mall.biz.sms.dto;
 
-import com.lingyi.mall.common.orm.dto.BaseIdDTO;
-import com.lingyi.mall.common.orm.vo.BaseIdVO;
+import com.lingyi.mall.common.core.dto.BaseIdDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Column;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;

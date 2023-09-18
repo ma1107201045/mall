@@ -1,9 +1,9 @@
 package com.lingyi.mall.common.orm.util;
 
 
-import com.lingyi.mall.common.orm.dto.BaseIdDTO;
-import com.lingyi.mall.common.orm.param.BasePageParam;
-import com.lingyi.mall.common.orm.vo.BaseIdVO;
+import com.lingyi.mall.common.core.dto.BaseIdDTO;
+import com.lingyi.mall.common.core.param.BasePageParam;
+import com.lingyi.mall.common.core.vo.BaseIdVO;
 
 import java.io.Serializable;
 import java.util.Collections;

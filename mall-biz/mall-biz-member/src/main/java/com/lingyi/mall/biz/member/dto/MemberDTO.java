@@ -1,8 +1,7 @@
 package com.lingyi.mall.biz.member.dto;
 
-import com.lingyi.mall.common.orm.dto.BaseIdDTO;
+import com.lingyi.mall.common.core.dto.BaseIdDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

@@ -25,13 +25,7 @@ import java.util.List;
  * @description
  */
 @Service
-public class LogServiceImpl extends BaseServiceProImpl<LogRepository, LogMapper, LogDTO, LogVO, LogParam, LogDO, Long> implements LogService {
-
-    @Override
-    public void save(LogReqDTO logReqDTO) {
-        var logDTO = ConverterUtil.to(logReqDTO, LogDTO.class);
-        create(logDTO, LogDO.class);
-    }
+public class LogServiceImpl extends BaseServiceProImpl<LogRepository, LogMapper, LogReqDTO, LogVO, LogParam, LogDO, Long> implements LogService {
 
 
 }

@@ -4,8 +4,6 @@ import com.lingyi.mall.biz.product.dto.SpuDTO;
 import com.lingyi.mall.biz.product.entity.SpuDO;
 import com.lingyi.mall.biz.product.param.SpuParam;
 import com.lingyi.mall.biz.product.vo.SpuVO;
-import com.lingyi.mall.common.orm.param.BasePageParam;
-import com.lingyi.mall.common.orm.util.BaseService;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
 
 /**
