@@ -19,6 +19,6 @@ import lombok.ToString;
 public class MemberParam extends BasePageParam {
 
     @Schema(description = "用户名称")
-    private String userName;
+    private String nickName;
 
 }

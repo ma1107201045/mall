@@ -29,8 +29,6 @@ public enum SystemFailEnum implements BaseFailEnum {
 
     MENU_DIRECTORY_PARENT_ERROR(8006, "目录父级错误"),
 
-    MENU_TYPE_NOT_EXIST_ERROR(8007, "菜单类型不存在"),
-
     MENU_MENU_PARENT_ERROR(8008, "菜单父级错误"),
 
     MENU_BUTTON_PARENT_ERROR(8009, "按钮父级错误"),

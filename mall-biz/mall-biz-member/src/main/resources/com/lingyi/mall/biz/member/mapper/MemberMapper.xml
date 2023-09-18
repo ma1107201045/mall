@@ -24,8 +24,8 @@
         register_data_time
     </sql>
     <sql id="Base_Condition">
-        <if test="userName!=null and userName!=''">
-            AND user_name LIKE CONCAT('%',#{userName,jdbcType=VARCHAR},'%')
+        <if test="nickName!=null and nickName!=''">
+            AND nick_name LIKE CONCAT('%',#{nickName,jdbcType=VARCHAR},'%')
         </if>
     </sql>
     <select id="selectById" resultMap="BaseResultMap">

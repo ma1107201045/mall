@@ -42,7 +42,6 @@ public class MenuDTO extends BaseIdDTO<Long> {
     private Integer type;
 
     @Schema(description = "父级菜单id", requiredMode = Schema.RequiredMode.REQUIRED)
-    @NotNull(message = "父级菜单id不能为空")
     private Long parentId;
 
     @Schema(description = "菜单图标")

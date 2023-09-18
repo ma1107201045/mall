@@ -43,31 +43,28 @@ public class MenuServiceImpl extends BaseServiceProImpl<MenuRepository, MenuMapp
     @Transactional(rollbackFor = Exception.class)
     public void create(MenuDTO menuDTO) {
         //校验数据
-        verifyAndGet(menuDTO, false);
-        //DTO转换Entity
-        var menuDO = ConverterUtil.to(menuDTO, MenuDO.class);
+        verifyData(menuDTO);
         //保存
-        menuRepository.save(menuDO);
+        create(menuDTO, MenuDO.class);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteByIds(List<Long> ids) {
-        if (CollUtil.isNotEmpty(ids)) {
-            menuRepository.deleteAllById(ids);
-            super.deleteByIds(menuMapper.selectIdsByParentIds(ids));
+        if (CollUtil.isEmpty(ids)) {
+            return;
         }
+        menuRepository.deleteAllById(ids);
+        super.deleteByIds(menuMapper.selectIdsByParentIds(ids));
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateById(MenuDTO menuDTO) {
-        //校验数据并且获取菜单
-        var menuDO = verifyAndGet(menuDTO, true);
-        //DTO转换Entity
-        ConverterUtil.to(menuDTO, menuDO);
+        //校验数据
+        verifyData(menuDTO);
         //更新
-        menuRepository.save(menuDO);
+        super.updateById(menuDTO);
     }
 
     @Override
@@ -93,22 +90,21 @@ public class MenuServiceImpl extends BaseServiceProImpl<MenuRepository, MenuMapp
     }
 
 
-    private MenuDO verifyAndGet(MenuDTO menuDTO, boolean isUpdate) {
+    private void verifyData(MenuDTO menuDTO) {
         var type = menuDTO.getType();
         var parentId = menuDTO.getParentId();
-        //断言目录父级为root
+
+        //查询父级类型
+        var newType = menuMapper.selectTypeById(parentId);
+
+        //断言目录父级为root或者是目录
         if (Objects.equals(MenuTypeEnum.DIRECTORY.getCode(), type)) {
-            boolean result = Objects.equals(SystemConstant.MENU_ROOT_ID, parentId);
+            boolean result = Objects.isNull(newType) || Objects.equals(MenuTypeEnum.DIRECTORY.getCode(), newType);
             AssertUtil.isTrue(result, SystemFailEnum.MENU_DIRECTORY_PARENT_ERROR);
         }
-        //断言菜单类型不能为空
-        var newType = menuMapper.selectTypeById(parentId);
-        AssertUtil.notNull(newType, SystemFailEnum.MENU_TYPE_NOT_EXIST_ERROR);
-
-        //断言菜单父级为root或者为目录
+        //断言菜单父级为目录
         if (Objects.equals(MenuTypeEnum.MENU.getCode(), type)) {
-            var result = Objects.equals(SystemConstant.MENU_ROOT_ID, parentId) ||
-                    Objects.equals(MenuTypeEnum.MENU.getCode(), type) && Objects.equals(MenuTypeEnum.DIRECTORY.getCode(), newType);
+            var result = Objects.isNull(newType) || Objects.equals(MenuTypeEnum.DIRECTORY.getCode(), newType);
             AssertUtil.isTrue(result, SystemFailEnum.MENU_MENU_PARENT_ERROR);
         }
 
@@ -117,14 +113,6 @@ public class MenuServiceImpl extends BaseServiceProImpl<MenuRepository, MenuMapp
             var result = Objects.equals(MenuTypeEnum.MENU.getCode(), newType);
             AssertUtil.isTrue(result, SystemFailEnum.MENU_BUTTON_PARENT_ERROR);
         }
-        MenuDO menuDO = null;
-        if (isUpdate) {
-            var optional = menuRepository.findById(menuDTO.getId());
-            //判断用户是否不为空
-            AssertUtil.isFalse(optional.isEmpty(), SystemFailEnum.MENU_NULL_ERROR);
-            menuDO = optional.get();
-        }
-        return menuDO;
     }
 
 

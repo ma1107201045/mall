@@ -34,7 +34,7 @@ public class MenuDO extends BaseCommonDO implements Serializable {
     @Column(name = "type", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '菜单类型 1.目录 2.菜单 3.按钮'")
     private Integer type;
 
-    @Column(name = "parent_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '父级菜单id'")
+    @Column(name = "parent_id", columnDefinition = "BIGINT(20) UNSIGNED DEFAULT 0 COMMENT '父级菜单id'")
     private Long parentId;
 
     @Column(name = "icon", columnDefinition = "VARCHAR(50) DEFAULT '' COMMENT '菜单图标'")
