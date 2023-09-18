@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.redis.aspect;
+package com.lingyi.mall.common.core.annotation;
 
 import java.lang.annotation.*;
 import java.util.concurrent.TimeUnit;
