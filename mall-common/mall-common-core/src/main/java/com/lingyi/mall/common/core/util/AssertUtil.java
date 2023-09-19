@@ -37,6 +37,10 @@ public final class AssertUtil {
         isTrue(ObjUtil.isNotNull(object), runtimeException);
     }
 
+    public static void notNull(Object object, BaseException baseException) {
+        isTrue(ObjUtil.isNotNull(object), baseException);
+    }
+
     public static void isEquals(Object object1, Object object2, BaseFailEnum failEnum) {
         isTrue(Objects.equals(object1, object2), failEnum);
     }
@@ -81,8 +85,13 @@ public final class AssertUtil {
         return t;
     }
 
-    public static <T extends CharSequence> T notBlack(T t, RuntimeException exception) {
-        isTrue(StrUtil.isNotBlank(t), exception);
+    public static <T extends CharSequence> T notBlack(T t, RuntimeException runtimeException) {
+        isTrue(StrUtil.isNotBlank(t), runtimeException);
+        return t;
+    }
+
+    public static <T extends CharSequence> T notBlack(T t, BaseException baseException) {
+        isTrue(StrUtil.isNotBlank(t), baseException);
         return t;
     }
 
@@ -113,9 +122,15 @@ public final class AssertUtil {
         }
     }
 
-    public static void isTrue(boolean flag, RuntimeException exception) {
+    public static void isTrue(boolean flag, RuntimeException runtimeException) {
         if (!flag) {
-            throw exception;
+            throw runtimeException;
+        }
+    }
+
+    public static void isTrue(boolean flag, BaseException baseException) {
+        if (!flag) {
+            throw baseException;
         }
     }
 
