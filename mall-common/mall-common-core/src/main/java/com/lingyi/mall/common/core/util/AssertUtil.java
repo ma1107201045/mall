@@ -6,7 +6,7 @@ import cn.hutool.core.util.ObjUtil;
 import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.common.core.constant.BaseConstant;
 import com.lingyi.mall.common.core.enums.BaseFailEnum;
-import com.lingyi.mall.common.core.exception.BizException;
+import com.lingyi.mall.common.core.exception.BaseException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 
@@ -109,7 +109,7 @@ public final class AssertUtil {
     public static void isTrue(boolean flag, BaseFailEnum baseFailEnum) {
         if (!flag) {
             Object[] objects = getFailEnumValues(baseFailEnum);
-            throw new BizException((Integer) objects[0], (String) objects[1]);
+            throw new BaseException((Integer) objects[0], (String) objects[1]);
         }
     }
 

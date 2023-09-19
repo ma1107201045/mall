@@ -3,21 +3,14 @@ package com.lingyi.mall.biz.member.service.impl;
 import com.lingyi.mall.api.member.dto.MemberLoginLogReqDTO;
 import com.lingyi.mall.biz.member.converter.MemberLoginConverter;
 import com.lingyi.mall.biz.member.dto.MemberLoginLogDTO;
-import com.lingyi.mall.biz.member.entity.MemberDO;
 import com.lingyi.mall.biz.member.entity.MemberLoginLogDO;
-import com.lingyi.mall.biz.member.enums.MemberFailEnum;
 import com.lingyi.mall.biz.member.param.MemberLoginParam;
 import com.lingyi.mall.biz.member.vo.MemberLoginLogVO;
 import com.lingyi.mall.biz.member.mapper.MemberLoginLogMapper;
 import com.lingyi.mall.biz.member.repository.MemberLoginLogRepository;
 import com.lingyi.mall.biz.member.service.MemberLoginLogService;
-import com.lingyi.mall.common.core.exception.BizException;
-import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @author maweiyan

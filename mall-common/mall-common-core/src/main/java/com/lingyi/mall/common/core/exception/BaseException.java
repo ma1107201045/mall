@@ -14,7 +14,7 @@ import java.io.Serial;
  * @description
  */
 @Getter
-public class BizException extends RuntimeException {
+public class BaseException extends RuntimeException {
 
 
     @Serial
@@ -26,19 +26,19 @@ public class BizException extends RuntimeException {
 
 
 
-    public BizException(BaseFailEnum baseFailEnum) {
+    public BaseException(BaseFailEnum baseFailEnum) {
         super((String) AssertUtil.getFailEnumValues(baseFailEnum)[1]);
         this.code = (Integer) AssertUtil.getFailEnumValues(baseFailEnum)[0];
         this.message = (String) AssertUtil.getFailEnumValues(baseFailEnum)[1];
     }
 
-    public BizException(String message) {
+    public BaseException(String message) {
         super(message);
         this.code = HttpStatus.INTERNAL_SERVER_ERROR.value();
         this.message = message;
     }
 
-    public BizException(Integer code, String message) {
+    public BaseException(Integer code, String message) {
         super(message);
         this.code = code;
         this.message = message;

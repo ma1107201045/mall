@@ -6,20 +6,14 @@ import com.lingyi.mall.biz.member.converter.MemberConverter;
 import com.lingyi.mall.biz.member.dto.MemberDTO;
 import com.lingyi.mall.biz.member.dto.MemberPartDTO;
 import com.lingyi.mall.biz.member.entity.MemberDO;
-import com.lingyi.mall.biz.member.entity.MemberLevelDO;
-import com.lingyi.mall.biz.member.enums.MemberFailEnum;
 import com.lingyi.mall.biz.member.mapper.MemberMapper;
 import com.lingyi.mall.biz.member.param.MemberParam;
 import com.lingyi.mall.biz.member.repository.MemberRepository;
 import com.lingyi.mall.biz.member.service.MemberService;
 import com.lingyi.mall.biz.member.vo.MemberVO;
-import com.lingyi.mall.common.core.exception.BizException;
-import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @author maweiyan

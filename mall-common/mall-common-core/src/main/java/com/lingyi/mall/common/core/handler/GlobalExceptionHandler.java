@@ -1,6 +1,6 @@
 package com.lingyi.mall.common.core.handler;
 
-import com.lingyi.mall.common.core.exception.BizException;
+import com.lingyi.mall.common.core.exception.BaseException;
 import com.lingyi.mall.common.core.exception.OpenFeignException;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import jakarta.validation.ConstraintViolation;
@@ -36,9 +36,9 @@ public class GlobalExceptionHandler {
     private static final Integer PARAMETER_CODE = 1001;
     private static final Integer FILE_SIZE_CODE = 2001;
 
-    @ExceptionHandler(BizException.class)
+    @ExceptionHandler(BaseException.class)
     @ResponseStatus(HttpStatus.OK)
-    public ServerResponse<Void> bizException(BizException e) {
+    public ServerResponse<Void> bizException(BaseException e) {
         log.error("BizException：", e);
         return ServerResponse.fail(e.getCode(), e.getMessage());
     }
