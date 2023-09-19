@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.system.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.lingyi.mall.common.core.vo.BaseIdVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -31,6 +32,7 @@ public class MenuVO extends BaseIdVO<Long> {
     @Schema(description = "菜单类型 1目录 2 菜单 3 按钮")
     private Integer type;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     @Schema(description = "父级菜单id")
     private Long parentId;
 
