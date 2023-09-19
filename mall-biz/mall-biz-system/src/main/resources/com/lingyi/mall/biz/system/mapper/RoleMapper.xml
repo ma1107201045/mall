@@ -49,7 +49,7 @@
         ) mr
         LEFT JOIN ms_role_menu mrm ON mr.id =mrm.role_id
         LEFT JOIN ms_menu mm ON mm.id = mrm.menu_id
-        ORDER BY ${sortField} ${sortDirection}
+        ORDER BY mr.${sort}
     </select>
     <select id="selectList" resultType="com.lingyi.mall.biz.system.vo.RoleVO">
         SELECT

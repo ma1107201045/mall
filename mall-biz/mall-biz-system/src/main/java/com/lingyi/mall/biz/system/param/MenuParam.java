@@ -22,4 +22,6 @@ public class MenuParam extends BasePageParam {
     @Schema(description = "菜单名称")
     private String name;
 
+
+
 }

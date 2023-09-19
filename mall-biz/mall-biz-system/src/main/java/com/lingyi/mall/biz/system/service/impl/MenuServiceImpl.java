@@ -17,6 +17,7 @@ import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.core.util.ObjectUtil;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -80,8 +81,11 @@ public class MenuServiceImpl extends BaseServiceProImpl<MenuRepository, MenuMapp
 
     @Override
     public List<MenuVO> readTree() {
-        var menuVOList = readListByParam(ObjectUtil.newInstance(MenuParam.class));
-        return toTree(SystemConstant.MENU_ROOT_ID, menuVOList);
+        MenuParam menuParam = new MenuParam();
+        menuParam.setSortField("sort");
+        menuParam.setSortDirection("ASC");
+        var menus = readListByParam(menuParam);
+        return toTree(SystemConstant.MENU_ROOT_ID, menus);
     }
 
 

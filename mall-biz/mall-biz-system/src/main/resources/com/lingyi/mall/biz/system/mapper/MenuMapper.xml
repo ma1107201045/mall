@@ -41,6 +41,7 @@
         <where>
             <include refid="Base_Condition"/>
         </where>
+        ORDER BY ${sort}
     </select>
     <select id="selectTypeById" resultType="java.lang.Integer">
         SELECT type
