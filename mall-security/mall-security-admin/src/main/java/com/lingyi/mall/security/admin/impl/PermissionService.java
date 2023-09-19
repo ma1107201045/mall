@@ -23,8 +23,7 @@ public class PermissionService {
      */
     public boolean hasAnyAuthority(String permission) {
         return AuthenticatorUtil.getAuthorities().stream()
-                .flatMap(grantedAuthority -> Arrays.stream(grantedAuthority.getAuthority()
-                        .split(SecurityConstant.PERMISSION_SPLIT_CHAR)))
+                .flatMap(grantedAuthority -> Arrays.stream(grantedAuthority.getAuthority().split(SecurityConstant.PERMISSION_SPLIT_CHAR)))
                 .anyMatch(item -> item.equals(permission));
 
     }

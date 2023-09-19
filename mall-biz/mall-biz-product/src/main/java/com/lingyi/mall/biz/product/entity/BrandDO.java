@@ -23,7 +23,7 @@ public class BrandDO extends BaseCommonDO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 9200613963397364846L;
-    
+
     @Column(name = "user_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '用户id'")
     private Long userId;
 
@@ -36,12 +36,12 @@ public class BrandDO extends BaseCommonDO implements Serializable {
     @Column(name = "name", columnDefinition = "VARCHAR(50) NOT NULL COMMENT '品牌名称'")
     private String name;
 
-    @Column(name = "logo", columnDefinition = "VARCHAR(100) NOT NULL COMMENT 'logo'")
+    @Column(name = "logo", columnDefinition = "VARCHAR(200) NOT NULL COMMENT 'logo'")
     private String logo;
 
-    @Column(name = "first_character", columnDefinition = "CHAR(1) DEFAULT '' COMMENT '品牌首字母'")
+    @Column(name = "first_character", columnDefinition = "CHAR(1) NOT NULL COMMENT '品牌首字母'")
     private String firstCharacter;
 
-    @Column(name = "main_pic", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '品牌主图'")
+    @Column(name = "main_pic", columnDefinition = "VARCHAR(200) NOT NULL COMMENT '品牌主图'")
     private String mainPic;
 }

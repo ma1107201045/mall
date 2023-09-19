@@ -19,7 +19,7 @@
     </resultMap>
     <sql id="Base_Column_List">
         id, merchant_id, shop_id, user_id, first_character, logo, main_pic, `name`, create_by,
-    create_date_time, last_modify_by, last_modify_date_time, is_delete
+    create_date_time, last_modify_by, last_modify_date_time
     </sql>
     <sql id="Base_Condition">
         <if test="name!=null and name!=''">

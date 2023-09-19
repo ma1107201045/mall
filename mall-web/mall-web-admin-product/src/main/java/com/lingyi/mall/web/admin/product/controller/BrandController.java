@@ -43,7 +43,7 @@ public class BrandController {
 
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
-    @PreAuthorize("@ps.hasAnyAuthority('admin:system:brands:delete')")
+    @PreAuthorize("@ps.hasAnyAuthority('admin:product:brands:delete')")
     @Log(title = "删除品牌", operationType = OperationTypeEnum.DELETE)
     public ServerResponse<Void> deleteByIds(@PathVariable List<Long> ids) {
         brandService.deleteByIds(ids);
@@ -52,7 +52,7 @@ public class BrandController {
 
     @Operation(summary = "更新", description = "更新")
     @PutMapping("/{id}")
-    @PreAuthorize("@ps.hasAnyAuthority('admin:system:brands:update')")
+    @PreAuthorize("@ps.hasAnyAuthority('admin:product:brands:update')")
     @Log(title = "更新品牌", operationType = OperationTypeEnum.UPDATE)
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody BrandDTO brandDTO) {
         brandDTO.setId(id);
@@ -62,7 +62,7 @@ public class BrandController {
 
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
-    @PreAuthorize("@ps.hasAnyAuthority('admin:system:brands:get')")
+    @PreAuthorize("@ps.hasAnyAuthority('admin:product:brands:get')")
     @Log(title = "查询品牌", operationType = OperationTypeEnum.READ)
     public ServerResponse<BrandVO> getById(@PathVariable Long id) {
         var brandVO = brandService.readById(id);
@@ -71,7 +71,7 @@ public class BrandController {
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
-    @PreAuthorize("@ps.hasAnyAuthority('admin:system:brands:getList')")
+    @PreAuthorize("@ps.hasAnyAuthority('admin:product:brands:getList')")
     @Log(title = "查询品牌列表", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<BrandVO>> getListByPageAndParam(@Valid BrandParam brandParam) {
         var page = PageHelper.startPage(brandParam.getCurrentPage(), brandParam.getPageSize());

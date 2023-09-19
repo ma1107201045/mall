@@ -70,9 +70,9 @@ public class BaseServiceProImpl<
     public void updateById(DO doEntity) {
         var optional = jpaRepository.findById(doEntity.getId());
         if (optional.isPresent()) {
-            var newDOEntity = optional.get();
-            ConverterUtil.to(doEntity, newDOEntity);
-            jpaRepository.save(newDOEntity);
+            var newDo = optional.get();
+            ConverterUtil.to(doEntity, newDo);
+            jpaRepository.save(newDo);
         }
     }
 

@@ -1,5 +1,6 @@
 package com.lingyi.mall.common.orm.jpa.listener;
 
+import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.common.core.constant.BaseConstant;
 import com.lingyi.mall.common.core.enums.WhetherEnum;
@@ -40,6 +41,19 @@ public class CustomEntityListener {
         }
         if (target instanceof BaseIsDeleteDO baseIsDeleteEntity && Objects.isNull(baseIsDeleteEntity.getIsDelete())) {
             baseIsDeleteEntity.setIsDelete(WhetherEnum.N.getCode());
+        }
+        //临时逻辑,后期优化
+        if (ReflectUtil.hasField(target.getClass(), "merchantId")) {
+            ReflectUtil.setFieldValue(target, "merchantId", 1L);
+        }
+        if (ReflectUtil.hasField(target.getClass(), "shopId")) {
+            ReflectUtil.setFieldValue(target, "shopId", 1L);
+        }
+        if (ReflectUtil.hasField(target.getClass(), "userId")) {
+            Object userId = ReflectUtil.getFieldValue(target, "userId");
+            if (Objects.isNull(userId)) {
+                ReflectUtil.setFieldValue(target, "userId", 1L);
+            }
         }
     }
 
