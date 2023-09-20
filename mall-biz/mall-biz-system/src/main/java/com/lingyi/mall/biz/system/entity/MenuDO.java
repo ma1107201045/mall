@@ -46,7 +46,7 @@ public class MenuDO extends BaseCommonDO implements Serializable {
     @Column(name = "is_enable", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '是否启用 1 是 0 否'")
     private Integer isEnable;
 
-    @Column(name = "route_name", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '路由名称'")
+    @Column(name = "route_name", columnDefinition = "VARCHAR(50) DEFAULT '' COMMENT '路由名称'")
     private String routeName;
 
     @Column(name = "route_path", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '路由路径'")

@@ -12,7 +12,7 @@ import lombok.ToString;
  * @DateTime: 2023/8/31 16:04
  * @Description:
  */
-@Schema(description = "用户")
+@Schema(description = "品牌")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)

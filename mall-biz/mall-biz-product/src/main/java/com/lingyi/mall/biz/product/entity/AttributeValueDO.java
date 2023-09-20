@@ -10,7 +10,12 @@ import org.hibernate.annotations.DynamicInsert;
 import java.io.Serial;
 import java.io.Serializable;
 
-
+/**
+ * @Author: maweiyan
+ * @Email: 1107201045@qq.com
+ * @DateTime: 2023/8/31 16:03
+ * @Description:
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)

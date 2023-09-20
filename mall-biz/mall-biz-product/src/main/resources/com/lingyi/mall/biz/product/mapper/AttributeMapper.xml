@@ -30,7 +30,7 @@
         SELECT
         <include refid="Base_Column_List"/>
         FROM mp_attribute
-        WHERE id=#{id,jdbcType=BIGINT}
+        WHERE id = #{id,jdbcType=BIGINT}
     </select>
     <select id="countByParam" resultType="java.lang.Long">
         SELECT COUNT(*) FROM mp_attribute
@@ -49,6 +49,6 @@
         LIMIT #{offset},#{limit}
         ) ma
         LEFT JOIN mp_attribute_value mav ON ma.id = mav.attribute_id
-        ORDER BY ma.${sortField} ${sortDirection}
+        ORDER BY ma.${sort}
     </select>
 </mapper>
