@@ -28,7 +28,7 @@ public interface BaseServicePro<
      *
      * @param dto dto
      */
-    void create(DTO dto, Class<DO> clazz);
+    ID create(DTO dto, Class<DO> clazz);
 
     /**
      * 增
@@ -36,7 +36,7 @@ public interface BaseServicePro<
      * @param dto      dto
      * @param doEntity do
      */
-    void create(DTO dto, DO doEntity);
+    ID create(DTO dto, DO doEntity);
 
     /**
      * 增

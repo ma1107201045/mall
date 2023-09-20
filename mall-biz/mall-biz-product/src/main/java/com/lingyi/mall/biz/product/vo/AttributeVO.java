@@ -50,5 +50,5 @@ public class AttributeVO extends BaseIdVO<Long> {
     private LocalDateTime lastModifyDateTime;
 
     @Schema(description = "属性值名称")
-    private List<AttributeValueVO> attributeValues;
+    private List<String> attributeValueNames;
 }

@@ -2,6 +2,9 @@ package com.lingyi.mall.biz.product.dto;
 
 import com.lingyi.mall.common.core.dto.BaseIdDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -38,8 +41,11 @@ public class AttributeDTO extends BaseIdDTO<Long> {
     private Long shopId;
 
     @Schema(description = "属性名称")
+    @NotBlank(message = "属性名称不能为空")
     private String name;
 
     @Schema(description = "属性值集")
+    @NotNull(message = "属性值集不能为空")
+    @Size(min = 1, message = "属性值集不能为空")
     private List<String> attributeValueNames;
 }

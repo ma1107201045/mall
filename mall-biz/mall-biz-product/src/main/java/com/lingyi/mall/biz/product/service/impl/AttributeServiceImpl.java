@@ -34,9 +34,9 @@ public class AttributeServiceImpl extends BaseServiceProImpl<AttributeRepository
     @Transactional(rollbackFor = Exception.class)
     public void save(AttributeDTO attributeDTO) {
         //保存属性
-        create(attributeDTO, AttributeDO.class);
+        Long id = create(attributeDTO, AttributeDO.class);
         //批量保存属性值信息
-        attributeValueService.createList(attributeDTO.getId(), attributeDTO.getAttributeValueNames());
+        attributeValueService.createList(id, attributeDTO.getAttributeValueNames());
     }
 
     @Override

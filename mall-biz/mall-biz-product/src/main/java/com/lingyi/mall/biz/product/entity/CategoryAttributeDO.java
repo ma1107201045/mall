@@ -10,6 +10,12 @@ import org.hibernate.annotations.DynamicInsert;
 import java.io.Serial;
 import java.io.Serializable;
 
+/**
+ * @Author: maweiyan
+ * @Email: 1107201045@qq.com
+ * @DateTime: 2023/8/31 16:03
+ * @Description:
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
@@ -24,7 +30,7 @@ public class CategoryAttributeDO extends BaseCommonDO implements Serializable {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "category_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '分类id'")
     private CategoryDO categoryDO;
-    
+
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "attribute_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '属性id'")
     private AttributeDO attributeDO;

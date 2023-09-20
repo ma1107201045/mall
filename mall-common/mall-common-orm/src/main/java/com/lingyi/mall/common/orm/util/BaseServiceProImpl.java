@@ -35,14 +35,16 @@ public class BaseServiceProImpl<
     protected M mybatisMapper;
 
 
-    public void create(DTO dto, Class<DO> clazz) {
+    public ID create(DTO dto, Class<DO> clazz) {
         var doEntity = ConverterUtil.to(dto, clazz);
         jpaRepository.save(doEntity);
+        return doEntity.getId();
     }
 
-    public void create(DTO dto, DO doEntity) {
+    public ID create(DTO dto, DO doEntity) {
         ConverterUtil.to(dto, doEntity);
         jpaRepository.save(doEntity);
+        return doEntity.getId();
     }
 
     @Override

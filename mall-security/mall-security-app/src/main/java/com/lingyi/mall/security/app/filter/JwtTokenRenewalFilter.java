@@ -36,7 +36,7 @@ public class JwtTokenRenewalFilter extends AbstractJwtTokenFilter {
             var expiresAt = JwtUtil.getJwtPayloadExp(oldToken);
             if (!DateUtil.date().after(expiresAt)) {
                 var phoneNumber = JwtUtil.getJwtPayloadPhoneNumber(oldToken);
-                MemberRespDTO memberRespDTO = memberFeignConsumer.getByPhoneNumber(phoneNumber);
+                var memberRespDTO = memberFeignConsumer.getByPhoneNumber(phoneNumber);
                 var token = JwtUtil.createToken(memberRespDTO);
                 response.setHeader(SecurityConstant.AUTHORIZATION, token);
             }

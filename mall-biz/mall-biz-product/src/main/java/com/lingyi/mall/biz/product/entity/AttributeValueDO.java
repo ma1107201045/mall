@@ -36,7 +36,7 @@ public class AttributeValueDO extends BaseCommonDO implements Serializable {
     @Column(name = "shop_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '商铺id'")
     private Long shopId;
 
-    @ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "attribute_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '属性id'", foreignKey = @ForeignKey(name = "mp_attribute_value_fk_attribute_id"))
     private AttributeDO attributeDO;
 

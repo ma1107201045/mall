@@ -13,9 +13,8 @@
         <result column="create_date_time" jdbcType="TIMESTAMP" property="createDateTime"/>
         <result column="last_modify_by" jdbcType="VARCHAR" property="lastModifyBy"/>
         <result column="last_modify_date_time" jdbcType="TIMESTAMP" property="lastModifyDateTime"/>
-        <collection property="attributeValues" ofType="com.lingyi.mall.biz.product.vo.AttributeValueVO">
-            <id column="id" jdbcType="BIGINT" property="id"/>
-            <result column="name" jdbcType="VARCHAR" property="name"/>
+        <collection property="attributeValueNames" ofType="java.lang.String">
+            <result column="mav_name" jdbcType="VARCHAR"/>
         </collection>
     </resultMap>
     <sql id="Base_Column_List">
@@ -39,7 +38,7 @@
         </where>
     </select>
     <select id="selectListByParam" resultMap="BaseResultMap">
-        SELECT ma.*,mav.id, mav.name FROM
+        SELECT ma.*,mav.name mav_name FROM
         (SELECT
         <include refid="Base_Column_List"/>
         FROM mp_attribute
