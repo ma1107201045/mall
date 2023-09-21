@@ -63,8 +63,6 @@ public class LogAspect {
     /**
      * 控制台日志切点
      */
-
-    @Order(1)
     @Pointcut("execution(public com.lingyi.mall.common.core.util.ServerResponse com.lingyi.mall..*(..))")
     private void consolePointcut() {
 
@@ -74,7 +72,6 @@ public class LogAspect {
     /**
      * 数据库日志切点
      */
-    @Order(2)
     @Pointcut("@annotation(com.lingyi.mall.common.core.annotation.Log)")
     private void dataBasePointcut() {
     }

@@ -18,12 +18,14 @@
         <result property="remark" column="remark" jdbcType="VARCHAR"/>
         <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
         <result property="createDateTime" column="create_date_time" jdbcType="TIMESTAMP"/>
+        <result property="lastModifyBy" column="last_modify_by" jdbcType="VARCHAR"/>
+        <result property="lastModifyDateTime" column="last_modify_date_time" jdbcType="TIMESTAMP"/>
     </resultMap>
     <sql id="Base_Column_List">
         id,title,operation_type,call_class,call_class_method,
         request_param,response_param,
         execute_duration,execute_result,fail_reason,client_ip,remark,
-        create_by,create_date_time
+        create_by,create_date_time,last_modify_by,last_modify_date_time
     </sql>
     <sql id="Base_Condition">
         <if test="title != null and title != '' and title.trim() != ''">

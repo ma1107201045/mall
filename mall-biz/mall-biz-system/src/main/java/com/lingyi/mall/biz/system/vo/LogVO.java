@@ -27,8 +27,10 @@ public class LogVO extends BaseIdVO<Long> {
 
     @Schema(description = "标题")
     private String title;
+
     @Schema(description = "操作类型 1.创建 2.删除 3.更改 4.读取 5.其他")
     private Integer operationType;
+
     @Schema(description = "调用类名")
     private String callClass;
 
@@ -54,9 +56,17 @@ public class LogVO extends BaseIdVO<Long> {
 
     @Schema(description = "备注")
     private String remark;
+
     @Schema(description = "创建人")
     private String createBy;
+
     @Schema(description = "创建时间")
     private LocalDateTime createDateTime;
+
+    @Schema(description = "最后一次更新人")
+    private String lastModifyBy;
+
+    @Schema(description = "最后一次更新时间")
+    private LocalDateTime lastModifyDateTime;
 
 }
