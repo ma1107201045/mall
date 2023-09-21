@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepositoryImplementation<UserDO, Long> {
 
     @Query("SELECT id FROM UserDO WHERE userName = ?1")
-    Long selectIdByUserName(String userName);
+    Long findIdByUserName(String userName);
 
 
 }

@@ -54,7 +54,7 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
     @Transactional(rollbackFor = Exception.class)
     public void create(UserDTO userDTO) {
         //通过用户名称获取用户id
-        var id = jpaRepository.selectIdByUserName(userDTO.getUserName());
+        var id = jpaRepository.findIdByUserName(userDTO.getUserName());
         //判断用户名称不存在
         AssertUtil.isNull(id, SystemFailEnum.USER_NAME_EXIST_ERROR);
         //密码作哈希
@@ -86,7 +86,7 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
         AssertUtil.isFalse(SystemConstant.USER_NAME_ADMIN.equals(userDTO.getUserName()), SystemFailEnum.USER_NAME_ADMIN_UPDATE_ERROR);
 
         //断言用户名称是否相同
-        var newId = jpaRepository.selectIdByUserName(userDTO.getUserName());
+        var newId = jpaRepository.findIdByUserName(userDTO.getUserName());
         var flag = Objects.nonNull(newId) && !Objects.equals(id, newId);
         AssertUtil.isFalse(flag, SystemFailEnum.USER_NAME_EXIST_ERROR);
 
