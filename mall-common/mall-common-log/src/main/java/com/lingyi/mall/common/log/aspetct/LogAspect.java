@@ -25,6 +25,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.MDC;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -63,6 +64,7 @@ public class LogAspect {
      * 控制台日志切点
      */
 
+    @Order(1)
     @Pointcut("execution(public com.lingyi.mall.common.core.util.ServerResponse com.lingyi.mall..*(..))")
     private void consolePointcut() {
 
@@ -72,6 +74,7 @@ public class LogAspect {
     /**
      * 数据库日志切点
      */
+    @Order(2)
     @Pointcut("@annotation(com.lingyi.mall.common.core.annotation.Log)")
     private void dataBasePointcut() {
     }

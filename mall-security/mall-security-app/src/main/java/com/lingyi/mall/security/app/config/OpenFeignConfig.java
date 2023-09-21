@@ -18,8 +18,8 @@ import org.springframework.lang.NonNull;
  * @DateTime: 2023/5/6 22:17
  * @Description:
  */
-@Configuration(proxyBeanMethods = false)
-public class AppOpenFeignConfig {
+@Configuration(value = "appOpenFeignConfig", proxyBeanMethods = false)
+public class OpenFeignConfig {
 
 
     @Bean

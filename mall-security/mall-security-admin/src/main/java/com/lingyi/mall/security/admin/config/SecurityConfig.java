@@ -8,7 +8,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,8 +29,9 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
  * @datetime 2023/5/2 13:14
  * @description
  */
-@Configuration(proxyBeanMethods = false)
-public class AdminSecurityConfig {
+@Configuration(value = "adminSecurityConfig", proxyBeanMethods = false)
+@EnableMethodSecurity
+public class SecurityConfig {
 
 
     @Bean
@@ -103,15 +106,10 @@ public class AdminSecurityConfig {
                 .build();
     }
 
-//    @Bean
-//    public WebSecurityCustomizer webSecurityCustomizer() {
-//        return web -> web.ignoring().requestMatchers("doc.html",
-//                "/v3/**",
-//                "/favicon.ico",
-//                "/images/**",
-//                "/js/**",
-//                "/webjars/**");
-//    }
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return web -> web.ignoring().requestMatchers(HttpMethod.POST, "/admin/system/logs");
+    }
 
 
 }

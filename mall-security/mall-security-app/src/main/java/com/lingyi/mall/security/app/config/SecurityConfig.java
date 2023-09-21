@@ -20,8 +20,8 @@ import org.springframework.context.support.MessageSourceAccessor;
  * @datetime 2023/5/2 13:14
  * @description
  */
-@Configuration(proxyBeanMethods = false)
-public class AppSecurityConfig {
+@Configuration(value = "appSecurityConfig", proxyBeanMethods = false)
+public class SecurityConfig {
 
 
     @Bean
