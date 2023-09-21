@@ -2,7 +2,9 @@ package com.lingyi.mall.biz.system.repository;
 
 
 import com.lingyi.mall.biz.system.entity.UserDO;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -13,5 +15,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserRepository extends JpaRepositoryImplementation<UserDO, Long> {
+
+    @Query("SELECT id FROM UserDO WHERE userName = ?1")
+    Long selectIdByUserName(String userName);
+
 
 }

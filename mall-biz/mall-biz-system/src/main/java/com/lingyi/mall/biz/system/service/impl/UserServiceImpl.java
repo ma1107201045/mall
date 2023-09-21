@@ -54,7 +54,7 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
     @Transactional(rollbackFor = Exception.class)
     public void create(UserDTO userDTO) {
         //通过用户名称获取用户id
-        var id = mybatisMapper.selectIdByUserName(userDTO.getUserName());
+        var id = jpaRepository.selectIdByUserName(userDTO.getUserName());
         //判断用户名称不存在
         AssertUtil.isNull(id, SystemFailEnum.USER_NAME_EXIST_ERROR);
         //密码作哈希
@@ -82,17 +82,11 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
     @Transactional(rollbackFor = Exception.class)
     public void updateById(UserDTO userDTO) {
         var id = userDTO.getId();
-        //获取用户信息
-        var optional = jpaRepository.findById(id);
-        //断言用户是否不为空
-        AssertUtil.isFalse(optional.isEmpty(), SystemFailEnum.USER_NULL_ERROR);
-        //获取用户
-        var userDO = optional.get();
         //断言用户是否admin
-        AssertUtil.isFalse(SystemConstant.USER_NAME_ADMIN.equals(userDO.getUserName()), SystemFailEnum.USER_NAME_ADMIN_UPDATE_ERROR);
+        AssertUtil.isFalse(SystemConstant.USER_NAME_ADMIN.equals(userDTO.getUserName()), SystemFailEnum.USER_NAME_ADMIN_UPDATE_ERROR);
 
         //断言用户名称是否相同
-        var newId = mybatisMapper.selectIdByUserName(userDTO.getUserName());
+        var newId = jpaRepository.selectIdByUserName(userDTO.getUserName());
         var flag = Objects.nonNull(newId) && !Objects.equals(id, newId);
         AssertUtil.isFalse(flag, SystemFailEnum.USER_NAME_EXIST_ERROR);
 
@@ -114,18 +108,11 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
 
     @Override
     public void updatePartById(UserPartReqDTO userPartReqDTO) {
-        //获取用户信息
-        var optional = jpaRepository.findById(userPartReqDTO.getId());
-        //断言用户是否不为空
-        AssertUtil.isFalse(optional.isEmpty(), SystemFailEnum.USER_NULL_ERROR);
-        //获取用户
-        var userDO = optional.get();
         //密码作哈希
         var encodePassword = passwordEncoder.encode(userPartReqDTO.getPassword());
         userPartReqDTO.setPassword(encodePassword);
-
-        //保存数据
-        userDO = ConverterUtil.to(userPartReqDTO, UserDO.class);
+        //更新数据
+        UserDO userDO = ConverterUtil.to(userPartReqDTO, UserDO.class);
         updateById(userDO);
     }
 

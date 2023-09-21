@@ -23,6 +23,9 @@ import java.time.LocalDateTime;
 public class LogReqDTO extends BaseIdDTO<Long> {
 
 
+    @Serial
+    private static final long serialVersionUID = 1354800347384695140L;
+
     /**
      * 标题
      */

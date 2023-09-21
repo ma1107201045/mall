@@ -65,5 +65,10 @@ public class UserTest implements MallBizSystemApplicationTest {
         System.out.println(userOptional.orElse(new UserDO()));
     }
 
+    @Test
+    public void testSelectIdByUserName() {
+        System.out.println(userRepository.selectIdByUserName("admin"));
+    }
+
 
 }

@@ -20,14 +20,6 @@ import java.util.List;
 @Mapper
 public interface UserMapper extends MybatisMapperImplementation<UserVO, UserParam, Long> {
 
-    /**
-     * 按照用户名称查询id
-     *
-     * @param userName 用户名称
-     * @return Long
-     */
-    Long selectIdByUserName(String userName);
-
 
     /**
      * 按照用户名称查询

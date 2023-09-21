@@ -60,12 +60,6 @@
         ORDER BY mu.${sort}
     </select>
 
-    <select id="selectIdByUserName" resultType="java.lang.Long">
-        SELECT id
-        FROM ms_user
-        WHERE user_name = #{userName}
-    </select>
-
     <resultMap id="SelectByUserNameMap" type="com.lingyi.mall.api.system.dto.UserRespDTO">
         <id column="mu_id" property="userId"/>
         <result column="mu_user_name" property="userName"/>
