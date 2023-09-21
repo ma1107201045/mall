@@ -1,12 +1,8 @@
 package com.lingyi.mall.api.sms.dto;
 
-import jakarta.persistence.Column;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-
-import java.io.Serial;
-import java.io.Serializable;
 
 /**
  * @author maweiyan
