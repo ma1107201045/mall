@@ -67,7 +67,7 @@ public class UserTest implements MallBizSystemApplicationTest {
 
     @Test
     public void testSelectIdByUserName() {
-        System.out.println(userRepository.selectIdByUserName("admin"));
+
     }
 
 
