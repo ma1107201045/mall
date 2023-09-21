@@ -5,9 +5,12 @@ import com.lingyi.mall.biz.product.entity.CategoryDO;
 import com.lingyi.mall.biz.product.mapper.CategoryMapper;
 import com.lingyi.mall.biz.product.param.CategoryParam;
 import com.lingyi.mall.biz.product.repository.CategoryRepository;
+import com.lingyi.mall.biz.product.service.AttributeService;
+import com.lingyi.mall.biz.product.service.CategoryAttributeService;
 import com.lingyi.mall.biz.product.service.CategoryService;
 import com.lingyi.mall.biz.product.vo.CategoryVO;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,6 +20,15 @@ import org.springframework.stereotype.Service;
  * @Description:
  */
 @Service
+@RequiredArgsConstructor
 public class CategoryServiceImpl extends BaseServiceProImpl<CategoryRepository, CategoryMapper, CategoryDTO, CategoryVO, CategoryParam, CategoryDO, Long> implements CategoryService {
 
+    private final CategoryAttributeService categoryAttributeService;
+
+    private final AttributeService attributeService;
+
+    @Override
+    public void create(CategoryDTO categoryDTO) {
+
+    }
 }

@@ -63,6 +63,8 @@ public class CategoryDO extends BaseCommonDO implements Serializable {
     @Column(name = "seq", columnDefinition = "INT(11) UNSIGNED DEFAULT 1 COMMENT '排序号'")
     private Integer seq;
 
+    @Column(name = "is_enable", columnDefinition = "TINYINT(4) NOT NULL COMMENT '是否启用 1 是 0 否'")
+    private Integer isEnable;
     /**
      * 屬性集
      */

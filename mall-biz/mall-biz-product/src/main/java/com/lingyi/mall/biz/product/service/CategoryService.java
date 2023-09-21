@@ -13,4 +13,7 @@ import com.lingyi.mall.common.orm.util.BaseServicePro;
  * @Description:
  */
 public interface CategoryService extends BaseServicePro<CategoryDTO, CategoryVO, CategoryParam, CategoryDO, Long> {
+
+
+    void create(CategoryDTO categoryDTO);
 }

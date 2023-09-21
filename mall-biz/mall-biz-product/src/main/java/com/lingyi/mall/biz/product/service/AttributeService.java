@@ -20,5 +20,5 @@ public interface AttributeService extends BaseServicePro<AttributeDTO, Attribute
      *
      * @param attributeDTO 。。
      */
-    void save(AttributeDTO attributeDTO);
+    void create(AttributeDTO attributeDTO);
 }

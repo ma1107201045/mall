@@ -125,7 +125,6 @@ public class MenuServiceImpl extends BaseServiceProImpl<MenuRepository, MenuMapp
         return menus.stream()
                 .filter(menu -> menu.getParentId().equals(parentId))
                 .peek(menu -> menu.setChildren(toTree(menu.getId(), menus)))
-//                .sorted(Comparator.comparing(MenuVO::getSort))
                 .collect(Collectors.toList());
     }
 }

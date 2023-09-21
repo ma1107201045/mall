@@ -35,7 +35,7 @@ public class AttributeController {
     @PreAuthorize("@ps.hasAnyAuthority('admin:product:attributes:save')")
     @Log(title = "保存属性", operationType = OperationTypeEnum.CREATE)
     public ServerResponse<Void> save(@Valid @RequestBody AttributeDTO attributeDTO) {
-        attributeService.save(attributeDTO);
+        attributeService.create(attributeDTO);
         return ServerResponse.success();
     }
 

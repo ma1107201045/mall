@@ -169,7 +169,6 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
         return menus.stream()
                 .filter(menu -> menu.getParentId().equals(menuParentId))
                 .peek(menu -> menu.setChildren(toMenuTree(menu.getId(), menus)))
-//                .sorted(Comparator.comparing(MenuRespDTO::getSort))
                 .toList();
     }
 
