@@ -43,7 +43,7 @@ public interface BaseServicePro<
      *
      * @param doEntity do
      */
-    void create(DO doEntity);
+    ID create(DO doEntity);
 
     /**
      * 批量删

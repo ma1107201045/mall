@@ -48,8 +48,9 @@ public class BaseServiceProImpl<
     }
 
     @Override
-    public void create(DO doEntity) {
+    public ID create(DO doEntity) {
         jpaRepository.save(doEntity);
+        return doEntity.getId();
     }
 
 
