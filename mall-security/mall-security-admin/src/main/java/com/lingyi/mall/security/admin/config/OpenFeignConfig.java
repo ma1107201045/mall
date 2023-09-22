@@ -2,10 +2,12 @@ package com.lingyi.mall.security.admin.config;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ArrayUtil;
+import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.common.core.constant.BaseConstant;
 import com.lingyi.mall.common.core.util.HttpUtil;
 import com.lingyi.mall.security.admin.constant.SecurityConstant;
 import feign.RequestInterceptor;
+import feign.ResponseInterceptor;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.MDC;
 import org.springframework.context.annotation.Bean;
@@ -51,6 +53,23 @@ public class OpenFeignConfig {
                     .toList();
             // 将cookie同步到新的请求的请求头中
             requestTemplate.header(SecurityConstant.COOKIE, CollUtil.join(cookieList, BaseConstant.SEMICOLON_CHAR));
+        };
+    }
+
+    @Bean
+    @NonNull
+    public ResponseInterceptor responseInterceptor() {
+        return invocationContext -> {
+            var response = invocationContext.response();
+            var headers = response.headers();
+            var values = headers.get(SecurityConstant.COOKIE);
+            if (CollUtil.isNotEmpty(values)) {
+                var cookie = values.toArray(new String[]{})[0];
+                if (StrUtil.isNotBlank(cookie)) {
+                    HttpUtil.addHeader(SecurityConstant.COOKIE, cookie);
+                }
+            }
+            return invocationContext.proceed();
         };
     }
 }

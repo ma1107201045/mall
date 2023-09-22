@@ -1,4 +1,4 @@
-package com.lingyi.mall.security.admin.impl;
+package com.lingyi.mall.security.admin.service;
 
 import com.lingyi.mall.security.admin.constant.SecurityConstant;
 import com.lingyi.mall.security.admin.util.AuthenticatorUtil;

@@ -1,4 +1,4 @@
-package com.lingyi.mall.security.admin.impl;
+package com.lingyi.mall.security.admin.service;
 
 import com.lingyi.mall.api.system.consumer.UserFeignConsumer;
 import com.lingyi.mall.common.core.enums.WhetherEnum;
