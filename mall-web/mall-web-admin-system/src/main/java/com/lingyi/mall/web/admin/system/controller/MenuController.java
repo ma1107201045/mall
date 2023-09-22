@@ -1,13 +1,11 @@
 package com.lingyi.mall.web.admin.system.controller;
 
-import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.biz.system.dto.MenuDTO;
-import com.lingyi.mall.biz.system.param.MenuParam;
 import com.lingyi.mall.biz.system.service.MenuService;
 import com.lingyi.mall.biz.system.vo.MenuVO;
+import com.lingyi.mall.common.core.annotation.Log;
 import com.lingyi.mall.common.core.enums.OperationTypeEnum;
 import com.lingyi.mall.common.core.util.ServerResponse;
-import com.lingyi.mall.common.core.annotation.Log;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -66,16 +64,6 @@ public class MenuController {
     public ServerResponse<MenuVO> getById(@PathVariable Long id) {
         var menuVO = menuService.readById(id);
         return ServerResponse.success(menuVO);
-    }
-
-    @Operation(summary = "查询列表", description = "查询列表")
-    @GetMapping
-    @PreAuthorize("@ps.hasAnyAuthority('admin:system:menus:getList')")
-    @Log(title = "查询菜单列表", operationType = OperationTypeEnum.READ)
-    public ServerResponse<List<MenuVO>> getListByPageAndParam(@Valid MenuParam menuParam) {
-        var page = PageHelper.startPage(menuParam.getCurrentPage(), menuParam.getPageSize(), menuParam.getSort());
-        var menus = menuService.readListByParam(menuParam);
-        return ServerResponse.success(menus, page.getTotal());
     }
 
     @Operation(summary = "查询树", description = "查询树")

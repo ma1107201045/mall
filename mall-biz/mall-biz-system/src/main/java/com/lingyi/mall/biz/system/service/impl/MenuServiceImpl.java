@@ -12,6 +12,7 @@ import com.lingyi.mall.biz.system.param.MenuParam;
 import com.lingyi.mall.biz.system.repository.MenuRepository;
 import com.lingyi.mall.biz.system.service.MenuService;
 import com.lingyi.mall.biz.system.vo.MenuVO;
+import com.lingyi.mall.common.core.constant.BaseConstant;
 import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.core.util.ObjectUtil;
@@ -74,18 +75,14 @@ public class MenuServiceImpl extends BaseServiceProImpl<MenuRepository, MenuMapp
         return menuMapper.selectById(id);
     }
 
-    @Override
-    public List<MenuVO> readListByParam(MenuParam menuParam) {
-        return menuMapper.selectListByParam(menuParam);
-    }
 
     @Override
     public List<MenuVO> readTree() {
-        MenuParam menuParam = new MenuParam();
+        var menuParam = new MenuParam();
         menuParam.setSortField("sort");
         menuParam.setSortDirection("ASC");
         var menus = readListByParam(menuParam);
-        return toTree(SystemConstant.MENU_ROOT_ID, menus);
+        return toTree(BaseConstant.TREE_ROOT_ID, menus);
     }
 
 
@@ -96,8 +93,8 @@ public class MenuServiceImpl extends BaseServiceProImpl<MenuRepository, MenuMapp
 
 
     private void verifyData(MenuDTO menuDTO) {
-        var type = menuDTO.getType();
         var parentId = menuDTO.getParentId();
+        var type = menuDTO.getType();
 
         //查询父级类型
         var newType = menuMapper.selectTypeById(parentId);

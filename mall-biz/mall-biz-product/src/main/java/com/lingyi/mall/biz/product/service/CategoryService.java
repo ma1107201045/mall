@@ -6,6 +6,8 @@ import com.lingyi.mall.biz.product.param.CategoryParam;
 import com.lingyi.mall.biz.product.vo.CategoryVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
 
+import java.util.List;
+
 /**
  * @Author: maweiyan
  * @Email: 1107201045@qq.com
@@ -15,5 +17,15 @@ import com.lingyi.mall.common.orm.util.BaseServicePro;
 public interface CategoryService extends BaseServicePro<CategoryDTO, CategoryVO, CategoryParam, CategoryDO, Long> {
 
 
+    /**
+     * @param categoryDTO 。。
+     */
     void create(CategoryDTO categoryDTO);
+
+    /**
+     * 通过父级id查询分类树
+     *
+     * @return List<MenuVO>
+     */
+    List<CategoryVO> readTree();
 }

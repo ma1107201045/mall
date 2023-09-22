@@ -6,7 +6,7 @@ package com.lingyi.mall.biz.system.constant;
  * @DateTime: 2023/5/7 15:37
  * @Description:
  */
-public class SystemConstant {
+public final class SystemConstant {
 
     private SystemConstant() {
 

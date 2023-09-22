@@ -3,4 +3,54 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lingyi.mall.biz.product.mapper.CategoryMapper">
+    <resultMap id="BaseResultMap" type="com.lingyi.mall.biz.product.vo.CategoryVO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="merchant_id" jdbcType="BIGINT" property="merchantId"/>
+        <result column="shop_id" jdbcType="BIGINT" property="shopId"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="parent_id" jdbcType="BIGINT" property="parentId"/>
+        <result column="icon" jdbcType="VARCHAR" property="icon"/>
+        <result column="is_show_nav" jdbcType="TINYINT" property="isShowNav"/>
+        <result column="keywords" jdbcType="VARCHAR" property="keywords"/>
+        <result column="level" jdbcType="TINYINT" property="level"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="sort" jdbcType="INTEGER" property="sort"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="is_enable" jdbcType="TINYINT" property="isEnable"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="create_date_time" jdbcType="TIMESTAMP" property="createDateTime"/>
+        <result column="last_modify_by" jdbcType="VARCHAR" property="lastModifyBy"/>
+        <result column="last_modify_date_time" jdbcType="TIMESTAMP" property="lastModifyDateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, merchant_id,shop_id,parent_id, user_id,icon, is_show_nav, keywords,
+        `level`, merchant_id, `name`,  sort, is_enable,`description`,
+        create_by, create_date_time, last_modify_by, last_modify_date_time
+    </sql>
+    <sql id="Base_Condition">
+        <if test="name != null and name != ''">
+            AND `name` LIKE CONCAT('%',#{name,jdbcType=VARCHAR},'%')
+        </if>
+    </sql>
+    <select id="selectById" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM mp_category
+        WHERE id=#{id,jdbcType=BIGINT}
+    </select>
+    <select id="countByParam" resultType="java.lang.Long">
+        SELECT COUNT(*)
+        FROM mp_category
+        <where>
+            <include refid="Base_Condition"/>
+        </where>
+    </select>
+    <select id="selectListByParam" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM mp_category
+        <where>
+            <include refid="Base_Condition"/>
+        </where>
+    </select>
 </mapper>

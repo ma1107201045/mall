@@ -32,6 +32,13 @@
         FROM mp_brand
         WHERE id=#{id,jdbcType=BIGINT}
     </select>
+    <select id="countByParam" resultType="java.lang.Long">
+        SELECT COUNT(*)
+        FROM mp_brand
+        <where>
+            <include refid="Base_Condition"/>
+        </where>
+    </select>
     <select id="selectListByParam" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>

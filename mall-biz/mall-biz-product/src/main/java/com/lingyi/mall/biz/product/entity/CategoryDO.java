@@ -39,14 +39,11 @@ public class CategoryDO extends BaseCommonDO implements Serializable {
     @Column(name = "shop_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '商铺id'")
     private Long shopId;
 
-    @Column(name = "parent_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '父级id'")
+    @Column(name = "parent_id", columnDefinition = "BIGINT(20) UNSIGNED DEFAULT 0 COMMENT '父级id'")
     private Long parentId;
 
     @Column(name = "name", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '分类名称'")
     private String name;
-
-    @Column(name = "description", columnDefinition = "TEXT COMMENT '商品描述'")
-    private String description;
 
     @Column(name = "icon", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '分类图标'")
     private String icon;
@@ -60,11 +57,15 @@ public class CategoryDO extends BaseCommonDO implements Serializable {
     @Column(name = "keywords", columnDefinition = "VARCHAR(200)  DEFAULT '' COMMENT '关键字（用于全文检索）'")
     private String keywords;
 
-    @Column(name = "seq", columnDefinition = "INT(11) UNSIGNED DEFAULT 1 COMMENT '排序号'")
-    private Integer seq;
+    @Column(name = "sort", columnDefinition = "INT(11) UNSIGNED DEFAULT 1 COMMENT '排序号'")
+    private Integer sort;
 
-    @Column(name = "is_enable", columnDefinition = "TINYINT(4) NOT NULL COMMENT '是否启用 1 是 0 否'")
+    @Column(name = "is_enable", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '是否启用 1 是 0 否'")
     private Integer isEnable;
+
+    @Column(name = "description", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '商品描述'")
+    private String description;
+
     /**
      * 屬性集
      */
