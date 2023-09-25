@@ -14,7 +14,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
  * @datetime 2023/5/24 9:34
  * @description
  */
-@EnableMethodSecurity
 @EnableFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication

@@ -55,7 +55,7 @@ public class MenuDO extends BaseCommonDO implements Serializable {
     @Column(name = "component_path", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '组件路径'")
     private String componentPath;
 
-    @Column(name = "permission", columnDefinition = "VARCHAR(100) DEFAULT '' COMMENT '按钮权限标识'")
+    @Column(name = "permission", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '按钮权限标识'")
     private String permission;
 
     @Column(name = "remark", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '备注'")

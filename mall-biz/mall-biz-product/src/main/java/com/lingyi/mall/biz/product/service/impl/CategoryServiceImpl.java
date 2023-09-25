@@ -4,13 +4,16 @@ import com.lingyi.mall.biz.product.dto.AttributeDTO;
 import com.lingyi.mall.biz.product.dto.CategoryDTO;
 import com.lingyi.mall.biz.product.entity.CategoryDO;
 import com.lingyi.mall.biz.product.mapper.CategoryMapper;
+import com.lingyi.mall.biz.product.param.AttributeParam;
 import com.lingyi.mall.biz.product.param.CategoryParam;
 import com.lingyi.mall.biz.product.repository.CategoryRepository;
 import com.lingyi.mall.biz.product.service.AttributeService;
 import com.lingyi.mall.biz.product.service.CategoryAttributeService;
 import com.lingyi.mall.biz.product.service.CategoryService;
+import com.lingyi.mall.biz.product.vo.AttributeVO;
 import com.lingyi.mall.biz.product.vo.CategoryVO;
 import com.lingyi.mall.common.core.constant.BaseConstant;
+import com.lingyi.mall.common.core.util.ObjectUtil;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -52,6 +55,11 @@ public class CategoryServiceImpl extends BaseServiceProImpl<CategoryRepository, 
         categoryParam.setSortDirection("ASC");
         var categories = readListByParam(categoryParam);
         return toTree(BaseConstant.TREE_ROOT_ID, categories);
+    }
+
+    @Override
+    public List<AttributeVO> readAttributeList() {
+        return attributeService.readListByParam(ObjectUtil.newInstance(AttributeParam.class));
     }
 
 

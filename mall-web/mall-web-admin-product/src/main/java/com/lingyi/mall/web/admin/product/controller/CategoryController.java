@@ -2,6 +2,7 @@ package com.lingyi.mall.web.admin.product.controller;
 
 import com.lingyi.mall.biz.product.dto.CategoryDTO;
 import com.lingyi.mall.biz.product.service.CategoryService;
+import com.lingyi.mall.biz.product.vo.AttributeVO;
 import com.lingyi.mall.biz.product.vo.CategoryVO;
 import com.lingyi.mall.common.core.annotation.Log;
 import com.lingyi.mall.common.core.enums.OperationTypeEnum;
@@ -73,6 +74,15 @@ public class CategoryController {
     public ServerResponse<List<CategoryVO>> getTree() {
         var categories = categoryService.readTree();
         return ServerResponse.success(categories);
+    }
+
+    @Operation(summary = "查询属性值", description = "查询属性值")
+    @GetMapping("/attributes")
+    @PreAuthorize("@ps.hasAnyAuthority('admin:product:categories:attributes:getList')")
+    @Log(title = "查询分类树", operationType = OperationTypeEnum.READ)
+    public ServerResponse<List<AttributeVO>> getAttributesList() {
+        var attributes = categoryService.readAttributeList();
+        return ServerResponse.success(attributes);
     }
 
 }
