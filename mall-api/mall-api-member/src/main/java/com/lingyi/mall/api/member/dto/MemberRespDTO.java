@@ -1,5 +1,6 @@
 package com.lingyi.mall.api.member.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
  * @description 会员 response
  */
 @Data
+@Schema(description = "会员")
 public class MemberRespDTO {
 
     /**

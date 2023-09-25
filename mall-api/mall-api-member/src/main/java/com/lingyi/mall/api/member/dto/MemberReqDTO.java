@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
  * @description 会员 Request
  */
 @Data
+@Schema(description = "会员")
 public class MemberReqDTO {
 
     /**
