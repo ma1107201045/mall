@@ -77,4 +77,8 @@ public class CategoryVO extends BaseIdVO<Long> {
 
     @Schema(description = "菜单子级")
     private List<CategoryVO> children;
+
+    @Schema(description = "属性Id集")
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    private List<Long> attributeIds;
 }

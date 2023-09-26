@@ -2,12 +2,15 @@ package com.lingyi.mall.biz.product.dto;
 
 import com.lingyi.mall.common.core.dto.BaseIdDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import java.io.Serial;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @Author: maweiyan
@@ -58,5 +61,10 @@ public class CategoryDTO extends BaseIdDTO<Long> {
 
     @Schema(description = "分类描述")
     private String description;
+
+    @Schema(description = "属性集")
+    @NotNull(message = "属性集不能为空")
+    @Size(min = 1, message = "属性集不能为空")
+    private List<Long> attributeIds;
 
 }

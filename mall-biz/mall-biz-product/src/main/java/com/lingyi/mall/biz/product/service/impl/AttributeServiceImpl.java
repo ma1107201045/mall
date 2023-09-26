@@ -41,9 +41,17 @@ public class AttributeServiceImpl extends BaseServiceProImpl<AttributeRepository
 
     @Override
     @Transactional(rollbackFor = Exception.class)
+    public void deleteByIds(List<Long> ids) {
+        super.deleteByIds(ids);
+        //批量删除属性值信息
+        attributeValueService.deleteByAttributeIds(ids);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
     public void updateById(AttributeDTO attributeDTO) {
         Long id = attributeDTO.getId();
-        //保存属性
+        //更新属性
         super.updateById(attributeDTO);
         //批量删除属性值信息
         attributeValueService.deleteByAttributeIds(Collections.singletonList(id));

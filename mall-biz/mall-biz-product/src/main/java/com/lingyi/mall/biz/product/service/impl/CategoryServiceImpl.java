@@ -33,19 +33,34 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CategoryServiceImpl extends BaseServiceProImpl<CategoryRepository, CategoryMapper, CategoryDTO, CategoryVO, CategoryParam, CategoryDO, Long> implements CategoryService {
 
+    private final AttributeService attributeService;
+
     private final CategoryAttributeService categoryAttributeService;
 
-    private final AttributeService attributeService;
 
     @Override
     public void create(CategoryDTO categoryDTO) {
-        create(categoryDTO, CategoryDO.class);
+        var id = create(categoryDTO, CategoryDO.class);
+        categoryAttributeService.createList(id, categoryDTO.getAttributeIds());
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteByIds(List<Long> ids) {
+        super.deleteByIds(ids);
+        //批量删除属性值信息
+        categoryAttributeService.deleteByCategoryIds(ids);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateById(CategoryDTO categoryDTO) {
+        var id = categoryDTO.getId();
         super.updateById(categoryDTO);
+        //批量删除分类属性信息
+        categoryAttributeService.deleteByCategoryIds(Collections.singletonList(id));
+        //批量保存分类属性信息
+        categoryAttributeService.createList(id, categoryDTO.getAttributeIds());
     }
 
     @Override

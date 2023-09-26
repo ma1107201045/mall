@@ -60,6 +60,10 @@
         ORDER BY mu.${sort}
     </select>
 
+
+
+
+
     <resultMap id="SelectByUserNameMap" type="com.lingyi.mall.api.system.dto.UserRespDTO">
         <id column="mu_id" property="userId"/>
         <result column="mu_user_name" property="userName"/>

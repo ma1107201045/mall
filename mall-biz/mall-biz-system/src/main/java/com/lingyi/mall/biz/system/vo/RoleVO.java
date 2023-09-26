@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.system.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.lingyi.mall.common.core.vo.BaseIdVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -25,8 +26,6 @@ public class RoleVO extends BaseIdVO<Long> {
     @Serial
     private static final long serialVersionUID = -855349452886457254L;
 
-    @Schema(description = "角色id")
-    private Long id;
 
     @Schema(description = "角色名称")
     private String name;
@@ -53,5 +52,6 @@ public class RoleVO extends BaseIdVO<Long> {
     private LocalDateTime lastModifyDateTime;
 
     @Schema(description = "菜单id集")
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private List<Long> menuIds;
 }

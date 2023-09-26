@@ -41,9 +41,9 @@ public class RoleServiceImpl extends BaseServiceProImpl<RoleRepository, RoleMapp
     @Transactional(rollbackFor = Exception.class)
     public void create(RoleDTO roleDTO) {
         //保存
-        create(roleDTO, RoleDO.class);
+        Long id = create(roleDTO, RoleDO.class);
         //保存角色菜单信息
-        roleMenuService.saveList(roleDTO.getId(), roleDTO.getMenuIds());
+        roleMenuService.saveList(id, roleDTO.getMenuIds());
     }
 
 

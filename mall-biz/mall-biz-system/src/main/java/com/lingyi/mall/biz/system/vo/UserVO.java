@@ -1,6 +1,7 @@
 
 package com.lingyi.mall.biz.system.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lingyi.mall.common.core.vo.BaseIdVO;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -27,8 +28,6 @@ public class UserVO extends BaseIdVO<Long> {
     @Serial
     private static final long serialVersionUID = -5501894157954555575L;
 
-    @Schema(description = "用户id")
-    private Long id;
 
     @Schema(description = "用户名称")
     private String userName;
@@ -77,6 +76,7 @@ public class UserVO extends BaseIdVO<Long> {
     private LocalDateTime lastModifyDateTime;
 
     @Schema(description = "角色id集")
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private List<Long> roleIds;
 
     @Schema(description = "按钮权限标识集")

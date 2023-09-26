@@ -6,6 +6,8 @@ import com.lingyi.mall.biz.product.param.CategoryAttributeParam;
 import com.lingyi.mall.biz.product.vo.CategoryAttributeVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
 
+import java.util.List;
+
 /**
  * @Author: maweiyan
  * @Email: 1107201045@qq.com
@@ -13,4 +15,20 @@ import com.lingyi.mall.common.orm.util.BaseServicePro;
  * @Description:
  */
 public interface CategoryAttributeService extends BaseServicePro<CategoryAttributeDTO, CategoryAttributeVO, CategoryAttributeParam, CategoryAttributeDO, Long> {
+
+
+    /**
+     * 批量创建属性值
+     *
+     * @param categoryId   分类id
+     * @param attributeIds 属性id集
+     */
+    void createList(Long categoryId, List<Long> attributeIds);
+
+    /**
+     * 通过屬性名id删除
+     *
+     * @param attributeIds 屬性名id集合
+     */
+    void deleteByCategoryIds(List<Long> attributeIds);
 }

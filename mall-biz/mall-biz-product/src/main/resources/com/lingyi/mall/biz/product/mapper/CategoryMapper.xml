@@ -21,21 +21,24 @@
         <result column="create_date_time" jdbcType="TIMESTAMP" property="createDateTime"/>
         <result column="last_modify_by" jdbcType="VARCHAR" property="lastModifyBy"/>
         <result column="last_modify_date_time" jdbcType="TIMESTAMP" property="lastModifyDateTime"/>
+        <collection property="attributeIds" ofType="java.lang.Long">
+            <result column="attribute_id" jdbcType="BIGINT"/>
+        </collection>
     </resultMap>
     <sql id="Base_Column_List">
-        id, merchant_id,shop_id,parent_id, user_id,icon, is_show_nav, keywords,
+         id,shop_id,parent_id, user_id,icon, is_show_nav, keywords,
         `level`, merchant_id, `name`,  sort, is_enable,`description`,
         create_by, create_date_time, last_modify_by, last_modify_date_time
     </sql>
     <sql id="Base_Condition">
-        <if test="name != null and name != ''">
+        <if test=" name != null and name != ''">
             AND `name` LIKE CONCAT('%',#{name,jdbcType=VARCHAR},'%')
         </if>
     </sql>
     <select id="selectById" resultMap="BaseResultMap">
         SELECT
-        <include refid="Base_Column_List"/>
-        FROM mp_category
+        <include refid="Base_Column_List"/>,mca.attribute_id
+        FROM mp_category mc LEFT JOIN mp_category_attribute mca ON mca.category_id = mc.id
         WHERE id=#{id,jdbcType=BIGINT}
     </select>
     <select id="countByParam" resultType="java.lang.Long">
@@ -46,11 +49,13 @@
         </where>
     </select>
     <select id="selectListByParam" resultMap="BaseResultMap">
+        SELECT mc.*,mca.attribute_id FROM (
         SELECT
         <include refid="Base_Column_List"/>
         FROM mp_category
         <where>
             <include refid="Base_Condition"/>
         </where>
+        ) mc LEFT JOIN mp_category_attribute mca ON mc.id = mca.category_id
     </select>
 </mapper>
