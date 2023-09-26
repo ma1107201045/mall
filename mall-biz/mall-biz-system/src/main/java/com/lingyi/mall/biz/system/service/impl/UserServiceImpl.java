@@ -61,7 +61,7 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
         var encodePassword = passwordEncoder.encode(userDTO.getPassword());
         userDTO.setPassword(encodePassword);
         //保存
-        Long newId = create(userDTO, UserDO.class);
+        var newId = create(userDTO, UserDO.class);
         //保存用户角色信息
         userRoleService.createList(newId, userDTO.getRoleIds());
     }
