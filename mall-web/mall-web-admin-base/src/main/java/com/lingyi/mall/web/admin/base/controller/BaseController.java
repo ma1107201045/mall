@@ -23,7 +23,7 @@ import java.util.List;
  * @datetime 2023/5/24 14:46
  * @description
  */
-@Tag(name = "基础", description = "基础")
+@Tag(name = "基础接口", description = "基础接口")
 @RequestMapping("/bases")
 @RestController
 @RequiredArgsConstructor

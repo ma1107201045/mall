@@ -22,7 +22,7 @@ import java.util.List;
  * @datetime 2023/6/3 9:43
  * @description
  */
-@Tag(name = "日志", description = "日志")
+@Tag(name = "系统日志", description = "系统日志")
 @RequestMapping("/logs")
 @RestController
 @RequiredArgsConstructor
