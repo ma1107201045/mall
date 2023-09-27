@@ -19,14 +19,14 @@ import java.util.List;
  * @DateTime: 2023/5/10 19:55
  * @Description:
  */
-@Tag(name = "【用户-Provider】", description = "【用户-Provider】")
+@Tag(name = "系统用户-provider", description = "系统日志-provider")
 @RequiredArgsConstructor
 @RestController
 public class UserFeignProvider implements UserFeign {
 
     private final UserService userService;
 
-    @Operation(summary = "更新用户部分信息", description = "更新用户部分信息")
+    @Operation(summary = "更新当前用户部分信息", description = "更新用户部分信息")
     @Override
     public ServerResponse<Void> updatePartById(Long id, UserPartReqDTO userPartReqDTO) {
         userPartReqDTO.setId(id);
@@ -34,21 +34,21 @@ public class UserFeignProvider implements UserFeign {
         return ServerResponse.success();
     }
 
-    @Operation(summary = "查询用户和权限标识", description = "查询用户和权限标识")
+    @Operation(summary = "查询当前用户信息和权限标识", description = "查询当前用户信息和权限标识")
     @Override
     public ServerResponse<UserRespDTO> getUserAndMenuPermissionsByUserName(String userName) {
         var userRespDTO = userService.readUserAndMenuPermissionsByUserName(userName);
         return ServerResponse.success(userRespDTO);
     }
 
-    @Operation(summary = "查询菜单树", description = "查询菜单树")
+    @Operation(summary = "查询当前用户菜单树", description = "查询菜单树")
     @Override
     public ServerResponse<List<MenuRespDTO>> getMenuTreesByUserName(String userName) {
         var menus = userService.readMenuTreesByUserName(userName);
         return ServerResponse.success(menus);
     }
 
-    @Operation(summary = "查询权限集", description = "查询权限集")
+    @Operation(summary = "查询当前用户权限集", description = "查询权限集")
     @Override
     public ServerResponse<List<String>> getMenuPermissionsByUserName(String userName) {
         var permissions = userService.readMenuPermissionsByUserName(userName);
