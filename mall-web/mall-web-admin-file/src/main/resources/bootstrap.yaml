@@ -48,15 +48,6 @@ spring:
     multipart:
       max-file-size: 104857600 #100M
       max-request-size: 104857600 #100M
-# springdoc-openapi项目配置
-springdoc:
-  swagger-ui:
-    tags-sorter: alpha
-    operations-sorter: alpha
-  group-configs:
-    - group: '文件管理服务【后台】'
-      paths-to-match: '/**'
-      packages-to-scan: com.lingyi.mall.web.admin.file.controller
 minio:
   endpoint: 36.137.103.166
   port: 9000
@@ -65,4 +56,14 @@ minio:
   secret-key: minioadmin
 file:
   base-url: http://36.137.103.166:9000
+# springdoc-openapi项目配置
+springdoc:
+  swagger-ui:
+    tags-sorter: alpha
+    operations-sorter: alpha
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.lingyi.mall.web.admin.file.controller
+
 

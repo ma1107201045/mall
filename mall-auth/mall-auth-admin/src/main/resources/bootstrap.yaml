@@ -57,9 +57,8 @@ springdoc:
       paths-to-match: '/**'
       packages-to-scan: com.lingyi.mall.auth.admin.controller
 image-captcha:
-  disturbance-type: CIRCLE
+  disturbance-type: circle
   code-generator-type: math
-
 
 
 

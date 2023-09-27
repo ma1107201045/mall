@@ -67,8 +67,7 @@ springdoc:
   swagger-ui:
     tags-sorter: alpha
     operations-sorter: alpha
-#  group-configs:
-#    - group: '系统管理服务【后台】'
-#      paths-to-match: '/**'
-#      packages-to-scan: com.lingyi.mall.web.admin.system.controller
-# openFeign 配置
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.lingyi.mall.web.admin.system.controller

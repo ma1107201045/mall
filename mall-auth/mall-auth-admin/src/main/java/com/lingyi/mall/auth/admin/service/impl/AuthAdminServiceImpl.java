@@ -4,6 +4,7 @@ import cn.hutool.captcha.AbstractCaptcha;
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.generator.MathGenerator;
 import com.lingyi.mall.auth.admin.properties.ImageCaptchaProperties;
+import com.lingyi.mall.auth.admin.properties.enums.CodeGeneratorType;
 import com.lingyi.mall.auth.admin.service.AuthAdminService;
 import com.lingyi.mall.security.admin.constant.SecurityConstant;
 import com.lingyi.mall.security.admin.util.CodeGeneratorProxy;
@@ -62,7 +63,7 @@ public class AuthAdminServiceImpl implements AuthAdminService {
             case GIF ->
                     abstractCaptcha = CaptchaUtil.createGifCaptcha(properties.getWidth(), properties.getHeight(), properties.getCount());
         }
-        if (properties.getCodeGeneratorType() == ImageCaptchaProperties.CodeGeneratorType.MATH) {
+        if (properties.getCodeGeneratorType() == CodeGeneratorType.MATH) {
             abstractCaptcha.setGenerator(new CodeGeneratorProxy(new MathGenerator(1)));
         }
         return abstractCaptcha;

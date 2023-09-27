@@ -1,5 +1,7 @@
 package com.lingyi.mall.auth.admin.properties;
 
+import com.lingyi.mall.auth.admin.properties.enums.CodeGeneratorType;
+import com.lingyi.mall.auth.admin.properties.enums.DisturbanceType;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -43,34 +45,4 @@ public class ImageCaptchaProperties {
      */
     private int typeCount = 10;
 
-    public enum CodeGeneratorType {
-        /**
-         * 随机
-         */
-        RANDOM,
-        /**
-         * 数学
-         */
-        MATH;
-
-    }
-
-    public enum DisturbanceType {
-        /**
-         * 线干扰的验证码
-         */
-        LINE,
-        /**
-         * 圆圈干扰的验证码
-         */
-        CIRCLE,
-        /**
-         * 扭曲干扰的验证码
-         */
-        SHEAR,
-        /**
-         * GIF验证码
-         */
-        GIF;
-    }
 }
