@@ -19,7 +19,7 @@ import java.util.List;
  * @DateTime: 2023/5/10 19:55
  * @Description:
  */
-@Tag(name = "系统用户-provider", description = "系统日志-provider")
+@Tag(name = "provider-系统用户", description = "provider-系统日志")
 @RequiredArgsConstructor
 @RestController
 public class UserFeignProvider implements UserFeign {
