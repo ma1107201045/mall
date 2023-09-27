@@ -7,6 +7,7 @@ import com.lingyi.mall.biz.system.service.LogService;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import feign.Request;
 import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,12 +26,10 @@ public class LogFeignProvider implements LogFeign {
 
     private final LogService logService;
 
-
+    @Operation(summary = "保存", description = "保存")
     @Override
     public ServerResponse<Void> save(LogReqDTO logReqDTO, Request.Options options) {
-        log.info("save log begin");
         logService.create(logReqDTO, LogDO.class);
-        log.info("save log end");
         return ServerResponse.success();
     }
 }

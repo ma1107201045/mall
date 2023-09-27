@@ -25,12 +25,12 @@ public class BaseAsyncTask {
 
     private final LogFeignConsumer logFeignConsumer;
 
-    @Async
+    @Async("executorService")
     public void saveLog(LogReqDTO logDTO) {
         MDC.put(BaseConstant.TRACK_ID_NAME, logDTO.getTrackId());
-        log.info("save log begin");
+        log.info(Thread.currentThread().getName() + "begin save log");
         logFeignConsumer.save(logDTO);
-        log.info("save log end");
+        log.info(Thread.currentThread().getName() + "end save log");
         MDC.remove(BaseConstant.TRACK_ID_NAME);
     }
 }

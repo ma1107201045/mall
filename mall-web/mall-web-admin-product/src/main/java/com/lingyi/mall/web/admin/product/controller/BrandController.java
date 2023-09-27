@@ -24,7 +24,7 @@ import java.util.List;
  * @DateTime: 2023/9/4 9:27
  * @Description:
  */
-@Tag(name = "商品品牌", description = "商品品牌")
+@Tag(name = "品牌属性", description = "品牌属性")
 @RestController
 @RequestMapping("/admin/product/brands")
 @RequiredArgsConstructor

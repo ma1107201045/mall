@@ -34,7 +34,7 @@ spring:
       routes:
         #后台admin端认证服务
         - id: mall-auth-admin
-          uri: http://localhost:7001
+          uri: lb://mall-auth-admin
           predicates:
             - Path=/auth/admin/**
         #前台app端认证服务
@@ -49,46 +49,46 @@ spring:
             - Path=/auth/merchant/**
         #后台admin端其他服务
         - id: mall-web-admin-base
-          uri: http://localhost:7002
+          uri: lb://mall-web-admin-base
           predicates:
             - Path=/admin/base/**
 
         - id: mall-web-admin-system
-          uri: http://localhost:7003
+          uri: lb://mall-web-admin-system
           predicates:
             - Path=/admin/system/**
 
         - id: mall-web-admin-file
-          uri: http://localhost:7004
+          uri: lb:// mall-web-admin-file
           predicates:
             - Path=/admin/file/**
 
         - id: mall-web-admin-product
-          uri: http://localhost:7005
+          uri: lb://mall-web-admin-product
           predicates:
             - Path=/admin/product/**
 
         - id: mall-web-admin-member
-          uri: http://localhost:7006
+          uri: lb://mall-web-admin-member
           predicates:
             - Path=/admin/member/**
 
         - id: mall-web-app-base
-          uri: http://localhost:8002
+          uri: lb://mall-web-app-base
           predicates:
             - Path=/app/base/**
 
         - id: mall-web-app-member
-          uri: http://localhost:8003
+          uri: lb://mall-web-app-member
           predicates:
             - Path=/app/member/**
 
         - id: mall-web-app-file
-          uri: http://localhost:8004
+          uri: lb://mall-web-app-file
           predicates:
             - Path=/app/file/**
         - id: mall-web-app-sms
-          uri: http://localhost:8005
+          uri: lb://mall-web-app-sms
           predicates:
             - Path=/app/sms/**
     stream:
@@ -100,8 +100,5 @@ knife4j:
   gateway:
     enabled: true
     strategy: discover
-    discover:
-      excluded-services: ${spring.application.name}
-      version: OpenAPI3
-      enabled: true
+
 

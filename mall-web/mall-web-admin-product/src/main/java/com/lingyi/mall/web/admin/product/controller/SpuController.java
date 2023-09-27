@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @DateTime: 2023/9/5 16:52
  * @Description:
  */
-@Tag(name = "商品spu", description = "商品spu")
+@Tag(name = "SPU", description = "SPU")
 @RestController
 @RequestMapping("/admin/product/spus")
 @RequiredArgsConstructor

@@ -56,7 +56,7 @@ public class BasePageParam {
         return limit;
     }
 
-
+    @Schema(hidden = true)
     public String getSort() {
         return sortField + BaseConstant.SPACE_CHAR + sortDirection;
     }

@@ -24,7 +24,7 @@ import java.io.IOException;
  * @DateTime: 2023/6/27 22:55
  * @Description:
  */
-@Tag(name = "【文件服务-文件】", description = "【系统管理服务-文件】")
+@Tag(name = "【文件管理服务-文件】", description = "【文件管理服务-文件】")
 @RequestMapping("/admin/file/files")
 @RestController
 @RequiredArgsConstructor

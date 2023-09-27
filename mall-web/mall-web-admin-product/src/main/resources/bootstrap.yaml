@@ -67,10 +67,10 @@ springdoc:
   swagger-ui:
     tags-sorter: alpha
     operations-sorter: alpha
-  group-configs:
-    - group: 'ADMIN-商品服务'
-      paths-to-match: '/**'
-      packages-to-scan: com.lingyi.mall.web.admin.product.controller
-    - group: 'ADMIN-商品服务-provider'
-      paths-to-match: '/**'
-      packages-to-scan: com.lingyi.mall.web.admin.product.provider
+#  group-configs:
+#    - group: 'ADMIN-商品管理服务'
+#      paths-to-match: '/**'
+#      packages-to-scan: com.lingyi.mall.web.admin.product.controller
+#    - group: 'ADMIN-商品管理服务-provider'
+#      paths-to-match: '/**'
+#      packages-to-scan: com.lingyi.mall.web.admin.product.provider

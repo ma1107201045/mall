@@ -22,7 +22,7 @@ import java.util.List;
  * @DateTime: 2023/9/5 9:12
  * @Description:
  */
-@Tag(name = "商品分类", description = "商品分类")
+@Tag(name = "分类属性", description = "分类属性")
 @RestController
 @RequestMapping("/admin/product/categories")
 @RequiredArgsConstructor
