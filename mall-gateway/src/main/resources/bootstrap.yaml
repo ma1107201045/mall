@@ -37,60 +37,91 @@ spring:
           uri: lb://mall-auth-admin
           predicates:
             - Path=/auth/admin/**
+          filters:
+            - StripPrefix=2
+            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
         #前台app端认证服务
         - id: mall-auth-app
-          uri: http://localhost:8001
+          uri: lb://mall-auth-app
           predicates:
             - Path=/auth/app/**
         #后台merchant端认证服务
         - id: mall-auth-merchant
-          uri: http://localhost:9001
+          uri: lb://mall-auth-merchant
           predicates:
             - Path=/auth/merchant/**
-        #后台admin端其他服务
+
         - id: mall-web-admin-base
           uri: lb://mall-web-admin-base
           predicates:
             - Path=/admin/base/**
+          filters:
+            - StripPrefix=2
+            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
 
         - id: mall-web-admin-system
           uri: lb://mall-web-admin-system
           predicates:
             - Path=/admin/system/**
+          filters:
+            - StripPrefix=2
+            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
 
         - id: mall-web-admin-file
           uri: lb:// mall-web-admin-file
           predicates:
             - Path=/admin/file/**
+          filters:
+            - StripPrefix=2
+            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
 
         - id: mall-web-admin-product
           uri: lb://mall-web-admin-product
           predicates:
             - Path=/admin/product/**
+          filters:
+            - StripPrefix=2
+            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
 
         - id: mall-web-admin-member
           uri: lb://mall-web-admin-member
           predicates:
             - Path=/admin/member/**
+          filters:
+            - StripPrefix=2
+            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
 
         - id: mall-web-app-base
           uri: lb://mall-web-app-base
           predicates:
             - Path=/app/base/**
+          filters:
+            - StripPrefix=2
+            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
 
         - id: mall-web-app-member
           uri: lb://mall-web-app-member
           predicates:
             - Path=/app/member/**
+          filters:
+            - StripPrefix=2
+            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
 
         - id: mall-web-app-file
           uri: lb://mall-web-app-file
           predicates:
             - Path=/app/file/**
+          filters:
+            - StripPrefix=2
+            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+            -
         - id: mall-web-app-sms
           uri: lb://mall-web-app-sms
           predicates:
             - Path=/app/sms/**
+          filters:
+            - StripPrefix=2
+            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
     stream:
       binding-retry-interval: 7200
       rocketmq:
@@ -100,5 +131,7 @@ knife4j:
   gateway:
     enabled: true
     strategy: discover
+
+
 
 

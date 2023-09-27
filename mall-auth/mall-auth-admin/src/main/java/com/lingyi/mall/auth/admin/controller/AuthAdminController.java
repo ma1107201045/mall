@@ -22,9 +22,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @description 验证码接口
  */
 @Slf4j
-@Tag(name = "认证/授权接口", description = "认证/授权接口")
+@Tag(name = "验证码", description = "验证码")
 @Controller
-@RequestMapping("/auth/admin")
+@RequestMapping("/")
 @RequiredArgsConstructor
 public class AuthAdminController {
 

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient( value = "mall-web-admin-system", fallbackFactory = LogFeignFallbackFactory.class)
 public interface LogFeign {
 
-    String URL_PREFIX = "/admin/system/logs";
+    String URL_PREFIX = "/logs";
 
     /**
      * 保存

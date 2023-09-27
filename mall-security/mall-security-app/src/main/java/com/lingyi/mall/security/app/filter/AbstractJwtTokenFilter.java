@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.filter.GenericFilterBean;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * @author maweiyan
@@ -28,7 +29,7 @@ public abstract class AbstractJwtTokenFilter extends GenericFilterBean {
     }
 
     private boolean isIgnoreRequest(ServletRequest request) {
-        return SecurityConstant.REQUEST_MATCHER_LIST.stream().anyMatch(requestMatcher -> requestMatcher.matcher((HttpServletRequest) request).isMatch());
+        return Arrays.stream(SecurityConstant.IGNORE_REQUEST_MATCHER_ARRAY).anyMatch(requestMatcher -> requestMatcher.matcher((HttpServletRequest) request).isMatch());
     }
 
     protected abstract void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException;

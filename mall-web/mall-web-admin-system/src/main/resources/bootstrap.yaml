@@ -70,4 +70,6 @@ springdoc:
   group-configs:
     - group: 'default'
       paths-to-match: '/**'
-      packages-to-scan: com.lingyi.mall.web.admin.system.controller
+      packages-to-scan:
+        - com.lingyi.mall.web.admin.system.controller
+        - com.lingyi.mall.web.admin.system.provider

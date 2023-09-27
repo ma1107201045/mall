@@ -25,8 +25,8 @@ import java.util.List;
  * @DateTime: 2023/5/3 19:10
  * @Description:
  */
-@Tag(name = "【系统管理服务-用户】", description = "【系统管理服务-用户】")
-@RequestMapping("/admin/system/users")
+@Tag(name = "用户", description = "用户")
+@RequestMapping("/users")
 @RestController
 @RequiredArgsConstructor
 public class UserController {

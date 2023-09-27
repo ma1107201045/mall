@@ -24,9 +24,9 @@ import java.util.List;
  * @DateTime: 2023/9/4 9:27
  * @Description:
  */
-@Tag(name = "品牌属性", description = "品牌属性")
+@Tag(name = "品牌", description = "品牌")
 @RestController
-@RequestMapping("/admin/product/brands")
+@RequestMapping("/brands")
 @RequiredArgsConstructor
 public class BrandController {
 

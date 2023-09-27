@@ -84,10 +84,7 @@ public class SecurityConfig {
         return http.addFilterBefore(trackIdFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(imageCaptchaFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(authorizeHttpRequestsConfigurer -> authorizeHttpRequestsConfigurer
-                        .requestMatchers(HttpMethod.GET, "/swagger-ui/**", "/doc.html", "/favicon.ico", "/webjars/**", "/v3/**").permitAll()
-                        .requestMatchers("/auth/admin/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/admin/system/users/permissions").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/admin/system/logs").permitAll()
+                        .requestMatchers(SecurityConstant.IGNORE_REQUEST_MATCHER_ARRAY).permitAll()
                         .anyRequest().authenticated())
                 .formLogin(formLoginConfigurer -> formLoginConfigurer.loginProcessingUrl(SecurityConstant.LOGIN_PROCESSING_URL)
                         .usernameParameter(SecurityConstant.USER_NAME_PARAMETER)

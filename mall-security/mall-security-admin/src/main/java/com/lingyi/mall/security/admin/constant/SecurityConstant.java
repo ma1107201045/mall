@@ -1,5 +1,9 @@
 package com.lingyi.mall.security.admin.constant;
 
+import org.springframework.http.HttpMethod;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
+
 /**
  * @Author: maweiyan
  * @Email 1107201045@qq.com
@@ -7,9 +11,18 @@ package com.lingyi.mall.security.admin.constant;
  * @Description:
  */
 public class SecurityConstant {
-
-    public static final String LOGIN_PROCESSING_URL = "/auth/admin/login";
-    public static final String LOGOUT_URL = "/auth/admin/logout";
+    public static final RequestMatcher[] IGNORE_REQUEST_MATCHER_ARRAY = new RequestMatcher[]{
+            new AntPathRequestMatcher("/swagger-ui/**", HttpMethod.GET.name()),
+            new AntPathRequestMatcher("/doc.html", HttpMethod.GET.name()),
+            new AntPathRequestMatcher("/favicon.ico", HttpMethod.GET.name()),
+            new AntPathRequestMatcher("/webjars/**", HttpMethod.GET.name()),
+            new AntPathRequestMatcher("/v3/**", HttpMethod.GET.name()),
+            new AntPathRequestMatcher("/get-base64-image-captcha", HttpMethod.GET.name()),
+            new AntPathRequestMatcher("/get-bin-image-captcha", HttpMethod.GET.name()),
+            new AntPathRequestMatcher("/users/permissions", HttpMethod.GET.name()),
+            new AntPathRequestMatcher("/logs", HttpMethod.POST.name())};
+    public static final String LOGIN_PROCESSING_URL = "/login";
+    public static final String LOGOUT_URL = "/logout";
     public static final String USER_NAME_PARAMETER = "userName";
     public static final String PASSWORD_PARAMETER = "password";
     public static final String IMAGE_CAPTCHA_PARAMETER = "imageCaptcha";

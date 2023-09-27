@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Tag(name = "SPU", description = "SPU")
 @RestController
-@RequestMapping("/admin/product/spus")
+@RequestMapping("/spus")
 @RequiredArgsConstructor
 public class SpuController {
 

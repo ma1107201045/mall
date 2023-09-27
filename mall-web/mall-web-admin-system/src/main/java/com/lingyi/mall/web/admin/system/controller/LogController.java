@@ -22,8 +22,8 @@ import java.util.List;
  * @datetime 2023/6/3 9:43
  * @description
  */
-@Tag(name = "【系统管理服务-日志】", description = "【系统管理服务-日志】")
-@RequestMapping("/admin/system/logs")
+@Tag(name = "日志", description = "日志")
+@RequestMapping("/logs")
 @RestController
 @RequiredArgsConstructor
 @SentinelResource

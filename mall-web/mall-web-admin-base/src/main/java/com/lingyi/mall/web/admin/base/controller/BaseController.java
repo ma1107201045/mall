@@ -23,8 +23,8 @@ import java.util.List;
  * @datetime 2023/5/24 14:46
  * @description
  */
-@Tag(name = "【系统基础服务】", description = "【系统基础服务】")
-@RequestMapping("/admin/base/bases")
+@Tag(name = "基础", description = "基础")
+@RequestMapping("/bases")
 @RestController
 @RequiredArgsConstructor
 public class BaseController {

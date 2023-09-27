@@ -21,8 +21,8 @@ import java.util.List;
  * @DateTime: 2023/5/16 21:18
  * @Description:
  */
-@Tag(name = "【系统管理服务-菜单】", description = "【系统管理服务-菜单】")
-@RequestMapping("/admin/system/menus")
+@Tag(name = "菜单", description = "菜单")
+@RequestMapping("/menus")
 @RestController
 @RequiredArgsConstructor
 public class MenuController {

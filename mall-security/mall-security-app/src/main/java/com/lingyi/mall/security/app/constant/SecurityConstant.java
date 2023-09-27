@@ -14,7 +14,7 @@ import java.util.List;
  * @Description:
  */
 public class SecurityConstant {
-    public static final List<RequestMatcher> REQUEST_MATCHER_LIST = Arrays.asList(
+    public static final RequestMatcher[] IGNORE_REQUEST_MATCHER_ARRAY = new RequestMatcher[]{
             new AntPathRequestMatcher("/swagger-ui/**", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/doc.html", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/favicon.ico", HttpMethod.GET.name()),
@@ -27,7 +27,7 @@ public class SecurityConstant {
             new AntPathRequestMatcher("/app/member/member-levels", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/app/member/members", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/app/member/members", HttpMethod.POST.name()),
-            new AntPathRequestMatcher("/admin/system/logs", HttpMethod.POST.name()));
+            new AntPathRequestMatcher("/admin/system/logs", HttpMethod.POST.name())};
     public static final String AUTHORIZATION = "Authorization";
     public static final String JWT_KEY = "199726ma.";
     public static final int TOKEN_EXPIRATION_TIME_VALUE = 30;

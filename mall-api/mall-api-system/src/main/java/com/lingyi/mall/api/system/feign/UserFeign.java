@@ -19,7 +19,7 @@ import java.util.List;
 @FeignClient(value = "mall-web-admin-system", fallbackFactory = UserFeignFallbackFactory.class)
 public interface UserFeign {
 
-    String URL_PREFIX = "/admin/system/users";
+    String URL_PREFIX = "/users";
 
     /**
      * 更新部分用户信息
