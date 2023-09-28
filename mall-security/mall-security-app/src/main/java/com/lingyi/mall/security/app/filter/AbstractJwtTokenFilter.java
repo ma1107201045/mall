@@ -16,7 +16,7 @@ import java.util.Arrays;
  * @author maweiyan
  * @email 1107201045@qq.com
  * @datetime 2023/8/11 9:14
- * @description
+ * @description TODO 续期待优化（正常token过期跟加入黑名单过期无法区分，导致token续期有误）
  */
 public abstract class AbstractJwtTokenFilter extends GenericFilterBean {
     @Override
