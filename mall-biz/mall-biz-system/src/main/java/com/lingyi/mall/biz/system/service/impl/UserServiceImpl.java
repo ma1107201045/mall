@@ -69,13 +69,14 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteByIds(List<Long> ids) {
-        if (CollUtil.isNotEmpty(ids)) {
-            var flag = jpaRepository.findAllById(ids).stream()
-                    .anyMatch(userDO -> SystemConstant.USER_NAME_ADMIN.equals(userDO.getUserName()));
-            AssertUtil.isFalse(flag, SystemFailEnum.USER_NAME_ADMIN_DELETE_ERROR);
-            super.deleteByIds(ids);
-            userRoleService.deleteByUserIds(ids);
+        if (CollUtil.isEmpty(ids)) {
+           return;
         }
+        var flag = jpaRepository.findAllById(ids).stream()
+                .anyMatch(userDO -> SystemConstant.USER_NAME_ADMIN.equals(userDO.getUserName()));
+        AssertUtil.isFalse(flag, SystemFailEnum.USER_NAME_ADMIN_DELETE_ERROR);
+        super.deleteByIds(ids);
+        userRoleService.deleteByUserIds(ids);
     }
 
     @Override

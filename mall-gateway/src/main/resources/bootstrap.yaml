@@ -114,7 +114,7 @@ spring:
           filters:
             - StripPrefix=2
             - AddResponseHeader=X-Response-Default-Foo, Default-Bar
-            -
+
         - id: mall-web-app-sms
           uri: lb://mall-web-app-sms
           predicates:

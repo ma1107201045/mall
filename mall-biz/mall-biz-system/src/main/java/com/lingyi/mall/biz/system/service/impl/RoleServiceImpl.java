@@ -50,10 +50,11 @@ public class RoleServiceImpl extends BaseServiceProImpl<RoleRepository, RoleMapp
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteByIds(List<Long> ids) {
-        if (CollUtil.isNotEmpty(ids)) {
-            super.deleteByIds(ids);
-            roleMenuService.removeByRoleIds(ids);
+        if (CollUtil.isEmpty(ids)) {
+            return;
         }
+        super.deleteByIds(ids);
+        roleMenuService.removeByRoleIds(ids);
     }
 
     @Override
