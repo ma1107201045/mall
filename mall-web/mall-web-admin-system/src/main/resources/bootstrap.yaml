@@ -62,6 +62,16 @@ spring:
       rocketmq:
         binder:
           name-server: 36.137.103.166:9876
+#
+xxl-job:
+  admin-addresses: http://36.137.103.166:7777/xxl-job-admin
+  access-token: default_token
+  app-name: xxl-job-executor-sample
+  address:
+  ip:
+  port: 8888
+  log-path: /data/app-logs/xxl-job/job-handler
+  log-retention-days: 30
 # springdoc-openapi项目配置
 springdoc:
   swagger-ui:
@@ -73,3 +83,7 @@ springdoc:
       packages-to-scan:
         - com.lingyi.mall.web.admin.system.controller
         - com.lingyi.mall.web.admin.system.provider
+
+
+
+
