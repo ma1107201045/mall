@@ -34,13 +34,13 @@ public class BaseServiceProImpl<
     @Autowired
     protected M mybatisMapper;
 
-
+    @Override
     public ID create(DTO dto, Class<DO> clazz) {
         var doEntity = ConverterUtil.to(dto, clazz);
         jpaRepository.save(doEntity);
         return doEntity.getId();
     }
-
+    @Override
     public ID create(DTO dto, DO doEntity) {
         ConverterUtil.to(dto, doEntity);
         jpaRepository.save(doEntity);
@@ -59,7 +59,7 @@ public class BaseServiceProImpl<
         jpaRepository.deleteAllByIdInBatch(ids);
     }
 
-
+    @Override
     public void updateById(DTO dto) {
         var optional = jpaRepository.findById(dto.getId());
         if (optional.isPresent()) {
@@ -78,7 +78,7 @@ public class BaseServiceProImpl<
             jpaRepository.save(newDoEntity);
         }
     }
-
+    @Override
     public VO readById(ID id) {
         return mybatisMapper.selectById(id);
     }
@@ -87,7 +87,7 @@ public class BaseServiceProImpl<
     public Long totalByParam(PARAM param) {
         return mybatisMapper.countByParam(param);
     }
-
+    @Override
     public List<VO> readListByParam(PARAM param) {
         return mybatisMapper.selectListByParam(param);
     }

@@ -71,12 +71,6 @@ public class MenuServiceImpl extends BaseServiceProImpl<MenuRepository, MenuMapp
     }
 
     @Override
-    public MenuVO readById(Long id) {
-        return menuMapper.selectById(id);
-    }
-
-
-    @Override
     public List<MenuVO> readTree() {
         var menuParam = new MenuParam();
         menuParam.setSortField("sort");
