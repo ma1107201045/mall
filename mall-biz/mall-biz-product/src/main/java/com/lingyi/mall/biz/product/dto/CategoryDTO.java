@@ -50,7 +50,7 @@ public class CategoryDTO extends BaseIdDTO<Long> {
     @Schema(description = "分类级别")
     private Integer level;
 
-    @Schema(description = "是否显示在导航栏 1是 0否")
+    @Schema(description = "是否显示在导航栏 1是 0否", requiredMode = Schema.RequiredMode.REQUIRED)
     private Integer isShowNav;
 
     @Schema(description = "关键字（用于全文检索）")
@@ -62,7 +62,7 @@ public class CategoryDTO extends BaseIdDTO<Long> {
     @Schema(description = "分类描述")
     private String description;
 
-    @Schema(description = "属性集")
+    @Schema(description = "属性集", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotNull(message = "属性集不能为空")
     @Size(min = 1, message = "属性集不能为空")
     private List<Long> attributeIds;

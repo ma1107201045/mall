@@ -4,7 +4,6 @@ import com.lingyi.mall.biz.product.dto.AttributeDTO;
 import com.lingyi.mall.biz.product.entity.AttributeDO;
 import com.lingyi.mall.biz.product.param.AttributeParam;
 import com.lingyi.mall.biz.product.vo.AttributeVO;
-import com.lingyi.mall.common.orm.util.BaseService;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
 
 /**
