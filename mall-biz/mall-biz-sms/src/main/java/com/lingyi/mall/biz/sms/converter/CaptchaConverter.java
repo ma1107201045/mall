@@ -3,8 +3,7 @@ package com.lingyi.mall.biz.sms.converter;
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.api.sms.enums.BusinessTypeEnum;
 import com.lingyi.mall.api.sms.enums.ServiceTypeEnum;
-import com.lingyi.mall.biz.sms.dto.CaptchaLogDTO;
-import com.lingyi.mall.biz.sms.entity.CaptchaLogDO;
+import com.lingyi.mall.biz.sms.model.dto.CaptchaLogDTO;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 
 /**

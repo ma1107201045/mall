@@ -3,7 +3,7 @@ package com.lingyi.mall.web.admin.file.controller;
 import com.lingyi.mall.biz.file.enums.FileTypeEnum;
 import com.lingyi.mall.biz.file.service.FileService;
 import com.lingyi.mall.biz.file.util.FileUtil;
-import com.lingyi.mall.biz.file.vo.FileVO;
+import com.lingyi.mall.biz.file.model.vo.FileVO;
 import com.lingyi.mall.common.core.enums.ClientTypeEnum;
 import com.lingyi.mall.common.core.enums.OperationTypeEnum;
 import com.lingyi.mall.common.core.util.ServerResponse;

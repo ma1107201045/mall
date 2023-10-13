@@ -1,16 +1,15 @@
 package com.lingyi.mall.web.admin.system.controller;
 
-import com.lingyi.mall.biz.system.dto.UserDTO;
-import com.lingyi.mall.biz.system.param.RoleParam;
-import com.lingyi.mall.biz.system.param.UserParam;
+import com.lingyi.mall.biz.system.model.dto.UserDTO;
+import com.lingyi.mall.biz.system.model.param.RoleParam;
+import com.lingyi.mall.biz.system.model.param.UserParam;
 import com.lingyi.mall.biz.system.service.UserService;
-import com.lingyi.mall.biz.system.vo.RoleVO;
-import com.lingyi.mall.biz.system.vo.UserVO;
+import com.lingyi.mall.biz.system.model.vo.RoleVO;
+import com.lingyi.mall.biz.system.model.vo.UserVO;
 import com.lingyi.mall.common.core.annotation.Log;
 import com.lingyi.mall.common.core.enums.OperationTypeEnum;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

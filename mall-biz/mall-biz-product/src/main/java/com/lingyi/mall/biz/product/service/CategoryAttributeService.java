@@ -1,9 +1,9 @@
 package com.lingyi.mall.biz.product.service;
 
-import com.lingyi.mall.biz.product.dto.CategoryAttributeDTO;
+import com.lingyi.mall.biz.product.model.dto.CategoryAttributeDTO;
 import com.lingyi.mall.biz.product.entity.CategoryAttributeDO;
-import com.lingyi.mall.biz.product.param.CategoryAttributeParam;
-import com.lingyi.mall.biz.product.vo.CategoryAttributeVO;
+import com.lingyi.mall.biz.product.model.param.CategoryAttributeParam;
+import com.lingyi.mall.biz.product.model.vo.CategoryAttributeVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
 
 import java.util.List;

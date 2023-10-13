@@ -4,7 +4,7 @@ import com.lingyi.mall.MallWebAppFileApplicationTest;
 import com.lingyi.mall.biz.file.enums.FileTypeEnum;
 import com.lingyi.mall.biz.file.service.FileService;
 import com.lingyi.mall.biz.file.util.FileUtil;
-import com.lingyi.mall.biz.file.vo.FileVO;
+import com.lingyi.mall.biz.file.model.vo.FileVO;
 import com.lingyi.mall.common.core.enums.ClientTypeEnum;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

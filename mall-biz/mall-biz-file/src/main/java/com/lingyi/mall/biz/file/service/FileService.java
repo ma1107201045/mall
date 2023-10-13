@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.file.service;
 
 import com.lingyi.mall.biz.file.enums.FileTypeEnum;
-import com.lingyi.mall.biz.file.vo.FileVO;
+import com.lingyi.mall.biz.file.model.vo.FileVO;
 
 import java.io.InputStream;
 import java.io.OutputStream;

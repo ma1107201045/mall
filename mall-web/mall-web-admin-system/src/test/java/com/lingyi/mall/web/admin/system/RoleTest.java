@@ -1,8 +1,8 @@
 package com.lingyi.mall.web.admin.system;
 
 import com.lingyi.mall.MallBizSystemApplicationTest;
-import com.lingyi.mall.biz.system.mapper.RoleMapper;
-import com.lingyi.mall.biz.system.repository.RoleRepository;
+import com.lingyi.mall.biz.system.dao.mapper.RoleMapper;
+import com.lingyi.mall.biz.system.dao.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 

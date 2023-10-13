@@ -1,16 +1,14 @@
 package com.lingyi.mall.biz.product.service.impl;
 
 import com.lingyi.mall.biz.product.converter.AttributeValueConverter;
-import com.lingyi.mall.biz.product.dto.AttributeValueDTO;
+import com.lingyi.mall.biz.product.model.dto.AttributeValueDTO;
 import com.lingyi.mall.biz.product.entity.AttributeValueDO;
-import com.lingyi.mall.biz.product.mapper.AttributeValueMapper;
-import com.lingyi.mall.biz.product.param.AttributeValueParam;
-import com.lingyi.mall.biz.product.repository.AttributeValueRepository;
+import com.lingyi.mall.biz.product.dao.mapper.AttributeValueMapper;
+import com.lingyi.mall.biz.product.model.param.AttributeValueParam;
+import com.lingyi.mall.biz.product.dao.repository.AttributeValueRepository;
 import com.lingyi.mall.biz.product.service.AttributeValueService;
-import com.lingyi.mall.biz.product.vo.AttributeValueVO;
-import com.lingyi.mall.common.core.util.ConverterUtil;
+import com.lingyi.mall.biz.product.model.vo.AttributeValueVO;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

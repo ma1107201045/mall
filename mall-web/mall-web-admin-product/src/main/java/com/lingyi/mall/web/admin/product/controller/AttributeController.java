@@ -1,9 +1,9 @@
 package com.lingyi.mall.web.admin.product.controller;
 
-import com.lingyi.mall.biz.product.dto.AttributeDTO;
-import com.lingyi.mall.biz.product.param.AttributeParam;
+import com.lingyi.mall.biz.product.model.dto.AttributeDTO;
+import com.lingyi.mall.biz.product.model.param.AttributeParam;
 import com.lingyi.mall.biz.product.service.AttributeService;
-import com.lingyi.mall.biz.product.vo.AttributeVO;
+import com.lingyi.mall.biz.product.model.vo.AttributeVO;
 import com.lingyi.mall.common.core.enums.OperationTypeEnum;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import com.lingyi.mall.common.core.annotation.Log;

@@ -1,10 +1,10 @@
 package com.lingyi.mall.web.admin.member.controller;
 
 import com.github.pagehelper.PageHelper;
-import com.lingyi.mall.biz.member.dto.MemberPartDTO;
-import com.lingyi.mall.biz.member.param.MemberParam;
+import com.lingyi.mall.biz.member.model.dto.MemberPartDTO;
+import com.lingyi.mall.biz.member.model.param.MemberParam;
 import com.lingyi.mall.biz.member.service.MemberService;
-import com.lingyi.mall.biz.member.vo.MemberVO;
+import com.lingyi.mall.biz.member.model.vo.MemberVO;
 import com.lingyi.mall.common.core.enums.OperationTypeEnum;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import com.lingyi.mall.common.core.annotation.Log;

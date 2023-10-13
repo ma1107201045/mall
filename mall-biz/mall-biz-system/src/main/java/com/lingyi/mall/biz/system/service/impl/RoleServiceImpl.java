@@ -1,17 +1,17 @@
 package com.lingyi.mall.biz.system.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
-import com.lingyi.mall.biz.system.dto.RoleDTO;
-import com.lingyi.mall.biz.system.entity.RoleDO;
+import com.lingyi.mall.biz.system.model.dto.RoleDTO;
+import com.lingyi.mall.biz.system.model.entity.RoleDO;
 import com.lingyi.mall.biz.system.enums.SystemFailEnum;
-import com.lingyi.mall.biz.system.mapper.RoleMapper;
-import com.lingyi.mall.biz.system.param.RoleParam;
-import com.lingyi.mall.biz.system.repository.RoleRepository;
+import com.lingyi.mall.biz.system.dao.mapper.RoleMapper;
+import com.lingyi.mall.biz.system.model.param.RoleParam;
+import com.lingyi.mall.biz.system.dao.repository.RoleRepository;
 import com.lingyi.mall.biz.system.service.MenuService;
 import com.lingyi.mall.biz.system.service.RoleMenuService;
 import com.lingyi.mall.biz.system.service.RoleService;
-import com.lingyi.mall.biz.system.vo.MenuVO;
-import com.lingyi.mall.biz.system.vo.RoleVO;
+import com.lingyi.mall.biz.system.model.vo.MenuVO;
+import com.lingyi.mall.biz.system.model.vo.RoleVO;
 import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;

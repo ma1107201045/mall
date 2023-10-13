@@ -1,8 +1,8 @@
 package com.lingyi.mall.biz.system.converter;
 
-import com.lingyi.mall.biz.system.entity.RoleDO;
-import com.lingyi.mall.biz.system.entity.UserDO;
-import com.lingyi.mall.biz.system.entity.UserRoleDO;
+import com.lingyi.mall.biz.system.model.entity.RoleDO;
+import com.lingyi.mall.biz.system.model.entity.UserDO;
+import com.lingyi.mall.biz.system.model.entity.UserRoleDO;
 
 import java.util.List;
 

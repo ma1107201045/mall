@@ -1,10 +1,9 @@
 package com.lingyi.mall.biz.member.service;
 
-import com.lingyi.mall.biz.member.dto.MemberLevelDTO;
+import com.lingyi.mall.biz.member.model.dto.MemberLevelDTO;
 import com.lingyi.mall.biz.member.entity.MemberLevelDO;
-import com.lingyi.mall.biz.member.param.MemberLevelParam;
-import com.lingyi.mall.biz.member.vo.MemberLevelVO;
-import com.lingyi.mall.common.orm.util.BaseService;
+import com.lingyi.mall.biz.member.model.param.MemberLevelParam;
+import com.lingyi.mall.biz.member.model.vo.MemberLevelVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
 
 /**

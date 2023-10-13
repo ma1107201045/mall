@@ -1,7 +1,6 @@
 package com.lingyi.mall.biz.member.converter;
 
 import com.lingyi.mall.api.member.dto.MemberLoginLogReqDTO;
-import com.lingyi.mall.biz.member.dto.MemberLoginLogDTO;
 import com.lingyi.mall.biz.member.entity.MemberDO;
 import com.lingyi.mall.biz.member.entity.MemberLoginLogDO;
 import com.lingyi.mall.common.core.util.ConverterUtil;

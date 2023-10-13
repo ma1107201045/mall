@@ -1,0 +1,16 @@
+package com.lingyi.mall.biz.system.dao.repository;
+
+
+import com.lingyi.mall.biz.system.model.entity.RoleDO;
+import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
+import org.springframework.stereotype.Repository;
+
+/**
+ * @author maweiyan
+ * @email 1107201045@qq.com
+ * @datetime 2023/4/30 22:43
+ * @description
+ */
+@Repository
+public interface RoleRepository extends JpaRepositoryImplementation<RoleDO, Long> {
+}

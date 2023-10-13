@@ -1,9 +1,9 @@
 package com.lingyi.mall.biz.product.service;
 
-import com.lingyi.mall.biz.product.dto.AttributeDTO;
+import com.lingyi.mall.biz.product.model.dto.AttributeDTO;
 import com.lingyi.mall.biz.product.entity.AttributeDO;
-import com.lingyi.mall.biz.product.param.AttributeParam;
-import com.lingyi.mall.biz.product.vo.AttributeVO;
+import com.lingyi.mall.biz.product.model.param.AttributeParam;
+import com.lingyi.mall.biz.product.model.vo.AttributeVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
 
 /**

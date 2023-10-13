@@ -1,19 +1,18 @@
 package com.lingyi.mall.biz.product.service.impl;
 
 import com.lingyi.mall.biz.product.constant.ProductConstant;
-import com.lingyi.mall.biz.product.dto.AttributeDTO;
-import com.lingyi.mall.biz.product.dto.CategoryDTO;
+import com.lingyi.mall.biz.product.model.dto.CategoryDTO;
 import com.lingyi.mall.biz.product.entity.CategoryDO;
 import com.lingyi.mall.biz.product.enums.ProductFailEnum;
-import com.lingyi.mall.biz.product.mapper.CategoryMapper;
-import com.lingyi.mall.biz.product.param.AttributeParam;
-import com.lingyi.mall.biz.product.param.CategoryParam;
-import com.lingyi.mall.biz.product.repository.CategoryRepository;
+import com.lingyi.mall.biz.product.dao.mapper.CategoryMapper;
+import com.lingyi.mall.biz.product.model.param.AttributeParam;
+import com.lingyi.mall.biz.product.model.param.CategoryParam;
+import com.lingyi.mall.biz.product.dao.repository.CategoryRepository;
 import com.lingyi.mall.biz.product.service.AttributeService;
 import com.lingyi.mall.biz.product.service.CategoryAttributeService;
 import com.lingyi.mall.biz.product.service.CategoryService;
-import com.lingyi.mall.biz.product.vo.AttributeVO;
-import com.lingyi.mall.biz.product.vo.CategoryVO;
+import com.lingyi.mall.biz.product.model.vo.AttributeVO;
+import com.lingyi.mall.biz.product.model.vo.CategoryVO;
 import com.lingyi.mall.common.core.constant.BaseConstant;
 import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ObjectUtil;

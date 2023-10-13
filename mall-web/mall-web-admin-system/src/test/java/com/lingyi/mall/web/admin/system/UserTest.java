@@ -2,9 +2,9 @@ package com.lingyi.mall.web.admin.system;
 
 import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.MallBizSystemApplicationTest;
-import com.lingyi.mall.biz.system.entity.UserDO;
-import com.lingyi.mall.biz.system.mapper.UserMapper;
-import com.lingyi.mall.biz.system.repository.UserRepository;
+import com.lingyi.mall.biz.system.model.entity.UserDO;
+import com.lingyi.mall.biz.system.dao.mapper.UserMapper;
+import com.lingyi.mall.biz.system.dao.repository.UserRepository;
 import com.lingyi.mall.common.core.enums.WhetherEnum;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

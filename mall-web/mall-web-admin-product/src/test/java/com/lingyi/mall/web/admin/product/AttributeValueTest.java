@@ -1,9 +1,8 @@
 package com.lingyi.mall.web.admin.product;
 
 import com.lingyi.mall.MallBizProductApplicationTest;
-import com.lingyi.mall.biz.product.mapper.AttributeValueMapper;
-import com.lingyi.mall.biz.product.repository.AttributeValueRepository;
-import com.lingyi.mall.biz.product.service.AttributeValueService;
+import com.lingyi.mall.biz.product.dao.mapper.AttributeValueMapper;
+import com.lingyi.mall.biz.product.dao.repository.AttributeValueRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

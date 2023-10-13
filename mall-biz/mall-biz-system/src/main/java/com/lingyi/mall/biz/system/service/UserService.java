@@ -3,12 +3,12 @@ package com.lingyi.mall.biz.system.service;
 import com.lingyi.mall.api.system.dto.MenuRespDTO;
 import com.lingyi.mall.api.system.dto.UserPartReqDTO;
 import com.lingyi.mall.api.system.dto.UserRespDTO;
-import com.lingyi.mall.biz.system.dto.UserDTO;
-import com.lingyi.mall.biz.system.entity.UserDO;
-import com.lingyi.mall.biz.system.param.RoleParam;
-import com.lingyi.mall.biz.system.param.UserParam;
-import com.lingyi.mall.biz.system.vo.RoleVO;
-import com.lingyi.mall.biz.system.vo.UserVO;
+import com.lingyi.mall.biz.system.model.dto.UserDTO;
+import com.lingyi.mall.biz.system.model.entity.UserDO;
+import com.lingyi.mall.biz.system.model.param.RoleParam;
+import com.lingyi.mall.biz.system.model.param.UserParam;
+import com.lingyi.mall.biz.system.model.vo.RoleVO;
+import com.lingyi.mall.biz.system.model.vo.UserVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
 
 import java.util.List;

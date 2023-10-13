@@ -1,6 +1,9 @@
 package com.lingyi.mall.biz.system.converter;
 
 import com.lingyi.mall.biz.system.entity.*;
+import com.lingyi.mall.biz.system.model.entity.MenuDO;
+import com.lingyi.mall.biz.system.model.entity.RoleDO;
+import com.lingyi.mall.biz.system.model.entity.RoleMenuDO;
 
 import java.util.List;
 

@@ -1,12 +1,12 @@
 package com.lingyi.mall.biz.product.service.impl;
 
-import com.lingyi.mall.biz.product.dto.SkuDTO;
+import com.lingyi.mall.biz.product.model.dto.SkuDTO;
 import com.lingyi.mall.biz.product.entity.SkuDO;
-import com.lingyi.mall.biz.product.mapper.SkuMapper;
-import com.lingyi.mall.biz.product.param.SkuParam;
-import com.lingyi.mall.biz.product.repository.SkuRepository;
+import com.lingyi.mall.biz.product.dao.mapper.SkuMapper;
+import com.lingyi.mall.biz.product.model.param.SkuParam;
+import com.lingyi.mall.biz.product.dao.repository.SkuRepository;
 import com.lingyi.mall.biz.product.service.SkuService;
-import com.lingyi.mall.biz.product.vo.SkuVO;
+import com.lingyi.mall.biz.product.model.vo.SkuVO;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import org.springframework.stereotype.Service;
 

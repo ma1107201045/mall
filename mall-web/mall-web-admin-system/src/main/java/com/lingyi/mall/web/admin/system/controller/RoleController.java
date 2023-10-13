@@ -1,9 +1,9 @@
 package com.lingyi.mall.web.admin.system.controller;
 
-import com.lingyi.mall.biz.system.dto.RoleDTO;
-import com.lingyi.mall.biz.system.param.RoleParam;
-import com.lingyi.mall.biz.system.vo.MenuVO;
-import com.lingyi.mall.biz.system.vo.RoleVO;
+import com.lingyi.mall.biz.system.model.dto.RoleDTO;
+import com.lingyi.mall.biz.system.model.param.RoleParam;
+import com.lingyi.mall.biz.system.model.vo.MenuVO;
+import com.lingyi.mall.biz.system.model.vo.RoleVO;
 import com.lingyi.mall.biz.system.service.RoleService;
 import com.lingyi.mall.common.core.enums.OperationTypeEnum;
 import com.lingyi.mall.common.core.util.ServerResponse;

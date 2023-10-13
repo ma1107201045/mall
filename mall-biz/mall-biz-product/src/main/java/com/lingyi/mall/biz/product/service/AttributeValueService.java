@@ -1,10 +1,9 @@
 package com.lingyi.mall.biz.product.service;
 
-import com.lingyi.mall.biz.product.dto.AttributeValueDTO;
+import com.lingyi.mall.biz.product.model.dto.AttributeValueDTO;
 import com.lingyi.mall.biz.product.entity.AttributeValueDO;
-import com.lingyi.mall.biz.product.param.AttributeValueParam;
-import com.lingyi.mall.biz.product.vo.AttributeValueVO;
-import com.lingyi.mall.common.orm.util.BaseService;
+import com.lingyi.mall.biz.product.model.param.AttributeValueParam;
+import com.lingyi.mall.biz.product.model.vo.AttributeValueVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
 
 import java.util.List;

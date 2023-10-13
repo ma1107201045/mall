@@ -1,14 +1,13 @@
 package com.lingyi.mall.biz.product.service.impl;
 
-import com.lingyi.mall.biz.product.dto.AttributeDTO;
+import com.lingyi.mall.biz.product.model.dto.AttributeDTO;
 import com.lingyi.mall.biz.product.entity.AttributeDO;
-import com.lingyi.mall.biz.product.mapper.AttributeMapper;
-import com.lingyi.mall.biz.product.param.AttributeParam;
-import com.lingyi.mall.biz.product.repository.AttributeRepository;
+import com.lingyi.mall.biz.product.dao.mapper.AttributeMapper;
+import com.lingyi.mall.biz.product.model.param.AttributeParam;
+import com.lingyi.mall.biz.product.dao.repository.AttributeRepository;
 import com.lingyi.mall.biz.product.service.AttributeService;
 import com.lingyi.mall.biz.product.service.AttributeValueService;
-import com.lingyi.mall.biz.product.vo.AttributeVO;
-import com.lingyi.mall.common.core.util.ConverterUtil;
+import com.lingyi.mall.biz.product.model.vo.AttributeVO;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,8 +1,8 @@
 package com.lingyi.mall.web.admin.system.controller;
 
-import com.lingyi.mall.biz.system.dto.MenuDTO;
+import com.lingyi.mall.biz.system.model.dto.MenuDTO;
 import com.lingyi.mall.biz.system.service.MenuService;
-import com.lingyi.mall.biz.system.vo.MenuVO;
+import com.lingyi.mall.biz.system.model.vo.MenuVO;
 import com.lingyi.mall.common.core.annotation.Log;
 import com.lingyi.mall.common.core.enums.OperationTypeEnum;
 import com.lingyi.mall.common.core.util.ServerResponse;

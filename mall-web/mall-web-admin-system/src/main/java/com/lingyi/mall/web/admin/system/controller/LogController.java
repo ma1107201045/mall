@@ -2,10 +2,10 @@ package com.lingyi.mall.web.admin.system.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.github.pagehelper.PageHelper;
-import com.lingyi.mall.biz.system.entity.LogDO;
-import com.lingyi.mall.biz.system.param.LogParam;
+import com.lingyi.mall.biz.system.model.entity.LogDO;
+import com.lingyi.mall.biz.system.model.param.LogParam;
 import com.lingyi.mall.biz.system.service.LogService;
-import com.lingyi.mall.biz.system.vo.LogVO;
+import com.lingyi.mall.biz.system.model.vo.LogVO;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

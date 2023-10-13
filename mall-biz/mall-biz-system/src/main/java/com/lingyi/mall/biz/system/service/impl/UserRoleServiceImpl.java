@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.system.service.impl;
 
 import com.lingyi.mall.biz.system.converter.UserRoleConverter;
-import com.lingyi.mall.biz.system.repository.UserRoleRepository;
+import com.lingyi.mall.biz.system.dao.repository.UserRoleRepository;
 import com.lingyi.mall.biz.system.service.UserRoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.system.service.impl;
 
 import com.lingyi.mall.biz.system.converter.RoleMenuConverter;
-import com.lingyi.mall.biz.system.repository.RoleMenuRepository;
+import com.lingyi.mall.biz.system.dao.repository.RoleMenuRepository;
 import com.lingyi.mall.biz.system.service.RoleMenuService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
