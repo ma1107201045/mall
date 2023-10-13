@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lingyi.mall.biz.member.dao.mapper.MemberMapper">
+    <resultMap id="BaseResultMap" type="com.lingyi.mall.biz.member.model.vo.MemberVO">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="memberLevelId" column="member_level_id" jdbcType="BIGINT"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="nickname" column="nickname" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="TINYINT"/>
+        <result property="birthday" column="birthday" jdbcType="DATE"/>
+        <result property="phoneNumber" column="phone_number" jdbcType="VARCHAR"/>
+        <result property="headPortrait" column="head_portrait" jdbcType="VARCHAR"/>
+        <result property="personalizedSignature" column="personalized_signature" jdbcType="VARCHAR"/>
+        <result property="isEnable" column="is_enable" jdbcType="TINYINT"/>
+        <result property="registerSource" column="register_source" jdbcType="TINYINT"/>
+        <result property="registerDataTime" column="register_data_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,member_level_id,user_name,
+        `password`,nickname,sex,
+        birthday,phone_number,head_portrait,
+        personalized_signature,is_enable,register_source,
+        register_data_time
+    </sql>
+    <sql id="Base_Condition">
+        <if test="nickName!=null and nickName!=''">
+            AND nick_name LIKE CONCAT('%',#{nickName,jdbcType=VARCHAR},'%')
+        </if>
+    </sql>
+    <select id="selectById" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM mm_member
+        WHERE id#{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectListByParam" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM mm_member
+        <where>
+            <include refid="Base_Condition"/>
+        </where>
+    </select>
+    <select id="selectByPhoneNumber" resultType="com.lingyi.mall.api.member.dto.MemberRespDTO">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM mm_member
+        WHERE phone_number=#{phoneNumber,jdbcType=VARCHAR}
+    </select>
+
+
+</mapper>

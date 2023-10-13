@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lingyi.mall.biz.system.dao.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.lingyi.mall.biz.system.model.vo.UserVO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="real_name" jdbcType="VARCHAR" property="realName"/>
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="sex" jdbcType="TINYINT" property="sex"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="head_portrait" jdbcType="VARCHAR" property="headPortrait"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="phone_number" jdbcType="CHAR" property="phoneNumber"/>
+        <result column="last_login_ip" jdbcType="VARCHAR" property="lastLoginIp"/>
+        <result column="is_enable" jdbcType="TINYINT" property="isEnable"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="create_date_time" jdbcType="TIMESTAMP" property="createDateTime"/>
+        <result column="last_modify_by" jdbcType="VARCHAR" property="lastModifyBy"/>
+        <result column="last_modify_date_time" jdbcType="TIMESTAMP" property="lastModifyDateTime"/>
+        <collection property="roleIds" ofType="java.lang.Long">
+            <result column="role_id" jdbcType="BIGINT"/>
+        </collection>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_name, real_name, nickname, `password`, sex, head_portrait, email, phone_number,
+        last_login_ip, is_enable, remark, create_by, create_date_time, last_modify_by, last_modify_date_time
+    </sql>
+    <sql id="Base_Condition">
+        <if test="userName != null and userName !=''">
+            AND user_name LIKE CONCAT('%',#{userName,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="phoneNumber != null and phoneNumber != ''">
+            AND phone_number = #{phoneNumber,jdbcType=VARCHAR}
+        </if>
+    </sql>
+    <select id="selectById" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>,mur.role_id
+        FROM ms_user mu LEFT JOIN ms_user_role mur ON mu.id = mur.user_id
+        WHERE mu.id= #{id,jdbcType=BIGINT}
+    </select>
+    <select id="countByParam" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM ms_user
+        <where>
+            <include refid="Base_Condition"/>
+        </where>
+    </select>
+    <select id="selectListByParam" resultMap="BaseResultMap">
+        SELECT mu.*, mur.role_id FROM
+        (SELECT
+        <include refid="Base_Column_List"/>
+        FROM ms_user
+        <where>
+            <include refid="Base_Condition"/>
+        </where>
+        LIMIT #{offset},#{limit}
+        ) mu
+        LEFT JOIN ms_user_role mur ON mu.id = mur.user_id
+        ORDER BY mu.${sort}
+    </select>
+
+
+
+
+
+    <resultMap id="SelectByUserNameMap" type="com.lingyi.mall.api.system.dto.UserRespDTO">
+        <id column="mu_id" property="userId"/>
+        <result column="mu_user_name" property="userName"/>
+        <result column="mu_password" property="password"/>
+        <result column="mu_is_enable" property="isEnable"/>
+    </resultMap>
+    <select id="selectByUserName" resultMap="SelectByUserNameMap">
+        SELECT mu.id            mu_id,
+               mu.user_name     mu_user_name,
+               mu.real_name     mu_real_name,
+               mu.nickname      mu_nickname,
+               mu.sex           mu_sex,
+               mu.password      mu_password,
+               mu.head_portrait mu_head_portrait,
+               mu.email         mu_email,
+               mu.phone_number  mu_phone_number,
+               mu.last_login_ip mu_last_login_ip,
+               mu.is_enable     mu_is_enable,
+               mu.remark        mu_remark
+        FROM ms_user mu
+        WHERE mu.user_name = #{userName}
+    </select>
+
+    <resultMap id="SelectMenusByUserNameAndMenuTypesMap"
+               type="com.lingyi.mall.api.system.dto.MenuRespDTO">
+        <id column="id" property="id"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="name" property="name"/>
+        <result column="type" property="type"/>
+        <result column="icon" property="icon"/>
+        <result column="sort" property="sort"/>
+        <result column="route_name" property="routeName"/>
+        <result column="route_path" property="routePath"/>
+        <result column="permission" property="permission"/>
+    </resultMap>
+    <select id="selectMenusByUserNameAndMenuTypes"
+            resultMap="SelectMenusByUserNameAndMenuTypesMap">
+        SELECT mm.id,mm.parent_id, mm.name, mm.type, mm.icon, mm.sort, mm.route_name, mm.route_path,mm.permission
+        FROM ms_user mu INNER JOIN ms_user_role mur ON mur.user_id = mu.id
+        INNER JOIN ms_role_menu mrm ON mrm.role_id = mur.role_id
+        INNER JOIN ms_menu mm ON mm.id = mrm.menu_id
+        <where>
+            <if test="userName != null and userName != '' ">
+                AND mu.user_name = #{userName}
+            </if>
+            <if test="menuTypes != null and menuTypes.size() > 0">
+                AND mm.type IN
+                <foreach collection="menuTypes" item="menuType" open="(" separator="," close=")">
+                    #{menuType}
+                </foreach>
+            </if>
+        </where>
+        GROUP BY mm.id,mm.parent_id, mm.name, mm.type, mm.icon, mm.sort, mm.route_name, mm.route_path
+        ORDER BY mm.sort
+    </select>
+
+</mapper>
