@@ -148,7 +148,8 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
     private void verifyData(UserDTO userDTO, List<Long> ids, OperationTypeEnum operationTypeEnum) {
         if (operationTypeEnum == OperationTypeEnum.CREATE) {
             //断言用户是否admin
-            AssertUtil.isFalse(SystemConstant.USER_NAME_ADMIN.equals(userDTO.getUserName()), SystemFailEnum.USER_NAME_ADMIN_CREATE_ERROR);
+            AssertUtil.isFalse(SystemConstant.USER_NAME_ADMIN.equals(userDTO.getUserName()),
+                    SystemFailEnum.USER_NAME_ADMIN_CREATE_ERROR);
             //通过用户名称获取用户id
             var id = jpaRepository.findIdByUserName(userDTO.getUserName());
             //判断用户名称不存在
@@ -156,7 +157,8 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
         }
         if (operationTypeEnum == OperationTypeEnum.UPDATE) {
             //断言用户是否admin
-            AssertUtil.isFalse(SystemConstant.USER_NAME_ADMIN.equals(userDTO.getUserName()), SystemFailEnum.USER_NAME_ADMIN_UPDATE_ERROR);
+            AssertUtil.isFalse(SystemConstant.USER_NAME_ADMIN.equals(userDTO.getUserName()),
+                    SystemFailEnum.USER_NAME_ADMIN_UPDATE_ERROR);
             //断言用户名称是否相同
             var id = jpaRepository.findIdByUserName(userDTO.getUserName());
             var flag = Objects.nonNull(id) && !Objects.equals(userDTO.getId(), id);
