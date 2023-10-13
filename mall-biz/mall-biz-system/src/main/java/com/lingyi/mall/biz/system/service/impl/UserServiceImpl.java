@@ -111,13 +111,13 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
 
     @Override
     public UserRespDTO readUserAndMenuPermissionsByUserName(String userName) {
-        var userResp = mybatisMapper.selectByUserName(userName);
-        if (Objects.isNull(userResp)) {
+        var userRes = mybatisMapper.selectByUserName(userName);
+        if (Objects.isNull(userRes)) {
             return ObjectUtil.getNull();
         }
         var permissions = readMenuPermissionsByUserName(userName);
-        userResp.setPermissions(permissions);
-        return userResp;
+        userRes.setPermissions(permissions);
+        return userRes;
     }
 
     @Override
