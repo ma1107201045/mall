@@ -1,8 +1,8 @@
 package com.lingyi.mall.auth.app.service;
 
-import com.lingyi.mall.auth.app.dto.AuthAppLoginDTO;
-import com.lingyi.mall.auth.app.dto.AuthAppSendDTO;
-import com.lingyi.mall.auth.app.vo.AuthAppLoginVO;
+import com.lingyi.mall.auth.app.model.dto.AuthAppLoginDTO;
+import com.lingyi.mall.auth.app.model.dto.AuthAppSendDTO;
+import com.lingyi.mall.auth.app.model.vo.AuthAppLoginVO;
 
 /**
  * @author maweiyan

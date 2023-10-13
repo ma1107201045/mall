@@ -3,10 +3,10 @@ package com.lingyi.mall.auth.app;
 
 import com.alibaba.fastjson2.JSON;
 import com.lingyi.mall.MallAuthAppApplicationTest;
-import com.lingyi.mall.auth.app.dto.AuthAppLoginDTO;
-import com.lingyi.mall.auth.app.dto.AuthAppSendDTO;
+import com.lingyi.mall.auth.app.model.dto.AuthAppLoginDTO;
+import com.lingyi.mall.auth.app.model.dto.AuthAppSendDTO;
 import com.lingyi.mall.auth.app.service.AuthAppService;
-import com.lingyi.mall.auth.app.vo.AuthAppLoginVO;
+import com.lingyi.mall.auth.app.model.vo.AuthAppLoginVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

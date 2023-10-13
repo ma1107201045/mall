@@ -9,7 +9,7 @@ import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
 import com.lingyi.mall.api.sms.enums.BusinessTypeEnum;
 import com.lingyi.mall.api.sms.enums.ServiceTypeEnum;
-import com.lingyi.mall.auth.app.dto.AuthAppLoginDTO;
+import com.lingyi.mall.auth.app.model.dto.AuthAppLoginDTO;
 import com.lingyi.mall.auth.app.enums.RegisterSourceEnum;
 import com.lingyi.mall.auth.app.properties.SmsCaptchaProperties;
 import com.lingyi.mall.auth.app.util.UserNameUtil;

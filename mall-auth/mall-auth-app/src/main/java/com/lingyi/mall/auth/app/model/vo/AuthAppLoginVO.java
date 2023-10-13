@@ -1,4 +1,4 @@
-package com.lingyi.mall.auth.app.vo;
+package com.lingyi.mall.auth.app.model.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
