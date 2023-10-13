@@ -47,7 +47,8 @@ public class CategoryDTO extends BaseIdDTO<Long> {
     @Schema(description = "分类顺序")
     private Integer sort;
 
-    @Schema(description = "分类级别")
+    @Schema(description = "分类级别", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotNull(message = "分类级别")
     private Integer level;
 
     @Schema(description = "是否显示在导航栏 1是 0否", requiredMode = Schema.RequiredMode.REQUIRED)

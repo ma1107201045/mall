@@ -1,8 +1,10 @@
 package com.lingyi.mall.biz.product.service.impl;
 
+import com.lingyi.mall.biz.product.constant.ProductConstant;
 import com.lingyi.mall.biz.product.dto.AttributeDTO;
 import com.lingyi.mall.biz.product.dto.CategoryDTO;
 import com.lingyi.mall.biz.product.entity.CategoryDO;
+import com.lingyi.mall.biz.product.enums.ProductFailEnum;
 import com.lingyi.mall.biz.product.mapper.CategoryMapper;
 import com.lingyi.mall.biz.product.param.AttributeParam;
 import com.lingyi.mall.biz.product.param.CategoryParam;
@@ -13,6 +15,7 @@ import com.lingyi.mall.biz.product.service.CategoryService;
 import com.lingyi.mall.biz.product.vo.AttributeVO;
 import com.lingyi.mall.biz.product.vo.CategoryVO;
 import com.lingyi.mall.common.core.constant.BaseConstant;
+import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ObjectUtil;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
@@ -40,6 +43,7 @@ public class CategoryServiceImpl extends BaseServiceProImpl<CategoryRepository, 
 
     @Override
     public void create(CategoryDTO categoryDTO) {
+        verifyData(categoryDTO);
         var id = create(categoryDTO, CategoryDO.class);
         categoryAttributeService.createList(id, categoryDTO.getAttributeIds());
     }
@@ -55,6 +59,7 @@ public class CategoryServiceImpl extends BaseServiceProImpl<CategoryRepository, 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateById(CategoryDTO categoryDTO) {
+        verifyData(categoryDTO);
         var id = categoryDTO.getId();
         super.updateById(categoryDTO);
         //批量删除分类属性信息
@@ -77,6 +82,10 @@ public class CategoryServiceImpl extends BaseServiceProImpl<CategoryRepository, 
         return attributeService.readListByParam(ObjectUtil.newInstance(AttributeParam.class));
     }
 
+    private void verifyData(CategoryDTO categoryDTO) {
+        boolean flag = categoryDTO.getLevel() > ProductConstant.MAX_CATEGORY_LEVEL;
+        AssertUtil.isFalse(flag, ProductFailEnum.CATEGORY_LEVEL_ERROR);
+    }
 
     private List<CategoryVO> toTree(Long parentId, List<CategoryVO> categories) {
         return categories.stream()

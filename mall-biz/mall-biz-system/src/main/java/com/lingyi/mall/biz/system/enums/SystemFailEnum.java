@@ -21,9 +21,11 @@ public enum SystemFailEnum implements BaseFailEnum {
 
     USER_NAME_EXIST_ERROR(8002, "用户名称已存在"),
 
-    USER_NAME_ADMIN_DELETE_ERROR(8003, "用户Admin不允许删除"),
+    USER_NAME_ADMIN_CREATE_ERROR(8003, "用户名Admin不允许创建"),
 
-    USER_NAME_ADMIN_UPDATE_ERROR(8004, "用户Admin不允许更新"),
+    USER_NAME_ADMIN_DELETE_ERROR(8004, "用户名Admin不允许删除"),
+
+    USER_NAME_ADMIN_UPDATE_ERROR(8005, "用户名Admin不允许更新"),
 
     ROLE_NULL_ERROR(8005, "角色不能为空"),
 

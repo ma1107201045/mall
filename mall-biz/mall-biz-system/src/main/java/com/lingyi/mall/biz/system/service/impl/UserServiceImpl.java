@@ -19,6 +19,7 @@ import com.lingyi.mall.biz.system.service.UserRoleService;
 import com.lingyi.mall.biz.system.service.UserService;
 import com.lingyi.mall.biz.system.vo.RoleVO;
 import com.lingyi.mall.biz.system.vo.UserVO;
+import com.lingyi.mall.common.core.enums.OperationTypeEnum;
 import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.core.util.ObjectUtil;
@@ -53,13 +54,10 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void create(UserDTO userDTO) {
-        //通过用户名称获取用户id
-        var id = jpaRepository.findIdByUserName(userDTO.getUserName());
-        //判断用户名称不存在
-        AssertUtil.isNull(id, SystemFailEnum.USER_NAME_EXIST_ERROR);
+        //校验数据
+        verifyData(userDTO, ObjectUtil.getNull(), OperationTypeEnum.CREATE);
         //密码作哈希
-        var encodePassword = passwordEncoder.encode(userDTO.getPassword());
-        userDTO.setPassword(encodePassword);
+        encodePassword(userDTO);
         //保存
         var newId = create(userDTO, UserDO.class);
         //保存用户角色信息
@@ -70,36 +68,29 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
     @Transactional(rollbackFor = Exception.class)
     public void deleteByIds(List<Long> ids) {
         if (CollUtil.isEmpty(ids)) {
-           return;
+            return;
         }
-        var flag = jpaRepository.findAllById(ids).stream()
-                .anyMatch(userDO -> SystemConstant.USER_NAME_ADMIN.equals(userDO.getUserName()));
-        AssertUtil.isFalse(flag, SystemFailEnum.USER_NAME_ADMIN_DELETE_ERROR);
+        //校验数据
+        verifyData(ObjectUtil.getNull(), ids, OperationTypeEnum.DELETE);
+        //删除
         super.deleteByIds(ids);
+        //删除用户角色
         userRoleService.deleteByUserIds(ids);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateById(UserDTO userDTO) {
-        var id = userDTO.getId();
-        //断言用户是否admin
-        AssertUtil.isFalse(SystemConstant.USER_NAME_ADMIN.equals(userDTO.getUserName()), SystemFailEnum.USER_NAME_ADMIN_UPDATE_ERROR);
-
-        //断言用户名称是否相同
-        var newId = jpaRepository.findIdByUserName(userDTO.getUserName());
-        var flag = Objects.nonNull(newId) && !Objects.equals(id, newId);
-        AssertUtil.isFalse(flag, SystemFailEnum.USER_NAME_EXIST_ERROR);
-
+        //校验数据
+        verifyData(userDTO, ObjectUtil.getNull(), OperationTypeEnum.UPDATE);
         //密码作哈希
-        var encodePassword = passwordEncoder.encode(userDTO.getPassword());
-        userDTO.setPassword(encodePassword);
-
+        encodePassword(userDTO);
+        //更新
         super.updateById(userDTO);
         //删除用户角色集
-        userRoleService.deleteByUserIds(Collections.singletonList(id));
+        userRoleService.deleteByUserIds(Collections.singletonList(userDTO.getId()));
         //保存用户角色信息
-        userRoleService.createList(id, userDTO.getRoleIds());
+        userRoleService.createList(userDTO.getId(), userDTO.getRoleIds());
     }
 
     @Override
@@ -114,6 +105,7 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
         userPartReqDTO.setPassword(encodePassword);
         //更新数据
         UserDO userDO = ConverterUtil.to(userPartReqDTO, UserDO.class);
+        //更新
         updateById(userDO);
     }
 
@@ -152,6 +144,36 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
         return menus.stream().map(MenuRespDTO::getPermission).toList();
     }
 
+
+    private void verifyData(UserDTO userDTO, List<Long> ids, OperationTypeEnum operationTypeEnum) {
+        if (operationTypeEnum == OperationTypeEnum.CREATE) {
+            //断言用户是否admin
+            AssertUtil.isFalse(SystemConstant.USER_NAME_ADMIN.equals(userDTO.getUserName()), SystemFailEnum.USER_NAME_ADMIN_CREATE_ERROR);
+            //通过用户名称获取用户id
+            var id = jpaRepository.findIdByUserName(userDTO.getUserName());
+            //判断用户名称不存在
+            AssertUtil.isNull(id, SystemFailEnum.USER_NAME_EXIST_ERROR);
+        }
+        if (operationTypeEnum == OperationTypeEnum.UPDATE) {
+            //断言用户是否admin
+            AssertUtil.isFalse(SystemConstant.USER_NAME_ADMIN.equals(userDTO.getUserName()), SystemFailEnum.USER_NAME_ADMIN_UPDATE_ERROR);
+            //断言用户名称是否相同
+            var id = jpaRepository.findIdByUserName(userDTO.getUserName());
+            var flag = Objects.nonNull(id) && !Objects.equals(userDTO.getId(), id);
+            AssertUtil.isTrue(flag, SystemFailEnum.USER_NAME_EXIST_ERROR);
+        }
+        if (operationTypeEnum == OperationTypeEnum.DELETE) {
+            var flag = jpaRepository.findAllById(ids).stream()
+                    .anyMatch(userDO -> SystemConstant.USER_NAME_ADMIN.equals(userDO.getUserName()));
+            AssertUtil.isFalse(flag, SystemFailEnum.USER_NAME_ADMIN_DELETE_ERROR);
+        }
+    }
+
+
+    private void encodePassword(UserDTO userDTO) {
+        var encodePassword = passwordEncoder.encode(userDTO.getPassword());
+        userDTO.setPassword(encodePassword);
+    }
 
     private List<MenuRespDTO> toMenuTree(Long menuParentId, List<MenuRespDTO> menus) {
         return menus.stream()
