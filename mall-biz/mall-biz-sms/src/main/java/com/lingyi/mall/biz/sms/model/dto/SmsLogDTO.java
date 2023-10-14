@@ -18,7 +18,7 @@ import java.io.Serial;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Schema
-public class CaptchaLogDTO extends BaseIdDTO<Long> {
+public class SmsLogDTO extends BaseIdDTO<Long> {
 
     @Serial
     private static final long serialVersionUID = -8254294466774665611L;
@@ -28,6 +28,9 @@ public class CaptchaLogDTO extends BaseIdDTO<Long> {
 
     @Schema(description = "业务名称")
     private String businessName;
+
+    @Schema(description = "短信类型 1.验证密码")
+    private Integer type;
 
     @Schema(description = "手机号")
     private String phoneNumber;

@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class CaptchaLogParam extends BasePageParam {
+public class SmsLogParam extends BasePageParam {
 
 
     @Schema(description = "手机号")

@@ -2,24 +2,27 @@ package com.lingyi.mall.api.sms.feign;
 
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
-import com.lingyi.mall.api.sms.fallbackfactory.CaptchaFeignFallbackFactory;
+import com.lingyi.mall.api.sms.dto.SmsReqDTO;
+import com.lingyi.mall.api.sms.fallbackfactory.CapchaFeignFallbackFactory;
+import com.lingyi.mall.api.sms.fallbackfactory.SmsFeignFallbackFactory;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 /**
- * @author maweiyan
- * @email 1107201045@qq.com
- * @datetime 2023/7/13 16:14
- * @description
+ * @Author: maweiyan
+ * @Email 1107201045@qq.com
+ * @DateTime: 2023/10/15 4:08
+ * @Description:
  */
-@FeignClient(value = "mall-web-app-sms", fallbackFactory = CaptchaFeignFallbackFactory.class)
+@FeignClient(value = "mall-web-app-sms", fallbackFactory = CapchaFeignFallbackFactory.class)
 public interface CaptchaFeign {
-    String URL_PREFIX = "/app/sms/captchas";
+    String URL_PREFIX = "/app/captchas";
+
 
     /**
-     * 保存验证码
+     * 发送验证码
      *
      * @param captchaSendReqDTO ..
      * @return ServerResponse
@@ -36,5 +39,4 @@ public interface CaptchaFeign {
      */
     @PostMapping(URL_PREFIX + "/verify")
     ServerResponse<Void> verify(@RequestBody CaptchaVerifyReqDTO captchaVerifyReqDTO);
-
 }

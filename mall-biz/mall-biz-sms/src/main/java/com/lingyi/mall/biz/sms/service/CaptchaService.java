@@ -4,15 +4,16 @@ import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
 
 /**
- * @author maweiyan
- * @email 1107201045@qq.com
- * @datetime 2023/7/12 14:22
- * @description
+ * @Author: maweiyan
+ * @Email 1107201045@qq.com
+ * @DateTime: 2023/10/15 4:03
+ * @Description:
  */
 public interface CaptchaService {
 
+
     /**
-     * 发送验证码
+     * 发送
      *
      * @param captchaSendReqDTO 。。
      */
@@ -21,10 +22,9 @@ public interface CaptchaService {
 
 
     /**
-     * 校验验证码
+     * 校验
      *
      * @param captchaVerifyReqDTO 。。
      */
     void verify(CaptchaVerifyReqDTO captchaVerifyReqDTO);
-
 }

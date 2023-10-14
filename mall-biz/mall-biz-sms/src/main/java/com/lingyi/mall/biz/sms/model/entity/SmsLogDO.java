@@ -1,4 +1,4 @@
-package com.lingyi.mall.biz.sms.entity;
+package com.lingyi.mall.biz.sms.model.entity;
 
 import com.lingyi.mall.common.orm.entity.BaseCommonDO;
 import jakarta.persistence.Column;
@@ -22,9 +22,9 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Entity
-@Table(name = "ms_captcha_log")
+@Table(name = "ms_sms_log")
 @DynamicInsert
-public class CaptchaLogDO extends BaseCommonDO implements Serializable {
+public class SmsLogDO extends BaseCommonDO implements Serializable {
     @Serial
     private static final long serialVersionUID = 5605276090951019486L;
 
@@ -34,10 +34,13 @@ public class CaptchaLogDO extends BaseCommonDO implements Serializable {
     @Column(name = "business_name", columnDefinition = "VARCHAR(50) NOT NULL COMMENT '业务名称'")
     private String businessName;
 
+    @Column(name = "type", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '短信类型 1.验证密码'")
+    private Integer type;
+
     @Column(name = "phone_number", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '手机号'")
     private String phoneNumber;
 
-    @Column(name = "captcha", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '验证码'")
+    @Column(name = "captcha", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '验证码'")
     private Integer captcha;
 
     @Column(name = "length", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '验证码长度'")

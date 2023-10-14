@@ -5,8 +5,8 @@ import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.api.member.dto.MemberLoginLogReqDTO;
 import com.lingyi.mall.api.member.dto.MemberReqDTO;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
-import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
-import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
+import com.lingyi.mall.api.sms.dto.SmsCaptchaReqDTO;
+import com.lingyi.mall.api.sms.dto.SmsReqDTO;
 import com.lingyi.mall.api.sms.enums.BusinessTypeEnum;
 import com.lingyi.mall.api.sms.enums.ServiceTypeEnum;
 import com.lingyi.mall.auth.app.model.dto.AuthAppLoginDTO;
@@ -32,9 +32,9 @@ public class AuthAppConverter {
 
     }
 
-    public CaptchaVerifyReqDTO to(AuthAppLoginDTO authAppLoginDTO, SmsCaptchaProperties properties) {
+    public SmsReqDTO to(AuthAppLoginDTO authAppLoginDTO, SmsCaptchaProperties properties) {
         var phoneNumber = authAppLoginDTO.getPhoneNumber();
-        CaptchaVerifyReqDTO captchaVerifyReqDTO = new CaptchaVerifyReqDTO();
+        SmsReqDTO captchaVerifyReqDTO = new SmsReqDTO();
         captchaVerifyReqDTO.setPhoneNumber(phoneNumber);
         captchaVerifyReqDTO.setServiceType(properties.getServiceTypeEnum().getCode());
         captchaVerifyReqDTO.setBusinessType(properties.getBusinessTypeEnum().getCode());
@@ -53,8 +53,8 @@ public class AuthAppConverter {
         return memberReqDTO;
     }
 
-    public CaptchaSendReqDTO to(String phoneNumber, SmsCaptchaProperties properties) {
-        var captchaSendReqDTO = new CaptchaSendReqDTO();
+    public SmsCaptchaReqDTO to(String phoneNumber, SmsCaptchaProperties properties) {
+        var captchaSendReqDTO = new SmsCaptchaReqDTO();
         captchaSendReqDTO.setServiceType(properties.getServiceTypeEnum().getCode());
         captchaSendReqDTO.setBusinessType(properties.getBusinessTypeEnum().getCode());
         captchaSendReqDTO.setPhoneNumber(phoneNumber);

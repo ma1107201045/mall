@@ -2,9 +2,6 @@ package com.lingyi.mall.api.sms.dto;
 
 import lombok.Data;
 
-import java.io.Serial;
-import java.io.Serializable;
-
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
@@ -12,7 +9,7 @@ import java.io.Serializable;
  * @description
  */
 @Data
-public class CaptchaReqDTO {
+public class SmsReqDTO {
 
 
     /**
@@ -24,6 +21,11 @@ public class CaptchaReqDTO {
      * 业务类型
      */
     private Integer businessType;
+
+    /**
+     * 短信类型 1.验证密码
+     */
+    private Integer type;
 
     /**
      * 手机号

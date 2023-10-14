@@ -4,14 +4,14 @@ import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
 import com.lingyi.mall.biz.sms.converter.CaptchaConverter;
-import com.lingyi.mall.biz.sms.entity.CaptchaLogDO;
 import com.lingyi.mall.biz.sms.enums.SmsFailEnum;
 import com.lingyi.mall.biz.sms.exception.SmsException;
-import com.lingyi.mall.biz.sms.service.CaptchaLogService;
+import com.lingyi.mall.biz.sms.model.entity.SmsLogDO;
 import com.lingyi.mall.biz.sms.service.CaptchaService;
+import com.lingyi.mall.biz.sms.service.SendLogService;
 import com.lingyi.mall.biz.sms.util.SmsRedisKeyUtil;
-import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.annotation.RedisLock;
+import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.redis.util.RedisUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,21 +23,20 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author maweiyan
- * @email 1107201045@qq.com
- * @datetime 2023/7/12 14:22
- * @description
+ * @Author: maweiyan
+ * @Email 1107201045@qq.com
+ * @DateTime: 2023/10/15 4:04
+ * @Description:
  */
 @Service
 @RequiredArgsConstructor
 public class CaptchaServiceImpl implements CaptchaService {
 
-    private final CaptchaLogService captchaLogService;
+    private final SendLogService sendLogService;
 
     private final RedisUtil redisUtil;
 
     private final SmsRedisKeyUtil smsRedisKeyUtil;
-
 
     @Override
     @RedisLock(keySuffix = "#captchaSendReqDTO.serviceType + ':' + #captchaSendReqDTO.businessType + ':' + #captchaSendReqDTO.phoneNumber")
@@ -71,8 +70,8 @@ public class CaptchaServiceImpl implements CaptchaService {
         }
         //转换成验证码日志信息
         var captchaLogDTO = CaptchaConverter.INSTANCE.to(captchaSendReqDTO);
-        //保存验证码日志
-        captchaLogService.create(captchaLogDTO, CaptchaLogDO.class);
+        //保存短信日志
+        sendLogService.create(captchaLogDTO, SmsLogDO.class);
     }
 
 
@@ -95,4 +94,5 @@ public class CaptchaServiceImpl implements CaptchaService {
         var endDateTime = LocalDateTime.of(startDateTime.plusDays(1).toLocalDate(), LocalTime.MIN);
         return endDateTime.toInstant(ZoneOffset.ofHours(8)).toEpochMilli() - startDateTime.toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
     }
+
 }

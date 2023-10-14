@@ -1,6 +1,9 @@
 package com.lingyi.mall.biz.sms.util;
 
-import com.lingyi.mall.api.sms.dto.CaptchaReqDTO;
+import com.lingyi.mall.api.sms.dto.AbstractSmsReqDTO;
+import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
+import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
+import com.lingyi.mall.api.sms.dto.SmsReqDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -23,18 +26,18 @@ public final class SmsRedisKeyUtil {
 
     }
 
-    public String getCaptchaKey(CaptchaReqDTO captchaReqDTO) {
+    public String getCaptchaKey(SmsReqDTO smsReqDTO) {
         return String.format(CAPTCHA_KEY_FORMAT, applicationName,
-                captchaReqDTO.getServiceType(), captchaReqDTO.getBusinessType(), captchaReqDTO.getPhoneNumber());
+                smsReqDTO.getServiceType(), smsReqDTO.getBusinessType(), smsReqDTO.getPhoneNumber());
     }
 
-    public String getCaptchaIntervalDateKey(CaptchaReqDTO captchaReqDTO) {
+    public String getCaptchaIntervalDateKey(SmsReqDTO smsReqDTO) {
         return String.format(CAPTCHA_INTERVAL_DATA_KEY_FORMAT, applicationName,
-                captchaReqDTO.getServiceType(), captchaReqDTO.getBusinessType(), captchaReqDTO.getPhoneNumber());
+                smsReqDTO.getServiceType(), smsReqDTO.getBusinessType(), smsReqDTO.getPhoneNumber());
     }
 
-    public String getCaptchaUpperLimitKey(CaptchaReqDTO captchaReqDTO) {
+    public String getCaptchaUpperLimitKey(SmsReqDTO smsReqDTO) {
         return String.format(CAPTCHA_UPPER_LIMIT_KEY_FORMAT, applicationName,
-                captchaReqDTO.getServiceType(), captchaReqDTO.getBusinessType(), captchaReqDTO.getPhoneNumber());
+                smsReqDTO.getServiceType(), smsReqDTO.getBusinessType(), smsReqDTO.getPhoneNumber());
     }
 }

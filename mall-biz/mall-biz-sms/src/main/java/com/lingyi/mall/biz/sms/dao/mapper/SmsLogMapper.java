@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.sms.dao.mapper;
 
-import com.lingyi.mall.biz.sms.model.param.CaptchaLogParam;
-import com.lingyi.mall.biz.sms.model.vo.CaptchaLogVO;
+import com.lingyi.mall.biz.sms.model.param.SmsLogParam;
+import com.lingyi.mall.biz.sms.model.vo.SmsLogVO;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,5 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @description
  */
 @Mapper
-public interface CaptchaLogMapper extends MybatisMapperImplementation<CaptchaLogVO, CaptchaLogParam, Long> {
+public interface SmsLogMapper extends MybatisMapperImplementation<SmsLogVO, SmsLogParam, Long> {
 }

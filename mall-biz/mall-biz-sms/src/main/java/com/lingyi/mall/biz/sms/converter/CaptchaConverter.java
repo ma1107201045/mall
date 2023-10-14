@@ -3,7 +3,7 @@ package com.lingyi.mall.biz.sms.converter;
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.api.sms.enums.BusinessTypeEnum;
 import com.lingyi.mall.api.sms.enums.ServiceTypeEnum;
-import com.lingyi.mall.biz.sms.model.dto.CaptchaLogDTO;
+import com.lingyi.mall.biz.sms.model.dto.SmsLogDTO;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 
 /**
@@ -20,8 +20,8 @@ public final class CaptchaConverter {
 
     }
 
-    public CaptchaLogDTO to(CaptchaSendReqDTO captchaSendReqDTO) {
-        var captchaLogDTO = ConverterUtil.to(captchaSendReqDTO, CaptchaLogDTO.class);
+    public SmsLogDTO to(CaptchaSendReqDTO captchaSendReqDTO) {
+        var captchaLogDTO = ConverterUtil.to(captchaSendReqDTO, SmsLogDTO.class);
         captchaLogDTO.setServiceName(ServiceTypeEnum.getMessageByCode(captchaSendReqDTO.getServiceType()));
         captchaLogDTO.setBusinessName(BusinessTypeEnum.getMessageByCode(captchaSendReqDTO.getBusinessType()));
         return captchaLogDTO;

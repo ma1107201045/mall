@@ -16,7 +16,9 @@ import java.util.Arrays;
 @RequiredArgsConstructor
 public enum ServiceTypeEnum {
 
-
+    /**
+     *
+     */
     MALL_AUTH_APP(1, "APP认证"),
 
     UNKNOWN(100, "未知");

@@ -1,9 +1,9 @@
 package com.lingyi.mall.api.sms.consumer;
 
 import com.alibaba.fastjson2.JSON;
-import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
-import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
-import com.lingyi.mall.api.sms.feign.CaptchaFeign;
+import com.lingyi.mall.api.sms.dto.SmsCaptchaReqDTO;
+import com.lingyi.mall.api.sms.dto.SmsReqDTO;
+import com.lingyi.mall.api.sms.feign.SmsFeign;
 import com.lingyi.mall.common.core.exception.OpenFeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,9 +20,9 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CaptchaFeignConsumer {
 
-    private final CaptchaFeign captchaFeign;
+    private final SmsFeign captchaFeign;
 
-    public void send(CaptchaSendReqDTO captchaSendReqDTO) {
+    public void send(SmsCaptchaReqDTO captchaSendReqDTO) {
         log.info("入参:captchaReqDTO:{}", captchaSendReqDTO);
         var response = captchaFeign.send(captchaSendReqDTO);
         if (response.getIsSuccess()) {
@@ -32,7 +32,7 @@ public class CaptchaFeignConsumer {
         throw new OpenFeignException(response.getCode(), response.getMessage());
     }
 
-    public void verify(CaptchaVerifyReqDTO captchaVerifyReqDTO) {
+    public void verify(SmsReqDTO captchaVerifyReqDTO) {
         log.info("入参:captchaVerifyReqDTO:{}", captchaVerifyReqDTO);
         var response = captchaFeign.verify(captchaVerifyReqDTO);
         if (response.getIsSuccess()) {

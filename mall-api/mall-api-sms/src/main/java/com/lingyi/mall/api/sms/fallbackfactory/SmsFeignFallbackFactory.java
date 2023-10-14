@@ -1,6 +1,6 @@
 package com.lingyi.mall.api.sms.fallbackfactory;
 
-import com.lingyi.mall.api.sms.feign.CaptchaFeign;
+import com.lingyi.mall.api.sms.feign.SmsFeign;
 import org.springframework.cloud.openfeign.FallbackFactory;
 
 /**
@@ -9,9 +9,9 @@ import org.springframework.cloud.openfeign.FallbackFactory;
  * @datetime 2023/7/13 16:15
  * @description
  */
-public class CaptchaFeignFallbackFactory implements FallbackFactory<CaptchaFeign> {
+public class SmsFeignFallbackFactory implements FallbackFactory<SmsFeign> {
     @Override
-    public CaptchaFeign create(Throwable cause) {
+    public SmsFeign create(Throwable cause) {
         return null;
     }
 }

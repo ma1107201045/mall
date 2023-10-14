@@ -14,7 +14,7 @@ import lombok.ToString;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class CaptchaVerifyReqDTO extends CaptchaReqDTO {
+public class CaptchaVerifyReqDTO extends SmsReqDTO {
 
 
     /**

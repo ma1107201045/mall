@@ -5,9 +5,10 @@ import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.MallWebAppSmsApplicationTest;
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
+import com.lingyi.mall.api.sms.dto.SmsCaptchaReqDTO;
 import com.lingyi.mall.api.sms.enums.BusinessTypeEnum;
 import com.lingyi.mall.api.sms.enums.ServiceTypeEnum;
-import com.lingyi.mall.biz.sms.service.CaptchaService;
+import com.lingyi.mall.biz.sms.service.SmsService;
 import com.lingyi.mall.common.core.constant.BaseConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -29,7 +30,7 @@ public class CaptchaTest implements MallWebAppSmsApplicationTest {
 
 
     @Autowired
-    private CaptchaService captchaService;
+    private SmsService captchaService;
 
 
     @Test
