@@ -20,21 +20,22 @@ import org.springframework.web.bind.annotation.RestController;
  * @DateTime: 2023/10/15 4:12
  * @Description:
  */
-@Tag(name = "验证码", description = "验证码")
+@Tag(name = "短信", description = "短信")
 @Slf4j
 @RequiredArgsConstructor
 @RestController
 public class CaptchaFeignProvider implements CaptchaFeign {
+
     private final CaptchaService captchaService;
 
-    @Operation(summary = "发送验证码", description = "发送验证码")
+    @Operation(summary = "发送", description = "发送")
     @Override
     public ServerResponse<Void> send(CaptchaSendReqDTO captchaSendReqDTO) {
         captchaService.send(captchaSendReqDTO);
         return ServerResponse.success();
     }
 
-    @Operation(summary = "校验验证码", description = "校验验证码")
+    @Operation(summary = "发送", description = "发送")
     @Override
     public ServerResponse<Void> verify(CaptchaVerifyReqDTO captchaVerifyReqDTO) {
         captchaService.verify(captchaVerifyReqDTO);

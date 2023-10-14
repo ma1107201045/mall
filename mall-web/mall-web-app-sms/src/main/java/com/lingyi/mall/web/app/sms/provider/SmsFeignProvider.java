@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @datetime 2023/7/13 16:18
  * @description
  */
-@Tag(name = "短信验证码", description = "短信验证码")
+@Tag(name = "验证码", description = "验证码")
 @Slf4j
 @RequiredArgsConstructor
 @RestController
