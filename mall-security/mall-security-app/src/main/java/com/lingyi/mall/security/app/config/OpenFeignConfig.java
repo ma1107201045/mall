@@ -48,7 +48,7 @@ public class OpenFeignConfig {
             if (CollUtil.isNotEmpty(values)) {
                 var token = values.toArray(new String[]{})[0];
                 if (StrUtil.isNotBlank(token)) {
-                    HttpUtil.addHeader(SecurityConstant.AUTHORIZATION, token);
+                    HttpUtil.setHeader(SecurityConstant.AUTHORIZATION, token);
                 }
             }
             return invocationContext.proceed();

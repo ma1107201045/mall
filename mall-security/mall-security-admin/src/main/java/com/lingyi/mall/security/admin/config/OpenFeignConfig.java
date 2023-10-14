@@ -66,7 +66,7 @@ public class OpenFeignConfig {
             if (CollUtil.isNotEmpty(values)) {
                 var cookie = values.toArray(new String[]{})[0];
                 if (StrUtil.isNotBlank(cookie)) {
-                    HttpUtil.addHeader(SecurityConstant.COOKIE, cookie);
+                    HttpUtil.setHeader(SecurityConstant.COOKIE, cookie);
                 }
             }
             return invocationContext.proceed();

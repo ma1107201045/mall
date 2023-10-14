@@ -89,7 +89,7 @@ public class AuthAppServiceImpl implements AuthAppService {
         var token = JwtUtil.createToken(memberRespDTO);
 
         //设置返回头token
-        HttpUtil.addHeader(SecurityConstant.AUTHORIZATION, token);
+        HttpUtil.setHeader(SecurityConstant.AUTHORIZATION, token);
         return ConverterUtil.to(memberRespDTO, AuthAppLoginVO.class);
     }
 

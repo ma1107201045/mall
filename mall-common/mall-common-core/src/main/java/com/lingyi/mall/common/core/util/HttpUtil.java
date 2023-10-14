@@ -14,7 +14,7 @@ import java.util.Objects;
  * @datetime 2023/8/9 11:15
  * @description
  */
-public class HttpUtil {
+public final class HttpUtil {
 
     private HttpUtil() {
 
@@ -41,7 +41,7 @@ public class HttpUtil {
     }
 
     @Nullable
-    public static void addHeader(String name, String value) {
+    public static void setHeader(String name, String value) {
         if (Objects.nonNull(getResponse())) {
             getResponse().addHeader(name, value);
         }
