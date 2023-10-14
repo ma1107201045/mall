@@ -5,20 +5,20 @@ import com.lingyi.mall.api.system.dto.MenuRespDTO;
 import com.lingyi.mall.api.system.dto.UserPartReqDTO;
 import com.lingyi.mall.api.system.dto.UserRespDTO;
 import com.lingyi.mall.biz.system.constant.SystemConstant;
-import com.lingyi.mall.biz.system.model.dto.UserDTO;
-import com.lingyi.mall.biz.system.model.entity.UserDO;
+import com.lingyi.mall.biz.system.dao.mapper.UserMapper;
+import com.lingyi.mall.biz.system.dao.repository.UserRepository;
 import com.lingyi.mall.biz.system.enums.MenuTypeEnum;
 import com.lingyi.mall.biz.system.enums.SystemFailEnum;
-import com.lingyi.mall.biz.system.dao.mapper.UserMapper;
+import com.lingyi.mall.biz.system.model.dto.UserDTO;
+import com.lingyi.mall.biz.system.model.entity.UserDO;
 import com.lingyi.mall.biz.system.model.param.RoleParam;
 import com.lingyi.mall.biz.system.model.param.UserParam;
-import com.lingyi.mall.biz.system.dao.repository.UserRepository;
+import com.lingyi.mall.biz.system.model.vo.RoleVO;
+import com.lingyi.mall.biz.system.model.vo.UserVO;
 import com.lingyi.mall.biz.system.service.MenuService;
 import com.lingyi.mall.biz.system.service.RoleService;
 import com.lingyi.mall.biz.system.service.UserRoleService;
 import com.lingyi.mall.biz.system.service.UserService;
-import com.lingyi.mall.biz.system.model.vo.RoleVO;
-import com.lingyi.mall.biz.system.model.vo.UserVO;
 import com.lingyi.mall.common.core.enums.OperationTypeEnum;
 import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ConverterUtil;
@@ -29,7 +29,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * @Author: maweiyan
@@ -154,6 +157,7 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
             var id = jpaRepository.findIdByUserName(userDTO.getUserName());
             //判断用户名称不存在
             AssertUtil.isNull(id, SystemFailEnum.USER_NAME_EXIST_ERROR);
+            return;
         }
         if (operationTypeEnum == OperationTypeEnum.UPDATE) {
             //断言用户是否admin
@@ -163,6 +167,7 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
             var id = jpaRepository.findIdByUserName(userDTO.getUserName());
             var flag = Objects.nonNull(id) && !Objects.equals(userDTO.getId(), id);
             AssertUtil.isTrue(flag, SystemFailEnum.USER_NAME_EXIST_ERROR);
+            return;
         }
         if (operationTypeEnum == OperationTypeEnum.DELETE) {
             var flag = jpaRepository.findAllById(ids).stream()
