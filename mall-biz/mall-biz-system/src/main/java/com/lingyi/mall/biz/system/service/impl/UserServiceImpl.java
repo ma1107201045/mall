@@ -72,7 +72,7 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
         }
         //校验数据
         verifyData(ObjectUtil.getNull(), ids, OperationTypeEnum.DELETE);
-        //删除
+        //删除用户集
         super.deleteByIds(ids);
         //删除用户角色
         userRoleService.deleteByUserIds(ids);
