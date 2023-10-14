@@ -23,7 +23,7 @@ public class SmsReqDTO {
     private Integer businessType;
 
     /**
-     * 短信类型 1.验证密码
+     * 短信类型 1.验证码
      */
     private Integer type;
 
