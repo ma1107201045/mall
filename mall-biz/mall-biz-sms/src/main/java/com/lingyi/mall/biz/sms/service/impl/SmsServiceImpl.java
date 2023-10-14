@@ -3,7 +3,7 @@ package com.lingyi.mall.biz.sms.service.impl;
 import com.lingyi.mall.api.sms.dto.SmsReqDTO;
 import com.lingyi.mall.biz.sms.service.SendLogService;
 import com.lingyi.mall.biz.sms.service.SmsService;
-import com.lingyi.mall.biz.sms.util.SmsRedisKeyUtil;
+import com.lingyi.mall.biz.sms.util.CaptchaRedisKeyUtil;
 import com.lingyi.mall.common.core.annotation.RedisLock;
 import com.lingyi.mall.common.redis.util.RedisUtil;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ public class SmsServiceImpl implements SmsService {
 
     private final RedisUtil redisUtil;
 
-    private final SmsRedisKeyUtil smsRedisKeyUtil;
+    private final CaptchaRedisKeyUtil smsRedisKeyUtil;
 
 
     @Override

@@ -9,7 +9,7 @@ import com.lingyi.mall.biz.sms.exception.SmsException;
 import com.lingyi.mall.biz.sms.model.entity.SmsLogDO;
 import com.lingyi.mall.biz.sms.service.CaptchaService;
 import com.lingyi.mall.biz.sms.service.SendLogService;
-import com.lingyi.mall.biz.sms.util.SmsRedisKeyUtil;
+import com.lingyi.mall.biz.sms.util.CaptchaRedisKeyUtil;
 import com.lingyi.mall.common.core.annotation.RedisLock;
 import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.redis.util.RedisUtil;
@@ -36,7 +36,7 @@ public class CaptchaServiceImpl implements CaptchaService {
 
     private final RedisUtil redisUtil;
 
-    private final SmsRedisKeyUtil smsRedisKeyUtil;
+    private final CaptchaRedisKeyUtil smsRedisKeyUtil;
 
     @Override
     @RedisLock(keySuffix = "#captchaSendReqDTO.serviceType + ':' + #captchaSendReqDTO.businessType + ':' + #captchaSendReqDTO.phoneNumber")

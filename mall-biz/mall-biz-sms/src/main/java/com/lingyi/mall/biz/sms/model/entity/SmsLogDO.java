@@ -22,7 +22,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Entity
-@Table(name = "ms_sms_log")
+@Table(name = "ms_send_log")
 @DynamicInsert
 public class SmsLogDO extends BaseCommonDO implements Serializable {
     @Serial
