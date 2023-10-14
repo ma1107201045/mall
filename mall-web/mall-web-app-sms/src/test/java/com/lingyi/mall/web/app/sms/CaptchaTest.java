@@ -17,6 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author maweiyan
@@ -50,7 +51,7 @@ public class CaptchaTest implements MallWebAppSmsApplicationTest {
 
     @Test
     public void testThreadCaptchaSend() throws IOException {
-        ExecutorService executorService = ThreadUtil.newFixedExecutor(100, StrUtil.EMPTY, false);
+        ExecutorService executorService = Executors.newVirtualThreadPerTaskExecutor();
         for (int i = 0; i < 100; i++) {
             executorService.submit(this::testCaptchaSend);
         }
