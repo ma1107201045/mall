@@ -18,13 +18,13 @@ public enum SmsFailEnum implements BaseFailEnum {
     /**
      *
      */
-    CAPTCHA_UPPER_LIMIT_ERROR(8001, "验证码发送当日次数已达到上限"),
+    SMS_UPPER_LIMIT_ERROR(8001, "短信当日次数已达到上限"),
 
-    CAPTCHA_INTERVAL_DATE_ERROR(8002, "验证码发送频繁"),
+    SMS_INTERVAL_ERROR(8002, "短信发送频繁"),
 
     CAPTCHA_EXPIRY_DATE_ERROR(8003, "验证码不存在或者已失效"),
 
-    CAPTCHA_LOG_NULL_ERROR(8002, "验证码日志不能为空");
+    LOG_NULL_ERROR(8002, "日志不能为空");
 
 
     private final Integer code;

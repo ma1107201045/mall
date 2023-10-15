@@ -21,21 +21,25 @@ public class SmsReqDTO extends SmsAbstractReqDTO {
     private Integer type;
 
     /**
+     * 每天发送上限
+     */
+    private Integer upperLimit;
+
+    /**
+     * 发送间隔
+     */
+    private Integer interval;
+
+
+    /**
      * 验证码长度
      */
-    private Integer length;
+    private Integer captchaLength;
     /**
      * 验证码有效期 （分钟）
      */
-    private Integer expiryDate;
-    /**
-     * 验证码发送间隔时间（分钟）
-     */
-    private Integer intervalDate;
-    /**
-     * 验证码每天上限
-     */
-    private Integer upperLimit;
+    private Integer captchaExpiryDate;
+
     /**
      * 备注
      */
