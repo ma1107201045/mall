@@ -14,7 +14,7 @@ import lombok.ToString;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class SmsReqDTO extends AbstractDTO {
+public class SmsReqDTO extends AbstractReqDTO {
 
     /**
      * 短信类型 1 验证码 2 通知

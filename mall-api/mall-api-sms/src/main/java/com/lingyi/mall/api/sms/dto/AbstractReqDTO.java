@@ -1,8 +1,6 @@
 package com.lingyi.mall.api.sms.dto;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 /**
  * @Author: maweiyan
@@ -11,7 +9,7 @@ import lombok.ToString;
  * @Description:
  */
 @Data
-public abstract class AbstractDTO {
+public abstract class AbstractReqDTO {
 
     /**
      * 服务类型

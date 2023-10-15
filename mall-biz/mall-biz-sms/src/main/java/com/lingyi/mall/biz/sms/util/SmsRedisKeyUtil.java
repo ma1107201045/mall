@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.sms.util;
 
-import com.lingyi.mall.api.sms.dto.AbstractDTO;
+import com.lingyi.mall.api.sms.dto.AbstractReqDTO;
 import com.lingyi.mall.api.sms.dto.SmsReqDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -37,11 +37,11 @@ public final class SmsRedisKeyUtil {
     }
 
 
-    public String getCaptchaKey(AbstractDTO abstractDTO) {
+    public String getCaptchaKey(AbstractReqDTO abstractReqDTO) {
         return String.format(CAPTCHA_KEY_FORMAT, applicationName,
-                abstractDTO.getServiceType(),
-                abstractDTO.getBusinessType(),
-                abstractDTO.getPhoneNumber());
+                abstractReqDTO.getServiceType(),
+                abstractReqDTO.getBusinessType(),
+                abstractReqDTO.getPhoneNumber());
     }
 
 }
