@@ -59,6 +59,11 @@ public class AuthAppServiceImpl implements AuthAppService {
     }
 
     @Override
+    public void sendEmailCaptcha() {
+
+    }
+
+    @Override
     public AuthAppLoginVO login(AuthAppLoginDTO authAppLoginDTO) {
         //转换数据并且校验短信验证码
         var captchaVerifyReqDTO = AuthAppConverter.INSTANCE.to(authAppLoginDTO, properties);

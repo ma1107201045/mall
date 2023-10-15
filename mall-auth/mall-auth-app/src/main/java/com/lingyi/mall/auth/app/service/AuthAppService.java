@@ -19,6 +19,12 @@ public interface AuthAppService {
      */
     void sendSmsCaptcha(AuthAppSendDTO authAppSendDTO);
 
+
+    /**
+     * 发送邮箱验证码
+     */
+    void sendEmailCaptcha();
+
     /**
      * 手机号登录
      *
