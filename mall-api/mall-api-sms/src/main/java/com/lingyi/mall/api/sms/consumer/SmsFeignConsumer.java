@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CaptchaFeignConsumer {
+public class SmsFeignConsumer {
 
     private final SmsFeign captchaFeign;
 

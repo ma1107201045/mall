@@ -7,7 +7,7 @@ import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
 import com.lingyi.mall.api.member.consumer.MemberLevelFeignConsumer;
 import com.lingyi.mall.api.member.consumer.MemberLoginLogFeignConsumer;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
-import com.lingyi.mall.api.sms.consumer.CaptchaFeignConsumer;
+import com.lingyi.mall.api.sms.consumer.SmsFeignConsumer;
 import com.lingyi.mall.auth.app.converter.AuthAppConverter;
 import com.lingyi.mall.auth.app.model.dto.AuthAppLoginDTO;
 import com.lingyi.mall.auth.app.model.dto.AuthAppSendDTO;
@@ -38,7 +38,7 @@ import java.util.concurrent.TimeUnit;
 @RequiredArgsConstructor
 public class AuthAppServiceImpl implements AuthAppService {
 
-    private final CaptchaFeignConsumer captchaFeignConsumer;
+    private final SmsFeignConsumer smsFeignConsumer;
 
     private final MemberFeignConsumer memberFeignConsumer;
 
@@ -55,14 +55,14 @@ public class AuthAppServiceImpl implements AuthAppService {
     @Override
     public void sendSmsCaptcha(AuthAppSendDTO authAppSendDTO) {
         var captchaSendReqDTO = AuthAppConverter.INSTANCE.to(authAppSendDTO.getPhoneNumber(), properties);
-        captchaFeignConsumer.sendCaptcha(captchaSendReqDTO);
+        smsFeignConsumer.sendCaptcha(captchaSendReqDTO);
     }
 
     @Override
     public AuthAppLoginVO login(AuthAppLoginDTO authAppLoginDTO) {
         //转换数据并且校验短信验证码
         var captchaVerifyReqDTO = AuthAppConverter.INSTANCE.to(authAppLoginDTO, properties);
-        captchaFeignConsumer.verifyCaptcha(captchaVerifyReqDTO);
+        smsFeignConsumer.verifyCaptcha(captchaVerifyReqDTO);
 
         //通过手机号校验用户是否存在，不存在注册
         var memberRespDTO = memberFeignConsumer.getByPhoneNumber(authAppLoginDTO.getPhoneNumber());
