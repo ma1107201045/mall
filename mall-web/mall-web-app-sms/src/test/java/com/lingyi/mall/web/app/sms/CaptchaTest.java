@@ -2,6 +2,7 @@ package com.lingyi.mall.web.app.sms;
 
 import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.MallWebAppSmsApplicationTest;
+import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.api.sms.dto.SmsReqDTO;
 import com.lingyi.mall.api.sms.enums.SmsBusinessEnum;
 import com.lingyi.mall.api.sms.enums.SmsServiceEnum;
@@ -29,23 +30,23 @@ public class CaptchaTest implements MallWebAppSmsApplicationTest {
 
 
     @Autowired
-    private SmsService captchaService;
+    private SmsService smsService;
 
 
     @Test
     public void testCaptchaSend() {
-        SmsReqDTO smsReqDTO = new SmsReqDTO();
-        smsReqDTO.setServiceType(SmsServiceEnum.MALL_AUTH_APP.getCode());
-        smsReqDTO.setBusinessType(SmsBusinessEnum.LOGIN.getCode());
-        smsReqDTO.setType(SmsTypeEnum.CAPTCHA.getCode());
-        smsReqDTO.setPhoneNumber("15038233127");
-        smsReqDTO.setCaptcha(RandomUtil.randomNumbers(6));
-        smsReqDTO.setLength(6);
-        smsReqDTO.setExpiryDate(30);
-        smsReqDTO.setIntervalDate(1);
-        smsReqDTO.setUpperLimit(10);
-        smsReqDTO.setRemark(SmsServiceEnum.UNKNOWN.getMessage() + BaseConstant.COLON_CHAR + SmsBusinessEnum.UNKNOWN.getMessage());
-        captchaService.send(smsReqDTO);
+        CaptchaSendReqDTO captchaSendReqDTO = new CaptchaSendReqDTO();
+        captchaSendReqDTO.setServiceType(SmsServiceEnum.MALL_AUTH_APP.getCode());
+        captchaSendReqDTO.setBusinessType(SmsBusinessEnum.LOGIN.getCode());
+        captchaSendReqDTO.setType(SmsTypeEnum.CAPTCHA.getCode());
+        captchaSendReqDTO.setPhoneNumber("15038233127");
+        captchaSendReqDTO.setCaptcha(RandomUtil.randomNumbers(6));
+        captchaSendReqDTO.setCaptchaLength(6);
+        captchaSendReqDTO.setCaptchaExpiryDate(30);
+        captchaSendReqDTO.setInterval(1);
+        captchaSendReqDTO.setUpperLimit(10);
+        captchaSendReqDTO.setRemark(SmsServiceEnum.UNKNOWN.getMessage() + BaseConstant.COLON_CHAR + SmsBusinessEnum.UNKNOWN.getMessage());
+        smsService.send(captchaSendReqDTO);
     }
 
     @Test
