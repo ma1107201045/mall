@@ -51,8 +51,8 @@ public class AuthAppConverter {
         var phoneNumber = authAppLoginDTO.getPhoneNumber();
         CaptchaVerifyReqDTO captchaVerifyReqDTO = new CaptchaVerifyReqDTO();
         captchaVerifyReqDTO.setPhoneNumber(phoneNumber);
-        captchaVerifyReqDTO.setServiceType(properties.getServiceTypeEnum().getCode());
-        captchaVerifyReqDTO.setBusinessType(properties.getBusinessTypeEnum().getCode());
+        captchaVerifyReqDTO.setServiceType(properties.getSmsServiceEnum().getCode());
+        captchaVerifyReqDTO.setBusinessType(properties.getSmsBusinessEnum().getCode());
         captchaVerifyReqDTO.setCaptcha(authAppLoginDTO.getSmsCaptcha());
         return captchaVerifyReqDTO;
     }
