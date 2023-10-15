@@ -1,7 +1,7 @@
 package com.lingyi.mall.api.sms.feign;
 
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
-import com.lingyi.mall.api.sms.dto.CaptchaVerifyDTO;
+import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
 import com.lingyi.mall.api.sms.dto.SmsReqDTO;
 import com.lingyi.mall.api.sms.fallbackfactory.SmsFeignFallbackFactory;
 import com.lingyi.mall.common.core.util.ServerResponse;
@@ -45,7 +45,7 @@ public interface SmsFeign {
      * @return ServerResponse
      */
     @GetMapping("/verify-captcha")
-    ServerResponse<Void> verifyCaptcha(@RequestBody CaptchaVerifyDTO captchaVerifyDTO);
+    ServerResponse<Void> verifyCaptcha(@RequestBody CaptchaVerifyReqDTO captchaVerifyDTO);
 
 
 }

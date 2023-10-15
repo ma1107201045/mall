@@ -28,9 +28,9 @@ public class AuthAppController {
     private final AuthAppService authAppService;
 
     @Operation(summary = "发送短信验证码", description = "发送短信验证码")
-    @PostMapping("/send")
+    @PostMapping("/send-sms-captcha")
     public ServerResponse<Void> send(AuthAppSendDTO authAppSendDTO) {
-        authAppService.send(authAppSendDTO);
+        authAppService.sendSmsCaptcha(authAppSendDTO);
         return ServerResponse.success();
     }
 

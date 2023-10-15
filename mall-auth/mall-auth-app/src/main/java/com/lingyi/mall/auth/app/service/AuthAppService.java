@@ -17,7 +17,7 @@ public interface AuthAppService {
      *
      * @param authAppSendDTO 发送dto
      */
-    void send(AuthAppSendDTO authAppSendDTO);
+    void sendSmsCaptcha(AuthAppSendDTO authAppSendDTO);
 
     /**
      * 手机号登录

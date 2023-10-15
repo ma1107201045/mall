@@ -5,9 +5,10 @@ import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.api.member.dto.MemberLoginLogReqDTO;
 import com.lingyi.mall.api.member.dto.MemberReqDTO;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
-import com.lingyi.mall.api.sms.dto.SmsReqDTO;
-import com.lingyi.mall.api.sms.enums.BusinessTypeEnum;
-import com.lingyi.mall.api.sms.enums.ServiceTypeEnum;
+import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
+import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
+import com.lingyi.mall.api.sms.enums.SmsBusinessEnum;
+import com.lingyi.mall.api.sms.enums.SmsServiceEnum;
 import com.lingyi.mall.auth.app.model.dto.AuthAppLoginDTO;
 import com.lingyi.mall.auth.app.enums.RegisterSourceEnum;
 import com.lingyi.mall.auth.app.properties.SmsCaptchaProperties;
@@ -31,9 +32,24 @@ public class AuthAppConverter {
 
     }
 
-    public SmsReqDTO to(AuthAppLoginDTO authAppLoginDTO, SmsCaptchaProperties properties) {
+    public CaptchaSendReqDTO to(String phoneNumber, SmsCaptchaProperties properties) {
+        var captchaSendReqDTO = new CaptchaSendReqDTO();
+        captchaSendReqDTO.setServiceType(properties.getSmsServiceEnum().getCode());
+        captchaSendReqDTO.setBusinessType(properties.getSmsBusinessEnum().getCode());
+        captchaSendReqDTO.setType(properties.getSmsTypeEnum().getCode());
+        captchaSendReqDTO.setPhoneNumber(phoneNumber);
+        captchaSendReqDTO.setInterval(properties.getIntervalDate());
+        captchaSendReqDTO.setUpperLimit(properties.getUpperLimit());
+        captchaSendReqDTO.setCaptcha(RandomUtil.randomNumbers(properties.getLength()));
+        captchaSendReqDTO.setCaptchaLength(properties.getLength());
+        captchaSendReqDTO.setCaptchaExpiryDate(properties.getExpiryDate());
+        captchaSendReqDTO.setRemark(SmsServiceEnum.MALL_AUTH_APP.getMessage() + BaseConstant.COLON_CHAR + SmsBusinessEnum.LOGIN.getMessage());
+        return captchaSendReqDTO;
+    }
+
+    public CaptchaVerifyReqDTO to(AuthAppLoginDTO authAppLoginDTO, SmsCaptchaProperties properties) {
         var phoneNumber = authAppLoginDTO.getPhoneNumber();
-        SmsReqDTO captchaVerifyReqDTO = new SmsReqDTO();
+        CaptchaVerifyReqDTO captchaVerifyReqDTO = new CaptchaVerifyReqDTO();
         captchaVerifyReqDTO.setPhoneNumber(phoneNumber);
         captchaVerifyReqDTO.setServiceType(properties.getServiceTypeEnum().getCode());
         captchaVerifyReqDTO.setBusinessType(properties.getBusinessTypeEnum().getCode());
@@ -50,20 +66,6 @@ public class AuthAppConverter {
         memberReqDTO.setRegisterSource(RegisterSourceEnum.H5.getCode());
         memberReqDTO.setRegisterDataTime(LocalDateTime.now());
         return memberReqDTO;
-    }
-
-    public SmsReqDTO to(String phoneNumber, SmsCaptchaProperties properties) {
-        var captchaSendReqDTO = new SmsReqDTO();
-        captchaSendReqDTO.setServiceType(properties.getServiceTypeEnum().getCode());
-        captchaSendReqDTO.setBusinessType(properties.getBusinessTypeEnum().getCode());
-        captchaSendReqDTO.setPhoneNumber(phoneNumber);
-        captchaSendReqDTO.setCaptcha(RandomUtil.randomNumbers(properties.getLength()));
-        captchaSendReqDTO.setLength(properties.getLength());
-        captchaSendReqDTO.setExpiryDate(properties.getExpiryDate());
-        captchaSendReqDTO.setIntervalDate(properties.getIntervalDate());
-        captchaSendReqDTO.setUpperLimit(properties.getUpperLimit());
-        captchaSendReqDTO.setRemark(ServiceTypeEnum.MALL_AUTH_APP.getMessage() + BaseConstant.COLON_CHAR + BusinessTypeEnum.LOGIN.getMessage());
-        return captchaSendReqDTO;
     }
 
     public MemberLoginLogReqDTO to(MemberRespDTO memberRespDTO) {

@@ -1,7 +1,7 @@
 package com.lingyi.mall.web.app.sms.provider;
 
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
-import com.lingyi.mall.api.sms.dto.CaptchaVerifyDTO;
+import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
 import com.lingyi.mall.api.sms.dto.SmsReqDTO;
 import com.lingyi.mall.api.sms.feign.SmsFeign;
 import com.lingyi.mall.biz.sms.service.SmsService;
@@ -43,7 +43,7 @@ public class SmsFeignProvider implements SmsFeign {
 
     @Operation(summary = "校验验证码", description = "校验验证码")
     @Override
-    public ServerResponse<Void> verifyCaptcha(CaptchaVerifyDTO captchaVerifyDTO) {
+    public ServerResponse<Void> verifyCaptcha(CaptchaVerifyReqDTO captchaVerifyDTO) {
         smsService.verifyCaptcha(captchaVerifyDTO);
         return ServerResponse.success();
     }

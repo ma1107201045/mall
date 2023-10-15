@@ -53,16 +53,16 @@ public class AuthAppServiceImpl implements AuthAppService {
     private final RedisKeyUtil redisKeyUtil;
 
     @Override
-    public void send(AuthAppSendDTO authAppSendDTO) {
+    public void sendSmsCaptcha(AuthAppSendDTO authAppSendDTO) {
         var captchaSendReqDTO = AuthAppConverter.INSTANCE.to(authAppSendDTO.getPhoneNumber(), properties);
-        captchaFeignConsumer.send(captchaSendReqDTO);
+        captchaFeignConsumer.sendCaptcha(captchaSendReqDTO);
     }
 
     @Override
     public AuthAppLoginVO login(AuthAppLoginDTO authAppLoginDTO) {
         //转换数据并且校验短信验证码
         var captchaVerifyReqDTO = AuthAppConverter.INSTANCE.to(authAppLoginDTO, properties);
-        captchaFeignConsumer.verify(captchaVerifyReqDTO);
+        captchaFeignConsumer.verifyCaptcha(captchaVerifyReqDTO);
 
         //通过手机号校验用户是否存在，不存在注册
         var memberRespDTO = memberFeignConsumer.getByPhoneNumber(authAppLoginDTO.getPhoneNumber());

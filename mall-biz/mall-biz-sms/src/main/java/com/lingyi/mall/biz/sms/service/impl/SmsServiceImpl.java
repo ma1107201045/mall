@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.sms.service.impl;
 
 import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
-import com.lingyi.mall.api.sms.dto.CaptchaVerifyDTO;
+import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
 import com.lingyi.mall.api.sms.dto.SmsReqDTO;
 import com.lingyi.mall.biz.sms.converter.CaptchaConverter;
 import com.lingyi.mall.biz.sms.enums.SmsFailEnum;
@@ -82,7 +82,7 @@ public class SmsServiceImpl implements SmsService {
 
 
     @Override
-    public void verifyCaptcha(CaptchaVerifyDTO captchaVerifyDTO) {
+    public void verifyCaptcha(CaptchaVerifyReqDTO captchaVerifyDTO) {
         var captchaKey = smsRedisKeyUtil.getCaptchaKey(captchaVerifyDTO);
         var sourceCaptcha = redisUtil.get(captchaKey, String.class);
         var targetCaptcha = captchaVerifyDTO.getCaptcha();

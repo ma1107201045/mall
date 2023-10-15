@@ -14,7 +14,7 @@ import java.util.Arrays;
  */
 @Getter
 @RequiredArgsConstructor
-public enum BusinessTypeEnum {
+public enum SmsBusinessEnum {
 
     /*
      *
@@ -28,7 +28,7 @@ public enum BusinessTypeEnum {
     public static String getMessageByCode(Integer code) {
         return Arrays.stream(values())
                 .filter(businessTypeEnum -> businessTypeEnum.getCode().equals(code))
-                .map(BusinessTypeEnum::getMessage)
+                .map(SmsBusinessEnum::getMessage)
                 .findFirst().orElse(BaseConstant.UNKNOWN);
     }
 }

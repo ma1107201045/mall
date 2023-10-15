@@ -1,10 +1,7 @@
 package com.lingyi.mall.api.sms.enums;
 
-import com.lingyi.mall.common.core.constant.BaseConstant;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-
-import java.util.Arrays;
 
 /**
  * @Author: maweiyan
@@ -14,7 +11,7 @@ import java.util.Arrays;
  */
 @Getter
 @RequiredArgsConstructor
-public enum TypeEnum {
+public enum SmsTypeEnum {
 
     /**
      *

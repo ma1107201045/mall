@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.sms.service;
 
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
-import com.lingyi.mall.api.sms.dto.CaptchaVerifyDTO;
+import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
 import com.lingyi.mall.api.sms.dto.SmsReqDTO;
 
 /**
@@ -32,7 +32,7 @@ public interface SmsService {
      *
      * @param captchaVerifyDTO 。。
      */
-    void verifyCaptcha(CaptchaVerifyDTO captchaVerifyDTO);
+    void verifyCaptcha(CaptchaVerifyReqDTO captchaVerifyDTO);
 
 
 }

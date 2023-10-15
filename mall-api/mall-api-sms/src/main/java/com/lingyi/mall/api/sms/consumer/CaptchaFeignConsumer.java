@@ -1,7 +1,8 @@
 package com.lingyi.mall.api.sms.consumer;
 
 import com.alibaba.fastjson2.JSON;
-import com.lingyi.mall.api.sms.dto.SmsReqDTO;
+import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
+import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
 import com.lingyi.mall.api.sms.feign.SmsFeign;
 import com.lingyi.mall.common.core.exception.OpenFeignException;
 import lombok.RequiredArgsConstructor;
@@ -21,9 +22,9 @@ public class CaptchaFeignConsumer {
 
     private final SmsFeign captchaFeign;
 
-    public void send(SmsReqDTO captchaSendReqDTO) {
-        log.info("入参:captchaReqDTO:{}", captchaSendReqDTO);
-        var response = captchaFeign.send(captchaSendReqDTO);
+    public void sendCaptcha(CaptchaSendReqDTO captchaSendReqDTO) {
+        log.info("入参:captchaSendReqDTO:{}", captchaSendReqDTO);
+        var response = captchaFeign.sendCaptcha(captchaSendReqDTO);
         if (response.getIsSuccess()) {
             log.info("出参:Void:{}", JSON.toJSONString(response.getData()));
             return;
@@ -31,9 +32,9 @@ public class CaptchaFeignConsumer {
         throw new OpenFeignException(response.getCode(), response.getMessage());
     }
 
-    public void verify(SmsReqDTO captchaVerifyReqDTO) {
+    public void verifyCaptcha(CaptchaVerifyReqDTO captchaVerifyReqDTO) {
         log.info("入参:captchaVerifyReqDTO:{}", captchaVerifyReqDTO);
-        var response = captchaFeign.verify(captchaVerifyReqDTO);
+        var response = captchaFeign.verifyCaptcha(captchaVerifyReqDTO);
         if (response.getIsSuccess()) {
             log.info("出参:Void:{}", JSON.toJSONString(response.getData()));
             return;

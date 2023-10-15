@@ -13,7 +13,7 @@ import lombok.ToString;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class CaptchaVerifyDTO extends AbstractDTO {
+public class CaptchaVerifyReqDTO extends AbstractDTO {
     /**
      * 验证码
      */
