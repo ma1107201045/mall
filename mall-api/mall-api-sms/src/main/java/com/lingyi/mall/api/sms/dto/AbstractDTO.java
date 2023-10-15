@@ -1,16 +1,17 @@
 package com.lingyi.mall.api.sms.dto;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
- * @author maweiyan
- * @email 1107201045@qq.com
- * @datetime 2023/7/13 16:43
- * @description
+ * @Author: maweiyan
+ * @Email 1107201045@qq.com
+ * @DateTime: 2023/10/15 15:35
+ * @Description:
  */
-
 @Data
-public class SmsAbstractReqDTO {
+public abstract class AbstractDTO {
 
     /**
      * 服务类型
@@ -26,10 +27,4 @@ public class SmsAbstractReqDTO {
      * 手机号
      */
     private String phoneNumber;
-
-    /**
-     * 验证码
-     */
-    private String captcha;
-
 }

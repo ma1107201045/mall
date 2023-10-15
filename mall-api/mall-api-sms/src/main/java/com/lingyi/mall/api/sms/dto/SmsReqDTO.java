@@ -7,18 +7,15 @@ import lombok.ToString;
 /**
  * @author maweiyan
  * @email 1107201045@qq.com
- * @datetime 2023/7/13 16:46
+ * @datetime 2023/7/13 16:43
  * @description
  */
+
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class SmsReqDTO extends SmsAbstractReqDTO {
+public class SmsReqDTO extends AbstractDTO {
 
-    /**
-     * 短信类型 1.验证码
-     */
-    private Integer type;
 
     /**
      * 每天发送上限
@@ -30,19 +27,10 @@ public class SmsReqDTO extends SmsAbstractReqDTO {
      */
     private Integer interval;
 
-
-    /**
-     * 验证码长度
-     */
-    private Integer captchaLength;
-    /**
-     * 验证码有效期 （分钟）
-     */
-    private Integer captchaExpiryDate;
-
     /**
      * 备注
      */
     private String remark;
+
 
 }

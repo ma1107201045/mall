@@ -19,9 +19,11 @@ public enum TypeEnum {
     /**
      *
      */
-    CAPTCHA(1, "短信"),
+    CAPTCHA(1, "验证码"),
 
-    UNKNOWN(2, "未知");
+    NOTICE(2, "通知"),
+
+    UNKNOWN(3, "未知");
 
 
     private final Integer code;

@@ -1,6 +1,7 @@
 package com.lingyi.mall.biz.sms.service;
 
-import com.lingyi.mall.api.sms.dto.SmsAbstractReqDTO;
+import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
+import com.lingyi.mall.api.sms.dto.CaptchaVerifyDTO;
 import com.lingyi.mall.api.sms.dto.SmsReqDTO;
 
 /**
@@ -21,17 +22,17 @@ public interface SmsService {
     /**
      * 发送验证码
      *
-     * @param smsReqDTO ，，
+     * @param captchaSendReqDTO ，，
      */
-    void sendCaptcha(SmsReqDTO smsReqDTO);
+    void sendCaptcha(CaptchaSendReqDTO captchaSendReqDTO);
 
 
     /**
      * 校验验证码
      *
-     * @param smsCaptchaReqDTO 。。
+     * @param captchaVerifyDTO 。。
      */
-    void verifyCaptcha(SmsAbstractReqDTO smsCaptchaReqDTO);
+    void verifyCaptcha(CaptchaVerifyDTO captchaVerifyDTO);
 
 
 }

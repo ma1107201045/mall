@@ -1,7 +1,8 @@
 package com.lingyi.mall.biz.sms.service.impl;
 
 import cn.hutool.core.util.RandomUtil;
-import com.lingyi.mall.api.sms.dto.SmsAbstractReqDTO;
+import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
+import com.lingyi.mall.api.sms.dto.CaptchaVerifyDTO;
 import com.lingyi.mall.api.sms.dto.SmsReqDTO;
 import com.lingyi.mall.biz.sms.converter.CaptchaConverter;
 import com.lingyi.mall.biz.sms.enums.SmsFailEnum;
@@ -71,20 +72,20 @@ public class SmsServiceImpl implements SmsService {
     }
 
     @Override
-    public void sendCaptcha(SmsReqDTO smsReqDTO) {
+    public void sendCaptcha(CaptchaSendReqDTO captchaSendReqDTO) {
         //发送短信
-        send(smsReqDTO);
+        send(captchaSendReqDTO);
         //设置验证码
-        var captchaKey = smsRedisKeyUtil.getCaptchaKey(smsReqDTO);
-        redisUtil.set(captchaKey, smsReqDTO.getCaptcha(), smsReqDTO.getCaptchaExpiryDate(), TimeUnit.MINUTES);
+        var captchaKey = smsRedisKeyUtil.getCaptchaKey(captchaSendReqDTO);
+        redisUtil.set(captchaKey, captchaSendReqDTO.getCaptcha(), captchaSendReqDTO.getCaptchaExpiryDate(), TimeUnit.MINUTES);
     }
 
 
     @Override
-    public void verifyCaptcha(SmsAbstractReqDTO smsCaptchaReqDTO) {
-        var captchaKey = smsRedisKeyUtil.getCaptchaKey(smsCaptchaReqDTO);
+    public void verifyCaptcha(CaptchaVerifyDTO captchaVerifyDTO) {
+        var captchaKey = smsRedisKeyUtil.getCaptchaKey(captchaVerifyDTO);
         var sourceCaptcha = redisUtil.get(captchaKey, String.class);
-        var targetCaptcha = smsCaptchaReqDTO.getCaptcha();
+        var targetCaptcha = captchaVerifyDTO.getCaptcha();
         AssertUtil.isEquals(targetCaptcha, sourceCaptcha, SmsFailEnum.CAPTCHA_EXPIRY_DATE_ERROR);
         redisUtil.delete(captchaKey);
     }
