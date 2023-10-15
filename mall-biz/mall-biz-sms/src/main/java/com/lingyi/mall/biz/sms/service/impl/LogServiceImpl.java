@@ -1,12 +1,12 @@
 package com.lingyi.mall.biz.sms.service.impl;
 
-import com.lingyi.mall.biz.sms.model.dto.SmsLogDTO;
-import com.lingyi.mall.biz.sms.model.entity.SmsLogDO;
+import com.lingyi.mall.biz.sms.model.dto.LogDTO;
+import com.lingyi.mall.biz.sms.model.entity.LogDO;
 import com.lingyi.mall.biz.sms.dao.mapper.SmsLogMapper;
-import com.lingyi.mall.biz.sms.model.param.SmsLogParam;
+import com.lingyi.mall.biz.sms.model.param.LogParam;
 import com.lingyi.mall.biz.sms.dao.repositroy.SmsLogRepository;
-import com.lingyi.mall.biz.sms.service.SendLogService;
-import com.lingyi.mall.biz.sms.model.vo.SmsLogVO;
+import com.lingyi.mall.biz.sms.service.LogService;
+import com.lingyi.mall.biz.sms.model.vo.LogVO;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public class SendLogServiceImpl extends BaseServiceProImpl<SmsLogRepository, SmsLogMapper, SmsLogDTO, SmsLogVO, SmsLogParam, SmsLogDO, Long> implements SendLogService {
+public class LogServiceImpl extends BaseServiceProImpl<SmsLogRepository, SmsLogMapper, LogDTO, LogVO, LogParam, LogDO, Long> implements LogService {
 
 
 }

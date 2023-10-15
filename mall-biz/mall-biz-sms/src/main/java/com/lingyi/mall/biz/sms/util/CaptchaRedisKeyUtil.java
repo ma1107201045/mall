@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.sms.util;
 
+import com.lingyi.mall.api.sms.dto.SmsAbstractReqDTO;
 import com.lingyi.mall.api.sms.dto.SmsReqDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -23,18 +24,24 @@ public final class CaptchaRedisKeyUtil {
 
     }
 
-    public String getCaptchaKey(SmsReqDTO smsReqDTO) {
+    public String getCaptchaKey(SmsAbstractReqDTO smsAbstractReqDTO) {
         return String.format(CAPTCHA_KEY_FORMAT, applicationName,
-                smsReqDTO.getServiceType(), smsReqDTO.getBusinessType(), smsReqDTO.getPhoneNumber());
+                smsAbstractReqDTO.getServiceType(),
+                smsAbstractReqDTO.getBusinessType(),
+                smsAbstractReqDTO.getPhoneNumber());
     }
 
     public String getCaptchaIntervalDateKey(SmsReqDTO smsReqDTO) {
         return String.format(CAPTCHA_INTERVAL_DATA_KEY_FORMAT, applicationName,
-                smsReqDTO.getServiceType(), smsReqDTO.getBusinessType(), smsReqDTO.getPhoneNumber());
+                smsReqDTO.getServiceType(),
+                smsReqDTO.getBusinessType(),
+                smsReqDTO.getPhoneNumber());
     }
 
     public String getCaptchaUpperLimitKey(SmsReqDTO smsReqDTO) {
         return String.format(CAPTCHA_UPPER_LIMIT_KEY_FORMAT, applicationName,
-                smsReqDTO.getServiceType(), smsReqDTO.getBusinessType(), smsReqDTO.getPhoneNumber());
+                smsReqDTO.getServiceType(),
+                smsReqDTO.getBusinessType(),
+                smsReqDTO.getPhoneNumber());
     }
 }

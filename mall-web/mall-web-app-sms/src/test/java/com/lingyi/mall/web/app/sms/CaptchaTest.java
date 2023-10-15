@@ -1,13 +1,11 @@
 package com.lingyi.mall.web.app.sms;
 
-import cn.hutool.core.thread.ThreadUtil;
 import cn.hutool.core.util.RandomUtil;
-import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.MallWebAppSmsApplicationTest;
-import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
-import com.lingyi.mall.api.sms.dto.SmsCaptchaReqDTO;
+import com.lingyi.mall.api.sms.dto.SmsReqDTO;
 import com.lingyi.mall.api.sms.enums.BusinessTypeEnum;
 import com.lingyi.mall.api.sms.enums.ServiceTypeEnum;
+import com.lingyi.mall.api.sms.enums.TypeEnum;
 import com.lingyi.mall.biz.sms.service.SmsService;
 import com.lingyi.mall.common.core.constant.BaseConstant;
 import lombok.extern.slf4j.Slf4j;
@@ -36,17 +34,18 @@ public class CaptchaTest implements MallWebAppSmsApplicationTest {
 
     @Test
     public void testCaptchaSend() {
-        CaptchaSendReqDTO captchaSendReqDTO = new CaptchaSendReqDTO();
-        captchaSendReqDTO.setServiceType(ServiceTypeEnum.MALL_AUTH_APP.getCode());
-        captchaSendReqDTO.setBusinessType(BusinessTypeEnum.LOGIN.getCode());
-        captchaSendReqDTO.setPhoneNumber("15038233127");
-        captchaSendReqDTO.setCaptcha(RandomUtil.randomNumbers(6));
-        captchaSendReqDTO.setLength(6);
-        captchaSendReqDTO.setExpiryDate(30);
-        captchaSendReqDTO.setIntervalDate(1);
-        captchaSendReqDTO.setUpperLimit(10);
-        captchaSendReqDTO.setRemark(ServiceTypeEnum.UNKNOWN.getMessage() + BaseConstant.COLON_CHAR + BusinessTypeEnum.UNKNOWN.getMessage());
-        captchaService.send(captchaSendReqDTO);
+        SmsReqDTO smsReqDTO = new SmsReqDTO();
+        smsReqDTO.setServiceType(ServiceTypeEnum.MALL_AUTH_APP.getCode());
+        smsReqDTO.setBusinessType(BusinessTypeEnum.LOGIN.getCode());
+        smsReqDTO.setType(TypeEnum.CAPTCHA.getCode());
+        smsReqDTO.setPhoneNumber("15038233127");
+        smsReqDTO.setCaptcha(RandomUtil.randomNumbers(6));
+        smsReqDTO.setLength(6);
+        smsReqDTO.setExpiryDate(30);
+        smsReqDTO.setIntervalDate(1);
+        smsReqDTO.setUpperLimit(10);
+        smsReqDTO.setRemark(ServiceTypeEnum.UNKNOWN.getMessage() + BaseConstant.COLON_CHAR + BusinessTypeEnum.UNKNOWN.getMessage());
+        captchaService.send(smsReqDTO);
     }
 
     @Test

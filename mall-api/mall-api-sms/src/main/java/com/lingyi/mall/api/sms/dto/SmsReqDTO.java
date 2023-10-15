@@ -1,6 +1,8 @@
 package com.lingyi.mall.api.sms.dto;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * @author maweiyan
@@ -9,18 +11,9 @@ import lombok.Data;
  * @description
  */
 @Data
-public class SmsReqDTO {
-
-
-    /**
-     * 服务类型
-     */
-    private Integer serviceType;
-
-    /**
-     * 业务类型
-     */
-    private Integer businessType;
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+public class SmsReqDTO extends SmsAbstractReqDTO {
 
     /**
      * 短信类型 1.验证码
@@ -28,7 +21,24 @@ public class SmsReqDTO {
     private Integer type;
 
     /**
-     * 手机号
+     * 验证码长度
      */
-    private String phoneNumber;
+    private Integer length;
+    /**
+     * 验证码有效期 （分钟）
+     */
+    private Integer expiryDate;
+    /**
+     * 验证码发送间隔时间（分钟）
+     */
+    private Integer intervalDate;
+    /**
+     * 验证码每天上限
+     */
+    private Integer upperLimit;
+    /**
+     * 备注
+     */
+    private String remark;
+
 }

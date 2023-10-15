@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.sms.dao.mapper;
 
-import com.lingyi.mall.biz.sms.model.param.SmsLogParam;
-import com.lingyi.mall.biz.sms.model.vo.SmsLogVO;
+import com.lingyi.mall.biz.sms.model.param.LogParam;
+import com.lingyi.mall.biz.sms.model.vo.LogVO;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,5 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @description
  */
 @Mapper
-public interface SmsLogMapper extends MybatisMapperImplementation<SmsLogVO, SmsLogParam, Long> {
+public interface SmsLogMapper extends MybatisMapperImplementation<LogVO, LogParam, Long> {
 }

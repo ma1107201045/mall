@@ -18,7 +18,7 @@ import java.io.Serial;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Schema
-public class SmsLogDTO extends BaseIdDTO<Long> {
+public class LogDTO extends BaseIdDTO<Long> {
 
     @Serial
     private static final long serialVersionUID = -8254294466774665611L;

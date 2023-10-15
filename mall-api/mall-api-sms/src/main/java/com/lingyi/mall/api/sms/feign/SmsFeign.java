@@ -1,11 +1,11 @@
 package com.lingyi.mall.api.sms.feign;
 
-import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
-import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
+import com.lingyi.mall.api.sms.dto.SmsAbstractReqDTO;
 import com.lingyi.mall.api.sms.dto.SmsReqDTO;
 import com.lingyi.mall.api.sms.fallbackfactory.SmsFeignFallbackFactory;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface SmsFeign {
     String URL_PREFIX = "/app/smss";
 
+
     /**
      * 发送验证码
      *
@@ -27,6 +28,16 @@ public interface SmsFeign {
      */
     @PostMapping
     ServerResponse<Void> send(@RequestBody SmsReqDTO smsReqDTO);
+
+
+    /**
+     * 保存验证码
+     *
+     * @param captchaVerifyReqDTO ..
+     * @return ServerResponse
+     */
+    @GetMapping
+    ServerResponse<Void> verifyCaptcha(@RequestBody SmsAbstractReqDTO captchaVerifyReqDTO);
 
 
 }

@@ -1,7 +1,7 @@
 package com.lingyi.mall.api.sms.consumer;
 
 import com.alibaba.fastjson2.JSON;
-import com.lingyi.mall.api.sms.dto.SmsCaptchaReqDTO;
+import com.lingyi.mall.api.sms.dto.SmsAbstractReqDTO;
 import com.lingyi.mall.api.sms.dto.SmsReqDTO;
 import com.lingyi.mall.api.sms.feign.SmsFeign;
 import com.lingyi.mall.common.core.exception.OpenFeignException;
@@ -22,7 +22,7 @@ public class CaptchaFeignConsumer {
 
     private final SmsFeign captchaFeign;
 
-    public void send(SmsCaptchaReqDTO captchaSendReqDTO) {
+    public void send(SmsAbstractReqDTO captchaSendReqDTO) {
         log.info("入参:captchaReqDTO:{}", captchaSendReqDTO);
         var response = captchaFeign.send(captchaSendReqDTO);
         if (response.getIsSuccess()) {

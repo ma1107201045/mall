@@ -10,7 +10,7 @@ import java.io.Serial;
  * @DateTime: 2023/9/12 12:28
  * @Description:
  */
-public class SmsLogVO extends BaseIdVO<Long> {
+public class LogVO extends BaseIdVO<Long> {
     @Serial
     private static final long serialVersionUID = 4041786744709139228L;
 }

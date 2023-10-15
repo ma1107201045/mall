@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.sms.dao.repositroy;
 
-import com.lingyi.mall.biz.sms.model.entity.SmsLogDO;
+import com.lingyi.mall.biz.sms.model.entity.LogDO;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
  * @description
  */
 @Repository
-public interface SmsLogRepository extends JpaRepositoryImplementation<SmsLogDO, Long> {
+public interface SmsLogRepository extends JpaRepositoryImplementation<LogDO, Long> {
 }
