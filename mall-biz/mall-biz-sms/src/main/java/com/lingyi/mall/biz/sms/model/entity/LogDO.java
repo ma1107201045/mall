@@ -40,20 +40,20 @@ public class LogDO extends BaseCommonDO implements Serializable {
     @Column(name = "phone_number", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '手机号'")
     private String phoneNumber;
 
-    @Column(name = "captcha", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '验证码'")
-    private Integer captcha;
-
-    @Column(name = "length", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '验证码长度'")
-    private Integer length;
-
-    @Column(name = "expiry_date", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '验证码有效期 （分钟）'")
-    private Integer expiryDate;
-
-    @Column(name = "interval_date", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '验证码发送间隔时间（分钟）'")
-    private Integer intervalDate;
+    @Column(name = "interval", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '验证码发送间隔时间（分钟）'")
+    private Integer interval;
 
     @Column(name = "upper_limit", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '验证码每天上限'")
     private Integer upperLimit;
+
+    @Column(name = "captcha", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '验证码'")
+    private Integer captcha;
+
+    @Column(name = "captcha_length", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '验证码长度'")
+    private Integer captchaLength;
+
+    @Column(name = "captcha_expiry_date", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '验证码有效期 （分钟）'")
+    private Integer captchaExpiryDate;
 
     @Column(name = "is_success", columnDefinition = "INT UNSIGNED COMMENT '是否成功 1.是 0.否'")
     private Integer isSuccess;
