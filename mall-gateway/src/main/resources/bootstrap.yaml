@@ -40,16 +40,6 @@ spring:
           filters:
             - StripPrefix=2
             - AddResponseHeader=X-Response-Default-Foo, Default-Bar
-        #前台app端认证服务
-        - id: mall-auth-app
-          uri: lb://mall-auth-app
-          predicates:
-            - Path=/auth/app/**
-        #后台merchant端认证服务
-        - id: mall-auth-merchant
-          uri: lb://mall-auth-merchant
-          predicates:
-            - Path=/auth/merchant/**
 
         - id: mall-web-admin-base
           uri: lb://mall-web-admin-base
@@ -91,6 +81,15 @@ spring:
             - StripPrefix=2
             - AddResponseHeader=X-Response-Default-Foo, Default-Bar
 
+        #前台app端认证服务
+        - id: mall-auth-app
+          uri: lb://mall-auth-app
+          predicates:
+            - Path=/auth/app/**
+          filters:
+            - StripPrefix=2
+            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+
         - id: mall-web-app-base
           uri: lb://mall-web-app-base
           predicates:
@@ -122,6 +121,12 @@ spring:
           filters:
             - StripPrefix=2
             - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+
+        #后台merchant端认证服务
+        - id: mall-auth-merchant
+          uri: lb://mall-auth-merchant
+          predicates:
+            - Path=/auth/merchant/**
     stream:
       binding-retry-interval: 7200
       rocketmq:

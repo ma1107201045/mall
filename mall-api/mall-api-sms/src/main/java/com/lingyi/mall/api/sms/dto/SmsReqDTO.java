@@ -16,19 +16,21 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 public class SmsReqDTO extends AbstractReqDTO {
 
+
     /**
-     * 短信类型 1 验证码 2 通知
-     */
-    private Integer type;
-    /**
-     * 每天发送上限
+     * 发送每天上限
      */
     private Integer upperLimit;
 
     /**
      * 发送间隔
      */
-    private Integer interval;
+    private Integer intervalTime;
+
+    /**
+     * 发送内容
+     */
+    private String content;
 
     /**
      * 备注

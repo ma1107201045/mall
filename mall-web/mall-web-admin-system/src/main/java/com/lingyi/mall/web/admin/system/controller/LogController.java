@@ -23,8 +23,8 @@ import java.util.List;
  * @description
  */
 @Tag(name = "系统日志", description = "系统日志")
-@RequestMapping("/logs")
 @RestController
+@RequestMapping("/logs")
 @RequiredArgsConstructor
 @SentinelResource
 public class LogController {

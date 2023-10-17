@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 /**
  * @Author: maweiyan
  * @Email 1107201045@qq.com
@@ -22,8 +23,8 @@ import java.util.List;
  * @Description:
  */
 @Tag(name = "系统菜单", description = "系统菜单")
-@RequestMapping("/menus")
 @RestController
+@RequestMapping("/menus")
 @RequiredArgsConstructor
 public class MenuController {
 

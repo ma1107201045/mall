@@ -24,8 +24,8 @@ import java.util.List;
  * @Description:
  */
 @Tag(name = "系统角色", description = "系统角色")
-@RequestMapping("/roles")
 @RestController
+@RequestMapping("/roles")
 @RequiredArgsConstructor
 public class RoleController {
 

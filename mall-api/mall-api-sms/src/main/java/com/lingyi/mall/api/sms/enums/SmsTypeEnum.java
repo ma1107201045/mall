@@ -16,9 +16,9 @@ public enum SmsTypeEnum {
     /**
      *
      */
-    CAPTCHA(1, "验证码"),
+    NOTICE(1, "通知"),
 
-    NOTICE(2, "通知"),
+    CAPTCHA(2, "验证码"),
 
     UNKNOWN(3, "未知");
 

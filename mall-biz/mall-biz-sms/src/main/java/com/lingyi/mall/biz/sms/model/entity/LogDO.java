@@ -34,25 +34,28 @@ public class LogDO extends BaseCommonDO implements Serializable {
     @Column(name = "business_name", columnDefinition = "VARCHAR(50) NOT NULL COMMENT '业务名称'")
     private String businessName;
 
-    @Column(name = "type", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '短信类型 1.验证密码'")
+    @Column(name = "type", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '短信类型 1 验证码 2 通知'")
     private Integer type;
 
     @Column(name = "phone_number", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '手机号'")
     private String phoneNumber;
 
-    @Column(name = "interval", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '验证码发送间隔时间（分钟）'")
-    private Integer interval;
-
-    @Column(name = "upper_limit", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '验证码每天上限'")
+    @Column(name = "upper_limit", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '发送每天上限'")
     private Integer upperLimit;
+
+    @Column(name = "interval_time", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '发送间隔时间（分钟）'")
+    private Integer intervalTime;
+
+    @Column(name = "content", columnDefinition = "TEXT COMMENT '发送内容'")
+    private String content;
 
     @Column(name = "captcha", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '验证码'")
     private Integer captcha;
 
-    @Column(name = "captcha_length", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '验证码长度'")
+    @Column(name = "captcha_length", columnDefinition = "INT UNSIGNED DEFAULT NULL COMMENT '验证码长度'")
     private Integer captchaLength;
 
-    @Column(name = "captcha_expiry_date", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '验证码有效期 （分钟）'")
+    @Column(name = "captcha_expiry_date", columnDefinition = "INT UNSIGNED DEFAULT NULL COMMENT '验证码有效期 （分钟）'")
     private Integer captchaExpiryDate;
 
     @Column(name = "is_success", columnDefinition = "INT UNSIGNED COMMENT '是否成功 1.是 0.否'")

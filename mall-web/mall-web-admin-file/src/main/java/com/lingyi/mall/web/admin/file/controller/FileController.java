@@ -25,8 +25,8 @@ import java.io.IOException;
  * @Description:
  */
 @Tag(name = "文件接口", description = "文件接口")
-@RequestMapping("/files")
 @RestController
+@RequestMapping("/files")
 @RequiredArgsConstructor
 public class FileController {
 

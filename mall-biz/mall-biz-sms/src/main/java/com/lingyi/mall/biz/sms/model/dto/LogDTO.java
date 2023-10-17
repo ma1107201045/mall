@@ -2,6 +2,7 @@ package com.lingyi.mall.biz.sms.model.dto;
 
 import com.lingyi.mall.common.core.dto.BaseIdDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Column;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -35,20 +36,23 @@ public class LogDTO extends BaseIdDTO<Long> {
     @Schema(description = "手机号")
     private String phoneNumber;
 
+    @Schema(description = "上限")
+    private Integer upperLimit;
+
+    @Schema(description = "发送间隔时间（分钟）")
+    private Integer intervalTime;
+
+    @Schema(description = "发送内容")
+    private String content;
+
     @Schema(description = "验证码")
     private Integer captcha;
 
     @Schema(description = "验证码长度")
-    private Integer length;
+    private Integer captchaLength;
 
     @Schema(description = "验证码有效期 （分钟）")
-    private Integer expiryDate;
-
-    @Schema(description = "验证码发送间隔时间（分钟）")
-    private Integer intervalDate;
-
-    @Schema(description = "验证码每天上限")
-    private Integer upperLimit;
+    private Integer captchaExpiryDate;
 
     @Schema(description = "是否成功 1.是 0.否")
     private Integer isSuccess;

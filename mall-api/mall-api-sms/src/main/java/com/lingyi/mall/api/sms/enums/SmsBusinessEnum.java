@@ -19,8 +19,12 @@ public enum SmsBusinessEnum {
     /*
      *
      */
-    LOGIN(1, "登录"),
+    LOGIN(1, "登录验证码"),
+
+    ORDER(2, "订单通知"),
+
     UNKNOWN(100, "未知");
+
     private final Integer code;
 
     private final String message;

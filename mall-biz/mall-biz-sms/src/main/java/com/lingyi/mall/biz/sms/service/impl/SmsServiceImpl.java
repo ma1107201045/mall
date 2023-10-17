@@ -47,6 +47,12 @@ public class SmsServiceImpl implements SmsService {
         var smsUpperLimitValue = redisUtil.get(smsUpperLimitKey, Integer.class);
         var flag = Objects.nonNull(smsUpperLimitValue) && smsReqDTO.getUpperLimit().equals(smsUpperLimitValue);
         AssertUtil.isFalse(flag, SmsFailEnum.SMS_UPPER_LIMIT_ERROR);
+
+        //校验发送间隔
+        var smsIntervalKey = smsRedisKeyUtil.getSmsIntervalKey(smsReqDTO);
+        var smsIntervalValue = redisUtil.get(smsIntervalKey, Integer.class);
+        AssertUtil.isNull(smsIntervalValue, SmsFailEnum.SMS_INTERVAL_ERROR);
+
         //设置发送间隔标记
         redisUtil.incr(smsUpperLimitKey);
         if (Objects.isNull(smsUpperLimitValue)) {
@@ -54,13 +60,8 @@ public class SmsServiceImpl implements SmsService {
             redisUtil.expire(smsUpperLimitKey, getSubTimestamp(), TimeUnit.MILLISECONDS);
         }
 
-
-        //校验发送间隔
-        var smsIntervalKey = smsRedisKeyUtil.getSmsIntervalKey(smsReqDTO);
-        var smsIntervalValue = redisUtil.get(smsIntervalKey, Integer.class);
-        AssertUtil.isNull(smsIntervalValue, SmsFailEnum.SMS_INTERVAL_ERROR);
         //设置发送标记
-        redisUtil.set(smsIntervalKey, RandomUtil.randomInt(), smsReqDTO.getInterval(), TimeUnit.MINUTES);
+        redisUtil.set(smsIntervalKey, RandomUtil.randomInt(), smsReqDTO.getIntervalTime(), TimeUnit.MINUTES);
 
 
         //TODO 发送mq消息
