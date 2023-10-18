@@ -23,7 +23,7 @@ public class LogVO extends BaseIdVO<Long> {
     @Schema(description = "业务名称")
     private String businessName;
 
-    @Schema(description = "短信类型 1.验证密码")
+    @Schema(description = "短信类型 1 验证码 2 通知")
     private Integer type;
 
     @Schema(description = "手机号")
@@ -55,6 +55,12 @@ public class LogVO extends BaseIdVO<Long> {
 
     @Schema(description = "备注")
     private String remark;
+
+    @Schema(description = "创建人")
+    private String createBy;
+
+    @Schema(description = "创建时间")
+    private LocalDateTime createDateTime;
 
     @Schema(description = "最后一次更新人")
     private String lastModifyBy;

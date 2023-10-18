@@ -12,5 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @description
  */
 @Mapper
-public interface SmsLogMapper extends MybatisMapperImplementation<LogVO, LogParam, Long> {
+public interface LogMapper extends MybatisMapperImplementation<LogVO, LogParam, Long> {
 }

@@ -81,6 +81,14 @@ spring:
             - StripPrefix=2
             - AddResponseHeader=X-Response-Default-Foo, Default-Bar
 
+        - id: mall-web-admin-sms
+          uri: lb://mall-web-admin-sms
+          predicates:
+            - Path=/admin/sms/**
+          filters:
+            - StripPrefix=2
+            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+
         #前台app端认证服务
         - id: mall-auth-app
           uri: lb://mall-auth-app

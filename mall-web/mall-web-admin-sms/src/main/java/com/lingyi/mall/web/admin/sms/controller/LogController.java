@@ -23,7 +23,7 @@ import java.util.List;
  */
 @Tag(name = "短信日志", description = "短信日志")
 @RestController
-@RequestMapping("/logs")
+@RequestMapping("/sms-logs")
 @RequiredArgsConstructor
 public class LogController {
 

@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum FailEnum implements BaseFailEnum {
 
-    PHONE_NUMBER_NOT_FOUND_ERROR(8002, "手机号不存在");
+    PHONE_NUMBER_NOT_FOUND_ERROR(10001, "手机号不存在");
 
     private final Integer code;
 

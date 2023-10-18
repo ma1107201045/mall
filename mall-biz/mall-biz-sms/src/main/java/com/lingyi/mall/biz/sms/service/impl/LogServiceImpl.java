@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.sms.service.impl;
 
 import com.lingyi.mall.biz.sms.model.dto.LogDTO;
 import com.lingyi.mall.biz.sms.model.entity.LogDO;
-import com.lingyi.mall.biz.sms.dao.mapper.SmsLogMapper;
+import com.lingyi.mall.biz.sms.dao.mapper.LogMapper;
 import com.lingyi.mall.biz.sms.model.param.LogParam;
 import com.lingyi.mall.biz.sms.dao.repositroy.SmsLogRepository;
 import com.lingyi.mall.biz.sms.service.LogService;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public class LogServiceImpl extends BaseServiceProImpl<SmsLogRepository, SmsLogMapper, LogDTO, LogVO, LogParam, LogDO, Long> implements LogService {
+public class LogServiceImpl extends BaseServiceProImpl<SmsLogRepository, LogMapper, LogDTO, LogVO, LogParam, LogDO, Long> implements LogService {
 
 
 }

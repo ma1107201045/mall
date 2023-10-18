@@ -38,7 +38,7 @@
             AND execute_result = #{executeResult,jdbcType=TINYINT}
         </if>
     </sql>
-    <select id="selectById" resultType="com.lingyi.mall.biz.system.model.entity.LogDO">
+    <select id="selectById" resultType="com.lingyi.mall.biz.system.model.vo.LogVO">
         SELECT
         <include refid="Base_Column_List"/>
         FROM ms_log
