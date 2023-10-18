@@ -40,7 +40,7 @@ public class SmsServiceImpl implements SmsService {
 
 
     @Override
-    @RedisLock(keySuffix = "#smsReqDTO.serviceType + ':' + #smsReqDTO.businessType + ':' + #smsReqDTO.phoneNumber")
+    @RedisLock(keySuffix = "#smsReqDTO.serviceType + ':' + #smsReqDTO.businessType + ':' +#smsReqDTO.type + ':' + #smsReqDTO.phoneNumber")
     public void send(SmsReqDTO smsReqDTO) {
         //校验发送上限
         var smsUpperLimitKey = smsRedisKeyUtil.getSmsUpperLimitKey(smsReqDTO);
@@ -73,6 +73,7 @@ public class SmsServiceImpl implements SmsService {
     }
 
     @Override
+    @RedisLock(keySuffix = "#captchaSendReqDTO.serviceType + ':' + #captchaSendReqDTO.businessType + ':' +#captchaSendReqDTO.type + ':' + #captchaSendReqDTO.phoneNumber")
     public void sendCaptcha(CaptchaSendReqDTO captchaSendReqDTO) {
         //发送短信
         send(captchaSendReqDTO);

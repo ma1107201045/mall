@@ -1,7 +1,5 @@
 package com.lingyi.mall.web.app.sms;
 
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.MallWebAppSmsApplicationTest;
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
@@ -16,11 +14,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -52,7 +45,6 @@ public class SmsTest implements MallWebAppSmsApplicationTest {
         smsReqDTO.setUpperLimit(10);
         smsReqDTO.setContent("尊敬的用户您好，您的订单已取消，请及时查看");
         smsReqDTO.setRemark(SmsServiceEnum.UNKNOWN.getMessage() + BaseConstant.COLON_CHAR + SmsBusinessEnum.UNKNOWN.getMessage());
-
         CompletableFuture<?>[] completableFutures = new CompletableFuture[100];
         for (int i = 0; i < 100; i++) {
             CompletableFuture<Void> completableFuture = CompletableFuture.runAsync(() -> smsService.send(smsReqDTO), executorService);

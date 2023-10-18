@@ -2,6 +2,9 @@ package com.lingyi.mall.biz.sms.util;
 
 import com.lingyi.mall.api.sms.dto.AbstractReqDTO;
 import com.lingyi.mall.api.sms.dto.SmsReqDTO;
+import com.lingyi.mall.api.sms.enums.SmsBusinessEnum;
+import com.lingyi.mall.api.sms.enums.SmsServiceEnum;
+import com.lingyi.mall.api.sms.enums.SmsTypeEnum;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -26,16 +29,17 @@ public final class SmsRedisKeyUtil {
         return String.format(SMS_INTERVAL_TIME_KEY_FORMAT, applicationName,
                 smsReqDTO.getServiceType(),
                 smsReqDTO.getBusinessType(),
-                smsReqDTO.getPhoneNumber(),
-                smsReqDTO.getType());
+                smsReqDTO.getType(),
+                smsReqDTO.getPhoneNumber());
+
     }
 
     public String getSmsUpperLimitKey(SmsReqDTO smsReqDTO) {
         return String.format(SMS_UPPER_LIMIT_KEY_FORMAT, applicationName,
                 smsReqDTO.getServiceType(),
                 smsReqDTO.getBusinessType(),
-                smsReqDTO.getPhoneNumber(),
-                smsReqDTO.getType());
+                smsReqDTO.getType(),
+                smsReqDTO.getPhoneNumber());
     }
 
 
@@ -43,8 +47,8 @@ public final class SmsRedisKeyUtil {
         return String.format(CAPTCHA_KEY_FORMAT, applicationName,
                 abstractReqDTO.getServiceType(),
                 abstractReqDTO.getBusinessType(),
-                abstractReqDTO.getPhoneNumber(),
-                abstractReqDTO.getType());
+                abstractReqDTO.getType(),
+                abstractReqDTO.getPhoneNumber());
     }
 
 }

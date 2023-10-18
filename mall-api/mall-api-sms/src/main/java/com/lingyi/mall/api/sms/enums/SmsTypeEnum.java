@@ -1,7 +1,10 @@
 package com.lingyi.mall.api.sms.enums;
 
+import com.lingyi.mall.common.core.constant.BaseConstant;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+
+import java.util.Arrays;
 
 /**
  * @Author: maweiyan
@@ -27,5 +30,10 @@ public enum SmsTypeEnum {
 
     private final String message;
 
-
+    public static String getMessageByCode(Integer code) {
+        return Arrays.stream(values())
+                .filter(smsTypeEnum -> smsTypeEnum.getCode().equals(code))
+                .map(SmsTypeEnum::getMessage)
+                .findFirst().orElse(BaseConstant.UNKNOWN);
+    }
 }
