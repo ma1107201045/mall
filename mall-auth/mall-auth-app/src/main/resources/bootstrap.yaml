@@ -41,13 +41,14 @@ spring:
       rocketmq:
         binder:
           name-server: 36.137.103.166:9876
-sms-captcha:
-  service-type-enum: mall_auth_app
-  business-type-enum: login
-  length: 6
-  expiry-date: 30
-  interval-date: 1
+sms:
+  sms-service-enum: mall_auth_app
+  sms-business-enum: login
   upper-limit: 10
+  interval-time: 1
+  captcha-length: 6
+  captcha-expiry-date: 30
+
 # springdoc-openapi config
 springdoc:
   swagger-ui:

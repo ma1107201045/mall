@@ -1,23 +1,19 @@
-package com.lingyi.mall.biz.system.config;
+package com.lingyi.mall.common.xxljob.config;
 
-import com.lingyi.mall.biz.system.properties.XxlJobProperties;
 import com.xxl.job.core.executor.impl.XxlJobSpringExecutor;
 import lombok.extern.java.Log;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * xxl-job config
- *
- * @author xuxueli 2017-04-28
+ * @Author: maweiyan
+ * @Email: 1107201045@qq.com
+ * @DateTime: 2023/10/18 10:21
+ * @Description:
  */
 @Log
 @Configuration
 public class XxlJobConfig {
-
 
     @Bean
     public XxlJobSpringExecutor xxlJobExecutor(XxlJobProperties xxlJobProperties) {
@@ -35,6 +31,7 @@ public class XxlJobConfig {
         return xxlJobSpringExecutor;
     }
 
+
     /**
      * 针对多网卡、容器内部署等情况，可借助 "spring-cloud-commons" 提供的 "InetUtils" 组件灵活定制注册IP；
      *
@@ -51,6 +48,4 @@ public class XxlJobConfig {
      *      3、获取IP
      *          String ip_ = inetUtils.findFirstNonLoopbackHostInfo().getIpAddress();
      */
-
-
 }

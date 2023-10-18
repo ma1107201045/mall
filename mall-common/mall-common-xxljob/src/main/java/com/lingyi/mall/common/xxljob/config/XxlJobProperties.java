@@ -1,4 +1,4 @@
-package com.lingyi.mall.biz.system.properties;
+package com.lingyi.mall.common.xxljob.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

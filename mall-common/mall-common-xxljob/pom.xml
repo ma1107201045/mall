@@ -5,27 +5,24 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.lingyi</groupId>
-        <artifactId>mall-biz</artifactId>
+        <artifactId>mall-common</artifactId>
         <version>${revision}</version>
     </parent>
-    <artifactId>mall-biz-system</artifactId>
-    <name>${project.artifactId}</name>
+    <artifactId>mall-common-xxljob</artifactId>
+
     <dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>mall-api-system</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-orm</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-xxljob</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-job-core</artifactId>
         </dependency>
     </dependencies>
 </project>

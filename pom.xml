@@ -96,15 +96,19 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
+                <artifactId>mall-common-redis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>mall-common-rocketmq</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>mall-common-redis</artifactId>
+                <artifactId>mall-common-xxljob</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
             <!-- mall common out jar -->
             <dependency>
                 <groupId>cn.hutool</groupId>

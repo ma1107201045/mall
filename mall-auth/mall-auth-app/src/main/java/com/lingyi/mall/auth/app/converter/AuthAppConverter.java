@@ -38,11 +38,11 @@ public class AuthAppConverter {
         captchaSendReqDTO.setBusinessType(properties.getSmsBusinessEnum().getCode());
         captchaSendReqDTO.setType(properties.getSmsTypeEnum().getCode());
         captchaSendReqDTO.setPhoneNumber(phoneNumber);
-        captchaSendReqDTO.setInterval(properties.getIntervalDate());
+        captchaSendReqDTO.setIntervalTime(properties.getIntervalTime());
         captchaSendReqDTO.setUpperLimit(properties.getUpperLimit());
-        captchaSendReqDTO.setCaptcha(RandomUtil.randomNumbers(properties.getLength()));
-        captchaSendReqDTO.setCaptchaLength(properties.getLength());
-        captchaSendReqDTO.setCaptchaExpiryDate(properties.getExpiryDate());
+        captchaSendReqDTO.setCaptcha(RandomUtil.randomNumbers(properties.getCaptchaLength()));
+        captchaSendReqDTO.setCaptchaLength(properties.getCaptchaLength());
+        captchaSendReqDTO.setCaptchaExpiryDate(properties.getCaptchaExpiryDate());
         captchaSendReqDTO.setRemark(SmsServiceEnum.MALL_AUTH_APP.getMessage() + BaseConstant.COLON_CHAR + SmsBusinessEnum.LOGIN.getMessage());
         return captchaSendReqDTO;
     }

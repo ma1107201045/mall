@@ -12,138 +12,20 @@ spring:
         password: nacos
         access-key: ThisIsMyCustomSecretKey012345678
       config:
-        # 配置中心地址
         server-addr: 36.137.103.166:8848
         username: nacos
         password: nacos
         access-key: ThisIsMyCustomSecretKey012345678
-    sentinel:
-      transport:
-        dashboard: 36.137.103.166:8080
-    gateway:
-      discovery:
-        locator:
-          lower-case-service-id: true
-      globalcors:
-        cors-configurations:
-          '[/**]':
-            allowCredentials: true
-            allowedOriginPatterns: "*"
-            allowedHeaders: "*"
-            allowedMethods: "*"
-      routes:
-        #后台admin端认证服务
-        - id: mall-auth-admin
-          uri: lb://mall-auth-admin
-          predicates:
-            - Path=/auth/admin/**
-          filters:
-            - StripPrefix=2
-            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
-
-        - id: mall-web-admin-base
-          uri: lb://mall-web-admin-base
-          predicates:
-            - Path=/admin/base/**
-          filters:
-            - StripPrefix=2
-            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
-
-        - id: mall-web-admin-system
-          uri: lb://mall-web-admin-system
-          predicates:
-            - Path=/admin/system/**
-          filters:
-            - StripPrefix=2
-            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
-
-        - id: mall-web-admin-file
-          uri: lb:// mall-web-admin-file
-          predicates:
-            - Path=/admin/file/**
-          filters:
-            - StripPrefix=2
-            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
-
-        - id: mall-web-admin-product
-          uri: lb://mall-web-admin-product
-          predicates:
-            - Path=/admin/product/**
-          filters:
-            - StripPrefix=2
-            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
-
-        - id: mall-web-admin-member
-          uri: lb://mall-web-admin-member
-          predicates:
-            - Path=/admin/member/**
-          filters:
-            - StripPrefix=2
-            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
-
-        - id: mall-web-admin-sms
-          uri: lb://mall-web-admin-sms
-          predicates:
-            - Path=/admin/sms/**
-          filters:
-            - StripPrefix=2
-            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
-
-        #前台app端认证服务
-        - id: mall-auth-app
-          uri: lb://mall-auth-app
-          predicates:
-            - Path=/auth/app/**
-          filters:
-            - StripPrefix=2
-            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
-
-        - id: mall-web-app-base
-          uri: lb://mall-web-app-base
-          predicates:
-            - Path=/app/base/**
-          filters:
-            - StripPrefix=2
-            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
-
-        - id: mall-web-app-member
-          uri: lb://mall-web-app-member
-          predicates:
-            - Path=/app/member/**
-          filters:
-            - StripPrefix=2
-            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
-
-        - id: mall-web-app-file
-          uri: lb://mall-web-app-file
-          predicates:
-            - Path=/app/file/**
-          filters:
-            - StripPrefix=2
-            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
-
-        - id: mall-web-app-sms
-          uri: lb://mall-web-app-sms
-          predicates:
-            - Path=/app/sms/**
-          filters:
-            - StripPrefix=2
-            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
-
-        #后台merchant端认证服务
-        - id: mall-auth-merchant
-          uri: lb://mall-auth-merchant
-          predicates:
-            - Path=/auth/merchant/**
-    stream:
-      binding-retry-interval: 7200
-      rocketmq:
-        binder:
-          name-server: 36.137.103.166:9876
-knife4j:
-  gateway:
-    enabled: true
-    strategy: discover
+        name: ${spring.application.name}
+        file-extension: yaml
+        group: GATEWAY
+        extension-configs:
+          - data-id: sentinel.yaml
+            group: COMMON
+            refresh: false
+          - data-id: stream.yaml
+            group: COMMON
+            refresh: false
 
 
 

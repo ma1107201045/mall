@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "sms-captcha")
+@ConfigurationProperties(prefix = "sms")
 public class SmsCaptchaProperties {
     /**
      * 服务类型
@@ -30,20 +30,22 @@ public class SmsCaptchaProperties {
      * 业务类型
      */
     private SmsTypeEnum smsTypeEnum = SmsTypeEnum.UNKNOWN;
-    /**
-     * 验证码长度
-     */
-    public Integer length = 6;
-    /**
-     * 验证码失效时间
-     */
-    public Integer expiryDate = 30;
+
     /**
      * 验证码发送间隔时间(分钟)
      */
-    public Integer intervalDate = 1;
+    public Integer intervalTime = 1;
     /**
      * 验证码每天上限
      */
     public Integer upperLimit = 10;
+    /**
+     * 验证码长度
+     */
+    public Integer captchaLength = 6;
+    /**
+     * 验证码失效时间
+     */
+    public Integer captchaExpiryDate = 30;
+
 }
