@@ -15,30 +15,30 @@ import org.springframework.context.annotation.Configuration;
  */
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "sms")
+@ConfigurationProperties(prefix = "sms-captcha")
 public class SmsCaptchaProperties {
     /**
      * 服务类型
      */
-    private SmsServiceEnum smsServiceEnum = SmsServiceEnum.UNKNOWN;
+    private SmsServiceEnum service = SmsServiceEnum.UNKNOWN;
     /**
      * 业务类型
      */
-    private SmsBusinessEnum smsBusinessEnum = SmsBusinessEnum.UNKNOWN;
+    private SmsBusinessEnum business = SmsBusinessEnum.UNKNOWN;
 
     /**
      * 业务类型
      */
-    private SmsTypeEnum smsTypeEnum = SmsTypeEnum.UNKNOWN;
-
+    private SmsTypeEnum type = SmsTypeEnum.UNKNOWN;
     /**
-     * 验证码发送间隔时间(分钟)
-     */
-    public Integer intervalTime = 1;
-    /**
-     * 验证码每天上限
+     * 每天上限
      */
     public Integer upperLimit = 10;
+
+    /**
+     * 间隔时间(分钟)
+     */
+    public Integer intervalTime = 1;
     /**
      * 验证码长度
      */

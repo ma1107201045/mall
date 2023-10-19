@@ -19,7 +19,7 @@ spring:
         access-key: ThisIsMyCustomSecretKey012345678
         name: ${spring.application.name}
         file-extension: yaml
-        group: MALL-SYSTEM
+        group: MALL-BASE
         extension-configs:
           - data-id: redis.yaml
             group: COMMON
