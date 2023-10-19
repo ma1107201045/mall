@@ -21,9 +21,6 @@ spring:
         file-extension: yaml
         group: MALL-SYSTEM
         extension-configs:
-          - data-id: mall-web-common-system.yaml
-            group: MALL-SYSTEM
-            refresh: false
           - data-id: mysql.yaml
             group: COMMON
             refresh: false

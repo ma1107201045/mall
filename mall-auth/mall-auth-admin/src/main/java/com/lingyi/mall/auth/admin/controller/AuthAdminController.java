@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Slf4j
 @Tag(name = "验证码", description = "验证码")
 @Controller
-@RequestMapping("/")
+@RequestMapping
 @RequiredArgsConstructor
 public class AuthAdminController {
 

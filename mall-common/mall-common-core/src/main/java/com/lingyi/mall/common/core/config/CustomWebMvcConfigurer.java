@@ -1,7 +1,7 @@
 package com.lingyi.mall.common.core.config;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
@@ -21,13 +21,6 @@ import java.util.Objects;
 public class CustomWebMvcConfigurer implements WebMvcConfigurer {
 
 
-    private final CustomAsyncConfigurer customAsyncConfigurer;
-
-    @Override
-    public void configureAsyncSupport(@NotNull AsyncSupportConfigurer configurer) {
-        configurer.setTaskExecutor(Objects.requireNonNull(customAsyncConfigurer.getAsyncExecutor()));
-    }
-
     /**
      * 使用此方法, 以下 spring-boot: jackson时间格式化 配置 将会失效
      * spring.jackson.time-zone=GMT+8
@@ -35,7 +28,7 @@ public class CustomWebMvcConfigurer implements WebMvcConfigurer {
      * 原因: 会覆盖 @EnableAutoConfiguration 关于 WebMvcAutoConfiguration 的配置
      */
     @Override
-    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+    public void extendMessageConverters(@NotNull List<HttpMessageConverter<?>> converters) {
 //        MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
 //
 //        ObjectMapper objectMapper = mappingJackson2HttpMessageConverter.getObjectMapper();

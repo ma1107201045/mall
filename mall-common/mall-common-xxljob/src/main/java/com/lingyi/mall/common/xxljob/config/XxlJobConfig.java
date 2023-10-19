@@ -1,5 +1,6 @@
 package com.lingyi.mall.common.xxljob.config;
 
+import com.lingyi.mall.common.xxljob.properties.XxlJobProperties;
 import com.xxl.job.core.executor.impl.XxlJobSpringExecutor;
 import lombok.extern.java.Log;
 import org.springframework.context.annotation.Bean;

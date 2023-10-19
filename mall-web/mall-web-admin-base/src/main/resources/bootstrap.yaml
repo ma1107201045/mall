@@ -5,51 +5,26 @@ spring:
     name: mall-web-admin-base
   main:
     allow-bean-definition-overriding: true
-  data:
-    redis:
-      host: 36.137.103.166
-      password: j53BDRarSwtWvdDZ
-      client-type: lettuce
-      database: 1
-      jedis:
-        pool:
-          enabled: true
-          min-idle: 2
   cloud:
     nacos:
-      discovery:
-        # 服务注册地址
-        server-addr: 36.137.103.166:8848
-        username: nacos
-        password: nacos
-        access-key: ThisIsMyCustomSecretKey012345678
       config:
-        # 配置中心地址
         server-addr: 36.137.103.166:8848
         username: nacos
         password: nacos
         access-key: ThisIsMyCustomSecretKey012345678
-    sentinel:
-      transport:
-        dashboard: 36.137.103.166:8080
-    openfeign:
-      client:
-        config:
-          mall-web-admin-base:
-            loggerLevel: FULL
-            connectTimeout: 5000
-            readTimeout: 5000
-    stream:
-      binding-retry-interval: 7200
-      rocketmq:
-        binder:
-          name-server: 36.137.103.166:9876
-# springdoc-openapi项目配置
-springdoc:
-  swagger-ui:
-    tags-sorter: alpha
-    operations-sorter: alpha
-  group-configs:
-    - group: 'default'
-      paths-to-match: '/**'
-      packages-to-scan: com.lingyi.mall.web.admin.base.controller
+        name: ${spring.application.name}
+        file-extension: yaml
+        group: MALL-SYSTEM
+        extension-configs:
+          - data-id: redis.yaml
+            group: COMMON
+            refresh: false
+          - data-id: sentinel.yaml
+            group: COMMON
+            refresh: false
+          - data-id: stream.yaml
+            group: COMMON
+            refresh: false
+          - data-id: transfer-data.yaml
+            group: COMMON
+            refresh: false
