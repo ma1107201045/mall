@@ -34,9 +34,9 @@ public class AuthAppConverter {
 
     public CaptchaSendReqDTO to(String phoneNumber, SmsCaptchaProperties properties) {
         var captchaSendReqDTO = new CaptchaSendReqDTO();
-        captchaSendReqDTO.setServiceType(properties.getSmsServiceEnum().getCode());
-        captchaSendReqDTO.setBusinessType(properties.getSmsBusinessEnum().getCode());
-        captchaSendReqDTO.setType(properties.getSmsTypeEnum().getCode());
+        captchaSendReqDTO.setServiceType(properties.getService().getCode());
+        captchaSendReqDTO.setBusinessType(properties.getBusiness().getCode());
+        captchaSendReqDTO.setType(properties.getType().getCode());
         captchaSendReqDTO.setPhoneNumber(phoneNumber);
         captchaSendReqDTO.setIntervalTime(properties.getIntervalTime());
         captchaSendReqDTO.setUpperLimit(properties.getUpperLimit());
@@ -51,8 +51,8 @@ public class AuthAppConverter {
         var phoneNumber = authAppLoginDTO.getPhoneNumber();
         CaptchaVerifyReqDTO captchaVerifyReqDTO = new CaptchaVerifyReqDTO();
         captchaVerifyReqDTO.setPhoneNumber(phoneNumber);
-        captchaVerifyReqDTO.setServiceType(properties.getSmsServiceEnum().getCode());
-        captchaVerifyReqDTO.setBusinessType(properties.getSmsBusinessEnum().getCode());
+        captchaVerifyReqDTO.setServiceType(properties.getService().getCode());
+        captchaVerifyReqDTO.setBusinessType(properties.getBusiness().getCode());
         captchaVerifyReqDTO.setCaptcha(authAppLoginDTO.getSmsCaptcha());
         return captchaVerifyReqDTO;
     }
