@@ -30,9 +30,6 @@ spring:
           - data-id: redis.yaml
             group: COMMON
             refresh: false
-          - data-id: rocket-mq.yaml
-            group: COMMON
-            refresh: false
           - data-id: xxl-job.yaml
             group: COMMON
             refresh: false

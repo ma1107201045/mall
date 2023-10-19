@@ -103,10 +103,10 @@ public class SecurityConfig {
                 .build();
     }
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return web -> web.ignoring().requestMatchers(HttpMethod.POST, "/admin/system/logs");
-    }
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer() {
+//        return web -> web.ignoring().requestMatchers(HttpMethod.POST, "/admin/system/logs");
+//    }
 
 
 }

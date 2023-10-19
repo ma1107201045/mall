@@ -29,8 +29,5 @@ spring:
           - data-id: stream.yaml
             group: COMMON
             refresh: false
-          - data-id: transfer-data.yaml
-            group: COMMON
-            refresh: false
 
 
