@@ -7,6 +7,11 @@ spring:
     allow-bean-definition-overriding: true
   cloud:
     nacos:
+      discovery:
+        server-addr: 36.137.103.166:8848
+        username: nacos
+        password: nacos
+        access-key: ThisIsMyCustomSecretKey012345678
       config:
         server-addr: 36.137.103.166:8848
         username: nacos

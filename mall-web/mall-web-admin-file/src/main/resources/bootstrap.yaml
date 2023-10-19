@@ -1,16 +1,17 @@
 server:
   port: 7004
 spring:
-  servlet:
-    multipart:
-      max-file-size: 104857600
-      max-request-size: 104857600
   application:
     name: mall-web-admin-file
   main:
     allow-bean-definition-overriding: true
   cloud:
     nacos:
+      discovery:
+        server-addr: 36.137.103.166:8848
+        username: nacos
+        password: nacos
+        access-key: ThisIsMyCustomSecretKey012345678
       config:
         server-addr: 36.137.103.166:8848
         username: nacos
@@ -18,7 +19,7 @@ spring:
         access-key: ThisIsMyCustomSecretKey012345678
         name: ${spring.application.name}
         file-extension: yaml
-        group: MALL-SYSTEM
+        group: MALL-FILE
         extension-configs:
           - data-id: redis.yaml
             group: COMMON
