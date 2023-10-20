@@ -31,7 +31,7 @@ public interface SmsFeign {
     ServerResponse<Void> send(@RequestBody SmsReqDTO smsReqDTO);
 
     /**
-     * @param captchaVerifyReqDTO
+     * @param captchaReqDTO
      * @return
      */
     @PostMapping("/send-captcha")
