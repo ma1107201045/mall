@@ -3,6 +3,11 @@ package com.lingyi.mall.biz.system.model.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.lingyi.mall.common.core.jackson.serializer.ChineseNameSerialize;
+import com.lingyi.mall.common.core.jackson.serializer.EmailSerialize;
+import com.lingyi.mall.common.core.jackson.serializer.Ipv4Serializer;
+import com.lingyi.mall.common.core.jackson.serializer.PhoneNumberSerialize;
 import com.lingyi.mall.common.core.vo.BaseIdVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -33,6 +38,7 @@ public class UserVO extends BaseIdVO<Long> {
     private String userName;
 
     @Schema(description = "真实姓名")
+    @JsonSerialize(using = ChineseNameSerialize.class)
     private String realName;
 
     @Schema(description = "昵称")
@@ -49,12 +55,15 @@ public class UserVO extends BaseIdVO<Long> {
     private String headPortrait;
 
     @Schema(description = "邮箱")
+    @JsonSerialize(using = EmailSerialize.class)
     private String email;
 
     @Schema(description = "手机号")
+    @JsonSerialize(using = PhoneNumberSerialize.class)
     private String phoneNumber;
 
     @Schema(description = "最后登录IP")
+    @JsonSerialize(using = Ipv4Serializer.class)
     private String lastLoginIp;
 
     @Schema(description = "是否启用 1 是 0 否")
