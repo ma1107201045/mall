@@ -1,6 +1,8 @@
 package com.lingyi.mall.biz.system.model.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.lingyi.mall.common.core.jackson.serializer.ChineseNameSerialize;
 import com.lingyi.mall.common.core.vo.BaseIdVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -22,10 +24,8 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Schema(description = "角色")
 public class RoleVO extends BaseIdVO<Long> {
-
     @Serial
     private static final long serialVersionUID = -855349452886457254L;
-
 
     @Schema(description = "角色名称")
     private String name;

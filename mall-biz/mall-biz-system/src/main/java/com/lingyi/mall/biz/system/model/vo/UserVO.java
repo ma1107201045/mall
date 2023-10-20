@@ -33,7 +33,6 @@ public class UserVO extends BaseIdVO<Long> {
     @Serial
     private static final long serialVersionUID = -5501894157954555575L;
 
-
     @Schema(description = "用户名称")
     private String userName;
 
