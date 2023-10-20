@@ -15,7 +15,7 @@
         <result column="captcha" jdbcType="VARCHAR" property="captcha"/>
         <result column="captcha_length" jdbcType="INTEGER" property="captchaLength"/>
         <result column="captcha_expiry_date" jdbcType="INTEGER" property="captchaExpiryDate"/>
-        <result column="is_success" jdbcType="INTEGER" property="isSuccess"/>
+        <result column="is_success" jdbcType="TINYINT" property="isSuccess"/>
         <result column="fail_message" jdbcType="VARCHAR" property="failMessage"/>
         <result column="remark" jdbcType="VARCHAR" property="remark"/>
         <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
@@ -29,8 +29,17 @@
     remark, create_by, create_date_time, last_modify_by, last_modify_date_time
     </sql>
     <sql id="Base_Condition">
+        <if test="serviceName != null and serviceName != '' and serviceName.trim() != ''">
+            AND service_name =#{serviceName,jdbcType=VARCHAR}
+        </if>
+        <if test="businessName != null and businessName != '' and businessName.trim() != ''">
+            AND business_name =#{business_name,jdbcType=VARCHAR}
+        </if>
+        <if test="type != null">
+            AND type =#{type,jdbcType=TINYINT}
+        </if>
         <if test="phoneNumber != null and phoneNumber != '' and phoneNumber.trim() != ''">
-            AND phone_number LIKE CONCAT('%',#{phoneNumber,jdbcType=VARCHAR},'%')
+            AND phone_number =#{phoneNumber,jdbcType=VARCHAR}
         </if>
     </sql>
     <select id="selectById" resultType="com.lingyi.mall.biz.sms.model.vo.LogVO">

@@ -2,6 +2,9 @@ package com.lingyi.mall.biz.sms.model.vo;
 
 import com.lingyi.mall.common.core.vo.BaseIdVO;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.io.Serial;
 import java.time.LocalDateTime;
@@ -12,10 +15,13 @@ import java.time.LocalDateTime;
  * @DateTime: 2023/9/12 12:28
  * @Description:
  */
+@Data
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@Schema(description = "日志")
 public class LogVO extends BaseIdVO<Long> {
     @Serial
     private static final long serialVersionUID = 4041786744709139228L;
-
 
     @Schema(description = "服务名称")
     private String serviceName;
@@ -23,16 +29,16 @@ public class LogVO extends BaseIdVO<Long> {
     @Schema(description = "业务名称")
     private String businessName;
 
-    @Schema(description = "短信类型 1 验证码 2 通知")
+    @Schema(description = "短信类型 1通知 2验证码")
     private Integer type;
 
     @Schema(description = "手机号")
     private String phoneNumber;
 
-    @Schema(description = "上限")
+    @Schema(description = "每天上限")
     private Integer upperLimit;
 
-    @Schema(description = "发送间隔时间（分钟）")
+    @Schema(description = "间隔时间（分钟）")
     private Integer intervalTime;
 
     @Schema(description = "发送内容")

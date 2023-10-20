@@ -4,6 +4,9 @@ spring:
   application:
     name: mall-gateway
   cloud:
+    inetutils:
+      preferred-networks:
+        - 192.168.111
     nacos:
       discovery:
         # 服务注册地址
@@ -11,6 +14,7 @@ spring:
         username: nacos
         password: nacos
         access-key: ThisIsMyCustomSecretKey012345678
+        group: GATEWAY
       config:
         server-addr: 36.137.103.166:8848
         username: nacos

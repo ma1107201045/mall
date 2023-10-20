@@ -58,7 +58,7 @@ public class LogDO extends BaseCommonDO implements Serializable {
     @Column(name = "captcha_expiry_date", columnDefinition = "INT UNSIGNED DEFAULT NULL COMMENT '验证码有效期 （分钟）'")
     private Integer captchaExpiryDate;
 
-    @Column(name = "is_success", columnDefinition = "INT UNSIGNED COMMENT '是否成功 1.是 0.否'")
+    @Column(name = "is_success", columnDefinition = "TINYINT UNSIGNED COMMENT '是否成功 1.是 0.否'")
     private Integer isSuccess;
 
     @Column(name = "fail_message", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '失败信息'")

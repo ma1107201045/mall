@@ -6,12 +6,16 @@ spring:
   main:
     allow-bean-definition-overriding: true
   cloud:
+    inetutils:
+      preferred-networks:
+        - 192.168.111
     nacos:
       discovery:
         server-addr: 36.137.103.166:8848
         username: nacos
         password: nacos
         access-key: ThisIsMyCustomSecretKey012345678
+        group: MALL-PRODUCT
       config:
         server-addr: 36.137.103.166:8848
         username: nacos

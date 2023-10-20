@@ -74,7 +74,7 @@ public class LogDTO extends BaseIdDTO<Long> {
     private Integer captchaExpiryDate;
 
     /**
-     * 是否成功 1.是 0.否
+     * 是否发送成功 1.是 0.否
      */
     private Integer isSuccess;
 
