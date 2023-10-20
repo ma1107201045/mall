@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.product.service;
 
 import com.lingyi.mall.biz.product.model.dto.CategoryDTO;
-import com.lingyi.mall.biz.product.entity.CategoryDO;
+import com.lingyi.mall.biz.product.model.entity.CategoryDO;
 import com.lingyi.mall.biz.product.model.param.CategoryParam;
 import com.lingyi.mall.biz.product.model.vo.AttributeVO;
 import com.lingyi.mall.biz.product.model.vo.CategoryVO;

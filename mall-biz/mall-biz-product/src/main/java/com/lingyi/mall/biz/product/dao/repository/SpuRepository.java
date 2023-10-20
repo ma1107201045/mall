@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.product.dao.repository;
 
-import com.lingyi.mall.biz.product.entity.SpuDO;
+import com.lingyi.mall.biz.product.model.entity.SpuDO;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.stereotype.Repository;
 

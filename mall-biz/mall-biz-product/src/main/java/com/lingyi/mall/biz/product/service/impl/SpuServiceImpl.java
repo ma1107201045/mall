@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.product.service.impl;
 
 import com.lingyi.mall.biz.product.model.dto.SpuDTO;
-import com.lingyi.mall.biz.product.entity.SpuDO;
+import com.lingyi.mall.biz.product.model.entity.SpuDO;
 import com.lingyi.mall.biz.product.dao.mapper.SpuMapper;
 import com.lingyi.mall.biz.product.model.param.SpuParam;
 import com.lingyi.mall.biz.product.dao.repository.SpuRepository;

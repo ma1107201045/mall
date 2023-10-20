@@ -2,7 +2,7 @@ package com.lingyi.mall.web.admin.product;
 
 import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.MallBizProductApplicationTest;
-import com.lingyi.mall.biz.product.entity.BrandDO;
+import com.lingyi.mall.biz.product.model.entity.BrandDO;
 import com.lingyi.mall.biz.product.dao.mapper.BrandMapper;
 import com.lingyi.mall.biz.product.model.param.BrandParam;
 import com.lingyi.mall.biz.product.dao.repository.BrandRepository;

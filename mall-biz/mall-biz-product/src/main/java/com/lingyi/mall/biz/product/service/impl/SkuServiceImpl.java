@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.product.service.impl;
 
 import com.lingyi.mall.biz.product.model.dto.SkuDTO;
-import com.lingyi.mall.biz.product.entity.SkuDO;
+import com.lingyi.mall.biz.product.model.entity.SkuDO;
 import com.lingyi.mall.biz.product.dao.mapper.SkuMapper;
 import com.lingyi.mall.biz.product.model.param.SkuParam;
 import com.lingyi.mall.biz.product.dao.repository.SkuRepository;

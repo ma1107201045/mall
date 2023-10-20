@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.product.service.impl;
 
 import com.lingyi.mall.biz.product.model.dto.BrandDTO;
-import com.lingyi.mall.biz.product.entity.BrandDO;
+import com.lingyi.mall.biz.product.model.entity.BrandDO;
 import com.lingyi.mall.biz.product.dao.mapper.BrandMapper;
 import com.lingyi.mall.biz.product.model.param.BrandParam;
 import com.lingyi.mall.biz.product.dao.repository.BrandRepository;

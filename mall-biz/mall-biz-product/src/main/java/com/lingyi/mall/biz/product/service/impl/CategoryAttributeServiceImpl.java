@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.product.service.impl;
 
 import com.lingyi.mall.biz.product.converter.CategoryAttributeConverter;
 import com.lingyi.mall.biz.product.model.dto.CategoryAttributeDTO;
-import com.lingyi.mall.biz.product.entity.CategoryAttributeDO;
+import com.lingyi.mall.biz.product.model.entity.CategoryAttributeDO;
 import com.lingyi.mall.biz.product.dao.mapper.CategoryAttributeMapper;
 import com.lingyi.mall.biz.product.model.param.CategoryAttributeParam;
 import com.lingyi.mall.biz.product.dao.repository.CategoryAttributeRepository;

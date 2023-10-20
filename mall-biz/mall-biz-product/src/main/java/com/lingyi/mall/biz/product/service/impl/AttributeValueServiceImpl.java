@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.product.service.impl;
 
 import com.lingyi.mall.biz.product.converter.AttributeValueConverter;
 import com.lingyi.mall.biz.product.model.dto.AttributeValueDTO;
-import com.lingyi.mall.biz.product.entity.AttributeValueDO;
+import com.lingyi.mall.biz.product.model.entity.AttributeValueDO;
 import com.lingyi.mall.biz.product.dao.mapper.AttributeValueMapper;
 import com.lingyi.mall.biz.product.model.param.AttributeValueParam;
 import com.lingyi.mall.biz.product.dao.repository.AttributeValueRepository;

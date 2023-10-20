@@ -1,4 +1,4 @@
-package com.lingyi.mall.biz.product.entity;
+package com.lingyi.mall.biz.product.model.entity;
 
 import com.lingyi.mall.common.orm.entity.BaseCommonDO;
 import jakarta.persistence.*;

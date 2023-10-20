@@ -2,7 +2,7 @@ package com.lingyi.mall.web.admin.product.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.biz.product.model.dto.BrandDTO;
-import com.lingyi.mall.biz.product.entity.BrandDO;
+import com.lingyi.mall.biz.product.model.entity.BrandDO;
 import com.lingyi.mall.biz.product.model.param.BrandParam;
 import com.lingyi.mall.biz.product.service.BrandService;
 import com.lingyi.mall.biz.product.model.vo.BrandVO;

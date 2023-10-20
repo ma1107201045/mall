@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.product.service;
 
 import com.lingyi.mall.biz.product.model.dto.SpuDTO;
-import com.lingyi.mall.biz.product.entity.SpuDO;
+import com.lingyi.mall.biz.product.model.entity.SpuDO;
 import com.lingyi.mall.biz.product.model.param.SpuParam;
 import com.lingyi.mall.biz.product.model.vo.SpuVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;

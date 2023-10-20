@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.product.service;
 
 import com.lingyi.mall.biz.product.model.dto.SkuDTO;
-import com.lingyi.mall.biz.product.entity.SkuDO;
+import com.lingyi.mall.biz.product.model.entity.SkuDO;
 import com.lingyi.mall.biz.product.model.param.SkuParam;
 import com.lingyi.mall.biz.product.model.vo.SkuVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;

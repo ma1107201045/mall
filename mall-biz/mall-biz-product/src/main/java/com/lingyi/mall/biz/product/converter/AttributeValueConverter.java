@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.product.converter;
 
-import com.lingyi.mall.biz.product.entity.AttributeDO;
-import com.lingyi.mall.biz.product.entity.AttributeValueDO;
+import com.lingyi.mall.biz.product.model.entity.AttributeDO;
+import com.lingyi.mall.biz.product.model.entity.AttributeValueDO;
 
 import java.util.List;
 

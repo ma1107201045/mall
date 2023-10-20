@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.product.service.impl;
 
 import com.lingyi.mall.biz.product.constant.ProductConstant;
 import com.lingyi.mall.biz.product.model.dto.CategoryDTO;
-import com.lingyi.mall.biz.product.entity.CategoryDO;
+import com.lingyi.mall.biz.product.model.entity.CategoryDO;
 import com.lingyi.mall.biz.product.enums.ProductFailEnum;
 import com.lingyi.mall.biz.product.dao.mapper.CategoryMapper;
 import com.lingyi.mall.biz.product.model.param.AttributeParam;
