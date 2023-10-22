@@ -2,7 +2,9 @@ package com.lingyi.mall.common.redis.util;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.SessionCallback;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
@@ -24,6 +26,14 @@ import java.util.concurrent.TimeUnit;
 public class RedisUtil {
 
     private final RedisTemplate<String, Object> redisTemplate;
+
+    public void execPipelined(SessionCallback<?> sessionCallback) {
+        redisTemplate.executePipelined(sessionCallback);
+    }
+
+    public void execPipelined(RedisCallback<?> redisCallback) {
+        redisTemplate.executePipelined(redisCallback);
+    }
 
     public boolean delete(String key) {
         return Objects.nonNull(redisTemplate.delete(key));

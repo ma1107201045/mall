@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.sms.service;
 
+import com.lingyi.mall.api.sms.dto.SmsReqDTO;
 import com.lingyi.mall.biz.sms.model.dto.LogDTO;
 import com.lingyi.mall.biz.sms.model.entity.LogDO;
 import com.lingyi.mall.biz.sms.model.param.LogParam;
@@ -15,6 +16,5 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface LogService extends BaseServicePro<LogDTO, LogVO, LogParam, LogDO, Long> {
-
 
 }

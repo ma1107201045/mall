@@ -32,5 +32,14 @@ public abstract class AbstractJwtTokenFilter extends GenericFilterBean {
         return Arrays.stream(SecurityConstant.IGNORE_REQUEST_MATCHER_ARRAY).anyMatch(requestMatcher -> requestMatcher.matcher((HttpServletRequest) request).isMatch());
     }
 
+    /**
+     * 执行器
+     *
+     * @param request  请求
+     * @param response 响应
+     * @param chain    。。
+     * @throws IOException。。
+     * @throws ServletException。。
+     */
     protected abstract void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException;
 }
