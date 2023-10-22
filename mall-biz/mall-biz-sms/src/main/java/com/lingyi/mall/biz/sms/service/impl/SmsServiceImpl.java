@@ -12,6 +12,7 @@ import com.lingyi.mall.biz.sms.service.SmsService;
 import com.lingyi.mall.biz.sms.util.SmsRedisKeyUtil;
 import com.lingyi.mall.common.core.annotation.RedisLock;
 import com.lingyi.mall.common.core.util.AssertUtil;
+import com.lingyi.mall.common.core.util.ObjectUtil;
 import com.lingyi.mall.common.redis.util.RedisUtil;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
@@ -54,7 +55,7 @@ public class SmsServiceImpl implements SmsService {
             @Override
             public <K, V> Object execute(@NotNull RedisOperations<K, V> redisOperations) throws DataAccessException {
                 execRedis((RedisOperations<String, Object>) redisOperations, smsReqDTO);
-                return null;
+                return ObjectUtil.getNull();
             }
         });
         //TODO 发送mq消息
@@ -76,7 +77,7 @@ public class SmsServiceImpl implements SmsService {
                 //设置验证码
                 var captchaKey = smsRedisKeyUtil.getCaptchaKey(captchaSendReqDTO);
                 operations.opsForValue().set(captchaKey, captchaSendReqDTO.getCaptcha(), captchaSendReqDTO.getCaptchaExpiryDate(), TimeUnit.MINUTES);
-                return null;
+                return ObjectUtil.getNull();
             }
         });
         //TODO 发送mq消息
@@ -110,10 +111,10 @@ public class SmsServiceImpl implements SmsService {
     private void execRedis(RedisOperations<String, Object> operations, SmsReqDTO smsReqDTO) {
         var smsUpperLimitKey = smsRedisKeyUtil.getSmsUpperLimitKey(smsReqDTO);
         var smsIntervalKey = smsRedisKeyUtil.getSmsIntervalKey(smsReqDTO);
-        //设置发送间隔标记
+        //设置发送间隔标记,并且第二天凌晨失效
         operations.opsForValue().increment(smsUpperLimitKey);
-        //第二天凌晨失效
         operations.expire(smsUpperLimitKey, getSubTimestamp(), TimeUnit.MILLISECONDS);
+
         //设置发送标记
         operations.opsForValue().set(smsIntervalKey, RandomUtil.randomInt(), smsReqDTO.getIntervalTime(), TimeUnit.MINUTES);
     }
@@ -132,7 +133,7 @@ public class SmsServiceImpl implements SmsService {
     /**
      * 保存日志
      *
-     * @param smsReqDTO
+     * @param smsReqDTO .。
      */
     private void createLog(SmsReqDTO smsReqDTO) {
         //转换成验证码日志信息
