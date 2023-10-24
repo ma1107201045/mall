@@ -25,7 +25,7 @@ spring:
         group: MALL-INFO
         extension-configs:
           - data-id: mall-web-common-info.yaml
-            group: MALL-SMS
+            group: MALL-INFO
             refresh: false
           - data-id: mysql.yaml
             group: COMMON

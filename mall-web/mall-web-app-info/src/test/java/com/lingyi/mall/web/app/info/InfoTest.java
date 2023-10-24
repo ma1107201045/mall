@@ -8,7 +8,6 @@ import com.lingyi.mall.api.info.enums.InfoBusinessEnum;
 import com.lingyi.mall.api.info.enums.InfoServiceEnum;
 import com.lingyi.mall.api.info.enums.InfoTypeEnum;
 import com.lingyi.mall.biz.info.service.InfoService;
-import com.lingyi.mall.biz.info.service.SmsService;
 import com.lingyi.mall.common.core.constant.BaseConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
