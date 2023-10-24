@@ -54,7 +54,7 @@ public class SmsServiceImpl implements SmsService {
         redisUtil.execPipelined(new SessionCallback<>() {
             @Override
             public <K, V> Object execute(@NotNull RedisOperations<K, V> redisOperations) throws DataAccessException {
-                execRedis((RedisOperations<String, Object>) redisOperations, smsReqDTO);
+                setUpperLimitAndIntervalTime((RedisOperations<String, Object>) redisOperations, smsReqDTO);
                 return ObjectUtil.getNull();
             }
         });
@@ -72,11 +72,11 @@ public class SmsServiceImpl implements SmsService {
             @Override
             public <K, V> Object execute(@NotNull RedisOperations<K, V> redisOperations) throws DataAccessException {
                 RedisOperations<String, Object> operations = (RedisOperations<String, Object>) redisOperations;
-                //操作redis
-                execRedis(operations, captchaSendReqDTO);
+                //设置上线跟失效时间
+                setUpperLimitAndIntervalTime(operations, captchaSendReqDTO);
                 //设置验证码
-                var captchaKey = smsRedisKeyUtil.getCaptchaKey(captchaSendReqDTO);
-                operations.opsForValue().set(captchaKey, captchaSendReqDTO.getCaptcha(), captchaSendReqDTO.getCaptchaExpiryDate(), TimeUnit.MINUTES);
+                setCaptcha(operations, captchaSendReqDTO);
+
                 return ObjectUtil.getNull();
             }
         });
@@ -84,7 +84,6 @@ public class SmsServiceImpl implements SmsService {
         //保存日志
         createLog(captchaSendReqDTO);
     }
-
 
     @Override
     public void verifyCaptcha(CaptchaVerifyReqDTO captchaVerifyDTO) {
@@ -97,26 +96,32 @@ public class SmsServiceImpl implements SmsService {
 
     private void verifyData(SmsReqDTO smsReqDTO) {
         //校验发送上限
-        var smsUpperLimitKey = smsRedisKeyUtil.getSmsUpperLimitKey(smsReqDTO);
-        var smsUpperLimitValue = redisUtil.get(smsUpperLimitKey, Integer.class);
-        var flag = Objects.nonNull(smsUpperLimitValue) && smsReqDTO.getUpperLimit().equals(smsUpperLimitValue);
+        var upperLimitKey = smsRedisKeyUtil.getIntervalTimeKey(smsReqDTO);
+        var upperLimitValue = redisUtil.get(upperLimitKey, Integer.class);
+        var flag = Objects.nonNull(upperLimitValue) && smsReqDTO.getUpperLimit().equals(upperLimitValue);
         AssertUtil.isFalse(flag, SmsFailEnum.SMS_UPPER_LIMIT_ERROR);
 
         //校验发送间隔
-        var smsIntervalKey = smsRedisKeyUtil.getSmsIntervalKey(smsReqDTO);
-        var smsIntervalValue = redisUtil.get(smsIntervalKey, Integer.class);
-        AssertUtil.isNull(smsIntervalValue, SmsFailEnum.SMS_INTERVAL_ERROR);
+        var intervalTimeKey = smsRedisKeyUtil.getIntervalTimeKey(smsReqDTO);
+        var intervalTimeValue = redisUtil.get(intervalTimeKey, Integer.class);
+        AssertUtil.isNull(intervalTimeValue, SmsFailEnum.SMS_INTERVAL_ERROR);
     }
 
-    private void execRedis(RedisOperations<String, Object> operations, SmsReqDTO smsReqDTO) {
-        var smsUpperLimitKey = smsRedisKeyUtil.getSmsUpperLimitKey(smsReqDTO);
-        var smsIntervalKey = smsRedisKeyUtil.getSmsIntervalKey(smsReqDTO);
+    private void setUpperLimitAndIntervalTime(RedisOperations<String, Object> operations, SmsReqDTO smsReqDTO) {
+        var upperLimitKey = smsRedisKeyUtil.getIntervalTimeKey(smsReqDTO);
+        var intervalTimeKey = smsRedisKeyUtil.getIntervalTimeKey(smsReqDTO);
         //设置发送间隔标记,并且第二天凌晨失效
-        operations.opsForValue().increment(smsUpperLimitKey);
-        operations.expire(smsUpperLimitKey, getSubTimestamp(), TimeUnit.MILLISECONDS);
+        operations.opsForValue().increment(upperLimitKey);
+        operations.expire(upperLimitKey, getSubTimestamp(), TimeUnit.MILLISECONDS);
 
         //设置发送标记
-        operations.opsForValue().set(smsIntervalKey, RandomUtil.randomInt(), smsReqDTO.getIntervalTime(), TimeUnit.MINUTES);
+        operations.opsForValue().set(intervalTimeKey, RandomUtil.randomInt(), smsReqDTO.getIntervalTime(), TimeUnit.MINUTES);
+    }
+
+
+    private void setCaptcha(RedisOperations<String, Object> operations, CaptchaSendReqDTO captchaSendReqDTO) {
+        var captchaKey = smsRedisKeyUtil.getCaptchaKey(captchaSendReqDTO);
+        operations.opsForValue().set(captchaKey, captchaSendReqDTO.getCaptcha(), captchaSendReqDTO.getCaptchaExpiryDate(), TimeUnit.MINUTES);
     }
 
     /**

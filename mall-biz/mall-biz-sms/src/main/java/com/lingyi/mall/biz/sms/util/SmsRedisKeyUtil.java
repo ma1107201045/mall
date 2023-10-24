@@ -25,7 +25,7 @@ public final class SmsRedisKeyUtil {
     private String applicationName;
 
 
-    public String getSmsIntervalKey(SmsReqDTO smsReqDTO) {
+    public String getIntervalTimeKey(SmsReqDTO smsReqDTO) {
         return String.format(SMS_INTERVAL_TIME_KEY_FORMAT, applicationName,
                 smsReqDTO.getServiceType(),
                 smsReqDTO.getBusinessType(),
@@ -34,7 +34,7 @@ public final class SmsRedisKeyUtil {
 
     }
 
-    public String getSmsUpperLimitKey(SmsReqDTO smsReqDTO) {
+    public String getUpperLimitKey(SmsReqDTO smsReqDTO) {
         return String.format(SMS_UPPER_LIMIT_KEY_FORMAT, applicationName,
                 smsReqDTO.getServiceType(),
                 smsReqDTO.getBusinessType(),
