@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.member.dao.repository;
 
-import com.lingyi.mall.biz.member.model.entity.MemberLevelDO;
+import com.lingyi.mall.biz.member.model.entity.LevelDO;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
  * @description
  */
 @Repository
-public interface LevelRepository extends JpaRepositoryImplementation<MemberLevelDO, Long> {
+public interface LevelRepository extends JpaRepositoryImplementation<LevelDO, Long> {
 }

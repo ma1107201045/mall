@@ -23,9 +23,9 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Entity
-@Table(name = "mm_member_level")
+@Table(name = "mm_level")
 @DynamicInsert
-public class MemberLevelDO extends BaseIdDO<Long> implements Serializable {
+public class LevelDO extends BaseIdDO<Long> implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1698976479509049883L;

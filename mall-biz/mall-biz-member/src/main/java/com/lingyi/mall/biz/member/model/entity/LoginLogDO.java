@@ -21,9 +21,9 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Entity
-@Table(name = "mm_member_login_log")
+@Table(name = "mm_login_log")
 @DynamicInsert
-public class MemberLoginLogDO extends BaseIdDO<Long> implements Serializable {
+public class LoginLogDO extends BaseIdDO<Long> implements Serializable {
     @Serial
     private static final long serialVersionUID = 7083829914819620788L;
 

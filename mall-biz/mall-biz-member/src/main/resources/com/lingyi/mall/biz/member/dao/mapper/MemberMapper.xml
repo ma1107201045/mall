@@ -3,7 +3,7 @@
 <mapper namespace="com.lingyi.mall.biz.member.dao.mapper.MemberMapper">
     <resultMap id="BaseResultMap" type="com.lingyi.mall.biz.member.model.vo.MemberVO">
         <id property="id" column="id" jdbcType="BIGINT"/>
-        <result property="memberLevelId" column="member_level_id" jdbcType="BIGINT"/>
+        <result property="levelId" column="member_level_id" jdbcType="BIGINT"/>
         <result property="userName" column="user_name" jdbcType="VARCHAR"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
         <result property="nickname" column="nickname" jdbcType="VARCHAR"/>
@@ -17,7 +17,7 @@
         <result property="registerDataTime" column="register_data_time" jdbcType="TIMESTAMP"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id,member_level_id,user_name,
+        id,level_id,user_name,
         `password`,nickname,sex,
         birthday,phone_number,head_portrait,
         personalized_signature,is_enable,register_source,

@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.member.service;
 
 import com.lingyi.mall.biz.member.model.dto.LevelDTO;
-import com.lingyi.mall.biz.member.model.entity.MemberLevelDO;
+import com.lingyi.mall.biz.member.model.entity.LevelDO;
 import com.lingyi.mall.biz.member.model.param.LevelParam;
 import com.lingyi.mall.biz.member.model.vo.LevelVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
@@ -12,7 +12,7 @@ import com.lingyi.mall.common.orm.util.BaseServicePro;
  * @datetime 2023/7/12 9:14
  * @description
  */
-public interface LevelService extends BaseServicePro<LevelDTO, LevelVO, LevelParam, MemberLevelDO, Long> {
+public interface LevelService extends BaseServicePro<LevelDTO, LevelVO, LevelParam, LevelDO, Long> {
 
 
     /**

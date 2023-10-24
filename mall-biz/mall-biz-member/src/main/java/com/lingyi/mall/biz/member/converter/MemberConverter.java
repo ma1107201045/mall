@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.member.converter;
 
 import com.lingyi.mall.api.member.dto.MemberReqDTO;
 import com.lingyi.mall.biz.member.model.entity.MemberDO;
-import com.lingyi.mall.biz.member.model.entity.MemberLevelDO;
+import com.lingyi.mall.biz.member.model.entity.LevelDO;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 
 /**
@@ -22,7 +22,7 @@ public class MemberConverter {
 
     public MemberDO of(MemberReqDTO memberReqDTO) {
         var memberDO = ConverterUtil.to(memberReqDTO, MemberDO.class);
-        var memberLevelDO = new MemberLevelDO();
+        var memberLevelDO = new LevelDO();
         memberLevelDO.setId(memberReqDTO.getMemberLevelId());
         memberDO.setMemberLevelDO(memberLevelDO);
         return memberDO;
