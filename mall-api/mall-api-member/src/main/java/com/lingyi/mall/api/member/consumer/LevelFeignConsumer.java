@@ -1,6 +1,6 @@
 package com.lingyi.mall.api.member.consumer;
 
-import com.lingyi.mall.api.member.feign.MemberLevelFeign;
+import com.lingyi.mall.api.member.feign.LevelFeign;
 import com.lingyi.mall.common.core.exception.OpenFeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class LevelFeignConsumer {
 
-    private final MemberLevelFeign memberLevelFeign;
+    private final LevelFeign memberLevelFeign;
 
     public Long getDefaultLevelId() {
         var response = memberLevelFeign.getDefaultLevelId();

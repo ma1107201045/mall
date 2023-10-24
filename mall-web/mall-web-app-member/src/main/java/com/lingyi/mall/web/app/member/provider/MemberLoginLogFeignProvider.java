@@ -1,7 +1,7 @@
 package com.lingyi.mall.web.app.member.provider;
 
 import com.lingyi.mall.api.member.dto.LoginLogReqDTO;
-import com.lingyi.mall.api.member.feign.MemberLoginLogFeign;
+import com.lingyi.mall.api.member.feign.LoginLogFeign;
 import com.lingyi.mall.biz.member.service.LoginLogService;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "会员登录日志", description = "会员登录日志")
 @RequiredArgsConstructor
 @RestController
-public class MemberLoginLogFeignProvider implements MemberLoginLogFeign {
+public class MemberLoginLogFeignProvider implements LoginLogFeign {
 
     private final LoginLogService loginLogService;
 

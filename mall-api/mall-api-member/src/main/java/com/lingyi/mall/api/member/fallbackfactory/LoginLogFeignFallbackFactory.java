@@ -1,6 +1,6 @@
 package com.lingyi.mall.api.member.fallbackfactory;
 
-import com.lingyi.mall.api.member.feign.MemberLoginLogFeign;
+import com.lingyi.mall.api.member.feign.LoginLogFeign;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.openfeign.FallbackFactory;
@@ -16,11 +16,11 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class LoginLogFeignFallbackFactory implements FallbackFactory<MemberLoginLogFeign> {
+public class LoginLogFeignFallbackFactory implements FallbackFactory<LoginLogFeign> {
 
 
     @Override
-    public MemberLoginLogFeign create(Throwable cause) {
+    public LoginLogFeign create(Throwable cause) {
         return memberLoginLogReqDTO -> null;
     }
 }

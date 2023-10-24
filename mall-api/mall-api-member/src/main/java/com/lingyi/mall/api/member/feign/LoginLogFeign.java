@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @description
  */
 @FeignClient(value = "mall-web-app-member", fallbackFactory = LoginLogFeignFallbackFactory.class)
-public interface MemberLoginLogFeign {
-    String URL_PREFIX = "/app/member/member-login-logs";
+public interface LoginLogFeign {
+    String URL_PREFIX = "/app/member/login-logs";
 
     /**
      * 获取默认等级

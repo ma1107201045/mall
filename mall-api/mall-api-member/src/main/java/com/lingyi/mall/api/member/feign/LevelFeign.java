@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @description
  */
 @FeignClient(value = "mall-web-app-member", fallbackFactory = LevelFeignFallbackFactory.class)
-public interface MemberLevelFeign {
+public interface LevelFeign {
 
-    String URL_PREFIX = "/app/member/member-levels";
+    String URL_PREFIX = "/app/member/levels";
 
     /**
      * 获取默认等级
