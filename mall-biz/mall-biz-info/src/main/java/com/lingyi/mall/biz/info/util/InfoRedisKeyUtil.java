@@ -21,21 +21,21 @@ public final class InfoRedisKeyUtil {
     @Value("${spring.application.name}")
     private String applicationName;
 
-    public String getUpperLimitKey(InfoReqDTO smsReqDTO) {
+    public String getUpperLimitKey(InfoReqDTO infoReqDTO) {
         return String.format(INTERVAL_TIME_KEY_FORMAT, applicationName,
-                smsReqDTO.getServiceType(),
-                smsReqDTO.getBusinessType(),
-                smsReqDTO.getType(),
-                smsReqDTO.getNumber());
+                infoReqDTO.getServiceType(),
+                infoReqDTO.getBusinessType(),
+                infoReqDTO.getType(),
+                infoReqDTO.getNumber());
     }
 
 
-    public String getIntervalTimeKey(InfoReqDTO smsReqDTO) {
+    public String getIntervalTimeKey(InfoReqDTO infoReqDTO) {
         return String.format(UPPER_LIMIT_KEY_FORMAT, applicationName,
-                smsReqDTO.getServiceType(),
-                smsReqDTO.getBusinessType(),
-                smsReqDTO.getType(),
-                smsReqDTO.getNumber());
+                infoReqDTO.getServiceType(),
+                infoReqDTO.getBusinessType(),
+                infoReqDTO.getType(),
+                infoReqDTO.getNumber());
 
     }
 

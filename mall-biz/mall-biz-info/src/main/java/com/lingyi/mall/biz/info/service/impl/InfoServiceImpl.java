@@ -106,15 +106,15 @@ public class InfoServiceImpl implements InfoService {
         AssertUtil.isNull(intervalTimeValue, SmsFailEnum.SMS_INTERVAL_ERROR);
     }
 
-    private void setUpperLimitAndIntervalTime(RedisOperations<String, Object> operations, InfoReqDTO smsReqDTO) {
-        var upperLimitKey = infoRedisKeyUtil.getUpperLimitKey(smsReqDTO);
+    private void setUpperLimitAndIntervalTime(RedisOperations<String, Object> operations, InfoReqDTO infoReqDTO) {
+        var upperLimitKey = infoRedisKeyUtil.getUpperLimitKey(infoReqDTO);
         //设置发送间隔标记,并且第二天凌晨失效
         operations.opsForValue().increment(upperLimitKey);
         operations.expire(upperLimitKey, getSubTimestamp(), TimeUnit.MILLISECONDS);
 
         //设置发送标记
-        var intervalTimeKey = infoRedisKeyUtil.getIntervalTimeKey(smsReqDTO);
-        operations.opsForValue().set(intervalTimeKey, RandomUtil.randomInt(), smsReqDTO.getIntervalTime(), TimeUnit.MINUTES);
+        var intervalTimeKey = infoRedisKeyUtil.getIntervalTimeKey(infoReqDTO);
+        operations.opsForValue().set(intervalTimeKey, RandomUtil.randomInt(), infoReqDTO.getIntervalTime(), TimeUnit.MINUTES);
     }
 
 
