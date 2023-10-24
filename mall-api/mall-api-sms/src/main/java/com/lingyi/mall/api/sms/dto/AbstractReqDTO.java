@@ -27,7 +27,7 @@ public abstract class AbstractReqDTO {
     private String phoneNumber;
 
     /**
-     * 短信类型 1 验证码 2 通知
+     * 短信类型 1 通知 2 验证码 3未知
      */
     private Integer type;
 }
