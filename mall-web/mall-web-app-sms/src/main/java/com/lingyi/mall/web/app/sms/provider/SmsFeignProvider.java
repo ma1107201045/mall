@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @description
  */
 @Tag(name = "验证码", description = "验证码")
-@Slf4j
 @RequiredArgsConstructor
 @RestController
 public class SmsFeignProvider implements SmsFeign {

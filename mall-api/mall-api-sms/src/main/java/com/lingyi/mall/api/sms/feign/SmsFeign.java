@@ -41,7 +41,7 @@ public interface SmsFeign {
     /**
      * 保存验证码
      *
-     * @param captchaReqDTO ..
+     * @param captchaVerifyDTO ..
      * @return ServerResponse
      */
     @GetMapping("/verify-captcha")

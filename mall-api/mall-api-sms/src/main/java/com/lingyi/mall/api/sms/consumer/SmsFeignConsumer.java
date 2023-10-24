@@ -3,6 +3,7 @@ package com.lingyi.mall.api.sms.consumer;
 import com.alibaba.fastjson2.JSON;
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
+import com.lingyi.mall.api.sms.dto.SmsReqDTO;
 import com.lingyi.mall.api.sms.feign.SmsFeign;
 import com.lingyi.mall.common.core.exception.OpenFeignException;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,16 @@ import org.springframework.stereotype.Service;
 public class SmsFeignConsumer {
 
     private final SmsFeign captchaFeign;
+
+    public void send(SmsReqDTO smsReqDTO) {
+        log.info("入参:smsReqDTO:{}", smsReqDTO);
+        var response = captchaFeign.send(smsReqDTO);
+        if (response.getIsSuccess()) {
+            log.info("出参:Void:{}", JSON.toJSONString(response.getData()));
+            return;
+        }
+        throw new OpenFeignException(response.getCode(), response.getMessage());
+    }
 
     public void sendCaptcha(CaptchaSendReqDTO captchaSendReqDTO) {
         log.info("入参:captchaSendReqDTO:{}", captchaSendReqDTO);
