@@ -24,7 +24,7 @@ public class MemberConverter {
         var memberDO = ConverterUtil.to(memberReqDTO, MemberDO.class);
         var memberLevelDO = new LevelDO();
         memberLevelDO.setId(memberReqDTO.getMemberLevelId());
-        memberDO.setMemberLevelDO(memberLevelDO);
+        memberDO.setLevelDO(memberLevelDO);
         return memberDO;
     }
 

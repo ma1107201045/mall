@@ -29,8 +29,8 @@ public class MemberDO extends BaseIdDO<Long> implements Serializable {
     private static final long serialVersionUID = -2724268672754765122L;
 
     @ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "level_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '会员等级id'", foreignKey = @ForeignKey(name = "fk_member_level_id"))
-    private LevelDO memberLevelDO;
+    @JoinColumn(name = "level_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '会员等级id'", foreignKey = @ForeignKey(name = "fk_level_id"))
+    private LevelDO levelDO;
 
     @Column(name = "user_name", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '用户名称'")
     private String userName;
