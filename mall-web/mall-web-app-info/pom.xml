@@ -1,18 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.lingyi</groupId>
-        <artifactId>mall-auth</artifactId>
+        <artifactId>mall-web</artifactId>
         <version>${revision}</version>
     </parent>
-    <artifactId>mall-auth-app</artifactId>
+    <artifactId>mall-web-app-info</artifactId>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-api-info</artifactId>
+            <artifactId>mall-biz-info</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -26,7 +25,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot-dependencies.version}</version>
                 <configuration>
-                    <mainClass>com.lingyi.mall.MallAuthAppApplication</mainClass>
+                    <mainClass>com.lingyi.mall.MallWebAppSmsApplication</mainClass>
                     <excludes>
                         <exclude>
                             <groupId>org.springframework.boot</groupId>

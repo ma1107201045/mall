@@ -15,12 +15,12 @@
         <module>mall-biz-cart</module>
         <module>mall-biz-coupon</module>
         <module>mall-biz-file</module>
+        <module>mall-biz-info</module>
         <module>mall-biz-member</module>
         <module>mall-biz-order</module>
         <module>mall-biz-product</module>
         <module>mall-biz-search</module>
         <module>mall-biz-seckill</module>
-        <module>mall-biz-sms</module>
         <module>mall-biz-system</module>
         <module>mall-biz-ware</module>
     </modules>

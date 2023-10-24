@@ -14,9 +14,9 @@
         <module>mall-api-base</module>
         <module>mall-api-cart</module>
         <module>mall-api-file</module>
+        <module>mall-api-info</module>
         <module>mall-api-member</module>
         <module>mall-api-product</module>
-        <module>mall-api-sms</module>
         <module>mall-api-system</module>
         <module>mall-api-seckill</module>
         <module>mall-api-coupon</module>
