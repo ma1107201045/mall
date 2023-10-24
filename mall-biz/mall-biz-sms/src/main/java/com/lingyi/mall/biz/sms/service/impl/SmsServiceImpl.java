@@ -1,6 +1,5 @@
 package com.lingyi.mall.biz.sms.service.impl;
 
-import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
@@ -10,7 +9,6 @@ import com.lingyi.mall.biz.sms.enums.SmsFailEnum;
 import com.lingyi.mall.biz.sms.model.entity.LogDO;
 import com.lingyi.mall.biz.sms.service.LogService;
 import com.lingyi.mall.biz.sms.service.SmsService;
-import com.lingyi.mall.biz.sms.util.CaptchaRedisKeyUtil;
 import com.lingyi.mall.biz.sms.util.SmsRedisKeyUtil;
 import com.lingyi.mall.common.core.annotation.RedisLock;
 import com.lingyi.mall.common.core.util.AssertUtil;
@@ -21,10 +19,8 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.SessionCallback;
-import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
-import javax.print.DocFlavor;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
