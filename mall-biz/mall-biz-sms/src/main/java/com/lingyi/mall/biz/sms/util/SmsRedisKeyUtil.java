@@ -24,6 +24,14 @@ public final class SmsRedisKeyUtil {
     @Value("${spring.application.name}")
     private String applicationName;
 
+    public String getUpperLimitKey(SmsReqDTO smsReqDTO) {
+        return String.format(SMS_UPPER_LIMIT_KEY_FORMAT, applicationName,
+                smsReqDTO.getServiceType(),
+                smsReqDTO.getBusinessType(),
+                smsReqDTO.getType(),
+                smsReqDTO.getPhoneNumber());
+    }
+
 
     public String getIntervalTimeKey(SmsReqDTO smsReqDTO) {
         return String.format(SMS_INTERVAL_TIME_KEY_FORMAT, applicationName,
@@ -32,14 +40,6 @@ public final class SmsRedisKeyUtil {
                 smsReqDTO.getType(),
                 smsReqDTO.getPhoneNumber());
 
-    }
-
-    public String getUpperLimitKey(SmsReqDTO smsReqDTO) {
-        return String.format(SMS_UPPER_LIMIT_KEY_FORMAT, applicationName,
-                smsReqDTO.getServiceType(),
-                smsReqDTO.getBusinessType(),
-                smsReqDTO.getType(),
-                smsReqDTO.getPhoneNumber());
     }
 
 

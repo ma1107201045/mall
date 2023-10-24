@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.sms.service.impl;
 
+import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
 import com.lingyi.mall.api.sms.dto.CaptchaVerifyReqDTO;
@@ -96,7 +97,7 @@ public class SmsServiceImpl implements SmsService {
 
     private void verifyData(SmsReqDTO smsReqDTO) {
         //校验发送上限
-        var upperLimitKey = smsRedisKeyUtil.getIntervalTimeKey(smsReqDTO);
+        var upperLimitKey = smsRedisKeyUtil.getUpperLimitKey(smsReqDTO);
         var upperLimitValue = redisUtil.get(upperLimitKey, Integer.class);
         var flag = Objects.nonNull(upperLimitValue) && smsReqDTO.getUpperLimit().equals(upperLimitValue);
         AssertUtil.isFalse(flag, SmsFailEnum.SMS_UPPER_LIMIT_ERROR);
@@ -108,13 +109,13 @@ public class SmsServiceImpl implements SmsService {
     }
 
     private void setUpperLimitAndIntervalTime(RedisOperations<String, Object> operations, SmsReqDTO smsReqDTO) {
-        var upperLimitKey = smsRedisKeyUtil.getIntervalTimeKey(smsReqDTO);
-        var intervalTimeKey = smsRedisKeyUtil.getIntervalTimeKey(smsReqDTO);
+        var upperLimitKey = smsRedisKeyUtil.getUpperLimitKey(smsReqDTO);
         //设置发送间隔标记,并且第二天凌晨失效
         operations.opsForValue().increment(upperLimitKey);
         operations.expire(upperLimitKey, getSubTimestamp(), TimeUnit.MILLISECONDS);
 
         //设置发送标记
+        var intervalTimeKey = smsRedisKeyUtil.getIntervalTimeKey(smsReqDTO);
         operations.opsForValue().set(intervalTimeKey, RandomUtil.randomInt(), smsReqDTO.getIntervalTime(), TimeUnit.MINUTES);
     }
 
@@ -135,11 +136,6 @@ public class SmsServiceImpl implements SmsService {
         return endDateTime.toInstant(ZoneOffset.ofHours(8)).toEpochMilli() - startDateTime.toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
     }
 
-    /**
-     * 保存日志
-     *
-     * @param smsReqDTO .。
-     */
     private void createLog(SmsReqDTO smsReqDTO) {
         //转换成验证码日志信息
         var captchaLogDTO = CaptchaConverter.INSTANCE.to(smsReqDTO);
