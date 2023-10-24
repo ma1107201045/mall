@@ -34,7 +34,7 @@ public class LogDTO extends BaseIdDTO<Long> {
     private String businessName;
 
     /**
-     * 短信类型 1.通知 2.短信
+     * 短信类型 1.短信 2.短信验证码 3.邮箱 4.邮箱验证码
      */
     private Integer type;
 
@@ -42,6 +42,11 @@ public class LogDTO extends BaseIdDTO<Long> {
      * 手机号
      */
     private String phoneNumber;
+
+    /**
+     * 邮箱
+     */
+    private String email;
 
     /**
      * 每天发送上限

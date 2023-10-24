@@ -2,11 +2,12 @@ package com.lingyi.mall.web.app.sms;
 
 import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.MallWebAppSmsApplicationTest;
-import com.lingyi.mall.api.sms.dto.SmsCaptchaSendReqDTO;
-import com.lingyi.mall.api.sms.dto.SmsReqDTO;
-import com.lingyi.mall.api.sms.enums.SmsBusinessEnum;
-import com.lingyi.mall.api.sms.enums.SmsServiceEnum;
-import com.lingyi.mall.api.sms.enums.SmsTypeEnum;
+import com.lingyi.mall.api.sms.dto.InfoCaptchaSendReqDTO;
+import com.lingyi.mall.api.sms.dto.InfoReqDTO;
+import com.lingyi.mall.api.sms.enums.InfoBusinessEnum;
+import com.lingyi.mall.api.sms.enums.InfoServiceEnum;
+import com.lingyi.mall.api.sms.enums.InfoTypeEnum;
+import com.lingyi.mall.biz.sms.service.InfoService;
 import com.lingyi.mall.biz.sms.service.SmsService;
 import com.lingyi.mall.common.core.constant.BaseConstant;
 import lombok.extern.slf4j.Slf4j;
@@ -31,23 +32,23 @@ public class SmsTest implements MallWebAppSmsApplicationTest {
 
 
     @Autowired
-    private SmsService smsService;
+    private InfoService infoService;
     private static final ExecutorService executorService = Executors.newVirtualThreadPerTaskExecutor();
 
     @Test
     public void testSend() throws ExecutionException, InterruptedException {
-        SmsReqDTO smsReqDTO = new SmsReqDTO();
-        smsReqDTO.setServiceType(SmsServiceEnum.MALL_AUTH_APP.getCode());
-        smsReqDTO.setBusinessType(SmsBusinessEnum.ORDER.getCode());
-        smsReqDTO.setType(SmsTypeEnum.SMS.getCode());
+        InfoReqDTO smsReqDTO = new InfoReqDTO();
+        smsReqDTO.setServiceType(InfoServiceEnum.MALL_AUTH_APP.getCode());
+        smsReqDTO.setBusinessType(InfoBusinessEnum.ORDER.getCode());
+        smsReqDTO.setType(InfoTypeEnum.SMS.getCode());
         smsReqDTO.setPhoneNumber("15038233127");
         smsReqDTO.setIntervalTime(1);
         smsReqDTO.setUpperLimit(10);
         smsReqDTO.setContent("尊敬的用户您好，您的订单已取消，请及时查看");
-        smsReqDTO.setRemark(SmsServiceEnum.UNKNOWN.getMessage() + BaseConstant.COLON_CHAR + SmsBusinessEnum.UNKNOWN.getMessage());
+        smsReqDTO.setRemark(InfoServiceEnum.UNKNOWN.getMessage() + BaseConstant.COLON_CHAR + InfoBusinessEnum.UNKNOWN.getMessage());
         CompletableFuture<?>[] completableFutures = new CompletableFuture[100];
         for (int i = 0; i < 100; i++) {
-            CompletableFuture<Void> completableFuture = CompletableFuture.runAsync(() -> smsService.send(smsReqDTO), executorService);
+            CompletableFuture<Void> completableFuture = CompletableFuture.runAsync(() -> infoService.send(smsReqDTO), executorService);
             completableFutures[i] = completableFuture;
         }
 
@@ -57,10 +58,10 @@ public class SmsTest implements MallWebAppSmsApplicationTest {
 
     @Test
     public void testSendCaptcha() throws ExecutionException, InterruptedException {
-        SmsCaptchaSendReqDTO captchaSendReqDTO = new SmsCaptchaSendReqDTO();
-        captchaSendReqDTO.setServiceType(SmsServiceEnum.MALL_AUTH_APP.getCode());
-        captchaSendReqDTO.setBusinessType(SmsBusinessEnum.LOGIN.getCode());
-        captchaSendReqDTO.setType(SmsTypeEnum.SMS_CAPTCHA.getCode());
+        InfoCaptchaSendReqDTO captchaSendReqDTO = new InfoCaptchaSendReqDTO();
+        captchaSendReqDTO.setServiceType(InfoServiceEnum.MALL_AUTH_APP.getCode());
+        captchaSendReqDTO.setBusinessType(InfoBusinessEnum.LOGIN.getCode());
+        captchaSendReqDTO.setType(InfoTypeEnum.SMS_CAPTCHA.getCode());
         captchaSendReqDTO.setPhoneNumber("15038233127");
         captchaSendReqDTO.setIntervalTime(1);
         captchaSendReqDTO.setUpperLimit(10);
@@ -68,10 +69,10 @@ public class SmsTest implements MallWebAppSmsApplicationTest {
         captchaSendReqDTO.setCaptchaLength(6);
         captchaSendReqDTO.setCaptchaExpiryDate(30);
         captchaSendReqDTO.setContent("登录验证码为548629，防止泄露");
-        captchaSendReqDTO.setRemark(SmsServiceEnum.UNKNOWN.getMessage() + BaseConstant.COLON_CHAR + SmsBusinessEnum.UNKNOWN.getMessage());
+        captchaSendReqDTO.setRemark(InfoServiceEnum.UNKNOWN.getMessage() + BaseConstant.COLON_CHAR + InfoBusinessEnum.UNKNOWN.getMessage());
         CompletableFuture<?>[] completableFutures = new CompletableFuture[100];
         for (int i = 0; i < 100; i++) {
-            CompletableFuture<Void> completableFuture = CompletableFuture.runAsync(() -> smsService.sendCaptcha(captchaSendReqDTO), executorService);
+            CompletableFuture<Void> completableFuture = CompletableFuture.runAsync(() -> infoService.sendCaptcha(captchaSendReqDTO), executorService);
             completableFutures[i] = completableFuture;
         }
         CompletableFuture.allOf(completableFutures).get();

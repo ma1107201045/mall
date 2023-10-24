@@ -29,7 +29,7 @@ public class LogVO extends BaseIdVO<Long> {
     @Schema(description = "业务名称")
     private String businessName;
 
-    @Schema(description = "短信类型 1通知 2验证码")
+    @Schema(description = "短信类型 1.短信 2.短信验证码")
     private Integer type;
 
     @Schema(description = "手机号")

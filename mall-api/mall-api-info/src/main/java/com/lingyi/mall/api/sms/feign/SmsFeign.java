@@ -1,8 +1,8 @@
 package com.lingyi.mall.api.sms.feign;
 
-import com.lingyi.mall.api.sms.dto.SmsCaptchaSendReqDTO;
-import com.lingyi.mall.api.sms.dto.SmsCaptchaVerifyReqDTO;
-import com.lingyi.mall.api.sms.dto.SmsReqDTO;
+import com.lingyi.mall.api.sms.dto.InfoCaptchaSendReqDTO;
+import com.lingyi.mall.api.sms.dto.InfoCaptchaVerifyReqDTO;
+import com.lingyi.mall.api.sms.dto.InfoReqDTO;
 import com.lingyi.mall.api.sms.fallbackfactory.SmsFeignFallbackFactory;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -28,7 +28,7 @@ public interface SmsFeign {
      * @return ServerResponse
      */
     @PostMapping
-    ServerResponse<Void> send(@RequestBody SmsReqDTO smsReqDTO);
+    ServerResponse<Void> send(@RequestBody InfoReqDTO smsReqDTO);
 
     /**
      * @param captchaReqDTO
@@ -36,7 +36,7 @@ public interface SmsFeign {
      */
     @PostMapping("/send-captcha")
     @GetMapping
-    ServerResponse<Void> sendCaptcha(@RequestBody SmsCaptchaSendReqDTO captchaReqDTO);
+    ServerResponse<Void> sendCaptcha(@RequestBody InfoCaptchaSendReqDTO captchaReqDTO);
 
     /**
      * 保存验证码
@@ -45,7 +45,7 @@ public interface SmsFeign {
      * @return ServerResponse
      */
     @GetMapping("/verify-captcha")
-    ServerResponse<Void> verifyCaptcha(@RequestBody SmsCaptchaVerifyReqDTO captchaVerifyDTO);
+    ServerResponse<Void> verifyCaptcha(@RequestBody InfoCaptchaVerifyReqDTO captchaVerifyDTO);
 
 
 }

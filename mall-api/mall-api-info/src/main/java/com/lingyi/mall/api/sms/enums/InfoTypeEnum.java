@@ -7,23 +7,28 @@ import lombok.RequiredArgsConstructor;
 import java.util.Arrays;
 
 /**
- * @author maweiyan
- * @email 1107201045@qq.com
- * @datetime 2023/7/13 10:04
- * @description
+ * @Author: maweiyan
+ * @Email 1107201045@qq.com
+ * @DateTime: 2023/10/15 3:28
+ * @Description:
  */
 @Getter
 @RequiredArgsConstructor
-public enum SmsBusinessEnum {
+public enum InfoTypeEnum {
 
-    /*
+    /**
      *
      */
-    LOGIN(1, "登录验证码"),
+    SMS(1, "短信"),
 
-    ORDER(2, "订单通知"),
+    SMS_CAPTCHA(2, "短信验证码"),
 
-    UNKNOWN(100, "未知");
+    EMAIL(3, "邮箱"),
+
+    EMAIL_CAPTCHA(4, "邮箱验证码"),
+
+    UNKNOWN(5, "未知");
+
 
     private final Integer code;
 
@@ -31,8 +36,8 @@ public enum SmsBusinessEnum {
 
     public static String getMessageByCode(Integer code) {
         return Arrays.stream(values())
-                .filter(businessTypeEnum -> businessTypeEnum.getCode().equals(code))
-                .map(SmsBusinessEnum::getMessage)
+                .filter(infoTypeEnum -> infoTypeEnum.getCode().equals(code))
+                .map(InfoTypeEnum::getMessage)
                 .findFirst().orElse(BaseConstant.UNKNOWN);
     }
 }

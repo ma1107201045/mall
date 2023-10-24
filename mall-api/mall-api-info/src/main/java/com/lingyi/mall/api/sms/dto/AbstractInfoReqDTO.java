@@ -9,7 +9,7 @@ import lombok.Data;
  * @Description:
  */
 @Data
-public abstract class AbstractSmsReqDTO {
+public abstract class AbstractInfoReqDTO {
 
     /**
      * 服务类型
@@ -22,12 +22,12 @@ public abstract class AbstractSmsReqDTO {
     private Integer businessType;
 
     /**
-     * 手机号
+     * 手机号或者邮箱
      */
-    private String phoneNumber;
+    private String number;
 
     /**
-     * 短信类型 1 短信 2 短信验证码 3未知
+     * 短信类型 1.短信 2.短信验证码
      */
     private Integer type;
 }

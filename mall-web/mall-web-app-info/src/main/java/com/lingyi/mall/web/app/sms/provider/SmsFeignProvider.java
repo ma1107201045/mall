@@ -1,9 +1,10 @@
 package com.lingyi.mall.web.app.sms.provider;
 
-import com.lingyi.mall.api.sms.dto.SmsCaptchaSendReqDTO;
-import com.lingyi.mall.api.sms.dto.SmsCaptchaVerifyReqDTO;
-import com.lingyi.mall.api.sms.dto.SmsReqDTO;
+import com.lingyi.mall.api.sms.dto.InfoCaptchaSendReqDTO;
+import com.lingyi.mall.api.sms.dto.InfoCaptchaVerifyReqDTO;
+import com.lingyi.mall.api.sms.dto.InfoReqDTO;
 import com.lingyi.mall.api.sms.feign.SmsFeign;
+import com.lingyi.mall.biz.sms.service.InfoService;
 import com.lingyi.mall.biz.sms.service.SmsService;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,27 +23,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SmsFeignProvider implements SmsFeign {
 
-    private final SmsService smsService;
+    private final InfoService infoService;
 
 
     @Operation(summary = "发送", description = "发送")
     @Override
-    public ServerResponse<Void> send(SmsReqDTO smsReqDTO) {
-        smsService.send(smsReqDTO);
+    public ServerResponse<Void> send(InfoReqDTO smsReqDTO) {
+        infoService.send(smsReqDTO);
         return ServerResponse.success();
     }
 
     @Operation(summary = "发送验证码", description = "发送验证码")
     @Override
-    public ServerResponse<Void> sendCaptcha(SmsCaptchaSendReqDTO captchaReqDTO) {
-        smsService.sendCaptcha(captchaReqDTO);
+    public ServerResponse<Void> sendCaptcha(InfoCaptchaSendReqDTO captchaReqDTO) {
+        infoService.sendCaptcha(captchaReqDTO);
         return ServerResponse.success();
     }
 
     @Operation(summary = "校验验证码", description = "校验验证码")
     @Override
-    public ServerResponse<Void> verifyCaptcha(SmsCaptchaVerifyReqDTO captchaVerifyDTO) {
-        smsService.verifyCaptcha(captchaVerifyDTO);
+    public ServerResponse<Void> verifyCaptcha(InfoCaptchaVerifyReqDTO captchaVerifyDTO) {
+        infoService.verifyCaptcha(captchaVerifyDTO);
         return ServerResponse.success();
     }
 

@@ -14,7 +14,7 @@ import java.util.Arrays;
  */
 @Getter
 @RequiredArgsConstructor
-public enum SmsServiceEnum {
+public enum InfoServiceEnum {
 
     /**
      *
@@ -32,7 +32,7 @@ public enum SmsServiceEnum {
     public static String getMessageByCode(Integer code) {
         return Arrays.stream(values())
                 .filter(serviceTypeEnum -> serviceTypeEnum.getCode().equals(code))
-                .map(SmsServiceEnum::getMessage)
+                .map(InfoServiceEnum::getMessage)
                 .findFirst().orElse(BaseConstant.UNKNOWN);
     }
 }

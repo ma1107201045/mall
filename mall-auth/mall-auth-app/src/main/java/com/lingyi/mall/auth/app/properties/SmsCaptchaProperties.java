@@ -1,8 +1,8 @@
 package com.lingyi.mall.auth.app.properties;
 
-import com.lingyi.mall.api.sms.enums.SmsBusinessEnum;
-import com.lingyi.mall.api.sms.enums.SmsServiceEnum;
-import com.lingyi.mall.api.sms.enums.SmsTypeEnum;
+import com.lingyi.mall.api.sms.enums.InfoBusinessEnum;
+import com.lingyi.mall.api.sms.enums.InfoServiceEnum;
+import com.lingyi.mall.api.sms.enums.InfoTypeEnum;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -20,16 +20,16 @@ public class SmsCaptchaProperties {
     /**
      * 服务类型
      */
-    private SmsServiceEnum service = SmsServiceEnum.UNKNOWN;
+    private InfoServiceEnum service = InfoServiceEnum.UNKNOWN;
     /**
      * 业务类型
      */
-    private SmsBusinessEnum business = SmsBusinessEnum.UNKNOWN;
+    private InfoBusinessEnum business = InfoBusinessEnum.UNKNOWN;
 
     /**
      * 业务类型
      */
-    private SmsTypeEnum type = SmsTypeEnum.UNKNOWN;
+    private InfoTypeEnum type = InfoTypeEnum.UNKNOWN;
     /**
      * 每天上限
      */
