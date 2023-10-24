@@ -62,26 +62,26 @@ public class InfoServiceImpl implements InfoService {
     }
 
     @Override
-    @RedisLock(keySuffix = "#smsCaptchaSendReqDTO.serviceType + ':' + #smsCaptchaSendReqDTO.businessType + ':' +#smsCaptchaSendReqDTO.type + ':' + #smsCaptchaSendReqDTO.number")
-    public void sendCaptcha(InfoCaptchaSendReqDTO smsCaptchaSendReqDTO) {
+    @RedisLock(keySuffix = "#infoCaptchaSendReqDTO.serviceType + ':' + #infoCaptchaSendReqDTO.businessType + ':' +#infoCaptchaSendReqDTO.type + ':' + #infoCaptchaSendReqDTO.number")
+    public void sendCaptcha(InfoCaptchaSendReqDTO infoCaptchaSendReqDTO) {
         //校验数据
-        verifyData(smsCaptchaSendReqDTO);
+        verifyData(infoCaptchaSendReqDTO);
         //操作redis
         redisUtil.execPipelined(new SessionCallback<>() {
             @Override
             public <K, V> Object execute(@NotNull RedisOperations<K, V> redisOperations) throws DataAccessException {
                 RedisOperations<String, Object> operations = (RedisOperations<String, Object>) redisOperations;
                 //设置上线跟失效时间
-                setUpperLimitAndIntervalTime(operations, smsCaptchaSendReqDTO);
+                setUpperLimitAndIntervalTime(operations, infoCaptchaSendReqDTO);
                 //设置验证码
-                setCaptcha(operations, smsCaptchaSendReqDTO);
+                setCaptcha(operations, infoCaptchaSendReqDTO);
 
                 return ObjectUtil.getNull();
             }
         });
         //TODO 发送mq消息
         //保存日志
-        createLog(smsCaptchaSendReqDTO);
+        createLog(infoCaptchaSendReqDTO);
     }
 
     @Override
