@@ -1,7 +1,7 @@
 package com.lingyi.mall.web.app.member.provider;
 
 import com.lingyi.mall.api.member.feign.MemberLevelFeign;
-import com.lingyi.mall.biz.member.service.MemberLevelService;
+import com.lingyi.mall.biz.member.service.LevelService;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MemberLevelFeignProvider implements MemberLevelFeign {
 
-    private final MemberLevelService memberLevelService;
+    private final LevelService levelService;
 
     @Override
     public ServerResponse<Long> getDefaultLevelId() {
-        Long id = memberLevelService.queryDefaultLevelId();
+        Long id = levelService.queryDefaultLevelId();
         return ServerResponse.success(id);
     }
 }

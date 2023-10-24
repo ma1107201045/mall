@@ -19,7 +19,7 @@ import java.math.BigDecimal;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Schema(description = "会员等级")
-public class MemberLevelVO extends BaseIdVO<Long> {
+public class LevelVO extends BaseIdVO<Long> {
 
     @Serial
     private static final long serialVersionUID = 5004987282353659490L;

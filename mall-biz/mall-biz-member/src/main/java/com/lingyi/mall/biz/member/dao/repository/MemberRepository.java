@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.member.dao.repository;
 
-import com.lingyi.mall.biz.member.entity.MemberDO;
+import com.lingyi.mall.biz.member.model.entity.MemberDO;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.stereotype.Repository;
 

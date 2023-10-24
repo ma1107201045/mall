@@ -16,7 +16,7 @@ import java.io.Serial;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Schema(description = "会员等级")
-public class MemberLevelDTO extends BaseIdDTO<Long> {
+public class LevelDTO extends BaseIdDTO<Long> {
     @Serial
     private static final long serialVersionUID = -1567531210110233969L;
 }

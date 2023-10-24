@@ -12,9 +12,9 @@ import lombok.ToString;
  * @datetime 2023/8/14 15:26
  * @description
  */
-@Schema(description = "会员等级")
+@Schema(description = "会员等级参数")
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class MemberLevelParam extends BasePageParam {
+public class LevelParam extends BasePageParam {
 }

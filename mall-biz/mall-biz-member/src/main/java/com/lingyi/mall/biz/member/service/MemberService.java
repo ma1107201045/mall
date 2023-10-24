@@ -4,7 +4,7 @@ import com.lingyi.mall.api.member.dto.MemberReqDTO;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.biz.member.model.dto.MemberDTO;
 import com.lingyi.mall.biz.member.model.dto.MemberPartDTO;
-import com.lingyi.mall.biz.member.entity.MemberDO;
+import com.lingyi.mall.biz.member.model.entity.MemberDO;
 import com.lingyi.mall.biz.member.model.param.MemberParam;
 import com.lingyi.mall.biz.member.model.vo.MemberVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;

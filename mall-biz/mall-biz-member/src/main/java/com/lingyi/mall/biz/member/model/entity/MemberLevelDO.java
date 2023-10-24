@@ -1,4 +1,4 @@
-package com.lingyi.mall.biz.member.entity;
+package com.lingyi.mall.biz.member.model.entity;
 
 import com.lingyi.mall.common.orm.entity.BaseIdDO;
 import jakarta.persistence.Column;

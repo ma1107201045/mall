@@ -1,19 +1,25 @@
-package com.lingyi.mall.api.member.dto;
+package com.lingyi.mall.biz.member.model.dto;
 
+import com.lingyi.mall.common.core.dto.BaseIdDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+import java.io.Serial;
 import java.time.LocalDateTime;
 
 /**
- * @author maweiyan
- * @email 1107201045@qq.com
- * @datetime 2023/8/17 14:21
- * @description
+ * @Author: maweiyan
+ * @Email: 1107201045@qq.com
+ * @DateTime: 2023/9/12 15:20
+ * @Description:
  */
 @Data
-@Schema(description = "会员登录日志")
-public class MemberLoginLogReqDTO {
+@EqualsAndHashCode(callSuper = true)
+@Schema(description = "会员登录")
+public class LoginLogDTO extends BaseIdDTO<Long> {
+    @Serial
+    private static final long serialVersionUID = 3462553036699905215L;
 
     @Schema(requiredMode = Schema.RequiredMode.REQUIRED, description = "会员用户id")
     private Long memberId;
@@ -32,4 +38,5 @@ public class MemberLoginLogReqDTO {
 
     @Schema(requiredMode = Schema.RequiredMode.REQUIRED, description = "创建时间")
     private LocalDateTime createDataTime;
+
 }

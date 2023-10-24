@@ -1,8 +1,8 @@
 package com.lingyi.mall.biz.member.converter;
 
 import com.lingyi.mall.api.member.dto.MemberReqDTO;
-import com.lingyi.mall.biz.member.entity.MemberDO;
-import com.lingyi.mall.biz.member.entity.MemberLevelDO;
+import com.lingyi.mall.biz.member.model.entity.MemberDO;
+import com.lingyi.mall.biz.member.model.entity.MemberLevelDO;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 
 /**

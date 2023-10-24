@@ -2,7 +2,7 @@ package com.lingyi.mall.auth.app.converter;
 
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
-import com.lingyi.mall.api.member.dto.MemberLoginLogReqDTO;
+import com.lingyi.mall.api.member.dto.LoginLogReqDTO;
 import com.lingyi.mall.api.member.dto.MemberReqDTO;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.api.sms.dto.CaptchaSendReqDTO;
@@ -68,8 +68,8 @@ public class AuthAppConverter {
         return memberReqDTO;
     }
 
-    public MemberLoginLogReqDTO to(MemberRespDTO memberRespDTO) {
-        var memberLoginLogReqDTO = new MemberLoginLogReqDTO();
+    public LoginLogReqDTO to(MemberRespDTO memberRespDTO) {
+        var memberLoginLogReqDTO = new LoginLogReqDTO();
         memberLoginLogReqDTO.setMemberId(memberRespDTO.getId());
         memberLoginLogReqDTO.setMemberUserName(memberRespDTO.getUserName());
         memberLoginLogReqDTO.setIp(StrUtil.EMPTY);

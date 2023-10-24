@@ -1,8 +1,8 @@
 package com.lingyi.mall.web.app.member.provider;
 
-import com.lingyi.mall.api.member.dto.MemberLoginLogReqDTO;
+import com.lingyi.mall.api.member.dto.LoginLogReqDTO;
 import com.lingyi.mall.api.member.feign.MemberLoginLogFeign;
-import com.lingyi.mall.biz.member.service.MemberLoginLogService;
+import com.lingyi.mall.biz.member.service.LoginLogService;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MemberLoginLogFeignProvider implements MemberLoginLogFeign {
 
-    private final MemberLoginLogService memberLoginLogService;
+    private final LoginLogService loginLogService;
 
     @Override
-    public ServerResponse<Void> save(MemberLoginLogReqDTO memberLoginLogReqDTO) {
-        memberLoginLogService.save(memberLoginLogReqDTO);
+    public ServerResponse<Void> save(LoginLogReqDTO loginLogReqDTO) {
+        loginLogService.save(loginLogReqDTO);
         return ServerResponse.success();
     }
 }

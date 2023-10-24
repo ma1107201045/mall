@@ -25,7 +25,7 @@ public class MemberVO extends BaseIdVO<Long> {
     private static final long serialVersionUID = 2401826499005170171L;
 
     @Schema(description = "会员等级id")
-    private Long memberLevelId;
+    private Long levelId;
 
     @Schema(description = "用户名")
     private String userName;

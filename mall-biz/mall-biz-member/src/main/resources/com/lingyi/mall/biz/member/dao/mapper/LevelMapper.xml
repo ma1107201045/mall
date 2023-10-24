@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lingyi.mall.biz.member.dao.mapper.MemberLevelMapper">
-    <resultMap id="BaseResultMap" type="com.lingyi.mall.biz.member.model.vo.MemberLevelVO">
+<mapper namespace="com.lingyi.mall.biz.member.dao.mapper.LevelMapper">
+    <resultMap id="BaseResultMap" type="com.lingyi.mall.biz.member.model.vo.LevelVO">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="growthPoint" column="growth_point" jdbcType="INTEGER"/>
@@ -34,7 +34,7 @@
         FROM mm_member_level
         WHERE id =#{id,jdbcType=BIGINT}
     </select>
-    <select id="selectListByParam" resultType="com.lingyi.mall.biz.member.model.vo.MemberLevelVO">
+    <select id="selectListByParam" resultType="com.lingyi.mall.biz.member.model.vo.LevelVO">
         SELECT
         <include refid="Base_Column_List"/>
         FROM mm_member_level

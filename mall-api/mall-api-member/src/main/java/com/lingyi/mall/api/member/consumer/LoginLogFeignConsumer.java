@@ -1,7 +1,7 @@
 package com.lingyi.mall.api.member.consumer;
 
 import com.alibaba.fastjson2.JSON;
-import com.lingyi.mall.api.member.dto.MemberLoginLogReqDTO;
+import com.lingyi.mall.api.member.dto.LoginLogReqDTO;
 import com.lingyi.mall.api.member.feign.MemberLoginLogFeign;
 import com.lingyi.mall.common.core.exception.OpenFeignException;
 import lombok.RequiredArgsConstructor;
@@ -18,13 +18,13 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class MemberLoginLogFeignConsumer {
+public class LoginLogFeignConsumer {
 
     private final MemberLoginLogFeign memberLoginLogFeign;
 
-    public void save(MemberLoginLogReqDTO memberLoginLogReqDTO) {
-        log.info("入参:memberLoginLogReqDTO:{}", JSON.toJSONString(memberLoginLogReqDTO));
-        var response = memberLoginLogFeign.save(memberLoginLogReqDTO);
+    public void save(LoginLogReqDTO loginLogReqDTO) {
+        log.info("入参:memberLoginLogReqDTO:{}", JSON.toJSONString(loginLogReqDTO));
+        var response = memberLoginLogFeign.save(loginLogReqDTO);
         if (response.getIsSuccess()) {
             log.info("出参:void:{}", JSON.toJSONString(response.getData()));
             return;

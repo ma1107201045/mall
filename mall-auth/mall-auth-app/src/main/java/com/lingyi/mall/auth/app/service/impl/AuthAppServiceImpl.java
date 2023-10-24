@@ -4,8 +4,8 @@ import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
-import com.lingyi.mall.api.member.consumer.MemberLevelFeignConsumer;
-import com.lingyi.mall.api.member.consumer.MemberLoginLogFeignConsumer;
+import com.lingyi.mall.api.member.consumer.LevelFeignConsumer;
+import com.lingyi.mall.api.member.consumer.LoginLogFeignConsumer;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.api.sms.consumer.SmsFeignConsumer;
 import com.lingyi.mall.auth.app.converter.AuthAppConverter;
@@ -42,9 +42,9 @@ public class AuthAppServiceImpl implements AuthAppService {
 
     private final MemberFeignConsumer memberFeignConsumer;
 
-    private final MemberLevelFeignConsumer memberLevelFeignConsumer;
+    private final LevelFeignConsumer levelFeignConsumer;
 
-    private final MemberLoginLogFeignConsumer memberLoginLogFeignConsumer;
+    private final LoginLogFeignConsumer loginLogFeignConsumer;
 
     private final SmsCaptchaProperties properties;
 
@@ -72,7 +72,7 @@ public class AuthAppServiceImpl implements AuthAppService {
         //通过手机号校验用户是否存在，不存在注册
         var memberRespDTO = memberFeignConsumer.getByPhoneNumber(authAppLoginDTO.getPhoneNumber());
         if (Objects.isNull(memberRespDTO)) {
-            var memberLevelId = memberLevelFeignConsumer.getDefaultLevelId();
+            var memberLevelId = levelFeignConsumer.getDefaultLevelId();
             AssertUtil.notNull(memberLevelId, AuthAppFailEnum.MEMBER_DEFAULT_LEVEL_ID_NULL_ERROR);
 
             //组装会员信息
@@ -86,9 +86,9 @@ public class AuthAppServiceImpl implements AuthAppService {
         }
 
         //组装会员登录日志
-        var memberLoginLogReqDTO = AuthAppConverter.INSTANCE.to(memberRespDTO);
+        var loginLogReqDTO = AuthAppConverter.INSTANCE.to(memberRespDTO);
         //保存会员登录日志
-        memberLoginLogFeignConsumer.save(memberLoginLogReqDTO);
+        loginLogFeignConsumer.save(loginLogReqDTO);
 
         //创建token
         var token = JwtUtil.createToken(memberRespDTO);

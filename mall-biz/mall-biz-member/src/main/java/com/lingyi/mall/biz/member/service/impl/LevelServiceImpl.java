@@ -1,12 +1,12 @@
 package com.lingyi.mall.biz.member.service.impl;
 
-import com.lingyi.mall.biz.member.model.dto.MemberLevelDTO;
-import com.lingyi.mall.biz.member.entity.MemberLevelDO;
-import com.lingyi.mall.biz.member.dao.mapper.MemberLevelMapper;
-import com.lingyi.mall.biz.member.model.param.MemberLevelParam;
-import com.lingyi.mall.biz.member.dao.repository.MemberLevelRepository;
-import com.lingyi.mall.biz.member.service.MemberLevelService;
-import com.lingyi.mall.biz.member.model.vo.MemberLevelVO;
+import com.lingyi.mall.biz.member.model.dto.LevelDTO;
+import com.lingyi.mall.biz.member.model.entity.MemberLevelDO;
+import com.lingyi.mall.biz.member.dao.mapper.LevelMapper;
+import com.lingyi.mall.biz.member.model.param.LevelParam;
+import com.lingyi.mall.biz.member.dao.repository.LevelRepository;
+import com.lingyi.mall.biz.member.service.LevelService;
+import com.lingyi.mall.biz.member.model.vo.LevelVO;
 import com.lingyi.mall.common.core.enums.WhetherEnum;
 import com.lingyi.mall.common.core.util.ObjectUtil;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public class MemberLevelServiceImpl extends BaseServiceProImpl<MemberLevelRepository, MemberLevelMapper, MemberLevelDTO, MemberLevelVO, MemberLevelParam, MemberLevelDO, Long> implements MemberLevelService {
+public class LevelServiceImpl extends BaseServiceProImpl<LevelRepository, LevelMapper, LevelDTO, LevelVO, LevelParam, MemberLevelDO, Long> implements LevelService {
 
     @Override
     public Long queryDefaultLevelId() {
