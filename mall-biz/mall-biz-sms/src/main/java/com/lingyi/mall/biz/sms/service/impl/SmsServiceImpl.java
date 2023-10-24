@@ -10,6 +10,7 @@ import com.lingyi.mall.biz.sms.enums.SmsFailEnum;
 import com.lingyi.mall.biz.sms.model.entity.LogDO;
 import com.lingyi.mall.biz.sms.service.LogService;
 import com.lingyi.mall.biz.sms.service.SmsService;
+import com.lingyi.mall.biz.sms.util.CaptchaRedisKeyUtil;
 import com.lingyi.mall.biz.sms.util.SmsRedisKeyUtil;
 import com.lingyi.mall.common.core.annotation.RedisLock;
 import com.lingyi.mall.common.core.util.AssertUtil;
@@ -50,8 +51,9 @@ public class SmsServiceImpl implements SmsService {
     @Override
     @RedisLock(keySuffix = "#smsReqDTO.serviceType + ':' + #smsReqDTO.businessType + ':' +#smsReqDTO.type + ':' + #smsReqDTO.phoneNumber")
     public void send(SmsReqDTO smsReqDTO) {
-        //校验
+        //校验数据
         verifyData(smsReqDTO);
+        //操作redis
         redisUtil.execPipelined(new SessionCallback<>() {
             @Override
             public <K, V> Object execute(@NotNull RedisOperations<K, V> redisOperations) throws DataAccessException {
@@ -67,8 +69,9 @@ public class SmsServiceImpl implements SmsService {
     @Override
     @RedisLock(keySuffix = "#captchaSendReqDTO.serviceType + ':' + #captchaSendReqDTO.businessType + ':' +#captchaSendReqDTO.type + ':' + #captchaSendReqDTO.phoneNumber")
     public void sendCaptcha(CaptchaSendReqDTO captchaSendReqDTO) {
-        //校验
+        //校验数据
         verifyData(captchaSendReqDTO);
+        //操作redis
         redisUtil.execPipelined(new SessionCallback<>() {
             @Override
             public <K, V> Object execute(@NotNull RedisOperations<K, V> redisOperations) throws DataAccessException {
