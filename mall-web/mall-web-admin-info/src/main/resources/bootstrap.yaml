@@ -2,7 +2,7 @@ server:
   port: 7007
 spring:
   application:
-    name: mall-web-admin-sms
+    name: mall-web-admin-info
   main:
     allow-bean-definition-overriding: true
   cloud:
@@ -22,9 +22,9 @@ spring:
         access-key: ThisIsMyCustomSecretKey012345678
         name: ${spring.application.name}
         file-extension: yaml
-        group: MALL-SMS
+        group: MALL-INFO
         extension-configs:
-          - data-id: mall-web-common-sms.yaml
+          - data-id: mall-web-common-info.yaml
             group: MALL-SMS
             refresh: false
           - data-id: mysql.yaml

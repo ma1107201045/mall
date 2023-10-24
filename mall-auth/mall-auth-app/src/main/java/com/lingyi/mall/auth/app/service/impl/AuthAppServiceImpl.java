@@ -7,7 +7,7 @@ import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
 import com.lingyi.mall.api.member.consumer.LevelFeignConsumer;
 import com.lingyi.mall.api.member.consumer.LoginLogFeignConsumer;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
-import com.lingyi.mall.api.sms.consumer.SmsFeignConsumer;
+import com.lingyi.mall.api.info.consumer.SmsFeignConsumer;
 import com.lingyi.mall.auth.app.converter.AuthAppConverter;
 import com.lingyi.mall.auth.app.model.dto.AuthAppLoginDTO;
 import com.lingyi.mall.auth.app.model.dto.AuthAppSendDTO;
