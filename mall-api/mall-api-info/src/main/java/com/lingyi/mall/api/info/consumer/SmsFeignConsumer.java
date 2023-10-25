@@ -21,11 +21,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SmsFeignConsumer {
 
-    private final InfoFeign captchaFeign;
+    private final InfoFeign infoFeign;
 
     public void send(InfoReqDTO smsReqDTO) {
         log.info("入参:smsReqDTO:{}", smsReqDTO);
-        var response = captchaFeign.send(smsReqDTO);
+        var response = infoFeign.send(smsReqDTO);
         if (response.getIsSuccess()) {
             log.info("出参:Void:{}", JSON.toJSONString(response.getData()));
             return;
@@ -33,9 +33,9 @@ public class SmsFeignConsumer {
         throw new OpenFeignException(response.getCode(), response.getMessage());
     }
 
-    public void sendCaptcha(InfoCaptchaSendReqDTO captchaSendReqDTO) {
-        log.info("入参:captchaSendReqDTO:{}", captchaSendReqDTO);
-        var response = captchaFeign.sendCaptcha(captchaSendReqDTO);
+    public void sendCaptcha(InfoCaptchaSendReqDTO infoCaptchaSendReqDTO) {
+        log.info("入参:infoCaptchaSendReqDTO:{}", infoCaptchaSendReqDTO);
+        var response = infoFeign.sendCaptcha(infoCaptchaSendReqDTO);
         if (response.getIsSuccess()) {
             log.info("出参:Void:{}", JSON.toJSONString(response.getData()));
             return;
@@ -43,9 +43,9 @@ public class SmsFeignConsumer {
         throw new OpenFeignException(response.getCode(), response.getMessage());
     }
 
-    public void verifyCaptcha(InfoCaptchaVerifyReqDTO captchaVerifyReqDTO) {
-        log.info("入参:captchaVerifyReqDTO:{}", captchaVerifyReqDTO);
-        var response = captchaFeign.verifyCaptcha(captchaVerifyReqDTO);
+    public void verifyCaptcha(InfoCaptchaVerifyReqDTO infoCaptchaVerifyReqDTO) {
+        log.info("入参:infoCaptchaVerifyReqDTO:{}", infoCaptchaVerifyReqDTO);
+        var response = infoFeign.verifyCaptcha(infoCaptchaVerifyReqDTO);
         if (response.getIsSuccess()) {
             log.info("出参:Void:{}", JSON.toJSONString(response.getData()));
             return;
