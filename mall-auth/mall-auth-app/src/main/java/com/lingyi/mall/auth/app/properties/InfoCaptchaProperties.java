@@ -15,8 +15,8 @@ import org.springframework.context.annotation.Configuration;
  */
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "sms-captcha")
-public class SmsCaptchaProperties {
+@ConfigurationProperties(prefix = "info-captcha")
+public class InfoCaptchaProperties {
     /**
      * 服务类型
      */

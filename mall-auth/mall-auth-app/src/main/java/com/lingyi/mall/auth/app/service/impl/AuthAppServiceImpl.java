@@ -12,7 +12,7 @@ import com.lingyi.mall.auth.app.converter.AuthAppConverter;
 import com.lingyi.mall.auth.app.model.dto.AuthAppLoginDTO;
 import com.lingyi.mall.auth.app.model.dto.AuthAppSendDTO;
 import com.lingyi.mall.auth.app.enums.AuthAppFailEnum;
-import com.lingyi.mall.auth.app.properties.SmsCaptchaProperties;
+import com.lingyi.mall.auth.app.properties.InfoCaptchaProperties;
 import com.lingyi.mall.auth.app.service.AuthAppService;
 import com.lingyi.mall.auth.app.model.vo.AuthAppLoginVO;
 import com.lingyi.mall.common.core.util.AssertUtil;
@@ -46,21 +46,17 @@ public class AuthAppServiceImpl implements AuthAppService {
 
     private final LoginLogFeignConsumer loginLogFeignConsumer;
 
-    private final SmsCaptchaProperties properties;
+    private final InfoCaptchaProperties properties;
 
     private final RedisUtil redisUtil;
 
     private final RedisKeyUtil redisKeyUtil;
 
+
     @Override
-    public void sendSmsCaptcha(AuthAppSendDTO authAppSendDTO) {
-        var captchaSendReqDTO = AuthAppConverter.INSTANCE.to(authAppSendDTO.getPhoneNumber(), properties);
+    public void send(AuthAppSendDTO authAppSendDTO) {
+        var captchaSendReqDTO = AuthAppConverter.INSTANCE.to(authAppSendDTO.getNumber(), properties);
         smsFeignConsumer.sendCaptcha(captchaSendReqDTO);
-    }
-
-    @Override
-    public void sendEmailCaptcha() {
-
     }
 
     @Override

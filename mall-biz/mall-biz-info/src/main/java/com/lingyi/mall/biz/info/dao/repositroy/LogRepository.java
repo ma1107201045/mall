@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
  * @description
  */
 @Repository
-public interface SmsLogRepository extends JpaRepositoryImplementation<LogDO, Long> {
+public interface LogRepository extends JpaRepositoryImplementation<LogDO, Long> {
 }

@@ -11,7 +11,7 @@ import com.lingyi.mall.api.info.enums.InfoBusinessEnum;
 import com.lingyi.mall.api.info.enums.InfoServiceEnum;
 import com.lingyi.mall.auth.app.model.dto.AuthAppLoginDTO;
 import com.lingyi.mall.auth.app.enums.RegisterSourceEnum;
-import com.lingyi.mall.auth.app.properties.SmsCaptchaProperties;
+import com.lingyi.mall.auth.app.properties.InfoCaptchaProperties;
 import com.lingyi.mall.auth.app.util.UserNameUtil;
 import com.lingyi.mall.common.core.constant.BaseConstant;
 import com.lingyi.mall.common.core.enums.WhetherEnum;
@@ -32,12 +32,12 @@ public class AuthAppConverter {
 
     }
 
-    public InfoCaptchaSendReqDTO to(String phoneNumber, SmsCaptchaProperties properties) {
+    public InfoCaptchaSendReqDTO to(String number, InfoCaptchaProperties properties) {
         var captchaSendReqDTO = new InfoCaptchaSendReqDTO();
         captchaSendReqDTO.setServiceType(properties.getService().getCode());
         captchaSendReqDTO.setBusinessType(properties.getBusiness().getCode());
         captchaSendReqDTO.setType(properties.getType().getCode());
-        captchaSendReqDTO.setNumber(phoneNumber);
+        captchaSendReqDTO.setNumber(number);
         captchaSendReqDTO.setIntervalTime(properties.getIntervalTime());
         captchaSendReqDTO.setUpperLimit(properties.getUpperLimit());
         captchaSendReqDTO.setCaptcha(RandomUtil.randomNumbers(properties.getCaptchaLength()));
@@ -47,7 +47,7 @@ public class AuthAppConverter {
         return captchaSendReqDTO;
     }
 
-    public InfoCaptchaVerifyReqDTO to(AuthAppLoginDTO authAppLoginDTO, SmsCaptchaProperties properties) {
+    public InfoCaptchaVerifyReqDTO to(AuthAppLoginDTO authAppLoginDTO, InfoCaptchaProperties properties) {
         var phoneNumber = authAppLoginDTO.getPhoneNumber();
         InfoCaptchaVerifyReqDTO captchaVerifyReqDTO = new InfoCaptchaVerifyReqDTO();
         captchaVerifyReqDTO.setNumber(phoneNumber);

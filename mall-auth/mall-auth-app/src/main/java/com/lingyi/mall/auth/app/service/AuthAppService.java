@@ -13,17 +13,12 @@ import com.lingyi.mall.auth.app.model.vo.AuthAppLoginVO;
 public interface AuthAppService {
 
     /**
-     * 发送短信验证码
+     * 发送验证码（手机号或者验证码）
      *
      * @param authAppSendDTO 发送dto
      */
-    void sendSmsCaptcha(AuthAppSendDTO authAppSendDTO);
+    void send(AuthAppSendDTO authAppSendDTO);
 
-
-    /**
-     * 发送邮箱验证码
-     */
-    void sendEmailCaptcha();
 
     /**
      * 手机号登录

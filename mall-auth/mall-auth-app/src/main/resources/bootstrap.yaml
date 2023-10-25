@@ -41,14 +41,6 @@ spring:
       rocketmq:
         binder:
           name-server: 36.137.103.166:9876
-sms:
-  sms-service-enum: mall_auth_app
-  sms-business-enum: login
-  upper-limit: 10
-  interval-time: 1
-  captcha-length: 6
-  captcha-expiry-date: 30
-
 # springdoc-openapi config
 springdoc:
   swagger-ui:
@@ -58,6 +50,14 @@ springdoc:
     - group: 'APP-认证服务'
       paths-to-match: '/**'
       packages-to-scan: com.lingyi.mall.auth.app.controller
+info-captcha:
+  service:
+  business:
+  type: sms_captcha
+  upper-limit: 10
+  interval-time: 1
+  captcha-length: 6
+  captcha-expiry-date: 30
 
 
 

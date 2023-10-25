@@ -4,7 +4,7 @@ import com.lingyi.mall.biz.info.model.dto.LogDTO;
 import com.lingyi.mall.biz.info.model.entity.LogDO;
 import com.lingyi.mall.biz.info.dao.mapper.LogMapper;
 import com.lingyi.mall.biz.info.model.param.LogParam;
-import com.lingyi.mall.biz.info.dao.repositroy.SmsLogRepository;
+import com.lingyi.mall.biz.info.dao.repositroy.LogRepository;
 import com.lingyi.mall.biz.info.service.LogService;
 import com.lingyi.mall.biz.info.model.vo.LogVO;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public class LogServiceImpl extends BaseServiceProImpl<SmsLogRepository, LogMapper, LogDTO, LogVO, LogParam, LogDO, Long> implements LogService {
+public class LogServiceImpl extends BaseServiceProImpl<LogRepository, LogMapper, LogDTO, LogVO, LogParam, LogDO, Long> implements LogService {
 
 
 }
