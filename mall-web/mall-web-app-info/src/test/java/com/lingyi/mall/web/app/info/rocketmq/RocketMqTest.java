@@ -1,9 +1,10 @@
-package com.lingyi.mall.web.app.info;
+package com.lingyi.mall.web.app.info.rocketmq;
 
 import com.lingyi.mall.MallWebAppInfoApplicationTest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
+import org.apache.rocketmq.spring.autoconfigure.RocketMQProperties;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
@@ -27,9 +28,12 @@ public class RocketMqTest implements MallWebAppInfoApplicationTest {
     @Autowired
     private RocketMQTemplate rocketMQTemplate;
 
+    @Autowired
+    private RocketMQProperties rocketMQProperties;
+
     @Test
-    public void testSendMessage() {
-        rocketMQTemplate.send("Topic01", new Message<>() {
+    public void testSendMessage() throws IOException {
+        rocketMQTemplate.send(RocketMqTopicConstant.INFO_MESSAGE, new Message<>() {
             @NotNull
             @Override
             public Object getPayload() {
@@ -42,12 +46,13 @@ public class RocketMqTest implements MallWebAppInfoApplicationTest {
                 return new MessageHeaders(null);
             }
         });
-
+        log.info("发送消息成功");
+        System.in.read();
     }
 
     @Test
     public void testAsyncSendMessage() throws IOException {
-        rocketMQTemplate.asyncSend("Topic02", new Message<>() {
+        rocketMQTemplate.asyncSend(RocketMqTopicConstant.INFO_MESSAGE, new Message<>() {
             @NotNull
             @Override
             public Object getPayload() {
@@ -70,6 +75,7 @@ public class RocketMqTest implements MallWebAppInfoApplicationTest {
                 log.info("sendError:", throwable);
             }
         });
+        log.info("发送异步消息成功");
         System.in.read();
     }
 }

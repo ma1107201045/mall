@@ -2,6 +2,7 @@ package com.lingyi.mall.common.mq.util;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,4 +15,8 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class RocketMqUtil {
+
+    private final RocketMQTemplate rocketMQTemplate;
+
+
 }
