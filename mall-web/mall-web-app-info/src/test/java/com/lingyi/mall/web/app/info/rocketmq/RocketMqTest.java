@@ -9,6 +9,7 @@ import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHeaders;
@@ -28,12 +29,13 @@ public class RocketMqTest implements MallWebAppInfoApplicationTest {
     @Autowired
     private RocketMQTemplate rocketMQTemplate;
 
-    @Autowired
-    private RocketMQProperties rocketMQProperties;
+
+    @Value("${rocketmq.pull-consumer.topic}")
+    private String pullConsumerTopic;
 
     @Test
     public void testSendMessage() throws IOException {
-        rocketMQTemplate.send(RocketMqTopicConstant.INFO_MESSAGE, new Message<>() {
+        rocketMQTemplate.send(pullConsumerTopic, new Message<>() {
             @NotNull
             @Override
             public Object getPayload() {
@@ -52,7 +54,7 @@ public class RocketMqTest implements MallWebAppInfoApplicationTest {
 
     @Test
     public void testAsyncSendMessage() throws IOException {
-        rocketMQTemplate.asyncSend(RocketMqTopicConstant.INFO_MESSAGE, new Message<>() {
+        rocketMQTemplate.asyncSend(pullConsumerTopic, new Message<>() {
             @NotNull
             @Override
             public Object getPayload() {

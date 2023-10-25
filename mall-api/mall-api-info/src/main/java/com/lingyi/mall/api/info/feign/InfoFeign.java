@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @datetime 2023/7/13 16:14
  * @description
  */
-@FeignClient(value = "mall-web-app-sms", fallbackFactory = InfoFeignFallbackFactory.class)
+@FeignClient(value = "mall-web-app-info", fallbackFactory = InfoFeignFallbackFactory.class)
 public interface InfoFeign {
     String URL_PREFIX = "/app/sms";
 

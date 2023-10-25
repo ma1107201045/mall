@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RocketMQMessageListener(consumerGroup = "${rocketmq.pull-consumer.group}", topic = "${rocketmq.pull-consumer.topic}")
-public class RocketMqListenerTest implements RocketMQListener<String> {
+public class RocketMqListenerTest2 implements RocketMQListener<String> {
     @Override
     public void onMessage(String s) {
         log.info("收到消息啦{}", s);

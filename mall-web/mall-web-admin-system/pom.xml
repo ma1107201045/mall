@@ -16,13 +16,8 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-rocketmq</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>mall-security-admin</artifactId>
         </dependency>
-
     </dependencies>
     <build>
         <plugins>
