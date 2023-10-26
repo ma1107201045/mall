@@ -7,4 +7,6 @@ package com.lingyi.mall;
  * @description
  */
 public interface MallWebAppInfoApplicationTest {
+
+
 }
