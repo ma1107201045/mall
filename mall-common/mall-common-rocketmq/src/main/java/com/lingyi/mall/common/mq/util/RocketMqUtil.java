@@ -28,12 +28,12 @@ public class RocketMqUtil {
     private final RocketMQTemplate rocketMQTemplate;
 
     /*出现指定异常时(RuntimeException) ,再重试3次,每次延迟5s,之后每次延迟翻倍*/
-    @Retryable(retryFor = {RuntimeException.class}, maxAttempts = 4, backoff = @Backoff(delay = 2000L, multiplier = 2))
+    @Retryable(retryFor = {RuntimeException.class}, maxAttempts = 3, backoff = @Backoff(delay = 2000L, multiplier = 2))
     public void send(String destination, Message<?> message) {
         rocketMQTemplate.send(destination, message);
     }
 
-    @Retryable(retryFor = {RuntimeException.class}, maxAttempts = 4, backoff = @Backoff(delay = 2000L, multiplier = 2))
+    @Retryable(retryFor = {RuntimeException.class}, maxAttempts = 3, backoff = @Backoff(delay = 2000L, multiplier = 2))
     public void asyncSend(String destination, Message<?> message, SendCallback sendCallback) {
         rocketMQTemplate.asyncSend(destination, message, sendCallback);
     }
