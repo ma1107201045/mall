@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.member.dao.repository;
 
-import com.lingyi.mall.biz.member.model.entity.LoginLogDO;
+import com.lingyi.mall.biz.member.model.entity.MemberLoginLogDO;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
  * @description
  */
 @Repository
-public interface LoginLogRepository extends JpaRepositoryImplementation<LoginLogDO, Long> {
+public interface MemberLoginLogRepository extends JpaRepositoryImplementation<MemberLoginLogDO, Long> {
 
 
 }

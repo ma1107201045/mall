@@ -2,7 +2,7 @@ package com.lingyi.mall.api.member.feign;
 
 import com.lingyi.mall.api.member.dto.MemberReqDTO;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
-import com.lingyi.mall.api.member.fallbackfactory.FeignFallbackFactory;
+import com.lingyi.mall.api.member.fallbackfactory.MemberFeignFallbackFactory;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @datetime 2023/5/25 16:13
  * @description
  */
-@FeignClient(value = "mall-web-app-member", fallbackFactory = FeignFallbackFactory.class)
+@FeignClient(value = "mall-web-app-member", fallbackFactory = MemberFeignFallbackFactory.class)
 public interface MemberFeign {
 
     String URL_PREFIX = "/app/member/members";

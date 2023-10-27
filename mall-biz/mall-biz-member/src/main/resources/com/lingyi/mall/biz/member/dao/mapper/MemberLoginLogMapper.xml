@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lingyi.mall.biz.member.dao.mapper.LoginLogMapper">
-    <resultMap id="BaseResultMap" type="com.lingyi.mall.biz.member.model.vo.LoginLogVO">
+<mapper namespace="com.lingyi.mall.biz.member.dao.mapper.MemberLoginLogMapper">
+    <resultMap id="BaseResultMap" type="com.lingyi.mall.biz.member.model.vo.MemberLoginLogVO">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="memberId" column="member_id" jdbcType="BIGINT"/>
         <result property="memberUserName" column="member_user_name" jdbcType="VARCHAR"/>
@@ -21,13 +21,13 @@
             AND user_name LIKE CONCAT('%',#{memberUserName,jdbcType=VARCHAR},'%')
         </if>
     </sql>
-    <select id="selectById" resultType="com.lingyi.mall.biz.member.model.vo.LoginLogVO">
+    <select id="selectById" resultType="com.lingyi.mall.biz.member.model.vo.MemberLoginLogVO">
         SELECT
         <include refid="Base_Column_List"/>
         FROM mm_member_level
         WHERE id#{id,jdbcType=BIGINT}
     </select>
-    <select id="selectListByParam" resultType="com.lingyi.mall.biz.member.model.vo.LoginLogVO">
+    <select id="selectListByParam" resultType="com.lingyi.mall.biz.member.model.vo.MemberLoginLogVO">
         SELECT
         <include refid="Base_Column_List"/>
         FROM mm_member_level

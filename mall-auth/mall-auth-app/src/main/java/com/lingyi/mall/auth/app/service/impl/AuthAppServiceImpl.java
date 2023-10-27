@@ -5,7 +5,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
 import com.lingyi.mall.api.member.consumer.LevelFeignConsumer;
-import com.lingyi.mall.api.member.consumer.LoginLogFeignConsumer;
+import com.lingyi.mall.api.member.consumer.MemberLoginLogFeignConsumer;
 import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.api.info.consumer.SmsFeignConsumer;
 import com.lingyi.mall.auth.app.converter.AuthAppConverter;
@@ -44,7 +44,7 @@ public class AuthAppServiceImpl implements AuthAppService {
 
     private final LevelFeignConsumer levelFeignConsumer;
 
-    private final LoginLogFeignConsumer loginLogFeignConsumer;
+    private final MemberLoginLogFeignConsumer memberLoginLogFeignConsumer;
 
     private final InfoCaptchaProperties properties;
 
@@ -84,7 +84,7 @@ public class AuthAppServiceImpl implements AuthAppService {
         //组装会员登录日志
         var loginLogReqDTO = AuthAppConverter.INSTANCE.to(memberRespDTO);
         //保存会员登录日志
-        loginLogFeignConsumer.save(loginLogReqDTO);
+        memberLoginLogFeignConsumer.save(loginLogReqDTO);
 
         //创建token
         var token = JwtUtil.createToken(memberRespDTO);

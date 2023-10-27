@@ -12,7 +12,7 @@ import org.springframework.cloud.openfeign.FallbackFactory;
  * @datetime 2023/5/25 16:13
  * @description
  */
-public class FeignFallbackFactory implements FallbackFactory<MemberFeign> {
+public class MemberFeignFallbackFactory implements FallbackFactory<MemberFeign> {
     @Override
     public MemberFeign create(Throwable cause) {
         return new MemberFeign() {

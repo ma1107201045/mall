@@ -16,5 +16,5 @@ import lombok.ToString;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class LoginLogParam extends BasePageParam {
+public class MemberLoginLogParam extends BasePageParam {
 }

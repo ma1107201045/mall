@@ -1,7 +1,7 @@
 package com.lingyi.mall.api.member.feign;
 
-import com.lingyi.mall.api.member.dto.LoginLogReqDTO;
-import com.lingyi.mall.api.member.fallbackfactory.LoginLogFeignFallbackFactory;
+import com.lingyi.mall.api.member.dto.MemberLoginLogReqDTO;
+import com.lingyi.mall.api.member.fallbackfactory.MemberLoginLogFeignFallbackFactory;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @datetime 2023/8/17 9:35
  * @description
  */
-@FeignClient(value = "mall-web-app-member", fallbackFactory = LoginLogFeignFallbackFactory.class)
-public interface LoginLogFeign {
+@FeignClient(value = "mall-web-app-member", fallbackFactory = MemberLoginLogFeignFallbackFactory.class)
+public interface MemberLoginLogFeign {
     String URL_PREFIX = "/app/member/login-logs";
 
     /**
@@ -23,5 +23,5 @@ public interface LoginLogFeign {
      * @return 会员信息
      */
     @PostMapping(URL_PREFIX)
-    ServerResponse<Void> save(@RequestBody LoginLogReqDTO loginLogReqDTO);
+    ServerResponse<Void> save(@RequestBody MemberLoginLogReqDTO memberLoginLogReqDTO);
 }
