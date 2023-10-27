@@ -22,9 +22,9 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Entity
-@Table(name = "ms_log")
+@Table(name = "ms_info_log")
 @DynamicInsert
-public class LogDO extends BaseCommonDO implements Serializable {
+public class InfoLogDO extends BaseCommonDO implements Serializable {
     @Serial
     private static final long serialVersionUID = 5605276090951019486L;
 

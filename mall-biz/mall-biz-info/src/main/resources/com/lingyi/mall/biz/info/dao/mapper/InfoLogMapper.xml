@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lingyi.mall.biz.info.dao.mapper.LogMapper">
-    <resultMap id="BaseResultMap" type="com.lingyi.mall.biz.info.model.vo.LogVO">
+<mapper namespace="com.lingyi.mall.biz.info.dao.mapper.InfoLogMapper">
+    <resultMap id="BaseResultMap" type="com.lingyi.mall.biz.info.model.vo.InfoLogVO">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="service_name" jdbcType="VARCHAR" property="serviceName"/>
         <result column="business_name" jdbcType="VARCHAR" property="businessName"/>
@@ -42,7 +42,7 @@
             AND phone_number =#{phoneNumber,jdbcType=VARCHAR}
         </if>
     </sql>
-    <select id="selectById" resultType="com.lingyi.mall.biz.info.model.vo.LogVO">
+    <select id="selectById" resultType="com.lingyi.mall.biz.info.model.vo.InfoLogVO">
         SELECT
         <include refid="Base_Column_List"/>
         FROM ms_log

@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.info.dao.repositroy;
 
-import com.lingyi.mall.biz.info.model.entity.LogDO;
+import com.lingyi.mall.biz.info.model.entity.InfoLogDO;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
  * @description
  */
 @Repository
-public interface LogRepository extends JpaRepositoryImplementation<LogDO, Long> {
+public interface InfoLogRepository extends JpaRepositoryImplementation<InfoLogDO, Long> {
 }

@@ -16,7 +16,7 @@ import java.io.Serial;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class LogDTO extends BaseIdDTO<Long> {
+public class InfoLogDTO extends BaseIdDTO<Long> {
 
     @Serial
     private static final long serialVersionUID = -8254294466774665611L;

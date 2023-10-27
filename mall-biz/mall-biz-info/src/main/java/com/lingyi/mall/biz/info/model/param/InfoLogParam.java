@@ -15,7 +15,7 @@ import lombok.ToString;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class LogParam extends BasePageParam {
+public class InfoLogParam extends BasePageParam {
 
     @Schema(description = "服务名称")
     private String serviceName;

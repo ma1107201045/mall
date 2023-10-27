@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Schema(description = "日志")
-public class LogVO extends BaseIdVO<Long> {
+public class InfoLogVO extends BaseIdVO<Long> {
     @Serial
     private static final long serialVersionUID = 4041786744709139228L;
 

@@ -6,9 +6,9 @@ import com.lingyi.mall.api.info.dto.InfoCaptchaVerifyReqDTO;
 import com.lingyi.mall.api.info.dto.InfoReqDTO;
 import com.lingyi.mall.biz.info.converter.CaptchaConverter;
 import com.lingyi.mall.biz.info.enums.SmsFailEnum;
-import com.lingyi.mall.biz.info.model.entity.LogDO;
+import com.lingyi.mall.biz.info.model.entity.InfoLogDO;
 import com.lingyi.mall.biz.info.service.InfoService;
-import com.lingyi.mall.biz.info.service.LogService;
+import com.lingyi.mall.biz.info.service.InfoLogService;
 import com.lingyi.mall.biz.info.util.InfoRedisKeyUtil;
 import com.lingyi.mall.common.core.annotation.RedisLock;
 import com.lingyi.mall.common.core.util.AssertUtil;
@@ -37,7 +37,7 @@ import java.util.concurrent.TimeUnit;
 @RequiredArgsConstructor
 public class InfoServiceImpl implements InfoService {
 
-    private final LogService logService;
+    private final InfoLogService infoLogService;
 
     private final RedisUtil redisUtil;
 
@@ -138,6 +138,6 @@ public class InfoServiceImpl implements InfoService {
         //转换成验证码日志信息
         var captchaLogDTO = CaptchaConverter.INSTANCE.to(infoReqDTO);
         //保存短信日志
-        logService.create(captchaLogDTO, LogDO.class);
+        infoLogService.create(captchaLogDTO, InfoLogDO.class);
     }
 }
