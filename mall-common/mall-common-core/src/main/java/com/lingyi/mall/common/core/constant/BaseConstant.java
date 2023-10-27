@@ -19,7 +19,7 @@ public final class BaseConstant {
     public static final String QUESTION_CHAR_REGEX = "\\?";
     public static final String POINT_CHAR = ".";
     public static final String QUESTION_CHAR = "?";
-    public static final String EQUAL_SIGN_CHAR = "=";
+    public static final String EQUAL_CHAR = "=";
     public static final String SEMICOLON_CHAR = ";";
     public static final String SPACE_CHAR = " ";
     public static final String EMPTY_CHAR = "";

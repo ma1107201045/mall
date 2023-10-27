@@ -40,16 +40,16 @@ public class OpenFeignConfig {
             if (Objects.isNull(request)) {
                 return;
             }
-            //解决记住密码bug（Authentication是null或者其他排除 REMEMBER_ME_COOKIE_NAME，Authentication是RememberMeAuthenticationToken带REMEMBER_ME_COOKIE_NAME）
             var cookies = request.getCookies();
             if (ArrayUtil.isEmpty(cookies)) {
                 return;
             }
             //获取授权者类型
             var authentication = SecurityContextHolder.getContext().getAuthentication();
+            //解决记住密码bug（Authentication是null或者其他排除 REMEMBER_ME_COOKIE_NAME，Authentication是RememberMeAuthenticationToken带REMEMBER_ME_COOKIE_NAME）
             var cookieList = Arrays.stream(cookies)
                     .filter(cookie -> !cookie.getName().equals(SecurityConstant.REMEMBER_ME_COOKIE_NAME) || authentication instanceof RememberMeAuthenticationToken)
-                    .map(cookie -> cookie.getName() + BaseConstant.EQUAL_SIGN_CHAR + cookie.getValue())
+                    .map(cookie -> cookie.getName() + BaseConstant.EQUAL_CHAR + cookie.getValue())
                     .toList();
             // 将cookie同步到新的请求的请求头中
             requestTemplate.header(SecurityConstant.COOKIE, CollUtil.join(cookieList, BaseConstant.SEMICOLON_CHAR));
