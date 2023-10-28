@@ -67,7 +67,8 @@ public class UserDO extends BaseCommonDO implements Serializable {
     /**
      * 角色集
      */
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
+    @ToString.Exclude
     private List<RoleDO> roles;
 
 }

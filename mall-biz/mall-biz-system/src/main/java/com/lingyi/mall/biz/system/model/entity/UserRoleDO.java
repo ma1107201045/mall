@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -27,14 +29,16 @@ public class UserRoleDO extends BaseCommonDO implements Serializable {
     @Serial
     private static final long serialVersionUID = 506747689975729762L;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(cascade = {CascadeType.REMOVE}, optional = false)
     @JoinColumn(name = "user_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '用户id'")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private UserDO userDO;
     /**
      * 角色id
      */
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(cascade = {CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "role_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '角色id'")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private RoleDO roleDO;
 
 }

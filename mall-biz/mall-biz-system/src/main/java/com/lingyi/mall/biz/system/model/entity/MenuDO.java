@@ -63,11 +63,7 @@ public class MenuDO extends BaseCommonDO implements Serializable {
     /**
      * 角色集
      */
+    @ManyToMany(fetch = FetchType.LAZY)
     @ToString.Exclude
-    @ManyToMany
-    @JoinTable(name = "ms_role_menu",
-            joinColumns = @JoinColumn(name = "menu_id"), inverseJoinColumns = @JoinColumn(name = "role_id"),
-            foreignKey = @ForeignKey(name = "fk_menu_id"), inverseForeignKey = @ForeignKey(name = "fk_role_id2"),
-            uniqueConstraints = {@UniqueConstraint(name = "fk_menu_id", columnNames = "menu_id"), @UniqueConstraint(name = "fk_role_id2", columnNames = "role_id")})
     private List<RoleDO> roles;
 }

@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -32,14 +34,14 @@ public class RoleMenuDO extends BaseCommonDO implements Serializable {
      */
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "role_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '角色id'")
-    @ToString.Exclude
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private RoleDO roleDO;
     /**
      * 菜单id
      */
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "menu_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '菜单id'")
-    @ToString.Exclude
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private MenuDO menuDO;
 
 }

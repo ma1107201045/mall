@@ -43,18 +43,15 @@ public class RoleDO extends BaseCommonDO implements Serializable {
     /**
      * 用户集
      */
+    @ManyToMany(fetch = FetchType.LAZY)
     @ToString.Exclude
-    @ManyToMany
-    @JoinTable(name = "ms_user_role",
-            joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "user_id"),
-            foreignKey = @ForeignKey(name = "fk_role_id"), inverseForeignKey = @ForeignKey(name = "fk_user_id"),
-            indexes = {@Index(name = "fk_role_id", columnList = "role_id"), @Index(name = "fk_user_id", columnList = "user_id")})
     private List<UserDO> users;
 
     /**
      * 菜单集
      */
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    @ToString.Exclude
     private List<MenuDO> menus;
 
 }
