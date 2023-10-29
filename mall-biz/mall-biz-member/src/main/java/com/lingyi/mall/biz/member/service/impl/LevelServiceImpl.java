@@ -26,9 +26,9 @@ public class LevelServiceImpl extends BaseServiceProImpl<LevelRepository, LevelM
 
     @Override
     public Long queryDefaultLevelId() {
-        var memberLevelDO = new LevelDO();
-        memberLevelDO.setIsDefaultLevel(WhetherEnum.Y.getCode());
-        var optional = jpaRepository.findOne(Example.of(memberLevelDO));
+        var levelDO = new LevelDO();
+        levelDO.setIsDefaultLevel(WhetherEnum.Y.getCode());
+        var optional = jpaRepository.findOne(Example.of(levelDO));
         return optional.isPresent() ? optional.get().getId() : ObjectUtil.getNull();
     }
 }

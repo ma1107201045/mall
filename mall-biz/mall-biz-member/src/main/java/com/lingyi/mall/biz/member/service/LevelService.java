@@ -17,6 +17,8 @@ public interface LevelService extends BaseServicePro<LevelDTO, LevelVO, LevelPar
 
     /**
      * 读取默认会员等级id
+     *
+     * @return id
      */
     Long queryDefaultLevelId();
 }
