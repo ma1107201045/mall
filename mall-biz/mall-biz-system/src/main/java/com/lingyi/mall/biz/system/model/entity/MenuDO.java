@@ -63,7 +63,7 @@ public class MenuDO extends BaseCommonDO implements Serializable {
     /**
      * 角色集
      */
-    @ManyToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
     @ToString.Exclude
-    private List<RoleDO> roles;
+    private List<RoleMenuDO> roles;
 }

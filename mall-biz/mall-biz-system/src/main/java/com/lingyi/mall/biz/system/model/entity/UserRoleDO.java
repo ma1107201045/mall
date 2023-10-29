@@ -32,13 +32,13 @@ public class UserRoleDO extends BaseCommonDO implements Serializable {
     @ManyToOne(cascade = {CascadeType.REMOVE}, optional = false)
     @JoinColumn(name = "user_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '用户id'")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private UserDO userDO;
+    private UserDO user;
     /**
      * 角色id
      */
     @ManyToOne(cascade = {CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "role_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '角色id'")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private RoleDO roleDO;
+    private RoleDO role;
 
 }

@@ -43,15 +43,15 @@ public class RoleDO extends BaseCommonDO implements Serializable {
     /**
      * 用户集
      */
-    @ManyToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
     @ToString.Exclude
-    private List<UserDO> users;
+    private List<UserRoleDO> userRoles;
 
     /**
      * 菜单集
      */
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
     @ToString.Exclude
-    private List<MenuDO> menus;
+    private List<RoleMenuDO> roleMenus;
 
 }

@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -38,6 +40,7 @@ public class SpuDO extends BaseCommonDO implements Serializable {
 
     @ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "brand_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '品牌id'", foreignKey = @ForeignKey(name = "mp_spu_fk_brand_id"))
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private BrandDO brandDO;
 
     @ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY, optional = false)

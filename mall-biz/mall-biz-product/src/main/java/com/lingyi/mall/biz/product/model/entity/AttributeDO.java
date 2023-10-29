@@ -10,6 +10,7 @@ import org.hibernate.annotations.DynamicInsert;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
+
 /**
  * @Author: maweiyan
  * @Email: 1107201045@qq.com
@@ -40,13 +41,15 @@ public class AttributeDO extends BaseCommonDO implements Serializable {
     private String name;
 
     /**
+     * 属性值
+     */
+    @OneToMany(mappedBy = "attribute", fetch = FetchType.LAZY)
+    private List<AttributeValueDO> attributeValues;
+
+    /**
      * 分类集
      */
+    @OneToMany(mappedBy = "attribute", fetch = FetchType.LAZY)
     @ToString.Exclude
-    @ManyToMany
-    @JoinTable(name = "mp_category_attribute",
-            joinColumns = @JoinColumn(name = "attribute_id"), inverseJoinColumns = @JoinColumn(name = "category_id"),
-            foreignKey = @ForeignKey(name = "fk_attribute_id"), inverseForeignKey = @ForeignKey(name = "fk_category_id"),
-            indexes = {@Index(name = "fk_attribute_id", columnList = "attribute_id"), @Index(name = "fk_category_id", columnList = "category_id")})
-    private List<CategoryDO> categories;
+    private List<CategoryAttributeDO> categoryAttributes;
 }

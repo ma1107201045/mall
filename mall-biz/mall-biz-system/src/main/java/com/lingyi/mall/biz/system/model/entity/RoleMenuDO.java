@@ -35,13 +35,13 @@ public class RoleMenuDO extends BaseCommonDO implements Serializable {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "role_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '角色id'")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private RoleDO roleDO;
+    private RoleDO role;
     /**
      * 菜单id
      */
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "menu_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '菜单id'")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private MenuDO menuDO;
+    private MenuDO menu;
 
 }

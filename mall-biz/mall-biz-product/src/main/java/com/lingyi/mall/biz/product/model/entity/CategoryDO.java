@@ -1,10 +1,7 @@
 package com.lingyi.mall.biz.product.model.entity;
 
 import com.lingyi.mall.common.orm.entity.BaseCommonDO;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -69,6 +66,6 @@ public class CategoryDO extends BaseCommonDO implements Serializable {
     /**
      * 屬性集
      */
-    @ManyToMany(mappedBy = "categories")
-    private List<AttributeDO> attributes;
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+    private List<CategoryAttributeDO> categoryAttributes;
 }

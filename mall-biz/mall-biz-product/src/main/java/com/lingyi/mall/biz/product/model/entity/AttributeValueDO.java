@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -36,10 +38,12 @@ public class AttributeValueDO extends BaseCommonDO implements Serializable {
     @Column(name = "shop_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '商铺id'")
     private Long shopId;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "attribute_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '属性id'", foreignKey = @ForeignKey(name = "mp_attribute_value_fk_attribute_id"))
-    private AttributeDO attributeDO;
-
     @Column(name = "name", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '属性值名称'")
     private String name;
+
+    @ManyToOne(cascade = {CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "attribute_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '属性id'",
+            foreignKey = @ForeignKey(name = "mp_attribute_value_fk_attribute_id"))
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private AttributeDO attribute;
 }
