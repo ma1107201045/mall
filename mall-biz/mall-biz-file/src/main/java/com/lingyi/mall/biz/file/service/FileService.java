@@ -18,8 +18,9 @@ public interface FileService {
     /**
      * 上传并且获取url
      *
-     * @param name 名称
-     * @param is   输入流
+     * @param directoryName 文件夹名字
+     * @param name          名称
+     * @param is            输入流
      * @return url
      */
     FileVO upload(String directoryName, String name, InputStream is);
