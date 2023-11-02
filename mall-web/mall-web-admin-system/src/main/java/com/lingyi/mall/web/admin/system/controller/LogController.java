@@ -34,7 +34,7 @@ public class LogController {
     @Operation(summary = "删除/批量删除", description = "删除/批量删除")
     @DeleteMapping("/{ids}")
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:logs:delete')")
-    public ServerResponse<LogDO> deleteByIds(@PathVariable List<Long> ids) {
+    public ServerResponse<Void> deleteByIds(@PathVariable List<Long> ids) {
         logService.deleteByIds(ids);
         return ServerResponse.success();
     }
