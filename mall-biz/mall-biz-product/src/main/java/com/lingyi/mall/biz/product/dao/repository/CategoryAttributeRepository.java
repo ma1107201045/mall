@@ -18,6 +18,6 @@ import java.util.List;
 public interface CategoryAttributeRepository extends JpaRepositoryImplementation<CategoryAttributeDO, Long> {
 
     @Modifying
-    @Query("DELETE FROM CategoryAttributeDO WHERE categoryDO.id in ?1")
+    @Query("DELETE FROM CategoryAttributeDO WHERE category.id in ?1")
     void deleteByCategoryIds(List<Long> categoryIds);
 }

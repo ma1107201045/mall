@@ -40,7 +40,7 @@ public class MemberLoginLogDO extends BaseIdDO<Long> implements Serializable {
     @Column(name = "city", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '登录城市'")
     private String city;
 
-    @Column(name = "source", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '登录来源 1.Web端 2.Android端 3.IOS端 4.PC端")
+    @Column(name = "source", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '登录来源 1.Web端 2.Android端 3.IOS端 4.PC端'")
     private Integer source;
 
     @Column(name = "create_data_time", columnDefinition = "DATETIME NOT NULL COMMENT '创建时间'")

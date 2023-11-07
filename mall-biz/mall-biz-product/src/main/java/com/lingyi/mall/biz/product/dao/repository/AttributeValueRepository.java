@@ -23,7 +23,7 @@ public interface AttributeValueRepository extends JpaRepositoryImplementation<At
      * @param attributeIds 属性id
      */
     @Modifying
-    @Query("DELETE FROM AttributeValueDO WHERE attributeDO.id in ?1")
+    @Query("DELETE FROM AttributeValueDO WHERE attribute.id in ?1")
     void deleteByAttributeIds(List<Long> attributeIds);
 
 }

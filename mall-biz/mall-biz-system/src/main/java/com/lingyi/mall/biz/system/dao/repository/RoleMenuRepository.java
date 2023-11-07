@@ -23,6 +23,6 @@ public interface RoleMenuRepository extends JpaRepositoryImplementation<RoleMenu
      * @param roleIds 角色id集
      */
     @Modifying
-    @Query("DELETE FROM RoleMenuDO WHERE roleDO.id in ?1")
+    @Query("DELETE FROM RoleMenuDO WHERE role.id in ?1")
     void deleteByRoleIds(List<Long> roleIds);
 }
