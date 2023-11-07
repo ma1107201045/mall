@@ -26,8 +26,8 @@ public final class RoleMenuConverter {
         MenuDO menuDO = new MenuDO();
         menuDO.setId(menuId);
         RoleMenuDO roleMenuDO = new RoleMenuDO();
-        roleMenuDO.setRoleDO(roleDO);
-        roleMenuDO.setMenuDO(menuDO);
+        roleMenuDO.setRole(roleDO);
+        roleMenuDO.setMenu(menuDO);
         return roleMenuDO;
     }
 

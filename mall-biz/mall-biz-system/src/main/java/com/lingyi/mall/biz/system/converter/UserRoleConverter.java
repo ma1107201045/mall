@@ -27,8 +27,8 @@ public final class UserRoleConverter {
         RoleDO roleDO = new RoleDO();
         roleDO.setId(roleId);
         UserRoleDO userRoleDO = new UserRoleDO();
-        userRoleDO.setUserDO(userDO);
-        userRoleDO.setRoleDO(roleDO);
+        userRoleDO.setUser(userDO);
+        userRoleDO.setRole(roleDO);
         return userRoleDO;
     }
 

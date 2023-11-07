@@ -23,7 +23,7 @@ public final class AttributeValueConverter {
         var attributeDO = new AttributeDO();
         attributeDO.setId(attributeId);
         var attributeValueDO = new AttributeValueDO();
-        attributeValueDO.setAttributeDO(attributeDO);
+        attributeValueDO.setAttribute(attributeDO);
         attributeValueDO.setName(name);
         return attributeValueDO;
     }

@@ -28,8 +28,8 @@ public final class CategoryAttributeConverter {
         attributeDO.setId(attributeId);
 
         CategoryAttributeDO categoryAttributeDO = new CategoryAttributeDO();
-        categoryAttributeDO.setCategoryDO(categoryDO);
-        categoryAttributeDO.setAttributeDO(attributeDO);
+        categoryAttributeDO.setCategory(categoryDO);
+        categoryAttributeDO.setAttribute(attributeDO);
         return categoryAttributeDO;
     }
 
