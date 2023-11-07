@@ -47,7 +47,7 @@ public class MemberController {
     @Log(title = "查询会员列表", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<MemberVO>> getList(@Valid MemberParam memberParam) {
         var page = PageHelper.startPage(memberParam.getCurrentPage(), memberParam.getPageSize(), memberParam.getSort());
-        List<MemberVO> members = memberService.readListByParam(memberParam);
+        var members = memberService.readListByParam(memberParam);
         return ServerResponse.success(members, page.getTotal());
     }
 }
