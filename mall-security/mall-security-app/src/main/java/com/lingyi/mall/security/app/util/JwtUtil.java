@@ -53,7 +53,7 @@ public class JwtUtil {
     }
 
     public static JWTPayload getJwtPayload(String token) {
-        return JWTUtil.parseToken(token).getPayload();
+        return parseToken(token).getPayload();
     }
 
     public static JWTSigner getSigner(String token) {
