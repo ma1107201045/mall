@@ -34,7 +34,7 @@ public class MemberController {
     @Operation(summary = "更新状态", description = "更新状态")
     @PatchMapping("/{id}")
     @PreAuthorize("@ps.hasAnyAuthority('admin:member:members:updateIsEnable')")
-    @Log(title = "更新会员", operationType = OperationTypeEnum.UPDATE)
+    @Log(title = "更新状态", operationType = OperationTypeEnum.UPDATE)
     public ServerResponse<Void> updateIsEnableById(@PathVariable Long id, @Valid @RequestBody MemberPartDTO memberPartDTO) {
         memberPartDTO.setId(id);
         memberService.updateIsEnableById(memberPartDTO);
