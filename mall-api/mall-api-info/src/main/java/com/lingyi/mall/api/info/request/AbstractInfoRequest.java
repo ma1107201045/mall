@@ -1,4 +1,4 @@
-package com.lingyi.mall.api.info.dto;
+package com.lingyi.mall.api.info.request;
 
 import lombok.Data;
 
@@ -9,7 +9,7 @@ import lombok.Data;
  * @Description:
  */
 @Data
-public abstract class AbstractInfoReqDTO {
+public abstract class AbstractInfoRequest {
 
     /**
      * 服务类型

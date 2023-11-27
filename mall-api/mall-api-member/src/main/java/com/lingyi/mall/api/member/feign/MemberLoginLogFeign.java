@@ -1,6 +1,6 @@
 package com.lingyi.mall.api.member.feign;
 
-import com.lingyi.mall.api.member.dto.MemberLoginLogReqDTO;
+import com.lingyi.mall.api.member.reqeust.MemberLoginLogRequest;
 import com.lingyi.mall.api.member.fallbackfactory.MemberLoginLogFeignFallbackFactory;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -23,5 +23,5 @@ public interface MemberLoginLogFeign {
      * @return 会员信息
      */
     @PostMapping(URL_PREFIX)
-    ServerResponse<Void> save(@RequestBody MemberLoginLogReqDTO memberLoginLogReqDTO);
+    ServerResponse<Void> save(@RequestBody MemberLoginLogRequest memberLoginLogRequest);
 }

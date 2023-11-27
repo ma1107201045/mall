@@ -1,8 +1,8 @@
 package com.lingyi.mall.biz.info.service;
 
-import com.lingyi.mall.api.info.dto.InfoCaptchaSendReqDTO;
-import com.lingyi.mall.api.info.dto.InfoCaptchaVerifyReqDTO;
-import com.lingyi.mall.api.info.dto.InfoReqDTO;
+import com.lingyi.mall.api.info.request.InfoCaptchaSendRequest;
+import com.lingyi.mall.api.info.request.InfoCaptchaVerifyRequest;
+import com.lingyi.mall.api.info.request.InfoRequest;
 
 /**
  * @author maweiyan
@@ -17,14 +17,14 @@ public interface InfoService {
      *
      * @param smsReqDTO 。。
      */
-    void send(InfoReqDTO smsReqDTO);
+    void send(InfoRequest smsReqDTO);
 
     /**
      * 发送验证码
      *
      * @param smsCaptchaSendReqDTO ，，
      */
-    void sendCaptcha(InfoCaptchaSendReqDTO smsCaptchaSendReqDTO);
+    void sendCaptcha(InfoCaptchaSendRequest smsCaptchaSendReqDTO);
 
 
     /**
@@ -32,7 +32,7 @@ public interface InfoService {
      *
      * @param smsCaptchaVerifyReqDTO 。。
      */
-    void verifyCaptcha(InfoCaptchaVerifyReqDTO smsCaptchaVerifyReqDTO);
+    void verifyCaptcha(InfoCaptchaVerifyRequest smsCaptchaVerifyReqDTO);
 
 
 }

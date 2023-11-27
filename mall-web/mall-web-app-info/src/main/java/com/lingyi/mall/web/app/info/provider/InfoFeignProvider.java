@@ -1,8 +1,8 @@
 package com.lingyi.mall.web.app.info.provider;
 
-import com.lingyi.mall.api.info.dto.InfoCaptchaSendReqDTO;
-import com.lingyi.mall.api.info.dto.InfoCaptchaVerifyReqDTO;
-import com.lingyi.mall.api.info.dto.InfoReqDTO;
+import com.lingyi.mall.api.info.request.InfoCaptchaSendRequest;
+import com.lingyi.mall.api.info.request.InfoCaptchaVerifyRequest;
+import com.lingyi.mall.api.info.request.InfoRequest;
 import com.lingyi.mall.api.info.feign.InfoFeign;
 import com.lingyi.mall.biz.info.service.InfoService;
 import com.lingyi.mall.common.core.util.ServerResponse;
@@ -27,21 +27,21 @@ public class InfoFeignProvider implements InfoFeign {
 
     @Operation(summary = "发送", description = "发送")
     @Override
-    public ServerResponse<Void> send(InfoReqDTO smsReqDTO) {
+    public ServerResponse<Void> send(InfoRequest smsReqDTO) {
         infoService.send(smsReqDTO);
         return ServerResponse.success();
     }
 
     @Operation(summary = "发送验证码", description = "发送验证码")
     @Override
-    public ServerResponse<Void> sendCaptcha(InfoCaptchaSendReqDTO captchaReqDTO) {
+    public ServerResponse<Void> sendCaptcha(InfoCaptchaSendRequest captchaReqDTO) {
         infoService.sendCaptcha(captchaReqDTO);
         return ServerResponse.success();
     }
 
     @Operation(summary = "校验验证码", description = "校验验证码")
     @Override
-    public ServerResponse<Void> verifyCaptcha(InfoCaptchaVerifyReqDTO captchaVerifyDTO) {
+    public ServerResponse<Void> verifyCaptcha(InfoCaptchaVerifyRequest captchaVerifyDTO) {
         infoService.verifyCaptcha(captchaVerifyDTO);
         return ServerResponse.success();
     }

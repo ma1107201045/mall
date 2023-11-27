@@ -1,9 +1,9 @@
 package com.lingyi.mall.api.info.consumer;
 
 import com.alibaba.fastjson2.JSON;
-import com.lingyi.mall.api.info.dto.InfoCaptchaSendReqDTO;
-import com.lingyi.mall.api.info.dto.InfoCaptchaVerifyReqDTO;
-import com.lingyi.mall.api.info.dto.InfoReqDTO;
+import com.lingyi.mall.api.info.request.InfoCaptchaSendRequest;
+import com.lingyi.mall.api.info.request.InfoCaptchaVerifyRequest;
+import com.lingyi.mall.api.info.request.InfoRequest;
 import com.lingyi.mall.api.info.feign.InfoFeign;
 import com.lingyi.mall.common.core.exception.OpenFeignException;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ public class SmsFeignConsumer {
 
     private final InfoFeign infoFeign;
 
-    public void send(InfoReqDTO smsReqDTO) {
+    public void send(InfoRequest smsReqDTO) {
         log.info("入参:smsReqDTO:{}", smsReqDTO);
         var response = infoFeign.send(smsReqDTO);
         if (response.getIsSuccess()) {
@@ -33,7 +33,7 @@ public class SmsFeignConsumer {
         throw new OpenFeignException(response.getCode(), response.getMessage());
     }
 
-    public void sendCaptcha(InfoCaptchaSendReqDTO infoCaptchaSendReqDTO) {
+    public void sendCaptcha(InfoCaptchaSendRequest infoCaptchaSendReqDTO) {
         log.info("入参:infoCaptchaSendReqDTO:{}", infoCaptchaSendReqDTO);
         var response = infoFeign.sendCaptcha(infoCaptchaSendReqDTO);
         if (response.getIsSuccess()) {
@@ -43,7 +43,7 @@ public class SmsFeignConsumer {
         throw new OpenFeignException(response.getCode(), response.getMessage());
     }
 
-    public void verifyCaptcha(InfoCaptchaVerifyReqDTO infoCaptchaVerifyReqDTO) {
+    public void verifyCaptcha(InfoCaptchaVerifyRequest infoCaptchaVerifyReqDTO) {
         log.info("入参:infoCaptchaVerifyReqDTO:{}", infoCaptchaVerifyReqDTO);
         var response = infoFeign.verifyCaptcha(infoCaptchaVerifyReqDTO);
         if (response.getIsSuccess()) {

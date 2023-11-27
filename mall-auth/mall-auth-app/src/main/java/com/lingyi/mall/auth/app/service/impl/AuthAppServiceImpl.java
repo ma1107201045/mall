@@ -6,7 +6,7 @@ import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
 import com.lingyi.mall.api.member.consumer.LevelFeignConsumer;
 import com.lingyi.mall.api.member.consumer.MemberLoginLogFeignConsumer;
-import com.lingyi.mall.api.member.dto.MemberRespDTO;
+import com.lingyi.mall.api.member.response.MemberResponse;
 import com.lingyi.mall.api.info.consumer.SmsFeignConsumer;
 import com.lingyi.mall.auth.app.converter.AuthAppConverter;
 import com.lingyi.mall.auth.app.model.dto.AuthAppLoginDTO;
@@ -77,7 +77,7 @@ public class AuthAppServiceImpl implements AuthAppService {
             Long id = memberFeignConsumer.register(memberReqDTO);
 
             //转换数据
-            memberRespDTO = ConverterUtil.to(memberReqDTO, MemberRespDTO.class);
+            memberRespDTO = ConverterUtil.to(memberReqDTO, MemberResponse.class);
             memberRespDTO.setId(id);
         }
 

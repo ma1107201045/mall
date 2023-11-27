@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.info.converter;
 
-import com.lingyi.mall.api.info.dto.InfoReqDTO;
+import com.lingyi.mall.api.info.request.InfoRequest;
 import com.lingyi.mall.api.info.enums.InfoBusinessEnum;
 import com.lingyi.mall.api.info.enums.InfoServiceEnum;
 import com.lingyi.mall.biz.info.model.dto.InfoLogDTO;
@@ -20,7 +20,7 @@ public final class CaptchaConverter {
 
     }
 
-    public InfoLogDTO to(InfoReqDTO infoReqDTO) {
+    public InfoLogDTO to(InfoRequest infoReqDTO) {
         var captchaLogDTO = ConverterUtil.to(infoReqDTO, InfoLogDTO.class);
         captchaLogDTO.setServiceName(InfoServiceEnum.getMessageByCode(infoReqDTO.getServiceType()));
         captchaLogDTO.setBusinessName(InfoBusinessEnum.getMessageByCode(infoReqDTO.getBusinessType()));

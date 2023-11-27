@@ -1,10 +1,9 @@
-package com.lingyi.mall.api.system.dto;
+package com.lingyi.mall.api.system.request;
 
 import com.lingyi.mall.common.core.dto.BaseIdDTO;
 import lombok.*;
 
 import java.io.Serial;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -20,7 +19,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LogReqDTO extends BaseIdDTO<Long> {
+public class LogRequest extends BaseIdDTO<Long> {
 
 
     @Serial

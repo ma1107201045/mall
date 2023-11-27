@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.member.service.impl;
 
-import com.lingyi.mall.api.member.dto.MemberReqDTO;
-import com.lingyi.mall.api.member.dto.MemberRespDTO;
+import com.lingyi.mall.api.member.reqeust.MemberRequest;
+import com.lingyi.mall.api.member.response.MemberResponse;
 import com.lingyi.mall.biz.member.converter.MemberConverter;
 import com.lingyi.mall.biz.member.model.dto.MemberDTO;
 import com.lingyi.mall.biz.member.model.dto.MemberPartDTO;
@@ -31,14 +31,14 @@ public class MemberServiceImpl extends BaseServiceProImpl<MemberRepository, Memb
     }
 
     @Override
-    public Long register(MemberReqDTO memberReqDTO) {
-        var memberDO = MemberConverter.INSTANCE.of(memberReqDTO);
+    public Long register(MemberRequest memberRequest) {
+        var memberDO = MemberConverter.INSTANCE.of(memberRequest);
         create(memberDO);
         return memberDO.getId();
     }
 
     @Override
-    public MemberRespDTO readByPhoneNumber(String phoneNumber) {
+    public MemberResponse readByPhoneNumber(String phoneNumber) {
         return mybatisMapper.selectByPhoneNumber(phoneNumber);
     }
 

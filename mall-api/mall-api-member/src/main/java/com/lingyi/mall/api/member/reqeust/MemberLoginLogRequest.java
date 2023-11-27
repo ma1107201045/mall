@@ -1,4 +1,4 @@
-package com.lingyi.mall.api.member.dto;
+package com.lingyi.mall.api.member.reqeust;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  */
 @Data
 @Schema(description = "会员登录日志")
-public class MemberLoginLogReqDTO {
+public class MemberLoginLogRequest {
 
     @Schema(requiredMode = Schema.RequiredMode.REQUIRED, description = "会员用户id")
     private Long memberId;

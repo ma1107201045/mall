@@ -2,11 +2,11 @@ package com.lingyi.mall.auth.app.converter;
 
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
-import com.lingyi.mall.api.member.dto.MemberLoginLogReqDTO;
-import com.lingyi.mall.api.member.dto.MemberReqDTO;
-import com.lingyi.mall.api.member.dto.MemberRespDTO;
-import com.lingyi.mall.api.info.dto.InfoCaptchaSendReqDTO;
-import com.lingyi.mall.api.info.dto.InfoCaptchaVerifyReqDTO;
+import com.lingyi.mall.api.member.reqeust.MemberLoginLogRequest;
+import com.lingyi.mall.api.member.reqeust.MemberRequest;
+import com.lingyi.mall.api.member.response.MemberResponse;
+import com.lingyi.mall.api.info.request.InfoCaptchaSendRequest;
+import com.lingyi.mall.api.info.request.InfoCaptchaVerifyRequest;
 import com.lingyi.mall.api.info.enums.InfoBusinessEnum;
 import com.lingyi.mall.api.info.enums.InfoServiceEnum;
 import com.lingyi.mall.auth.app.model.dto.AuthAppLoginDTO;
@@ -32,8 +32,8 @@ public class AuthAppConverter {
 
     }
 
-    public InfoCaptchaSendReqDTO to(String number, InfoCaptchaProperties properties) {
-        var captchaSendReqDTO = new InfoCaptchaSendReqDTO();
+    public InfoCaptchaSendRequest to(String number, InfoCaptchaProperties properties) {
+        var captchaSendReqDTO = new InfoCaptchaSendRequest();
         captchaSendReqDTO.setServiceType(properties.getService().getCode());
         captchaSendReqDTO.setBusinessType(properties.getBusiness().getCode());
         captchaSendReqDTO.setType(properties.getType().getCode());
@@ -47,9 +47,9 @@ public class AuthAppConverter {
         return captchaSendReqDTO;
     }
 
-    public InfoCaptchaVerifyReqDTO to(AuthAppLoginDTO authAppLoginDTO, InfoCaptchaProperties properties) {
+    public InfoCaptchaVerifyRequest to(AuthAppLoginDTO authAppLoginDTO, InfoCaptchaProperties properties) {
         var phoneNumber = authAppLoginDTO.getPhoneNumber();
-        InfoCaptchaVerifyReqDTO captchaVerifyReqDTO = new InfoCaptchaVerifyReqDTO();
+        InfoCaptchaVerifyRequest captchaVerifyReqDTO = new InfoCaptchaVerifyRequest();
         captchaVerifyReqDTO.setNumber(phoneNumber);
         captchaVerifyReqDTO.setServiceType(properties.getService().getCode());
         captchaVerifyReqDTO.setBusinessType(properties.getBusiness().getCode());
@@ -57,8 +57,8 @@ public class AuthAppConverter {
         return captchaVerifyReqDTO;
     }
 
-    public MemberReqDTO to(AuthAppLoginDTO authAppLoginDTO, Long memberLevelId) {
-        var memberReqDTO = new MemberReqDTO();
+    public MemberRequest to(AuthAppLoginDTO authAppLoginDTO, Long memberLevelId) {
+        var memberReqDTO = new MemberRequest();
         memberReqDTO.setMemberLevelId(memberLevelId);
         memberReqDTO.setNickname(UserNameUtil.getRightFourBit(authAppLoginDTO.getPhoneNumber()));
         memberReqDTO.setPhoneNumber(authAppLoginDTO.getPhoneNumber());
@@ -68,10 +68,10 @@ public class AuthAppConverter {
         return memberReqDTO;
     }
 
-    public MemberLoginLogReqDTO to(MemberRespDTO memberRespDTO) {
-        var memberLoginLogReqDTO = new MemberLoginLogReqDTO();
-        memberLoginLogReqDTO.setMemberId(memberRespDTO.getId());
-        memberLoginLogReqDTO.setMemberUserName(memberRespDTO.getUserName());
+    public MemberLoginLogRequest to(MemberResponse memberResponse) {
+        var memberLoginLogReqDTO = new MemberLoginLogRequest();
+        memberLoginLogReqDTO.setMemberId(memberResponse.getId());
+        memberLoginLogReqDTO.setMemberUserName(memberResponse.getUserName());
         memberLoginLogReqDTO.setIp(StrUtil.EMPTY);
         memberLoginLogReqDTO.setCity(StrUtil.EMPTY);
         memberLoginLogReqDTO.setCreateDataTime(LocalDateTime.now());

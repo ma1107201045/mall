@@ -3,7 +3,6 @@ package com.lingyi.mall.security.app.filter;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
-import com.lingyi.mall.api.member.dto.MemberRespDTO;
 import com.lingyi.mall.security.app.constant.SecurityConstant;
 import com.lingyi.mall.security.app.util.JwtUtil;
 import jakarta.servlet.FilterChain;

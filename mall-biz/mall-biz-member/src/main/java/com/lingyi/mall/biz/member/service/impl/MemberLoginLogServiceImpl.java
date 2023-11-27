@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.member.service.impl;
 
-import com.lingyi.mall.api.member.dto.MemberLoginLogReqDTO;
+import com.lingyi.mall.api.member.reqeust.MemberLoginLogRequest;
 import com.lingyi.mall.biz.member.converter.MemberLoginConverter;
 import com.lingyi.mall.biz.member.model.dto.MemberLoginLogDTO;
 import com.lingyi.mall.biz.member.model.entity.MemberLoginLogDO;
@@ -23,8 +23,8 @@ public class MemberLoginLogServiceImpl extends BaseServiceProImpl<MemberLoginLog
         implements MemberLoginLogService {
 
     @Override
-    public void save(MemberLoginLogReqDTO memberLoginLogReqDTO) {
-        var memberLoginLogDO = MemberLoginConverter.INSTANCE.of(memberLoginLogReqDTO);
+    public void save(MemberLoginLogRequest memberLoginLogRequest) {
+        var memberLoginLogDO = MemberLoginConverter.INSTANCE.of(memberLoginLogRequest);
         create(memberLoginLogDO);
     }
 }

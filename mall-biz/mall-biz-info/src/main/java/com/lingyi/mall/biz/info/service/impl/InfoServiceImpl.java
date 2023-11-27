@@ -1,9 +1,9 @@
 package com.lingyi.mall.biz.info.service.impl;
 
 import cn.hutool.core.util.RandomUtil;
-import com.lingyi.mall.api.info.dto.InfoCaptchaSendReqDTO;
-import com.lingyi.mall.api.info.dto.InfoCaptchaVerifyReqDTO;
-import com.lingyi.mall.api.info.dto.InfoReqDTO;
+import com.lingyi.mall.api.info.request.InfoCaptchaSendRequest;
+import com.lingyi.mall.api.info.request.InfoCaptchaVerifyRequest;
+import com.lingyi.mall.api.info.request.InfoRequest;
 import com.lingyi.mall.biz.info.converter.CaptchaConverter;
 import com.lingyi.mall.biz.info.enums.SmsFailEnum;
 import com.lingyi.mall.biz.info.model.entity.InfoLogDO;
@@ -45,7 +45,7 @@ public class InfoServiceImpl implements InfoService {
 
     @Override
     @RedisLock(keySuffix = "#infoReqDTO.serviceType + ':' + #infoReqDTO.businessType + ':' +#infoReqDTO.type + ':' + #infoReqDTO.number")
-    public void send(InfoReqDTO infoReqDTO) {
+    public void send(InfoRequest infoReqDTO) {
         //校验数据
         verifyData(infoReqDTO);
         //操作redis
@@ -63,7 +63,7 @@ public class InfoServiceImpl implements InfoService {
 
     @Override
     @RedisLock(keySuffix = "#infoCaptchaSendReqDTO.serviceType + ':' + #infoCaptchaSendReqDTO.businessType + ':' +#infoCaptchaSendReqDTO.type + ':' + #infoCaptchaSendReqDTO.number")
-    public void sendCaptcha(InfoCaptchaSendReqDTO infoCaptchaSendReqDTO) {
+    public void sendCaptcha(InfoCaptchaSendRequest infoCaptchaSendReqDTO) {
         //校验数据
         verifyData(infoCaptchaSendReqDTO);
         //操作redis
@@ -85,7 +85,7 @@ public class InfoServiceImpl implements InfoService {
     }
 
     @Override
-    public void verifyCaptcha(InfoCaptchaVerifyReqDTO infoCaptchaVerifyReqDTO) {
+    public void verifyCaptcha(InfoCaptchaVerifyRequest infoCaptchaVerifyReqDTO) {
         var smsCaptchaKey = infoRedisKeyUtil.getCaptchaKey(infoCaptchaVerifyReqDTO);
         var sourceCaptcha = redisUtil.get(smsCaptchaKey, String.class);
         var targetCaptcha = infoCaptchaVerifyReqDTO.getCaptcha();
@@ -93,7 +93,7 @@ public class InfoServiceImpl implements InfoService {
         redisUtil.delete(smsCaptchaKey);
     }
 
-    private void verifyData(InfoReqDTO infoReqDTO) {
+    private void verifyData(InfoRequest infoReqDTO) {
         //校验发送上限
         var upperLimitKey = infoRedisKeyUtil.getUpperLimitKey(infoReqDTO);
         var upperLimitValue = redisUtil.get(upperLimitKey, Integer.class);
@@ -106,7 +106,7 @@ public class InfoServiceImpl implements InfoService {
         AssertUtil.isNull(intervalTimeValue, SmsFailEnum.SMS_INTERVAL_ERROR);
     }
 
-    private void setUpperLimitAndIntervalTime(RedisOperations<String, Object> operations, InfoReqDTO infoReqDTO) {
+    private void setUpperLimitAndIntervalTime(RedisOperations<String, Object> operations, InfoRequest infoReqDTO) {
         var upperLimitKey = infoRedisKeyUtil.getUpperLimitKey(infoReqDTO);
         //设置发送间隔标记,并且第二天凌晨失效
         operations.opsForValue().increment(upperLimitKey);
@@ -118,7 +118,7 @@ public class InfoServiceImpl implements InfoService {
     }
 
 
-    private void setCaptcha(RedisOperations<String, Object> operations, InfoCaptchaSendReqDTO captchaSendReqDTO) {
+    private void setCaptcha(RedisOperations<String, Object> operations, InfoCaptchaSendRequest captchaSendReqDTO) {
         var captchaKey = infoRedisKeyUtil.getCaptchaKey(captchaSendReqDTO);
         operations.opsForValue().set(captchaKey, captchaSendReqDTO.getCaptcha(), captchaSendReqDTO.getCaptchaExpiryDate(), TimeUnit.MINUTES);
     }
@@ -134,7 +134,7 @@ public class InfoServiceImpl implements InfoService {
         return endDateTime.toInstant(ZoneOffset.ofHours(8)).toEpochMilli() - startDateTime.toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
     }
 
-    private void createLog(InfoReqDTO infoReqDTO) {
+    private void createLog(InfoRequest infoReqDTO) {
         //转换成验证码日志信息
         var captchaLogDTO = CaptchaConverter.INSTANCE.to(infoReqDTO);
         //保存短信日志

@@ -1,8 +1,8 @@
 package com.lingyi.mall.biz.system.dao.mapper;
 
 
-import com.lingyi.mall.api.system.dto.MenuRespDTO;
-import com.lingyi.mall.api.system.dto.UserRespDTO;
+import com.lingyi.mall.api.system.response.MenuResponse;
+import com.lingyi.mall.api.system.response.UserResponse;
 import com.lingyi.mall.biz.system.model.param.UserParam;
 import com.lingyi.mall.biz.system.model.vo.UserVO;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
@@ -27,7 +27,7 @@ public interface UserMapper extends MybatisMapperImplementation<UserVO, UserPara
      * @param userName 用户名称
      * @return MbsUserVO
      */
-    UserRespDTO selectByUserName(String userName);
+    UserResponse selectByUserName(String userName);
 
     /**
      * 按照用户名称和菜单类型集查询菜单列表
@@ -36,7 +36,7 @@ public interface UserMapper extends MybatisMapperImplementation<UserVO, UserPara
      * @param menuTypes 按钮类型集
      * @return List<MenuTreeVO>
      */
-    List<MenuRespDTO> selectMenusByUserNameAndMenuTypes(@Param("userName") String userName, @Param("menuTypes") List<Integer> menuTypes);
+    List<MenuResponse> selectMenusByUserNameAndMenuTypes(@Param("userName") String userName, @Param("menuTypes") List<Integer> menuTypes);
 
 
 }

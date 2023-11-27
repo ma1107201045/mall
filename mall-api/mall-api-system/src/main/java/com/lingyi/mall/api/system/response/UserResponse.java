@@ -1,4 +1,4 @@
-package com.lingyi.mall.api.system.dto;
+package com.lingyi.mall.api.system.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Data
 @Schema(description = "用户")
-public class UserRespDTO implements Serializable {
+public class UserResponse implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1923376838194587664L;

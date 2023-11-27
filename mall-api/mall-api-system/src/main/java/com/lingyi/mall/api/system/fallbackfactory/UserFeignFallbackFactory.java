@@ -1,8 +1,8 @@
 package com.lingyi.mall.api.system.fallbackfactory;
 
-import com.lingyi.mall.api.system.dto.MenuRespDTO;
-import com.lingyi.mall.api.system.dto.UserRespDTO;
-import com.lingyi.mall.api.system.dto.UserPartReqDTO;
+import com.lingyi.mall.api.system.response.MenuResponse;
+import com.lingyi.mall.api.system.response.UserResponse;
+import com.lingyi.mall.api.system.request.UserPartRequest;
 import com.lingyi.mall.api.system.feign.UserFeign;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import org.springframework.cloud.openfeign.FallbackFactory;
@@ -23,17 +23,17 @@ public class UserFeignFallbackFactory implements FallbackFactory<UserFeign> {
 
 
             @Override
-            public ServerResponse<Void> updatePartById(Long id, UserPartReqDTO userPartDTO) {
+            public ServerResponse<Void> updatePartById(Long id, UserPartRequest userPartDTO) {
                 return null;
             }
 
             @Override
-            public ServerResponse<UserRespDTO> getUserAndMenuPermissionsByUserName(String userName) {
+            public ServerResponse<UserResponse> getUserAndMenuPermissionsByUserName(String userName) {
                 return null;
             }
 
             @Override
-            public ServerResponse<List<MenuRespDTO>> getMenuTreesByUserName(String userName) {
+            public ServerResponse<List<MenuResponse>> getMenuTreesByUserName(String userName) {
                 return null;
             }
 

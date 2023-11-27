@@ -5,7 +5,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.StopWatch;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
-import com.lingyi.mall.api.system.dto.LogReqDTO;
+import com.lingyi.mall.api.system.request.LogRequest;
 import com.lingyi.mall.common.core.annotation.Log;
 import com.lingyi.mall.common.core.constant.BaseConstant;
 import com.lingyi.mall.common.core.enums.WhetherEnum;
@@ -25,7 +25,6 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.MDC;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -286,8 +285,8 @@ public class LogAspect {
     }
 
 
-    private LogReqDTO buildLogDTO(Log log, ProceedingJoinPoint joinPoint, Object result, boolean isSuccess, long taskTime, String failReason) {
-        return LogReqDTO.builder()
+    private LogRequest buildLogDTO(Log log, ProceedingJoinPoint joinPoint, Object result, boolean isSuccess, long taskTime, String failReason) {
+        return LogRequest.builder()
                 .title(log.clientType() + "-" + log.title())
                 .operationType(log.operationType().getCode())
                 .callClass(joinPoint.getTarget().getClass().getName())

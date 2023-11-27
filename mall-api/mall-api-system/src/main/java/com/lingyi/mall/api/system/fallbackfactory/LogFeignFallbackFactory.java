@@ -1,6 +1,6 @@
 package com.lingyi.mall.api.system.fallbackfactory;
 
-import com.lingyi.mall.api.system.dto.LogReqDTO;
+import com.lingyi.mall.api.system.request.LogRequest;
 import com.lingyi.mall.api.system.feign.LogFeign;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import feign.Request;
@@ -17,7 +17,7 @@ public class LogFeignFallbackFactory implements FallbackFactory<LogFeign> {
     public LogFeign create(Throwable cause) {
         return new LogFeign() {
             @Override
-            public ServerResponse<Void> save(LogReqDTO logDTO, Request.Options options) {
+            public ServerResponse<Void> save(LogRequest logDTO, Request.Options options) {
                 return null;
             }
 

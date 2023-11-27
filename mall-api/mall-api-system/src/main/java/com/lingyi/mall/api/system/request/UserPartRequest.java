@@ -1,4 +1,4 @@
-package com.lingyi.mall.api.system.dto;
+package com.lingyi.mall.api.system.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 @Data
 @Schema(description = "部分用户")
-public class UserPartReqDTO implements Serializable {
+public class UserPartRequest implements Serializable {
 
 
     @Serial

@@ -1,9 +1,9 @@
 package com.lingyi.mall.biz.system.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
-import com.lingyi.mall.api.system.dto.MenuRespDTO;
-import com.lingyi.mall.api.system.dto.UserPartReqDTO;
-import com.lingyi.mall.api.system.dto.UserRespDTO;
+import com.lingyi.mall.api.system.response.MenuResponse;
+import com.lingyi.mall.api.system.request.UserPartRequest;
+import com.lingyi.mall.api.system.response.UserResponse;
 import com.lingyi.mall.biz.system.constant.SystemConstant;
 import com.lingyi.mall.biz.system.dao.mapper.UserMapper;
 import com.lingyi.mall.biz.system.dao.repository.UserRepository;
@@ -102,18 +102,18 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
     }
 
     @Override
-    public void updatePartById(UserPartReqDTO userPartReqDTO) {
+    public void updatePartById(UserPartRequest userPartRequest) {
         //密码作哈希
-        var encodePassword = passwordEncoder.encode(userPartReqDTO.getPassword());
-        userPartReqDTO.setPassword(encodePassword);
+        var encodePassword = passwordEncoder.encode(userPartRequest.getPassword());
+        userPartRequest.setPassword(encodePassword);
         //更新数据
-        UserDO userDO = ConverterUtil.to(userPartReqDTO, UserDO.class);
+        UserDO userDO = ConverterUtil.to(userPartRequest, UserDO.class);
         //更新
         updateById(userDO);
     }
 
     @Override
-    public UserRespDTO readUserAndMenuPermissionsByUserName(String userName) {
+    public UserResponse readUserAndMenuPermissionsByUserName(String userName) {
         var userRes = mybatisMapper.selectByUserName(userName);
         if (Objects.isNull(userRes)) {
             return ObjectUtil.getNull();
@@ -124,8 +124,8 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
     }
 
     @Override
-    public List<MenuRespDTO> readMenuTreesByUserName(String userName) {
-        List<MenuRespDTO> menus;
+    public List<MenuResponse> readMenuTreesByUserName(String userName) {
+        List<MenuResponse> menus;
         var menuTypes = Arrays.asList(MenuTypeEnum.DIRECTORY.getCode(), MenuTypeEnum.MENU.getCode());
         if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
             menus = mybatisMapper.selectMenusByUserNameAndMenuTypes(userName, menuTypes);
@@ -137,14 +137,14 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
 
     @Override
     public List<String> readMenuPermissionsByUserName(String userName) {
-        List<MenuRespDTO> menus;
+        List<MenuResponse> menus;
         var menuTypes = Collections.singletonList(MenuTypeEnum.BUTTON.getCode());
         if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
             menus = mybatisMapper.selectMenusByUserNameAndMenuTypes(userName, menuTypes);
         } else {
             menus = menuService.readListByTypes(menuTypes);
         }
-        return menus.stream().map(MenuRespDTO::getPermission).toList();
+        return menus.stream().map(MenuResponse::getPermission).toList();
     }
 
 
@@ -182,7 +182,7 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
         userDTO.setPassword(encodePassword);
     }
 
-    private List<MenuRespDTO> toMenuTree(Long menuParentId, List<MenuRespDTO> menus) {
+    private List<MenuResponse> toMenuTree(Long menuParentId, List<MenuResponse> menus) {
         return menus.stream()
                 .filter(menu -> menu.getParentId().equals(menuParentId))
                 .peek(menu -> menu.setChildren(toMenuTree(menu.getId(), menus)))

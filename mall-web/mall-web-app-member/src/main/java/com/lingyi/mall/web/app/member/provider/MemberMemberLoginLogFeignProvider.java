@@ -1,6 +1,6 @@
 package com.lingyi.mall.web.app.member.provider;
 
-import com.lingyi.mall.api.member.dto.MemberLoginLogReqDTO;
+import com.lingyi.mall.api.member.reqeust.MemberLoginLogRequest;
 import com.lingyi.mall.api.member.feign.MemberLoginLogFeign;
 import com.lingyi.mall.biz.member.service.MemberLoginLogService;
 import com.lingyi.mall.common.core.util.ServerResponse;
@@ -22,8 +22,8 @@ public class MemberMemberLoginLogFeignProvider implements MemberLoginLogFeign {
     private final MemberLoginLogService memberLoginLogService;
 
     @Override
-    public ServerResponse<Void> save(MemberLoginLogReqDTO memberLoginLogReqDTO) {
-        memberLoginLogService.save(memberLoginLogReqDTO);
+    public ServerResponse<Void> save(MemberLoginLogRequest memberLoginLogRequest) {
+        memberLoginLogService.save(memberLoginLogRequest);
         return ServerResponse.success();
     }
 }

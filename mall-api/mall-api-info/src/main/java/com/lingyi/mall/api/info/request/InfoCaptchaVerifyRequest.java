@@ -1,4 +1,4 @@
-package com.lingyi.mall.api.info.dto;
+package com.lingyi.mall.api.info.request;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,7 +13,7 @@ import lombok.ToString;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class InfoCaptchaVerifyReqDTO extends AbstractInfoReqDTO {
+public class InfoCaptchaVerifyRequest extends AbstractInfoRequest {
     /**
      * 验证码
      */

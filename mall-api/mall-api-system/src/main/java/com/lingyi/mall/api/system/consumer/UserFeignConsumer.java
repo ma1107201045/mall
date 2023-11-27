@@ -1,9 +1,9 @@
 package com.lingyi.mall.api.system.consumer;
 
 import com.alibaba.fastjson2.JSON;
-import com.lingyi.mall.api.system.dto.MenuRespDTO;
-import com.lingyi.mall.api.system.dto.UserPartReqDTO;
-import com.lingyi.mall.api.system.dto.UserRespDTO;
+import com.lingyi.mall.api.system.response.MenuResponse;
+import com.lingyi.mall.api.system.request.UserPartRequest;
+import com.lingyi.mall.api.system.response.UserResponse;
 import com.lingyi.mall.api.system.feign.UserFeign;
 import com.lingyi.mall.common.core.exception.OpenFeignException;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class UserFeignConsumer {
 
     private final UserFeign userFeign;
 
-    public void updatePartById(Long id, UserPartReqDTO userPartDTO) {
+    public void updatePartById(Long id, UserPartRequest userPartDTO) {
         log.info("入参:userPartDTO:{}", userPartDTO);
         var response = userFeign.updatePartById(id, userPartDTO);
         if (response.getIsSuccess()) {
@@ -35,7 +35,7 @@ public class UserFeignConsumer {
         throw new OpenFeignException(response.getCode(), response.getMessage());
     }
 
-    public UserRespDTO getUserAndMenuPermissionsByUserName(String userName) {
+    public UserResponse getUserAndMenuPermissionsByUserName(String userName) {
         log.info("入参:userName:{}", userName);
         var response = userFeign.getUserAndMenuPermissionsByUserName(userName);
         if (response.getIsSuccess()) {
@@ -45,7 +45,7 @@ public class UserFeignConsumer {
         throw new OpenFeignException(response.getCode(), response.getMessage());
     }
 
-    public List<MenuRespDTO> getMenuTreeByUserName(String userName) {
+    public List<MenuResponse> getMenuTreeByUserName(String userName) {
         log.info("入参:userName:{}", userName);
         var response = userFeign.getMenuTreesByUserName(userName);
         if (response.getIsSuccess()) {

@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.system.service.impl;
 
-import com.lingyi.mall.api.system.dto.LogReqDTO;
+import com.lingyi.mall.api.system.request.LogRequest;
 import com.lingyi.mall.biz.system.model.entity.LogDO;
 import com.lingyi.mall.biz.system.dao.mapper.LogMapper;
 import com.lingyi.mall.biz.system.model.param.LogParam;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
  * @description
  */
 @Service
-public class LogServiceImpl extends BaseServiceProImpl<LogRepository, LogMapper, LogReqDTO, LogVO, LogParam, LogDO, Long> implements LogService {
+public class LogServiceImpl extends BaseServiceProImpl<LogRepository, LogMapper, LogRequest, LogVO, LogParam, LogDO, Long> implements LogService {
 
 
 }

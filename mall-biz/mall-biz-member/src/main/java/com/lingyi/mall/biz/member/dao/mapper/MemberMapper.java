@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.member.dao.mapper;
 
-import com.lingyi.mall.api.member.dto.MemberRespDTO;
+import com.lingyi.mall.api.member.response.MemberResponse;
 import com.lingyi.mall.biz.member.model.param.MemberParam;
 import com.lingyi.mall.biz.member.model.vo.MemberVO;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
@@ -21,5 +21,5 @@ public interface MemberMapper extends MybatisMapperImplementation<MemberVO, Memb
      * @param phoneNumber 手机号
      * @return MemberVO
      */
-    MemberRespDTO selectByPhoneNumber(String phoneNumber);
+    MemberResponse selectByPhoneNumber(String phoneNumber);
 }

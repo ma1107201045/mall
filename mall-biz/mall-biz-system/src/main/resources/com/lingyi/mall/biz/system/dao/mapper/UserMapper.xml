@@ -64,7 +64,7 @@
 
 
 
-    <resultMap id="SelectByUserNameMap" type="com.lingyi.mall.api.system.dto.UserRespDTO">
+    <resultMap id="SelectByUserNameMap" type="com.lingyi.mall.api.system.response.UserResponse">
         <id column="mu_id" property="userId"/>
         <result column="mu_user_name" property="userName"/>
         <result column="mu_password" property="password"/>
@@ -88,7 +88,7 @@
     </select>
 
     <resultMap id="SelectMenusByUserNameAndMenuTypesMap"
-               type="com.lingyi.mall.api.system.dto.MenuRespDTO">
+               type="com.lingyi.mall.api.system.response.MenuResponse">
         <id column="id" property="id"/>
         <result column="parent_id" property="parentId"/>
         <result column="name" property="name"/>

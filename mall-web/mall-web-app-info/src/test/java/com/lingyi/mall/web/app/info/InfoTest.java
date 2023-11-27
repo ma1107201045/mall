@@ -2,8 +2,8 @@ package com.lingyi.mall.web.app.info;
 
 import cn.hutool.core.util.RandomUtil;
 import com.lingyi.mall.MallWebAppInfoApplicationTest;
-import com.lingyi.mall.api.info.dto.InfoCaptchaSendReqDTO;
-import com.lingyi.mall.api.info.dto.InfoReqDTO;
+import com.lingyi.mall.api.info.request.InfoCaptchaSendRequest;
+import com.lingyi.mall.api.info.request.InfoRequest;
 import com.lingyi.mall.api.info.enums.InfoBusinessEnum;
 import com.lingyi.mall.api.info.enums.InfoServiceEnum;
 import com.lingyi.mall.api.info.enums.InfoTypeEnum;
@@ -36,7 +36,7 @@ public class InfoTest implements MallWebAppInfoApplicationTest {
 
     @Test
     public void testSend() throws ExecutionException, InterruptedException {
-        InfoReqDTO smsReqDTO = new InfoReqDTO();
+        InfoRequest smsReqDTO = new InfoRequest();
         smsReqDTO.setServiceType(InfoServiceEnum.MALL_AUTH_APP.getCode());
         smsReqDTO.setBusinessType(InfoBusinessEnum.ORDER.getCode());
         smsReqDTO.setType(InfoTypeEnum.SMS.getCode());
@@ -57,7 +57,7 @@ public class InfoTest implements MallWebAppInfoApplicationTest {
 
     @Test
     public void testSendCaptcha() throws ExecutionException, InterruptedException {
-        InfoCaptchaSendReqDTO captchaSendReqDTO = new InfoCaptchaSendReqDTO();
+        InfoCaptchaSendRequest captchaSendReqDTO = new InfoCaptchaSendRequest();
         captchaSendReqDTO.setServiceType(InfoServiceEnum.MALL_AUTH_APP.getCode());
         captchaSendReqDTO.setBusinessType(InfoBusinessEnum.LOGIN.getCode());
         captchaSendReqDTO.setType(InfoTypeEnum.SMS_CAPTCHA.getCode());

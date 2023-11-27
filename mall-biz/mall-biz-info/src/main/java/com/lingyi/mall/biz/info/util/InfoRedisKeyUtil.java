@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.info.util;
 
-import com.lingyi.mall.api.info.dto.AbstractInfoReqDTO;
-import com.lingyi.mall.api.info.dto.InfoReqDTO;
+import com.lingyi.mall.api.info.request.AbstractInfoRequest;
+import com.lingyi.mall.api.info.request.InfoRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +21,7 @@ public final class InfoRedisKeyUtil {
     @Value("${spring.application.name}")
     private String applicationName;
 
-    public String getUpperLimitKey(InfoReqDTO infoReqDTO) {
+    public String getUpperLimitKey(InfoRequest infoReqDTO) {
         return String.format(INTERVAL_TIME_KEY_FORMAT, applicationName,
                 infoReqDTO.getServiceType(),
                 infoReqDTO.getBusinessType(),
@@ -30,7 +30,7 @@ public final class InfoRedisKeyUtil {
     }
 
 
-    public String getIntervalTimeKey(InfoReqDTO infoReqDTO) {
+    public String getIntervalTimeKey(InfoRequest infoReqDTO) {
         return String.format(UPPER_LIMIT_KEY_FORMAT, applicationName,
                 infoReqDTO.getServiceType(),
                 infoReqDTO.getBusinessType(),
@@ -40,12 +40,12 @@ public final class InfoRedisKeyUtil {
     }
 
 
-    public String getCaptchaKey(AbstractInfoReqDTO abstractInfoReqDTO) {
+    public String getCaptchaKey(AbstractInfoRequest abstractInfoRequest) {
         return String.format(CAPTCHA_KEY_FORMAT, applicationName,
-                abstractInfoReqDTO.getServiceType(),
-                abstractInfoReqDTO.getBusinessType(),
-                abstractInfoReqDTO.getType(),
-                abstractInfoReqDTO.getNumber());
+                abstractInfoRequest.getServiceType(),
+                abstractInfoRequest.getBusinessType(),
+                abstractInfoRequest.getType(),
+                abstractInfoRequest.getNumber());
     }
 
 }

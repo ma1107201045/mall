@@ -1,7 +1,7 @@
 package com.lingyi.mall.common.log.task;
 
 import com.lingyi.mall.api.system.consumer.LogFeignConsumer;
-import com.lingyi.mall.api.system.dto.LogReqDTO;
+import com.lingyi.mall.api.system.request.LogRequest;
 import com.lingyi.mall.common.core.constant.BaseConstant;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,7 @@ public class BaseAsyncTask {
     private final LogFeignConsumer logFeignConsumer;
 
     @Async("executorService")
-    public void saveLog(LogReqDTO logDTO) {
+    public void saveLog(LogRequest logDTO) {
         MDC.put(BaseConstant.TRACK_ID_NAME, logDTO.getTrackId());
         log.info(Thread.currentThread().getName() + "begin save log");
         logFeignConsumer.save(logDTO);

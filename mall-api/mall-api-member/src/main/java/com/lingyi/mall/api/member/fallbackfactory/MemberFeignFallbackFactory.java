@@ -1,7 +1,7 @@
 package com.lingyi.mall.api.member.fallbackfactory;
 
-import com.lingyi.mall.api.member.dto.MemberReqDTO;
-import com.lingyi.mall.api.member.dto.MemberRespDTO;
+import com.lingyi.mall.api.member.reqeust.MemberRequest;
+import com.lingyi.mall.api.member.response.MemberResponse;
 import com.lingyi.mall.api.member.feign.MemberFeign;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import org.springframework.cloud.openfeign.FallbackFactory;
@@ -17,12 +17,12 @@ public class MemberFeignFallbackFactory implements FallbackFactory<MemberFeign> 
     public MemberFeign create(Throwable cause) {
         return new MemberFeign() {
             @Override
-            public ServerResponse<Long> register(MemberReqDTO memberReqDTO) {
+            public ServerResponse<Long> register(MemberRequest memberRequest) {
                 return null;
             }
 
             @Override
-            public ServerResponse<MemberRespDTO> getByPhoneNumber(String phoneNumber) {
+            public ServerResponse<MemberResponse> getByPhoneNumber(String phoneNumber) {
                 return null;
             }
         };

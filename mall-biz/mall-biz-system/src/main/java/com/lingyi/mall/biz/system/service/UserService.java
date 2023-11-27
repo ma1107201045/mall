@@ -1,8 +1,8 @@
 package com.lingyi.mall.biz.system.service;
 
-import com.lingyi.mall.api.system.dto.MenuRespDTO;
-import com.lingyi.mall.api.system.dto.UserPartReqDTO;
-import com.lingyi.mall.api.system.dto.UserRespDTO;
+import com.lingyi.mall.api.system.response.MenuResponse;
+import com.lingyi.mall.api.system.request.UserPartRequest;
+import com.lingyi.mall.api.system.response.UserResponse;
 import com.lingyi.mall.biz.system.model.dto.UserDTO;
 import com.lingyi.mall.biz.system.model.entity.UserDO;
 import com.lingyi.mall.biz.system.model.param.RoleParam;
@@ -39,9 +39,9 @@ public interface UserService extends BaseServicePro<UserDTO, UserVO, UserParam, 
     /**
      * 更新部分信息
      *
-     * @param userPartReqDTO ..
+     * @param userPartRequest ..
      */
-    void updatePartById(UserPartReqDTO userPartReqDTO);
+    void updatePartById(UserPartRequest userPartRequest);
 
 
     /**
@@ -50,7 +50,7 @@ public interface UserService extends BaseServicePro<UserDTO, UserVO, UserParam, 
      * @param userName 用户名称
      * @return MbsUserVO
      */
-    UserRespDTO readUserAndMenuPermissionsByUserName(String userName);
+    UserResponse readUserAndMenuPermissionsByUserName(String userName);
 
     /**
      * 按照用户名称和菜单父级id查询菜单集
@@ -58,7 +58,7 @@ public interface UserService extends BaseServicePro<UserDTO, UserVO, UserParam, 
      * @param userName 用户名称
      * @return List<MenuResDTO>
      */
-    List<MenuRespDTO> readMenuTreesByUserName(String userName);
+    List<MenuResponse> readMenuTreesByUserName(String userName);
 
     /**
      * 按照用户id和用户名称查询权限

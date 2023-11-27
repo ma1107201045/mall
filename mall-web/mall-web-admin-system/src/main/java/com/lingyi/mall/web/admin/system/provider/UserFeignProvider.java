@@ -1,8 +1,8 @@
 package com.lingyi.mall.web.admin.system.provider;
 
-import com.lingyi.mall.api.system.dto.MenuRespDTO;
-import com.lingyi.mall.api.system.dto.UserPartReqDTO;
-import com.lingyi.mall.api.system.dto.UserRespDTO;
+import com.lingyi.mall.api.system.response.MenuResponse;
+import com.lingyi.mall.api.system.request.UserPartRequest;
+import com.lingyi.mall.api.system.response.UserResponse;
 import com.lingyi.mall.api.system.feign.UserFeign;
 import com.lingyi.mall.biz.system.service.UserService;
 import com.lingyi.mall.common.core.util.ServerResponse;
@@ -28,22 +28,22 @@ public class UserFeignProvider implements UserFeign {
 
     @Operation(summary = "更新当前用户部分信息", description = "更新用户部分信息")
     @Override
-    public ServerResponse<Void> updatePartById(Long id, UserPartReqDTO userPartReqDTO) {
-        userPartReqDTO.setId(id);
-        userService.updatePartById(userPartReqDTO);
+    public ServerResponse<Void> updatePartById(Long id, UserPartRequest userPartRequest) {
+        userPartRequest.setId(id);
+        userService.updatePartById(userPartRequest);
         return ServerResponse.success();
     }
 
     @Operation(summary = "查询当前用户信息和权限标识", description = "查询当前用户信息和权限标识")
     @Override
-    public ServerResponse<UserRespDTO> getUserAndMenuPermissionsByUserName(String userName) {
+    public ServerResponse<UserResponse> getUserAndMenuPermissionsByUserName(String userName) {
         var userRespDTO = userService.readUserAndMenuPermissionsByUserName(userName);
         return ServerResponse.success(userRespDTO);
     }
 
     @Operation(summary = "查询当前用户菜单树", description = "查询菜单树")
     @Override
-    public ServerResponse<List<MenuRespDTO>> getMenuTreesByUserName(String userName) {
+    public ServerResponse<List<MenuResponse>> getMenuTreesByUserName(String userName) {
         var menus = userService.readMenuTreesByUserName(userName);
         return ServerResponse.success(menus);
     }

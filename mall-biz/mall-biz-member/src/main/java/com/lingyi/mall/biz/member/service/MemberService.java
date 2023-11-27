@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.member.service;
 
-import com.lingyi.mall.api.member.dto.MemberReqDTO;
-import com.lingyi.mall.api.member.dto.MemberRespDTO;
+import com.lingyi.mall.api.member.reqeust.MemberRequest;
+import com.lingyi.mall.api.member.response.MemberResponse;
 import com.lingyi.mall.biz.member.model.dto.MemberDTO;
 import com.lingyi.mall.biz.member.model.dto.MemberPartDTO;
 import com.lingyi.mall.biz.member.model.entity.MemberDO;
@@ -27,10 +27,10 @@ public interface MemberService extends BaseServicePro<MemberDTO, MemberVO, Membe
     /**
      * 注册会员
      *
-     * @param memberReqDTO 。。
+     * @param memberRequest 。。
      * @return Long 会员id
      */
-    Long register(MemberReqDTO memberReqDTO);
+    Long register(MemberRequest memberRequest);
 
     /**
      * 按照手机号查询
@@ -39,6 +39,6 @@ public interface MemberService extends BaseServicePro<MemberDTO, MemberVO, Membe
      * @return MemberRespDTO ..
      */
 
-    MemberRespDTO readByPhoneNumber(String phoneNumber);
+    MemberResponse readByPhoneNumber(String phoneNumber);
 
 }

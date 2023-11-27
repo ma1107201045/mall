@@ -1,7 +1,7 @@
 package com.lingyi.mall.web.admin.base.controller;
 
-import com.lingyi.mall.api.system.dto.MenuRespDTO;
-import com.lingyi.mall.api.system.dto.UserPartReqDTO;
+import com.lingyi.mall.api.system.response.MenuResponse;
+import com.lingyi.mall.api.system.request.UserPartRequest;
 import com.lingyi.mall.biz.base.service.BaseService;
 import com.lingyi.mall.common.core.enums.OperationTypeEnum;
 import com.lingyi.mall.common.core.util.ServerResponse;
@@ -34,16 +34,16 @@ public class BaseController {
     @Operation(summary = "更新当前用户信息", description = "更新当前用户信息")
     @PatchMapping("/user")
     @Log(title = "更新当前用户信息", operationType = OperationTypeEnum.UPDATE)
-    public ServerResponse<Void> updateUser(UserPartReqDTO userPartReqDTO) {
+    public ServerResponse<Void> updateUser(UserPartRequest userPartRequest) {
         var userId = AuthenticatorUtil.getUserId();
-        baseService.updateUserByUserId(userId, userPartReqDTO);
+        baseService.updateUserByUserId(userId, userPartRequest);
         return ServerResponse.success();
     }
 
     @Operation(summary = "获取当前用户菜单树", description = "获取当前用户菜单树")
     @GetMapping("/menu-trees")
     @Log(title = "获取当前用户菜单树", operationType = OperationTypeEnum.READ)
-    public ServerResponse<List<MenuRespDTO>> getMenuTrees() {
+    public ServerResponse<List<MenuResponse>> getMenuTrees() {
         var userName = AuthenticatorUtil.getUserName();
         var menus = baseService.readMenuTreesByUserName(userName);
         return ServerResponse.success(menus);

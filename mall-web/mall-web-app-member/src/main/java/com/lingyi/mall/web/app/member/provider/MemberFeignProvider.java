@@ -1,7 +1,7 @@
 package com.lingyi.mall.web.app.member.provider;
 
-import com.lingyi.mall.api.member.dto.MemberReqDTO;
-import com.lingyi.mall.api.member.dto.MemberRespDTO;
+import com.lingyi.mall.api.member.reqeust.MemberRequest;
+import com.lingyi.mall.api.member.response.MemberResponse;
 import com.lingyi.mall.api.member.feign.MemberFeign;
 import com.lingyi.mall.biz.member.service.MemberService;
 import com.lingyi.mall.common.core.util.ServerResponse;
@@ -23,15 +23,15 @@ public class MemberFeignProvider implements MemberFeign {
     private final MemberService memberService;
 
     @Override
-    public ServerResponse<Long> register(MemberReqDTO memberReqDTO) {
-        Long id = memberService.register(memberReqDTO);
+    public ServerResponse<Long> register(MemberRequest memberRequest) {
+        Long id = memberService.register(memberRequest);
         return ServerResponse.success(id);
     }
 
 
     @Override
-    public ServerResponse<MemberRespDTO> getByPhoneNumber(String phoneNumber) {
-        MemberRespDTO memberRespDTO = memberService.readByPhoneNumber(phoneNumber);
-        return ServerResponse.success(memberRespDTO);
+    public ServerResponse<MemberResponse> getByPhoneNumber(String phoneNumber) {
+        MemberResponse memberResponse = memberService.readByPhoneNumber(phoneNumber);
+        return ServerResponse.success(memberResponse);
     }
 }

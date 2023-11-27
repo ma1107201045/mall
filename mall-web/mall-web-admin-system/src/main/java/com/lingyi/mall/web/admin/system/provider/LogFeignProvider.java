@@ -1,6 +1,6 @@
 package com.lingyi.mall.web.admin.system.provider;
 
-import com.lingyi.mall.api.system.dto.LogReqDTO;
+import com.lingyi.mall.api.system.request.LogRequest;
 import com.lingyi.mall.api.system.feign.LogFeign;
 import com.lingyi.mall.biz.system.model.entity.LogDO;
 import com.lingyi.mall.biz.system.service.LogService;
@@ -28,8 +28,8 @@ public class LogFeignProvider implements LogFeign {
 
     @Operation(summary = "保存", description = "保存")
     @Override
-    public ServerResponse<Void> save(LogReqDTO logReqDTO, Request.Options options) {
-        logService.create(logReqDTO, LogDO.class);
+    public ServerResponse<Void> save(LogRequest logRequest, Request.Options options) {
+        logService.create(logRequest, LogDO.class);
         return ServerResponse.success();
     }
 }

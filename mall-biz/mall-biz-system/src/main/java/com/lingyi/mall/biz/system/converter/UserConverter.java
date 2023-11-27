@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.system.converter;
 
-import com.lingyi.mall.api.system.dto.UserPartReqDTO;
+import com.lingyi.mall.api.system.request.UserPartRequest;
 import com.lingyi.mall.biz.system.model.entity.UserDO;
 
 /**
@@ -17,9 +17,9 @@ public final class UserConverter {
 
     }
 
-    public void convert(UserDO userDO, UserPartReqDTO userPartReqDTO) {
-        userDO.setNickname(userPartReqDTO.getNickname());
-        userDO.setPassword(userPartReqDTO.getPassword());
+    public void convert(UserDO userDO, UserPartRequest userPartRequest) {
+        userDO.setNickname(userPartRequest.getNickname());
+        userDO.setPassword(userPartRequest.getPassword());
     }
 
 

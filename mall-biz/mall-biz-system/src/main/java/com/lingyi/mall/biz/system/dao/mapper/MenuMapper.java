@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.system.dao.mapper;
 
-import com.lingyi.mall.api.system.dto.MenuRespDTO;
+import com.lingyi.mall.api.system.response.MenuResponse;
 import com.lingyi.mall.biz.system.model.param.MenuParam;
 import com.lingyi.mall.biz.system.model.vo.MenuVO;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
@@ -39,6 +39,6 @@ public interface MenuMapper extends MybatisMapperImplementation<MenuVO, MenuPara
      * @param types 按钮类型集
      * @return List<MenuResDTO>
      */
-    List<MenuRespDTO> selectListByTypes(List<Integer> types);
+    List<MenuResponse> selectListByTypes(List<Integer> types);
 
 }

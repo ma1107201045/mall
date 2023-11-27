@@ -1,4 +1,4 @@
-package com.lingyi.mall.api.member.dto;
+package com.lingyi.mall.api.member.reqeust;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  */
 @Data
 @Schema(description = "会员")
-public class MemberReqDTO {
+public class MemberRequest {
 
     /**
      * 会员等级id

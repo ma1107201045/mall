@@ -1,7 +1,7 @@
 package com.lingyi.mall.api.member.feign;
 
-import com.lingyi.mall.api.member.dto.MemberReqDTO;
-import com.lingyi.mall.api.member.dto.MemberRespDTO;
+import com.lingyi.mall.api.member.reqeust.MemberRequest;
+import com.lingyi.mall.api.member.response.MemberResponse;
 import com.lingyi.mall.api.member.fallbackfactory.MemberFeignFallbackFactory;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -24,11 +24,11 @@ public interface MemberFeign {
     /**
      * 注册
      *
-     * @param memberReqDTO 。。
+     * @param memberRequest 。。
      * @return Void
      */
     @PostMapping(URL_PREFIX)
-    ServerResponse<Long> register(@RequestBody MemberReqDTO memberReqDTO);
+    ServerResponse<Long> register(@RequestBody MemberRequest memberRequest);
 
     /**
      * 按照用户名称查询用户信息和按钮权限标识
@@ -37,7 +37,7 @@ public interface MemberFeign {
      * @return 用户信息
      */
     @GetMapping(URL_PREFIX)
-    ServerResponse<MemberRespDTO> getByPhoneNumber(@RequestParam(name = "phoneNumber") String phoneNumber);
+    ServerResponse<MemberResponse> getByPhoneNumber(@RequestParam(name = "phoneNumber") String phoneNumber);
 
 
 }

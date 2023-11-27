@@ -1,4 +1,4 @@
-package com.lingyi.mall.api.system.dto;
+package com.lingyi.mall.api.system.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Data
 @Schema(description = "按钮")
-public class MenuRespDTO implements Serializable {
+public class MenuResponse implements Serializable {
 
 
     @Serial
@@ -94,5 +94,5 @@ public class MenuRespDTO implements Serializable {
     /**
      * 菜单子级
      */
-    private List<MenuRespDTO> children;
+    private List<MenuResponse> children;
 }

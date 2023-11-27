@@ -9,7 +9,7 @@ import cn.hutool.jwt.JWTHeader;
 import cn.hutool.jwt.JWTPayload;
 import cn.hutool.jwt.JWTUtil;
 import cn.hutool.jwt.signers.JWTSigner;
-import com.lingyi.mall.api.member.dto.MemberRespDTO;
+import com.lingyi.mall.api.member.response.MemberResponse;
 import com.lingyi.mall.security.app.constant.SecurityConstant;
 
 import java.nio.charset.StandardCharsets;
@@ -24,18 +24,18 @@ import java.util.Date;
 public class JwtUtil {
 
 
-    public static String createToken(MemberRespDTO memberRespDTO) {
-        var map = BeanUtil.beanToMap(memberRespDTO);
+    public static String createToken(MemberResponse memberResponse) {
+        var map = BeanUtil.beanToMap(memberResponse);
         var date = new Date();
         var jwtPayload = new JWTPayload();
         jwtPayload.addPayloads(map);
-        jwtPayload.setIssuer(memberRespDTO.getUserName());
+        jwtPayload.setIssuer(memberResponse.getUserName());
         jwtPayload.setSubject(StrUtil.EMPTY);
         jwtPayload.setAudience(StrUtil.EMPTY);
         jwtPayload.setNotBefore(date);
         jwtPayload.setIssuedAt(date);
         jwtPayload.setExpiresAt(DateUtil.offset(date, DateField.MINUTE, SecurityConstant.TOKEN_EXPIRATION_TIME_VALUE));
-        jwtPayload.setJWTId(memberRespDTO.getId().toString());
+        jwtPayload.setJWTId(memberResponse.getId().toString());
         return JWTUtil.createToken(jwtPayload.getClaimsJson(), SecurityConstant.JWT_KEY.getBytes(StandardCharsets.UTF_8));
     }
 
