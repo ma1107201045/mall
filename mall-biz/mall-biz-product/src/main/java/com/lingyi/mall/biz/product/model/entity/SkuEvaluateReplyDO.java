@@ -31,13 +31,13 @@ public class SkuEvaluateReplyDO extends BaseIdDO<Long> implements Serializable {
     private static final long serialVersionUID = 8101696036425990741L;
 
     @ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "comment_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '回复id'",
+    @JoinColumn(name = "comment_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '评论id'",
             foreignKey = @ForeignKey(name = "mp_sku_evaluate_reply_fk_comment_id"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private SkuEvaluateCommentDO skuEvaluateCommentDO;
 
     @ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "reply_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '评论id'",
+    @JoinColumn(name = "reply_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '回复id'",
             foreignKey = @ForeignKey(name = "mp_sku_evaluate_reply_fk_reply_id"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private SkuEvaluateReplyDO skuEvaluateReplyDO;
@@ -48,8 +48,8 @@ public class SkuEvaluateReplyDO extends BaseIdDO<Long> implements Serializable {
     @Column(name = "content", columnDefinition = "VARCHAR(256) DEFAULT '' COMMENT '评论内容'")
     private String content;
 
-    @Column(name = "type", columnDefinition = "TINYINT(4) NOT NULL  COMMENT '回复类型 1评论 2评论的回复'")
-    private Integer type;
+    @Column(name = "reply_type", columnDefinition = "TINYINT(4) NOT NULL COMMENT '回复类型 1评论 2评论的回复'")
+    private Integer replyType;
 
     @Column(name = "reply_date_time", columnDefinition = "DATETIME NOT NULL COMMENT '回复时间'")
     private LocalDateTime replyDateTime;

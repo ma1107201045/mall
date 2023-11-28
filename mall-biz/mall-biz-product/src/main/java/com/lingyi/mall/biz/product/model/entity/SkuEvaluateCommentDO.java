@@ -32,7 +32,7 @@ public class SkuEvaluateCommentDO extends BaseIdDO<Long> implements Serializable
     private static final long serialVersionUID = 2332562569399458520L;
 
     @ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "evaluate_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT 'skuId'",
+    @JoinColumn(name = "evaluate_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '评价id'",
             foreignKey = @ForeignKey(name = "mp_sku_evaluate_comment_fk_evaluate_id"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private SkuEvaluateDO skuEvaluateDO;
