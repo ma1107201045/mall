@@ -38,7 +38,7 @@ public class SpuLikeDO extends BaseIdDO<Long> implements Serializable {
     @Column(name = "member_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '会员id'")
     private Long memberId;
 
-    @Column(name = "like_dataTime", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '点赞时间'")
+    @Column(name = "like_data_time", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '点赞时间'")
     private LocalDateTime likeDataTime;
 
 }

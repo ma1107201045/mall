@@ -1,6 +1,7 @@
 package com.lingyi.mall.biz.product.model.entity;
 
 import com.lingyi.mall.common.orm.entity.BaseCommonDO;
+import com.lingyi.mall.common.orm.entity.BaseIdDO;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,6 +12,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * @Author: maweiyan
@@ -24,7 +26,8 @@ import java.io.Serializable;
 @Entity
 @Table(name = "mp_sku_evaluate")
 @DynamicInsert
-public class SkuEvaluateDO extends BaseCommonDO implements Serializable {
+public class SkuEvaluateDO extends BaseIdDO<Long> implements Serializable {
+
     @Serial
     private static final long serialVersionUID = -1275452088660212443L;
 
@@ -57,5 +60,8 @@ public class SkuEvaluateDO extends BaseCommonDO implements Serializable {
 
     @Column(name = "score", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '分数'")
     private Integer score;
+
+    @Column(name = "evaluate_date_time", columnDefinition = "DATETIME NOT NULL COMMENT '评价时间'")
+    private LocalDateTime evaluateDateTime;
 
 }
