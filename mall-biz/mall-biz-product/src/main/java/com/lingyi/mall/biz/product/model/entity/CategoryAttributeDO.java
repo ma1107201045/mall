@@ -29,7 +29,6 @@ public class CategoryAttributeDO extends BaseCommonDO implements Serializable {
     @Serial
     private static final long serialVersionUID = 8325971574533299862L;
 
-
     @ManyToOne(cascade = {CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "category_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '分类id'")
     @OnDelete(action = OnDeleteAction.CASCADE)

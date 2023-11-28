@@ -15,25 +15,26 @@ import java.io.Serializable;
 /**
  * @Author: maweiyan
  * @Email: 1107201045@qq.com
- * @DateTime: 2023/11/27 16:16
+ * @DateTime: 2023/11/28 10:00
  * @Description:
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Entity
-@Table(name = "mp_spu_details")
+@Table(name = "mp_spu_collect")
 @DynamicInsert
-public class SpuDetailsDO extends BaseCommonDO implements Serializable {
+public class SpuCollectDO extends BaseCommonDO implements Serializable {
     @Serial
-    private static final long serialVersionUID = -7270713019467651028L;
+    private static final long serialVersionUID = 6542970846597003492L;
 
     @ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "spu_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '商品id'", foreignKey = @ForeignKey(name = "mp_spu_details_fk_spu_id"))
+    @JoinColumn(name = "spu_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '商品id'",
+            foreignKey = @ForeignKey(name = "mp_spu_collect_fk_spu_id"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private SpuDO spuDO;
 
-    @Column(name = "content", columnDefinition = "LONGTEXT COMMENT '内容'")
-    private String content;
+    @Column(name = "member_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '会员id'")
+    private Long memberId;
 
 }
