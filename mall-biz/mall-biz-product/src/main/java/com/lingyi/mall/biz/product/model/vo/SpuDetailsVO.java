@@ -1,6 +1,7 @@
-package com.lingyi.mall.biz.product.model.dto;
+package com.lingyi.mall.biz.product.model.vo;
 
 import com.lingyi.mall.common.core.dto.BaseIdDTO;
+import com.lingyi.mall.common.core.vo.BaseIdVO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -10,14 +11,14 @@ import java.io.Serial;
 /**
  * @Author: maweiyan
  * @Email: 1107201045@qq.com
- * @DateTime: 2023/8/31 16:02
+ * @DateTime: 2023/11/27 16:16
  * @Description:
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public class SkuDTO extends BaseIdDTO<Long> {
-    @Serial
-    private static final long serialVersionUID = -7399959444673481949L;
+public class SpuDetailsVO extends BaseIdVO<Long> {
 
+    @Serial
+    private static final long serialVersionUID = 5648310311350028799L;
 }

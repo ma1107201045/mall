@@ -1,5 +1,8 @@
 package com.lingyi.mall.biz.product.dao.repository;
 
+import com.lingyi.mall.biz.product.model.entity.SpuCollectDO;
+import com.lingyi.mall.biz.product.model.entity.SpuLikeDO;
+import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,5 +12,5 @@ import org.springframework.stereotype.Repository;
  * @Description:
  */
 @Repository
-public interface SpuLikeRepository {
+public interface SpuLikeRepository extends JpaRepositoryImplementation<SpuLikeDO, Long> {
 }

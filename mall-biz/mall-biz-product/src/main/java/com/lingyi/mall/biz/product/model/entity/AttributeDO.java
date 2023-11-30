@@ -40,15 +40,9 @@ public class AttributeDO extends BaseCommonDO implements Serializable {
     @Column(name = "name", columnDefinition = "VARCHAR(20) NOT NULL COMMENT '属性名称'")
     private String name;
 
-    /**
-     * 属性值
-     */
     @OneToMany(mappedBy = "attribute", fetch = FetchType.LAZY)
     private List<AttributeValueDO> attributeValues;
 
-    /**
-     * 分类集
-     */
     @OneToMany(mappedBy = "attribute", fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<CategoryAttributeDO> categoryAttributes;

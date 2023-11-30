@@ -9,12 +9,13 @@ import lombok.ToString;
 /**
  * @Author: maweiyan
  * @Email: 1107201045@qq.com
- * @DateTime: 2023/8/31 16:00
+ * @DateTime: 2023/11/28 10:19
  * @Description:
  */
 @Schema
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public class SpuParam extends BasePageParam {
+public class SkuEvaluateParam extends BasePageParam {
 }
+

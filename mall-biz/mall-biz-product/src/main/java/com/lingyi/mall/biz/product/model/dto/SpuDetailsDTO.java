@@ -10,14 +10,15 @@ import java.io.Serial;
 /**
  * @Author: maweiyan
  * @Email: 1107201045@qq.com
- * @DateTime: 2023/8/31 16:02
+ * @DateTime: 2023/11/27 16:16
  * @Description:
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public class SkuDTO extends BaseIdDTO<Long> {
+public class SpuDetailsDTO extends BaseIdDTO<Long> {
+
     @Serial
-    private static final long serialVersionUID = -7399959444673481949L;
+    private static final long serialVersionUID = 5286694061016006137L;
 
 }

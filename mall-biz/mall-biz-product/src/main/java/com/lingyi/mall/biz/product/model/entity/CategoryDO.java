@@ -63,9 +63,7 @@ public class CategoryDO extends BaseCommonDO implements Serializable {
     @Column(name = "description", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '商品描述'")
     private String description;
 
-    /**
-     * 屬性集
-     */
+
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<CategoryAttributeDO> categoryAttributes;
 }
