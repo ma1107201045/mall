@@ -45,14 +45,11 @@ public class CategoryDTO extends BaseIdDTO<Long> {
     private String icon;
 
     @Schema(description = "分类顺序")
-    private Integer sort;
+    private Integer seq;
 
     @Schema(description = "分类级别", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotNull(message = "分类级别")
     private Integer level;
-
-    @Schema(description = "是否显示在导航栏 1是 0否", requiredMode = Schema.RequiredMode.REQUIRED)
-    private Integer isShowNav;
 
     @Schema(description = "关键字（用于全文检索）")
     private String keywords;

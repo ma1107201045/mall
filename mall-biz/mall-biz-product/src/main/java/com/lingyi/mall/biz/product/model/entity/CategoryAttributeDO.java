@@ -30,13 +30,15 @@ public class CategoryAttributeDO extends BaseCommonDO implements Serializable {
     private static final long serialVersionUID = 8325971574533299862L;
 
     @ManyToOne(cascade = {CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "category_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '分类id'")
+    @JoinColumn(name = "category_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '分类id'",
+            foreignKey = @ForeignKey(name = "mp_category_attribute_fk_category_id"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private CategoryDO category;
 
 
     @ManyToOne(cascade = {CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "attribute_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '属性id'")
+    @JoinColumn(name = "attribute_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '属性id'",
+            foreignKey = @ForeignKey(name = "mp_category_attribute_fk_attribute_id"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private AttributeDO attribute;
 }

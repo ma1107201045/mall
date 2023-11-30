@@ -48,21 +48,17 @@ public class CategoryDO extends BaseCommonDO implements Serializable {
     @Column(name = "level", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '分类级别'")
     private Integer level;
 
-    @Column(name = "is_show_nav", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '是否显示在导航栏 1是 0否'")
-    private Integer isShowNav;
-
     @Column(name = "keywords", columnDefinition = "VARCHAR(200)  DEFAULT '' COMMENT '关键字（用于全文检索）'")
     private String keywords;
 
-    @Column(name = "sort", columnDefinition = "INT(11) UNSIGNED DEFAULT 1 COMMENT '排序号'")
-    private Integer sort;
+    @Column(name = "seq", columnDefinition = "INT(11) UNSIGNED DEFAULT 1 COMMENT '排序号'")
+    private Integer seq;
 
     @Column(name = "is_enable", columnDefinition = "TINYINT(4) UNSIGNED NOT NULL COMMENT '是否启用 1 是 0 否'")
     private Integer isEnable;
 
     @Column(name = "description", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '商品描述'")
     private String description;
-
 
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<CategoryAttributeDO> categoryAttributes;

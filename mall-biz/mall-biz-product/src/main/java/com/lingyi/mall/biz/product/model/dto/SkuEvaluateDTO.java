@@ -1,6 +1,7 @@
 package com.lingyi.mall.biz.product.model.dto;
 
 import com.lingyi.mall.common.core.dto.BaseIdDTO;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -14,10 +15,11 @@ import java.io.Serial;
  * @Description:
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@Schema(description = "SKU评论")
 public class SkuEvaluateDTO extends BaseIdDTO<Long> {
-    
+
     @Serial
     private static final long serialVersionUID = -830952698862150585L;
 }
