@@ -45,13 +45,13 @@
     <select id="selectById" resultType="com.lingyi.mall.biz.info.model.vo.InfoLogVO">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM ms_log
+        FROM ms_info_log
         WHERE id = #{id,jdbcType=BIGINT}
     </select>
     <select id="selectListByParam" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM ms_log
+        FROM ms_info_log
         <where>
             <include refid="Base_Condition"/>
         </where>

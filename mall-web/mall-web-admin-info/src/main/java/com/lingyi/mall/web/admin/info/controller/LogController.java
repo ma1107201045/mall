@@ -31,7 +31,7 @@ public class LogController {
 
     @Operation(summary = "删除/批量删除", description = "删除/批量删除")
     @DeleteMapping("/{ids}")
-    @PreAuthorize("@ps.hasAnyAuthority('admin:sms:logs:delete')")
+    @PreAuthorize("@ps.hasAnyAuthority('admin:info:logs:delete')")
     public ServerResponse<InfoLogDO> deleteByIds(@PathVariable List<Long> ids) {
         infoLogService.deleteByIds(ids);
         return ServerResponse.success();
@@ -39,7 +39,7 @@ public class LogController {
 
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
-    @PreAuthorize("@ps.hasAnyAuthority('admin:sms:logs:get')")
+    @PreAuthorize("@ps.hasAnyAuthority('admin:info:logs:get')")
     public ServerResponse<InfoLogVO> getById(@PathVariable Long id) {
         var logVO = infoLogService.readById(id);
         return ServerResponse.success(logVO);
@@ -47,7 +47,7 @@ public class LogController {
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
-    @PreAuthorize("@ps.hasAnyAuthority('admin:sms:logs:getList')")
+    @PreAuthorize("@ps.hasAnyAuthority('admin:info:logs:getList')")
     public ServerResponse<List<InfoLogVO>> getListByPageAndParam(@Valid InfoLogParam infoLogParam) {
         var page = PageHelper.startPage(infoLogParam.getCurrentPage(), infoLogParam.getPageSize(), infoLogParam.getSort());
         var logs = infoLogService.readListByParam(infoLogParam);
