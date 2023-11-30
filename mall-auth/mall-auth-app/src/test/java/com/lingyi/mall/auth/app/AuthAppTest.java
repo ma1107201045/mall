@@ -29,8 +29,8 @@ public class AuthAppTest implements MallAuthAppApplicationTest {
     @Test
     public void testSendSmsCaptcha() {
         AuthAppSendDTO authAppSendDTO = new AuthAppSendDTO();
-        authAppSendDTO.setPhoneNumber("15038233127");
-        authAppService.sendSmsCaptcha(authAppSendDTO);
+        authAppSendDTO.setNumber("15038233127");
+        authAppService.send(authAppSendDTO);
     }
 
     @Test
