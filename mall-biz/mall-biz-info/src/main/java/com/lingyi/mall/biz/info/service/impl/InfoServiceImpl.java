@@ -5,7 +5,7 @@ import com.lingyi.mall.api.info.request.InfoCaptchaSendRequest;
 import com.lingyi.mall.api.info.request.InfoCaptchaVerifyRequest;
 import com.lingyi.mall.api.info.request.InfoRequest;
 import com.lingyi.mall.biz.info.converter.CaptchaConverter;
-import com.lingyi.mall.biz.info.enums.SmsFailEnum;
+import com.lingyi.mall.biz.info.enums.InfoFailEnum;
 import com.lingyi.mall.biz.info.model.entity.InfoLogDO;
 import com.lingyi.mall.biz.info.service.InfoService;
 import com.lingyi.mall.biz.info.service.InfoLogService;
@@ -89,7 +89,7 @@ public class InfoServiceImpl implements InfoService {
         var smsCaptchaKey = infoRedisKeyUtil.getCaptchaKey(infoCaptchaVerifyReqDTO);
         var sourceCaptcha = redisUtil.get(smsCaptchaKey, String.class);
         var targetCaptcha = infoCaptchaVerifyReqDTO.getCaptcha();
-        AssertUtil.isEquals(targetCaptcha, sourceCaptcha, SmsFailEnum.CAPTCHA_EXPIRY_DATE_ERROR);
+        AssertUtil.isEquals(targetCaptcha, sourceCaptcha, InfoFailEnum.CAPTCHA_EXPIRY_DATE_ERROR);
         redisUtil.delete(smsCaptchaKey);
     }
 
@@ -98,12 +98,12 @@ public class InfoServiceImpl implements InfoService {
         var upperLimitKey = infoRedisKeyUtil.getUpperLimitKey(infoReqDTO);
         var upperLimitValue = redisUtil.get(upperLimitKey, Integer.class);
         var flag = Objects.nonNull(upperLimitValue) && infoReqDTO.getUpperLimit().equals(upperLimitValue);
-        AssertUtil.isFalse(flag, SmsFailEnum.SMS_UPPER_LIMIT_ERROR);
+        AssertUtil.isFalse(flag, InfoFailEnum.SMS_UPPER_LIMIT_ERROR);
 
         //校验发送间隔
         var intervalTimeKey = infoRedisKeyUtil.getIntervalTimeKey(infoReqDTO);
         var intervalTimeValue = redisUtil.get(intervalTimeKey, Integer.class);
-        AssertUtil.isNull(intervalTimeValue, SmsFailEnum.SMS_INTERVAL_ERROR);
+        AssertUtil.isNull(intervalTimeValue, InfoFailEnum.SMS_INTERVAL_ERROR);
     }
 
     private void setUpperLimitAndIntervalTime(RedisOperations<String, Object> operations, InfoRequest infoReqDTO) {

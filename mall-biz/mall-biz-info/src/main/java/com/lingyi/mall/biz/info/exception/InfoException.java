@@ -11,19 +11,19 @@ import java.io.Serial;
  * @datetime 2023/7/14 14:57
  * @description
  */
-public class SmsException extends BaseException {
+public class InfoException extends BaseException {
     @Serial
     private static final long serialVersionUID = -5093391015522363653L;
 
-    public SmsException(BaseFailEnum baseFailEnum) {
+    public InfoException(BaseFailEnum baseFailEnum) {
         super(baseFailEnum);
     }
 
-    public SmsException(String message) {
+    public InfoException(String message) {
         super(message);
     }
 
-    public SmsException(Integer code, String message) {
+    public InfoException(Integer code, String message) {
         super(code, message);
     }
 }
