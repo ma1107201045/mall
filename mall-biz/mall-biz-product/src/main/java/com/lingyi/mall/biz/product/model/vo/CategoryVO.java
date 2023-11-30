@@ -50,14 +50,11 @@ public class CategoryVO extends BaseIdVO<Long> {
     @Schema(description = "分类级别")
     private Integer level;
 
-    @Schema(description = "是否显示在导航栏 1是 0否")
-    private Integer isShowNav;
-
     @Schema(description = "关键字（用于全文检索）")
     private String keywords;
 
     @Schema(description = "分类顺序")
-    private Integer sort;
+    private Integer seq;
 
     @Schema(description = "是否启用 1 是 0 否")
     private Integer isEnable;
