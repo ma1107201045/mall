@@ -28,6 +28,8 @@
         <!-- mall common -->
         <hutool-all.version>5.8.20</hutool-all.version>
         <fastjson2.verson>2.0.25</fastjson2.verson>
+        <velocity.version>1.5</velocity.version>
+        <velocity-tools.version>2.0</velocity-tools.version>
         <springdoc-openapi-starter-webmvc-ui.version>2.2.0</springdoc-openapi-starter-webmvc-ui.version>
         <springdoc-openapi-starter-webflux-ui.version>2.2.0</springdoc-openapi-starter-webflux-ui.version>
         <knife4j-openapi3-jakarta-spring-boot-starte.version>4.3.0</knife4j-openapi3-jakarta-spring-boot-starte.version>
@@ -106,6 +108,11 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
+                <artifactId>mall-common-template</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>mall-common-xxljob</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -119,6 +126,16 @@
                 <groupId>com.alibaba.fastjson2</groupId>
                 <artifactId>fastjson2</artifactId>
                 <version>${fastjson2.verson}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity</artifactId>
+                <version>${velocity.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-tools</artifactId>
+                <version>${velocity-tools.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springdoc</groupId>

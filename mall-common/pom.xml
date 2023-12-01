@@ -17,6 +17,7 @@
         <module>mall-common-orm</module>
         <module>mall-common-redis</module>
         <module>mall-common-rocketmq</module>
+        <module>mall-common-template</module>
         <module>mall-common-xxljob</module>
     </modules>
 </project>

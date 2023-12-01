@@ -1,0 +1,27 @@
+package ${packageName}.${moduleName}.model.dto;
+
+import com.lingyi.mall.common.core.dto.BaseIdDTO;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+import java.io.Serial;
+
+/**
+ * @author maweiyan
+ * @email 1107201045@qq.com
+ * @datetime 2023/5/16 15:41
+ * @description
+ */
+@Data
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@Schema(description = "${classNameDescription}")
+public class ${className}DTO extends BaseIdDTO<Long> {
+
+
+}

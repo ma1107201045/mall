@@ -1,0 +1,33 @@
+package ${packageName}.${moduleName}.model.vo;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.lingyi.mall.common.core.jackson.serializer.ChineseNameSerialize;
+import com.lingyi.mall.common.core.jackson.serializer.EmailSerialize;
+import com.lingyi.mall.common.core.jackson.serializer.Ipv4Serializer;
+import com.lingyi.mall.common.core.jackson.serializer.PhoneNumberSerialize;
+import com.lingyi.mall.common.core.vo.BaseIdVO;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+import java.io.Serial;
+import java.time.LocalDateTime;
+import java.util.List;
+
+/**
+ * @Author: maweiyan
+ * @Email 1107201045@qq.com
+ * @DateTime: ${DateTime}
+ * @Description:
+ */
+@Data
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@Schema(description = "${classNameDescription}")
+public class ${className}VO extends BaseIdVO<Long> {
+
+
+}
