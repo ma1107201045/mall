@@ -1,6 +1,7 @@
 package com.lingyi.mall.biz.product.dao.mapper;
 
 import com.lingyi.mall.biz.product.model.param.SkuEvaluateReplyParam;
+import com.lingyi.mall.biz.product.model.param.SpuAttributeParam;
 import com.lingyi.mall.biz.product.model.vo.SkuEvaluateReplyVO;
 import com.lingyi.mall.biz.product.model.vo.SpuAttributeVO;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
@@ -13,5 +14,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @Description:
  */
 @Mapper
-public interface SpuAttributeMapper extends MybatisMapperImplementation<SpuAttributeVO, SkuEvaluateReplyParam, Long> {
+public interface SpuAttributeMapper extends MybatisMapperImplementation<SpuAttributeVO, SpuAttributeParam, Long> {
 }

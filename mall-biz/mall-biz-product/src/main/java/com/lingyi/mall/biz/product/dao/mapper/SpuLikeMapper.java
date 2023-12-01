@@ -1,5 +1,8 @@
 package com.lingyi.mall.biz.product.dao.mapper;
 
+import com.lingyi.mall.biz.product.model.param.SpuLikeParam;
+import com.lingyi.mall.biz.product.model.vo.SpuLikeVO;
+import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -9,5 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @Description:
  */
 @Mapper
-public interface SpuLikeMapper {
+public interface SpuLikeMapper extends MybatisMapperImplementation<SpuLikeVO, SpuLikeParam, Long> {
 }

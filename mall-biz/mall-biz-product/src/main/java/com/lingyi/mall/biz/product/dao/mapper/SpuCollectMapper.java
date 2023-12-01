@@ -1,10 +1,16 @@
 package com.lingyi.mall.biz.product.dao.mapper;
 
+import com.lingyi.mall.biz.product.model.param.SpuCollectParam;
+import com.lingyi.mall.biz.product.model.vo.SpuCollectVO;
+import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
+import org.apache.ibatis.annotations.Mapper;
+
 /**
  * @Author: maweiyan
  * @Email: 1107201045@qq.com
  * @DateTime: 2023/11/28 14:21
  * @Description:
  */
-public interface SpuCollectMapper {
+@Mapper
+public interface SpuCollectMapper extends MybatisMapperImplementation<SpuCollectVO, SpuCollectParam, Long> {
 }
