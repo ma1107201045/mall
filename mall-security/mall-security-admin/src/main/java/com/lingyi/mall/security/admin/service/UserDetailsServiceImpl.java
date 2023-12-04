@@ -29,23 +29,23 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         //校验用户名称
         AssertUtil.notBlack(username, new UsernameNotFoundException(FailEnum.USER_NAME_NOT_NULL_ERROR.getMessage()));
         //查询用户信息和菜单权限
-        var userRespDTO = userFeignConsumer.getUserAndMenuPermissionsByUserName(username);
+        var userResponse = userFeignConsumer.getUserAndMenuPermissionsByUserName(username);
         //校验用用户信息
-        AssertUtil.notNull(userRespDTO, new UsernameNotFoundException(FailEnum.USER_NAME_NOT_FOUND_ERROR.getMessage()));
+        AssertUtil.notNull(userResponse, new UsernameNotFoundException(FailEnum.USER_NAME_NOT_FOUND_ERROR.getMessage()));
         //获取菜单权限中的权限标识
-        var simpleGrantedAuthorities = userRespDTO.getPermissions().stream()
+        var simpleGrantedAuthorities = userResponse.getPermissions().stream()
                 .map(SimpleGrantedAuthority::new)
                 .toList();
         //组装UserDetailsEntity
         return UserDetailsDO.builder()
                 .authorities(simpleGrantedAuthorities)
-                .password(userRespDTO.getPassword())
-                .username(userRespDTO.getUserName())
+                .password(userResponse.getPassword())
+                .username(userResponse.getUserName())
                 .accountNonExpired(true)
                 .accountNonLocked(true)
                 .credentialsNonExpired(true)
-                .enabled(WhetherEnum.Y.getCode().equals(userRespDTO.getIsEnable()))
-                .userId(userRespDTO.getUserId())
+                .enabled(WhetherEnum.Y.getCode().equals(userResponse.getIsEnable()))
+                .userId(userResponse.getUserId())
                 .build();
     }
 }

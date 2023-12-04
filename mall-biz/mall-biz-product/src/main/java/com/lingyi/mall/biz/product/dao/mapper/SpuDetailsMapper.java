@@ -5,6 +5,7 @@ import com.lingyi.mall.biz.product.model.param.SpuLikeParam;
 import com.lingyi.mall.biz.product.model.vo.SpuDetailsVO;
 import com.lingyi.mall.biz.product.model.vo.SpuLikeVO;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * @Author: maweiyan
@@ -12,5 +13,6 @@ import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
  * @DateTime: 2023/11/28 14:21
  * @Description:
  */
+@Mapper
 public interface SpuDetailsMapper extends MybatisMapperImplementation<SpuDetailsVO, SpuDetailsParam, Long> {
 }
