@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
  * @description
  */
 @Tag(name = "认证", description = "认证")
-@Validated
 @RestController
 @RequestMapping("/auth/app")
 @RequiredArgsConstructor
