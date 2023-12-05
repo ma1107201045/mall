@@ -35,7 +35,7 @@ public class AuthAppController {
         return ServerResponse.success();
     }
 
-    @Operation(summary = "手机号登录", description = "手机号登录")
+    @Operation(summary = "短信登录", description = "短信登录")
     @PostMapping("/sms-login")
     public ServerResponse<AuthAppLoginVO> smsLogin(@Valid @RequestBody AuthAppSmsLoginDTO authAppSmsLoginDTO) {
         var authAppLoginVO = authAppService.smsLogin(authAppSmsLoginDTO);

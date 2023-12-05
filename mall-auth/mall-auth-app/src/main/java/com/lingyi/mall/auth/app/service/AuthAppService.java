@@ -22,9 +22,9 @@ public interface AuthAppService {
 
 
     /**
-     * 手机号登录
+     * 短信登录
      *
-     * @param authAppSmsLoginDTO 登录DTO
+     * @param authAppSmsLoginDTO 短信登录DTO
      * @return AppLoginVO
      */
     AuthAppLoginVO smsLogin(AuthAppSmsLoginDTO authAppSmsLoginDTO);
@@ -33,7 +33,7 @@ public interface AuthAppService {
     /**
      * 邮箱登录
      *
-     * @param authAppEmailLoginDTO 登录DTO
+     * @param authAppEmailLoginDTO 邮箱登录DTO
      * @return AppLoginVO
      */
     AuthAppLoginVO emailLogin(AuthAppEmailLoginDTO authAppEmailLoginDTO);
