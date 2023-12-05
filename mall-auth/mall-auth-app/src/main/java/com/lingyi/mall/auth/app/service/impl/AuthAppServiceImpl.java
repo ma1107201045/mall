@@ -69,16 +69,16 @@ public class AuthAppServiceImpl implements AuthAppService {
         //通过手机号校验用户是否存在，不存在注册
         var memberRespDTO = memberFeignConsumer.getByPhoneNumber(authAppSmsLoginDTO.getPhoneNumber());
         if (Objects.isNull(memberRespDTO)) {
+            //校验会员等级是否设置
             var memberLevelId = levelFeignConsumer.getDefaultLevelId();
             AssertUtil.notNull(memberLevelId, AuthAppFailEnum.MEMBER_DEFAULT_LEVEL_ID_NULL_ERROR);
 
             //组装会员信息
             var memberReqDTO = AuthAppConverter.INSTANCE.to(authAppSmsLoginDTO, memberLevelId);
+            memberRespDTO = ConverterUtil.to(memberReqDTO, MemberResponse.class);
+
             //注册会员
             Long id = memberFeignConsumer.register(memberReqDTO);
-
-            //转换数据
-            memberRespDTO = ConverterUtil.to(memberReqDTO, MemberResponse.class);
             memberRespDTO.setId(id);
         }
 
