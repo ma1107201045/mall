@@ -3,7 +3,7 @@ package com.lingyi.mall.auth.app;
 
 import com.alibaba.fastjson2.JSON;
 import com.lingyi.mall.MallAuthAppApplicationTest;
-import com.lingyi.mall.auth.app.model.dto.AuthAppLoginDTO;
+import com.lingyi.mall.auth.app.model.dto.AuthAppSmsLoginDTO;
 import com.lingyi.mall.auth.app.model.dto.AuthAppSendDTO;
 import com.lingyi.mall.auth.app.service.AuthAppService;
 import com.lingyi.mall.auth.app.model.vo.AuthAppLoginVO;
@@ -30,15 +30,15 @@ public class AuthAppTest implements MallAuthAppApplicationTest {
     public void testSendSmsCaptcha() {
         AuthAppSendDTO authAppSendDTO = new AuthAppSendDTO();
         authAppSendDTO.setNumber("15038233127");
-        authAppService.send(authAppSendDTO);
+        authAppService.sendCaptcha(authAppSendDTO);
     }
 
     @Test
     public void testLogin() {
-        AuthAppLoginDTO authAppLoginDTO = new AuthAppLoginDTO();
-        authAppLoginDTO.setPhoneNumber("15038233127");
-        authAppLoginDTO.setSmsCaptcha("376295");
-        AuthAppLoginVO authAppLoginVO = authAppService.login(authAppLoginDTO);
+        AuthAppSmsLoginDTO authAppSmsLoginDTO = new AuthAppSmsLoginDTO();
+        authAppSmsLoginDTO.setPhoneNumber("15038233127");
+        authAppSmsLoginDTO.setSmsCaptcha("376295");
+        AuthAppLoginVO authAppLoginVO = authAppService.smsLogin(authAppSmsLoginDTO);
         log.info(JSON.toJSONString(authAppLoginVO));
     }
 }

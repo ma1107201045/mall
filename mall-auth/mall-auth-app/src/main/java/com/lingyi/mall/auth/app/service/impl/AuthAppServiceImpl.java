@@ -9,7 +9,8 @@ import com.lingyi.mall.api.member.consumer.MemberLoginLogFeignConsumer;
 import com.lingyi.mall.api.member.response.MemberResponse;
 import com.lingyi.mall.api.info.consumer.SmsFeignConsumer;
 import com.lingyi.mall.auth.app.converter.AuthAppConverter;
-import com.lingyi.mall.auth.app.model.dto.AuthAppLoginDTO;
+import com.lingyi.mall.auth.app.model.dto.AuthAppEmailLoginDTO;
+import com.lingyi.mall.auth.app.model.dto.AuthAppSmsLoginDTO;
 import com.lingyi.mall.auth.app.model.dto.AuthAppSendDTO;
 import com.lingyi.mall.auth.app.enums.AuthAppFailEnum;
 import com.lingyi.mall.auth.app.properties.InfoCaptchaProperties;
@@ -54,25 +55,25 @@ public class AuthAppServiceImpl implements AuthAppService {
 
 
     @Override
-    public void send(AuthAppSendDTO authAppSendDTO) {
+    public void sendCaptcha(AuthAppSendDTO authAppSendDTO) {
         var captchaSendReqDTO = AuthAppConverter.INSTANCE.to(authAppSendDTO.getNumber(), properties);
         smsFeignConsumer.sendCaptcha(captchaSendReqDTO);
     }
 
     @Override
-    public AuthAppLoginVO login(AuthAppLoginDTO authAppLoginDTO) {
+    public AuthAppLoginVO smsLogin(AuthAppSmsLoginDTO authAppSmsLoginDTO) {
         //转换数据并且校验短信验证码
-        var captchaVerifyReqDTO = AuthAppConverter.INSTANCE.to(authAppLoginDTO, properties);
+        var captchaVerifyReqDTO = AuthAppConverter.INSTANCE.to(authAppSmsLoginDTO, properties);
         smsFeignConsumer.verifyCaptcha(captchaVerifyReqDTO);
 
         //通过手机号校验用户是否存在，不存在注册
-        var memberRespDTO = memberFeignConsumer.getByPhoneNumber(authAppLoginDTO.getPhoneNumber());
+        var memberRespDTO = memberFeignConsumer.getByPhoneNumber(authAppSmsLoginDTO.getPhoneNumber());
         if (Objects.isNull(memberRespDTO)) {
             var memberLevelId = levelFeignConsumer.getDefaultLevelId();
             AssertUtil.notNull(memberLevelId, AuthAppFailEnum.MEMBER_DEFAULT_LEVEL_ID_NULL_ERROR);
 
             //组装会员信息
-            var memberReqDTO = AuthAppConverter.INSTANCE.to(authAppLoginDTO, memberLevelId);
+            var memberReqDTO = AuthAppConverter.INSTANCE.to(authAppSmsLoginDTO, memberLevelId);
             //注册会员
             Long id = memberFeignConsumer.register(memberReqDTO);
 
@@ -92,6 +93,11 @@ public class AuthAppServiceImpl implements AuthAppService {
         //设置返回头token
         HttpUtil.setHeader(SecurityConstant.AUTHORIZATION, token);
         return ConverterUtil.to(memberRespDTO, AuthAppLoginVO.class);
+    }
+
+    @Override
+    public AuthAppLoginVO emailLogin(AuthAppEmailLoginDTO authAppEmailLoginDTO) {
+        return null;
     }
 
     @Override

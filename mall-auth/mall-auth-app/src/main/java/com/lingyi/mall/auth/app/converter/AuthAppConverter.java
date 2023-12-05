@@ -9,7 +9,7 @@ import com.lingyi.mall.api.info.request.InfoCaptchaSendRequest;
 import com.lingyi.mall.api.info.request.InfoCaptchaVerifyRequest;
 import com.lingyi.mall.api.info.enums.InfoBusinessEnum;
 import com.lingyi.mall.api.info.enums.InfoServiceEnum;
-import com.lingyi.mall.auth.app.model.dto.AuthAppLoginDTO;
+import com.lingyi.mall.auth.app.model.dto.AuthAppSmsLoginDTO;
 import com.lingyi.mall.auth.app.enums.RegisterSourceEnum;
 import com.lingyi.mall.auth.app.properties.InfoCaptchaProperties;
 import com.lingyi.mall.auth.app.util.UserNameUtil;
@@ -47,21 +47,21 @@ public class AuthAppConverter {
         return captchaSendReqDTO;
     }
 
-    public InfoCaptchaVerifyRequest to(AuthAppLoginDTO authAppLoginDTO, InfoCaptchaProperties properties) {
-        var phoneNumber = authAppLoginDTO.getPhoneNumber();
+    public InfoCaptchaVerifyRequest to(AuthAppSmsLoginDTO authAppSmsLoginDTO, InfoCaptchaProperties properties) {
+        var phoneNumber = authAppSmsLoginDTO.getPhoneNumber();
         InfoCaptchaVerifyRequest captchaVerifyReqDTO = new InfoCaptchaVerifyRequest();
         captchaVerifyReqDTO.setNumber(phoneNumber);
         captchaVerifyReqDTO.setServiceType(properties.getService().getCode());
         captchaVerifyReqDTO.setBusinessType(properties.getBusiness().getCode());
-        captchaVerifyReqDTO.setCaptcha(authAppLoginDTO.getSmsCaptcha());
+        captchaVerifyReqDTO.setCaptcha(authAppSmsLoginDTO.getSmsCaptcha());
         return captchaVerifyReqDTO;
     }
 
-    public MemberRequest to(AuthAppLoginDTO authAppLoginDTO, Long memberLevelId) {
+    public MemberRequest to(AuthAppSmsLoginDTO authAppSmsLoginDTO, Long memberLevelId) {
         var memberReqDTO = new MemberRequest();
         memberReqDTO.setMemberLevelId(memberLevelId);
-        memberReqDTO.setNickname(UserNameUtil.getRightFourBit(authAppLoginDTO.getPhoneNumber()));
-        memberReqDTO.setPhoneNumber(authAppLoginDTO.getPhoneNumber());
+        memberReqDTO.setNickname(UserNameUtil.getRightFourBit(authAppSmsLoginDTO.getPhoneNumber()));
+        memberReqDTO.setPhoneNumber(authAppSmsLoginDTO.getPhoneNumber());
         memberReqDTO.setIsEnable(WhetherEnum.Y.getCode());
         memberReqDTO.setRegisterSource(RegisterSourceEnum.H5.getCode());
         memberReqDTO.setRegisterDataTime(LocalDateTime.now());

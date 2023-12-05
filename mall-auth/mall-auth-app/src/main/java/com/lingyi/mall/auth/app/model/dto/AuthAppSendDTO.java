@@ -14,7 +14,7 @@ import lombok.Data;
 @Data
 public class AuthAppSendDTO {
 
-    @Schema(description = "号码")
-    @NotBlank(message = "号码不能为空")
+    @Schema(description = "手机号或者邮箱")
+    @NotBlank(message = "手机号或者邮箱不能为空")
     private String number;
 }

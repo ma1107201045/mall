@@ -34,7 +34,7 @@ public class InfoLogDO extends BaseCommonDO implements Serializable {
     @Column(name = "business_name", columnDefinition = "VARCHAR(50) NOT NULL COMMENT '业务名称'")
     private String businessName;
 
-    @Column(name = "type", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '短信类型 1.短信 2.短信验证码 3.邮箱 4.邮箱验证码'")
+    @Column(name = "type", columnDefinition = "INT UNSIGNED NOT NULL COMMENT '类型 1.短信 2.短信验证码 3.邮箱 4.邮箱验证码'")
     private Integer type;
 
     @Column(name = "number", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '手机号或者邮箱'")

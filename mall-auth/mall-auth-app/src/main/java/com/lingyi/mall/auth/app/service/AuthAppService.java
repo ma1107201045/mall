@@ -1,6 +1,7 @@
 package com.lingyi.mall.auth.app.service;
 
-import com.lingyi.mall.auth.app.model.dto.AuthAppLoginDTO;
+import com.lingyi.mall.auth.app.model.dto.AuthAppEmailLoginDTO;
+import com.lingyi.mall.auth.app.model.dto.AuthAppSmsLoginDTO;
 import com.lingyi.mall.auth.app.model.dto.AuthAppSendDTO;
 import com.lingyi.mall.auth.app.model.vo.AuthAppLoginVO;
 
@@ -13,20 +14,29 @@ import com.lingyi.mall.auth.app.model.vo.AuthAppLoginVO;
 public interface AuthAppService {
 
     /**
-     * 发送验证码（手机号或者验证码）
+     * 发送验证码（手机或者邮箱）
      *
      * @param authAppSendDTO 发送dto
      */
-    void send(AuthAppSendDTO authAppSendDTO);
+    void sendCaptcha(AuthAppSendDTO authAppSendDTO);
 
 
     /**
      * 手机号登录
      *
-     * @param authAppLoginDTO 登录DTO
+     * @param authAppSmsLoginDTO 登录DTO
      * @return AppLoginVO
      */
-    AuthAppLoginVO login(AuthAppLoginDTO authAppLoginDTO);
+    AuthAppLoginVO smsLogin(AuthAppSmsLoginDTO authAppSmsLoginDTO);
+
+
+    /**
+     * 邮箱登录
+     *
+     * @param authAppEmailLoginDTO 登录DTO
+     * @return AppLoginVO
+     */
+    AuthAppLoginVO emailLogin(AuthAppEmailLoginDTO authAppEmailLoginDTO);
 
 
     /**

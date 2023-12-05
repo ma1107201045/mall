@@ -1,6 +1,7 @@
 package com.lingyi.mall.auth.app.controller;
 
-import com.lingyi.mall.auth.app.model.dto.AuthAppLoginDTO;
+import com.lingyi.mall.auth.app.model.dto.AuthAppEmailLoginDTO;
+import com.lingyi.mall.auth.app.model.dto.AuthAppSmsLoginDTO;
 import com.lingyi.mall.auth.app.model.dto.AuthAppSendDTO;
 import com.lingyi.mall.auth.app.service.AuthAppService;
 import com.lingyi.mall.auth.app.model.vo.AuthAppLoginVO;
@@ -27,20 +28,26 @@ public class AuthAppController {
 
     private final AuthAppService authAppService;
 
-    @Operation(summary = "发送短信验证码", description = "发送短信验证码")
-    @PostMapping("/send-info-captcha")
-    public ServerResponse<Void> send(AuthAppSendDTO authAppSendDTO) {
-        authAppService.send(authAppSendDTO);
+    @Operation(summary = "发送验证码（短信或者邮箱）", description = "发送验证码（短信或者邮箱）")
+    @PostMapping("/send-captcha")
+    public ServerResponse<Void> sendCaptcha(AuthAppSendDTO authAppSendDTO) {
+        authAppService.sendCaptcha(authAppSendDTO);
         return ServerResponse.success();
     }
 
     @Operation(summary = "手机号登录", description = "手机号登录")
-    @PostMapping("/login")
-    public ServerResponse<AuthAppLoginVO> login(@Valid @RequestBody AuthAppLoginDTO authAppLoginDTO) {
-        var authAppLoginVO = authAppService.login(authAppLoginDTO);
+    @PostMapping("/sms-login")
+    public ServerResponse<AuthAppLoginVO> smsLogin(@Valid @RequestBody AuthAppSmsLoginDTO authAppSmsLoginDTO) {
+        var authAppLoginVO = authAppService.smsLogin(authAppSmsLoginDTO);
         return ServerResponse.success(authAppLoginVO);
     }
 
+    @Operation(summary = "邮箱登录", description = "邮箱登录")
+    @PostMapping("/email-login")
+    public ServerResponse<AuthAppLoginVO> emailLogin(@Valid @RequestBody AuthAppEmailLoginDTO authAppEmailLoginDTO) {
+        var authAppLoginVO = authAppService.emailLogin(authAppEmailLoginDTO);
+        return ServerResponse.success(authAppLoginVO);
+    }
 
     @Operation(summary = "注销", description = "注销")
     @PostMapping("/logout")
