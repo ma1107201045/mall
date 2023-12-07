@@ -3,4 +3,64 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lingyi.mall.biz.product.dao.mapper.SpuMapper">
+    <resultMap id="BaseResultMap" type="com.lingyi.mall.biz.product.model.vo.SpuVO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="create_date_time" jdbcType="TIMESTAMP" property="createDateTime"/>
+        <result column="last_modify_by" jdbcType="VARCHAR" property="lastModifyBy"/>
+        <result column="last_modify_date_time" jdbcType="TIMESTAMP" property="lastModifyDateTime"/>
+        <result column="brief" jdbcType="VARCHAR" property="brief"/>
+        <result column="cost_price" jdbcType="DECIMAL" property="costPrice"/>
+        <result column="is_mail" jdbcType="DECIMAL" property="isMail"/>
+        <result column="is_up" jdbcType="TINYINT" property="isUp"/>
+        <result column="keywords" jdbcType="VARCHAR" property="keywords"/>
+        <result column="mail_price" jdbcType="DECIMAL" property="mailPrice"/>
+        <result column="main_pic" jdbcType="VARCHAR" property="mainPic"/>
+        <result column="market_price" jdbcType="DECIMAL" property="marketPrice"/>
+        <result column="merchant_id" jdbcType="BIGINT" property="merchantId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="pics" jdbcType="VARCHAR" property="pics"/>
+        <result column="sale" jdbcType="INTEGER" property="sale"/>
+        <result column="sale_price" jdbcType="DECIMAL" property="salePrice"/>
+        <result column="seq" jdbcType="INTEGER" property="seq"/>
+        <result column="shop_id" jdbcType="BIGINT" property="shopId"/>
+        <result column="total_stock" jdbcType="INTEGER" property="totalStock"/>
+        <result column="unit_name" jdbcType="DECIMAL" property="unitName"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="vip_price" jdbcType="DECIMAL" property="vipPrice"/>
+        <result column="brand_id" jdbcType="BIGINT" property="brandId"/>
+        <result column="category_id" jdbcType="BIGINT" property="categoryId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, create_by, create_date_time, last_modify_by, last_modify_date_time, brief, cost_price,
+    is_mail, is_up, keywords, mail_price, main_pic, market_price, merchant_id, `name`,
+    pics, sale, sale_price, seq, shop_id, total_stock, unit_name, user_id, vip_price,
+    brand_id, category_id
+    </sql>
+    <sql id="Base_Condition">
+        <if test="name!=null and name!=''">
+            AND `name` LIKE CONCAT('%',#{name,jdbcType=VARCHAR},'%')
+        </if>
+    </sql>
+    <select id="selectById" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM mp_spu
+        WHERE id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="countByParam" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM mp_spu
+        <where>
+            <include refid="Base_Condition"/>
+        </where>
+    </select>
+    <select id="selectListByParam" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM mp_spu
+        <where>
+            <include refid="Base_Condition"/>
+        </where>
+        ORDER BY ${sort}
+    </select>
 </mapper>

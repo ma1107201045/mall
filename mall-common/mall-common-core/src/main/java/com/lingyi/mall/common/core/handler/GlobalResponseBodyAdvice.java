@@ -36,7 +36,12 @@ public class GlobalResponseBodyAdvice implements ResponseBodyAdvice<Object> {
 
     @SneakyThrows
     @Override
-    public Object beforeBodyWrite(@Nullable Object body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
+    public Object beforeBodyWrite(@Nullable Object body,
+                                  MethodParameter returnType,
+                                  MediaType selectedContentType,
+                                  Class<? extends HttpMessageConverter<?>> selectedConverterType,
+                                  ServerHttpRequest request,
+                                  ServerHttpResponse response) {
         if (body instanceof String) {
             return objectMapper.writeValueAsString(ServerResponse.success(body));
         }

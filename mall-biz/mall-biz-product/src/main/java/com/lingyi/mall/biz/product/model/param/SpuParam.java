@@ -17,4 +17,7 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class SpuParam extends BasePageParam {
+
+    @Schema(description = "商品名称")
+    private String name;
 }
