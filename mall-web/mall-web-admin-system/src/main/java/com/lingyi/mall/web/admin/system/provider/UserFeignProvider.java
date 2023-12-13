@@ -37,8 +37,8 @@ public class UserFeignProvider implements UserFeign {
     @Operation(summary = "查询当前用户信息和权限标识", description = "查询当前用户信息和权限标识")
     @Override
     public ServerResponse<UserResponse> getUserAndMenuPermissionsByUserName(String userName) {
-        var userRespDTO = userService.readUserAndMenuPermissionsByUserName(userName);
-        return ServerResponse.success(userRespDTO);
+        var userResponse = userService.readUserAndMenuPermissionsByUserName(userName);
+        return ServerResponse.success(userResponse);
     }
 
     @Operation(summary = "查询当前用户菜单树", description = "查询菜单树")

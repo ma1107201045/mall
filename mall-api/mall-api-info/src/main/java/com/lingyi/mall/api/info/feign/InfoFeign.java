@@ -24,28 +24,28 @@ public interface InfoFeign {
     /**
      * 发送验证码
      *
-     * @param smsReqDTO ..
+     * @param infoRequest ..
      * @return ServerResponse
      */
     @PostMapping
-    ServerResponse<Void> send(@RequestBody InfoRequest smsReqDTO);
+    ServerResponse<Void> send(@RequestBody InfoRequest infoRequest);
 
     /**
-     * @param captchaReqDTO
-     * @return
+     * @param infoCaptchaSendRequest ..
+     * @return ServerResponse
      */
     @PostMapping("/send-captcha")
     @GetMapping
-    ServerResponse<Void> sendCaptcha(@RequestBody InfoCaptchaSendRequest captchaReqDTO);
+    ServerResponse<Void> sendCaptcha(@RequestBody InfoCaptchaSendRequest infoCaptchaSendRequest);
 
     /**
      * 保存验证码
      *
-     * @param captchaVerifyDTO ..
+     * @param infoCaptchaVerifyRequest ..
      * @return ServerResponse
      */
     @GetMapping("/verify-captcha")
-    ServerResponse<Void> verifyCaptcha(@RequestBody InfoCaptchaVerifyRequest captchaVerifyDTO);
+    ServerResponse<Void> verifyCaptcha(@RequestBody InfoCaptchaVerifyRequest infoCaptchaVerifyRequest);
 
 
 }

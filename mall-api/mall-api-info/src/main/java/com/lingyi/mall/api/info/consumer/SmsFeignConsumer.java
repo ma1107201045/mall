@@ -23,9 +23,9 @@ public class SmsFeignConsumer {
 
     private final InfoFeign infoFeign;
 
-    public void send(InfoRequest smsReqDTO) {
-        log.info("入参:smsReqDTO:{}", smsReqDTO);
-        var response = infoFeign.send(smsReqDTO);
+    public void send(InfoRequest infoRequest) {
+        log.info("入参:smsReqDTO:{}", infoRequest);
+        var response = infoFeign.send(infoRequest);
         if (response.getIsSuccess()) {
             log.info("出参:Void:{}", JSON.toJSONString(response.getData()));
             return;
@@ -33,9 +33,9 @@ public class SmsFeignConsumer {
         throw new OpenFeignException(response.getCode(), response.getMessage());
     }
 
-    public void sendCaptcha(InfoCaptchaSendRequest infoCaptchaSendReqDTO) {
-        log.info("入参:infoCaptchaSendReqDTO:{}", infoCaptchaSendReqDTO);
-        var response = infoFeign.sendCaptcha(infoCaptchaSendReqDTO);
+    public void sendCaptcha(InfoCaptchaSendRequest infoCaptchaSendRequest) {
+        log.info("入参:infoCaptchaSendReqDTO:{}", infoCaptchaSendRequest);
+        var response = infoFeign.sendCaptcha(infoCaptchaSendRequest);
         if (response.getIsSuccess()) {
             log.info("出参:Void:{}", JSON.toJSONString(response.getData()));
             return;
@@ -43,9 +43,9 @@ public class SmsFeignConsumer {
         throw new OpenFeignException(response.getCode(), response.getMessage());
     }
 
-    public void verifyCaptcha(InfoCaptchaVerifyRequest infoCaptchaVerifyReqDTO) {
-        log.info("入参:infoCaptchaVerifyReqDTO:{}", infoCaptchaVerifyReqDTO);
-        var response = infoFeign.verifyCaptcha(infoCaptchaVerifyReqDTO);
+    public void verifyCaptcha(InfoCaptchaVerifyRequest infoCaptchaVerifyRequest) {
+        log.info("入参:infoCaptchaVerifyReqDTO:{}", infoCaptchaVerifyRequest);
+        var response = infoFeign.verifyCaptcha(infoCaptchaVerifyRequest);
         if (response.getIsSuccess()) {
             log.info("出参:Void:{}", JSON.toJSONString(response.getData()));
             return;
