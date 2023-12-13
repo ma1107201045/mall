@@ -23,7 +23,7 @@ public class UserFeignFallbackFactory implements FallbackFactory<UserFeign> {
 
 
             @Override
-            public ServerResponse<Void> updatePartById(Long id, UserPartRequest userPartDTO) {
+            public ServerResponse<Void> updatePartById(Long id, UserPartRequest userPartRequest) {
                 return null;
             }
 

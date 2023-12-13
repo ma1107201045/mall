@@ -25,9 +25,9 @@ public class UserFeignConsumer {
 
     private final UserFeign userFeign;
 
-    public void updatePartById(Long id, UserPartRequest userPartDTO) {
-        log.info("入参:userPartDTO:{}", userPartDTO);
-        var response = userFeign.updatePartById(id, userPartDTO);
+    public void updatePartById(Long id, UserPartRequest userPartRequest) {
+        log.info("入参:userPartRequest:{}", userPartRequest);
+        var response = userFeign.updatePartById(id, userPartRequest);
         if (response.getIsSuccess()) {
             log.info("出参:Void:{}", JSON.toJSONString(response.getData()));
             return;

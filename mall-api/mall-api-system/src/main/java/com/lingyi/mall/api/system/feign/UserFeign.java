@@ -25,11 +25,11 @@ public interface UserFeign {
      * 更新部分用户信息
      *
      * @param id          主键id
-     * @param userPartDTO ..
+     * @param userPartRequest ..
      * @return ServerResponse
      */
     @PatchMapping(URL_PREFIX + "/{id}")
-    ServerResponse<Void> updatePartById(@PathVariable("id") Long id, @RequestBody UserPartRequest userPartDTO);
+    ServerResponse<Void> updatePartById(@PathVariable("id") Long id, @RequestBody UserPartRequest userPartRequest);
 
     /**
      * 按照用户名称查询用户信息和按钮权限标识

@@ -17,7 +17,7 @@ public class LogFeignFallbackFactory implements FallbackFactory<LogFeign> {
     public LogFeign create(Throwable cause) {
         return new LogFeign() {
             @Override
-            public ServerResponse<Void> save(LogRequest logDTO, Request.Options options) {
+            public ServerResponse<Void> save(LogRequest logRequest, Request.Options options) {
                 return null;
             }
 

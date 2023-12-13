@@ -24,9 +24,9 @@ public class LogFeignConsumer {
 
     private final LogFeign logFeign;
 
-    public void save(LogRequest logDTO) {
-        log.info("入参:log:{}", logDTO);
-        var response = logFeign.save(logDTO, new Request.Options(20L, TimeUnit.SECONDS, 20L, TimeUnit.SECONDS, true));
+    public void save(LogRequest logRequest) {
+        log.info("入参:log:{}", logRequest);
+        var response = logFeign.save(logRequest, new Request.Options(20L, TimeUnit.SECONDS, 20L, TimeUnit.SECONDS, true));
         if (response.getIsSuccess()) {
             log.info("出参:Void:{}", JSON.toJSONString(response.getData()));
             return;
