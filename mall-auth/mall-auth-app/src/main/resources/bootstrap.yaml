@@ -5,6 +5,9 @@ spring:
     name: mall-auth-app
   main:
     allow-bean-definition-overriding: true
+  threads:
+    virtual:
+      enabled: true
   data:
     redis:
       host: 36.137.103.166

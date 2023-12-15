@@ -3,6 +3,9 @@ server:
 spring:
   application:
     name: mall-gateway
+  threads:
+    virtual:
+      enabled: true
   cloud:
     inetutils:
       preferred-networks:

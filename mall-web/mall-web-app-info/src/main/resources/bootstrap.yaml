@@ -5,6 +5,9 @@ spring:
     name: mall-web-app-info
   main:
     allow-bean-definition-overriding: true
+  threads:
+    virtual:
+      enabled: true
   cloud:
     inetutils:
       preferred-networks:

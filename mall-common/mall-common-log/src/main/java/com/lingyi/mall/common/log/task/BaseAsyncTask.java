@@ -28,8 +28,9 @@ public class BaseAsyncTask {
     @Async("executorService")
     public void saveLog(LogRequest logDTO) {
         MDC.put(BaseConstant.TRACK_ID_NAME, logDTO.getTrackId());
+        log.info("is virtual thread：" + Thread.currentThread().isVirtual());
         log.info(Thread.currentThread().getName() + "begin save log");
-        logFeignConsumer.save(logDTO);
+        // logFeignConsumer.save(logDTO);
         log.info(Thread.currentThread().getName() + "end save log");
         MDC.remove(BaseConstant.TRACK_ID_NAME);
     }
