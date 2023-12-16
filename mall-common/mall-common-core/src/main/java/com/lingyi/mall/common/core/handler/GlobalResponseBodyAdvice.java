@@ -15,6 +15,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
+import java.nio.charset.StandardCharsets;
+
 
 /**
  * @Author: maweiyan
@@ -42,11 +44,15 @@ public class GlobalResponseBodyAdvice implements ResponseBodyAdvice<Object> {
                                   Class<? extends HttpMessageConverter<?>> selectedConverterType,
                                   ServerHttpRequest request,
                                   ServerHttpResponse response) {
-        if (body instanceof String) {
-            return objectMapper.writeValueAsString(ServerResponse.success(body));
+        //Knife4j单独处理
+        if (body instanceof byte[]) {
+            return body;
         }
         if (body instanceof ServerResponse<?>) {
             return body;
+        }
+        if (body instanceof String) {
+            return objectMapper.writeValueAsString(ServerResponse.success(body));
         }
         return ServerResponse.success(body);
     }

@@ -30,8 +30,7 @@
         <fastjson2.verson>2.0.25</fastjson2.verson>
         <velocity.version>1.5</velocity.version>
         <velocity-tools.version>2.0</velocity-tools.version>
-        <springdoc-openapi-starter-webmvc-ui.version>2.2.0</springdoc-openapi-starter-webmvc-ui.version>
-        <springdoc-openapi-starter-webflux-ui.version>2.2.0</springdoc-openapi-starter-webflux-ui.version>
+        <springdoc-openapi-starter.version>2.2.0</springdoc-openapi-starter.version>
         <knife4j-openapi3-jakarta-spring-boot-starte.version>4.3.0</knife4j-openapi3-jakarta-spring-boot-starte.version>
         <knife4j-gateway-spring-boot-starter.version>4.3.0</knife4j-gateway-spring-boot-starter.version>
         <redisson-spring-boot-starter.version>3.23.0</redisson-spring-boot-starter.version>
@@ -139,13 +138,23 @@
             </dependency>
             <dependency>
                 <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+                <version>${springdoc-openapi-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-                <version>${springdoc-openapi-starter-webmvc-ui.version}</version>
+                <version>${springdoc-openapi-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webflux-api</artifactId>
+                <version>${springdoc-openapi-starter.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
-                <version>${springdoc-openapi-starter-webflux-ui.version}</version>
+                <version>${springdoc-openapi-starter.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
