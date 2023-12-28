@@ -4,7 +4,7 @@ import com.lingyi.mall.biz.product.dao.mapper.SkuEvaluateReplyMapper;
 import com.lingyi.mall.biz.product.dao.repository.SkuEvaluateReplyRepository;
 import com.lingyi.mall.biz.product.model.dto.SkuEvaluateReplyDTO;
 import com.lingyi.mall.biz.product.model.entity.SkuEvaluateReplyDO;
-import com.lingyi.mall.biz.product.model.param.SkuEvaluateReplyParam;
+import com.lingyi.mall.biz.product.model.query.SkuEvaluateReplyQuery;
 import com.lingyi.mall.biz.product.model.vo.SkuEvaluateReplyVO;
 import com.lingyi.mall.biz.product.service.SkuEvaluateReplyService;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
@@ -20,6 +20,6 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class SkuEvaluateReplyServiceImpl extends BaseServiceProImpl<SkuEvaluateReplyRepository,
-        SkuEvaluateReplyMapper, SkuEvaluateReplyDTO, SkuEvaluateReplyVO, SkuEvaluateReplyParam, SkuEvaluateReplyDO, Long>
+        SkuEvaluateReplyMapper, SkuEvaluateReplyDTO, SkuEvaluateReplyVO, SkuEvaluateReplyQuery, SkuEvaluateReplyDO, Long>
         implements SkuEvaluateReplyService {
 }

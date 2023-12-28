@@ -3,7 +3,7 @@ package com.lingyi.mall.biz.product.service.impl;
 import com.lingyi.mall.biz.product.model.dto.AttributeDTO;
 import com.lingyi.mall.biz.product.model.entity.AttributeDO;
 import com.lingyi.mall.biz.product.dao.mapper.AttributeMapper;
-import com.lingyi.mall.biz.product.model.param.AttributeParam;
+import com.lingyi.mall.biz.product.model.query.AttributeQuery;
 import com.lingyi.mall.biz.product.dao.repository.AttributeRepository;
 import com.lingyi.mall.biz.product.service.AttributeService;
 import com.lingyi.mall.biz.product.service.AttributeValueService;
@@ -24,7 +24,7 @@ import java.util.List;
  */
 @Service
 @RequiredArgsConstructor
-public class AttributeServiceImpl extends BaseServiceProImpl<AttributeRepository, AttributeMapper, AttributeDTO, AttributeVO, AttributeParam, AttributeDO, Long>
+public class AttributeServiceImpl extends BaseServiceProImpl<AttributeRepository, AttributeMapper, AttributeDTO, AttributeVO, AttributeQuery, AttributeDO, Long>
         implements AttributeService {
 
     private final AttributeValueService attributeValueService;

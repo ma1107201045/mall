@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.info.service;
 
 import com.lingyi.mall.biz.info.model.dto.InfoLogDTO;
 import com.lingyi.mall.biz.info.model.entity.InfoLogDO;
-import com.lingyi.mall.biz.info.model.param.InfoLogParam;
+import com.lingyi.mall.biz.info.model.param.InfoLogQuery;
 import com.lingyi.mall.biz.info.model.vo.InfoLogVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
 import org.springframework.stereotype.Service;
@@ -14,6 +14,6 @@ import org.springframework.stereotype.Service;
  * @description
  */
 @Service
-public interface InfoLogService extends BaseServicePro<InfoLogDTO, InfoLogVO, InfoLogParam, InfoLogDO, Long> {
+public interface InfoLogService extends BaseServicePro<InfoLogDTO, InfoLogVO, InfoLogQuery, InfoLogDO, Long> {
 
 }

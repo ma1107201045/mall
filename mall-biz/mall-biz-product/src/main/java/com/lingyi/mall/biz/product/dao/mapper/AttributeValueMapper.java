@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.product.dao.mapper;
 
-import com.lingyi.mall.biz.product.model.param.AttributeValueParam;
+import com.lingyi.mall.biz.product.model.query.AttributeValueQuery;
 import com.lingyi.mall.biz.product.model.vo.AttributeValueVO;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
@@ -12,5 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @Description:
  */
 @Mapper
-public interface AttributeValueMapper extends MybatisMapperImplementation<AttributeValueVO, AttributeValueParam, Long> {
+public interface AttributeValueMapper extends MybatisMapperImplementation<AttributeValueVO, AttributeValueQuery, Long> {
 }

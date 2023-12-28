@@ -1,6 +1,6 @@
-package com.lingyi.mall.biz.member.model.param;
+package com.lingyi.mall.biz.member.model.query;
 
-import com.lingyi.mall.common.core.param.BasePageParam;
+import com.lingyi.mall.common.core.query.BasePageQuery;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,7 +16,7 @@ import lombok.ToString;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class MemberParam extends BasePageParam {
+public class MemberQuery extends BasePageQuery {
 
     @Schema(description = "用户名称")
     private String nickName;

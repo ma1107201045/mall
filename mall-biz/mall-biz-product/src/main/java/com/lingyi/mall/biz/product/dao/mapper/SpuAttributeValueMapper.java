@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.product.dao.mapper;
 
-import com.lingyi.mall.biz.product.model.param.SpuAttributeValueParam;
+import com.lingyi.mall.biz.product.model.query.SpuAttributeValueQuery;
 import com.lingyi.mall.biz.product.model.vo.SpuAttributeValueVO;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
@@ -12,5 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @Description:
  */
 @Mapper
-public interface SpuAttributeValueMapper extends MybatisMapperImplementation<SpuAttributeValueVO, SpuAttributeValueParam, Long> {
+public interface SpuAttributeValueMapper extends MybatisMapperImplementation<SpuAttributeValueVO, SpuAttributeValueQuery, Long> {
 }

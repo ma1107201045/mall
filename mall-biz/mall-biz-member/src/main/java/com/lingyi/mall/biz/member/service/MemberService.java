@@ -5,7 +5,7 @@ import com.lingyi.mall.api.member.response.MemberResponse;
 import com.lingyi.mall.biz.member.model.dto.MemberDTO;
 import com.lingyi.mall.biz.member.model.dto.MemberPartDTO;
 import com.lingyi.mall.biz.member.model.entity.MemberDO;
-import com.lingyi.mall.biz.member.model.param.MemberParam;
+import com.lingyi.mall.biz.member.model.query.MemberQuery;
 import com.lingyi.mall.biz.member.model.vo.MemberVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
 
@@ -15,7 +15,7 @@ import com.lingyi.mall.common.orm.util.BaseServicePro;
  * @datetime 2023/5/25 15:07
  * @description
  */
-public interface MemberService extends BaseServicePro<MemberDTO, MemberVO, MemberParam, MemberDO, Long> {
+public interface MemberService extends BaseServicePro<MemberDTO, MemberVO, MemberQuery, MemberDO, Long> {
 
     /**
      * 更新会员是否启用字段

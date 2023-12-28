@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.product.service;
 
 import com.lingyi.mall.biz.product.model.dto.AttributeValueDTO;
 import com.lingyi.mall.biz.product.model.entity.AttributeValueDO;
-import com.lingyi.mall.biz.product.model.param.AttributeValueParam;
+import com.lingyi.mall.biz.product.model.query.AttributeValueQuery;
 import com.lingyi.mall.biz.product.model.vo.AttributeValueVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
 
@@ -14,7 +14,7 @@ import java.util.List;
  * @DateTime: 2023/8/31 9:48
  * @Description:
  */
-public interface AttributeValueService extends BaseServicePro<AttributeValueDTO, AttributeValueVO, AttributeValueParam, AttributeValueDO, Long> {
+public interface AttributeValueService extends BaseServicePro<AttributeValueDTO, AttributeValueVO, AttributeValueQuery, AttributeValueDO, Long> {
 
     /**
      * 批量创建属性值

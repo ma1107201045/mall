@@ -5,7 +5,7 @@ import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.core.dto.BaseIdDTO;
 import com.lingyi.mall.common.orm.entity.BaseIdDO;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
-import com.lingyi.mall.common.core.param.BasePageParam;
+import com.lingyi.mall.common.core.query.BasePageQuery;
 import com.lingyi.mall.common.core.vo.BaseIdVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
@@ -21,12 +21,12 @@ import java.util.List;
  */
 public class BaseServiceProImpl<
         J extends JpaRepositoryImplementation<DO, ID>,
-        M extends MybatisMapperImplementation<VO, PARAM, ID>,
+        M extends MybatisMapperImplementation<VO, QUERY, ID>,
         DTO extends BaseIdDTO<ID>,
         VO extends BaseIdVO<ID>,
-        PARAM extends BasePageParam,
+        QUERY extends BasePageQuery,
         DO extends BaseIdDO<ID>,
-        ID extends Serializable> implements BaseServicePro<DTO, VO, PARAM, DO, ID> {
+        ID extends Serializable> implements BaseServicePro<DTO, VO, QUERY, DO, ID> {
 
     @Autowired
     protected J jpaRepository;
@@ -84,12 +84,12 @@ public class BaseServiceProImpl<
     }
 
     @Override
-    public Long totalByParam(PARAM param) {
-        return mybatisMapper.countByParam(param);
+    public Long totalByParam(QUERY query) {
+        return mybatisMapper.countByParam(query);
     }
     @Override
-    public List<VO> readListByParam(PARAM param) {
-        return mybatisMapper.selectListByParam(param);
+    public List<VO> readListByParam(QUERY query) {
+        return mybatisMapper.selectListByParam(query);
     }
 
 

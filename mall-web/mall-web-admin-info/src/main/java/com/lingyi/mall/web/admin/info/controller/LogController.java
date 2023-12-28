@@ -2,7 +2,7 @@ package com.lingyi.mall.web.admin.info.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.biz.info.model.entity.InfoLogDO;
-import com.lingyi.mall.biz.info.model.param.InfoLogParam;
+import com.lingyi.mall.biz.info.model.param.InfoLogQuery;
 import com.lingyi.mall.biz.info.model.vo.InfoLogVO;
 import com.lingyi.mall.biz.info.service.InfoLogService;
 import com.lingyi.mall.common.core.util.ServerResponse;
@@ -48,7 +48,7 @@ public class LogController {
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
     @PreAuthorize("@ps.hasAnyAuthority('admin:info:logs:getList')")
-    public ServerResponse<List<InfoLogVO>> getListByPageAndParam(@Valid InfoLogParam infoLogParam) {
+    public ServerResponse<List<InfoLogVO>> getListByPageAndParam(@Valid InfoLogQuery infoLogParam) {
         var page = PageHelper.startPage(infoLogParam.getCurrentPage(), infoLogParam.getPageSize(), infoLogParam.getSort());
         var logs = infoLogService.readListByParam(infoLogParam);
         return ServerResponse.success(logs, page.getTotal());

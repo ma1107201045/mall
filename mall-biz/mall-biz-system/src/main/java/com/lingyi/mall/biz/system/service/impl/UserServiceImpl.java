@@ -11,8 +11,8 @@ import com.lingyi.mall.biz.system.enums.MenuTypeEnum;
 import com.lingyi.mall.biz.system.enums.SystemFailEnum;
 import com.lingyi.mall.biz.system.model.dto.UserDTO;
 import com.lingyi.mall.biz.system.model.entity.UserDO;
-import com.lingyi.mall.biz.system.model.param.RoleParam;
-import com.lingyi.mall.biz.system.model.param.UserParam;
+import com.lingyi.mall.biz.system.model.query.RoleQuery;
+import com.lingyi.mall.biz.system.model.query.UserQuery;
 import com.lingyi.mall.biz.system.model.vo.RoleVO;
 import com.lingyi.mall.biz.system.model.vo.UserVO;
 import com.lingyi.mall.biz.system.service.MenuService;
@@ -42,7 +42,7 @@ import java.util.Objects;
  */
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapper, UserDTO, UserVO, UserParam, UserDO, Long>
+public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapper, UserDTO, UserVO, UserQuery, UserDO, Long>
         implements UserService {
 
     private final PasswordEncoder passwordEncoder;
@@ -97,8 +97,8 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
     }
 
     @Override
-    public List<RoleVO> readRoleList(RoleParam roleParam) {
-        return roleService.readListByParam(roleParam);
+    public List<RoleVO> readRoleList(RoleQuery roleQuery) {
+        return roleService.readListByParam(roleQuery);
     }
 
     @Override

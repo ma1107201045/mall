@@ -4,7 +4,7 @@ import com.lingyi.mall.biz.product.converter.CategoryAttributeConverter;
 import com.lingyi.mall.biz.product.model.dto.CategoryAttributeDTO;
 import com.lingyi.mall.biz.product.model.entity.CategoryAttributeDO;
 import com.lingyi.mall.biz.product.dao.mapper.CategoryAttributeMapper;
-import com.lingyi.mall.biz.product.model.param.CategoryAttributeParam;
+import com.lingyi.mall.biz.product.model.query.CategoryAttributeQuery;
 import com.lingyi.mall.biz.product.dao.repository.CategoryAttributeRepository;
 import com.lingyi.mall.biz.product.service.CategoryAttributeService;
 import com.lingyi.mall.biz.product.model.vo.CategoryAttributeVO;
@@ -20,7 +20,7 @@ import java.util.List;
  * @Description:
  */
 @Service
-public class CategoryAttributeServiceImpl extends BaseServiceProImpl<CategoryAttributeRepository, CategoryAttributeMapper, CategoryAttributeDTO, CategoryAttributeVO, CategoryAttributeParam, CategoryAttributeDO, Long>
+public class CategoryAttributeServiceImpl extends BaseServiceProImpl<CategoryAttributeRepository, CategoryAttributeMapper, CategoryAttributeDTO, CategoryAttributeVO, CategoryAttributeQuery, CategoryAttributeDO, Long>
         implements CategoryAttributeService {
 
     @Override

@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.product.service;
 
 import com.lingyi.mall.biz.product.model.dto.AttributeDTO;
 import com.lingyi.mall.biz.product.model.entity.AttributeDO;
-import com.lingyi.mall.biz.product.model.param.AttributeParam;
+import com.lingyi.mall.biz.product.model.query.AttributeQuery;
 import com.lingyi.mall.biz.product.model.vo.AttributeVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
 
@@ -12,7 +12,7 @@ import com.lingyi.mall.common.orm.util.BaseServicePro;
  * @DateTime: 2023/8/31 9:46
  * @Description:
  */
-public interface AttributeService extends BaseServicePro<AttributeDTO, AttributeVO, AttributeParam, AttributeDO, Long> {
+public interface AttributeService extends BaseServicePro<AttributeDTO, AttributeVO, AttributeQuery, AttributeDO, Long> {
 
     /**
      * 保存属性以及属性值

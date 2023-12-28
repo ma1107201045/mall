@@ -4,7 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.MallBizProductApplicationTest;
 import com.lingyi.mall.biz.product.model.entity.BrandDO;
 import com.lingyi.mall.biz.product.dao.mapper.BrandMapper;
-import com.lingyi.mall.biz.product.model.param.BrandParam;
+import com.lingyi.mall.biz.product.model.query.BrandQuery;
 import com.lingyi.mall.biz.product.dao.repository.BrandRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +51,7 @@ public class BrandTest implements MallBizProductApplicationTest {
 
     @Test
     public void testBrandGetList() {
-        var brandVOS = brandMapper.selectListByParam(new BrandParam());
+        var brandVOS = brandMapper.selectListByParam(new BrandQuery());
         System.out.println(brandVOS);
     }
 }

@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.member.dao.mapper;
 
-import com.lingyi.mall.biz.member.model.param.LevelParam;
+import com.lingyi.mall.biz.member.model.query.LevelQuery;
 import com.lingyi.mall.biz.member.model.vo.LevelVO;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @description
  */
 @Mapper
-public interface LevelMapper extends MybatisMapperImplementation<LevelVO, LevelParam, Long> {
+public interface LevelMapper extends MybatisMapperImplementation<LevelVO, LevelQuery, Long> {
 
     Long selectIdByIsDefaultLevel(Integer isDefaultLevel);
 }

@@ -4,7 +4,7 @@ import com.lingyi.mall.biz.product.dao.mapper.SpuAttributeValueMapper;
 import com.lingyi.mall.biz.product.dao.repository.SpuAttributeValueRepository;
 import com.lingyi.mall.biz.product.model.dto.SpuAttributeValueDTO;
 import com.lingyi.mall.biz.product.model.entity.SpuAttributeValueDO;
-import com.lingyi.mall.biz.product.model.param.SpuAttributeValueParam;
+import com.lingyi.mall.biz.product.model.query.SpuAttributeValueQuery;
 import com.lingyi.mall.biz.product.model.vo.SpuAttributeValueVO;
 import com.lingyi.mall.biz.product.service.SpuAttributeValueService;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
@@ -20,5 +20,5 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class SpuAttributeValueServiceImpl extends BaseServiceProImpl<SpuAttributeValueRepository, SpuAttributeValueMapper, SpuAttributeValueDTO,
-        SpuAttributeValueVO, SpuAttributeValueParam, SpuAttributeValueDO, Long> implements SpuAttributeValueService {
+        SpuAttributeValueVO, SpuAttributeValueQuery, SpuAttributeValueDO, Long> implements SpuAttributeValueService {
 }

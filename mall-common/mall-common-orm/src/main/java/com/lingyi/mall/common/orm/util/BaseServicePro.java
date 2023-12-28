@@ -3,7 +3,7 @@ package com.lingyi.mall.common.orm.util;
 
 import com.lingyi.mall.common.core.dto.BaseIdDTO;
 import com.lingyi.mall.common.orm.entity.BaseIdDO;
-import com.lingyi.mall.common.core.param.BasePageParam;
+import com.lingyi.mall.common.core.query.BasePageQuery;
 import com.lingyi.mall.common.core.vo.BaseIdVO;
 
 import java.io.Serializable;
@@ -19,7 +19,7 @@ import java.util.List;
 public interface BaseServicePro<
         DTO extends BaseIdDTO<ID>,
         VO extends BaseIdVO<ID>,
-        PARAM extends BasePageParam,
+        QUERY extends BasePageQuery,
         DO extends BaseIdDO<ID>,
         ID extends Serializable> {
 
@@ -88,18 +88,18 @@ public interface BaseServicePro<
     /**
      * 统计
      *
-     * @param param ..
+     * @param query ..
      * @return Long
      */
-    Long totalByParam(PARAM param);
+    Long totalByParam(QUERY query);
 
     /**
      * 查多条
      *
-     * @param param 参数
+     * @param query 参数
      * @return List<VO> List<VO>
      */
-    List<VO> readListByParam(PARAM param);
+    List<VO> readListByParam(QUERY query);
 
 
 }

@@ -1,9 +1,7 @@
 package com.lingyi.mall.biz.product.dao.mapper;
 
-import com.lingyi.mall.biz.product.model.param.SpuDetailsParam;
-import com.lingyi.mall.biz.product.model.param.SpuLikeParam;
+import com.lingyi.mall.biz.product.model.query.SpuDetailsQuery;
 import com.lingyi.mall.biz.product.model.vo.SpuDetailsVO;
-import com.lingyi.mall.biz.product.model.vo.SpuLikeVO;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -14,5 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @Description:
  */
 @Mapper
-public interface SpuDetailsMapper extends MybatisMapperImplementation<SpuDetailsVO, SpuDetailsParam, Long> {
+public interface SpuDetailsMapper extends MybatisMapperImplementation<SpuDetailsVO, SpuDetailsQuery, Long> {
 }

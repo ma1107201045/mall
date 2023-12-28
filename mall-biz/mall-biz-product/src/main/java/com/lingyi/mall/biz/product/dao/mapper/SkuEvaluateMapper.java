@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.product.dao.mapper;
 
-import com.lingyi.mall.biz.product.model.param.SkuEvaluateParam;
+import com.lingyi.mall.biz.product.model.query.SkuEvaluateQuery;
 import com.lingyi.mall.biz.product.model.vo.SkuEvaluateVO;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
@@ -12,5 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @Description:
  */
 @Mapper
-public interface SkuEvaluateMapper extends MybatisMapperImplementation<SkuEvaluateVO, SkuEvaluateParam, Long> {
+public interface SkuEvaluateMapper extends MybatisMapperImplementation<SkuEvaluateVO, SkuEvaluateQuery, Long> {
 }

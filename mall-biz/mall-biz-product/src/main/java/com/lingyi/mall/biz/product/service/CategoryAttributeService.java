@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.product.service;
 
 import com.lingyi.mall.biz.product.model.dto.CategoryAttributeDTO;
 import com.lingyi.mall.biz.product.model.entity.CategoryAttributeDO;
-import com.lingyi.mall.biz.product.model.param.CategoryAttributeParam;
+import com.lingyi.mall.biz.product.model.query.CategoryAttributeQuery;
 import com.lingyi.mall.biz.product.model.vo.CategoryAttributeVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
 
@@ -14,7 +14,7 @@ import java.util.List;
  * @DateTime: 2023/8/31 9:52
  * @Description:
  */
-public interface CategoryAttributeService extends BaseServicePro<CategoryAttributeDTO, CategoryAttributeVO, CategoryAttributeParam, CategoryAttributeDO, Long> {
+public interface CategoryAttributeService extends BaseServicePro<CategoryAttributeDTO, CategoryAttributeVO, CategoryAttributeQuery, CategoryAttributeDO, Long> {
 
 
     /**

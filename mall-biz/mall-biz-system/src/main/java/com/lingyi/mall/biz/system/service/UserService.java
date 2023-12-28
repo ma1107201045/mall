@@ -5,8 +5,8 @@ import com.lingyi.mall.api.system.request.UserPartRequest;
 import com.lingyi.mall.api.system.response.UserResponse;
 import com.lingyi.mall.biz.system.model.dto.UserDTO;
 import com.lingyi.mall.biz.system.model.entity.UserDO;
-import com.lingyi.mall.biz.system.model.param.RoleParam;
-import com.lingyi.mall.biz.system.model.param.UserParam;
+import com.lingyi.mall.biz.system.model.query.RoleQuery;
+import com.lingyi.mall.biz.system.model.query.UserQuery;
 import com.lingyi.mall.biz.system.model.vo.RoleVO;
 import com.lingyi.mall.biz.system.model.vo.UserVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
@@ -19,7 +19,7 @@ import java.util.List;
  * @datetime 2023/5/4 17:28
  * @description
  */
-public interface UserService extends BaseServicePro<UserDTO, UserVO, UserParam, UserDO, Long> {
+public interface UserService extends BaseServicePro<UserDTO, UserVO, UserQuery, UserDO, Long> {
     /**
      * 保存
      *
@@ -31,10 +31,10 @@ public interface UserService extends BaseServicePro<UserDTO, UserVO, UserParam, 
     /**
      * 读取角色集
      *
-     * @param roleParam ..
+     * @param roleQuery ..
      * @return List<RoleVO>
      */
-    List<RoleVO> readRoleList(RoleParam roleParam);
+    List<RoleVO> readRoleList(RoleQuery roleQuery);
 
     /**
      * 更新部分信息

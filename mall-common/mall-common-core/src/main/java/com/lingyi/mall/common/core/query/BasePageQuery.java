@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.core.param;
+package com.lingyi.mall.common.core.query;
 
 import com.lingyi.mall.common.core.constant.BaseConstant;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -13,7 +13,7 @@ import lombok.Data;
  * @description
  */
 @Data
-public class BasePageParam {
+public class BasePageQuery {
 
 
     private static final Integer CURRENT_PAGE_DEFAULT_VALUE = 1;

@@ -1,7 +1,7 @@
 package com.lingyi.mall.web.admin.product.controller;
 
 import com.lingyi.mall.biz.product.model.dto.AttributeDTO;
-import com.lingyi.mall.biz.product.model.param.AttributeParam;
+import com.lingyi.mall.biz.product.model.query.AttributeQuery;
 import com.lingyi.mall.biz.product.service.AttributeService;
 import com.lingyi.mall.biz.product.model.vo.AttributeVO;
 import com.lingyi.mall.common.core.enums.OperationTypeEnum;
@@ -71,7 +71,7 @@ public class AttributeController {
     @GetMapping
     @PreAuthorize("@ps.hasAnyAuthority('admin:product:attributes:getList')")
     @Log(title = "查询属性列表", operationType = OperationTypeEnum.READ)
-    public ServerResponse<List<AttributeVO>> getListByPageAndParam(@Valid AttributeParam attributeParam) {
+    public ServerResponse<List<AttributeVO>> getListByPageAndParam(@Valid AttributeQuery attributeParam) {
         var total = attributeService.totalByParam(attributeParam);
         var attributes = attributeService.readListByParam(attributeParam);
         return ServerResponse.success(attributes, total);

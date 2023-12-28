@@ -3,7 +3,7 @@ package com.lingyi.mall.biz.member.service;
 import com.lingyi.mall.api.member.reqeust.MemberLoginLogRequest;
 import com.lingyi.mall.biz.member.model.dto.MemberLoginLogDTO;
 import com.lingyi.mall.biz.member.model.entity.MemberLoginLogDO;
-import com.lingyi.mall.biz.member.model.param.MemberLoginLogParam;
+import com.lingyi.mall.biz.member.model.query.MemberLoginLogQuery;
 import com.lingyi.mall.biz.member.model.vo.MemberLoginLogVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
 
@@ -13,7 +13,7 @@ import com.lingyi.mall.common.orm.util.BaseServicePro;
  * @datetime 2023/6/6 9:22
  * @description
  */
-public interface MemberLoginLogService extends BaseServicePro<MemberLoginLogDTO, MemberLoginLogVO, MemberLoginLogParam, MemberLoginLogDO, Long> {
+public interface MemberLoginLogService extends BaseServicePro<MemberLoginLogDTO, MemberLoginLogVO, MemberLoginLogQuery, MemberLoginLogDO, Long> {
 
 
     /**

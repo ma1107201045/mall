@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.product.service;
 
 import com.lingyi.mall.biz.product.model.dto.SpuLikeDTO;
 import com.lingyi.mall.biz.product.model.entity.SpuLikeDO;
-import com.lingyi.mall.biz.product.model.param.SpuLikeParam;
+import com.lingyi.mall.biz.product.model.query.SpuLikeQuery;
 import com.lingyi.mall.biz.product.model.vo.SpuLikeVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
 
@@ -12,5 +12,5 @@ import com.lingyi.mall.common.orm.util.BaseServicePro;
  * @DateTime: 2023/12/1 14:08
  * @Description:
  */
-public interface SpuLikeService extends BaseServicePro<SpuLikeDTO, SpuLikeVO, SpuLikeParam, SpuLikeDO, Long> {
+public interface SpuLikeService extends BaseServicePro<SpuLikeDTO, SpuLikeVO, SpuLikeQuery, SpuLikeDO, Long> {
 }

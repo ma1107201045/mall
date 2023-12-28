@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.product.dao.mapper;
 
-import com.lingyi.mall.biz.product.model.param.SkuParam;
+import com.lingyi.mall.biz.product.model.query.SkuQuery;
 import com.lingyi.mall.biz.product.model.vo.SkuVO;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
@@ -12,5 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @Description:
  */
 @Mapper
-public interface SkuMapper extends MybatisMapperImplementation<SkuVO, SkuParam, Long> {
+public interface SkuMapper extends MybatisMapperImplementation<SkuVO, SkuQuery, Long> {
 }

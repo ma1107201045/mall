@@ -3,7 +3,7 @@ package com.lingyi.mall.biz.product.service.impl;
 import com.lingyi.mall.biz.product.model.dto.BrandDTO;
 import com.lingyi.mall.biz.product.model.entity.BrandDO;
 import com.lingyi.mall.biz.product.dao.mapper.BrandMapper;
-import com.lingyi.mall.biz.product.model.param.BrandParam;
+import com.lingyi.mall.biz.product.model.query.BrandQuery;
 import com.lingyi.mall.biz.product.dao.repository.BrandRepository;
 import com.lingyi.mall.biz.product.service.BrandService;
 import com.lingyi.mall.biz.product.model.vo.BrandVO;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
  * @Description:
  */
 @Service
-public class BrandServiceImpl extends BaseServiceProImpl<BrandRepository, BrandMapper, BrandDTO, BrandVO, BrandParam, BrandDO, Long> implements BrandService {
+public class BrandServiceImpl extends BaseServiceProImpl<BrandRepository, BrandMapper, BrandDTO, BrandVO, BrandQuery, BrandDO, Long> implements BrandService {
 
 
 }

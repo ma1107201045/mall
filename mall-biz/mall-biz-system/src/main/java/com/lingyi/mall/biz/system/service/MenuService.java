@@ -3,7 +3,7 @@ package com.lingyi.mall.biz.system.service;
 import com.lingyi.mall.api.system.response.MenuResponse;
 import com.lingyi.mall.biz.system.model.dto.MenuDTO;
 import com.lingyi.mall.biz.system.model.entity.MenuDO;
-import com.lingyi.mall.biz.system.model.param.MenuParam;
+import com.lingyi.mall.biz.system.model.query.MenuQuery;
 import com.lingyi.mall.biz.system.model.vo.MenuVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
 
@@ -15,7 +15,7 @@ import java.util.List;
  * @DateTime: 2023/5/7 15:28
  * @Description:
  */
-public interface MenuService extends BaseServicePro<MenuDTO, MenuVO, MenuParam, MenuDO, Long> {
+public interface MenuService extends BaseServicePro<MenuDTO, MenuVO, MenuQuery, MenuDO, Long> {
     /**
      * 创建
      *

@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.product.dao.mapper;
 
-import com.lingyi.mall.biz.product.model.param.BrandParam;
+import com.lingyi.mall.biz.product.model.query.BrandQuery;
 import com.lingyi.mall.biz.product.model.vo.BrandVO;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
@@ -12,6 +12,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @Description:
  */
 @Mapper
-public interface BrandMapper extends MybatisMapperImplementation<BrandVO, BrandParam, Long> {
+public interface BrandMapper extends MybatisMapperImplementation<BrandVO, BrandQuery, Long> {
 
 }

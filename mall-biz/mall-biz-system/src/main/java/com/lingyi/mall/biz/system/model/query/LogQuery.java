@@ -1,6 +1,6 @@
-package com.lingyi.mall.biz.system.model.param;
+package com.lingyi.mall.biz.system.model.query;
 
-import com.lingyi.mall.common.core.param.BasePageParam;
+import com.lingyi.mall.common.core.query.BasePageQuery;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,7 +16,7 @@ import lombok.ToString;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public class LogParam extends BasePageParam {
+public class LogQuery extends BasePageQuery {
 
     @Schema(description = "标题")
     private String title;

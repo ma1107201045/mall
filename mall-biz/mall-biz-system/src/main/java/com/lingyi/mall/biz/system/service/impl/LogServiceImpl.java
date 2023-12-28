@@ -3,7 +3,7 @@ package com.lingyi.mall.biz.system.service.impl;
 import com.lingyi.mall.api.system.request.LogRequest;
 import com.lingyi.mall.biz.system.model.entity.LogDO;
 import com.lingyi.mall.biz.system.dao.mapper.LogMapper;
-import com.lingyi.mall.biz.system.model.param.LogParam;
+import com.lingyi.mall.biz.system.model.query.LogQuery;
 import com.lingyi.mall.biz.system.dao.repository.LogRepository;
 import com.lingyi.mall.biz.system.service.LogService;
 import com.lingyi.mall.biz.system.model.vo.LogVO;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
  * @description
  */
 @Service
-public class LogServiceImpl extends BaseServiceProImpl<LogRepository, LogMapper, LogRequest, LogVO, LogParam, LogDO, Long> implements LogService {
+public class LogServiceImpl extends BaseServiceProImpl<LogRepository, LogMapper, LogRequest, LogVO, LogQuery, LogDO, Long> implements LogService {
 
 
 }

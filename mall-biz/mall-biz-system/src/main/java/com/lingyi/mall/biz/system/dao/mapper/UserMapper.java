@@ -3,7 +3,7 @@ package com.lingyi.mall.biz.system.dao.mapper;
 
 import com.lingyi.mall.api.system.response.MenuResponse;
 import com.lingyi.mall.api.system.response.UserResponse;
-import com.lingyi.mall.biz.system.model.param.UserParam;
+import com.lingyi.mall.biz.system.model.query.UserQuery;
 import com.lingyi.mall.biz.system.model.vo.UserVO;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
@@ -18,7 +18,7 @@ import java.util.List;
  * @description
  */
 @Mapper
-public interface UserMapper extends MybatisMapperImplementation<UserVO, UserParam, Long> {
+public interface UserMapper extends MybatisMapperImplementation<UserVO, UserQuery, Long> {
 
 
     /**

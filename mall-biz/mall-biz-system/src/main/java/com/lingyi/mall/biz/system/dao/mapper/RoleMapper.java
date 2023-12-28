@@ -1,8 +1,8 @@
 package com.lingyi.mall.biz.system.dao.mapper;
 
-import com.lingyi.mall.biz.system.model.param.RoleParam;
+import com.lingyi.mall.biz.system.model.query.RoleQuery;
 import com.lingyi.mall.biz.system.model.vo.RoleVO;
-import com.lingyi.mall.common.core.param.BasePageParam;
+import com.lingyi.mall.common.core.query.BasePageQuery;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -15,13 +15,13 @@ import java.util.List;
  * @description
  */
 @Mapper
-public interface RoleMapper extends MybatisMapperImplementation<RoleVO, RoleParam, Long> {
+public interface RoleMapper extends MybatisMapperImplementation<RoleVO, RoleQuery, Long> {
 
 
     /**
      * @return 角色列表
      */
-    List<RoleVO> selectList(BasePageParam basePageParam);
+    List<RoleVO> selectList(BasePageQuery basePageQuery);
 
 
 }

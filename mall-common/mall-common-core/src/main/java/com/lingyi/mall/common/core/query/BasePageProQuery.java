@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.core.param;
+package com.lingyi.mall.common.core.query;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Max;
@@ -16,7 +16,7 @@ import java.io.Serializable;
  */
 @Schema(description = "前台分页信息")
 @Data
-public class BasePageProParam implements Serializable {
+public class BasePageProQuery implements Serializable {
     @Serial
     private static final long serialVersionUID = -1740204284407483348L;
 

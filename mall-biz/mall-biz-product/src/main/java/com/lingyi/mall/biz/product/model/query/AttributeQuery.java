@@ -1,6 +1,6 @@
-package com.lingyi.mall.biz.product.model.param;
+package com.lingyi.mall.biz.product.model.query;
 
-import com.lingyi.mall.common.core.param.BasePageParam;
+import com.lingyi.mall.common.core.query.BasePageQuery;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -9,15 +9,16 @@ import lombok.ToString;
 /**
  * @Author: maweiyan
  * @Email: 1107201045@qq.com
- * @DateTime: 2023/8/31 16:05
+ * @DateTime: 2023/8/31 16:04
  * @Description:
  */
-@Schema(description = "分类")
+@Schema(description = "属性")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public class CategoryParam extends BasePageParam {
+public class AttributeQuery extends BasePageQuery {
 
-    @Schema(description = "品牌名称")
+
+    @Schema(description = "属性名称")
     private String name;
 }

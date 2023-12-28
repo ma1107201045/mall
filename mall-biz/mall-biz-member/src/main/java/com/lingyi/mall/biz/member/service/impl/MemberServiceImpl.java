@@ -7,7 +7,7 @@ import com.lingyi.mall.biz.member.model.dto.MemberDTO;
 import com.lingyi.mall.biz.member.model.dto.MemberPartDTO;
 import com.lingyi.mall.biz.member.model.entity.MemberDO;
 import com.lingyi.mall.biz.member.dao.mapper.MemberMapper;
-import com.lingyi.mall.biz.member.model.param.MemberParam;
+import com.lingyi.mall.biz.member.model.query.MemberQuery;
 import com.lingyi.mall.biz.member.dao.repository.MemberRepository;
 import com.lingyi.mall.biz.member.service.MemberService;
 import com.lingyi.mall.biz.member.model.vo.MemberVO;
@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public class MemberServiceImpl extends BaseServiceProImpl<MemberRepository, MemberMapper, MemberDTO, MemberVO, MemberParam, MemberDO, Long> implements MemberService {
+public class MemberServiceImpl extends BaseServiceProImpl<MemberRepository, MemberMapper, MemberDTO, MemberVO, MemberQuery, MemberDO, Long> implements MemberService {
 
     @Override
     public void updateIsEnableById(MemberPartDTO memberPartDTO) {

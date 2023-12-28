@@ -2,7 +2,7 @@ package com.lingyi.mall.common.orm.util;
 
 
 import com.lingyi.mall.common.core.dto.BaseIdDTO;
-import com.lingyi.mall.common.core.param.BasePageParam;
+import com.lingyi.mall.common.core.query.BasePageQuery;
 import com.lingyi.mall.common.core.vo.BaseIdVO;
 
 import java.io.Serializable;
@@ -15,7 +15,7 @@ import java.util.List;
  * @datetime 2023/5/4 17:08
  * @description
  */
-public interface BaseService<DTO extends BaseIdDTO<Long>, VO extends BaseIdVO<Long>, PARAM extends BasePageParam, ID extends Serializable> {
+public interface BaseService<DTO extends BaseIdDTO<Long>, VO extends BaseIdVO<Long>, PARAM extends BasePageQuery, ID extends Serializable> {
 
     /**
      * 添加

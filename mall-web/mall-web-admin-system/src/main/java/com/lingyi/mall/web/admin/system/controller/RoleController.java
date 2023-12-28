@@ -1,7 +1,7 @@
 package com.lingyi.mall.web.admin.system.controller;
 
 import com.lingyi.mall.biz.system.model.dto.RoleDTO;
-import com.lingyi.mall.biz.system.model.param.RoleParam;
+import com.lingyi.mall.biz.system.model.query.RoleQuery;
 import com.lingyi.mall.biz.system.model.vo.MenuVO;
 import com.lingyi.mall.biz.system.model.vo.RoleVO;
 import com.lingyi.mall.biz.system.service.RoleService;
@@ -72,9 +72,9 @@ public class RoleController {
     @GetMapping
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:roles:getList')")
     @Log(title = "查询角色列表", operationType = OperationTypeEnum.READ)
-    public ServerResponse<List<RoleVO>> getListByPageAndParam(@Valid RoleParam roleParam) {
-        var total = roleService.totalByParam(roleParam);
-        var roles = roleService.readListByParam(roleParam);
+    public ServerResponse<List<RoleVO>> getListByPageAndParam(@Valid RoleQuery roleQuery) {
+        var total = roleService.totalByParam(roleQuery);
+        var roles = roleService.readListByParam(roleQuery);
         return ServerResponse.success(roles, total);
     }
 

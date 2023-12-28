@@ -2,8 +2,7 @@ package com.lingyi.mall.web.admin.system.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.github.pagehelper.PageHelper;
-import com.lingyi.mall.biz.system.model.entity.LogDO;
-import com.lingyi.mall.biz.system.model.param.LogParam;
+import com.lingyi.mall.biz.system.model.query.LogQuery;
 import com.lingyi.mall.biz.system.service.LogService;
 import com.lingyi.mall.biz.system.model.vo.LogVO;
 import com.lingyi.mall.common.core.util.ServerResponse;
@@ -50,9 +49,9 @@ public class LogController {
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:logs:getList')")
-    public ServerResponse<List<LogVO>> getListByPageAndParam(@Valid LogParam logParam) {
-        var page = PageHelper.startPage(logParam.getCurrentPage(), logParam.getPageSize(), logParam.getSort());
-        var logs = logService.readListByParam(logParam);
+    public ServerResponse<List<LogVO>> getListByPageAndParam(@Valid LogQuery logQuery) {
+        var page = PageHelper.startPage(logQuery.getCurrentPage(), logQuery.getPageSize(), logQuery.getSort());
+        var logs = logService.readListByParam(logQuery);
         return ServerResponse.success(logs, page.getTotal());
     }
 

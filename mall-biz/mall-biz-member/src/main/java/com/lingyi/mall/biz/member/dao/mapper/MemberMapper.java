@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.member.dao.mapper;
 
 import com.lingyi.mall.api.member.response.MemberResponse;
-import com.lingyi.mall.biz.member.model.param.MemberParam;
+import com.lingyi.mall.biz.member.model.query.MemberQuery;
 import com.lingyi.mall.biz.member.model.vo.MemberVO;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
@@ -13,7 +13,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @description
  */
 @Mapper
-public interface MemberMapper extends MybatisMapperImplementation<MemberVO, MemberParam, Long> {
+public interface MemberMapper extends MybatisMapperImplementation<MemberVO, MemberQuery, Long> {
 
     /**
      * 按照手机号查询

@@ -3,7 +3,7 @@ package com.lingyi.mall.web.admin.product.controller;
 import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.biz.product.model.dto.BrandDTO;
 import com.lingyi.mall.biz.product.model.entity.BrandDO;
-import com.lingyi.mall.biz.product.model.param.BrandParam;
+import com.lingyi.mall.biz.product.model.query.BrandQuery;
 import com.lingyi.mall.biz.product.service.BrandService;
 import com.lingyi.mall.biz.product.model.vo.BrandVO;
 import com.lingyi.mall.common.core.enums.OperationTypeEnum;
@@ -73,7 +73,7 @@ public class BrandController {
     @GetMapping
     @PreAuthorize("@ps.hasAnyAuthority('admin:product:brands:getList')")
     @Log(title = "查询品牌列表", operationType = OperationTypeEnum.READ)
-    public ServerResponse<List<BrandVO>> getListByPageAndParam(@Valid BrandParam brandParam) {
+    public ServerResponse<List<BrandVO>> getListByPageAndParam(@Valid BrandQuery brandParam) {
         var page = PageHelper.startPage(brandParam.getCurrentPage(), brandParam.getPageSize());
         var brands = brandService.readListByParam(brandParam);
         return ServerResponse.success(brands, page.getTotal());

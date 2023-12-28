@@ -5,7 +5,7 @@ import com.lingyi.mall.biz.system.model.dto.RoleDTO;
 import com.lingyi.mall.biz.system.model.entity.RoleDO;
 import com.lingyi.mall.biz.system.enums.SystemFailEnum;
 import com.lingyi.mall.biz.system.dao.mapper.RoleMapper;
-import com.lingyi.mall.biz.system.model.param.RoleParam;
+import com.lingyi.mall.biz.system.model.query.RoleQuery;
 import com.lingyi.mall.biz.system.dao.repository.RoleRepository;
 import com.lingyi.mall.biz.system.service.MenuService;
 import com.lingyi.mall.biz.system.service.RoleMenuService;
@@ -30,7 +30,7 @@ import java.util.List;
  */
 @Service
 @RequiredArgsConstructor
-public class RoleServiceImpl extends BaseServiceProImpl<RoleRepository, RoleMapper, RoleDTO, RoleVO, RoleParam, RoleDO, Long>
+public class RoleServiceImpl extends BaseServiceProImpl<RoleRepository, RoleMapper, RoleDTO, RoleVO, RoleQuery, RoleDO, Long>
         implements RoleService {
 
     private final RoleMenuService roleMenuService;

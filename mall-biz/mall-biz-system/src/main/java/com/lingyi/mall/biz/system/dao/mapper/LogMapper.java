@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.system.dao.mapper;
 
-import com.lingyi.mall.biz.system.model.param.LogParam;
+import com.lingyi.mall.biz.system.model.query.LogQuery;
 import com.lingyi.mall.biz.system.model.vo.LogVO;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
@@ -12,6 +12,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @description
  */
 @Mapper
-public interface LogMapper extends MybatisMapperImplementation<LogVO, LogParam, Long> {
+public interface LogMapper extends MybatisMapperImplementation<LogVO, LogQuery, Long> {
 
 }

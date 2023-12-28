@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.product.service;
 
 import com.lingyi.mall.biz.product.model.dto.SkuEvaluateDTO;
 import com.lingyi.mall.biz.product.model.entity.SkuEvaluateDO;
-import com.lingyi.mall.biz.product.model.param.SkuEvaluateParam;
+import com.lingyi.mall.biz.product.model.query.SkuEvaluateQuery;
 import com.lingyi.mall.biz.product.model.vo.SkuEvaluateVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
 
@@ -13,5 +13,5 @@ import com.lingyi.mall.common.orm.util.BaseServicePro;
  * @Description:
  */
 public interface SkuEvaluateService extends BaseServicePro<SkuEvaluateDTO, SkuEvaluateVO,
-        SkuEvaluateParam, SkuEvaluateDO, Long> {
+        SkuEvaluateQuery, SkuEvaluateDO, Long> {
 }

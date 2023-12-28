@@ -4,7 +4,7 @@ import com.lingyi.mall.biz.product.dao.mapper.SpuDetailsMapper;
 import com.lingyi.mall.biz.product.dao.repository.SpuDetailsRepository;
 import com.lingyi.mall.biz.product.model.dto.SpuDetailsDTO;
 import com.lingyi.mall.biz.product.model.entity.SpuDetailsDO;
-import com.lingyi.mall.biz.product.model.param.SpuDetailsParam;
+import com.lingyi.mall.biz.product.model.query.SpuDetailsQuery;
 import com.lingyi.mall.biz.product.model.vo.SpuDetailsVO;
 import com.lingyi.mall.biz.product.service.SpuDetailsService;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
@@ -20,5 +20,5 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class SpuDetailsServiceImpl extends BaseServiceProImpl<SpuDetailsRepository, SpuDetailsMapper,
-        SpuDetailsDTO, SpuDetailsVO, SpuDetailsParam, SpuDetailsDO, Long> implements SpuDetailsService {
+        SpuDetailsDTO, SpuDetailsVO, SpuDetailsQuery, SpuDetailsDO, Long> implements SpuDetailsService {
 }

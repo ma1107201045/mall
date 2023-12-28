@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.info.model.param;
 
-import com.lingyi.mall.common.core.param.BasePageParam;
+import com.lingyi.mall.common.core.query.BasePageQuery;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,7 +15,7 @@ import lombok.ToString;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class InfoLogParam extends BasePageParam {
+public class InfoLogQuery extends BasePageQuery {
 
     @Schema(description = "服务名称")
     private String serviceName;

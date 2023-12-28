@@ -7,7 +7,7 @@ import com.lingyi.mall.biz.system.model.entity.MenuDO;
 import com.lingyi.mall.biz.system.enums.MenuTypeEnum;
 import com.lingyi.mall.biz.system.enums.SystemFailEnum;
 import com.lingyi.mall.biz.system.dao.mapper.MenuMapper;
-import com.lingyi.mall.biz.system.model.param.MenuParam;
+import com.lingyi.mall.biz.system.model.query.MenuQuery;
 import com.lingyi.mall.biz.system.dao.repository.MenuRepository;
 import com.lingyi.mall.biz.system.service.MenuService;
 import com.lingyi.mall.biz.system.model.vo.MenuVO;
@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
  */
 @Service
 @RequiredArgsConstructor
-public class MenuServiceImpl extends BaseServiceProImpl<MenuRepository, MenuMapper, MenuDTO, MenuVO, MenuParam, MenuDO, Long>
+public class MenuServiceImpl extends BaseServiceProImpl<MenuRepository, MenuMapper, MenuDTO, MenuVO, MenuQuery, MenuDO, Long>
         implements MenuService {
 
     private final MenuRepository menuRepository;
@@ -67,7 +67,7 @@ public class MenuServiceImpl extends BaseServiceProImpl<MenuRepository, MenuMapp
 
     @Override
     public List<MenuVO> readTree() {
-        var menuParam = new MenuParam();
+        var menuParam = new MenuQuery();
         menuParam.setSortField("sort");
         menuParam.setSortDirection("ASC");
         var menus = readListByParam(menuParam);

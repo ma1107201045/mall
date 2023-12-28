@@ -1,12 +1,9 @@
-package com.lingyi.mall.biz.product.model.param;
+package com.lingyi.mall.biz.product.model.query;
 
-import com.lingyi.mall.common.core.dto.BaseIdDTO;
-import com.lingyi.mall.common.core.param.BasePageParam;
+import com.lingyi.mall.common.core.query.BasePageQuery;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-
-import java.io.Serial;
 
 /**
  * @Author: maweiyan
@@ -17,6 +14,6 @@ import java.io.Serial;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public class SkuEvaluateCommentParam extends BasePageParam {
+public class SkuEvaluateCommentQuery extends BasePageQuery {
 
 }

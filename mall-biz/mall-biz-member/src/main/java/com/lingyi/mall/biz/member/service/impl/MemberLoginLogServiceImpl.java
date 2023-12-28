@@ -4,7 +4,7 @@ import com.lingyi.mall.api.member.reqeust.MemberLoginLogRequest;
 import com.lingyi.mall.biz.member.converter.MemberLoginConverter;
 import com.lingyi.mall.biz.member.model.dto.MemberLoginLogDTO;
 import com.lingyi.mall.biz.member.model.entity.MemberLoginLogDO;
-import com.lingyi.mall.biz.member.model.param.MemberLoginLogParam;
+import com.lingyi.mall.biz.member.model.query.MemberLoginLogQuery;
 import com.lingyi.mall.biz.member.model.vo.MemberLoginLogVO;
 import com.lingyi.mall.biz.member.dao.mapper.MemberLoginLogMapper;
 import com.lingyi.mall.biz.member.dao.repository.MemberLoginLogRepository;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
  * @description
  */
 @Service
-public class MemberLoginLogServiceImpl extends BaseServiceProImpl<MemberLoginLogRepository, MemberLoginLogMapper, MemberLoginLogDTO, MemberLoginLogVO, MemberLoginLogParam, MemberLoginLogDO, Long>
+public class MemberLoginLogServiceImpl extends BaseServiceProImpl<MemberLoginLogRepository, MemberLoginLogMapper, MemberLoginLogDTO, MemberLoginLogVO, MemberLoginLogQuery, MemberLoginLogDO, Long>
         implements MemberLoginLogService {
 
     @Override

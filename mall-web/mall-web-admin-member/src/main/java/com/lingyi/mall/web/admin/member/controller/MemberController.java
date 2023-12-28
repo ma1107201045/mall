@@ -2,7 +2,7 @@ package com.lingyi.mall.web.admin.member.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.biz.member.model.dto.MemberPartDTO;
-import com.lingyi.mall.biz.member.model.param.MemberParam;
+import com.lingyi.mall.biz.member.model.query.MemberQuery;
 import com.lingyi.mall.biz.member.service.MemberService;
 import com.lingyi.mall.biz.member.model.vo.MemberVO;
 import com.lingyi.mall.common.core.enums.OperationTypeEnum;
@@ -45,7 +45,7 @@ public class MemberController {
     @GetMapping
     @PreAuthorize("@ps.hasAnyAuthority('admin:member:members:getList')")
     @Log(title = "查询会员列表", operationType = OperationTypeEnum.READ)
-    public ServerResponse<List<MemberVO>> getList(@Valid MemberParam memberParam) {
+    public ServerResponse<List<MemberVO>> getList(@Valid MemberQuery memberParam) {
         var page = PageHelper.startPage(memberParam.getCurrentPage(), memberParam.getPageSize(), memberParam.getSort());
         var members = memberService.readListByParam(memberParam);
         return ServerResponse.success(members, page.getTotal());

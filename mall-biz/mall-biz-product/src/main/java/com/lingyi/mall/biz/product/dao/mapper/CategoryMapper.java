@@ -1,6 +1,6 @@
 package com.lingyi.mall.biz.product.dao.mapper;
 
-import com.lingyi.mall.biz.product.model.param.CategoryParam;
+import com.lingyi.mall.biz.product.model.query.CategoryQuery;
 import com.lingyi.mall.biz.product.model.vo.CategoryVO;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
 import org.apache.ibatis.annotations.Mapper;
@@ -12,5 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @description
  */
 @Mapper
-public interface CategoryMapper extends MybatisMapperImplementation<CategoryVO, CategoryParam, Long> {
+public interface CategoryMapper extends MybatisMapperImplementation<CategoryVO, CategoryQuery, Long> {
 }

@@ -3,7 +3,7 @@ package com.lingyi.mall.biz.member.service.impl;
 import com.lingyi.mall.biz.member.model.dto.LevelDTO;
 import com.lingyi.mall.biz.member.model.entity.LevelDO;
 import com.lingyi.mall.biz.member.dao.mapper.LevelMapper;
-import com.lingyi.mall.biz.member.model.param.LevelParam;
+import com.lingyi.mall.biz.member.model.query.LevelQuery;
 import com.lingyi.mall.biz.member.dao.repository.LevelRepository;
 import com.lingyi.mall.biz.member.service.LevelService;
 import com.lingyi.mall.biz.member.model.vo.LevelVO;
@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public class LevelServiceImpl extends BaseServiceProImpl<LevelRepository, LevelMapper, LevelDTO, LevelVO, LevelParam, LevelDO, Long> implements LevelService {
+public class LevelServiceImpl extends BaseServiceProImpl<LevelRepository, LevelMapper, LevelDTO, LevelVO, LevelQuery, LevelDO, Long> implements LevelService {
 
     @Override
     public Long queryDefaultLevelId() {

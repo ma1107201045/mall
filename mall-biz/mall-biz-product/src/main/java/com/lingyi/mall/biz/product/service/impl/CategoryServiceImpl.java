@@ -5,8 +5,8 @@ import com.lingyi.mall.biz.product.model.dto.CategoryDTO;
 import com.lingyi.mall.biz.product.model.entity.CategoryDO;
 import com.lingyi.mall.biz.product.enums.ProductFailEnum;
 import com.lingyi.mall.biz.product.dao.mapper.CategoryMapper;
-import com.lingyi.mall.biz.product.model.param.AttributeParam;
-import com.lingyi.mall.biz.product.model.param.CategoryParam;
+import com.lingyi.mall.biz.product.model.query.AttributeQuery;
+import com.lingyi.mall.biz.product.model.query.CategoryQuery;
 import com.lingyi.mall.biz.product.dao.repository.CategoryRepository;
 import com.lingyi.mall.biz.product.service.AttributeService;
 import com.lingyi.mall.biz.product.service.CategoryAttributeService;
@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
  */
 @Service
 @RequiredArgsConstructor
-public class CategoryServiceImpl extends BaseServiceProImpl<CategoryRepository, CategoryMapper, CategoryDTO, CategoryVO, CategoryParam, CategoryDO, Long> implements CategoryService {
+public class CategoryServiceImpl extends BaseServiceProImpl<CategoryRepository, CategoryMapper, CategoryDTO, CategoryVO, CategoryQuery, CategoryDO, Long> implements CategoryService {
 
     private final AttributeService attributeService;
 
@@ -69,7 +69,7 @@ public class CategoryServiceImpl extends BaseServiceProImpl<CategoryRepository, 
 
     @Override
     public List<CategoryVO> readTree() {
-        var categoryParam = new CategoryParam();
+        var categoryParam = new CategoryQuery();
         categoryParam.setSortField("sort");
         categoryParam.setSortDirection("ASC");
         var categories = readListByParam(categoryParam);
@@ -78,7 +78,7 @@ public class CategoryServiceImpl extends BaseServiceProImpl<CategoryRepository, 
 
     @Override
     public List<AttributeVO> readAttributeList() {
-        return attributeService.readListByParam(ObjectUtil.newInstance(AttributeParam.class));
+        return attributeService.readListByParam(ObjectUtil.newInstance(AttributeQuery.class));
     }
 
     private void verifyData(CategoryDTO categoryDTO) {

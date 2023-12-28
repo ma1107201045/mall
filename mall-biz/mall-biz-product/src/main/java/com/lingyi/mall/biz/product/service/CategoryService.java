@@ -2,7 +2,7 @@ package com.lingyi.mall.biz.product.service;
 
 import com.lingyi.mall.biz.product.model.dto.CategoryDTO;
 import com.lingyi.mall.biz.product.model.entity.CategoryDO;
-import com.lingyi.mall.biz.product.model.param.CategoryParam;
+import com.lingyi.mall.biz.product.model.query.CategoryQuery;
 import com.lingyi.mall.biz.product.model.vo.AttributeVO;
 import com.lingyi.mall.biz.product.model.vo.CategoryVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
@@ -15,7 +15,7 @@ import java.util.List;
  * @DateTime: 2023/8/31 9:51
  * @Description:
  */
-public interface CategoryService extends BaseServicePro<CategoryDTO, CategoryVO, CategoryParam, CategoryDO, Long> {
+public interface CategoryService extends BaseServicePro<CategoryDTO, CategoryVO, CategoryQuery, CategoryDO, Long> {
 
 
     /**
