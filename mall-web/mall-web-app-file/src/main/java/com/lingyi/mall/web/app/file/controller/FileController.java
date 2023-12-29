@@ -43,6 +43,17 @@ public class FileController {
         return ServerResponse.success(fileVO);
     }
 
+    @Operation(summary = "上传图片", description = "上传图片")
+    @Parameter(name = "image", description = "图片")
+    @PostMapping("/image")
+    @Log(title = "上传图片", operationType = OperationTypeEnum.CREATE, ignoreParam = true)
+    public ServerResponse<FileVO> uploadImage(MultipartFile image) throws IOException {
+        var directoryName = FileUtil.getDirectoryName(ClientTypeEnum.ADMIN, AuthenticatorUtil.getUserName());
+        var name = image.getOriginalFilename();
+        var fileVO = fileService.upload(directoryName, name, FileTypeEnum.getContentTypeByFileName(name), image.getInputStream());
+        return ServerResponse.success(fileVO);
+    }
+
     @Operation(summary = "删除", description = "删除")
     @Parameter(name = "name", description = "名称")
     @DeleteMapping("/{name}")
@@ -51,17 +62,5 @@ public class FileController {
         fileService.delete(name);
         return ServerResponse.success();
     }
-
-    @Operation(summary = "上传图片", description = "上传图片")
-    @Parameter(name = "file", description = "文件")
-    @PostMapping("/image")
-    @Log(title = "上传图片", operationType = OperationTypeEnum.CREATE, ignoreParam = true)
-    public ServerResponse<FileVO> uploadImage(MultipartFile file) throws IOException {
-        var directoryName = FileUtil.getDirectoryName(ClientTypeEnum.ADMIN, AuthenticatorUtil.getUserName());
-        var name = file.getOriginalFilename();
-        var fileVO = fileService.upload(directoryName, name, FileTypeEnum.getContentTypeByFileName(name), file.getInputStream());
-        return ServerResponse.success(fileVO);
-    }
-
 
 }
