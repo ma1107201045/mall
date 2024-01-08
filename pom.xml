@@ -43,8 +43,6 @@
         <mybatis-flex-spring-boot-starter.version>1.4.6</mybatis-flex-spring-boot-starter.version>
         <minio-springboot-starter.version>1.0.1</minio-springboot-starter.version>
         <xxl-job-core.version>2.4.0</xxl-job-core.version>
-        <!-- mall other -->
-        <snakeyaml.version>2.0</snakeyaml.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -311,11 +309,6 @@
         <dependency>
             <groupId>com.alibaba.fastjson2</groupId>
             <artifactId>fastjson2</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.yaml</groupId>
-            <artifactId>snakeyaml</artifactId>
-            <version>${snakeyaml.version}</version>
         </dependency>
     </dependencies>
 </project>

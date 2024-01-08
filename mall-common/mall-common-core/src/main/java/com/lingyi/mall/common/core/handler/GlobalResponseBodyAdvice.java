@@ -52,7 +52,8 @@ public class GlobalResponseBodyAdvice implements ResponseBodyAdvice<Object> {
             return body;
         }
         if (body instanceof String) {
-            return objectMapper.writeValueAsString(ServerResponse.success(body));
+            var res = ServerResponse.success(body);
+            return objectMapper.writeValueAsString(res);
         }
         return ServerResponse.success(body);
     }
