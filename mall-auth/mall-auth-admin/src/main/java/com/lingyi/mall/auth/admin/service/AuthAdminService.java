@@ -1,5 +1,7 @@
 package com.lingyi.mall.auth.admin.service;
 
+import com.lingyi.mall.auth.admin.model.dto.AuthAdminDTO;
+import com.lingyi.mall.auth.admin.model.vo.AuthAdminVO;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
@@ -10,6 +12,13 @@ import jakarta.servlet.http.HttpSession;
  * @description
  */
 public interface AuthAdminService {
+
+    /**
+     * 登录
+     * @param authAdminDTO 认证信息
+     * @return 认证信息
+     */
+    AuthAdminVO login(AuthAdminDTO authAdminDTO);
 
 
     /**

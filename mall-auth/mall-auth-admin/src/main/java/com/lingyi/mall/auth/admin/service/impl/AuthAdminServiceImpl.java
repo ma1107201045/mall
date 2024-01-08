@@ -3,16 +3,26 @@ package com.lingyi.mall.auth.admin.service.impl;
 import cn.hutool.captcha.AbstractCaptcha;
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.generator.MathGenerator;
+import com.lingyi.mall.api.system.consumer.UserFeignConsumer;
+import com.lingyi.mall.api.system.feign.UserFeign;
+import com.lingyi.mall.api.system.response.UserResponse;
+import com.lingyi.mall.auth.admin.model.dto.AuthAdminDTO;
+import com.lingyi.mall.auth.admin.model.vo.AuthAdminVO;
 import com.lingyi.mall.auth.admin.properties.ImageCaptchaProperties;
 import com.lingyi.mall.auth.admin.properties.enums.CodeGeneratorType;
 import com.lingyi.mall.auth.admin.service.AuthAdminService;
+import com.lingyi.mall.common.core.util.AssertUtil;
+import com.lingyi.mall.common.core.util.ConverterUtil;
+import com.lingyi.mall.common.core.util.ServerResponse;
 import com.lingyi.mall.security.admin.constant.SecurityConstant;
+import com.lingyi.mall.security.admin.enums.FailEnum;
 import com.lingyi.mall.security.admin.util.CodeGeneratorProxy;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -29,7 +39,18 @@ import java.io.OutputStream;
 @RequiredArgsConstructor
 public class AuthAdminServiceImpl implements AuthAdminService {
 
+
     private final ImageCaptchaProperties properties;
+
+
+    private final UserFeignConsumer userFeignConsumer;
+
+    @Override
+    public AuthAdminVO login(AuthAdminDTO authAdminDTO) {
+        //查询用户信息和菜单权限
+        var userResponse = userFeignConsumer.getUserAndMenuPermissionsByUserName(authAdminDTO.getUserName());
+        return ConverterUtil.to(userResponse, AuthAdminVO.class);
+    }
 
     @Override
     public String readImageCaptcha(HttpSession session) {

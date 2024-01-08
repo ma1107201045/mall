@@ -1,5 +1,7 @@
 package com.lingyi.mall.web.admin.system.controller;
 
+import cn.dev33.satoken.annotation.SaCheckLogin;
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.lingyi.mall.biz.system.model.dto.UserDTO;
 import com.lingyi.mall.biz.system.model.query.RoleQuery;
 import com.lingyi.mall.biz.system.model.query.UserQuery;
@@ -27,6 +29,7 @@ import java.util.List;
 @Tag(name = "系统用户", description = "系统用户")
 @RestController
 @RequestMapping("/users")
+@SaCheckLogin
 @RequiredArgsConstructor
 public class UserController {
 
@@ -35,6 +38,8 @@ public class UserController {
     @Operation(summary = "保存", description = "保存")
     @PostMapping
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:save')")
+    @SaCheckLogin
+    @SaCheckPermission("admin:system:users:save")
     @Log(title = "保存用户", operationType = OperationTypeEnum.CREATE)
     public ServerResponse<Void> save(@Valid @RequestBody UserDTO userDTO) {
         userService.create(userDTO);
@@ -44,6 +49,7 @@ public class UserController {
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:delete')")
+    @SaCheckPermission("admin:system:users:delete")
     @Log(title = "删除用户", operationType = OperationTypeEnum.DELETE)
     public ServerResponse<Void> deleteByIds(@PathVariable List<Long> ids) {
         userService.deleteByIds(ids);
@@ -53,6 +59,7 @@ public class UserController {
     @Operation(summary = "更新", description = "更新")
     @PutMapping("/{id}")
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:update')")
+    @SaCheckPermission("admin:system:users:update")
     @Log(title = "更新用户", operationType = OperationTypeEnum.UPDATE)
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody UserDTO userDTO) {
         userDTO.setId(id);
@@ -63,6 +70,7 @@ public class UserController {
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:get')")
+    @SaCheckPermission("admin:system:users:get")
     @Log(title = "查询用户", operationType = OperationTypeEnum.READ)
     public ServerResponse<UserVO> getById(@PathVariable Long id) {
         var userVO = userService.readById(id);
@@ -72,6 +80,7 @@ public class UserController {
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:getList')")
+    @SaCheckPermission("admin:system:users:getList")
     @Log(title = "查询用户列表", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<UserVO>> getListByPageAndParam(@Valid UserQuery userParam) {
         var total = userService.totalByParam(userParam);
@@ -82,6 +91,7 @@ public class UserController {
     @Operation(summary = "查询角色列表", description = "查询角色列表")
     @GetMapping("/roles")
     @PreAuthorize("@ps.hasAnyAuthority('admin:system:users:roles:getList')")
+    @SaCheckPermission("admin:system:users:roles:getList")
     @Log(title = "查询角色列表", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<RoleVO>> getRoleList(@Valid RoleQuery roleQuery) {
         var roles = userService.readRoleList(roleQuery);
