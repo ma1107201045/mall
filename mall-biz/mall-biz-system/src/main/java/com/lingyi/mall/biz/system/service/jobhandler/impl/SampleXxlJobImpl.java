@@ -12,6 +12,7 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
@@ -123,7 +124,7 @@ public class SampleXxlJobImpl implements SampleXxlJob {
     /**
      * 4、跨平台Http任务
      * 参数示例：
-     * "url: http://www.baidu.com\n" +
+     * "url: <a href="http://www.baidu.com">...</a>\n" +
      * "method: get\n" +
      * "data: content\n";
      */
@@ -133,7 +134,7 @@ public class SampleXxlJobImpl implements SampleXxlJob {
 
         // param parse
         String param = XxlJobHelper.getJobParam();
-        if (param == null || param.trim().length() == 0) {
+        if (param == null || param.trim().isEmpty()) {
             XxlJobHelper.log("param[" + param + "] invalid.");
 
             XxlJobHelper.handleFail();
@@ -157,7 +158,7 @@ public class SampleXxlJobImpl implements SampleXxlJob {
         }
 
         // param valid
-        if (url == null || url.trim().length() == 0) {
+        if (url == null || url.trim().isEmpty()) {
             XxlJobHelper.log("url[" + url + "] invalid.");
 
             XxlJobHelper.handleFail();
@@ -194,9 +195,9 @@ public class SampleXxlJobImpl implements SampleXxlJob {
             connection.connect();
 
             // data
-            if (isPostMethod && data != null && data.trim().length() > 0) {
+            if (isPostMethod && data != null && !data.trim().isEmpty()) {
                 DataOutputStream dataOutputStream = new DataOutputStream(connection.getOutputStream());
-                dataOutputStream.write(data.getBytes("UTF-8"));
+                dataOutputStream.write(data.getBytes(StandardCharsets.UTF_8));
                 dataOutputStream.flush();
                 dataOutputStream.close();
             }
@@ -208,7 +209,7 @@ public class SampleXxlJobImpl implements SampleXxlJob {
             }
 
             // result
-            bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
+            bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
             StringBuilder result = new StringBuilder();
             String line;
             while ((line = bufferedReader.readLine()) != null) {

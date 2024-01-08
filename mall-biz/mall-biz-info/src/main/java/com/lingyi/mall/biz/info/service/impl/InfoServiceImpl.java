@@ -50,6 +50,7 @@ public class InfoServiceImpl implements InfoService {
         verifyData(infoReqDTO);
         //操作redis
         redisUtil.execPipelined(new SessionCallback<>() {
+            @SuppressWarnings("unchecked")
             @Override
             public <K, V> Object execute(@NotNull RedisOperations<K, V> redisOperations) throws DataAccessException {
                 setUpperLimitAndIntervalTime((RedisOperations<String, Object>) redisOperations, infoReqDTO);
@@ -68,6 +69,7 @@ public class InfoServiceImpl implements InfoService {
         verifyData(infoCaptchaSendReqDTO);
         //操作redis
         redisUtil.execPipelined(new SessionCallback<>() {
+            @SuppressWarnings("unchecked")
             @Override
             public <K, V> Object execute(@NotNull RedisOperations<K, V> redisOperations) throws DataAccessException {
                 RedisOperations<String, Object> operations = (RedisOperations<String, Object>) redisOperations;
