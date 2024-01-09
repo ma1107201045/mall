@@ -39,7 +39,6 @@ import java.io.OutputStream;
 @RequiredArgsConstructor
 public class AuthAdminServiceImpl implements AuthAdminService {
 
-
     private final ImageCaptchaProperties properties;
 
 
@@ -48,7 +47,7 @@ public class AuthAdminServiceImpl implements AuthAdminService {
     @Override
     public AuthAdminVO login(AuthAdminDTO authAdminDTO) {
         //查询用户信息和菜单权限
-        var userResponse = userFeignConsumer.getUserAndMenuPermissionsByUserName(authAdminDTO.getUserName());
+        var userResponse = userFeignConsumer.getUserByUserName(authAdminDTO.getUserName());
         return ConverterUtil.to(userResponse, AuthAdminVO.class);
     }
 

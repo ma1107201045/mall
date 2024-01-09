@@ -12,7 +12,8 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
  */
 public class SecurityConstant {
     public static final RequestMatcher[] IGNORE_REQUEST_MATCHER_ARRAY = new RequestMatcher[]{
-            new AntPathRequestMatcher("/swagger-ui/**", HttpMethod.GET.name()),
+            new AntPathRequestMatcher("/users/user", HttpMethod.GET.name()),
+            new AntPathRequestMatcher("/users/menuPermissions", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/doc.html", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/favicon.ico", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/webjars/**", HttpMethod.GET.name()),

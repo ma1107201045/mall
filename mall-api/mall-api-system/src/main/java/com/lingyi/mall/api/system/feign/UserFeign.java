@@ -24,7 +24,7 @@ public interface UserFeign {
     /**
      * 更新部分用户信息
      *
-     * @param id          主键id
+     * @param id              主键id
      * @param userPartRequest ..
      * @return ServerResponse
      */
@@ -39,7 +39,6 @@ public interface UserFeign {
      */
     @GetMapping(URL_PREFIX + "/permissions")
     ServerResponse<UserResponse> getUserAndMenuPermissionsByUserName(@RequestParam(name = "userName") String userName);
-
 
     /**
      * 按照用户名称查询菜单树
@@ -59,4 +58,25 @@ public interface UserFeign {
      */
     @GetMapping(URL_PREFIX + "/menu-permissions")
     ServerResponse<List<String>> getMenuPermissionsByUserName(@RequestParam(name = "userName") String userName);
+
+
+    /**
+     * 按照用户名称查询用户信息
+     *
+     * @param userName 用户名称
+     * @return 用户信息
+     */
+    @GetMapping(URL_PREFIX + "/user")
+    ServerResponse<UserResponse> getUserByUserName(@RequestParam(name = "userName") String userName);
+
+
+    /**
+     * 按照用户id查询按钮权限标识
+     *
+     * @param id 用户id
+     * @return 用户信息
+     */
+    @GetMapping(URL_PREFIX + "/menuPermissions")
+    ServerResponse<List<String>> getMenuPermissionsById(@RequestParam(name = "id") Long id);
+
 }

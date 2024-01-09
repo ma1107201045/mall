@@ -43,6 +43,16 @@ public class UserFeignFallbackFactory implements FallbackFactory<UserFeign> {
                 return null;
             }
 
+            @Override
+            public ServerResponse<UserResponse> getUserByUserName(String userName) {
+                return null;
+            }
+
+            @Override
+            public ServerResponse<List<String>> getMenuPermissionsById(Long id) {
+                return null;
+            }
+
 
         };
     }

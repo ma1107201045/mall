@@ -10,6 +10,9 @@ import com.lingyi.mall.common.core.annotation.Log;
 import com.lingyi.mall.common.core.enums.OperationTypeEnum;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -33,11 +36,14 @@ public class AuthAdminV2Controller {
     private final AuthAdminService authAdminService;
 
     @Operation(summary = "登录", description = "登录")
+    @Parameters({
+            @Parameter(name = "userName", description = "用户名", in = ParameterIn.QUERY),
+            @Parameter(name = "password", description = "密码", in = ParameterIn.QUERY)})
     @Log(title = "登录", operationType = OperationTypeEnum.READ)
-    @PostMapping("/login")
+    @GetMapping("/login")
     @ResponseBody
     @SaIgnore
-    public AuthAdminVO login(@RequestBody AuthAdminDTO authAdminDTO) {
+    public AuthAdminVO login(AuthAdminDTO authAdminDTO) {
         AuthAdminVO authAdminVO = authAdminService.login(authAdminDTO);
         StpUtil.login(authAdminVO.getUserId());
         return authAdminVO;
@@ -64,7 +70,7 @@ public class AuthAdminV2Controller {
 
     @Operation(summary = "注销", description = "注销")
     @Log(title = "注销", operationType = OperationTypeEnum.READ)
-    @PostMapping("/logout")
+    @DeleteMapping("/logout")
     @SaCheckLogin
     @ResponseBody
     public void logout() {

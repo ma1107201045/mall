@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @Description:
  */
 @Component
-public class SaTokenConfigure implements WebMvcConfigurer {
+public class WebMvcConfigurerImpl implements WebMvcConfigurer {
 
     /**
      * 注册 Sa-Token 拦截器，打开注解式鉴权功能

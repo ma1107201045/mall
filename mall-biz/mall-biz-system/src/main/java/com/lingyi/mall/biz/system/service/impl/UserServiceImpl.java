@@ -114,7 +114,7 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
 
     @Override
     public UserResponse readUserAndMenuPermissionsByUserName(String userName) {
-        var userResponse = mybatisMapper.selectByUserName(userName);
+        var userResponse = readUserByUserName(userName);
         if (Objects.isNull(userResponse)) {
             return ObjectUtil.getNull();
         }
@@ -124,15 +124,15 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
     }
 
     @Override
-    public List<MenuResponse> readMenuTreesByUserName(String userName) {
-        List<MenuResponse> menus;
-        var menuTypes = Arrays.asList(MenuTypeEnum.DIRECTORY.getCode(), MenuTypeEnum.MENU.getCode());
-        if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
-            menus = mybatisMapper.selectMenusByUserNameAndMenuTypes(userName, menuTypes);
-        } else {
-            menus = menuService.readListByTypes(menuTypes);
-        }
-        return toMenuTree(SystemConstant.MENU_ROOT_ID, menus);
+    public UserResponse readUserByUserName(String userName) {
+        return mybatisMapper.selectByUserName(userName);
+    }
+
+    @Override
+    public List<String> readMenuPermissionsById(Long id) {
+        UserVO userVO = readById(id);
+        AssertUtil.notNull(userVO, SystemFailEnum.USER_NULL_ERROR);
+        return readMenuPermissionsByUserName(userVO.getUserName());
     }
 
     @Override
@@ -147,6 +147,18 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
         return menus.stream().map(MenuResponse::getPermission).toList();
     }
 
+
+    @Override
+    public List<MenuResponse> readMenuTreesByUserName(String userName) {
+        List<MenuResponse> menus;
+        var menuTypes = Arrays.asList(MenuTypeEnum.DIRECTORY.getCode(), MenuTypeEnum.MENU.getCode());
+        if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
+            menus = mybatisMapper.selectMenusByUserNameAndMenuTypes(userName, menuTypes);
+        } else {
+            menus = menuService.readListByTypes(menuTypes);
+        }
+        return toMenuTree(SystemConstant.MENU_ROOT_ID, menus);
+    }
 
     private void verifyData(UserDTO userDTO, List<Long> ids, OperationTypeEnum operationTypeEnum) {
         if (operationTypeEnum == OperationTypeEnum.CREATE) {

@@ -1,5 +1,6 @@
 package com.lingyi.mall.web.admin.system.provider;
 
+import cn.dev33.satoken.annotation.SaIgnore;
 import com.lingyi.mall.api.system.response.MenuResponse;
 import com.lingyi.mall.api.system.request.UserPartRequest;
 import com.lingyi.mall.api.system.response.UserResponse;
@@ -52,6 +53,22 @@ public class UserFeignProvider implements UserFeign {
     @Override
     public ServerResponse<List<String>> getMenuPermissionsByUserName(String userName) {
         var permissions = userService.readMenuPermissionsByUserName(userName);
+        return ServerResponse.success(permissions);
+    }
+
+    @Operation(summary = "查询当前用户", description = "查询当前用户")
+    @Override
+   // @SaIgnore
+    public ServerResponse<UserResponse> getUserByUserName(String userName) {
+        var userResponse = userService.readUserByUserName(userName);
+        return ServerResponse.success(userResponse);
+    }
+
+    @Operation(summary = "查询当前用户权限集", description = "查询当前用户权限集")
+    @Override
+   // @SaIgnore
+    public ServerResponse<List<String>> getMenuPermissionsById(Long id) {
+        var permissions = userService.readMenuPermissionsById(id);
         return ServerResponse.success(permissions);
     }
 }

@@ -61,9 +61,6 @@
     </select>
 
 
-
-
-
     <resultMap id="SelectByUserNameMap" type="com.lingyi.mall.api.system.response.UserResponse">
         <id column="mu_id" property="userId"/>
         <result column="mu_user_name" property="userName"/>

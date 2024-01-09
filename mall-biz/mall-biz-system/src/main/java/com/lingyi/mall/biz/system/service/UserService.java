@@ -53,12 +53,21 @@ public interface UserService extends BaseServicePro<UserDTO, UserVO, UserQuery, 
     UserResponse readUserAndMenuPermissionsByUserName(String userName);
 
     /**
-     * 按照用户名称和菜单父级id查询菜单集
+     * 按照用户名称查询用户信息
      *
      * @param userName 用户名称
-     * @return List<MenuResDTO>
+     * @return 用户信息
      */
-    List<MenuResponse> readMenuTreesByUserName(String userName);
+    UserResponse readUserByUserName(String userName);
+
+    /**
+     * 按照用户id和用户id查询权限
+     *
+     * @param id 用户id
+     * @return List<String>
+     */
+    List<String> readMenuPermissionsById(Long id);
+
 
     /**
      * 按照用户id和用户名称查询权限
@@ -67,6 +76,15 @@ public interface UserService extends BaseServicePro<UserDTO, UserVO, UserQuery, 
      * @return List<String>
      */
     List<String> readMenuPermissionsByUserName(String userName);
+
+
+    /**
+     * 按照用户名称和菜单父级id查询菜单集
+     *
+     * @param userName 用户名称
+     * @return List<MenuResDTO>
+     */
+    List<MenuResponse> readMenuTreesByUserName(String userName);
 
 
 }

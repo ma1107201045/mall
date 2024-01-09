@@ -38,5 +38,4 @@ public interface UserMapper extends MybatisMapperImplementation<UserVO, UserQuer
      */
     List<MenuResponse> selectMenusByUserNameAndMenuTypes(@Param("userName") String userName, @Param("menuTypes") List<Integer> menuTypes);
 
-
 }

@@ -1,5 +1,7 @@
 package com.lingyi.mall.common.core.handler;
 
+import cn.dev33.satoken.exception.NotLoginException;
+import cn.dev33.satoken.exception.NotPermissionException;
 import com.lingyi.mall.common.core.exception.BaseException;
 import com.lingyi.mall.common.core.exception.OpenFeignException;
 import com.lingyi.mall.common.core.util.ServerResponse;
@@ -108,6 +110,22 @@ public class GlobalExceptionHandler {
         log.error("AccessDeniedException：", exception);
         log.error("授权失败，错误原因:", exception);
         return ServerResponse.fail(HttpStatus.FORBIDDEN.value(), "不允许访问");
+    }
+
+    @ExceptionHandler(NotLoginException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ServerResponse<Void> notLoginException(NotLoginException exception) {
+        log.error("notLoginException：", exception);
+        log.error("暂未登录,错误原因:", exception);
+        return ServerResponse.fail(HttpStatus.UNAUTHORIZED.value(), exception.getMessage());
+    }
+
+    @ExceptionHandler(NotPermissionException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ServerResponse<Void> notLoginException(NotPermissionException exception) {
+        log.error("notPermissionException：", exception);
+        log.error("暂无权限,错误原因:", exception);
+        return ServerResponse.fail(HttpStatus.FORBIDDEN.value(), exception.getMessage());
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
