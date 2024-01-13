@@ -7,7 +7,7 @@ import com.lingyi.mall.biz.system.model.query.RoleQuery;
 import com.lingyi.mall.biz.system.model.vo.MenuVO;
 import com.lingyi.mall.biz.system.model.vo.RoleVO;
 import com.lingyi.mall.biz.system.service.RoleService;
-import com.lingyi.mall.common.core.enums.OperationTypeEnum;
+import com.lingyi.mall.common.log.enums.OperationTypeEnum;
 import com.lingyi.mall.common.core.util.ServerResponse;
 import com.lingyi.mall.common.log.aspetct.annotation.Log;
 import io.swagger.v3.oas.annotations.Operation;
@@ -36,7 +36,6 @@ public class RoleController {
     @PostMapping
     @SaCheckLogin
     @SaCheckPermission("admin:system:roles:save")
-    @Log(title = "保存角色", operationType = OperationTypeEnum.CREATE)
     public ServerResponse<Void> save(@Valid @RequestBody RoleDTO roleDTO) {
         roleService.create(roleDTO);
         return ServerResponse.success();

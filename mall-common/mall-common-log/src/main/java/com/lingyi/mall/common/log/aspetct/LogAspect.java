@@ -54,13 +54,6 @@ public class LogAspect {
 
     }
 
-    /**
-     * 数据库日志切点
-     */
-    @Pointcut("@annotation(com.lingyi.mall.common.log.aspetct.annotation.Log)")
-    private void dataBasePointcut() {
-    }
-
     @Around("consolePointcut()")
     public Object consoleAround(ProceedingJoinPoint joinPoint) throws Throwable {
         if (isFeign(joinPoint)) {
