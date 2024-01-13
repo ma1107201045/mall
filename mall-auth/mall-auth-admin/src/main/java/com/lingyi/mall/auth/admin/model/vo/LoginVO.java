@@ -10,7 +10,7 @@ import lombok.Data;
  * @Description:
  */
 @Data
-public class AuthAdminVO {
+public class LoginVO {
 
     @Schema(description = "用户id")
     private Long userId;

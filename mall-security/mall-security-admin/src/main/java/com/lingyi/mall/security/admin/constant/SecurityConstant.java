@@ -12,6 +12,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
  */
 public class SecurityConstant {
     public static final RequestMatcher[] IGNORE_REQUEST_MATCHER_ARRAY = new RequestMatcher[]{
+            new AntPathRequestMatcher("/**"),
             new AntPathRequestMatcher("/users/user", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/users/menuPermissions", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/doc.html", HttpMethod.GET.name()),
@@ -21,7 +22,8 @@ public class SecurityConstant {
             new AntPathRequestMatcher("/get-base64-image-captcha", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/get-bin-image-captcha", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/users/permissions", HttpMethod.GET.name()),
-            new AntPathRequestMatcher("/logs", HttpMethod.POST.name())};
+            new AntPathRequestMatcher("/logs", HttpMethod.POST.name())
+    };
     public static final String LOGIN_PROCESSING_URL = "/login";
     public static final String LOGOUT_URL = "/logout";
     public static final String USER_NAME_PARAMETER = "userName";
