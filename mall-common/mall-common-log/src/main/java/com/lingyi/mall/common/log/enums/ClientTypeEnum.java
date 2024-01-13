@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.core.enums;
+package com.lingyi.mall.common.log.enums;
 
 /**
  * @Author: maweiyan

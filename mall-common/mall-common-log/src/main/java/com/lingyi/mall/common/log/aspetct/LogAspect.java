@@ -5,7 +5,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.StopWatch;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
-import com.lingyi.mall.common.log.task.BaseAsyncTask;
+import com.lingyi.mall.common.log.util.RequestUtil;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
@@ -44,9 +44,6 @@ import java.util.stream.Collectors;
 public class LogAspect {
 
     private static final ThreadLocal<StopWatch> CONSOLE_STOP_WATCH_THREAD_LOCAL = ThreadLocal.withInitial(StopWatch::new);
-    private static final ThreadLocal<StopWatch> DATABASE_STOP_WATCH_THREAD_LOCAL = ThreadLocal.withInitial(StopWatch::new);
-
-    private final BaseAsyncTask baseAsyncTask;
 
     /**
      * 控制台日志切点
@@ -98,8 +95,9 @@ public class LogAspect {
     }
 
     private boolean isFeign(ProceedingJoinPoint joinPoint) {
-        var interfaces = joinPoint.getTarget().getClass().getInterfaces();
-        return interfaces.length > 0 && Arrays.stream(interfaces).allMatch(clazz -> Objects.nonNull(clazz.getAnnotation(FeignClient.class)));
+        // var interfaces = joinPoint.getTarget().getClass().getInterfaces();
+        // return interfaces.length > 0 && Arrays.stream(interfaces).allMatch(clazz -> Objects.nonNull(clazz.getAnnotation(FeignClient.class)));
+        return true;
     }
 
     private void printUrlAndMethod(HttpServletRequest request) {

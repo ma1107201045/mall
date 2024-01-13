@@ -1,8 +1,7 @@
 package com.lingyi.mall.common.log.aspetct.annotation;
 
-import com.lingyi.mall.common.core.constant.BaseConstant;
-import com.lingyi.mall.common.core.enums.ClientTypeEnum;
-import com.lingyi.mall.common.core.enums.OperationTypeEnum;
+import com.lingyi.mall.common.log.enums.ClientTypeEnum;
+import com.lingyi.mall.common.log.enums.OperationTypeEnum;
 
 import java.lang.annotation.*;
 
@@ -17,7 +16,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface Log {
 
-    String title() default BaseConstant.EMPTY_CHAR;
+    String title() default "";
 
     OperationTypeEnum operationType() default OperationTypeEnum.OTHER;
 
