@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.core.util;
+package com.lingyi.mall.common.log.util;
 
 import jakarta.servlet.http.HttpServletRequest;
 

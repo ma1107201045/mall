@@ -5,13 +5,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.StopWatch;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
-import com.lingyi.mall.api.system.request.LogRequest;
-import com.lingyi.mall.common.core.annotation.Log;
-import com.lingyi.mall.common.core.constant.BaseConstant;
-import com.lingyi.mall.common.core.enums.WhetherEnum;
-import com.lingyi.mall.common.core.util.RequestUtil;
 import com.lingyi.mall.common.log.task.BaseAsyncTask;
-import com.lingyi.mall.security.core.util.Authenticator;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,8 +17,6 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.slf4j.MDC;
-import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,7 +27,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Parameter;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -57,8 +48,6 @@ public class LogAspect {
 
     private final BaseAsyncTask baseAsyncTask;
 
-    private final Authenticator authenticator;
-
     /**
      * 控制台日志切点
      */
@@ -71,7 +60,7 @@ public class LogAspect {
     /**
      * 数据库日志切点
      */
-    @Pointcut("@annotation(com.lingyi.mall.common.core.annotation.Log)")
+    @Pointcut("@annotation(com.lingyi.mall.common.log.aspetct.annotation.Log)")
     private void dataBasePointcut() {
     }
 
@@ -105,32 +94,6 @@ public class LogAspect {
             }
             CONSOLE_STOP_WATCH_THREAD_LOCAL.remove();
 
-        }
-    }
-
-    @Around("dataBasePointcut()")
-    public Object dataBaseAround(ProceedingJoinPoint joinPoint) throws Throwable {
-        Object result = null;
-        boolean isSuccess = false;
-        String failReason = null;
-        var sw = DATABASE_STOP_WATCH_THREAD_LOCAL.get();
-        try {
-            sw.start();
-            result = joinPoint.proceed(joinPoint.getArgs());
-            isSuccess = true;
-            return result;
-        } catch (Throwable t) {
-            failReason = t.getMessage();
-            throw t;
-        } finally {
-            sw.stop();
-            // 获取该方法上的 Log注解
-            var log = ((MethodSignature) joinPoint.getSignature()).getMethod().getAnnotation(Log.class);
-            //组装
-            var logDTO = buildLogDTO(log, joinPoint, result, isSuccess, sw.getLastTaskTimeMillis(), failReason);
-            //异步保存
-            baseAsyncTask.saveLog(logDTO);
-            DATABASE_STOP_WATCH_THREAD_LOCAL.remove();
         }
     }
 
@@ -285,23 +248,4 @@ public class LogAspect {
     }
 
 
-    private LogRequest buildLogDTO(Log log, ProceedingJoinPoint joinPoint, Object result, boolean isSuccess, long taskTime, String failReason) {
-        return LogRequest.builder()
-                .title(log.clientType() + "-" + log.title())
-                .operationType(log.operationType().getCode())
-                .callClass(joinPoint.getTarget().getClass().getName())
-                .callClassMethod(joinPoint.getSignature().getName())
-                .requestParam(log.ignoreParam() ? null : JSON.toJSONString(joinPoint.getArgs()))
-                .responseParam(Objects.isNull(result) ? null : JSON.toJSONString(result))
-                .executeDuration(taskTime)
-                .executeResult(isSuccess ? WhetherEnum.Y.getCode() : WhetherEnum.N.getCode())
-                .failReason(failReason)
-                .clientIp(RequestUtil.getRemoteHost(((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest()))
-                .trackId(MDC.get(BaseConstant.TRACK_ID_NAME))
-                .createBy(authenticator.getUserName())
-                .createDateTime(LocalDateTime.now())
-                .lastModifyBy(authenticator.getUserName())
-                .lastModifyDateTime(LocalDateTime.now())
-                .build();
-    }
 }

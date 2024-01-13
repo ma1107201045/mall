@@ -87,4 +87,13 @@ public interface UserService extends BaseServicePro<UserDTO, UserVO, UserQuery, 
     List<MenuResponse> readMenuTreesByUserName(String userName);
 
 
+    /**
+     * 按照用户id菜单集
+     *
+     * @param id 用户id
+     * @return List<MenuResDTO>
+     */
+    List<MenuResponse> readMenuTreesById(Long id);
+
+
 }

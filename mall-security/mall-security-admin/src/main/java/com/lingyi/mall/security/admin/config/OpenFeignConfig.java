@@ -5,7 +5,6 @@ import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.common.core.constant.BaseConstant;
 import com.lingyi.mall.common.core.util.HttpUtil;
-import com.lingyi.mall.security.admin.constant.SecurityConstant;
 import feign.RequestInterceptor;
 import feign.ResponseInterceptor;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,8 +12,6 @@ import org.slf4j.MDC;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;
-import org.springframework.security.authentication.RememberMeAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -44,15 +41,11 @@ public class OpenFeignConfig {
             if (ArrayUtil.isEmpty(cookies)) {
                 return;
             }
-            //获取授权者类型
-            var authentication = SecurityContextHolder.getContext().getAuthentication();
             //解决记住密码bug（Authentication是null或者其他排除 REMEMBER_ME_COOKIE_NAME，Authentication是RememberMeAuthenticationToken带REMEMBER_ME_COOKIE_NAME）
             var cookieList = Arrays.stream(cookies)
-                    .filter(cookie -> !cookie.getName().equals(SecurityConstant.REMEMBER_ME_COOKIE_NAME) || authentication instanceof RememberMeAuthenticationToken)
-                    .map(cookie -> cookie.getName() + BaseConstant.EQUAL_CHAR + cookie.getValue())
                     .toList();
             // 将cookie同步到新的请求的请求头中
-            requestTemplate.header(SecurityConstant.COOKIE, CollUtil.join(cookieList, BaseConstant.SEMICOLON_CHAR));
+            requestTemplate.header("cookie", CollUtil.join(cookieList, ","));
         };
     }
 
@@ -79,11 +72,11 @@ public class OpenFeignConfig {
         return (invocationContext, chain) -> {
             var response = invocationContext.response();
             var headers = response.headers();
-            var values = headers.get(SecurityConstant.COOKIE);
+            var values = headers.get("cookie");
             if (CollUtil.isNotEmpty(values)) {
                 var cookie = values.toArray(new String[]{})[0];
                 if (StrUtil.isNotBlank(cookie)) {
-                    HttpUtil.setHeader(SecurityConstant.COOKIE, cookie);
+                    HttpUtil.setHeader("cookie", cookie);
                 }
             }
             return chain.next(invocationContext);

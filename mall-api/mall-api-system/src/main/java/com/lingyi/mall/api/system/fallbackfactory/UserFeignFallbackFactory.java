@@ -53,6 +53,11 @@ public class UserFeignFallbackFactory implements FallbackFactory<UserFeign> {
                 return null;
             }
 
+            @Override
+            public ServerResponse<List<MenuResponse>> getMenuTreesById(Long id) {
+                return null;
+            }
+
 
         };
     }

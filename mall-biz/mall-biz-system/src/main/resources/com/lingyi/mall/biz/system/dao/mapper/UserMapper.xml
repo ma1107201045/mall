@@ -35,10 +35,13 @@
         </if>
     </sql>
     <select id="selectById" resultMap="BaseResultMap">
-        SELECT
-        <include refid="Base_Column_List"/>,mur.role_id
-        FROM ms_user mu LEFT JOIN ms_user_role mur ON mu.id = mur.user_id
-        WHERE mu.id= #{id,jdbcType=BIGINT}
+        SELECT mu.*, mur.role_id FROM
+        (SELECT
+        <include refid="Base_Column_List"/>
+        FROM ms_user
+        WHERE id= #{id,jdbcType=BIGINT}
+        ) mu
+        LEFT JOIN ms_user_role mur ON mu.id = mur.user_id
     </select>
     <select id="countByParam" resultType="java.lang.Long">
         SELECT COUNT(*) FROM ms_user

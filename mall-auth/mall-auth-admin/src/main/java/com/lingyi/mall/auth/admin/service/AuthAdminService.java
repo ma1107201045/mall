@@ -22,31 +22,12 @@ public interface AuthAdminService {
      */
     LoginVO login(LoginDTO loginDTO);
 
-
-    /**
-     * 读取图形验证码
-     *
-     * @param session session
-     * @return BASE64数据
-     */
-    @Deprecated
-    String readImageCaptcha(HttpSession session);
-
     /**
      * 读取图形验证码
      *
      * @return BASE64数据
      */
     ImageCaptchaVO readImageCaptcha();
-
-    /**
-     * 输出图形验证码
-     *
-     * @param session  session
-     * @param response 返回信息
-     */
-    @Deprecated
-    void writeImageCaptcha(HttpSession session, HttpServletResponse response);
 
     /**
      * 输出图形验证码

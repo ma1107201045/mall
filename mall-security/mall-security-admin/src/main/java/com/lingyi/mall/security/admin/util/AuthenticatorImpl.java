@@ -13,12 +13,12 @@ import org.springframework.stereotype.Component;
 public class AuthenticatorImpl implements Authenticator {
     @Override
     public Long getUserId() {
-        return AuthenticatorUtil.getUserId();
+        return -1L;
     }
 
     @Override
     public String getUserName() {
-        return AuthenticatorUtil.getUserName();
+        return "";
     }
 
     @Override

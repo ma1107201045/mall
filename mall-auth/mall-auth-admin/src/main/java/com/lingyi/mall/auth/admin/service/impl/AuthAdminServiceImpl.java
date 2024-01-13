@@ -19,10 +19,7 @@ import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.core.util.HttpUtil;
 import com.lingyi.mall.common.redis.util.RedisUtil;
-import com.lingyi.mall.security.admin.constant.SecurityConstant;
 import com.lingyi.mall.security.admin.util.CodeGeneratorProxy;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -63,17 +60,15 @@ public class AuthAdminServiceImpl implements AuthAdminService {
         var userResponse = userFeignConsumer.getUserByUserName(loginDTO.getUserName());
         AssertUtil.notNull(userResponse, AdminFailEnum.USER_NAME_NOT_EXIST_ERROR);
         //校验用户密码
-        var encodedPassword = SecureUtil.md5(userResponse.getPassword());
+        var encodedPassword = SecureUtil.md5(loginDTO.getPassword());
         AssertUtil.isEquals(userResponse.getPassword(), encodedPassword, AdminFailEnum.PASSWORD_ERROR);
         return ConverterUtil.to(userResponse, LoginVO.class);
     }
 
-    @Override
-    public String readImageCaptcha(HttpSession session) {
-        AbstractCaptcha abstractCaptcha = getImageCaptchaObject();
-        session.setAttribute(SecurityConstant.SESSION_ATTRIBUTE_NAME, abstractCaptcha);
-        return abstractCaptcha.getImageBase64Data();
+    public static void main(String[] args) {
+        System.out.println(SecureUtil.md5("199726ma."));
     }
+
 
     @Override
     public ImageCaptchaVO readImageCaptcha() {
@@ -85,18 +80,6 @@ public class AuthAdminServiceImpl implements AuthAdminService {
         imageCaptchaVO.setUuid(uuid);
         imageCaptchaVO.setBase64ImageCaptcha(base64ImageCaptcha);
         return imageCaptchaVO;
-    }
-
-    @Override
-    public void writeImageCaptcha(HttpSession session, HttpServletResponse response) {
-        AbstractCaptcha abstractCaptcha = getImageCaptchaObject();
-        session.setAttribute(SecurityConstant.SESSION_ATTRIBUTE_NAME, abstractCaptcha);
-        response.setContentType(MediaType.IMAGE_PNG_VALUE);
-        try (OutputStream os = response.getOutputStream()) {
-            abstractCaptcha.write(os);
-        } catch (IOException e) {
-            log.error("write image captcha error");
-        }
     }
 
     @Override
@@ -117,7 +100,7 @@ public class AuthAdminServiceImpl implements AuthAdminService {
 
 
     private AbstractCaptcha getImageCaptchaObject() {
-        AbstractCaptcha abstractCaptcha = null;
+        AbstractCaptcha abstractCaptcha;
         switch (properties.getDisturbanceType()) {
             case LINE ->
                     abstractCaptcha = CaptchaUtil.createLineCaptcha(properties.getWidth(), properties.getHeight(), properties.getCount(), properties.getTypeCount());
@@ -127,6 +110,7 @@ public class AuthAdminServiceImpl implements AuthAdminService {
                     abstractCaptcha = CaptchaUtil.createShearCaptcha(properties.getWidth(), properties.getHeight(), properties.getCount(), properties.getTypeCount());
             case GIF ->
                     abstractCaptcha = CaptchaUtil.createGifCaptcha(properties.getWidth(), properties.getHeight(), properties.getCount());
+            default -> throw new RuntimeException("error");
         }
         if (properties.getCodeGeneratorType() == CodeGeneratorType.MATH) {
             abstractCaptcha.setGenerator(new CodeGeneratorProxy(new MathGenerator(1)));

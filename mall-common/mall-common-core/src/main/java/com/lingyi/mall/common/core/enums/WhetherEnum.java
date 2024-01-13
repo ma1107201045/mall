@@ -19,4 +19,6 @@ public enum WhetherEnum {
     Y(1), N(0);
 
     private final Integer code;
+
+
 }

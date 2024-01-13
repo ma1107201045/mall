@@ -84,4 +84,14 @@ public class UserFeignConsumer {
         }
         throw new OpenFeignException(response.getCode(), response.getMessage());
     }
+
+    public List<MenuResponse> getMenuTreeById(Long id) {
+        log.info("入参:id:{}", id);
+        var response = userFeign.getMenuTreesById(id);
+        if (response.getIsSuccess()) {
+            log.info("出参:UserVO:{}", JSON.toJSONString(response.getData()));
+            return response.getData();
+        }
+        throw new OpenFeignException(response.getCode(), response.getMessage());
+    }
 }

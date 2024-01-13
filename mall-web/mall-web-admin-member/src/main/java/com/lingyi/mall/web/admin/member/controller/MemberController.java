@@ -7,7 +7,7 @@ import com.lingyi.mall.biz.member.service.MemberService;
 import com.lingyi.mall.biz.member.model.vo.MemberVO;
 import com.lingyi.mall.common.core.enums.OperationTypeEnum;
 import com.lingyi.mall.common.core.util.ServerResponse;
-import com.lingyi.mall.common.core.annotation.Log;
+import com.lingyi.mall.common.log.aspetct.annotation.Log;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

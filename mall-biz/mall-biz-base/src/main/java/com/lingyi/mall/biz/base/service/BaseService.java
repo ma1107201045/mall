@@ -16,7 +16,7 @@ public interface BaseService {
     /**
      * 按照用户id更改用户信息
      *
-     * @param userId      用户id
+     * @param userId          用户id
      * @param userPartRequest 用户信息
      */
     void updateUserByUserId(Long userId, UserPartRequest userPartRequest);
@@ -24,10 +24,10 @@ public interface BaseService {
     /**
      * 按照用户名称查询菜单树
      *
-     * @param userName 用户名称
+     * @param userId 用户id
      * @return 菜单树
      */
-    List<MenuResponse> readMenuTreesByUserName(String userName);
+    List<MenuResponse> readMenuTreesByUserId(Long userId);
 
 
     /**

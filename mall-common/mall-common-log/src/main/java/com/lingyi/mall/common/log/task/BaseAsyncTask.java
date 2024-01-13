@@ -23,8 +23,6 @@ import org.springframework.stereotype.Component;
 @EnableAsync
 public class BaseAsyncTask {
 
-    private final LogFeignConsumer logFeignConsumer;
-
     @Async("executorService")
     public void saveLog(LogRequest logDTO) {
         MDC.put(BaseConstant.TRACK_ID_NAME, logDTO.getTrackId());

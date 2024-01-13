@@ -79,4 +79,14 @@ public interface UserFeign {
     @GetMapping(URL_PREFIX + "/menuPermissions")
     ServerResponse<List<String>> getMenuPermissionsById(@RequestParam(name = "id") Long id);
 
+
+    /**
+     * 按照用户名称查询菜单树
+     *
+     * @param id 用户id
+     * @return 菜单树
+     */
+    @GetMapping(URL_PREFIX + "/menu-trees/{id}")
+    ServerResponse<List<MenuResponse>> getMenuTreesById(@PathVariable("id") Long id);
+
 }

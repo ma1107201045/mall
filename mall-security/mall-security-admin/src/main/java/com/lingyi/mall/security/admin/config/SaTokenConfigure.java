@@ -25,7 +25,7 @@ public class SaTokenConfigure {
     public SaTokenConfig saTokenConfig() {
         SaTokenConfig config = new SaTokenConfig();
         // token 名称（同时也是 cookie 名称）
-        config.setTokenName("sessionId");
+        config.setTokenName("satoken");
         // token 有效期（单位：秒），默认30天，-1代表永不过期
         config.setTimeout(30 * 24 * 60 * 60);
         // token 最低活跃频率（单位：秒），如果 token 超过此时间没有访问系统就会被冻结，默认-1 代表不限制，永不冻结

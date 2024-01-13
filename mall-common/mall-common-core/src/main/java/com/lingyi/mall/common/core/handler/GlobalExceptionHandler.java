@@ -9,7 +9,6 @@ import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -98,19 +97,6 @@ public class GlobalExceptionHandler {
     }
 
 
-    /**
-     * 由于注解鉴权不走JsonAccessDeniedHandler，故只能全局配置
-     *
-     * @param exception 访问权限异常
-     * @return ServerResponse<Void>
-     */
-    @ExceptionHandler(AccessDeniedException.class)
-    @ResponseStatus(HttpStatus.FORBIDDEN)
-    public ServerResponse<Void> accessDeniedException(AccessDeniedException exception) {
-        log.error("AccessDeniedException：", exception);
-        log.error("授权失败，错误原因:", exception);
-        return ServerResponse.fail(HttpStatus.FORBIDDEN.value(), "不允许访问");
-    }
 
     @ExceptionHandler(NotLoginException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
@@ -119,7 +105,6 @@ public class GlobalExceptionHandler {
         log.error("暂未登录,错误原因:", exception);
         return ServerResponse.fail(HttpStatus.UNAUTHORIZED.value(), exception.getMessage());
     }
-
     @ExceptionHandler(NotPermissionException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public ServerResponse<Void> notLoginException(NotPermissionException exception) {

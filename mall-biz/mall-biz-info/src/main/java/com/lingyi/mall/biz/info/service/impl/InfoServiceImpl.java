@@ -10,7 +10,7 @@ import com.lingyi.mall.biz.info.model.entity.InfoLogDO;
 import com.lingyi.mall.biz.info.service.InfoService;
 import com.lingyi.mall.biz.info.service.InfoLogService;
 import com.lingyi.mall.biz.info.util.InfoRedisKeyUtil;
-import com.lingyi.mall.common.core.annotation.RedisLock;
+import com.lingyi.mall.common.redis.aspect.annotation.RedisLock;
 import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ObjectUtil;
 import com.lingyi.mall.common.redis.util.RedisUtil;

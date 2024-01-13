@@ -45,7 +45,7 @@ import java.util.Objects;
 public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapper, UserDTO, UserVO, UserQuery, UserDO, Long>
         implements UserService {
 
-    private final PasswordEncoder passwordEncoder;
+    // private final PasswordEncoder passwordEncoder;
 
     private final UserRoleService userRoleService;
 
@@ -104,8 +104,8 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
     @Override
     public void updatePartById(UserPartRequest userPartRequest) {
         //密码作哈希
-        var encodePassword = passwordEncoder.encode(userPartRequest.getPassword());
-        userPartRequest.setPassword(encodePassword);
+        // var encodePassword = passwordEncoder.encode(userPartRequest.getPassword());
+        // userPartRequest.setPassword(encodePassword);
         //更新数据
         UserDO userDO = ConverterUtil.to(userPartRequest, UserDO.class);
         //更新
@@ -160,6 +160,13 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
         return toMenuTree(SystemConstant.MENU_ROOT_ID, menus);
     }
 
+    @Override
+    public List<MenuResponse> readMenuTreesById(Long id) {
+        UserVO userVO = readById(id);
+        AssertUtil.notNull(userVO, SystemFailEnum.USER_NULL_ERROR);
+        return readMenuTreesByUserName(userVO.getUserName());
+    }
+
     private void verifyData(UserDTO userDTO, List<Long> ids, OperationTypeEnum operationTypeEnum) {
         if (operationTypeEnum == OperationTypeEnum.CREATE) {
             //断言用户是否admin
@@ -190,8 +197,8 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
 
 
     private void encodePassword(UserDTO userDTO) {
-        var encodePassword = passwordEncoder.encode(userDTO.getPassword());
-        userDTO.setPassword(encodePassword);
+        //  var encodePassword = passwordEncoder.encode(userDTO.getPassword());
+        //   userDTO.setPassword(encodePassword);
     }
 
     private List<MenuResponse> toMenuTree(Long menuParentId, List<MenuResponse> menus) {

@@ -12,13 +12,13 @@ import org.springframework.stereotype.Component;
 @Component
 public final class AdminRedisKeyUtil {
 
-    private static final String IMAGE_CAPTCHA_KEY_FORMAT = "info-image-captcha:%s";
+    private static final String IMAGE_CAPTCHA_KEY_FORMAT = "%s:info-image-captcha:%s";
 
     @Value("${spring.application.name}")
     private String applicationName;
 
     public String getImageCaptchaKey(String uuid) {
-        return String.format(IMAGE_CAPTCHA_KEY_FORMAT, uuid);
+        return String.format(applicationName + IMAGE_CAPTCHA_KEY_FORMAT, uuid);
     }
 
 

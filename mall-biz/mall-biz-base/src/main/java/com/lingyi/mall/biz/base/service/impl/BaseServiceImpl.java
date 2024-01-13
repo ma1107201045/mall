@@ -28,8 +28,8 @@ public class BaseServiceImpl implements BaseService {
     }
 
     @Override
-    public List<MenuResponse> readMenuTreesByUserName(String userName) {
-        return userFeignConsumer.getMenuTreeByUserName(userName);
+    public List<MenuResponse> readMenuTreesByUserId(Long userId) {
+        return userFeignConsumer.getMenuTreeById(userId);
     }
 
     @Override

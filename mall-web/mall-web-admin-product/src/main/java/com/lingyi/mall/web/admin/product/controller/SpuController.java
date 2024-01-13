@@ -4,7 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.biz.product.model.query.SpuQuery;
 import com.lingyi.mall.biz.product.model.vo.SpuVO;
 import com.lingyi.mall.biz.product.service.SpuService;
-import com.lingyi.mall.common.core.annotation.Log;
+import com.lingyi.mall.common.log.aspetct.annotation.Log;
 import com.lingyi.mall.common.core.enums.OperationTypeEnum;
 import com.lingyi.mall.common.core.vo.PageVO;
 import io.swagger.v3.oas.annotations.Operation;

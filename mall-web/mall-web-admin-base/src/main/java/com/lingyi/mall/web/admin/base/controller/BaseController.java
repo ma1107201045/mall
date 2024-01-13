@@ -5,8 +5,7 @@ import com.lingyi.mall.api.system.request.UserPartRequest;
 import com.lingyi.mall.biz.base.service.BaseService;
 import com.lingyi.mall.common.core.enums.OperationTypeEnum;
 import com.lingyi.mall.common.core.util.ServerResponse;
-import com.lingyi.mall.security.admin.util.AuthenticatorUtil;
-import com.lingyi.mall.common.core.annotation.Log;
+import com.lingyi.mall.common.log.aspetct.annotation.Log;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +34,7 @@ public class BaseController {
     @PatchMapping("/user")
     @Log(title = "更新当前用户信息", operationType = OperationTypeEnum.UPDATE)
     public ServerResponse<Void> updateUser(UserPartRequest userPartRequest) {
-        var userId = AuthenticatorUtil.getUserId();
+        var userId = 1L;
         baseService.updateUserByUserId(userId, userPartRequest);
         return ServerResponse.success();
     }
@@ -44,8 +43,8 @@ public class BaseController {
     @GetMapping("/menu-trees")
     @Log(title = "获取当前用户菜单树", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<MenuResponse>> getMenuTrees() {
-        var userName = AuthenticatorUtil.getUserName();
-        var menus = baseService.readMenuTreesByUserName(userName);
+        var userId = 1L;
+        var menus = baseService.readMenuTreesByUserId(userId);
         return ServerResponse.success(menus);
     }
 
@@ -53,7 +52,7 @@ public class BaseController {
     @GetMapping("/menu-permissions")
     @Log(title = "获取当前用户菜单权限标识集", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<String>> getMenuPermissions() {
-        var userName = AuthenticatorUtil.getUserName();
+        var userName = "";
         var permissions = baseService.readMenuPermissionsByUserName(userName);
         return ServerResponse.success(permissions);
     }

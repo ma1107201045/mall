@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.core.annotation;
+package com.lingyi.mall.common.log.aspetct.annotation;
 
 import com.lingyi.mall.common.core.constant.BaseConstant;
 import com.lingyi.mall.common.core.enums.ClientTypeEnum;

@@ -58,7 +58,7 @@ public class UserFeignProvider implements UserFeign {
 
     @Operation(summary = "查询当前用户", description = "查询当前用户")
     @Override
-   // @SaIgnore
+    // @SaIgnore
     public ServerResponse<UserResponse> getUserByUserName(String userName) {
         var userResponse = userService.readUserByUserName(userName);
         return ServerResponse.success(userResponse);
@@ -66,9 +66,15 @@ public class UserFeignProvider implements UserFeign {
 
     @Operation(summary = "查询当前用户权限集", description = "查询当前用户权限集")
     @Override
-   // @SaIgnore
+    // @SaIgnore
     public ServerResponse<List<String>> getMenuPermissionsById(Long id) {
         var permissions = userService.readMenuPermissionsById(id);
         return ServerResponse.success(permissions);
+    }
+
+    @Override
+    public ServerResponse<List<MenuResponse>> getMenuTreesById(Long id) {
+        var userResponse = userService.readMenuTreesById(id);
+        return ServerResponse.success(userResponse);
     }
 }
