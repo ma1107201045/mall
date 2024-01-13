@@ -1,5 +1,4 @@
 package com.lingyi.mall.security.core.config;
-
 import cn.dev33.satoken.interceptor.SaInterceptor;
 import com.lingyi.mall.security.core.constant.NoAuthUrlConstant;
 import org.springframework.stereotype.Component;

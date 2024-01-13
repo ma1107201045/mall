@@ -1,7 +1,7 @@
 package com.lingyi.mall.common.redis.aspect;
 
 import com.lingyi.mall.common.redis.aspect.annotation.RedisLock;
-import com.lingyi.mall.common.core.util.SpelUtil;
+import com.lingyi.mall.common.redis.util.SpelUtil;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

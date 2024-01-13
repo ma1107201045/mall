@@ -10,13 +10,18 @@
     </parent>
     <artifactId>mall-security-admin</artifactId>
     <dependencies>
+        <!-- Sa-Token 整合 Redis （使用 jdk 默认序列化方式） -->
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-redis</artifactId>
+        </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>mall-security-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-redis-jackson</artifactId>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>mall-api-system</artifactId>
         </dependency>
     </dependencies>
 </project>

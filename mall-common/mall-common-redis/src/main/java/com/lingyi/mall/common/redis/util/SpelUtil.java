@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.core.util;
+package com.lingyi.mall.common.redis.util;
 
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.StrUtil;

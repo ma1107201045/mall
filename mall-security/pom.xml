@@ -16,4 +16,10 @@
         <module>mall-security-core</module>
         <module>mall-security-merchant</module>
     </modules>
+    <dependencies>
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-spring-boot3-starter</artifactId>
+        </dependency>
+    </dependencies>
 </project>
