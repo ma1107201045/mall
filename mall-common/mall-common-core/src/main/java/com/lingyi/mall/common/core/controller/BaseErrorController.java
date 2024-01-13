@@ -1,7 +1,6 @@
 package com.lingyi.mall.common.core.controller;
 
 import com.lingyi.mall.common.core.util.ServerResponse;
-import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @DateTime: 2023/6/17 20:06
  * @Description:
  */
-@Hidden
 @RestController
 @RequestMapping({"${server.error.path:${error.path:/error}}"})
 public class BaseErrorController implements ErrorController {
