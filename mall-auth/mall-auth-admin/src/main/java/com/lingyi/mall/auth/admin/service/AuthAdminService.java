@@ -1,10 +1,8 @@
 package com.lingyi.mall.auth.admin.service;
 
-import com.lingyi.mall.auth.admin.model.dto.LoginDTO;
+import com.lingyi.mall.auth.admin.model.dto.AuthenticatorDTO;
 import com.lingyi.mall.auth.admin.model.vo.ImageCaptchaVO;
-import com.lingyi.mall.auth.admin.model.vo.LoginVO;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import com.lingyi.mall.auth.admin.model.vo.AuthenticatorVO;
 
 /**
  * @author maweiyan
@@ -17,10 +15,10 @@ public interface AuthAdminService {
     /**
      * 登录
      *
-     * @param loginDTO 认证信息
+     * @param authenticatorDTO 认证信息
      * @return 认证信息
      */
-    LoginVO login(LoginDTO loginDTO);
+    AuthenticatorVO login(AuthenticatorDTO authenticatorDTO);
 
     /**
      * 读取图形验证码

@@ -5,6 +5,6 @@
  * @Description:
  */
 @NonNullApi
-package com.lingyi.mall.common.core.handler;
+package com.lingyi.mall.common.web.handler;
 
 import org.springframework.lang.NonNullApi;

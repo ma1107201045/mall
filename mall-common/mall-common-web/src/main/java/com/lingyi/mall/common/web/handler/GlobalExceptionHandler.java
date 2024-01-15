@@ -1,10 +1,10 @@
-package com.lingyi.mall.common.core.handler;
+package com.lingyi.mall.common.web.handler;
 
 import cn.dev33.satoken.exception.NotLoginException;
 import cn.dev33.satoken.exception.NotPermissionException;
 import com.lingyi.mall.common.core.exception.BaseException;
 import com.lingyi.mall.common.core.exception.OpenFeignException;
-import com.lingyi.mall.common.core.util.ServerResponse;
+import com.lingyi.mall.common.web.util.ServerResponse;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
@@ -97,7 +97,6 @@ public class GlobalExceptionHandler {
     }
 
 
-
     @ExceptionHandler(NotLoginException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public ServerResponse<Void> notLoginException(NotLoginException exception) {
@@ -105,6 +104,7 @@ public class GlobalExceptionHandler {
         log.error("暂未登录,错误原因:", exception);
         return ServerResponse.fail(HttpStatus.UNAUTHORIZED.value(), exception.getMessage());
     }
+
     @ExceptionHandler(NotPermissionException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public ServerResponse<Void> notLoginException(NotPermissionException exception) {

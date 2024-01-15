@@ -18,9 +18,9 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @datetime 2023/5/1 23:39
  * @description
  */
-//@Configuration(proxyBeanMethods = false)
+@Configuration(proxyBeanMethods = false)
 public class RedisConfig {
-   // @Bean
+    @Bean
     public RedisSerializer<String> stringRedisSerializer() {
         return new StringRedisSerializer();
     }
@@ -31,7 +31,7 @@ public class RedisConfig {
      *
      * @return RedisSerializer
      */
-   // @Bean
+     @Bean
     public RedisSerializer<Object> jackson2JsonRedisSerializer() {
         var objectMapper = new ObjectMapper();
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
@@ -45,7 +45,7 @@ public class RedisConfig {
      * @param redisConnectionFactory jedis连接工厂
      * @return RedisTemplate
      */
-   // @Bean
+    @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory, RedisSerializer<String> stringRedisSerializer, RedisSerializer<Object> jackson2JsonRedisSerializer) {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         //设置连接工厂
@@ -65,7 +65,7 @@ public class RedisConfig {
      * @param redisConnectionFactory jedis连接工厂
      * @return RedisTemplate
      */
-   // @Bean
+    @Bean
     public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory redisConnectionFactory, RedisSerializer<String> stringRedisSerializer, RedisSerializer<Object> jackson2JsonRedisSerializer) {
         StringRedisTemplate stringRedisTemplate = new StringRedisTemplate();
         stringRedisTemplate.setConnectionFactory(redisConnectionFactory);

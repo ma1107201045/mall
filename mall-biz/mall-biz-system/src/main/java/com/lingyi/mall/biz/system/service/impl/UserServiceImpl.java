@@ -19,13 +19,12 @@ import com.lingyi.mall.biz.system.service.MenuService;
 import com.lingyi.mall.biz.system.service.RoleService;
 import com.lingyi.mall.biz.system.service.UserRoleService;
 import com.lingyi.mall.biz.system.service.UserService;
-import com.lingyi.mall.common.core.enums.OperationTypeEnum;
+import com.lingyi.mall.biz.system.util.OperationTypeEnum;
 import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.core.util.ObjectUtil;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,5 +1,6 @@
-package com.lingyi.mall.common.core.util;
+package com.lingyi.mall.common.web.util;
 
+import com.lingyi.mall.common.core.util.ObjectUtil;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;

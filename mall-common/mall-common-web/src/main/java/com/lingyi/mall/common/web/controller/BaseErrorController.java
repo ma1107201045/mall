@@ -1,6 +1,6 @@
-package com.lingyi.mall.common.core.controller;
+package com.lingyi.mall.common.web.controller;
 
-import com.lingyi.mall.common.core.util.ServerResponse;
+import com.lingyi.mall.common.web.util.ServerResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;

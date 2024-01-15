@@ -4,7 +4,7 @@ import com.lingyi.mall.api.system.request.LogRequest;
 import com.lingyi.mall.api.system.feign.LogFeign;
 import com.lingyi.mall.biz.system.model.entity.LogDO;
 import com.lingyi.mall.biz.system.service.LogService;
-import com.lingyi.mall.common.core.util.ServerResponse;
+import com.lingyi.mall.common.web.util.ServerResponse;
 import feign.Request;
 import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;

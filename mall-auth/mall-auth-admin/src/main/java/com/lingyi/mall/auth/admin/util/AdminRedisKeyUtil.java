@@ -18,7 +18,7 @@ public final class AdminRedisKeyUtil {
     private String applicationName;
 
     public String getImageCaptchaKey(String uuid) {
-        return String.format(applicationName + IMAGE_CAPTCHA_KEY_FORMAT, uuid);
+        return String.format(IMAGE_CAPTCHA_KEY_FORMAT, applicationName, uuid);
     }
 
 

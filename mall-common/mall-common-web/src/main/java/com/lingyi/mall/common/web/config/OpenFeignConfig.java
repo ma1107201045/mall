@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.core.config;
+package com.lingyi.mall.common.web.config;
 
 import feign.Logger;
 import org.springframework.context.annotation.Bean;

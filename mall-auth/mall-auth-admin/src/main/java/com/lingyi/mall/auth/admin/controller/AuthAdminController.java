@@ -3,13 +3,13 @@ package com.lingyi.mall.auth.admin.controller;
 import cn.dev33.satoken.annotation.SaCheckLogin;
 import cn.dev33.satoken.annotation.SaIgnore;
 import cn.dev33.satoken.stp.StpUtil;
-import com.lingyi.mall.auth.admin.model.dto.LoginDTO;
+import com.lingyi.mall.auth.admin.model.dto.AuthenticatorDTO;
 import com.lingyi.mall.auth.admin.model.vo.ImageCaptchaVO;
-import com.lingyi.mall.auth.admin.model.vo.LoginVO;
+import com.lingyi.mall.auth.admin.model.vo.AuthenticatorVO;
 import com.lingyi.mall.auth.admin.service.AuthAdminService;
 import com.lingyi.mall.common.log.aspetct.annotation.Log;
-import com.lingyi.mall.common.core.enums.OperationTypeEnum;
 import com.lingyi.mall.common.core.enums.WhetherEnum;
+import com.lingyi.mall.common.log.enums.OperationTypeEnum;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -34,11 +34,11 @@ public class AuthAdminController {
     @SaIgnore
     @PostMapping("/login")
     @ResponseBody
-    public LoginVO login(@RequestBody LoginDTO loginDTO) {
-        LoginVO loginVO = authAdminService.login(loginDTO);
-        StpUtil.login(loginVO.getUserId(), WhetherEnum.Y.getCode().equals(loginDTO.getIsRememberMe()));
-        StpUtil.getSession().set("user", loginVO);
-        return loginVO;
+    public AuthenticatorVO login(@RequestBody AuthenticatorDTO authenticatorDTO) {
+        AuthenticatorVO authenticatorVO = authAdminService.login(authenticatorDTO);
+        StpUtil.login(authenticatorVO.getUserId(), WhetherEnum.Y.getCode().equals(authenticatorDTO.getIsRememberMe()));
+        StpUtil.getSession().set("user", authenticatorVO);
+        return authenticatorVO;
     }
 
     @Operation(summary = "获取图形验证码-base64", description = "获取图形验证码-base64")

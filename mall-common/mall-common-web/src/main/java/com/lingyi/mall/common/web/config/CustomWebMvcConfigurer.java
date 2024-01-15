@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.core.config;
+package com.lingyi.mall.common.web.config;
 
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;

@@ -2,7 +2,7 @@ package com.lingyi.mall.api.system.feign;
 
 import com.lingyi.mall.api.system.request.LogRequest;
 import com.lingyi.mall.api.system.fallbackfactory.LogFeignFallbackFactory;
-import com.lingyi.mall.common.core.util.ServerResponse;
+import com.lingyi.mall.common.web.util.ServerResponse;
 import feign.Request;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @DateTime: 2023/6/3 18:47
  * @Description:
  */
-@FeignClient( value = "mall-web-admin-system", fallbackFactory = LogFeignFallbackFactory.class)
+@FeignClient(value = "mall-web-admin-system", fallbackFactory = LogFeignFallbackFactory.class)
 public interface LogFeign {
 
     String URL_PREFIX = "/logs";
@@ -22,8 +22,8 @@ public interface LogFeign {
     /**
      * 保存
      *
-     * @param logRequest  logRequest
-     * @param options options
+     * @param logRequest logRequest
+     * @param options    options
      * @return ServerResponse<Void>
      */
     @PostMapping(URL_PREFIX)

@@ -7,10 +7,11 @@ import cn.hutool.core.util.IdUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.lingyi.mall.api.system.consumer.UserFeignConsumer;
 import com.lingyi.mall.auth.admin.constant.AdminConstant;
+import com.lingyi.mall.auth.admin.converter.AuthAdminConverter;
 import com.lingyi.mall.auth.admin.enums.AdminFailEnum;
-import com.lingyi.mall.auth.admin.model.dto.LoginDTO;
+import com.lingyi.mall.auth.admin.model.dto.AuthenticatorDTO;
 import com.lingyi.mall.auth.admin.model.vo.ImageCaptchaVO;
-import com.lingyi.mall.auth.admin.model.vo.LoginVO;
+import com.lingyi.mall.auth.admin.model.vo.AuthenticatorVO;
 import com.lingyi.mall.auth.admin.properties.ImageCaptchaProperties;
 import com.lingyi.mall.auth.admin.properties.enums.CodeGeneratorType;
 import com.lingyi.mall.auth.admin.service.AuthAdminService;
@@ -26,7 +27,6 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -49,24 +49,20 @@ public class AuthAdminServiceImpl implements AuthAdminService {
     private final AdminRedisKeyUtil adminRedisKeyUtil;
 
     @Override
-    public LoginVO login(LoginDTO loginDTO) {
+    public AuthenticatorVO login(AuthenticatorDTO authenticatorDTO) {
         //校验验证码是否过期
-        AbstractCaptcha abstractCaptcha = redisUtil.get(adminRedisKeyUtil.getImageCaptchaKey(loginDTO.getUuid()), AbstractCaptcha.class);
-        AssertUtil.notNull(abstractCaptcha, AdminFailEnum.IMAGE_CAPTCHA_STALE_DATED_ERROR);
+        String imageCaptcha = redisUtil.get(adminRedisKeyUtil.getImageCaptchaKey(authenticatorDTO.getUuid()), String.class);
+        AssertUtil.notNull(imageCaptcha, AdminFailEnum.IMAGE_CAPTCHA_STALE_DATED_ERROR);
         //校验验证码是否错误
-        boolean flag = abstractCaptcha.verify(loginDTO.getImageCaptcha());
+        boolean flag = imageCaptcha.equals(authenticatorDTO.getImageCaptcha());
         AssertUtil.isTrue(flag, AdminFailEnum.IMAGE_CAPTCHA_ERROR);
         //校验用户
-        var userResponse = userFeignConsumer.getUserByUserName(loginDTO.getUserName());
+        var userResponse = userFeignConsumer.getUserByUserName(authenticatorDTO.getUserName());
         AssertUtil.notNull(userResponse, AdminFailEnum.USER_NAME_NOT_EXIST_ERROR);
         //校验用户密码
-        var encodedPassword = SecureUtil.md5(loginDTO.getPassword());
+        var encodedPassword = SecureUtil.md5(authenticatorDTO.getPassword());
         AssertUtil.isEquals(userResponse.getPassword(), encodedPassword, AdminFailEnum.PASSWORD_ERROR);
-        return ConverterUtil.to(userResponse, LoginVO.class);
-    }
-
-    public static void main(String[] args) {
-        System.out.println(SecureUtil.md5("199726ma."));
+        return ConverterUtil.to(userResponse, AuthenticatorVO.class);
     }
 
 
@@ -74,24 +70,21 @@ public class AuthAdminServiceImpl implements AuthAdminService {
     public ImageCaptchaVO readImageCaptcha() {
         String uuid = IdUtil.fastUUID();
         AbstractCaptcha abstractCaptcha = getImageCaptchaObject();
+        setImageCaptcha(uuid, abstractCaptcha);
         String base64ImageCaptcha = abstractCaptcha.getImageBase64Data();
-        redisUtil.set(adminRedisKeyUtil.getImageCaptchaKey(uuid), abstractCaptcha, 5L, TimeUnit.MINUTES);
-        ImageCaptchaVO imageCaptchaVO = new ImageCaptchaVO();
-        imageCaptchaVO.setUuid(uuid);
-        imageCaptchaVO.setBase64ImageCaptcha(base64ImageCaptcha);
-        return imageCaptchaVO;
+        return AuthAdminConverter.INSTANCE.of(uuid, base64ImageCaptcha);
     }
 
     @Override
     public void writeImageCaptcha() {
-        String uuid = IdUtil.fastUUID();
-        AbstractCaptcha abstractCaptcha = getImageCaptchaObject();
-        redisUtil.set(adminRedisKeyUtil.getImageCaptchaKey(uuid), abstractCaptcha, 5L, TimeUnit.MINUTES);
+        var uuid = IdUtil.fastUUID();
+        var abstractCaptcha = getImageCaptchaObject();
+        setImageCaptcha(uuid, abstractCaptcha);
         var response = HttpUtil.getResponse();
         assert response != null;
         response.setContentType(MediaType.IMAGE_PNG_VALUE);
         response.setHeader(AdminConstant.UUID, uuid);
-        try (OutputStream os = response.getOutputStream()) {
+        try (var os = response.getOutputStream()) {
             abstractCaptcha.write(os);
         } catch (IOException e) {
             log.error("write image captcha error");
@@ -114,7 +107,25 @@ public class AuthAdminServiceImpl implements AuthAdminService {
         }
         if (properties.getCodeGeneratorType() == CodeGeneratorType.MATH) {
             abstractCaptcha.setGenerator(new CodeGeneratorProxy(new MathGenerator(1)));
+
         }
         return abstractCaptcha;
     }
+
+    private void setImageCaptcha(String uuid, AbstractCaptcha abstractCaptcha) {
+        var imageCaptcha = abstractCaptcha.getCode();
+        if (abstractCaptcha.getGenerator() instanceof CodeGeneratorProxy) {
+            var firstNumber = Integer.parseInt(imageCaptcha.substring(0, 1));
+            var operator = imageCaptcha.substring(1, 2);
+            var secondNumber = Integer.parseInt(imageCaptcha.substring(2, 3));
+            switch (operator) {
+                case "+" -> imageCaptcha = String.valueOf(firstNumber + secondNumber);
+                case "-" -> imageCaptcha = String.valueOf(firstNumber - secondNumber);
+                case "*" -> imageCaptcha = String.valueOf(firstNumber * secondNumber);
+                default -> throw new RuntimeException("error");
+            }
+        }
+        redisUtil.set(adminRedisKeyUtil.getImageCaptchaKey(uuid), imageCaptcha, 5L, TimeUnit.MINUTES);
+    }
+
 }

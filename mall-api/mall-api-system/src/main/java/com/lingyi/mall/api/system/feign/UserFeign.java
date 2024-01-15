@@ -4,7 +4,7 @@ import com.lingyi.mall.api.system.response.MenuResponse;
 import com.lingyi.mall.api.system.response.UserResponse;
 import com.lingyi.mall.api.system.request.UserPartRequest;
 import com.lingyi.mall.api.system.fallbackfactory.UserFeignFallbackFactory;
-import com.lingyi.mall.common.core.util.ServerResponse;
+import com.lingyi.mall.common.web.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 

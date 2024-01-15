@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.core.config;
+package com.lingyi.mall.common.web.config;
 
 import com.lingyi.mall.common.core.filter.TrackIdFilter;
 import org.springframework.context.annotation.Bean;

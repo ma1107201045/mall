@@ -18,4 +18,5 @@ public class ImageCaptchaVO {
 
     @Schema(description = "base64图形验证码")
     private String base64ImageCaptcha;
+
 }

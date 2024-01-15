@@ -1,9 +1,6 @@
 package com.lingyi.mall.api.system.fallbackfactory;
 
-import com.lingyi.mall.api.system.request.LogRequest;
 import com.lingyi.mall.api.system.feign.LogFeign;
-import com.lingyi.mall.common.core.util.ServerResponse;
-import feign.Request;
 import org.springframework.cloud.openfeign.FallbackFactory;
 
 /**
@@ -15,12 +12,6 @@ import org.springframework.cloud.openfeign.FallbackFactory;
 public class LogFeignFallbackFactory implements FallbackFactory<LogFeign> {
     @Override
     public LogFeign create(Throwable cause) {
-        return new LogFeign() {
-            @Override
-            public ServerResponse<Void> save(LogRequest logRequest, Request.Options options) {
-                return null;
-            }
-
-        };
+        return (logRequest, options) -> null;
     }
 }

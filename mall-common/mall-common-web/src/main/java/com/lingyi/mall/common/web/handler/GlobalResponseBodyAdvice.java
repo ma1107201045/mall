@@ -1,8 +1,8 @@
 
-package com.lingyi.mall.common.core.handler;
+package com.lingyi.mall.common.web.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lingyi.mall.common.core.util.ServerResponse;
+import com.lingyi.mall.common.web.util.ServerResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -14,8 +14,6 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
-
-import java.nio.charset.StandardCharsets;
 
 
 /**

@@ -12,7 +12,7 @@ import lombok.Data;
  */
 @Data
 @Schema(description = "认证信息")
-public class LoginDTO {
+public class AuthenticatorDTO {
 
     @Schema(description = "用户名")
     @NotBlank(message = "用户名不能为空")

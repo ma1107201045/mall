@@ -48,7 +48,7 @@ public class LogAspect {
     /**
      * 控制台日志切点
      */
-    @Pointcut("execution(public com.lingyi.mall.common.core.util.ServerResponse com.lingyi.mall..*(..))")
+    @Pointcut("execution(public com.lingyi.mall.common.web.util.ServerResponse com.lingyi.mall..*(..))")
     private void consolePointcut() {
 
 

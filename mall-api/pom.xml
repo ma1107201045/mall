@@ -27,7 +27,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-core</artifactId>
+            <artifactId>mall-common-web</artifactId>
         </dependency>
     </dependencies>
 </project>

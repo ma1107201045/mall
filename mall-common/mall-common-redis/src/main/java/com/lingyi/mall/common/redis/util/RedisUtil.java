@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 @RequiredArgsConstructor
 public class RedisUtil {
 
-    private final RedisTemplate<Object, Object> redisTemplate;
+    private final RedisTemplate<String, Object> redisTemplate;
 
     public void execPipelined(SessionCallback<?> sessionCallback) {
         redisTemplate.executePipelined(sessionCallback);
