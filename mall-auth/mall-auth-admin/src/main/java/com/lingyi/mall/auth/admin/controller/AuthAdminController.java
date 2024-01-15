@@ -36,7 +36,8 @@ public class AuthAdminController {
     @ResponseBody
     public AuthenticatorVO login(@RequestBody AuthenticatorDTO authenticatorDTO) {
         AuthenticatorVO authenticatorVO = authAdminService.login(authenticatorDTO);
-        StpUtil.login(authenticatorVO.getUserId(), WhetherEnum.Y.getCode().equals(authenticatorDTO.getIsRememberMe()));
+        StpUtil.login(authenticatorVO.getUserId(), WhetherEnum.Y.getCode().
+                equals(authenticatorDTO.getIsRememberMe()));
         StpUtil.getSession().set("user", authenticatorVO);
         return authenticatorVO;
     }

@@ -26,13 +26,10 @@ public class RedisConfig {
     }
 
     /**
-     * springSessionDefaultRedisSerializer
-     * Jackson2JsonRedisSerialize
-     *
      * @return RedisSerializer
      */
-     @Bean
-    public RedisSerializer<Object> jackson2JsonRedisSerializer() {
+    @Bean
+    public RedisSerializer<Object> redisSerializer() {
         var objectMapper = new ObjectMapper();
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         return new Jackson2JsonRedisSerializer<>(objectMapper, Object.class);
