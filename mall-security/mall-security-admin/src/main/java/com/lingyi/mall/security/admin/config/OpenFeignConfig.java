@@ -49,22 +49,6 @@ public class OpenFeignConfig {
         };
     }
 
-//    @Bean
-//    @NonNull
-//    public ResponseInterceptor responseInterceptor() {
-//        return invocationContext -> {
-//            var response = invocationContext.response();
-//            var headers = response.headers();
-//            var values = headers.get(SecurityConstant.COOKIE);
-//            if (CollUtil.isNotEmpty(values)) {
-//                var cookie = values.toArray(new String[]{})[0];
-//                if (StrUtil.isNotBlank(cookie)) {
-//                    HttpUtil.setHeader(SecurityConstant.COOKIE, cookie);
-//                }
-//            }
-//            return invocationContext.proceed();
-//        };
-//    }
 
     @Bean
     @NonNull

@@ -1,18 +1,17 @@
 package com.lingyi.mall.web.admin.member.controller;
 
+import cn.dev33.satoken.annotation.SaCheckLogin;
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.biz.member.model.dto.MemberPartDTO;
 import com.lingyi.mall.biz.member.model.query.MemberQuery;
-import com.lingyi.mall.biz.member.service.MemberService;
 import com.lingyi.mall.biz.member.model.vo.MemberVO;
-import com.lingyi.mall.common.core.enums.OperationTypeEnum;
-import com.lingyi.mall.common.core.util.ServerResponse;
-import com.lingyi.mall.common.log.aspetct.annotation.Log;
+import com.lingyi.mall.biz.member.service.MemberService;
+import com.lingyi.mall.common.web.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,8 +32,8 @@ public class MemberController {
 
     @Operation(summary = "更新状态", description = "更新状态")
     @PatchMapping("/{id}")
-    @PreAuthorize("@ps.hasAnyAuthority('admin:member:members:updateIsEnable')")
-    @Log(title = "更新状态", operationType = OperationTypeEnum.UPDATE)
+    @SaCheckLogin
+    @SaCheckPermission("admin:member:members:updateIsEnable")
     public ServerResponse<Void> updateIsEnableById(@PathVariable Long id, @Valid @RequestBody MemberPartDTO memberPartDTO) {
         memberPartDTO.setId(id);
         memberService.updateIsEnableById(memberPartDTO);
@@ -43,8 +42,8 @@ public class MemberController {
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
-    @PreAuthorize("@ps.hasAnyAuthority('admin:member:members:getList')")
-    @Log(title = "查询会员列表", operationType = OperationTypeEnum.READ)
+    @SaCheckLogin
+    @SaCheckPermission("admin:member:members:getList")
     public ServerResponse<List<MemberVO>> getList(@Valid MemberQuery memberParam) {
         var page = PageHelper.startPage(memberParam.getCurrentPage(), memberParam.getPageSize(), memberParam.getSort());
         var members = memberService.readListByParam(memberParam);

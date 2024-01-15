@@ -1,16 +1,17 @@
 package com.lingyi.mall.web.admin.info.controller;
 
+import cn.dev33.satoken.annotation.SaCheckLogin;
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.biz.info.model.entity.InfoLogDO;
 import com.lingyi.mall.biz.info.model.param.InfoLogQuery;
 import com.lingyi.mall.biz.info.model.vo.InfoLogVO;
 import com.lingyi.mall.biz.info.service.InfoLogService;
-import com.lingyi.mall.common.core.util.ServerResponse;
+import com.lingyi.mall.common.web.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,7 +32,8 @@ public class LogController {
 
     @Operation(summary = "删除/批量删除", description = "删除/批量删除")
     @DeleteMapping("/{ids}")
-    @PreAuthorize("@ps.hasAnyAuthority('admin:info:logs:delete')")
+    @SaCheckLogin
+    @SaCheckPermission("admin:info:logs:delete")
     public ServerResponse<InfoLogDO> deleteByIds(@PathVariable List<Long> ids) {
         infoLogService.deleteByIds(ids);
         return ServerResponse.success();
@@ -39,7 +41,8 @@ public class LogController {
 
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
-    @PreAuthorize("@ps.hasAnyAuthority('admin:info:logs:get')")
+    @SaCheckLogin
+    @SaCheckPermission("admin:info:logs:get")
     public ServerResponse<InfoLogVO> getById(@PathVariable Long id) {
         var logVO = infoLogService.readById(id);
         return ServerResponse.success(logVO);
@@ -47,7 +50,8 @@ public class LogController {
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
-    @PreAuthorize("@ps.hasAnyAuthority('admin:info:logs:getList')")
+    @SaCheckLogin
+    @SaCheckPermission("admin:info:logs:getList")
     public ServerResponse<List<InfoLogVO>> getListByPageAndParam(@Valid InfoLogQuery infoLogParam) {
         var page = PageHelper.startPage(infoLogParam.getCurrentPage(), infoLogParam.getPageSize(), infoLogParam.getSort());
         var logs = infoLogService.readListByParam(infoLogParam);

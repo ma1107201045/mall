@@ -38,7 +38,6 @@ public class UserController {
     @PostMapping
     @SaCheckLogin
     @SaCheckPermission("admin:system:users:save")
-    @Log(title = "保存用户", operationType = OperationTypeEnum.CREATE)
     public ServerResponse<Void> save(@Valid @RequestBody UserDTO userDTO) {
         userService.create(userDTO);
         return ServerResponse.success();
@@ -48,7 +47,6 @@ public class UserController {
     @DeleteMapping("/{ids}")
     @SaCheckLogin
     @SaCheckPermission("admin:system:users:delete")
-    @Log(title = "删除用户", operationType = OperationTypeEnum.DELETE)
     public ServerResponse<Void> deleteByIds(@PathVariable List<Long> ids) {
         userService.deleteByIds(ids);
         return ServerResponse.success();
@@ -58,7 +56,6 @@ public class UserController {
     @PutMapping("/{id}")
     @SaCheckLogin
     @SaCheckPermission("admin:system:users:update")
-    @Log(title = "更新用户", operationType = OperationTypeEnum.UPDATE)
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody UserDTO userDTO) {
         userDTO.setId(id);
         userService.updateById(userDTO);
@@ -69,7 +66,6 @@ public class UserController {
     @GetMapping("/{id}")
     @SaCheckLogin
     @SaCheckPermission("admin:system:users:get")
-    @Log(title = "查询用户", operationType = OperationTypeEnum.READ)
     public ServerResponse<UserVO> getById(@PathVariable Long id) {
         var userVO = userService.readById(id);
         return ServerResponse.success(userVO);
@@ -79,7 +75,6 @@ public class UserController {
     @GetMapping
     @SaCheckLogin
     @SaCheckPermission("admin:system:users:getList")
-    @Log(title = "查询用户列表", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<UserVO>> getListByPageAndParam(@Valid UserQuery userParam) {
         var total = userService.totalByParam(userParam);
         var users = userService.readListByParam(userParam);
@@ -90,7 +85,6 @@ public class UserController {
     @GetMapping("/roles")
     @SaCheckLogin
     @SaCheckPermission("admin:system:users:roles:getList")
-    @Log(title = "查询角色列表", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<RoleVO>> getRoleList(@Valid RoleQuery roleQuery) {
         var roles = userService.readRoleList(roleQuery);
         return ServerResponse.success(roles);

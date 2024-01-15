@@ -2,7 +2,6 @@ package com.lingyi.mall.biz.file.util;
 
 import cn.hutool.extra.spring.SpringUtil;
 import com.lingyi.mall.common.core.constant.BaseConstant;
-import com.lingyi.mall.common.core.enums.ClientTypeEnum;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -18,13 +17,13 @@ public class FileUtil {
     private static final String DATE_TIME_PATTERN = "yyyy:MM:dd:HH:mm:ss";
     private static final String DIRECTORY_NAME_FORMAT = "%s/%s/%s/%s/%s/%s/%s/%s/%s/";
 
-    public static String getDirectoryName(ClientTypeEnum clientTypeEnum, String username) {
+    public static String getDirectoryName(String clientType, String username) {
         var applicationName = SpringUtil.getProperty("spring.application.name");
         var nowDateTimeStr = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DATE_TIME_PATTERN));
         var splitArr = nowDateTimeStr.split(BaseConstant.COLON_CHAR);
         return String.format(DIRECTORY_NAME_FORMAT,
                 applicationName,
-                clientTypeEnum.toString().toLowerCase(),
+                clientType.toLowerCase(),
                 username,
                 splitArr[0], splitArr[1], splitArr[2], splitArr[3], splitArr[4], splitArr[5]);
     }

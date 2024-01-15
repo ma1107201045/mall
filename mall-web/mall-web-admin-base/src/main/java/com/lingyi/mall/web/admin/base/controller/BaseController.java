@@ -1,5 +1,6 @@
 package com.lingyi.mall.web.admin.base.controller;
 
+import cn.dev33.satoken.annotation.SaCheckLogin;
 import com.lingyi.mall.api.system.response.MenuResponse;
 import com.lingyi.mall.api.system.request.UserPartRequest;
 import com.lingyi.mall.biz.base.service.BaseService;
@@ -32,7 +33,7 @@ public class BaseController {
 
     @Operation(summary = "更新当前用户信息", description = "更新当前用户信息")
     @PatchMapping("/user")
-    @Log(title = "更新当前用户信息", operationType = OperationTypeEnum.UPDATE)
+    @SaCheckLogin
     public ServerResponse<Void> updateUser(UserPartRequest userPartRequest) {
         var userId = 1L;
         baseService.updateUserByUserId(userId, userPartRequest);
@@ -41,7 +42,7 @@ public class BaseController {
 
     @Operation(summary = "获取当前用户菜单树", description = "获取当前用户菜单树")
     @GetMapping("/menu-trees")
-    @Log(title = "获取当前用户菜单树", operationType = OperationTypeEnum.READ)
+    @SaCheckLogin
     public ServerResponse<List<MenuResponse>> getMenuTrees() {
         var userId = 1L;
         var menus = baseService.readMenuTreesByUserId(userId);
@@ -50,7 +51,7 @@ public class BaseController {
 
     @Operation(summary = "获取当前用户菜单权限标识集", description = "获取当前用户菜单权限标识集")
     @GetMapping("/menu-permissions")
-    @Log(title = "获取当前用户菜单权限标识集", operationType = OperationTypeEnum.READ)
+    @SaCheckLogin
     public ServerResponse<List<String>> getMenuPermissions() {
         var userName = "";
         var permissions = baseService.readMenuPermissionsByUserName(userName);

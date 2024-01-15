@@ -35,7 +35,6 @@ public class MenuController {
     @PostMapping
     @SaCheckLogin
     @SaCheckPermission("admin:system:menus:save")
-    @Log(title = "保存菜单", operationType = OperationTypeEnum.CREATE)
     public ServerResponse<Void> save(@Valid @RequestBody MenuDTO menuDTO) {
         menuService.create(menuDTO);
         return ServerResponse.success();
@@ -45,7 +44,6 @@ public class MenuController {
     @DeleteMapping("/{ids}")
     @SaCheckLogin
     @SaCheckPermission("admin:system:menus:delete")
-    @Log(title = "删除/批量删除菜单", operationType = OperationTypeEnum.DELETE)
     public ServerResponse<Void> deleteByIds(@PathVariable List<Long> ids) {
         menuService.deleteByIds(ids);
         return ServerResponse.success();
@@ -55,7 +53,6 @@ public class MenuController {
     @PutMapping("/{id}")
     @SaCheckLogin
     @SaCheckPermission("admin:system:menus:update")
-    @Log(title = "更新菜单", operationType = OperationTypeEnum.UPDATE)
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody MenuDTO menuDTO) {
         menuDTO.setId(id);
         menuService.updateById(menuDTO);
@@ -66,7 +63,6 @@ public class MenuController {
     @GetMapping("/{id}")
     @SaCheckLogin
     @SaCheckPermission("admin:system:menus:get")
-    @Log(title = "查询菜单", operationType = OperationTypeEnum.READ)
     public ServerResponse<MenuVO> getById(@PathVariable Long id) {
         var menuVO = menuService.readById(id);
         return ServerResponse.success(menuVO);
@@ -76,7 +72,6 @@ public class MenuController {
     @GetMapping("/get-tree")
     @SaCheckLogin
     @SaCheckPermission("admin:system:menus:getTree")
-    @Log(title = "查询菜单树", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<MenuVO>> getTree() {
         var menus = menuService.readTree();
         return ServerResponse.success(menus);

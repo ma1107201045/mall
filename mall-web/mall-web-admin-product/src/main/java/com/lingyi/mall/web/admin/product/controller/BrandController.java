@@ -1,19 +1,19 @@
 package com.lingyi.mall.web.admin.product.controller;
 
+import cn.dev33.satoken.annotation.SaCheckLogin;
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.biz.product.model.dto.BrandDTO;
 import com.lingyi.mall.biz.product.model.entity.BrandDO;
 import com.lingyi.mall.biz.product.model.query.BrandQuery;
-import com.lingyi.mall.biz.product.service.BrandService;
 import com.lingyi.mall.biz.product.model.vo.BrandVO;
-import com.lingyi.mall.common.core.enums.OperationTypeEnum;
-import com.lingyi.mall.common.core.util.ServerResponse;
+import com.lingyi.mall.biz.product.service.BrandService;
 import com.lingyi.mall.common.log.aspetct.annotation.Log;
+import com.lingyi.mall.common.web.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,8 +34,8 @@ public class BrandController {
 
     @Operation(summary = "保存", description = "保存")
     @PostMapping
-    @PreAuthorize("@ps.hasAnyAuthority('admin:product:brands:save')")
-    @Log(title = "保存品牌", operationType = OperationTypeEnum.CREATE)
+    @SaCheckLogin
+    @SaCheckPermission("admin:product:brands:save")
     public ServerResponse<Void> save(@Valid @RequestBody BrandDTO brandDTO) {
         brandService.create(brandDTO, BrandDO.class);
         return ServerResponse.success();
@@ -43,8 +43,8 @@ public class BrandController {
 
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
-    @PreAuthorize("@ps.hasAnyAuthority('admin:product:brands:delete')")
-    @Log(title = "删除品牌", operationType = OperationTypeEnum.DELETE)
+    @SaCheckLogin
+    @SaCheckPermission("admin:product:brands:delete")
     public ServerResponse<Void> deleteByIds(@PathVariable List<Long> ids) {
         brandService.deleteByIds(ids);
         return ServerResponse.success();
@@ -52,8 +52,8 @@ public class BrandController {
 
     @Operation(summary = "更新", description = "更新")
     @PutMapping("/{id}")
-    @PreAuthorize("@ps.hasAnyAuthority('admin:product:brands:update')")
-    @Log(title = "更新品牌", operationType = OperationTypeEnum.UPDATE)
+    @SaCheckLogin
+    @SaCheckPermission("admin:product:brands:update")
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody BrandDTO brandDTO) {
         brandDTO.setId(id);
         brandService.updateById(brandDTO);
@@ -62,8 +62,8 @@ public class BrandController {
 
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
-    @PreAuthorize("@ps.hasAnyAuthority('admin:product:brands:get')")
-    @Log(title = "查询品牌", operationType = OperationTypeEnum.READ)
+    @SaCheckLogin
+    @SaCheckPermission("admin:product:brands:get")
     public ServerResponse<BrandVO> getById(@PathVariable Long id) {
         var brandVO = brandService.readById(id);
         return ServerResponse.success(brandVO);
@@ -71,8 +71,8 @@ public class BrandController {
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
-    @PreAuthorize("@ps.hasAnyAuthority('admin:product:brands:getList')")
-    @Log(title = "查询品牌列表", operationType = OperationTypeEnum.READ)
+    @SaCheckLogin
+    @SaCheckPermission("admin:product:brands:getList")
     public ServerResponse<List<BrandVO>> getListByPageAndParam(@Valid BrandQuery brandParam) {
         var page = PageHelper.startPage(brandParam.getCurrentPage(), brandParam.getPageSize());
         var brands = brandService.readListByParam(brandParam);

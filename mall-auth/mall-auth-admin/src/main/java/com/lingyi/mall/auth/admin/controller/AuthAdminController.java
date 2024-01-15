@@ -30,10 +30,9 @@ public class AuthAdminController {
     private final AuthAdminService authAdminService;
 
     @Operation(summary = "登录", description = "登录")
-    @Log(title = "登录", operationType = OperationTypeEnum.READ)
-    @SaIgnore
     @PostMapping("/login")
     @ResponseBody
+    @SaIgnore
     public AuthenticatorVO login(@RequestBody AuthenticatorDTO authenticatorDTO) {
         AuthenticatorVO authenticatorVO = authAdminService.login(authenticatorDTO);
         StpUtil.login(authenticatorVO.getUserId(), WhetherEnum.Y.getCode().
@@ -43,27 +42,24 @@ public class AuthAdminController {
     }
 
     @Operation(summary = "获取图形验证码-base64", description = "获取图形验证码-base64")
-    @Log(title = "获取验证码", operationType = OperationTypeEnum.READ, ignoreParam = true)
-    @SaIgnore
     @GetMapping("/get-base64-image-captcha")
     @ResponseBody
+    @SaIgnore
     public ImageCaptchaVO getBase64ImageCaptcha() {
         return authAdminService.readImageCaptcha();
     }
 
     @Operation(summary = "获取图形验证码-二进制流", description = "获取图形验证码-二进制流")
-    @Log(title = "获取图形验证码-二进制流", operationType = OperationTypeEnum.READ, ignoreParam = true)
-    @SaIgnore
     @GetMapping("/get-bin-image-captcha")
+    @SaIgnore
     public void writeBinImageCaptcha() {
         authAdminService.writeImageCaptcha();
     }
 
     @Operation(summary = "注销", description = "注销")
-    @Log(title = "注销", operationType = OperationTypeEnum.READ)
-    @SaCheckLogin
     @DeleteMapping("/logout")
     @ResponseBody
+    @SaCheckLogin
     public void logout() {
         StpUtil.logout();
     }

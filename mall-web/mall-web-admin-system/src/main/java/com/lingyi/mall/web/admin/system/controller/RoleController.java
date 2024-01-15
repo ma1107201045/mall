@@ -45,7 +45,6 @@ public class RoleController {
     @DeleteMapping("/{ids}")
     @SaCheckLogin
     @SaCheckPermission("admin:system:roles:delete")
-    @Log(title = "删除角色", operationType = OperationTypeEnum.DELETE)
     public ServerResponse<Void> deleteByIds(@PathVariable List<Long> ids) {
         roleService.deleteByIds(ids);
         return ServerResponse.success();
@@ -55,7 +54,6 @@ public class RoleController {
     @PutMapping("/{id}")
     @SaCheckLogin
     @SaCheckPermission("admin:system:roles:update")
-    @Log(title = "更新角色", operationType = OperationTypeEnum.UPDATE)
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody RoleDTO roleDTO) {
         roleDTO.setId(id);
         roleService.updateById(roleDTO);
@@ -66,7 +64,6 @@ public class RoleController {
     @GetMapping("/{id}")
     @SaCheckLogin
     @SaCheckPermission("admin:system:roles:get")
-    @Log(title = "查询角色", operationType = OperationTypeEnum.READ)
     public ServerResponse<RoleVO> getById(@PathVariable Long id) {
         var roleVO = roleService.readById(id);
         return ServerResponse.success(roleVO);
@@ -76,7 +73,6 @@ public class RoleController {
     @GetMapping
     @SaCheckLogin
     @SaCheckPermission("admin:system:roles:getList")
-    @Log(title = "查询角色列表", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<RoleVO>> getListByPageAndParam(@Valid RoleQuery roleQuery) {
         var total = roleService.totalByParam(roleQuery);
         var roles = roleService.readListByParam(roleQuery);
@@ -87,7 +83,6 @@ public class RoleController {
     @GetMapping("/menu-tree")
     @SaCheckLogin
     @SaCheckPermission("admin:system:roles:menus:getTree")
-    @Log(title = "查询角色菜单树", operationType = OperationTypeEnum.READ)
     public ServerResponse<List<MenuVO>> getMenuTree() {
         var menuTree = roleService.readMenuTree();
         return ServerResponse.success(menuTree);

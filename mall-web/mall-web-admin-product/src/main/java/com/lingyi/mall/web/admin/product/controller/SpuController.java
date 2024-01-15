@@ -1,17 +1,16 @@
 package com.lingyi.mall.web.admin.product.controller;
 
+import cn.dev33.satoken.annotation.SaCheckLogin;
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.github.pagehelper.PageHelper;
 import com.lingyi.mall.biz.product.model.query.SpuQuery;
 import com.lingyi.mall.biz.product.model.vo.SpuVO;
 import com.lingyi.mall.biz.product.service.SpuService;
-import com.lingyi.mall.common.log.aspetct.annotation.Log;
-import com.lingyi.mall.common.core.enums.OperationTypeEnum;
 import com.lingyi.mall.common.core.vo.PageVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,16 +31,16 @@ public class SpuController {
 
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
-    @PreAuthorize("@ps.hasAnyAuthority('admin:product:spus:delete')")
-    @Log(title = "删除SPU", operationType = OperationTypeEnum.DELETE)
+    @SaCheckLogin
+    @SaCheckPermission("admin:product:spus:delete")
     public void deleteByIds(@PathVariable List<Long> ids) {
         spuService.deleteByIds(ids);
     }
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
-    @PreAuthorize("@ps.hasAnyAuthority('admin:product:spus:getList')")
-    @Log(title = "查询SPU列表", operationType = OperationTypeEnum.READ)
+    @SaCheckLogin
+    @SaCheckPermission("admin:product:spus:getList")
     public PageVO<List<SpuVO>> getListByPageAndParam(@Valid SpuQuery spuParam) {
         var page = PageHelper.startPage(spuParam.getCurrentPage(), spuParam.getPageSize());
         var spus = spuService.readListByParam(spuParam);
