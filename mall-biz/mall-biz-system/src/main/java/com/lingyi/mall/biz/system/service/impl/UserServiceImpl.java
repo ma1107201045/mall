@@ -1,6 +1,7 @@
 package com.lingyi.mall.biz.system.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.crypto.SecureUtil;
 import com.lingyi.mall.api.system.response.MenuResponse;
 import com.lingyi.mall.api.system.request.UserPartRequest;
 import com.lingyi.mall.api.system.response.UserResponse;
@@ -44,8 +45,6 @@ import java.util.Objects;
 public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapper, UserDTO, UserVO, UserQuery, UserDO, Long>
         implements UserService {
 
-    // private final PasswordEncoder passwordEncoder;
-
     private final UserRoleService userRoleService;
 
     private final RoleService roleService;
@@ -59,7 +58,7 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
         //校验数据
         verifyData(userDTO, ObjectUtil.getNull(), OperationTypeEnum.CREATE);
         //密码作哈希
-        encodePassword(userDTO);
+        userDTO.setPassword(SecureUtil.md5(userDTO.getPassword()));
         //保存
         var newId = create(userDTO, UserDO.class);
         //保存用户角色信息
@@ -86,7 +85,7 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
         //校验数据
         verifyData(userDTO, ObjectUtil.getNull(), OperationTypeEnum.UPDATE);
         //密码作哈希
-        encodePassword(userDTO);
+        userDTO.setPassword(SecureUtil.md5(userDTO.getPassword()));
         //更新
         super.updateById(userDTO);
         //删除用户角色集
@@ -102,10 +101,9 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
 
     @Override
     public void updatePartById(UserPartRequest userPartRequest) {
-        //密码作哈希
-        // var encodePassword = passwordEncoder.encode(userPartRequest.getPassword());
-        // userPartRequest.setPassword(encodePassword);
-        //更新数据
+        // 密码作哈希
+        userPartRequest.setPassword(SecureUtil.md5(userPartRequest.getPassword()));
+        //  更新数据
         UserDO userDO = ConverterUtil.to(userPartRequest, UserDO.class);
         //更新
         updateById(userDO);
@@ -129,7 +127,7 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
 
     @Override
     public List<String> readMenuPermissionsById(Long id) {
-        UserVO userVO = readById(id);
+        var userVO = readById(id);
         AssertUtil.notNull(userVO, SystemFailEnum.USER_NULL_ERROR);
         return readMenuPermissionsByUserName(userVO.getUserName());
     }
@@ -194,11 +192,6 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
         }
     }
 
-
-    private void encodePassword(UserDTO userDTO) {
-        //  var encodePassword = passwordEncoder.encode(userDTO.getPassword());
-        //   userDTO.setPassword(encodePassword);
-    }
 
     private List<MenuResponse> toMenuTree(Long menuParentId, List<MenuResponse> menus) {
         return menus.stream()

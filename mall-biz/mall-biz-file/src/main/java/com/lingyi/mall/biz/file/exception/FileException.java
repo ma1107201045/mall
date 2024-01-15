@@ -1,7 +1,7 @@
 package com.lingyi.mall.biz.file.exception;
 
 import com.lingyi.mall.common.core.enums.BaseFailEnum;
-import com.lingyi.mall.common.core.exception.BaseException;
+import com.lingyi.mall.common.core.exception.BusinessException;
 
 import java.io.Serial;
 
@@ -11,7 +11,7 @@ import java.io.Serial;
  * @DateTime: 2023/6/27 20:05
  * @Description:
  */
-public class FileException extends BaseException {
+public class FileException extends BusinessException {
     @Serial
     private static final long serialVersionUID = -6625681755495820665L;
 

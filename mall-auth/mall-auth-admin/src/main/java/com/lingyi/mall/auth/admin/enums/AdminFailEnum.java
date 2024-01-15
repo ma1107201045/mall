@@ -20,7 +20,11 @@ public enum AdminFailEnum implements BaseFailEnum {
 
     USER_NAME_NOT_EXIST_ERROR(1002, "用户名不存在"),
 
-    PASSWORD_ERROR(1003, "密码错误");
+    PASSWORD_ERROR(1003, "密码错误"),
+
+    GET_IMAGE_CAPTCHA_ERROR(1004, "获取验证码异常"),
+
+    SET_IMAGE_CAPTCHA_ERROR(1005, "设置验证码异常");
 
     private final Integer code;
 

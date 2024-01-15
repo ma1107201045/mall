@@ -16,6 +16,7 @@ import com.lingyi.mall.auth.admin.properties.ImageCaptchaProperties;
 import com.lingyi.mall.auth.admin.properties.enums.CodeGeneratorType;
 import com.lingyi.mall.auth.admin.service.AuthAdminService;
 import com.lingyi.mall.auth.admin.util.AdminRedisKeyUtil;
+import com.lingyi.mall.common.core.exception.BusinessException;
 import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.core.util.HttpUtil;
@@ -51,10 +52,10 @@ public class AuthAdminServiceImpl implements AuthAdminService {
     @Override
     public AuthenticatorVO login(AuthenticatorDTO authenticatorDTO) {
         //校验验证码是否过期
-        String imageCaptcha = redisUtil.get(adminRedisKeyUtil.getImageCaptchaKey(authenticatorDTO.getUuid()), String.class);
+        var imageCaptcha = redisUtil.get(adminRedisKeyUtil.getImageCaptchaKey(authenticatorDTO.getUuid()), String.class);
         AssertUtil.notNull(imageCaptcha, AdminFailEnum.IMAGE_CAPTCHA_STALE_DATED_ERROR);
         //校验验证码是否错误
-        boolean flag = imageCaptcha.equals(authenticatorDTO.getImageCaptcha());
+        var flag = imageCaptcha.equals(authenticatorDTO.getImageCaptcha());
         AssertUtil.isTrue(flag, AdminFailEnum.IMAGE_CAPTCHA_ERROR);
         //校验用户
         var userResponse = userFeignConsumer.getUserByUserName(authenticatorDTO.getUserName());
@@ -68,10 +69,10 @@ public class AuthAdminServiceImpl implements AuthAdminService {
 
     @Override
     public ImageCaptchaVO readImageCaptcha() {
-        String uuid = IdUtil.fastUUID();
-        AbstractCaptcha abstractCaptcha = getImageCaptchaObject();
-        setImageCaptcha(uuid, abstractCaptcha);
-        String base64ImageCaptcha = abstractCaptcha.getImageBase64Data();
+        var uuid = IdUtil.fastUUID();
+        var captcha = getImageCaptchaObject();
+        setImageCaptcha(uuid, captcha);
+        var base64ImageCaptcha = captcha.getImageBase64Data();
         return AuthAdminConverter.INSTANCE.of(uuid, base64ImageCaptcha);
     }
 
@@ -93,28 +94,27 @@ public class AuthAdminServiceImpl implements AuthAdminService {
 
 
     private AbstractCaptcha getImageCaptchaObject() {
-        AbstractCaptcha abstractCaptcha;
+        AbstractCaptcha captcha;
         switch (properties.getDisturbanceType()) {
             case LINE ->
-                    abstractCaptcha = CaptchaUtil.createLineCaptcha(properties.getWidth(), properties.getHeight(), properties.getCount(), properties.getTypeCount());
+                    captcha = CaptchaUtil.createLineCaptcha(properties.getWidth(), properties.getHeight(), properties.getCount(), properties.getTypeCount());
             case CIRCLE ->
-                    abstractCaptcha = CaptchaUtil.createCircleCaptcha(properties.getWidth(), properties.getHeight(), properties.getCount(), properties.getTypeCount());
+                    captcha = CaptchaUtil.createCircleCaptcha(properties.getWidth(), properties.getHeight(), properties.getCount(), properties.getTypeCount());
             case SHEAR ->
-                    abstractCaptcha = CaptchaUtil.createShearCaptcha(properties.getWidth(), properties.getHeight(), properties.getCount(), properties.getTypeCount());
+                    captcha = CaptchaUtil.createShearCaptcha(properties.getWidth(), properties.getHeight(), properties.getCount(), properties.getTypeCount());
             case GIF ->
-                    abstractCaptcha = CaptchaUtil.createGifCaptcha(properties.getWidth(), properties.getHeight(), properties.getCount());
-            default -> throw new RuntimeException("error");
+                    captcha = CaptchaUtil.createGifCaptcha(properties.getWidth(), properties.getHeight(), properties.getCount());
+            default -> throw new BusinessException(AdminFailEnum.GET_IMAGE_CAPTCHA_ERROR);
         }
         if (properties.getCodeGeneratorType() == CodeGeneratorType.MATH) {
-            abstractCaptcha.setGenerator(new CodeGeneratorProxy(new MathGenerator(1)));
-
+            captcha.setGenerator(new CodeGeneratorProxy(new MathGenerator(1)));
         }
-        return abstractCaptcha;
+        return captcha;
     }
 
-    private void setImageCaptcha(String uuid, AbstractCaptcha abstractCaptcha) {
-        var imageCaptcha = abstractCaptcha.getCode();
-        if (abstractCaptcha.getGenerator() instanceof CodeGeneratorProxy) {
+    private void setImageCaptcha(String uuid, AbstractCaptcha captcha) {
+        var imageCaptcha = captcha.getCode();
+        if (captcha.getGenerator() instanceof CodeGeneratorProxy) {
             var firstNumber = Integer.parseInt(imageCaptcha.substring(0, 1));
             var operator = imageCaptcha.substring(1, 2);
             var secondNumber = Integer.parseInt(imageCaptcha.substring(2, 3));
@@ -122,7 +122,7 @@ public class AuthAdminServiceImpl implements AuthAdminService {
                 case "+" -> imageCaptcha = String.valueOf(firstNumber + secondNumber);
                 case "-" -> imageCaptcha = String.valueOf(firstNumber - secondNumber);
                 case "*" -> imageCaptcha = String.valueOf(firstNumber * secondNumber);
-                default -> throw new RuntimeException("error");
+                default -> throw new BusinessException(AdminFailEnum.SET_IMAGE_CAPTCHA_ERROR);
             }
         }
         redisUtil.set(adminRedisKeyUtil.getImageCaptchaKey(uuid), imageCaptcha, 5L, TimeUnit.MINUTES);

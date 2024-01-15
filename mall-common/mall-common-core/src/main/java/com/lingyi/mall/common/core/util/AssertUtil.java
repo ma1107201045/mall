@@ -6,7 +6,7 @@ import cn.hutool.core.util.ObjUtil;
 import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.common.core.constant.BaseConstant;
 import com.lingyi.mall.common.core.enums.BaseFailEnum;
-import com.lingyi.mall.common.core.exception.BaseException;
+import com.lingyi.mall.common.core.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 
@@ -37,8 +37,8 @@ public final class AssertUtil {
         isTrue(ObjUtil.isNotNull(object), runtimeException);
     }
 
-    public static void notNull(Object object, BaseException baseException) {
-        isTrue(ObjUtil.isNotNull(object), baseException);
+    public static void notNull(Object object, BusinessException businessException) {
+        isTrue(ObjUtil.isNotNull(object), businessException);
     }
 
     public static void isEquals(Object object1, Object object2, BaseFailEnum failEnum) {
@@ -90,8 +90,8 @@ public final class AssertUtil {
         return t;
     }
 
-    public static <T extends CharSequence> T notBlack(T t, BaseException baseException) {
-        isTrue(StrUtil.isNotBlank(t), baseException);
+    public static <T extends CharSequence> T notBlack(T t, BusinessException businessException) {
+        isTrue(StrUtil.isNotBlank(t), businessException);
         return t;
     }
 
@@ -118,7 +118,7 @@ public final class AssertUtil {
     public static void isTrue(boolean flag, BaseFailEnum baseFailEnum) {
         if (!flag) {
             Object[] objects = getFailEnumValues(baseFailEnum);
-            throw new BaseException((Integer) objects[0], (String) objects[1]);
+            throw new BusinessException((Integer) objects[0], (String) objects[1]);
         }
     }
 
@@ -128,9 +128,9 @@ public final class AssertUtil {
         }
     }
 
-    public static void isTrue(boolean flag, BaseException baseException) {
+    public static void isTrue(boolean flag, BusinessException businessException) {
         if (!flag) {
-            throw baseException;
+            throw businessException;
         }
     }
 

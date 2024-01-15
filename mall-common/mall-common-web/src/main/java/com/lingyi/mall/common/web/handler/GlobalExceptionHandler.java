@@ -2,7 +2,7 @@ package com.lingyi.mall.common.web.handler;
 
 import cn.dev33.satoken.exception.NotLoginException;
 import cn.dev33.satoken.exception.NotPermissionException;
-import com.lingyi.mall.common.core.exception.BaseException;
+import com.lingyi.mall.common.core.exception.BusinessException;
 import com.lingyi.mall.common.core.exception.OpenFeignException;
 import com.lingyi.mall.common.web.util.ServerResponse;
 import jakarta.validation.ConstraintViolation;
@@ -37,9 +37,9 @@ public class GlobalExceptionHandler {
     private static final Integer PARAMETER_CODE = 1001;
     private static final Integer FILE_SIZE_CODE = 2001;
 
-    @ExceptionHandler(BaseException.class)
+    @ExceptionHandler(BusinessException.class)
     @ResponseStatus(HttpStatus.OK)
-    public ServerResponse<Void> bizException(BaseException e) {
+    public ServerResponse<Void> bizException(BusinessException e) {
         log.error("BizException：", e);
         return ServerResponse.fail(e.getCode(), e.getMessage());
     }

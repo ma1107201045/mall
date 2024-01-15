@@ -28,9 +28,9 @@ public class OpenFeignException extends RuntimeException {
         this.message = message;
     }
 
-    public OpenFeignException(Integer bizCode, String message) {
+    public OpenFeignException(Integer code, String message) {
         super(message);
-        this.code = bizCode;
+        this.code = code;
         this.message = message;
     }
 }
