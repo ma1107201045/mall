@@ -1,16 +1,19 @@
 package com.lingyi.mall.auth.app.controller;
 
 import com.lingyi.mall.auth.app.model.dto.AuthAppEmailLoginDTO;
-import com.lingyi.mall.auth.app.model.dto.AuthAppSmsLoginDTO;
 import com.lingyi.mall.auth.app.model.dto.AuthAppSendDTO;
-import com.lingyi.mall.auth.app.service.AuthAppService;
+import com.lingyi.mall.auth.app.model.dto.AuthAppSmsLoginDTO;
 import com.lingyi.mall.auth.app.model.vo.AuthAppLoginVO;
-import com.lingyi.mall.common.core.util.ServerResponse;
+import com.lingyi.mall.auth.app.service.AuthAppService;
+import com.lingyi.mall.common.web.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author maweiyan
