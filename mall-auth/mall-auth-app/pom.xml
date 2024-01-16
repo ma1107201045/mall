@@ -30,7 +30,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot-dependencies.version}</version>
                 <configuration>
-                    <mainClass>com.lingyi.mall.MallAuthAppApplication</mainClass>
+                    <mainClass>com.lingyi.mall.auth.app.MallAuthAppApplication</mainClass>
                     <excludes>
                         <exclude>
                             <groupId>org.springframework.boot</groupId>
