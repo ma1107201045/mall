@@ -101,6 +101,8 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
 
     @Override
     public void updatePartById(UserPartRequest userPartRequest) {
+        //校验是否可以更新
+        AssertUtil.notEquals(SystemConstant.USER_ID_ADMIN, userPartRequest.getId(), SystemFailEnum.USER_NAME_ADMIN_UPDATE_ERROR);
         // 密码作哈希
         userPartRequest.setPassword(SecureUtil.md5(userPartRequest.getPassword()));
         //  更新数据
@@ -116,6 +118,18 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
     }
 
     @Override
+    public List<MenuResponse> readMenuTreesById(Long id) {
+        List<MenuResponse> menus;
+        var menuTypes = CollUtil.newArrayList(MenuTypeEnum.DIRECTORY.getCode(), MenuTypeEnum.MENU.getCode());
+        if (!SystemConstant.USER_ID_ADMIN.equals(id)) {
+            menus = mybatisMapper.selectMenusByIdAndMenuTypes(id, menuTypes);
+        } else {
+            menus = menuService.readListByTypes(menuTypes);
+        }
+        return toMenuTree(SystemConstant.MENU_ROOT_ID, menus);
+    }
+
+    @Override
     public List<String> readMenuPermissionsById(Long id) {
         var userVO = readById(id);
         AssertUtil.notNull(userVO, SystemFailEnum.USER_NULL_ERROR);
@@ -127,19 +141,6 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
             menus = menuService.readListByTypes(menuTypes);
         }
         return menus.stream().map(MenuResponse::getPermission).toList();
-    }
-
-
-    @Override
-    public List<MenuResponse> readMenuTreesById(Long id) {
-        List<MenuResponse> menus;
-        var menuTypes = Collections.singletonList(MenuTypeEnum.BUTTON.getCode());
-        if (!SystemConstant.USER_ID_ADMIN.equals(id)) {
-            menus = mybatisMapper.selectMenusByIdAndMenuTypes(id, menuTypes);
-        } else {
-            menus = menuService.readListByTypes(menuTypes);
-        }
-        return toMenuTree(SystemConstant.MENU_ROOT_ID, menus);
     }
 
 

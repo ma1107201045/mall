@@ -31,6 +31,7 @@ public class UserFeignProvider implements UserFeign {
     @Override
     @SaCheckLogin
     public ServerResponse<Void> updatePartById(Long id, UserPartRequest userPartRequest) {
+        userPartRequest.setId(id);
         userService.updatePartById(userPartRequest);
         return ServerResponse.success();
     }
@@ -43,7 +44,7 @@ public class UserFeignProvider implements UserFeign {
         return ServerResponse.success(userResponse);
     }
 
-    @Operation(summary = "查询用户菜单集", description = "查询用户菜单集")
+    @Operation(summary = "查询用户菜单树", description = "查询用户菜单树")
     @Override
     @SaCheckLogin
     public ServerResponse<List<MenuResponse>> getMenuTreesById(Long id) {

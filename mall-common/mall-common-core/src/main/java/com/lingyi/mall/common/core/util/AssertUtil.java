@@ -45,7 +45,7 @@ public final class AssertUtil {
         isTrue(Objects.equals(object1, object2), failEnum);
     }
 
-    public static void notEquals(Object object1, Objects object2, BaseFailEnum failEnum) {
+    public static void notEquals(Object object1, Object object2, BaseFailEnum failEnum) {
         isTrue(!object1.equals(object2), failEnum);
     }
 
