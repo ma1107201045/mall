@@ -16,13 +16,12 @@ import com.lingyi.mall.auth.app.model.dto.AuthAppSmsLoginDTO;
 import com.lingyi.mall.auth.app.model.vo.AuthAppLoginVO;
 import com.lingyi.mall.auth.app.properties.InfoCaptchaProperties;
 import com.lingyi.mall.auth.app.service.AuthAppService;
+import com.lingyi.mall.auth.app.util.JwtUtil;
+import com.lingyi.mall.auth.app.util.RedisKeyUtil;
 import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.core.util.HttpUtil;
 import com.lingyi.mall.common.redis.util.RedisUtil;
-import com.lingyi.mall.security.app.constant.SecurityConstant;
-import com.lingyi.mall.security.app.util.JwtUtil;
-import com.lingyi.mall.security.app.util.RedisKeyUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -55,12 +54,6 @@ public class AuthAppServiceImpl implements AuthAppService {
 
 
     @Override
-    public void sendCaptcha(AuthAppSendDTO authAppSendDTO) {
-        var captchaSendReqDTO = AuthAppConverter.INSTANCE.to(authAppSendDTO.getNumber(), properties);
-        smsFeignConsumer.sendCaptcha(captchaSendReqDTO);
-    }
-
-    @Override
     public AuthAppLoginVO smsLogin(AuthAppSmsLoginDTO authAppSmsLoginDTO) {
         //转换数据并且校验短信验证码
         var captchaVerifyReqDTO = AuthAppConverter.INSTANCE.to(authAppSmsLoginDTO, properties);
@@ -86,12 +79,11 @@ public class AuthAppServiceImpl implements AuthAppService {
         var loginLogReqDTO = AuthAppConverter.INSTANCE.to(memberRespDTO);
         //保存会员登录日志
         memberLoginLogFeignConsumer.save(loginLogReqDTO);
-
         //创建token
         var token = JwtUtil.createToken(memberRespDTO);
 
         //设置返回头token
-        HttpUtil.setHeader(SecurityConstant.AUTHORIZATION, token);
+        HttpUtil.setHeader("authorization", token);
         return ConverterUtil.to(memberRespDTO, AuthAppLoginVO.class);
     }
 
@@ -101,8 +93,14 @@ public class AuthAppServiceImpl implements AuthAppService {
     }
 
     @Override
+    public void sendCaptcha(AuthAppSendDTO authAppSendDTO) {
+        var captchaSendReqDTO = AuthAppConverter.INSTANCE.to(authAppSendDTO.getNumber(), properties);
+        smsFeignConsumer.sendCaptcha(captchaSendReqDTO);
+    }
+
+    @Override
     public void logout() {
-        var token = HttpUtil.getHeader(SecurityConstant.AUTHORIZATION);
+        var token = HttpUtil.getHeader("authorization");
         long expiryDate = DateUtil.between(JwtUtil.getJwtPayloadExp(token), DateUtil.date(), DateUnit.SECOND);
         var tokenBlacklistKey = redisKeyUtil.getTokenBlacklistKey(token);
         redisUtil.set(tokenBlacklistKey, RandomUtil.randomInt(), expiryDate, TimeUnit.MINUTES);

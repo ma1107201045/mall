@@ -8,6 +8,7 @@ import com.lingyi.mall.auth.admin.model.vo.AuthenticatorVO;
 import com.lingyi.mall.auth.admin.model.vo.ImageCaptchaVO;
 import com.lingyi.mall.auth.admin.service.AuthAdminService;
 import com.lingyi.mall.common.core.enums.WhetherEnum;
+import com.lingyi.mall.common.web.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -31,20 +32,28 @@ public class AuthAdminController {
     @PostMapping("/login")
     @ResponseBody
     @SaIgnore
-    public AuthenticatorVO login(@RequestBody AuthenticatorDTO authenticatorDTO) {
-        AuthenticatorVO authenticatorVO = authAdminService.login(authenticatorDTO);
-        StpUtil.login(authenticatorVO.getUserId(), WhetherEnum.Y.getCode().
-                equals(authenticatorDTO.getIsRememberMe()));
-        StpUtil.getSession().set(StpUtil.TYPE, authenticatorVO);
-        return authenticatorVO;
+    public ServerResponse<AuthenticatorVO> login(@RequestBody AuthenticatorDTO authenticatorDTO) {
+        var authenticatorVO = authAdminService.login(authenticatorDTO);
+        return ServerResponse.success(authenticatorVO);
+    }
+
+
+    @Operation(summary = "注销", description = "注销")
+    @DeleteMapping("/logout")
+    @ResponseBody
+    @SaCheckLogin
+    public ServerResponse<Void> logout() {
+        authAdminService.logout();
+        return ServerResponse.success();
     }
 
     @Operation(summary = "获取图形验证码-base64", description = "获取图形验证码-base64")
     @GetMapping("/get-base64-image-captcha")
     @ResponseBody
     @SaIgnore
-    public ImageCaptchaVO getBase64ImageCaptcha() {
-        return authAdminService.readImageCaptcha();
+    public ServerResponse<ImageCaptchaVO> getBase64ImageCaptcha() {
+        ImageCaptchaVO imageCaptchaVO = authAdminService.readImageCaptcha();
+        return ServerResponse.success(imageCaptchaVO);
     }
 
     @Operation(summary = "获取图形验证码-二进制流", description = "获取图形验证码-二进制流")
@@ -52,13 +61,5 @@ public class AuthAdminController {
     @SaIgnore
     public void writeBinImageCaptcha() {
         authAdminService.writeImageCaptcha();
-    }
-
-    @Operation(summary = "注销", description = "注销")
-    @DeleteMapping("/logout")
-    @ResponseBody
-    @SaCheckLogin
-    public void logout() {
-        StpUtil.logout();
     }
 }

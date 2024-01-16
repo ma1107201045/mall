@@ -33,4 +33,10 @@ public interface AuthAdminService {
     void writeImageCaptcha();
 
 
+    /**
+     * 注销
+     */
+    void logout();
+
+
 }

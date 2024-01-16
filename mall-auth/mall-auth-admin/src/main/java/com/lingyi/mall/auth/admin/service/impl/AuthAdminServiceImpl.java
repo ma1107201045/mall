@@ -1,5 +1,6 @@
 package com.lingyi.mall.auth.admin.service.impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.captcha.AbstractCaptcha;
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.generator.MathGenerator;
@@ -16,6 +17,7 @@ import com.lingyi.mall.auth.admin.properties.ImageCaptchaProperties;
 import com.lingyi.mall.auth.admin.properties.enums.CodeGeneratorType;
 import com.lingyi.mall.auth.admin.service.AuthAdminService;
 import com.lingyi.mall.auth.admin.util.AdminRedisKeyUtil;
+import com.lingyi.mall.common.core.enums.WhetherEnum;
 import com.lingyi.mall.common.core.exception.BusinessException;
 import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ConverterUtil;
@@ -63,7 +65,13 @@ public class AuthAdminServiceImpl implements AuthAdminService {
         //校验用户密码
         var encodedPassword = SecureUtil.md5(authenticatorDTO.getPassword());
         AssertUtil.isEquals(userResponse.getPassword(), encodedPassword, AdminFailEnum.PASSWORD_ERROR);
-        return ConverterUtil.to(userResponse, AuthenticatorVO.class);
+        AuthenticatorVO authenticatorVO = ConverterUtil.to(userResponse, AuthenticatorVO.class);
+        //登录
+        StpUtil.login(authenticatorVO.getUserId(), WhetherEnum.Y.getCode().
+                equals(authenticatorDTO.getIsRememberMe()));
+        //session保存信息
+        StpUtil.getSession().set(StpUtil.TYPE, authenticatorVO);
+        return authenticatorVO;
     }
 
 
@@ -90,6 +98,11 @@ public class AuthAdminServiceImpl implements AuthAdminService {
         } catch (IOException e) {
             log.error("write image captcha error");
         }
+    }
+
+    @Override
+    public void logout() {
+        StpUtil.logout();
     }
 
 

@@ -14,14 +14,6 @@ import com.lingyi.mall.auth.app.model.vo.AuthAppLoginVO;
 public interface AuthAppService {
 
     /**
-     * 发送验证码（手机或者邮箱）
-     *
-     * @param authAppSendDTO 发送dto
-     */
-    void sendCaptcha(AuthAppSendDTO authAppSendDTO);
-
-
-    /**
      * 短信登录
      *
      * @param authAppSmsLoginDTO 短信登录DTO
@@ -37,6 +29,14 @@ public interface AuthAppService {
      * @return AppLoginVO
      */
     AuthAppLoginVO emailLogin(AuthAppEmailLoginDTO authAppEmailLoginDTO);
+
+
+    /**
+     * 发送验证码（手机或者邮箱）
+     *
+     * @param authAppSendDTO 发送dto
+     */
+    void sendCaptcha(AuthAppSendDTO authAppSendDTO);
 
 
     /**
