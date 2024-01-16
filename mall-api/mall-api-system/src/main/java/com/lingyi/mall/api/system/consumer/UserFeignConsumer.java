@@ -35,49 +35,9 @@ public class UserFeignConsumer {
         throw new OpenFeignException(response.getCode(), response.getMessage());
     }
 
-    public UserResponse getUserAndMenuPermissionsByUserName(String userName) {
-        log.info("入参:userName:{}", userName);
-        var response = userFeign.getUserAndMenuPermissionsByUserName(userName);
-        if (response.getIsSuccess()) {
-            log.info("出参:UserVO:{}", JSON.toJSONString(response.getData()));
-            return response.getData();
-        }
-        throw new OpenFeignException(response.getCode(), response.getMessage());
-    }
-
-    public List<MenuResponse> getMenuTreeByUserName(String userName) {
-        log.info("入参:userName:{}", userName);
-        var response = userFeign.getMenuTreesByUserName(userName);
-        if (response.getIsSuccess()) {
-            log.info("出参:UserVO:{}", JSON.toJSONString(response.getData()));
-            return response.getData();
-        }
-        throw new OpenFeignException(response.getCode(), response.getMessage());
-    }
-
-    public List<String> getMenuPermissionsByUserName(String userName) {
-        log.info("入参:userName:{}", userName);
-        var response = userFeign.getMenuPermissionsByUserName(userName);
-        if (response.getIsSuccess()) {
-            log.info("出参:permissions:{}", JSON.toJSONString(response.getData()));
-            return response.getData();
-        }
-        throw new OpenFeignException(response.getCode(), response.getMessage());
-    }
-
     public UserResponse getUserByUserName(String userName) {
         log.info("入参:userName:{}", userName);
         var response = userFeign.getUserByUserName(userName);
-        if (response.getIsSuccess()) {
-            log.info("出参:permissions:{}", JSON.toJSONString(response.getData()));
-            return response.getData();
-        }
-        throw new OpenFeignException(response.getCode(), response.getMessage());
-    }
-
-    public List<String> getMenuPermissionsById(Long id) {
-        log.info("入参:id:{}", id);
-        var response = userFeign.getMenuPermissionsById(id);
         if (response.getIsSuccess()) {
             log.info("出参:permissions:{}", JSON.toJSONString(response.getData()));
             return response.getData();
@@ -94,4 +54,16 @@ public class UserFeignConsumer {
         }
         throw new OpenFeignException(response.getCode(), response.getMessage());
     }
+
+    public List<String> getMenuPermissionsById(Long id) {
+        log.info("入参:id:{}", id);
+        var response = userFeign.getMenuPermissionsById(id);
+        if (response.getIsSuccess()) {
+            log.info("出参:permissions:{}", JSON.toJSONString(response.getData()));
+            return response.getData();
+        }
+        throw new OpenFeignException(response.getCode(), response.getMessage());
+    }
+
+
 }

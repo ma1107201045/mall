@@ -32,10 +32,10 @@ public interface UserMapper extends MybatisMapperImplementation<UserVO, UserQuer
     /**
      * 按照用户名称和菜单类型集查询菜单列表
      *
-     * @param userName  用户名称
+     * @param id        用户id
      * @param menuTypes 按钮类型集
      * @return List<MenuTreeVO>
      */
-    List<MenuResponse> selectMenusByUserNameAndMenuTypes(@Param("userName") String userName, @Param("menuTypes") List<Integer> menuTypes);
+    List<MenuResponse> selectMenusByIdAndMenuTypes(@Param("id") Long id, @Param("menuTypes") List<Integer> menuTypes);
 
 }

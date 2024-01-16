@@ -58,7 +58,7 @@
     </select>
 
     <select id="selectListByTypes"
-            resultMap="com.lingyi.mall.biz.system.dao.mapper.UserMapper.SelectMenusByUserNameAndMenuTypesMap">
+            resultMap="com.lingyi.mall.biz.system.dao.mapper.UserMapper.SelectMenusByIdAndMenuTypesMap">
         SELECT id, name, parent_id, type, icon,sort, route_name, route_path,permission
         FROM ms_menu
         WHERE type IN

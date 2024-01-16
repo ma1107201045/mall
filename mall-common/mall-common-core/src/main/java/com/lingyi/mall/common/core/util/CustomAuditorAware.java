@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.orm.util;
+package com.lingyi.mall.common.core.util;
 
 import java.util.Optional;
 
@@ -8,7 +8,7 @@ import java.util.Optional;
  * @datetime 2023/7/7 8:57
  * @description
  */
-public interface CustomAuditorAware<T extends Authenticator> {
+public interface CustomAuditorAware<T extends String> {
 
     /**
      * getCurrentAuditor

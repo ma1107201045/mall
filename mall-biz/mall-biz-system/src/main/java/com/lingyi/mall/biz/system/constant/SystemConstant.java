@@ -12,6 +12,8 @@ public final class SystemConstant {
 
     }
 
+    public static final Long USER_ID_ADMIN = 1L;
+
     public static final String USER_NAME_ADMIN = "admin";
 
     public static final Long MENU_ROOT_ID = 0L;

@@ -87,7 +87,7 @@
         WHERE mu.user_name = #{userName}
     </select>
 
-    <resultMap id="SelectMenusByUserNameAndMenuTypesMap"
+    <resultMap id="SelectMenusByIdAndMenuTypesMap"
                type="com.lingyi.mall.api.system.response.MenuResponse">
         <id column="id" property="id"/>
         <result column="parent_id" property="parentId"/>
@@ -99,15 +99,15 @@
         <result column="route_path" property="routePath"/>
         <result column="permission" property="permission"/>
     </resultMap>
-    <select id="selectMenusByUserNameAndMenuTypes"
-            resultMap="SelectMenusByUserNameAndMenuTypesMap">
+    <select id="selectMenusByIdAndMenuTypes"
+            resultMap="SelectMenusByIdAndMenuTypesMap">
         SELECT mm.id,mm.parent_id, mm.name, mm.type, mm.icon, mm.sort, mm.route_name, mm.route_path,mm.permission
         FROM ms_user mu INNER JOIN ms_user_role mur ON mur.user_id = mu.id
         INNER JOIN ms_role_menu mrm ON mrm.role_id = mur.role_id
         INNER JOIN ms_menu mm ON mm.id = mrm.menu_id
         <where>
-            <if test="userName != null and userName != '' ">
-                AND mu.user_name = #{userName}
+            <if test="id != null ">
+                AND mu.id = #{id}
             </if>
             <if test="menuTypes != null and menuTypes.size() > 0">
                 AND mm.type IN

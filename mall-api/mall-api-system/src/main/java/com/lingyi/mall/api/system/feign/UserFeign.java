@@ -19,46 +19,10 @@ import java.util.List;
 @FeignClient(value = "mall-web-admin-system", fallbackFactory = UserFeignFallbackFactory.class)
 public interface UserFeign {
 
-    String URL_PREFIX = "/users";
+    String URL_PREFIX = "/provider/users";
 
-    /**
-     * 更新部分用户信息
-     *
-     * @param id              主键id
-     * @param userPartRequest ..
-     * @return ServerResponse
-     */
     @PatchMapping(URL_PREFIX + "/{id}")
     ServerResponse<Void> updatePartById(@PathVariable("id") Long id, @RequestBody UserPartRequest userPartRequest);
-
-    /**
-     * 按照用户名称查询用户信息和按钮权限标识
-     *
-     * @param userName 用户名称
-     * @return 用户信息
-     */
-    @GetMapping(URL_PREFIX + "/permissions")
-    ServerResponse<UserResponse> getUserAndMenuPermissionsByUserName(@RequestParam(name = "userName") String userName);
-
-    /**
-     * 按照用户名称查询菜单树
-     *
-     * @param userName 用户名称
-     * @return 菜单树
-     */
-    @GetMapping(URL_PREFIX + "/menu-trees")
-    ServerResponse<List<MenuResponse>> getMenuTreesByUserName(@RequestParam(name = "userName") String userName);
-
-
-    /**
-     * 按照用户id和用户名称查询权限集
-     *
-     * @param userName 用户名称
-     * @return 权限标识集
-     */
-    @GetMapping(URL_PREFIX + "/menu-permissions")
-    ServerResponse<List<String>> getMenuPermissionsByUserName(@RequestParam(name = "userName") String userName);
-
 
     /**
      * 按照用户名称查询用户信息
@@ -66,9 +30,17 @@ public interface UserFeign {
      * @param userName 用户名称
      * @return 用户信息
      */
-    @GetMapping(URL_PREFIX + "/user")
+    @GetMapping(URL_PREFIX)
     ServerResponse<UserResponse> getUserByUserName(@RequestParam(name = "userName") String userName);
 
+    /**
+     * 按照用户id查询菜单树
+     *
+     * @param id 用户id
+     * @return 菜单树
+     */
+    @GetMapping(URL_PREFIX + "/menu-trees/{id}")
+    ServerResponse<List<MenuResponse>> getMenuTreesById(@PathVariable("id") Long id);
 
     /**
      * 按照用户id查询按钮权限标识
@@ -76,17 +48,8 @@ public interface UserFeign {
      * @param id 用户id
      * @return 用户信息
      */
-    @GetMapping(URL_PREFIX + "/menuPermissions")
-    ServerResponse<List<String>> getMenuPermissionsById(@RequestParam(name = "id") Long id);
+    @GetMapping(URL_PREFIX + "/menu-permissions/{id}")
+    ServerResponse<List<String>> getMenuPermissionsById(@PathVariable Long id);
 
-
-    /**
-     * 按照用户名称查询菜单树
-     *
-     * @param id 用户id
-     * @return 菜单树
-     */
-    @GetMapping(URL_PREFIX + "/menu-trees/{id}")
-    ServerResponse<List<MenuResponse>> getMenuTreesById(@PathVariable("id") Long id);
 
 }

@@ -4,8 +4,7 @@ import cn.dev33.satoken.annotation.SaCheckLogin;
 import com.lingyi.mall.api.system.response.MenuResponse;
 import com.lingyi.mall.api.system.request.UserPartRequest;
 import com.lingyi.mall.biz.base.service.BaseService;
-import com.lingyi.mall.common.log.aspetct.annotation.Log;
-import com.lingyi.mall.common.log.enums.OperationTypeEnum;
+import com.lingyi.mall.security.core.util.AuthenticatorUtil;
 import com.lingyi.mall.common.web.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -35,7 +34,7 @@ public class BaseController {
     @PatchMapping("/user")
     @SaCheckLogin
     public ServerResponse<Void> updateUser(UserPartRequest userPartRequest) {
-        var userId = 1L;
+        var userId = AuthenticatorUtil.getCurrentUserId();
         baseService.updateUserByUserId(userId, userPartRequest);
         return ServerResponse.success();
     }
@@ -44,7 +43,7 @@ public class BaseController {
     @GetMapping("/menu-trees")
     @SaCheckLogin
     public ServerResponse<List<MenuResponse>> getMenuTrees() {
-        var userId = 1L;
+        var userId = AuthenticatorUtil.getCurrentUserId();
         var menus = baseService.readMenuTreesByUserId(userId);
         return ServerResponse.success(menus);
     }
@@ -53,8 +52,8 @@ public class BaseController {
     @GetMapping("/menu-permissions")
     @SaCheckLogin
     public ServerResponse<List<String>> getMenuPermissions() {
-        var userName = "";
-        var permissions = baseService.readMenuPermissionsByUserName(userName);
+        var userId = AuthenticatorUtil.getCurrentUserId();
+        var permissions = baseService.readMenuPermissionsByUserId(userId);
         return ServerResponse.success(permissions);
     }
 

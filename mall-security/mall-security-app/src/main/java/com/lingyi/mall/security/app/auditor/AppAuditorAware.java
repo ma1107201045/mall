@@ -1,27 +1,21 @@
 package com.lingyi.mall.security.app.auditor;
 
-import cn.dev33.satoken.stp.StpUtil;
-import com.lingyi.mall.common.orm.util.Authenticator;
-import com.lingyi.mall.common.orm.util.CustomAuditorAware;
-import org.springframework.lang.NonNull;
-import org.springframework.stereotype.Component;
+import cn.hutool.core.util.StrUtil;
+import com.lingyi.mall.common.core.util.CustomAuditorAware;
+import com.lingyi.mall.security.core.util.AuthenticatorUtil;
 
 import java.util.Optional;
 
 /**
- * @author maweiyan
- * @email 1107201045@qq.com
- * @datetime 2023/5/1 3:05
- * @description
+ * @Author: maweiyan
+ * @Email: 1107201045@qq.com
+ * @DateTime: 2024/1/16 14:34
+ * @Description:
  */
-@Component
-public class AppAuditorAware implements CustomAuditorAware<Authenticator> {
-
-
+public class AppAuditorAware implements CustomAuditorAware<String> {
     @Override
-    @NonNull
-    public Optional<Authenticator> getCurrentAuditor() {
-        String authenticator = StpUtil.getTokenValue();
-        return Optional.of(new Authenticator());
+    public Optional<String> getCurrentAuditor() {
+        var currentUserName = AuthenticatorUtil.getCurrentUserName();
+        return StrUtil.isBlank(currentUserName) ? Optional.empty() : Optional.of(currentUserName);
     }
 }

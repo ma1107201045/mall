@@ -22,21 +22,20 @@ public interface BaseService {
     void updateUserByUserId(Long userId, UserPartRequest userPartRequest);
 
     /**
-     * 按照用户名称查询菜单树
+     * 按照用户id查询菜单树
      *
      * @param userId 用户id
      * @return 菜单树
      */
     List<MenuResponse> readMenuTreesByUserId(Long userId);
 
-
     /**
-     * 按照用户名称查询菜单权限集
+     * 按照用户id查询权限标识集
      *
-     * @param userName 用户名称
-     * @return 菜单权限集
+     * @param userId 用户id
+     * @return 权限标识集
      */
-    List<String> readMenuPermissionsByUserName(String userName);
+    List<String> readMenuPermissionsByUserId(Long userId);
 
 
 }

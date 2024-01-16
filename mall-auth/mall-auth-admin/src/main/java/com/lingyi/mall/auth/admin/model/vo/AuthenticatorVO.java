@@ -1,6 +1,6 @@
 package com.lingyi.mall.auth.admin.model.vo;
 
-import com.lingyi.mall.common.orm.util.Authenticator;
+import com.lingyi.mall.security.core.util.Authenticator;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

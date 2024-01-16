@@ -1,4 +1,4 @@
-package com.lingyi.mall.common.orm.util;
+package com.lingyi.mall.security.core.util;
 
 import cn.hutool.core.lang.TypeReference;
 import cn.hutool.extra.spring.SpringUtil;
@@ -15,13 +15,13 @@ public class AuthenticatorUtil {
 
 
     public static Authenticator getAuthenticator() {
-        CustomAuditorAware<Authenticator> bean = SpringUtil.getBean(new TypeReference<>() {
+        SecurityAware<Authenticator> bean = SpringUtil.getBean(new TypeReference<>() {
             @Override
             public Type getType() {
                 return super.getType();
             }
         });
-        return bean.getCurrentAuditor().orElse(new Authenticator());
+        return bean.get();
     }
 
     public static Long getCurrentUserId() {

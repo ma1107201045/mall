@@ -109,16 +109,6 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
         updateById(userDO);
     }
 
-    @Override
-    public UserResponse readUserAndMenuPermissionsByUserName(String userName) {
-        var userResponse = readUserByUserName(userName);
-        if (Objects.isNull(userResponse)) {
-            return ObjectUtil.getNull();
-        }
-        var permissions = readMenuPermissionsByUserName(userName);
-        userResponse.setPermissions(permissions);
-        return userResponse;
-    }
 
     @Override
     public UserResponse readUserByUserName(String userName) {
@@ -129,15 +119,10 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
     public List<String> readMenuPermissionsById(Long id) {
         var userVO = readById(id);
         AssertUtil.notNull(userVO, SystemFailEnum.USER_NULL_ERROR);
-        return readMenuPermissionsByUserName(userVO.getUserName());
-    }
-
-    @Override
-    public List<String> readMenuPermissionsByUserName(String userName) {
         List<MenuResponse> menus;
         var menuTypes = Collections.singletonList(MenuTypeEnum.BUTTON.getCode());
-        if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
-            menus = mybatisMapper.selectMenusByUserNameAndMenuTypes(userName, menuTypes);
+        if (!SystemConstant.USER_ID_ADMIN.equals(id)) {
+            menus = mybatisMapper.selectMenusByIdAndMenuTypes(id, menuTypes);
         } else {
             menus = menuService.readListByTypes(menuTypes);
         }
@@ -146,23 +131,17 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
 
 
     @Override
-    public List<MenuResponse> readMenuTreesByUserName(String userName) {
+    public List<MenuResponse> readMenuTreesById(Long id) {
         List<MenuResponse> menus;
-        var menuTypes = Arrays.asList(MenuTypeEnum.DIRECTORY.getCode(), MenuTypeEnum.MENU.getCode());
-        if (!SystemConstant.USER_NAME_ADMIN.equals(userName)) {
-            menus = mybatisMapper.selectMenusByUserNameAndMenuTypes(userName, menuTypes);
+        var menuTypes = Collections.singletonList(MenuTypeEnum.BUTTON.getCode());
+        if (!SystemConstant.USER_ID_ADMIN.equals(id)) {
+            menus = mybatisMapper.selectMenusByIdAndMenuTypes(id, menuTypes);
         } else {
             menus = menuService.readListByTypes(menuTypes);
         }
         return toMenuTree(SystemConstant.MENU_ROOT_ID, menus);
     }
 
-    @Override
-    public List<MenuResponse> readMenuTreesById(Long id) {
-        UserVO userVO = readById(id);
-        AssertUtil.notNull(userVO, SystemFailEnum.USER_NULL_ERROR);
-        return readMenuTreesByUserName(userVO.getUserName());
-    }
 
     private void verifyData(UserDTO userDTO, List<Long> ids, OperationTypeEnum operationTypeEnum) {
         if (operationTypeEnum == OperationTypeEnum.CREATE) {

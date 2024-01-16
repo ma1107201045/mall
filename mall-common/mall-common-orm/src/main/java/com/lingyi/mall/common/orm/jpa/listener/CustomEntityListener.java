@@ -2,12 +2,10 @@ package com.lingyi.mall.common.orm.jpa.listener;
 
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
-import com.lingyi.mall.common.core.constant.BaseConstant;
 import com.lingyi.mall.common.core.enums.WhetherEnum;
 import com.lingyi.mall.common.orm.entity.BaseCommonDO;
 import com.lingyi.mall.common.orm.entity.BaseIsDeleteDO;
-import com.lingyi.mall.common.orm.util.Authenticator;
-import com.lingyi.mall.common.orm.util.CustomAuditorAware;
+import com.lingyi.mall.common.core.util.CustomAuditorAware;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import lombok.AllArgsConstructor;
@@ -29,15 +27,15 @@ import java.util.Objects;
 public class CustomEntityListener {
 
 
-    private CustomAuditorAware<Authenticator> auditorAware;
+    private CustomAuditorAware<String> auditorAware;
 
     @PrePersist
     protected void preInsert(Object target) {
         if (target instanceof BaseCommonDO baseCommonDO && StrUtil.isBlank(baseCommonDO.getCreateBy())) {
-            var auditor = auditorAware.getCurrentAuditor().orElse(new Authenticator());
-            baseCommonDO.setCreateBy(auditor.getCurrentUserName());
+            var auditor = auditorAware.getCurrentAuditor().orElse("unknown");
+            baseCommonDO.setCreateBy(auditor);
             baseCommonDO.setCreateDateTime(LocalDateTime.now());
-            baseCommonDO.setLastModifyBy(auditor.getCurrentUserName());
+            baseCommonDO.setLastModifyBy(auditor);
             baseCommonDO.setLastModifyDateTime(LocalDateTime.now());
         }
         if (target instanceof BaseIsDeleteDO baseIsDeleteEntity && Objects.isNull(baseIsDeleteEntity.getIsDelete())) {
@@ -62,8 +60,8 @@ public class CustomEntityListener {
     @PreUpdate
     protected void preUpdate(Object target) {
         if (target instanceof BaseCommonDO baseCommonDO && StrUtil.isBlank(baseCommonDO.getLastModifyBy())) {
-            var auditor = auditorAware.getCurrentAuditor().orElse(new Authenticator());
-            baseCommonDO.setLastModifyBy(auditor.getCurrentUserName());
+            var auditor = auditorAware.getCurrentAuditor().orElse("unknown");
+            baseCommonDO.setLastModifyBy(auditor);
             baseCommonDO.setLastModifyDateTime(LocalDateTime.now());
         }
     }

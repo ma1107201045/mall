@@ -28,22 +28,6 @@ public class UserFeignFallbackFactory implements FallbackFactory<UserFeign> {
             }
 
             @Override
-            public ServerResponse<UserResponse> getUserAndMenuPermissionsByUserName(String userName) {
-                return null;
-            }
-
-            @Override
-            public ServerResponse<List<MenuResponse>> getMenuTreesByUserName(String userName) {
-                return null;
-            }
-
-
-            @Override
-            public ServerResponse<List<String>> getMenuPermissionsByUserName(String userName) {
-                return null;
-            }
-
-            @Override
             public ServerResponse<UserResponse> getUserByUserName(String userName) {
                 return null;
             }

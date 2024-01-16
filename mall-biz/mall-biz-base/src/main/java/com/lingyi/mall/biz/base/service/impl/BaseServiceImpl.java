@@ -33,8 +33,8 @@ public class BaseServiceImpl implements BaseService {
     }
 
     @Override
-    public List<String> readMenuPermissionsByUserName(String userName) {
-        return userFeignConsumer.getMenuPermissionsByUserName(userName);
+    public List<String> readMenuPermissionsByUserId(Long userId) {
+        return userFeignConsumer.getMenuPermissionsById(userId);
     }
 
 
