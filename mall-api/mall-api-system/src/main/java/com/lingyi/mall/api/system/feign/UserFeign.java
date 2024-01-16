@@ -49,7 +49,7 @@ public interface UserFeign {
      * @return 用户信息
      */
     @GetMapping(URL_PREFIX + "/menu-permissions/{id}")
-    ServerResponse<List<String>> getMenuPermissionsById(@PathVariable Long id);
+    ServerResponse<List<String>> getMenuPermissionsById(@PathVariable("id") Long id);
 
 
 }
