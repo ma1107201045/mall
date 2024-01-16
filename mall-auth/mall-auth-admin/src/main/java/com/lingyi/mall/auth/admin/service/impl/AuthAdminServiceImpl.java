@@ -21,7 +21,7 @@ import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.core.util.HttpUtil;
 import com.lingyi.mall.common.redis.util.RedisUtil;
-import com.lingyi.mall.security.admin.util.CodeGeneratorProxy;
+import com.lingyi.mall.auth.admin.util.CodeGeneratorProxy;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;

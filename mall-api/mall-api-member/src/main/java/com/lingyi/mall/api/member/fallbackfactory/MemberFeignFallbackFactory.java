@@ -1,9 +1,9 @@
 package com.lingyi.mall.api.member.fallbackfactory;
 
+import com.lingyi.mall.api.member.feign.MemberFeign;
 import com.lingyi.mall.api.member.reqeust.MemberRequest;
 import com.lingyi.mall.api.member.response.MemberResponse;
-import com.lingyi.mall.api.member.feign.MemberFeign;
-import com.lingyi.mall.common.core.util.ServerResponse;
+import com.lingyi.mall.common.web.util.ServerResponse;
 import org.springframework.cloud.openfeign.FallbackFactory;
 
 /**

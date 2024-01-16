@@ -6,7 +6,8 @@ import com.lingyi.mall.common.core.constant.BaseConstant;
 import com.lingyi.mall.common.core.enums.WhetherEnum;
 import com.lingyi.mall.common.orm.entity.BaseCommonDO;
 import com.lingyi.mall.common.orm.entity.BaseIsDeleteDO;
-import com.lingyi.mall.common.core.util.CustomAuditorAware;
+import com.lingyi.mall.common.orm.util.Authenticator;
+import com.lingyi.mall.common.orm.util.CustomAuditorAware;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import lombok.AllArgsConstructor;
@@ -28,15 +29,15 @@ import java.util.Objects;
 public class CustomEntityListener {
 
 
-    private CustomAuditorAware<String> auditorAware;
+    private CustomAuditorAware<Authenticator> auditorAware;
 
     @PrePersist
     protected void preInsert(Object target) {
         if (target instanceof BaseCommonDO baseCommonDO && StrUtil.isBlank(baseCommonDO.getCreateBy())) {
-            var auditor = auditorAware.getCurrentAuditor().orElse(BaseConstant.UNKNOWN);
-            baseCommonDO.setCreateBy(auditor);
+            var auditor = auditorAware.getCurrentAuditor().orElse(new Authenticator());
+            baseCommonDO.setCreateBy(auditor.getCurrentUserName());
             baseCommonDO.setCreateDateTime(LocalDateTime.now());
-            baseCommonDO.setLastModifyBy(auditor);
+            baseCommonDO.setLastModifyBy(auditor.getCurrentUserName());
             baseCommonDO.setLastModifyDateTime(LocalDateTime.now());
         }
         if (target instanceof BaseIsDeleteDO baseIsDeleteEntity && Objects.isNull(baseIsDeleteEntity.getIsDelete())) {
@@ -61,8 +62,8 @@ public class CustomEntityListener {
     @PreUpdate
     protected void preUpdate(Object target) {
         if (target instanceof BaseCommonDO baseCommonDO && StrUtil.isBlank(baseCommonDO.getLastModifyBy())) {
-            var auditor = auditorAware.getCurrentAuditor().orElse(BaseConstant.UNKNOWN);
-            baseCommonDO.setLastModifyBy(auditor);
+            var auditor = auditorAware.getCurrentAuditor().orElse(new Authenticator());
+            baseCommonDO.setLastModifyBy(auditor.getCurrentUserName());
             baseCommonDO.setLastModifyDateTime(LocalDateTime.now());
         }
     }

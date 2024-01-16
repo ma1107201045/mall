@@ -1,8 +1,8 @@
 package com.lingyi.mall.api.member.feign;
 
-import com.lingyi.mall.api.member.reqeust.MemberLoginLogRequest;
 import com.lingyi.mall.api.member.fallbackfactory.MemberLoginLogFeignFallbackFactory;
-import com.lingyi.mall.common.core.util.ServerResponse;
+import com.lingyi.mall.api.member.reqeust.MemberLoginLogRequest;
+import com.lingyi.mall.common.web.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

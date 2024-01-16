@@ -1,7 +1,7 @@
 package com.lingyi.mall.api.member.feign;
 
 import com.lingyi.mall.api.member.fallbackfactory.LevelFeignFallbackFactory;
-import com.lingyi.mall.common.core.util.ServerResponse;
+import com.lingyi.mall.common.web.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 

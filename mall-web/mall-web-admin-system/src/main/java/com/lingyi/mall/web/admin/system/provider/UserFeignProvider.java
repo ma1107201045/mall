@@ -71,6 +71,7 @@ public class UserFeignProvider implements UserFeign {
         return ServerResponse.success(permissions);
     }
 
+    @Operation(summary = "查询当前用户菜单树", description = "查询菜单树")
     @Override
     public ServerResponse<List<MenuResponse>> getMenuTreesById(Long id) {
         var userResponse = userService.readMenuTreesById(id);
