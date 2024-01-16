@@ -2,11 +2,9 @@ package com.lingyi.mall.security.admin.auditor;
 
 import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.common.core.util.CustomAuditorAware;
-import com.lingyi.mall.security.core.util.Authenticator;
 import com.lingyi.mall.security.core.util.AuthenticatorUtil;
 import org.springframework.stereotype.Component;
 
-import java.util.Objects;
 import java.util.Optional;
 
 /**

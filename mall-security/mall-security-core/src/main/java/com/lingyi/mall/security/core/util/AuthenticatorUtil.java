@@ -13,7 +13,6 @@ import java.lang.reflect.Type;
  */
 public class AuthenticatorUtil {
 
-
     public static Authenticator getAuthenticator() {
         SecurityAware<Authenticator> bean = SpringUtil.getBean(new TypeReference<>() {
             @Override
