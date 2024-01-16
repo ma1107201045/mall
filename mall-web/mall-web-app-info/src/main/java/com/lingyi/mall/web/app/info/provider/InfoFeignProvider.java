@@ -1,11 +1,11 @@
 package com.lingyi.mall.web.app.info.provider;
 
+import com.lingyi.mall.api.info.feign.InfoFeign;
 import com.lingyi.mall.api.info.request.InfoCaptchaSendRequest;
 import com.lingyi.mall.api.info.request.InfoCaptchaVerifyRequest;
 import com.lingyi.mall.api.info.request.InfoRequest;
-import com.lingyi.mall.api.info.feign.InfoFeign;
 import com.lingyi.mall.biz.info.service.InfoService;
-import com.lingyi.mall.common.core.util.ServerResponse;
+import com.lingyi.mall.common.web.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -27,8 +27,8 @@ public class InfoFeignProvider implements InfoFeign {
 
     @Operation(summary = "发送", description = "发送")
     @Override
-    public ServerResponse<Void> send(InfoRequest smsReqDTO) {
-        infoService.send(smsReqDTO);
+    public ServerResponse<Void> send(InfoRequest infoRequest) {
+        infoService.send(infoRequest);
         return ServerResponse.success();
     }
 

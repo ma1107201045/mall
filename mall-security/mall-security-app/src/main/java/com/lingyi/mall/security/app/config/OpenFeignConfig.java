@@ -4,7 +4,6 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.lingyi.mall.common.core.constant.BaseConstant;
 import com.lingyi.mall.common.core.util.HttpUtil;
-import com.lingyi.mall.security.app.constant.SecurityConstant;
 import feign.RequestInterceptor;
 import feign.ResponseInterceptor;
 import org.slf4j.MDC;
@@ -29,31 +28,14 @@ public class OpenFeignConfig {
         return requestTemplate -> {
             // 将trackId 同步到新的请求的请求头中
             requestTemplate.header(BaseConstant.TRACK_ID_NAME, MDC.get(BaseConstant.TRACK_ID_NAME));
-            var token = HttpUtil.getHeader(SecurityConstant.AUTHORIZATION);
+            var token = HttpUtil.getHeader("authorization");
             if (StrUtil.isBlank(token)) {
                 return;
             }
             // 将token同步到新的请求的请求头中
-            requestTemplate.header(SecurityConstant.AUTHORIZATION, token);
+            requestTemplate.header("authorization", token);
         };
     }
-
-//    @Bean
-//    @NonNull
-//    public ResponseInterceptor responseInterceptor() {
-//        return invocationContext -> {
-//            var response = invocationContext.response();
-//            var headers = response.headers();
-//            var values = headers.get(SecurityConstant.AUTHORIZATION);
-//            if (CollUtil.isNotEmpty(values)) {
-//                var token = values.toArray(new String[]{})[0];
-//                if (StrUtil.isNotBlank(token)) {
-//                    HttpUtil.setHeader(SecurityConstant.AUTHORIZATION, token);
-//                }
-//            }
-//            return invocationContext.proceed();
-//        };
-//    }
 
     @Bean
     @NonNull
@@ -61,11 +43,11 @@ public class OpenFeignConfig {
         return (invocationContext, chain) -> {
             var response = invocationContext.response();
             var headers = response.headers();
-            var values = headers.get(SecurityConstant.AUTHORIZATION);
+            var values = headers.get("authorization");
             if (CollUtil.isNotEmpty(values)) {
                 var token = values.toArray(new String[]{})[0];
                 if (StrUtil.isNotBlank(token)) {
-                    HttpUtil.setHeader(SecurityConstant.AUTHORIZATION, token);
+                    HttpUtil.setHeader("authorization", token);
                 }
             }
             return invocationContext.proceed();

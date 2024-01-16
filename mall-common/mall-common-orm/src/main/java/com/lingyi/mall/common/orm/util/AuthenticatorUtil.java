@@ -14,7 +14,7 @@ import java.lang.reflect.Type;
 public class AuthenticatorUtil {
 
 
-    public static Authenticator get() {
+    public static Authenticator getAuthenticator() {
         CustomAuditorAware<Authenticator> bean = SpringUtil.getBean(new TypeReference<>() {
             @Override
             public Type getType() {
@@ -24,11 +24,11 @@ public class AuthenticatorUtil {
         return bean.getCurrentAuditor().orElse(new Authenticator());
     }
 
-    public static Long currentUserId() {
-        return get().getCurrentUserId();
+    public static Long getCurrentUserId() {
+        return getAuthenticator().getCurrentUserId();
     }
 
-    public static String currentUserName() {
-        return get().getCurrentUserName();
+    public static String getCurrentUserName() {
+        return getAuthenticator().getCurrentUserName();
     }
 }

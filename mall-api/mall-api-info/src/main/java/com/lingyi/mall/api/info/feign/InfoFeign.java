@@ -4,7 +4,7 @@ import com.lingyi.mall.api.info.request.InfoCaptchaSendRequest;
 import com.lingyi.mall.api.info.request.InfoCaptchaVerifyRequest;
 import com.lingyi.mall.api.info.request.InfoRequest;
 import com.lingyi.mall.api.info.fallbackfactory.InfoFeignFallbackFactory;
-import com.lingyi.mall.common.core.util.ServerResponse;
+import com.lingyi.mall.common.web.util.ServerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
