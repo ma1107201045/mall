@@ -8,6 +8,7 @@ import com.lingyi.mall.api.member.consumer.LevelFeignConsumer;
 import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
 import com.lingyi.mall.api.member.consumer.MemberLoginLogFeignConsumer;
 import com.lingyi.mall.api.member.response.MemberResponse;
+import com.lingyi.mall.auth.app.constant.AuthAppConstant;
 import com.lingyi.mall.auth.app.converter.AuthAppConverter;
 import com.lingyi.mall.auth.app.enums.AuthAppFailEnum;
 import com.lingyi.mall.auth.app.model.dto.AuthAppEmailLoginDTO;
@@ -83,7 +84,7 @@ public class AuthAppServiceImpl implements AuthAppService {
         var token = JwtUtil.createToken(memberRespDTO);
 
         //设置返回头token
-        HttpUtil.setHeader("authorization", token);
+        HttpUtil.setHeader(AuthAppConstant.AUTHORIZATION, token);
         return ConverterUtil.to(memberRespDTO, AuthAppLoginVO.class);
     }
 
@@ -93,17 +94,17 @@ public class AuthAppServiceImpl implements AuthAppService {
     }
 
     @Override
-    public void sendCaptcha(AuthAppSendDTO authAppSendDTO) {
-        var captchaSendReqDTO = AuthAppConverter.INSTANCE.to(authAppSendDTO.getNumber(), properties);
-        smsFeignConsumer.sendCaptcha(captchaSendReqDTO);
-    }
-
-    @Override
     public void logout() {
-        var token = HttpUtil.getHeader("authorization");
+        var token = HttpUtil.getHeader(AuthAppConstant.AUTHORIZATION);
         var expiryDate = DateUtil.between(JwtUtil.getJwtPayloadExp(token), DateUtil.date(), DateUnit.SECOND);
         var tokenBlacklistKey = redisKeyUtil.getTokenBlacklistKey(token);
         redisUtil.set(tokenBlacklistKey, RandomUtil.randomInt(), expiryDate, TimeUnit.MINUTES);
+    }
+
+    @Override
+    public void sendCaptcha(AuthAppSendDTO authAppSendDTO) {
+        var captchaSendReqDTO = AuthAppConverter.INSTANCE.to(authAppSendDTO.getNumber(), properties);
+        smsFeignConsumer.sendCaptcha(captchaSendReqDTO);
     }
 
 

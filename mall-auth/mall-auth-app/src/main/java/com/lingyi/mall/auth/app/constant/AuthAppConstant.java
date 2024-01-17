@@ -12,7 +12,7 @@ public class AuthAppConstant {
     public static final Integer EXPIRY_DATE = 30;
     public static final Integer INTERVAL = 1;
     public static final Integer UPPER_LIMIT = 10;
-
+    public static final String AUTHORIZATION = "authorization";
 
     private AuthAppConstant() {
 

@@ -21,13 +21,13 @@ public final class CategoryAttributeConverter {
 
 
     public CategoryAttributeDO of(Long categoryId, Long attributeId) {
-        CategoryDO categoryDO = new CategoryDO();
+        var categoryDO = new CategoryDO();
         categoryDO.setId(categoryId);
 
-        AttributeDO attributeDO = new AttributeDO();
+        var attributeDO = new AttributeDO();
         attributeDO.setId(attributeId);
 
-        CategoryAttributeDO categoryAttributeDO = new CategoryAttributeDO();
+        var categoryAttributeDO = new CategoryAttributeDO();
         categoryAttributeDO.setCategory(categoryDO);
         categoryAttributeDO.setAttribute(attributeDO);
         return categoryAttributeDO;

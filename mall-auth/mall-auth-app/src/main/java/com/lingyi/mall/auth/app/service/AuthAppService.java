@@ -32,6 +32,11 @@ public interface AuthAppService {
 
 
     /**
+     * 注销
+     */
+    void logout();
+
+    /**
      * 发送验证码（手机或者邮箱）
      *
      * @param authAppSendDTO 发送dto
@@ -39,8 +44,4 @@ public interface AuthAppService {
     void sendCaptcha(AuthAppSendDTO authAppSendDTO);
 
 
-    /**
-     * 注销
-     */
-    void logout();
 }

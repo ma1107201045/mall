@@ -39,7 +39,6 @@ public class CategoryServiceImpl extends BaseServiceProImpl<CategoryRepository, 
 
     private final CategoryAttributeService categoryAttributeService;
 
-
     @Override
     public void create(CategoryDTO categoryDTO) {
         verifyData(categoryDTO);
