@@ -41,12 +41,12 @@ public final class AssertUtil {
         isTrue(ObjUtil.isNotNull(object), businessException);
     }
 
-    public static void isEquals(Object object1, Object object2, BaseFailEnum failEnum) {
-        isTrue(Objects.equals(object1, object2), failEnum);
+    public static void isEquals(Object obj1, Object obj2, BaseFailEnum failEnum) {
+        isTrue(Objects.equals(obj1, obj2), failEnum);
     }
 
-    public static void notEquals(Object object1, Object object2, BaseFailEnum failEnum) {
-        isTrue(!object1.equals(object2), failEnum);
+    public static void notEquals(Object obj1, Object obj2, BaseFailEnum failEnum) {
+        isTrue(!Objects.equals(obj1, obj2), failEnum);
     }
 
     public static void isGtZero(int number, BaseFailEnum failEnum) {

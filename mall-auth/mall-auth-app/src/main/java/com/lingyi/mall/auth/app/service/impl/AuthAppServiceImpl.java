@@ -101,7 +101,7 @@ public class AuthAppServiceImpl implements AuthAppService {
     @Override
     public void logout() {
         var token = HttpUtil.getHeader("authorization");
-        long expiryDate = DateUtil.between(JwtUtil.getJwtPayloadExp(token), DateUtil.date(), DateUnit.SECOND);
+        var expiryDate = DateUtil.between(JwtUtil.getJwtPayloadExp(token), DateUtil.date(), DateUnit.SECOND);
         var tokenBlacklistKey = redisKeyUtil.getTokenBlacklistKey(token);
         redisUtil.set(tokenBlacklistKey, RandomUtil.randomInt(), expiryDate, TimeUnit.MINUTES);
     }

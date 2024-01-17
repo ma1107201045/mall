@@ -6,6 +6,7 @@ import com.lingyi.mall.api.system.response.MenuResponse;
 import com.lingyi.mall.api.system.request.UserPartRequest;
 import com.lingyi.mall.api.system.response.UserResponse;
 import com.lingyi.mall.biz.system.constant.SystemConstant;
+import com.lingyi.mall.biz.system.converter.UserConverter;
 import com.lingyi.mall.biz.system.dao.mapper.UserMapper;
 import com.lingyi.mall.biz.system.dao.repository.UserRepository;
 import com.lingyi.mall.biz.system.enums.MenuTypeEnum;
@@ -106,7 +107,7 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
         // 密码作哈希
         userPartRequest.setPassword(SecureUtil.md5(userPartRequest.getPassword()));
         //  更新数据
-        UserDO userDO = ConverterUtil.to(userPartRequest, UserDO.class);
+        var userDO = UserConverter.INSTANCE.to(userPartRequest);
         //更新
         updateById(userDO);
     }
