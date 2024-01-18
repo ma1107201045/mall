@@ -1,23 +1,22 @@
-package com.lingyi.mall;
+package com.lingyi.mall.web.admin.base;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
-
 /**
- * @Author: maweiyan
- * @Email 1107201045@qq.com
- * @DateTime: 2023/6/26 21:08
- * @Description:
+ * @author maweiyan
+ * @email 1107201045@qq.com
+ * @datetime 2023/5/24 10:15
+ * @description
  */
 @EnableFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication
-public class MallWebAdminFileApplication {
+public class MallWebAdminBaseApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MallWebAdminFileApplication.class, args);
+        SpringApplication.run(MallWebAdminBaseApplication.class, args);
     }
 }

@@ -1,4 +1,4 @@
-package com.lingyi.mall;
+package com.lingyi.mall.web.admin.info;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,14 +8,15 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 /**
  * @Author: maweiyan
  * @Email 1107201045@qq.com
- * @DateTime: 2023/6/6 22:04
+ * @DateTime: 2023/7/23 0:23
  * @Description:
  */
-@EnableFeignClients
 @EnableDiscoveryClient
-@SpringBootApplication
-public class MallWebAdminMemberApplication {
+@EnableFeignClients(basePackages = "com.lingyi.mall")
+@SpringBootApplication(scanBasePackages = "com.lingyi.mall")
+public class MallWebAdminInfoApplication {
+
     public static void main(String[] args) {
-        SpringApplication.run(MallWebAdminMemberApplication.class, args);
+        SpringApplication.run(MallWebAdminInfoApplication.class, args);
     }
 }

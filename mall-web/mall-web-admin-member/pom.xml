@@ -26,7 +26,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot-dependencies.version}</version>
                 <configuration>
-                    <mainClass>com.lingyi.mall.MallWebAdminMemberApplication</mainClass>
+                    <mainClass>com.lingyi.mall.web.admin.member.MallWebAdminMemberApplication</mainClass>
                     <excludes>
                         <exclude>
                             <groupId>org.springframework.boot</groupId>
