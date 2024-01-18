@@ -30,20 +30,20 @@
         <fastjson2.verson>2.0.25</fastjson2.verson>
         <velocity.version>1.5</velocity.version>
         <velocity-tools.version>2.0</velocity-tools.version>
-        <sa-token-version>1.37.0</sa-token-version>
         <springdoc-openapi-starter.version>2.2.0</springdoc-openapi-starter.version>
-        <knife4j-openapi3-jakarta-spring-boot-starte.version>4.3.0</knife4j-openapi3-jakarta-spring-boot-starte.version>
-        <knife4j-gateway-spring-boot-starter.version>4.3.0</knife4j-gateway-spring-boot-starter.version>
-        <redisson-spring-boot-starter.version>3.23.0</redisson-spring-boot-starter.version>
-        <rocketmq-spring-boot-starter.version>2.2.3</rocketmq-spring-boot-starter.version>
+        <knife4j.version>4.3.0</knife4j.version>
+        <redisson.version>3.23.0</redisson.version>
+        <rocketmq.version>2.2.3</rocketmq.version>
+        <!-- mall security -->
+        <sa-token-version>1.37.0</sa-token-version>
         <!-- mall biz -->
-        <mybatis-spring-boot-starter.version>3.0.3</mybatis-spring-boot-starter.version>
-        <mapper-spring-boot-starter.version>4.2.3</mapper-spring-boot-starter.version>
-        <pagehelper-spring-boot-starter.version>1.4.6</pagehelper-spring-boot-starter.version>
-        <mybatis-plus-boot-starter.version>3.5.3.1</mybatis-plus-boot-starter.version>
-        <mybatis-flex-spring-boot-starter.version>1.4.6</mybatis-flex-spring-boot-starter.version>
-        <minio-springboot-starter.version>1.0.1</minio-springboot-starter.version>
-        <xxl-job-core.version>2.4.0</xxl-job-core.version>
+        <mybatis.version>3.0.3</mybatis.version>
+        <mapper.version>4.2.3</mapper.version>
+        <pagehelper.version>1.4.6</pagehelper.version>
+        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
+        <mybatis-flex.version>1.4.6</mybatis-flex.version>
+        <minio.version>1.0.1</minio.version>
+        <xxl-job.version>2.4.0</xxl-job.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -78,7 +78,6 @@
                 <artifactId>mall-common-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>mall-common-elasticsearch</artifactId>
@@ -123,89 +122,6 @@
                 <groupId>${project.groupId}</groupId>
                 <artifactId>mall-common-xxljob</artifactId>
                 <version>${project.version}</version>
-            </dependency>
-            <!-- mall common out jar -->
-            <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
-                <version>${hutool-all.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.fastjson2</groupId>
-                <artifactId>fastjson2</artifactId>
-                <version>${fastjson2.verson}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.velocity</groupId>
-                <artifactId>velocity</artifactId>
-                <version>${velocity.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.velocity</groupId>
-                <artifactId>velocity-tools</artifactId>
-                <version>${velocity-tools.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.dev33</groupId>
-                <artifactId>sa-token-spring-boot3-starter</artifactId>
-                <version>${sa-token-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.dev33</groupId>
-                <artifactId>sa-token-redis</artifactId>
-                <version>${sa-token-version}</version>
-            </dependency>
-            <!-- Sa-Token 整合 Redis （使用 jackson 序列化方式） -->
-            <dependency>
-                <groupId>cn.dev33</groupId>
-                <artifactId>sa-token-redis-jackson</artifactId>
-                <version>${sa-token-version}</version>
-            </dependency>
-            <!-- Sa-Token 整合 jwt -->
-            <dependency>
-                <groupId>cn.dev33</groupId>
-                <artifactId>sa-token-jwt</artifactId>
-                <version>${sa-token-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
-                <version>${springdoc-openapi-starter.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-                <version>${springdoc-openapi-starter.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-starter-webflux-api</artifactId>
-                <version>${springdoc-openapi-starter.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
-                <version>${springdoc-openapi-starter.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
-                <version>${knife4j-openapi3-jakarta-spring-boot-starte.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-gateway-spring-boot-starter</artifactId>
-                <version>${knife4j-gateway-spring-boot-starter.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.redisson</groupId>
-                <artifactId>redisson-spring-boot-starter</artifactId>
-                <version>${redisson-spring-boot-starter.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.rocketmq</groupId>
-                <artifactId>rocketmq-spring-boot-starter</artifactId>
-                <version>${rocketmq-spring-boot-starter.version}</version>
             </dependency>
             <!-- mall security jar-->
             <dependency>
@@ -290,42 +206,123 @@
                 <artifactId>mall-biz-system</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
+            <!-- mall common out jar -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool-all.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson2.verson}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity</artifactId>
+                <version>${velocity.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-tools</artifactId>
+                <version>${velocity-tools.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+                <version>${springdoc-openapi-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc-openapi-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webflux-api</artifactId>
+                <version>${springdoc-openapi-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
+                <version>${springdoc-openapi-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-gateway-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq.version}</version>
+            </dependency>
+            <!-- mall security out jar -->
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-spring-boot3-starter</artifactId>
+                <version>${sa-token-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-redis</artifactId>
+                <version>${sa-token-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-redis-jackson</artifactId>
+                <version>${sa-token-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-jwt</artifactId>
+                <version>${sa-token-version}</version>
+            </dependency>
             <!-- mall  biz out jar -->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>${mybatis-spring-boot-starter.version}</version>
+                <version>${mybatis.version}</version>
             </dependency>
             <dependency>
                 <groupId>tk.mybatis</groupId>
                 <artifactId>mapper-spring-boot-starter</artifactId>
-                <version>${mapper-spring-boot-starter.version}</version>
+                <version>${mapper.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
-                <version>${pagehelper-spring-boot-starter.version}</version>
+                <version>${pagehelper.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus-boot-starter.version}</version>
+                <version>${mybatis-plus.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.mybatis-flex</groupId>
                 <artifactId>mybatis-flex-spring-boot-starter</artifactId>
-                <version>${mybatis-flex-spring-boot-starter.version}</version>
+                <version>${mybatis-flex.version}</version>
             </dependency>
             <dependency>
                 <groupId>ink.fengshuai</groupId>
                 <artifactId>minio-springboot-starter</artifactId>
-                <version>${minio-springboot-starter.version}</version>
+                <version>${minio.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.xuxueli</groupId>
                 <artifactId>xxl-job-core</artifactId>
-                <version>${xxl-job-core.version}</version>
+                <version>${xxl-job.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

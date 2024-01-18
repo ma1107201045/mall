@@ -11,12 +11,12 @@
     <artifactId>mall-security-app</artifactId>
     <dependencies>
         <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-jwt</artifactId>
-        </dependency>
-        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>mall-security-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-jwt</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
