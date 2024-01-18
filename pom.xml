@@ -71,7 +71,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
             <!-- mall common jar-->
             <dependency>
                 <groupId>${project.groupId}</groupId>
