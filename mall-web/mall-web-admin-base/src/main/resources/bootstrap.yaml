@@ -3,11 +3,6 @@ server:
 spring:
   application:
     name: mall-web-admin-base
-  main:
-    allow-bean-definition-overriding: true
-  threads:
-    virtual:
-      enabled: true
   cloud:
     inetutils:
       preferred-networks:
