@@ -35,12 +35,12 @@ public class OpenFeignConfig {
             // 将trackId 同步到新的请求的请求头中
             requestTemplate.header(BaseConstant.TRACK_ID_NAME, MDC.get(BaseConstant.TRACK_ID_NAME));
             // 获取原请求
-            HttpServletRequest request = HttpUtil.getRequest();
+            var request = HttpUtil.getRequest();
             if (Objects.isNull(request)) {
                 return;
             }
             var cookies = request.getCookies();
-            List<String> cookieList = Arrays.stream(cookies).map(cookie -> cookie.getName() + "=" + cookie.getValue()).toList();
+            var cookieList = Arrays.stream(cookies).map(cookie -> cookie.getName() + "=" + cookie.getValue()).toList();
             // 将cookie同步到新的请求的请求头中
             requestTemplate.header("cookie", CollUtil.join(cookieList, ";"));
         };
