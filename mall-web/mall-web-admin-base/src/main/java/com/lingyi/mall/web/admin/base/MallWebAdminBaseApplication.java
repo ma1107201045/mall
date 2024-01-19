@@ -11,9 +11,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @datetime 2023/5/24 10:15
  * @description
  */
-@EnableFeignClients
 @EnableDiscoveryClient
-@SpringBootApplication
+@EnableFeignClients(basePackages = "com.lingyi.mall")
+@SpringBootApplication(scanBasePackages = "com.lingyi.mall")
 public class MallWebAdminBaseApplication {
 
     public static void main(String[] args) {

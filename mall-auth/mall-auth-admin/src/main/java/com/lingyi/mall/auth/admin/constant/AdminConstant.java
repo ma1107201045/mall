@@ -12,5 +12,5 @@ public final class AdminConstant {
 
     }
 
-    public static final String UUID = "uuid";
+    public static final String IMAGE_CAPTCHA_SESSION_KEY = "image-captcha";
 }

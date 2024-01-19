@@ -26,10 +26,6 @@ public class AuthenticatorDTO {
     @NotBlank(message = "是否记住我不能为空")
     private Integer isRememberMe;
 
-    @Schema(description = "uuid,用户验证图形验证码")
-    @NotBlank(message = "uuid不能为空")
-    private String uuid;
-
     @Schema(description = "图像验证码")
     @NotBlank(message = "图像验证码不能为空")
     private String imageCaptcha;

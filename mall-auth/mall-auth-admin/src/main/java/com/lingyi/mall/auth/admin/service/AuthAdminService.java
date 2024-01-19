@@ -1,7 +1,6 @@
 package com.lingyi.mall.auth.admin.service;
 
 import com.lingyi.mall.auth.admin.model.dto.AuthenticatorDTO;
-import com.lingyi.mall.auth.admin.model.vo.ImageCaptchaVO;
 import com.lingyi.mall.auth.admin.model.vo.AuthenticatorVO;
 
 /**
@@ -25,7 +24,7 @@ public interface AuthAdminService {
      *
      * @return BASE64数据
      */
-    ImageCaptchaVO readImageCaptcha();
+    String readImageCaptcha();
 
     /**
      * 输出图形验证码

@@ -1,6 +1,7 @@
 package com.lingyi.mall.web.admin.system.provider;
 
 import cn.dev33.satoken.annotation.SaCheckLogin;
+import cn.dev33.satoken.annotation.SaIgnore;
 import com.lingyi.mall.api.system.response.MenuResponse;
 import com.lingyi.mall.api.system.request.UserPartRequest;
 import com.lingyi.mall.api.system.response.UserResponse;
@@ -38,7 +39,7 @@ public class UserFeignProvider implements UserFeign {
 
     @Operation(summary = "查询", description = "查询")
     @Override
-    @SaCheckLogin
+    @SaIgnore
     public ServerResponse<UserResponse> getUserByUserName(String userName) {
         var userResponse = userService.readUserByUserName(userName);
         return ServerResponse.success(userResponse);

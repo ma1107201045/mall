@@ -16,10 +16,6 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-common-redis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>mall-security-admin</artifactId>
         </dependency>
     </dependencies>

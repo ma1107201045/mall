@@ -1,5 +1,6 @@
 package com.lingyi.mall.auth.admin.service.impl;
 
+import cn.dev33.satoken.session.SaSession;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.captcha.AbstractCaptcha;
 import cn.hutool.captcha.CaptchaUtil;
@@ -8,29 +9,24 @@ import cn.hutool.core.util.IdUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.lingyi.mall.api.system.consumer.UserFeignConsumer;
 import com.lingyi.mall.auth.admin.constant.AdminConstant;
-import com.lingyi.mall.auth.admin.converter.AuthAdminConverter;
 import com.lingyi.mall.auth.admin.enums.AdminFailEnum;
 import com.lingyi.mall.auth.admin.model.dto.AuthenticatorDTO;
-import com.lingyi.mall.auth.admin.model.vo.ImageCaptchaVO;
 import com.lingyi.mall.auth.admin.model.vo.AuthenticatorVO;
 import com.lingyi.mall.auth.admin.properties.ImageCaptchaProperties;
 import com.lingyi.mall.auth.admin.properties.enums.CodeGeneratorType;
 import com.lingyi.mall.auth.admin.service.AuthAdminService;
-import com.lingyi.mall.auth.admin.util.AdminRedisKeyUtil;
+import com.lingyi.mall.auth.admin.util.CodeGeneratorProxy;
 import com.lingyi.mall.common.core.enums.WhetherEnum;
 import com.lingyi.mall.common.core.exception.BusinessException;
 import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.core.util.HttpUtil;
-import com.lingyi.mall.common.redis.util.RedisUtil;
-import com.lingyi.mall.auth.admin.util.CodeGeneratorProxy;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author maweiyan
@@ -47,18 +43,17 @@ public class AuthAdminServiceImpl implements AuthAdminService {
 
     private final UserFeignConsumer userFeignConsumer;
 
-    private final RedisUtil redisUtil;
-
-    private final AdminRedisKeyUtil adminRedisKeyUtil;
-
     @Override
     public AuthenticatorVO login(AuthenticatorDTO authenticatorDTO) {
         //校验验证码是否过期
-        var imageCaptcha = redisUtil.get(adminRedisKeyUtil.getImageCaptchaKey(authenticatorDTO.getUuid()), String.class);
+        SaSession anonTokenSession = StpUtil.getAnonTokenSession();
+        var imageCaptcha = anonTokenSession.get("image-captcha");
         AssertUtil.notNull(imageCaptcha, AdminFailEnum.IMAGE_CAPTCHA_STALE_DATED_ERROR);
+        anonTokenSession.clear();
         //校验验证码是否错误
         var flag = imageCaptcha.equals(authenticatorDTO.getImageCaptcha());
         AssertUtil.isTrue(flag, AdminFailEnum.IMAGE_CAPTCHA_ERROR);
+        anonTokenSession.clear();
         //校验用户
         var userResponse = userFeignConsumer.getUserByUserName(authenticatorDTO.getUserName());
         AssertUtil.notNull(userResponse, AdminFailEnum.USER_NAME_NOT_EXIST_ERROR);
@@ -76,25 +71,20 @@ public class AuthAdminServiceImpl implements AuthAdminService {
 
 
     @Override
-    public ImageCaptchaVO readImageCaptcha() {
-        var uuid = IdUtil.fastUUID();
+    public String readImageCaptcha() {
         var captcha = getImageCaptchaObject();
-        setImageCaptcha(uuid, captcha);
-        var base64ImageCaptcha = captcha.getImageBase64Data();
-        return AuthAdminConverter.INSTANCE.of(uuid, base64ImageCaptcha);
+        setImageCaptcha(captcha);
+        return captcha.getImageBase64Data();
     }
 
     @Override
     public void writeImageCaptcha() {
-        var uuid = IdUtil.fastUUID();
-        var abstractCaptcha = getImageCaptchaObject();
-        setImageCaptcha(uuid, abstractCaptcha);
+        var captcha = getImageCaptchaObject();
+        setImageCaptcha(captcha);
         var response = HttpUtil.getResponse();
-        assert response != null;
         response.setContentType(MediaType.IMAGE_PNG_VALUE);
-        response.setHeader(AdminConstant.UUID, uuid);
-        try (var os = response.getOutputStream()) {
-            abstractCaptcha.write(os);
+        try {
+            captcha.write(response.getOutputStream());
         } catch (IOException e) {
             log.error("write image captcha error");
         }
@@ -125,7 +115,7 @@ public class AuthAdminServiceImpl implements AuthAdminService {
         return captcha;
     }
 
-    private void setImageCaptcha(String uuid, AbstractCaptcha captcha) {
+    private void setImageCaptcha(AbstractCaptcha captcha) {
         var imageCaptcha = captcha.getCode();
         if (captcha.getGenerator() instanceof CodeGeneratorProxy) {
             var firstNumber = Integer.parseInt(imageCaptcha.substring(0, 1));
@@ -138,7 +128,8 @@ public class AuthAdminServiceImpl implements AuthAdminService {
                 default -> throw new BusinessException(AdminFailEnum.SET_IMAGE_CAPTCHA_ERROR);
             }
         }
-        redisUtil.set(adminRedisKeyUtil.getImageCaptchaKey(uuid), imageCaptcha, 5L, TimeUnit.MINUTES);
+        SaSession anonTokenSession = StpUtil.getAnonTokenSession();
+        anonTokenSession.set(AdminConstant.IMAGE_CAPTCHA_SESSION_KEY, imageCaptcha);
     }
 
 }
