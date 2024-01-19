@@ -62,8 +62,7 @@ public class AuthAdminServiceImpl implements AuthAdminService {
         AssertUtil.isEquals(userResponse.getPassword(), encodedPassword, AdminFailEnum.PASSWORD_ERROR);
         AuthenticatorVO authenticatorVO = ConverterUtil.to(userResponse, AuthenticatorVO.class);
         //登录
-        StpUtil.login(authenticatorVO.getUserId(), WhetherEnum.Y.getCode().
-                equals(authenticatorDTO.getIsRememberMe()));
+        StpUtil.login(authenticatorVO.getUserId(), WhetherEnum.Y.getCode().equals(authenticatorDTO.getIsRememberMe()));
         //session保存信息
         StpUtil.getSession().set(StpUtil.TYPE, authenticatorVO);
         return authenticatorVO;

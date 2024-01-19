@@ -46,7 +46,7 @@ public class SaTokenConfigure {
         return new StpInterface() {
             @Override
             public List<String> getPermissionList(Object loginId, String loginType) {
-                return userFeignConsumer.getMenuPermissionsById((Long) loginId);
+                return userFeignConsumer.getMenuPermissionsById(Long.valueOf((String) loginId));
             }
 
             @Override

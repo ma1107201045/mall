@@ -40,17 +40,6 @@ public class OpenFeignConfig {
     @Bean
     @NonNull
     public ResponseInterceptor responseInterceptor() {
-        return (invocationContext, chain) -> {
-            var response = invocationContext.response();
-            var headers = response.headers();
-            var values = headers.get("authorization");
-            if (CollUtil.isNotEmpty(values)) {
-                var token = values.toArray(new String[]{})[0];
-                if (StrUtil.isNotBlank(token)) {
-                    HttpUtil.setHeader("authorization", token);
-                }
-            }
-            return invocationContext.proceed();
-        };
+        return (invocationContext, chain) -> invocationContext.proceed();
     }
 }

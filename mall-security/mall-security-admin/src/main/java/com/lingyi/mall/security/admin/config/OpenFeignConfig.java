@@ -14,7 +14,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @Author: maweiyan
@@ -38,14 +40,9 @@ public class OpenFeignConfig {
                 return;
             }
             var cookies = request.getCookies();
-            if (ArrayUtil.isEmpty(cookies)) {
-                return;
-            }
-            //解决记住密码bug（Authentication是null或者其他排除 REMEMBER_ME_COOKIE_NAME，Authentication是RememberMeAuthenticationToken带REMEMBER_ME_COOKIE_NAME）
-            var cookieList = Arrays.stream(cookies)
-                    .toList();
+            List<String> cookieList = Arrays.stream(cookies).map(cookie -> cookie.getName() + "=" + cookie.getValue()).toList();
             // 将cookie同步到新的请求的请求头中
-            requestTemplate.header("cookie", CollUtil.join(cookieList, ","));
+            requestTemplate.header("cookie", CollUtil.join(cookieList, ";"));
         };
     }
 
@@ -53,17 +50,6 @@ public class OpenFeignConfig {
     @Bean
     @NonNull
     public ResponseInterceptor responseInterceptor() {
-        return (invocationContext, chain) -> {
-            var response = invocationContext.response();
-            var headers = response.headers();
-            var values = headers.get("cookie");
-            if (CollUtil.isNotEmpty(values)) {
-                var cookie = values.toArray(new String[]{})[0];
-                if (StrUtil.isNotBlank(cookie)) {
-                    HttpUtil.setHeader("cookie", cookie);
-                }
-            }
-            return chain.next(invocationContext);
-        };
+        return (invocationContext, chain) -> chain.next(invocationContext);
     }
 }
