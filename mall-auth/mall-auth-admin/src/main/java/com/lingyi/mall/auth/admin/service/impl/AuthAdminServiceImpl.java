@@ -21,6 +21,7 @@ import com.lingyi.mall.common.core.exception.BusinessException;
 import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.core.util.HttpUtil;
+import jakarta.servlet.ServletOutputStream;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -49,7 +50,6 @@ public class AuthAdminServiceImpl implements AuthAdminService {
         SaSession anonTokenSession = StpUtil.getAnonTokenSession();
         var imageCaptcha = anonTokenSession.get("image-captcha");
         AssertUtil.notNull(imageCaptcha, AdminFailEnum.IMAGE_CAPTCHA_STALE_DATED_ERROR);
-        anonTokenSession.clear();
         //校验验证码是否错误
         var flag = imageCaptcha.equals(authenticatorDTO.getImageCaptcha());
         AssertUtil.isTrue(flag, AdminFailEnum.IMAGE_CAPTCHA_ERROR);
@@ -73,18 +73,18 @@ public class AuthAdminServiceImpl implements AuthAdminService {
     @Override
     public String readImageCaptcha() {
         var captcha = getImageCaptchaObject();
-        setImageCaptcha(captcha);
+        this.setImageCaptcha(captcha);
         return captcha.getImageBase64Data();
     }
 
     @Override
     public void writeImageCaptcha() {
         var captcha = getImageCaptchaObject();
-        setImageCaptcha(captcha);
+        this.setImageCaptcha(captcha);
         var response = HttpUtil.getResponse();
         response.setContentType(MediaType.IMAGE_PNG_VALUE);
-        try {
-            captcha.write(response.getOutputStream());
+        try (var os = response.getOutputStream()) {
+            captcha.write(os);
         } catch (IOException e) {
             log.error("write image captcha error");
         }

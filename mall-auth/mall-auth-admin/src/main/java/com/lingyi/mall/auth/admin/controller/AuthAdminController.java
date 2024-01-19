@@ -9,8 +9,6 @@ import com.lingyi.mall.common.web.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -20,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * @Description:
  */
 @Tag(name = "认证", description = "登录、注销、获取验证码")
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class AuthAdminController {
 
@@ -28,17 +26,14 @@ public class AuthAdminController {
 
     @Operation(summary = "登录", description = "登录")
     @PostMapping("/login")
-    @ResponseBody
     @SaIgnore
     public ServerResponse<AuthenticatorVO> login(@RequestBody AuthenticatorDTO authenticatorDTO) {
         var authenticatorVO = authAdminService.login(authenticatorDTO);
         return ServerResponse.success(authenticatorVO);
     }
 
-
     @Operation(summary = "注销", description = "注销")
     @DeleteMapping("/logout")
-    @ResponseBody
     @SaCheckLogin
     public ServerResponse<Void> logout() {
         authAdminService.logout();
@@ -47,7 +42,6 @@ public class AuthAdminController {
 
     @Operation(summary = "获取图形验证码-base64", description = "获取图形验证码-base64")
     @GetMapping("/get-base64-image-captcha")
-    @ResponseBody
     @SaIgnore
     public ServerResponse<String> getBase64ImageCaptcha() {
         var imageCaptcha = authAdminService.readImageCaptcha();
