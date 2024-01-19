@@ -2,12 +2,16 @@ package com.lingyi.mall.security.admin.config;
 
 import cn.dev33.satoken.config.SaTokenConfig;
 import cn.dev33.satoken.stp.StpInterface;
+import cn.hutool.core.collection.CollUtil;
 import com.lingyi.mall.api.system.consumer.UserFeignConsumer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Author: maweiyan
@@ -17,6 +21,8 @@ import java.util.List;
  */
 @Configuration(proxyBeanMethods = false)
 public class SaTokenConfigure {
+
+    private static final String PERMISSION_SEPARATOR = ",";
 
     // Sa-Token 参数配置，参考文档：https://sa-token.cc
     // 此配置会覆盖 application.yml 中的配置
@@ -46,12 +52,16 @@ public class SaTokenConfigure {
         return new StpInterface() {
             @Override
             public List<String> getPermissionList(Object loginId, String loginType) {
-                return userFeignConsumer.getMenuPermissionsById(Long.valueOf((String) loginId));
+                List<String> permissions = userFeignConsumer.getMenuPermissionsById(Long.valueOf((String) loginId));
+                permissions = permissions.stream()
+                        .flatMap(permission -> Arrays.stream(permission.split(PERMISSION_SEPARATOR)))
+                        .collect(Collectors.toList());
+                return permissions;
             }
 
             @Override
             public List<String> getRoleList(Object loginId, String loginType) {
-                return null;
+                return Collections.emptyList();
             }
         };
     }
