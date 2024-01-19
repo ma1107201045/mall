@@ -2,6 +2,7 @@ package com.lingyi.mall.auth.admin.model.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 /**
@@ -23,7 +24,7 @@ public class AuthenticatorDTO {
     private String password;
 
     @Schema(description = "是否记住我 1 是 0 否")
-    @NotBlank(message = "是否记住我不能为空")
+    @NotNull(message = "是否记住我不能为空")
     private Integer isRememberMe;
 
     @Schema(description = "图像验证码")

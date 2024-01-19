@@ -8,6 +8,7 @@ import com.lingyi.mall.auth.admin.service.AuthAdminService;
 import com.lingyi.mall.common.web.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +28,7 @@ public class AuthAdminController {
     @Operation(summary = "登录", description = "登录")
     @PostMapping("/login")
     @SaIgnore
-    public ServerResponse<AuthenticatorVO> login(@RequestBody AuthenticatorDTO authenticatorDTO) {
+    public ServerResponse<AuthenticatorVO> login(@Valid @RequestBody AuthenticatorDTO authenticatorDTO) {
         var authenticatorVO = authAdminService.login(authenticatorDTO);
         return ServerResponse.success(authenticatorVO);
     }
@@ -51,7 +52,7 @@ public class AuthAdminController {
     @Operation(summary = "获取图形验证码-二进制流", description = "获取图形验证码-二进制流")
     @GetMapping(value = "/get-bin-image-captcha")
     @SaIgnore
-    public void writeBinImageCaptcha() {
+    public void getBinImageCaptcha() {
         authAdminService.writeImageCaptcha();
     }
 }
