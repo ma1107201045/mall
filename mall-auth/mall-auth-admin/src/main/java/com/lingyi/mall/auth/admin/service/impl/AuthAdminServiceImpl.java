@@ -64,7 +64,7 @@ public class AuthAdminServiceImpl implements AuthAdminService {
         //登录
         StpUtil.login(authenticatorVO.getUserId(), WhetherEnum.Y.getCode().equals(authenticatorDTO.getIsRememberMe()));
         //session保存信息
-        StpUtil.getSession().set(StpUtil.TYPE, authenticatorVO);
+        StpUtil.getSession().set(AdminConstant.USER_SESSION_KEY, authenticatorVO);
         return authenticatorVO;
     }
 
@@ -81,6 +81,7 @@ public class AuthAdminServiceImpl implements AuthAdminService {
         var captcha = getImageCaptchaObject();
         this.setImageCaptcha(captcha);
         var response = HttpUtil.getResponse();
+        assert response != null;
         response.setContentType(MediaType.IMAGE_PNG_VALUE);
         try (var os = response.getOutputStream()) {
             captcha.write(os);

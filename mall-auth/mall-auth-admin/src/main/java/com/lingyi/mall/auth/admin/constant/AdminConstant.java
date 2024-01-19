@@ -13,4 +13,5 @@ public final class AdminConstant {
     }
 
     public static final String IMAGE_CAPTCHA_SESSION_KEY = "image-captcha";
+    public static final String USER_SESSION_KEY = "user";
 }

@@ -52,7 +52,6 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
 
     private final MenuService menuService;
 
-
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void create(UserDTO userDTO) {
