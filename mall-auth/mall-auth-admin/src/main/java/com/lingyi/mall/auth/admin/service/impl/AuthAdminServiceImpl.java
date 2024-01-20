@@ -8,6 +8,7 @@ import cn.hutool.captcha.generator.MathGenerator;
 import cn.hutool.crypto.SecureUtil;
 import com.lingyi.mall.api.system.consumer.UserFeignConsumer;
 import com.lingyi.mall.auth.admin.constant.AuthAdminConstant;
+import com.lingyi.mall.auth.admin.converter.AuthAdminConverter;
 import com.lingyi.mall.auth.admin.enums.AdminFailEnum;
 import com.lingyi.mall.auth.admin.model.dto.AuthenticatorDTO;
 import com.lingyi.mall.auth.admin.model.vo.AuthenticatorVO;
@@ -60,14 +61,15 @@ public class AuthAdminServiceImpl implements AuthAdminService {
         //校验用户密码
         var encodedPassword = SecureUtil.md5(authenticatorDTO.getPassword());
         AssertUtil.isEquals(userResponse.getPassword(), encodedPassword, AdminFailEnum.PASSWORD_ERROR);
-        
+
         //用户信息转换到AdminAuthenticator
-        AdminAuthenticator adminAuthenticator = ConverterUtil.to(userResponse, AdminAuthenticator.class);
+        AdminAuthenticator adminAuthenticator = AuthAdminConverter.INSTANCE.toAdminAuthenticator(userResponse);
         //登录
         StpUtil.login(adminAuthenticator.getUserId(), WhetherEnum.Y.getCode().equals(authenticatorDTO.getIsRememberMe()));
         //session保存信息
         StpUtil.getSession().set(AdminConstant.USER_SESSION_KEY, adminAuthenticator);
-        return ConverterUtil.to(userResponse, AuthenticatorVO.class);
+        //用户信息转换到AuthenticatorVO
+        return AuthAdminConverter.INSTANCE.toAuthenticatorVO(userResponse);
     }
 
 
