@@ -79,7 +79,7 @@ public class CategoryController {
     @Operation(summary = "查询属性值", description = "查询属性值")
     @GetMapping("/attributes")
     @SaCheckLogin
-    @SaCheckPermission("admin:product:categories:getList")
+    @SaCheckPermission("admin:product:categories:attributes:getList")
     public ServerResponse<List<AttributeVO>> getAttributesList() {
         var attributes = categoryService.readAttributeList();
         return ServerResponse.success(attributes);

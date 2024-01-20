@@ -25,6 +25,7 @@
         <spring-boot-dependencies.version>3.2.0</spring-boot-dependencies.version>
         <spring-cloud-dependencies.version>2023.0.0</spring-cloud-dependencies.version>
         <spring-cloud-alibaba-dependencies.version>2022.0.0.0</spring-cloud-alibaba-dependencies.version>
+        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
         <!-- mall common -->
         <hutool-all.version>5.8.24</hutool-all.version>
         <fastjson2.verson>2.0.25</fastjson2.verson>
