@@ -40,9 +40,11 @@ public class OpenFeignConfig {
                 return;
             }
             var cookies = request.getCookies();
-            var cookieList = Arrays.stream(cookies).map(cookie -> cookie.getName() + "=" + cookie.getValue()).toList();
+            var cookieStr = Arrays.stream(cookies)
+                    .map(cookie -> cookie.getName() + "=" + cookie.getValue())
+                    .collect(Collectors.joining(";"));
             // 将cookie同步到新的请求的请求头中
-            requestTemplate.header("cookie", CollUtil.join(cookieList, ";"));
+            requestTemplate.header("cookie", cookieStr);
         };
     }
 
