@@ -5,13 +5,13 @@ import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.captcha.AbstractCaptcha;
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.generator.MathGenerator;
-import cn.hutool.core.util.IdUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.lingyi.mall.api.system.consumer.UserFeignConsumer;
-import com.lingyi.mall.auth.admin.constant.AdminConstant;
+import com.lingyi.mall.auth.admin.constant.AuthAdminConstant;
 import com.lingyi.mall.auth.admin.enums.AdminFailEnum;
 import com.lingyi.mall.auth.admin.model.dto.AuthenticatorDTO;
 import com.lingyi.mall.auth.admin.model.vo.AuthenticatorVO;
+import com.lingyi.mall.security.admin.bean.AdminAuthenticator;
 import com.lingyi.mall.auth.admin.properties.ImageCaptchaProperties;
 import com.lingyi.mall.auth.admin.properties.enums.CodeGeneratorType;
 import com.lingyi.mall.auth.admin.service.AuthAdminService;
@@ -21,7 +21,7 @@ import com.lingyi.mall.common.core.exception.BusinessException;
 import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.core.util.HttpUtil;
-import jakarta.servlet.ServletOutputStream;
+import com.lingyi.mall.security.admin.cosntant.AdminConstant;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -60,12 +60,14 @@ public class AuthAdminServiceImpl implements AuthAdminService {
         //校验用户密码
         var encodedPassword = SecureUtil.md5(authenticatorDTO.getPassword());
         AssertUtil.isEquals(userResponse.getPassword(), encodedPassword, AdminFailEnum.PASSWORD_ERROR);
-        AuthenticatorVO authenticatorVO = ConverterUtil.to(userResponse, AuthenticatorVO.class);
+        
+        //用户信息转换到AdminAuthenticator
+        AdminAuthenticator adminAuthenticator = ConverterUtil.to(userResponse, AdminAuthenticator.class);
         //登录
-        StpUtil.login(authenticatorVO.getUserId(), WhetherEnum.Y.getCode().equals(authenticatorDTO.getIsRememberMe()));
+        StpUtil.login(adminAuthenticator.getUserId(), WhetherEnum.Y.getCode().equals(authenticatorDTO.getIsRememberMe()));
         //session保存信息
-        StpUtil.getSession().set(AdminConstant.USER_SESSION_KEY, authenticatorVO);
-        return authenticatorVO;
+        StpUtil.getSession().set(AdminConstant.USER_SESSION_KEY, adminAuthenticator);
+        return ConverterUtil.to(userResponse, AuthenticatorVO.class);
     }
 
 
@@ -129,7 +131,7 @@ public class AuthAdminServiceImpl implements AuthAdminService {
             }
         }
         SaSession anonTokenSession = StpUtil.getAnonTokenSession();
-        anonTokenSession.set(AdminConstant.IMAGE_CAPTCHA_SESSION_KEY, imageCaptcha);
+        anonTokenSession.set(AuthAdminConstant.IMAGE_CAPTCHA_SESSION_KEY, imageCaptcha);
     }
 
 }

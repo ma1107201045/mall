@@ -1,6 +1,6 @@
 package com.lingyi.mall.security.core.util;
 
-import java.util.Optional;
+import com.lingyi.mall.security.core.bean.Authenticator;
 
 /**
  * @Author: maweiyan
@@ -8,7 +8,7 @@ import java.util.Optional;
  * @DateTime: 2024/1/16 14:23
  * @Description:
  */
-public interface SecurityAware<T extends Authenticator> {
+public interface Aware<T extends Authenticator> {
 
 
     T get();

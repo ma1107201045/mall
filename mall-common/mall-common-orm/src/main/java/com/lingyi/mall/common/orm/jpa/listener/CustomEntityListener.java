@@ -10,6 +10,7 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -26,13 +27,13 @@ import java.util.Objects;
 @AllArgsConstructor
 public class CustomEntityListener {
 
-
-    private CustomAuditorAware<String> auditorAware;
+    @Autowired
+    private CustomAuditorAware<String> customAuditorAware;
 
     @PrePersist
     protected void preInsert(Object target) {
         if (target instanceof BaseCommonDO baseCommonDO && StrUtil.isBlank(baseCommonDO.getCreateBy())) {
-            var auditor = auditorAware.getCurrentAuditor().orElse("unknown");
+            var auditor = customAuditorAware.getCurrentAuditor().orElse("unknown");
             baseCommonDO.setCreateBy(auditor);
             baseCommonDO.setCreateDateTime(LocalDateTime.now());
             baseCommonDO.setLastModifyBy(auditor);
@@ -60,7 +61,7 @@ public class CustomEntityListener {
     @PreUpdate
     protected void preUpdate(Object target) {
         if (target instanceof BaseCommonDO baseCommonDO && StrUtil.isBlank(baseCommonDO.getLastModifyBy())) {
-            var auditor = auditorAware.getCurrentAuditor().orElse("unknown");
+            var auditor = customAuditorAware.getCurrentAuditor().orElse("unknown");
             baseCommonDO.setLastModifyBy(auditor);
             baseCommonDO.setLastModifyDateTime(LocalDateTime.now());
         }

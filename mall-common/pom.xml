@@ -19,7 +19,9 @@
         <module>mall-common-redis</module>
         <module>mall-common-rocketmq</module>
         <module>mall-common-template</module>
+        <module>mall-common-validation</module>
         <module>mall-common-web</module>
         <module>mall-common-xxljob</module>
+
     </modules>
 </project>

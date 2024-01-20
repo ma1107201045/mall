@@ -1,4 +1,4 @@
-package com.lingyi.mall.security.core.util;
+package com.lingyi.mall.security.core.bean;
 
 import lombok.Data;
 

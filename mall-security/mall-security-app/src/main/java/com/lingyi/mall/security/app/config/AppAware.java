@@ -1,12 +1,10 @@
 package com.lingyi.mall.security.app.config;
 
 import cn.dev33.satoken.stp.StpUtil;
-import com.lingyi.mall.security.core.util.Authenticator;
-import com.lingyi.mall.security.core.util.SecurityAware;
+import com.lingyi.mall.security.core.bean.Authenticator;
+import com.lingyi.mall.security.core.util.Aware;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 /**
  * @author maweiyan
@@ -15,7 +13,7 @@ import java.util.Optional;
  * @description
  */
 @Component
-public class AppSecurityAware implements SecurityAware<Authenticator> {
+public class AppAware implements Aware<Authenticator> {
 
 
     @Override

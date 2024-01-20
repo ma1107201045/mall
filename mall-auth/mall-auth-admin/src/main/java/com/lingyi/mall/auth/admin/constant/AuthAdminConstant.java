@@ -6,12 +6,12 @@ package com.lingyi.mall.auth.admin.constant;
  * @DateTime: 2024/1/10 9:28
  * @Description:
  */
-public final class AdminConstant {
+public final class AuthAdminConstant {
 
-    private AdminConstant() {
+    private AuthAdminConstant() {
 
     }
 
     public static final String IMAGE_CAPTCHA_SESSION_KEY = "image-captcha";
-    public static final String USER_SESSION_KEY = "user";
+
 }

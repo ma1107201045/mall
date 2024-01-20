@@ -29,6 +29,7 @@ import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -54,6 +55,7 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
 
     @Override
     @Transactional(rollbackFor = Exception.class)
+    @Validated
     public void create(UserDTO userDTO) {
         //校验数据
         verifyData(userDTO, ObjectUtil.getNull(), OperationTypeEnum.CREATE);

@@ -2,6 +2,7 @@ package com.lingyi.mall.security.core.util;
 
 import cn.hutool.core.lang.TypeReference;
 import cn.hutool.extra.spring.SpringUtil;
+import com.lingyi.mall.security.core.bean.Authenticator;
 
 import java.lang.reflect.Type;
 
@@ -14,7 +15,7 @@ import java.lang.reflect.Type;
 public class AuthenticatorUtil {
 
     public static Authenticator getAuthenticator() {
-        SecurityAware<Authenticator> bean = SpringUtil.getBean(new TypeReference<>() {
+        Aware<Authenticator> bean = SpringUtil.getBean(new TypeReference<>() {
             @Override
             public Type getType() {
                 return super.getType();

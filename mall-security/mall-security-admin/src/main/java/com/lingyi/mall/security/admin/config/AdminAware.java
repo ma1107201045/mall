@@ -1,13 +1,12 @@
 package com.lingyi.mall.security.admin.config;
 
 import cn.dev33.satoken.stp.StpUtil;
-import com.lingyi.mall.security.core.util.Authenticator;
-import com.lingyi.mall.security.core.util.SecurityAware;
+import com.lingyi.mall.security.core.bean.Authenticator;
+import com.lingyi.mall.security.core.util.Aware;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
-import java.util.Optional;
 
 /**
  * @author maweiyan
@@ -16,7 +15,7 @@ import java.util.Optional;
  * @description
  */
 @Component
-public class AdminSecurityAware implements SecurityAware<Authenticator> {
+public class AdminAware implements Aware<Authenticator> {
 
 
     @Override
