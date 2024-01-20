@@ -25,6 +25,7 @@ public class AuthenticatorUtil {
     }
 
     public static Long getCurrentUserId() {
+        Authenticator authenticator = getAuthenticator();
         return getAuthenticator().getCurrentUserId();
     }
 

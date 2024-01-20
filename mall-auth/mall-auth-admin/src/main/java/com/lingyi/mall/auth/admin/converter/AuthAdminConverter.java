@@ -13,6 +13,10 @@ import com.lingyi.mall.security.admin.bean.AdminAuthenticator;
 public class AuthAdminConverter {
 
 
+    private AuthAdminConverter() {
+
+    }
+
     public static final AuthAdminConverter INSTANCE = new AuthAdminConverter();
 
     public AdminAuthenticator toAdminAuthenticator(UserResponse userResponse) {

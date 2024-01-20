@@ -1,6 +1,7 @@
 package com.lingyi.mall.security.admin.config;
 
 import cn.dev33.satoken.stp.StpUtil;
+import com.lingyi.mall.security.admin.cosntant.AdminConstant;
 import com.lingyi.mall.security.core.bean.Authenticator;
 import com.lingyi.mall.security.core.util.Aware;
 import org.springframework.lang.NonNull;
@@ -21,7 +22,7 @@ public class AdminAware implements Aware<Authenticator> {
     @Override
     @NonNull
     public Authenticator get() {
-        Authenticator authenticator = (Authenticator) StpUtil.getSession().get(StpUtil.TYPE);
+        Authenticator authenticator = (Authenticator) StpUtil.getSession().get(AdminConstant.USER_SESSION_KEY);
         return Objects.isNull(authenticator) ? new Authenticator() : authenticator;
     }
 }
