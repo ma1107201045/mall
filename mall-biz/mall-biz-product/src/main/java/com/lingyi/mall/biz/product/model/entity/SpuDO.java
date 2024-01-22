@@ -82,7 +82,7 @@ public class SpuDO extends BaseCommonDO implements Serializable {
     private BigDecimal mailPrice;
 
     @Column(name = "unit_name", columnDefinition = "DECIMAL(10,2) UNSIGNED NOT NULL COMMENT '单位名'")
-    private BigDecimal unitName;
+    private String unitName;
 
     @Column(name = "sale", columnDefinition = "INT(11) UNSIGNED DEFAULT 0 COMMENT '销售量'")
     private Integer sale;

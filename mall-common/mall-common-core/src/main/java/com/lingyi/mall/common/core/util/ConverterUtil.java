@@ -21,8 +21,14 @@ public class ConverterUtil {
         return BeanUtil.copyProperties(source, clazz);
     }
 
-    public static <S, T> void toList(List<S> sourceList, Class<T> clazz) {
-        BeanUtil.copyToList(sourceList, clazz, CopyOptions.create().setIgnoreNullValue(true));
+    public static <S, T> void toList(List<S> sourceList, List<T> targetList) {
+        for (int i = 0; i < sourceList.size(); i++) {
+            to(sourceList.get(i), targetList.get(i));
+        }
+    }
+
+    public static <S, T> List<T> toList(List<S> sourceList, Class<T> clazz) {
+        return BeanUtil.copyToList(sourceList, clazz, CopyOptions.create().setIgnoreNullValue(true));
     }
 
 }

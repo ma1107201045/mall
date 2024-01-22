@@ -13,4 +13,12 @@ import com.lingyi.mall.common.orm.util.BaseServicePro;
  * @Description:
  */
 public interface SpuService extends BaseServicePro<SpuDTO, SpuVO, SpuQuery, SpuDO, Long> {
+
+
+    /**
+     * 添加
+     *
+     * @param spuDTO 。。
+     */
+    void add(SpuDTO spuDTO);
 }

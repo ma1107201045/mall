@@ -41,16 +41,35 @@ public interface BaseServicePro<
     /**
      * 增
      *
-     * @param doEntity do
+     * @param doEntity doEntity
+     * @return ID
      */
     ID create(DO doEntity);
 
+
     /**
-     * 批量删
+     * 批量增
      *
-     * @param ids ids
+     * @param dto dto
      */
-    void deleteByIds(List<ID> ids);
+    List<ID> createList(List<DTO> dto, Class<DO> clazz);
+
+    /**
+     * 批量增
+     *
+     * @param dtoList      dtoList
+     * @param doEntityList doEntityList
+     * @return ID集
+     */
+    List<ID> createList(List<DTO> dtoList, List<DO> doEntityList);
+
+    /**
+     * 批量增
+     *
+     * @param doEntityList 。。
+     * @return ID集合
+     */
+    List<ID> createList(List<DO> doEntityList);
 
 
     /**
@@ -58,9 +77,36 @@ public interface BaseServicePro<
      *
      * @param id id
      */
-    default void deleteById(ID id) {
-        this.deleteByIds(Collections.singletonList(id));
-    }
+    void deleteById(ID id);
+
+    /**
+     * 批量删除
+     *
+     * @param ids ids
+     */
+    void deleteByIds(List<ID> ids);
+
+    /**
+     * @param dto   dto
+     * @param clazz clazz
+     */
+    void updateById(DTO dto, Class<DO> clazz);
+
+    /**
+     * 改
+     *
+     * @param dto      dto
+     * @param doEntity doEntity
+     */
+    void updateById(DTO dto, DO doEntity);
+
+    /**
+     * 改
+     *
+     * @param doEntity do
+     */
+    void updateById(DO doEntity);
+
 
     /**
      * 改
@@ -70,11 +116,29 @@ public interface BaseServicePro<
     void updateById(DTO dto);
 
     /**
-     * 改
-     *
-     * @param doEntity do
+     * 批量改
      */
-    void updateById(DO doEntity);
+    void updateListById(List<DTO> dto, Class<DO> clazz);
+
+    /**
+     * 批量改
+     */
+    void updateListById(List<DTO> dto, List<DO> doEntityList);
+
+
+    /**
+     * 批量改
+     */
+    void updateListById(List<DO> doEntityList);
+
+
+    /**
+     * 批量改
+     *
+     * @param dtoList dtoList
+     */
+    void updateListByIdV2(List<DTO> dtoList);
+
 
     /**
      * 查

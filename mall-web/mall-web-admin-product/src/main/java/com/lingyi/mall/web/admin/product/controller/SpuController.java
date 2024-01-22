@@ -3,6 +3,7 @@ package com.lingyi.mall.web.admin.product.controller;
 import cn.dev33.satoken.annotation.SaCheckLogin;
 import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.github.pagehelper.PageHelper;
+import com.lingyi.mall.biz.product.model.dto.SpuDTO;
 import com.lingyi.mall.biz.product.model.query.SpuQuery;
 import com.lingyi.mall.biz.product.model.vo.SpuVO;
 import com.lingyi.mall.biz.product.service.SpuService;
@@ -28,6 +29,14 @@ import java.util.List;
 public class SpuController {
 
     private final SpuService spuService;
+
+    @Operation(summary = "保存", description = "保存")
+    @PostMapping
+    @SaCheckLogin
+    @SaCheckPermission("admin:product:spus:save")
+    public void save(@RequestBody SpuDTO spuDTO) {
+        spuService.add(spuDTO);
+    }
 
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
