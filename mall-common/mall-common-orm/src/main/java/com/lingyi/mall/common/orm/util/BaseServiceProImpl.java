@@ -1,19 +1,17 @@
 package com.lingyi.mall.common.orm.util;
 
 
-import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.core.dto.BaseIdDTO;
+import com.lingyi.mall.common.core.query.BasePageQuery;
+import com.lingyi.mall.common.core.util.ConverterUtil;
+import com.lingyi.mall.common.core.vo.BaseIdVO;
 import com.lingyi.mall.common.orm.entity.BaseIdDO;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
-import com.lingyi.mall.common.core.query.BasePageQuery;
-import com.lingyi.mall.common.core.vo.BaseIdVO;
-import jakarta.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.function.Function;
 
 /**
  * @Author: maweiyan
@@ -60,20 +58,20 @@ public class BaseServiceProImpl<
     public List<ID> createList(List<DTO> dto, Class<DO> clazz) {
         var doEntityList = ConverterUtil.toList(dto, clazz);
         jpaRepository.saveAll(doEntityList);
-        return doEntityList.stream().map(BaseIdDO::getId).toList();
+        return getIdListByList(doEntityList);
     }
 
     @Override
     public List<ID> createList(List<DTO> dtoList, List<DO> doEntityList) {
         ConverterUtil.toList(dtoList, doEntityList);
         jpaRepository.saveAll(doEntityList);
-        return doEntityList.stream().map(BaseIdDO::getId).toList();
+        return getIdListByList(doEntityList);
     }
 
     @Override
     public List<ID> createList(List<DO> doEntityList) {
         jpaRepository.saveAll(doEntityList);
-        return doEntityList.stream().map(BaseIdDO::getId).toList();
+        return getIdListByList(doEntityList);
     }
 
     @Override
@@ -119,7 +117,7 @@ public class BaseServiceProImpl<
 
     @Override
     public void updateListById(List<DTO> dtoList, Class<DO> clazz) {
-        var idList = dtoList.stream().map(BaseIdDTO::getId).toList();
+        var idList = getIdListByList(dtoList);
         if (isAllExist(idList)) {
             createList(dtoList, clazz);
         }
@@ -127,7 +125,7 @@ public class BaseServiceProImpl<
 
     @Override
     public void updateListById(List<DTO> dtoList, List<DO> doEntityList) {
-        var idList = dtoList.stream().map(BaseIdDTO::getId).toList();
+        var idList = getIdListByList(dtoList);
         if (isAllExist(idList)) {
             createList(dtoList, doEntityList);
         }
@@ -135,7 +133,7 @@ public class BaseServiceProImpl<
 
     @Override
     public void updateListById(List<DO> doEntityList) {
-        var idList = doEntityList.stream().map(BaseIdDO::getId).toList();
+        var idList = getIdListByList(doEntityList);
         if (isAllExist(idList)) {
             createList(doEntityList);
         }
@@ -143,13 +141,12 @@ public class BaseServiceProImpl<
 
     @Override
     public void updateListByIdV2(List<DTO> dtoList) {
-        var idList = dtoList.stream().map(BaseIdDTO::getId).toList();
+        var idList = getIdListByList(dtoList);
         var doEntityList = jpaRepository.findAllById(idList);
         if (idList.size() == doEntityList.size()) {
             createList(dtoList, doEntityList);
         }
     }
-
 
     @Override
     public VO readById(ID id) {
@@ -172,9 +169,27 @@ public class BaseServiceProImpl<
     }
 
     private boolean isAllExist(List<ID> idList) {
-        List<DO> doEntityList = jpaRepository.findAllById(idList);
+        var doEntityList = jpaRepository.findAllById(idList);
         return idList.size() == doEntityList.size();
     }
 
+    private List<ID> getIdListByDoEntityList(List<DO> doEntityList) {
+        return doEntityList.stream().map(BaseIdDO::getId).toList();
+    }
 
+    private List<ID> getIdListByDTOList(List<DTO> dtoList) {
+        return dtoList.stream().map(BaseIdDTO::getId).toList();
+    }
+
+    private List<ID> getIdListByList(List<?> list) {
+        return list.stream().map(base -> {
+            if (base instanceof BaseIdDTO<?> baseIdDTO) {
+                return (ID) baseIdDTO.getId();
+            }
+            if (base instanceof BaseIdDO<?> baseIdDO) {
+                return (ID) baseIdDO.getId();
+            }
+            return null;
+        }).toList();
+    }
 }
