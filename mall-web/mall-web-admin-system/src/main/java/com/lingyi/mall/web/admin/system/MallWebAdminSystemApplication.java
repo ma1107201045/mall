@@ -15,7 +15,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * @description
  */
 @EnableDiscoveryClient
-@EnableFeignClients(basePackages = "com.lingyi.mall")
+@EnableFeignClients(basePackages = "com.lingyi.mall.api.*.feign")
 @EntityScan(basePackages = "com.lingyi.mall.biz.*.model.entity")
 @EnableJpaRepositories(basePackages = "com.lingyi.mall.biz.*.dao.repository")
 @MapperScan(basePackages = "com.lingyi.mall.biz.*.dao.mapper")

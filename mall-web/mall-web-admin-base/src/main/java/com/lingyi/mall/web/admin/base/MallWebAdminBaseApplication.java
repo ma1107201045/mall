@@ -12,7 +12,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @description
  */
 @EnableDiscoveryClient
-@EnableFeignClients(basePackages = "com.lingyi.mall")
+@EnableFeignClients(basePackages = "com.lingyi.mall.api.*.feign")
 @SpringBootApplication(scanBasePackages = "com.lingyi.mall")
 public class MallWebAdminBaseApplication {
 
