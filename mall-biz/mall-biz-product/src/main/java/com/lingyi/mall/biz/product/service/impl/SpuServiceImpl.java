@@ -26,7 +26,8 @@ public class SpuServiceImpl extends BaseServiceProImpl<SpuRepository, SpuMapper,
     }
 
     @Override
-    public void edit(SpuDTO spuDTO) {
+    public void editById(SpuDTO spuDTO) {
 
     }
+
 }
