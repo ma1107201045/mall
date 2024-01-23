@@ -90,7 +90,7 @@ public interface BaseServicePro<
      * @param dto   dto
      * @param clazz clazz
      */
-    void updateById(DTO dto, Class<DO> clazz);
+    ID updateById(DTO dto, Class<DO> clazz);
 
     /**
      * 改
@@ -98,14 +98,14 @@ public interface BaseServicePro<
      * @param dto      dto
      * @param doEntity doEntity
      */
-    void updateById(DTO dto, DO doEntity);
+    ID updateById(DTO dto, DO doEntity);
 
     /**
      * 改
      *
      * @param doEntity do
      */
-    void updateById(DO doEntity);
+    ID updateById(DO doEntity);
 
 
     /**
@@ -113,23 +113,23 @@ public interface BaseServicePro<
      *
      * @param dto dto
      */
-    void updateById(DTO dto);
+    ID updateById(DTO dto);
 
     /**
      * 批量改
      */
-    void updateListById(List<DTO> dto, Class<DO> clazz);
+    List<ID> updateListById(List<DTO> dto, Class<DO> clazz);
 
     /**
      * 批量改
      */
-    void updateListById(List<DTO> dto, List<DO> doEntityList);
+    List<ID> updateListById(List<DTO> dto, List<DO> doEntityList);
 
 
     /**
      * 批量改
      */
-    void updateListById(List<DO> doEntityList);
+    List<ID> updateListById(List<DO> doEntityList);
 
 
     /**
@@ -137,7 +137,7 @@ public interface BaseServicePro<
      *
      * @param dtoList dtoList
      */
-    void updateListByIdV2(List<DTO> dtoList);
+    List<ID> updateListByIdV2(List<DTO> dtoList);
 
 
     /**

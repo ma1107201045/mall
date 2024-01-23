@@ -59,7 +59,7 @@ public class RoleServiceImpl extends BaseServiceProImpl<RoleRepository, RoleMapp
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void updateById(RoleDTO roleDTO) {
+    public void updateByDTO(RoleDTO roleDTO) {
         //获取id
         Long id = roleDTO.getId();
         //获取角色信息

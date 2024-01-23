@@ -56,7 +56,7 @@ public class RoleController {
     @SaCheckPermission("admin:system:roles:update")
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody RoleDTO roleDTO) {
         roleDTO.setId(id);
-        roleService.updateById(roleDTO);
+        roleService.updateByDTO(roleDTO);
         return ServerResponse.success();
     }
 

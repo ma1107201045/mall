@@ -58,7 +58,7 @@ public class UserController {
     @SaCheckPermission("admin:system:users:update")
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody UserDTO userDTO) {
         userDTO.setId(id);
-        userService.updateById(userDTO);
+        userService.updateByDTO(userDTO);
         return ServerResponse.success();
     }
 

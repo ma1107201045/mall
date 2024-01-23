@@ -23,6 +23,14 @@ public interface MenuService extends BaseServicePro<MenuDTO, MenuVO, MenuQuery, 
      */
     void create(MenuDTO menuDTO);
 
+
+    /**
+     * 更新
+     *
+     * @param menuDTO ..
+     */
+    void updateByDTO(MenuDTO menuDTO);
+
     /**
      * 通过父级id查询菜单树
      *

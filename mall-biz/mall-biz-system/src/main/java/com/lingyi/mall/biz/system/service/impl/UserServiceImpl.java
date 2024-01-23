@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.system.service.impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.lingyi.mall.api.system.response.MenuResponse;
@@ -22,6 +23,7 @@ import com.lingyi.mall.biz.system.service.RoleService;
 import com.lingyi.mall.biz.system.service.UserRoleService;
 import com.lingyi.mall.biz.system.service.UserService;
 import com.lingyi.mall.biz.system.util.OperationTypeEnum;
+import com.lingyi.mall.common.core.enums.WhetherEnum;
 import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.core.util.ObjectUtil;
@@ -55,16 +57,17 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    @Validated
     public void create(UserDTO userDTO) {
         //校验数据
         verifyData(userDTO, ObjectUtil.getNull(), OperationTypeEnum.CREATE);
         //密码作哈希
         userDTO.setPassword(SecureUtil.md5(userDTO.getPassword()));
         //保存
-        var newId = create(userDTO, UserDO.class);
+        var id = create(userDTO, UserDO.class);
+        //校验账号是否禁用，如果满足先踢下线+封禁账号
+        verifyAndKickoutAndDisable(userDTO, id);
         //保存用户角色信息
-        userRoleService.createList(newId, userDTO.getRoleIds());
+        userRoleService.createList(id, userDTO.getRoleIds());
     }
 
     @Override
@@ -83,13 +86,15 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void updateById(UserDTO userDTO) {
+    public void updateByDTO(UserDTO userDTO) {
         //校验数据
         verifyData(userDTO, ObjectUtil.getNull(), OperationTypeEnum.UPDATE);
         //密码作哈希
         userDTO.setPassword(SecureUtil.md5(userDTO.getPassword()));
         //更新
-        super.updateById(userDTO);
+        Long id = super.updateById(userDTO);
+        //校验账号是否禁用，如果满足先踢下线+封禁账号
+        verifyAndKickoutAndDisable(userDTO, id);
         //删除用户角色集
         userRoleService.deleteByUserIds(Collections.singletonList(userDTO.getId()));
         //保存用户角色信息
@@ -171,6 +176,13 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
             var flag = jpaRepository.findAllById(ids).stream()
                     .anyMatch(userDO -> SystemConstant.USER_NAME_ADMIN.equals(userDO.getUserName()));
             AssertUtil.isFalse(flag, SystemFailEnum.USER_NAME_ADMIN_DELETE_ERROR);
+        }
+    }
+
+    private void verifyAndKickoutAndDisable(UserDTO userDTO, Long id) {
+        if (WhetherEnum.Y.getCode().equals(userDTO.getIsDisable())) {
+            StpUtil.kickout(id);
+            StpUtil.disable(id, SystemConstant.USER_DISABLE_TIME);
         }
     }
 

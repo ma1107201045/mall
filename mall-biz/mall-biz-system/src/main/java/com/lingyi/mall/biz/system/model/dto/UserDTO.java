@@ -61,9 +61,9 @@ public class UserDTO extends BaseIdDTO<Long> {
     private String phoneNumber;
 
 
-    @Schema(description = "是否启用 1 是 0 否")
-    @NotNull(message = "是否启用不能为空")
-    private Integer isEnable;
+    @Schema(description = "是否禁用 1 是 0 否")
+    @NotNull(message = "是否禁用不能为空")
+    private Integer isDisable;
 
 
     @Schema(description = "备注")

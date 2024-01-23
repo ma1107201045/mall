@@ -58,7 +58,7 @@ public class MenuServiceImpl extends BaseServiceProImpl<MenuRepository, MenuMapp
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void updateById(MenuDTO menuDTO) {
+    public void updateByDTO(MenuDTO menuDTO) {
         //校验数据
         verifyData(menuDTO);
         //更新

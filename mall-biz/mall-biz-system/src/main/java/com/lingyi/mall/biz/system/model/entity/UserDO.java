@@ -59,8 +59,8 @@ public class UserDO extends BaseCommonDO implements Serializable {
     @Column(name = "last_login_ip", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '最后一次登录IP'")
     private String lastLoginIp;
 
-    @Column(name = "is_enable", columnDefinition = "TINYINT(4) NOT NULL COMMENT '是否启用 1 是 0 否'")
-    private Integer isEnable;
+    @Column(name = "is_disable", columnDefinition = "TINYINT(4) NOT NULL COMMENT '是否禁用 1 是 0 否'")
+    private Integer isDisable;
 
     @Column(name = "remark", columnDefinition = "VARCHAR(200) DEFAULT '' COMMENT '备注'")
     private String remark;

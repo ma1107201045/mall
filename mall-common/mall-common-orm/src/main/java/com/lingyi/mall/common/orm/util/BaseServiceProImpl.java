@@ -4,6 +4,7 @@ package com.lingyi.mall.common.orm.util;
 import com.lingyi.mall.common.core.dto.BaseIdDTO;
 import com.lingyi.mall.common.core.query.BasePageQuery;
 import com.lingyi.mall.common.core.util.ConverterUtil;
+import com.lingyi.mall.common.core.util.ObjectUtil;
 import com.lingyi.mall.common.core.vo.BaseIdVO;
 import com.lingyi.mall.common.orm.entity.BaseIdDO;
 import com.lingyi.mall.common.orm.mybatis.MybatisMapperImplementation;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -85,67 +87,74 @@ public class BaseServiceProImpl<
     }
 
     @Override
-    public void updateById(DTO dto, Class<DO> clazz) {
+    public ID updateById(DTO dto, Class<DO> clazz) {
         if (isExist(dto.getId())) {
-            create(dto, clazz);
+            return create(dto, clazz);
         }
+        return ObjectUtil.getNull();
     }
 
     @Override
-    public void updateById(DTO dto, DO doEntity) {
+    public ID updateById(DTO dto, DO doEntity) {
         if (isExist(dto.getId())) {
-            create(dto, doEntity);
+            return create(dto, doEntity);
         }
+        return ObjectUtil.getNull();
     }
 
     @Override
-    public void updateById(DO doEntity) {
+    public ID updateById(DO doEntity) {
         if (isExist(doEntity.getId())) {
-            create(doEntity);
+            return create(doEntity);
         }
+        return ObjectUtil.getNull();
     }
 
     @Override
-    public void updateById(DTO dto) {
+    public ID updateById(DTO dto) {
         var optional = jpaRepository.findById(dto.getId());
         if (optional.isPresent()) {
             var doEntity = optional.get();
-            create(dto, doEntity);
+            return create(dto, doEntity);
         }
-
+        return ObjectUtil.getNull();
     }
 
     @Override
-    public void updateListById(List<DTO> dtoList, Class<DO> clazz) {
+    public List<ID> updateListById(List<DTO> dtoList, Class<DO> clazz) {
         var idList = getIdListByList(dtoList);
         if (isAllExist(idList)) {
-            createList(dtoList, clazz);
+            return createList(dtoList, clazz);
         }
+        return Collections.emptyList();
     }
 
     @Override
-    public void updateListById(List<DTO> dtoList, List<DO> doEntityList) {
+    public List<ID> updateListById(List<DTO> dtoList, List<DO> doEntityList) {
         var idList = getIdListByList(dtoList);
         if (isAllExist(idList)) {
-            createList(dtoList, doEntityList);
+            return createList(dtoList, doEntityList);
         }
+        return Collections.emptyList();
     }
 
     @Override
-    public void updateListById(List<DO> doEntityList) {
+    public List<ID> updateListById(List<DO> doEntityList) {
         var idList = getIdListByList(doEntityList);
         if (isAllExist(idList)) {
-            createList(doEntityList);
+            return createList(doEntityList);
         }
+        return Collections.emptyList();
     }
 
     @Override
-    public void updateListByIdV2(List<DTO> dtoList) {
+    public List<ID> updateListByIdV2(List<DTO> dtoList) {
         var idList = getIdListByList(dtoList);
         var doEntityList = jpaRepository.findAllById(idList);
         if (idList.size() == doEntityList.size()) {
-            createList(dtoList, doEntityList);
+            return createList(dtoList, doEntityList);
         }
+        return Collections.emptyList();
     }
 
     @Override

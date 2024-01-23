@@ -1,5 +1,6 @@
 package com.lingyi.mall.common.web.handler;
 
+import cn.dev33.satoken.exception.DisableServiceException;
 import cn.dev33.satoken.exception.NotLoginException;
 import cn.dev33.satoken.exception.NotPermissionException;
 import com.lingyi.mall.common.core.exception.BusinessException;
@@ -101,6 +102,14 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public ServerResponse<Void> notLoginException(NotLoginException exception) {
         log.error("notLoginException：", exception);
+        log.error("暂未登录,错误原因:", exception);
+        return ServerResponse.fail(HttpStatus.UNAUTHORIZED.value(), exception.getMessage());
+    }
+
+    @ExceptionHandler(DisableServiceException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ServerResponse<Void> disableServiceException(DisableServiceException exception) {
+        log.error("disableServiceException：", exception);
         log.error("暂未登录,错误原因:", exception);
         return ServerResponse.fail(HttpStatus.UNAUTHORIZED.value(), exception.getMessage());
     }

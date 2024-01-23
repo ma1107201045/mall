@@ -1,5 +1,6 @@
 package com.lingyi.mall.auth.admin.service.impl;
 
+import cn.dev33.satoken.exception.DisableServiceException;
 import cn.dev33.satoken.session.SaSession;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.captcha.AbstractCaptcha;
@@ -49,7 +50,7 @@ public class AuthAdminServiceImpl implements AuthAdminService {
     public AuthenticatorVO login(AuthenticatorDTO authenticatorDTO) {
         //校验验证码是否过期
         SaSession anonTokenSession = StpUtil.getAnonTokenSession();
-        var imageCaptcha = anonTokenSession.get("image-captcha");
+        var imageCaptcha = anonTokenSession.get(AuthAdminConstant.IMAGE_CAPTCHA_SESSION_KEY);
         AssertUtil.notNull(imageCaptcha, AdminFailEnum.IMAGE_CAPTCHA_STALE_DATED_ERROR);
         //校验验证码是否错误
         var flag = imageCaptcha.equals(authenticatorDTO.getImageCaptcha());
@@ -64,8 +65,12 @@ public class AuthAdminServiceImpl implements AuthAdminService {
 
         //用户信息转换到AdminAuthenticator
         AdminAuthenticator adminAuthenticator = AuthAdminConverter.INSTANCE.toAdminAuthenticator(userResponse);
+        //用户id
+        Long userId = adminAuthenticator.getUserId();
+        // 校验指定账号是否已被封禁，如果被封禁则抛出异常 `DisableServiceException`
+        StpUtil.checkDisable(userId);
         //登录
-        StpUtil.login(adminAuthenticator.getUserId(), WhetherEnum.Y.getCode().equals(authenticatorDTO.getIsRememberMe()));
+        StpUtil.login(userId, WhetherEnum.Y.getCode().equals(authenticatorDTO.getIsRememberMe()));
         //session保存信息
         StpUtil.getSession().set(AdminConstant.USER_SESSION_KEY, adminAuthenticator);
         //用户信息转换到AuthenticatorVO

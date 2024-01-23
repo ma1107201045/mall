@@ -51,8 +51,8 @@ public class UserResponse implements Serializable {
     @Schema(description = "最后登录IP")
     private String lastLoginIp;
 
-    @Schema(description = "是否启用 1 是 0 否")
-    private Integer isEnable;
+    @Schema(description = "是否禁用 1 是 0 否")
+    private Integer isDisable;
 
     @Schema(description = "备注")
     private String remark;

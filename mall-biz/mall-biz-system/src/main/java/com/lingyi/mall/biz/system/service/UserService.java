@@ -27,6 +27,14 @@ public interface UserService extends BaseServicePro<UserDTO, UserVO, UserQuery, 
      */
     void create(UserDTO userDTO);
 
+
+    /**
+     * 更新
+     *
+     * @param userDTO ..
+     */
+    void updateByDTO(UserDTO userDTO);
+
     /**
      * 读取角色集
      *

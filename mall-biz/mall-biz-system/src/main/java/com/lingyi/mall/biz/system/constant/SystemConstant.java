@@ -16,5 +16,7 @@ public final class SystemConstant {
 
     public static final String USER_NAME_ADMIN = "admin";
 
+    public static final long USER_DISABLE_TIME = -1L;
+
     public static final Long MENU_ROOT_ID = 0L;
 }

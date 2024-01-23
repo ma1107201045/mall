@@ -23,6 +23,12 @@ public interface RoleService extends BaseServicePro<RoleDTO, RoleVO, RoleQuery, 
      */
     void create(RoleDTO roleDTO);
 
+    /**
+     * 更新
+     *
+     * @param roleDTO ..
+     */
+    void updateByDTO(RoleDTO roleDTO);
 
 
     /**

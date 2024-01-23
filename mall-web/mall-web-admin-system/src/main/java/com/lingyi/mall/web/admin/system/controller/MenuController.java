@@ -55,7 +55,7 @@ public class MenuController {
     @SaCheckPermission("admin:system:menus:update")
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody MenuDTO menuDTO) {
         menuDTO.setId(id);
-        menuService.updateById(menuDTO);
+        menuService.updateByDTO(menuDTO);
         return ServerResponse.success();
     }
 
