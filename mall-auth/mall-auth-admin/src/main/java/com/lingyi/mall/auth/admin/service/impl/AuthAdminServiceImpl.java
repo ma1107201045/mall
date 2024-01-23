@@ -1,7 +1,5 @@
 package com.lingyi.mall.auth.admin.service.impl;
 
-import cn.dev33.satoken.exception.DisableServiceException;
-import cn.dev33.satoken.session.SaSession;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.captcha.AbstractCaptcha;
 import cn.hutool.captcha.CaptchaUtil;
@@ -13,7 +11,6 @@ import com.lingyi.mall.auth.admin.converter.AuthAdminConverter;
 import com.lingyi.mall.auth.admin.enums.AdminFailEnum;
 import com.lingyi.mall.auth.admin.model.dto.AuthenticatorDTO;
 import com.lingyi.mall.auth.admin.model.vo.AuthenticatorVO;
-import com.lingyi.mall.security.admin.bean.AdminAuthenticator;
 import com.lingyi.mall.auth.admin.properties.ImageCaptchaProperties;
 import com.lingyi.mall.auth.admin.properties.enums.CodeGeneratorType;
 import com.lingyi.mall.auth.admin.service.AuthAdminService;
@@ -21,7 +18,6 @@ import com.lingyi.mall.auth.admin.util.CodeGeneratorProxy;
 import com.lingyi.mall.common.core.enums.WhetherEnum;
 import com.lingyi.mall.common.core.exception.BusinessException;
 import com.lingyi.mall.common.core.util.AssertUtil;
-import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.core.util.HttpUtil;
 import com.lingyi.mall.security.admin.cosntant.AdminConstant;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +26,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * @author maweiyan
@@ -49,7 +46,7 @@ public class AuthAdminServiceImpl implements AuthAdminService {
     @Override
     public AuthenticatorVO login(AuthenticatorDTO authenticatorDTO) {
         //校验验证码是否过期
-        SaSession anonTokenSession = StpUtil.getAnonTokenSession();
+        var anonTokenSession = StpUtil.getAnonTokenSession();
         var imageCaptcha = anonTokenSession.get(AuthAdminConstant.IMAGE_CAPTCHA_SESSION_KEY);
         AssertUtil.notNull(imageCaptcha, AdminFailEnum.IMAGE_CAPTCHA_STALE_DATED_ERROR);
         //校验验证码是否错误
@@ -57,17 +54,17 @@ public class AuthAdminServiceImpl implements AuthAdminService {
         AssertUtil.isTrue(flag, AdminFailEnum.IMAGE_CAPTCHA_ERROR);
         anonTokenSession.clear();
         //校验用户
-        var userResponse = userFeignConsumer.getUserByUserName(authenticatorDTO.getUserName());
-        AssertUtil.notNull(userResponse, AdminFailEnum.USER_NAME_NOT_EXIST_ERROR);
+        var response = userFeignConsumer.getUserByUserName(authenticatorDTO.getUserName());
+        AssertUtil.notNull(response, AdminFailEnum.USER_NAME_NOT_EXIST_ERROR);
         //校验用户密码
         var encodedPassword = SecureUtil.md5(authenticatorDTO.getPassword());
-        AssertUtil.isEquals(userResponse.getPassword(), encodedPassword, AdminFailEnum.PASSWORD_ERROR);
+        AssertUtil.isEquals(response.getPassword(), encodedPassword, AdminFailEnum.PASSWORD_ERROR);
         //用户信息转换到AdminAuthenticator
-        AdminAuthenticator adminAuthenticator = AuthAdminConverter.INSTANCE.toAdminAuthenticator(userResponse);
+        var adminAuthenticator = AuthAdminConverter.INSTANCE.toAdminAuthenticator(response);
         //用户id
-        Long userId = adminAuthenticator.getUserId();
+        var userId = adminAuthenticator.getUserId();
         //sa-token账户封禁机制基于redis实现，如果redis内存清理，有可能跟mysql数据库账户状态不一致，需特殊处理
-        if (WhetherEnum.Y.getCode().equals(userResponse.getIsDisable()) && !StpUtil.isDisable(userId)) {
+        if (WhetherEnum.Y.getCode().equals(response.getIsDisable()) && !StpUtil.isDisable(userId)) {
             StpUtil.disable(userId, AuthAdminConstant.USER_DISABLE_TIME);
         }
         // 校验指定账号是否已被封禁，如果被封禁则抛出异常 `DisableServiceException`
@@ -77,7 +74,7 @@ public class AuthAdminServiceImpl implements AuthAdminService {
         //session保存信息
         StpUtil.getSession().set(AdminConstant.USER_SESSION_KEY, adminAuthenticator);
         //用户信息转换到AuthenticatorVO
-        return AuthAdminConverter.INSTANCE.toAuthenticatorVO(userResponse);
+        return AuthAdminConverter.INSTANCE.toAuthenticatorVO(response);
     }
 
 
@@ -93,7 +90,9 @@ public class AuthAdminServiceImpl implements AuthAdminService {
         var captcha = getImageCaptchaObject();
         this.setImageCaptcha(captcha);
         var response = HttpUtil.getResponse();
-        assert response != null;
+        if (Objects.isNull(response)) {
+            return;
+        }
         response.setContentType(MediaType.IMAGE_PNG_VALUE);
         try (var os = response.getOutputStream()) {
             captcha.write(os);
@@ -140,7 +139,7 @@ public class AuthAdminServiceImpl implements AuthAdminService {
                 default -> throw new BusinessException(AdminFailEnum.SET_IMAGE_CAPTCHA_ERROR);
             }
         }
-        SaSession anonTokenSession = StpUtil.getAnonTokenSession();
+        var anonTokenSession = StpUtil.getAnonTokenSession();
         anonTokenSession.set(AuthAdminConstant.IMAGE_CAPTCHA_SESSION_KEY, imageCaptcha);
     }
 

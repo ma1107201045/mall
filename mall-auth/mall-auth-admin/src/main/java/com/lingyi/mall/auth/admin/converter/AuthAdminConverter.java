@@ -19,17 +19,17 @@ public class AuthAdminConverter {
 
     public static final AuthAdminConverter INSTANCE = new AuthAdminConverter();
 
-    public AdminAuthenticator toAdminAuthenticator(UserResponse userResponse) {
-        AdminAuthenticator adminAuthenticator = new AdminAuthenticator();
-        adminAuthenticator.setCurrentUserId(userResponse.getUserId());
-        adminAuthenticator.setCurrentUserName(userResponse.getUserName());
-        adminAuthenticator.setUserId(userResponse.getUserId());
+    public AdminAuthenticator toAdminAuthenticator(UserResponse response) {
+        var adminAuthenticator = new AdminAuthenticator();
+        adminAuthenticator.setCurrentUserId(response.getUserId());
+        adminAuthenticator.setCurrentUserName(response.getUserName());
+        adminAuthenticator.setUserId(response.getUserId());
         return adminAuthenticator;
     }
 
-    public AuthenticatorVO toAuthenticatorVO(UserResponse userResponse) {
-        AuthenticatorVO adminAuthenticator = new AuthenticatorVO();
-        adminAuthenticator.setUserId(userResponse.getUserId());
+    public AuthenticatorVO toAuthenticatorVO(UserResponse response) {
+        var adminAuthenticator = new AuthenticatorVO();
+        adminAuthenticator.setUserId(response.getUserId());
         return adminAuthenticator;
     }
 }
