@@ -62,11 +62,14 @@ public class AuthAdminServiceImpl implements AuthAdminService {
         //校验用户密码
         var encodedPassword = SecureUtil.md5(authenticatorDTO.getPassword());
         AssertUtil.isEquals(userResponse.getPassword(), encodedPassword, AdminFailEnum.PASSWORD_ERROR);
-
         //用户信息转换到AdminAuthenticator
         AdminAuthenticator adminAuthenticator = AuthAdminConverter.INSTANCE.toAdminAuthenticator(userResponse);
         //用户id
         Long userId = adminAuthenticator.getUserId();
+        //sa-token账户封禁机制基于redis实现，如果redis内存清理，有可能跟mysql数据库账户状态不一致，需特殊处理
+        if (WhetherEnum.Y.getCode().equals(userResponse.getIsDisable()) && !StpUtil.isDisable(userId)) {
+            StpUtil.disable(userId, AuthAdminConstant.USER_DISABLE_TIME);
+        }
         // 校验指定账号是否已被封禁，如果被封禁则抛出异常 `DisableServiceException`
         StpUtil.checkDisable(userId);
         //登录

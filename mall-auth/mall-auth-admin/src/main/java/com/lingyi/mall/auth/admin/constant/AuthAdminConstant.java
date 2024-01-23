@@ -14,4 +14,6 @@ public final class AuthAdminConstant {
 
     public static final String IMAGE_CAPTCHA_SESSION_KEY = "image-captcha";
 
+    public static final long USER_DISABLE_TIME = -1L;
+
 }
