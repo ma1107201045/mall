@@ -20,4 +20,13 @@ import org.springframework.stereotype.Service;
 public class SpuServiceImpl extends BaseServiceProImpl<SpuRepository, SpuMapper, SpuDTO, SpuVO, SpuQuery, SpuDO, Long> implements SpuService {
 
 
+    @Override
+    public void add(SpuDTO spuDTO) {
+
+    }
+
+    @Override
+    public void edit(SpuDTO spuDTO) {
+
+    }
 }

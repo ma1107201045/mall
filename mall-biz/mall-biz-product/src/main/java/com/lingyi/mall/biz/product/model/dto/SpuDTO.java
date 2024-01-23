@@ -25,6 +25,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Schema(description = "spu")
 public class SpuDTO extends BaseIdDTO<Long> {
+
     @Serial
     private static final long serialVersionUID = -3933866554330445181L;
 
@@ -41,6 +42,12 @@ public class SpuDTO extends BaseIdDTO<Long> {
     @NotNull(message = "属性集不能为空")
     @Size(min = 1, message = "属性集长度不能为0")
     private List<SpuAttributeDTO> spuAttributes;
+
+    @Schema(description = "SKU集", requiredMode = Schema.RequiredMode.REQUIRED)
+    @Valid
+    @NotNull(message = "SKU集不能为空")
+    @Size(min = 1, message = "SKU集长度不能为0")
+    private List<SkuDTO> skus;
 
     @Schema(description = "商品名称", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank(message = "商品名称不能为空")
@@ -63,7 +70,8 @@ public class SpuDTO extends BaseIdDTO<Long> {
     @NotNull(message = "市场价不能为空")
     private BigDecimal marketPrice;
 
-    @Schema(description = "销售价")
+    @Schema(description = "销售价", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotNull(message = "销售价不能为空")
     private BigDecimal salePrice;
 
     @Schema(description = "成本价", requiredMode = Schema.RequiredMode.REQUIRED)

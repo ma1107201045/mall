@@ -21,4 +21,11 @@ public interface SpuService extends BaseServicePro<SpuDTO, SpuVO, SpuQuery, SpuD
      * @param spuDTO 。。
      */
     void add(SpuDTO spuDTO);
+
+    /**
+     * 修改
+     *
+     * @param spuDTO 。。
+     */
+    void editById(SpuDTO spuDTO);
 }

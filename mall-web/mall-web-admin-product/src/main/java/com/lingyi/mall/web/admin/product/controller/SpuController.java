@@ -34,7 +34,7 @@ public class SpuController {
     @PostMapping
     @SaCheckLogin
     @SaCheckPermission("admin:product:spus:save")
-    public void save(@RequestBody SpuDTO spuDTO) {
+    public void save(@Valid @RequestBody SpuDTO spuDTO) {
         spuService.add(spuDTO);
     }
 
@@ -44,6 +44,14 @@ public class SpuController {
     @SaCheckPermission("admin:product:spus:delete")
     public void deleteByIds(@PathVariable List<Long> ids) {
         spuService.deleteByIds(ids);
+    }
+
+    @Operation(summary = "保存", description = "保存")
+    @PostMapping
+    @SaCheckLogin
+    @SaCheckPermission("admin:product:spus:update")
+    public void updateById(@Valid @RequestBody SpuDTO spuDTO) {
+        spuService.editById(spuDTO);
     }
 
     @Operation(summary = "查询列表", description = "查询列表")
