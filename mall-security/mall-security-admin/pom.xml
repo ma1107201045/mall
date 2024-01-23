@@ -14,6 +14,11 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>mall-security-core</artifactId>
         </dependency>
+<!--        &lt;!&ndash; Sa-Token插件：权限缓存与业务缓存分离 &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>cn.dev33</groupId>-->
+<!--            <artifactId>sa-token-alone-redis</artifactId>-->
+<!--        </dependency>-->
         <!-- Sa-Token 整合 Redis （使用 jackson 序列化方式） -->
         <dependency>
             <groupId>cn.dev33</groupId>
