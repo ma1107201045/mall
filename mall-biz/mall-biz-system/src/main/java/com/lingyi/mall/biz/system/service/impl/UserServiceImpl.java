@@ -92,13 +92,13 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
         //密码作哈希
         userDTO.setPassword(SecureUtil.md5(userDTO.getPassword()));
         //更新
-        Long id = super.updateById(userDTO);
+        Long id = updateById(userDTO);
         //校验账号是否禁用，如果满足先踢下线+封禁账号
         verifyAndKickoutAndDisable(userDTO, id);
         //删除用户角色集
-        userRoleService.deleteByUserIds(Collections.singletonList(userDTO.getId()));
+        userRoleService.deleteByUserIds(Collections.singletonList(id));
         //保存用户角色信息
-        userRoleService.createList(userDTO.getId(), userDTO.getRoleIds());
+        userRoleService.createList(id, userDTO.getRoleIds());
     }
 
     @Override

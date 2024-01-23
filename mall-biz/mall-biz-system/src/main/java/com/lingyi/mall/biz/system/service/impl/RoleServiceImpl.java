@@ -60,18 +60,8 @@ public class RoleServiceImpl extends BaseServiceProImpl<RoleRepository, RoleMapp
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateByDTO(RoleDTO roleDTO) {
-        //获取id
-        Long id = roleDTO.getId();
-        //获取角色信息
-        var optional = jpaRepository.findById(id);
-        //判断用户是否不为空
-        AssertUtil.isFalse(optional.isEmpty(), SystemFailEnum.ROLE_NULL_ERROR);
-        //获取用户
-        var roleDO = optional.get();
-        //DTO转换Entity
-        ConverterUtil.to(roleDTO, roleDO);
         //更新
-        updateById(roleDO);
+        var id = updateById(roleDTO);
         //删除角色菜单集
         roleMenuService.removeByRoleIds(Collections.singletonList(id));
         //保存角色菜单信息

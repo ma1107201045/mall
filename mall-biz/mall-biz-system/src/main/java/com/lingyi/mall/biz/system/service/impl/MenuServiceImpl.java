@@ -62,7 +62,7 @@ public class MenuServiceImpl extends BaseServiceProImpl<MenuRepository, MenuMapp
         //校验数据
         verifyData(menuDTO);
         //更新
-        super.updateById(menuDTO);
+        updateById(menuDTO);
     }
 
     @Override

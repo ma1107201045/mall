@@ -2,6 +2,7 @@ package com.lingyi.mall.common.orm.util;
 
 
 import com.lingyi.mall.common.core.dto.BaseIdDTO;
+import com.lingyi.mall.common.core.exception.BusinessException;
 import com.lingyi.mall.common.core.query.BasePageQuery;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.core.util.ObjectUtil;
@@ -29,6 +30,8 @@ public class BaseServiceProImpl<
         QUERY extends BasePageQuery,
         DO extends BaseIdDO<ID>,
         ID extends Serializable> implements BaseServicePro<DTO, VO, QUERY, DO, ID> {
+
+    private final static String DATA_NOT_EXIST_MESSAGE = "数据不存在";
 
     @Autowired
     protected J jpaRepository;
@@ -91,7 +94,7 @@ public class BaseServiceProImpl<
         if (isExist(dto.getId())) {
             return create(dto, clazz);
         }
-        return ObjectUtil.getNull();
+        throw new BusinessException(DATA_NOT_EXIST_MESSAGE);
     }
 
     @Override
@@ -99,7 +102,7 @@ public class BaseServiceProImpl<
         if (isExist(dto.getId())) {
             return create(dto, doEntity);
         }
-        return ObjectUtil.getNull();
+        throw new BusinessException(DATA_NOT_EXIST_MESSAGE);
     }
 
     @Override
@@ -107,7 +110,7 @@ public class BaseServiceProImpl<
         if (isExist(doEntity.getId())) {
             return create(doEntity);
         }
-        return ObjectUtil.getNull();
+        throw new BusinessException(DATA_NOT_EXIST_MESSAGE);
     }
 
     @Override
@@ -117,7 +120,7 @@ public class BaseServiceProImpl<
             var doEntity = optional.get();
             return create(dto, doEntity);
         }
-        return ObjectUtil.getNull();
+        throw new BusinessException(DATA_NOT_EXIST_MESSAGE);
     }
 
     @Override
@@ -126,7 +129,7 @@ public class BaseServiceProImpl<
         if (isAllExist(idList)) {
             return createList(dtoList, clazz);
         }
-        return Collections.emptyList();
+        throw new BusinessException(DATA_NOT_EXIST_MESSAGE);
     }
 
     @Override
@@ -135,7 +138,7 @@ public class BaseServiceProImpl<
         if (isAllExist(idList)) {
             return createList(dtoList, doEntityList);
         }
-        return Collections.emptyList();
+        throw new BusinessException(DATA_NOT_EXIST_MESSAGE);
     }
 
     @Override
@@ -144,7 +147,7 @@ public class BaseServiceProImpl<
         if (isAllExist(idList)) {
             return createList(doEntityList);
         }
-        return Collections.emptyList();
+        throw new BusinessException(DATA_NOT_EXIST_MESSAGE);
     }
 
     @Override
@@ -154,7 +157,7 @@ public class BaseServiceProImpl<
         if (idList.size() == doEntityList.size()) {
             return createList(dtoList, doEntityList);
         }
-        return Collections.emptyList();
+        throw new BusinessException(DATA_NOT_EXIST_MESSAGE);
     }
 
     @Override
