@@ -1,20 +1,15 @@
 package com.lingyi.mall.security.app.config;
 
-import cn.dev33.satoken.config.SaTokenConfig;
 import cn.dev33.satoken.jwt.StpLogicJwtForMixin;
 import cn.dev33.satoken.jwt.StpLogicJwtForSimple;
 import cn.dev33.satoken.jwt.StpLogicJwtForStateless;
 import cn.dev33.satoken.stp.StpInterface;
 import cn.dev33.satoken.stp.StpLogic;
-import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @Author: maweiyan
@@ -23,7 +18,7 @@ import java.util.stream.Collectors;
  * @Description:
  */
 @Configuration(proxyBeanMethods = false)
-public class SaTokenConfigure {
+public class AppSaTokenConfigure {
 
     // Sa-Token 整合 jwt (Simple 简单模式)
     // @Bean

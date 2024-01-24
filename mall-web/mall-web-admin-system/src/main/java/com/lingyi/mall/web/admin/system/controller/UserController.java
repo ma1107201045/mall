@@ -38,6 +38,7 @@ public class UserController {
     @PostMapping
     @SaCheckLogin
     @SaCheckPermission("admin:system:users:save")
+    @RequestMapping
     public ServerResponse<Void> save(@Valid @RequestBody UserDTO userDTO) {
         userService.create(userDTO);
         return ServerResponse.success();

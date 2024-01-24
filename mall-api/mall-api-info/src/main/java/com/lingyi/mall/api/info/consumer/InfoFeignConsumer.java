@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class SmsFeignConsumer {
+public class InfoFeignConsumer {
 
     private final InfoFeign infoFeign;
 

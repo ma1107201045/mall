@@ -8,6 +8,7 @@ import com.lingyi.mall.biz.info.service.InfoService;
 import com.lingyi.mall.common.web.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,8 +42,8 @@ public class InfoFeignProvider implements InfoFeign {
 
     @Operation(summary = "校验验证码", description = "校验验证码")
     @Override
-    public ServerResponse<Void> verifyCaptcha(InfoCaptchaVerifyRequest captchaVerifyDTO) {
-        infoService.verifyCaptcha(captchaVerifyDTO);
+    public ServerResponse<Void> verifyCaptcha(InfoCaptchaVerifyRequest infoCaptchaVerifyRequest) {
+        infoService.verifyCaptcha(infoCaptchaVerifyRequest);
         return ServerResponse.success();
     }
 

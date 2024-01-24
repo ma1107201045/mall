@@ -4,7 +4,7 @@ import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.RandomUtil;
-import com.lingyi.mall.api.info.consumer.SmsFeignConsumer;
+import com.lingyi.mall.api.info.consumer.InfoFeignConsumer;
 import com.lingyi.mall.api.member.consumer.LevelFeignConsumer;
 import com.lingyi.mall.api.member.consumer.MemberFeignConsumer;
 import com.lingyi.mall.api.member.consumer.MemberLoginLogFeignConsumer;
@@ -40,7 +40,7 @@ import java.util.concurrent.TimeUnit;
 @RequiredArgsConstructor
 public class AuthAppServiceImpl implements AuthAppService {
 
-    private final SmsFeignConsumer smsFeignConsumer;
+    private final InfoFeignConsumer infoFeignConsumer;
 
     private final MemberFeignConsumer memberFeignConsumer;
 
@@ -59,7 +59,7 @@ public class AuthAppServiceImpl implements AuthAppService {
     public AuthAppLoginVO smsLogin(AuthAppSmsLoginDTO authAppSmsLoginDTO) {
         //转换数据并且校验短信验证码
         var infoCaptchaVerifyRequest = AuthAppConverter.INSTANCE.to(authAppSmsLoginDTO, properties);
-        smsFeignConsumer.verifyCaptcha(infoCaptchaVerifyRequest);
+        infoFeignConsumer.verifyCaptcha(infoCaptchaVerifyRequest);
 
         //通过手机号校验用户是否存在，不存在注册
         var memberResponse = memberFeignConsumer.getByPhoneNumber(authAppSmsLoginDTO.getPhoneNumber());
@@ -105,7 +105,7 @@ public class AuthAppServiceImpl implements AuthAppService {
     @Override
     public void sendCaptcha(AuthAppSendDTO authAppSendDTO) {
         var captchaSendReqDTO = AuthAppConverter.INSTANCE.to(authAppSendDTO.getNumber(), properties);
-        smsFeignConsumer.sendCaptcha(captchaSendReqDTO);
+        infoFeignConsumer.sendCaptcha(captchaSendReqDTO);
     }
 
 

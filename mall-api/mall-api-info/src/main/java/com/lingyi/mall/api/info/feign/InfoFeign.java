@@ -5,7 +5,9 @@ import com.lingyi.mall.api.info.request.InfoCaptchaVerifyRequest;
 import com.lingyi.mall.api.info.request.InfoRequest;
 import com.lingyi.mall.api.info.fallbackfactory.InfoFeignFallbackFactory;
 import com.lingyi.mall.common.web.util.ServerResponse;
+import jakarta.validation.Valid;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 @FeignClient(value = "mall-web-app-info", fallbackFactory = InfoFeignFallbackFactory.class)
 public interface InfoFeign {
-    String URL_PREFIX = "/app/sms";
+    String URL_PREFIX = "/provider/infos";
 
 
     /**
@@ -27,15 +29,14 @@ public interface InfoFeign {
      * @param infoRequest ..
      * @return ServerResponse
      */
-    @PostMapping
+    @PostMapping(URL_PREFIX)
     ServerResponse<Void> send(@RequestBody InfoRequest infoRequest);
 
     /**
      * @param infoCaptchaSendRequest ..
      * @return ServerResponse
      */
-    @PostMapping("/send-captcha")
-    @GetMapping
+    @PostMapping(URL_PREFIX + "/send-captcha")
     ServerResponse<Void> sendCaptcha(@RequestBody InfoCaptchaSendRequest infoCaptchaSendRequest);
 
     /**
@@ -44,8 +45,8 @@ public interface InfoFeign {
      * @param infoCaptchaVerifyRequest ..
      * @return ServerResponse
      */
-    @GetMapping("/verify-captcha")
-    ServerResponse<Void> verifyCaptcha(@RequestBody InfoCaptchaVerifyRequest infoCaptchaVerifyRequest);
+    @GetMapping(URL_PREFIX + "/verify-captcha")
+    ServerResponse<Void> verifyCaptcha(@Valid InfoCaptchaVerifyRequest infoCaptchaVerifyRequest);
 
 
 }

@@ -1,12 +1,9 @@
 package com.lingyi.mall.security.admin.config;
 
-import cn.dev33.satoken.config.SaTokenConfig;
 import cn.dev33.satoken.stp.StpInterface;
-import cn.hutool.core.collection.CollUtil;
 import com.lingyi.mall.api.system.consumer.UserFeignConsumer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -20,7 +17,7 @@ import java.util.stream.Collectors;
  * @Description:
  */
 @Configuration(proxyBeanMethods = false)
-public class SaTokenConfigure {
+public class AdminSaTokenConfigure {
 
     private static final String PERMISSION_SEPARATOR = ",";
 
