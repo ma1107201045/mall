@@ -26,6 +26,7 @@ import java.util.List;
 @Tag(name = "系统菜单", description = "系统菜单")
 @RestController
 @RequestMapping("/menus")
+@SaCheckLogin
 @RequiredArgsConstructor
 public class MenuController {
 
@@ -33,7 +34,6 @@ public class MenuController {
 
     @Operation(summary = "保存", description = "保存")
     @PostMapping
-    @SaCheckLogin
     @SaCheckPermission("admin:system:menus:save")
     public ServerResponse<Void> save(@Valid @RequestBody MenuDTO menuDTO) {
         menuService.create(menuDTO);
@@ -42,7 +42,6 @@ public class MenuController {
 
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
-    @SaCheckLogin
     @SaCheckPermission("admin:system:menus:delete")
     public ServerResponse<Void> deleteByIds(@PathVariable List<Long> ids) {
         menuService.deleteByIds(ids);
@@ -51,7 +50,6 @@ public class MenuController {
 
     @Operation(summary = "更新", description = "更新")
     @PutMapping("/{id}")
-    @SaCheckLogin
     @SaCheckPermission("admin:system:menus:update")
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody MenuDTO menuDTO) {
         menuDTO.setId(id);
@@ -61,7 +59,6 @@ public class MenuController {
 
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
-    @SaCheckLogin
     @SaCheckPermission("admin:system:menus:get")
     public ServerResponse<MenuVO> getById(@PathVariable Long id) {
         var menuVO = menuService.readById(id);
@@ -70,7 +67,6 @@ public class MenuController {
 
     @Operation(summary = "查询树", description = "查询树")
     @GetMapping("/get-tree")
-    @SaCheckLogin
     @SaCheckPermission("admin:system:menus:getTree")
     public ServerResponse<List<MenuVO>> getTree() {
         var menus = menuService.readTree();

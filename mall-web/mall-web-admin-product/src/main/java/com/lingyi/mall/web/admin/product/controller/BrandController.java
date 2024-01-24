@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +28,7 @@ import java.util.List;
 @Tag(name = "商品品牌", description = "商品品牌")
 @RestController
 @RequestMapping("/brands")
+@SaCheckLogin
 @RequiredArgsConstructor
 public class BrandController {
 
@@ -34,7 +36,6 @@ public class BrandController {
 
     @Operation(summary = "保存", description = "保存")
     @PostMapping
-    @SaCheckLogin
     @SaCheckPermission("admin:product:brands:save")
     public ServerResponse<Void> save(@Valid @RequestBody BrandDTO brandDTO) {
         brandService.create(brandDTO, BrandDO.class);
@@ -43,7 +44,6 @@ public class BrandController {
 
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
-    @SaCheckLogin
     @SaCheckPermission("admin:product:brands:delete")
     public ServerResponse<Void> deleteByIds(@PathVariable List<Long> ids) {
         brandService.deleteByIds(ids);
@@ -52,7 +52,6 @@ public class BrandController {
 
     @Operation(summary = "更新", description = "更新")
     @PutMapping("/{id}")
-    @SaCheckLogin
     @SaCheckPermission("admin:product:brands:update")
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody BrandDTO brandDTO) {
         brandDTO.setId(id);
@@ -62,7 +61,6 @@ public class BrandController {
 
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
-    @SaCheckLogin
     @SaCheckPermission("admin:product:brands:get")
     public ServerResponse<BrandVO> getById(@PathVariable Long id) {
         var brandVO = brandService.readById(id);
@@ -71,9 +69,8 @@ public class BrandController {
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
-    @SaCheckLogin
     @SaCheckPermission("admin:product:brands:getList")
-    public ServerResponse<List<BrandVO>> getListByPageAndParam(@Valid BrandQuery brandParam) {
+    public ServerResponse<List<BrandVO>> getListByPageAndParam(@ParameterObject @Valid BrandQuery brandParam) {
         var page = PageHelper.startPage(brandParam.getCurrentPage(), brandParam.getPageSize());
         var brands = brandService.readListByParam(brandParam);
         return ServerResponse.success(brands, page.getTotal());

@@ -8,11 +8,9 @@ import com.lingyi.mall.security.core.util.AuthenticatorUtil;
 import com.lingyi.mall.common.web.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +23,7 @@ import java.util.List;
 @Tag(name = "基础接口", description = "基础接口")
 @RequestMapping("/bases")
 @RestController
+@SaCheckLogin
 @RequiredArgsConstructor
 public class BaseController {
 
@@ -32,8 +31,7 @@ public class BaseController {
 
     @Operation(summary = "更新当前用户信息", description = "更新当前用户信息")
     @PatchMapping("/user")
-    @SaCheckLogin
-    public ServerResponse<Void> updateUser(UserPartRequest userPartRequest) {
+    public ServerResponse<Void> updateUser(@Valid @RequestBody UserPartRequest userPartRequest) {
         var userId = AuthenticatorUtil.getCurrentUserId();
         baseService.updateUserByUserId(userId, userPartRequest);
         return ServerResponse.success();
@@ -41,7 +39,6 @@ public class BaseController {
 
     @Operation(summary = "获取当前用户菜单树", description = "获取当前用户菜单树")
     @GetMapping("/menu-trees")
-    @SaCheckLogin
     public ServerResponse<List<MenuResponse>> getMenuTrees() {
         var userId = AuthenticatorUtil.getCurrentUserId();
         var menus = baseService.readMenuTreesByUserId(userId);
@@ -50,7 +47,6 @@ public class BaseController {
 
     @Operation(summary = "获取当前用户菜单权限标识集", description = "获取当前用户菜单权限标识集")
     @GetMapping("/menu-permissions")
-    @SaCheckLogin
     public ServerResponse<List<String>> getMenuPermissions() {
         var userId = AuthenticatorUtil.getCurrentUserId();
         var permissions = baseService.readMenuPermissionsByUserId(userId);

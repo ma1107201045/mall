@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,15 +26,15 @@ import java.util.List;
 @Tag(name = "系统日志", description = "系统日志")
 @RestController
 @RequestMapping("/logs")
-@RequiredArgsConstructor
 @SentinelResource
+@SaCheckLogin
+@RequiredArgsConstructor
 public class LogController {
 
     private final LogService logService;
 
     @Operation(summary = "删除/批量删除", description = "删除/批量删除")
     @DeleteMapping("/{ids}")
-    @SaCheckLogin
     @SaCheckPermission("admin:system:logs:delete")
     public ServerResponse<Void> deleteByIds(@PathVariable List<Long> ids) {
         logService.deleteByIds(ids);
@@ -42,7 +43,6 @@ public class LogController {
 
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
-    @SaCheckLogin
     @SaCheckPermission("admin:system:logs:get")
     public ServerResponse<LogVO> getById(@PathVariable Long id) {
         var logVO = logService.readById(id);
@@ -51,9 +51,8 @@ public class LogController {
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
-    @SaCheckLogin
     @SaCheckPermission("admin:system:logs:getList")
-    public ServerResponse<List<LogVO>> getListByPageAndParam(@Valid LogQuery logQuery) {
+    public ServerResponse<List<LogVO>> getListByPageAndParam(@ParameterObject @Valid LogQuery logQuery) {
         var page = PageHelper.startPage(logQuery.getCurrentPage(), logQuery.getPageSize(), logQuery.getSort());
         var logs = logService.readListByParam(logQuery);
         return ServerResponse.success(logs, page.getTotal());

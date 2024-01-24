@@ -3,7 +3,6 @@ package com.lingyi.mall.web.app.member.provider;
 import com.lingyi.mall.api.member.feign.LevelFeign;
 import com.lingyi.mall.biz.member.service.LevelService;
 import com.lingyi.mall.common.web.util.ServerResponse;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,10 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @datetime 2023/7/21 9:29
  * @description
  */
-@Tag(name = "会员等级", description = "会员等级")
-@RequiredArgsConstructor
+
 @RestController
-public class MemberLevelFeignProvider implements LevelFeign {
+@RequiredArgsConstructor
+public class LevelFeignProvider implements LevelFeign {
 
     private final LevelService levelService;
 

@@ -1,10 +1,16 @@
 package com.lingyi.mall.api.system.feign;
 
+import cn.dev33.satoken.annotation.SaCheckLogin;
+import cn.dev33.satoken.annotation.SaIgnore;
 import com.lingyi.mall.api.system.response.MenuResponse;
 import com.lingyi.mall.api.system.response.UserResponse;
 import com.lingyi.mall.api.system.request.UserPartRequest;
 import com.lingyi.mall.api.system.fallbackfactory.UserFeignFallbackFactory;
 import com.lingyi.mall.common.web.util.ServerResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,11 +22,13 @@ import java.util.List;
  * @DateTime: 2023/5/3 20:34
  * @Description:
  */
+@Tag(name = "provider-系统用户", description = "provider-系统日志")
 @FeignClient(value = "mall-web-admin-system", fallbackFactory = UserFeignFallbackFactory.class)
 public interface UserFeign {
 
     String URL_PREFIX = "/provider/users";
 
+    @Operation(summary = "更新部分用户信息", description = "更新部分用户信息")
     @PatchMapping(URL_PREFIX + "/{id}")
     ServerResponse<Void> updatePartById(@PathVariable("id") Long id, @RequestBody UserPartRequest userPartRequest);
 
@@ -30,8 +38,9 @@ public interface UserFeign {
      * @param userName 用户名称
      * @return 用户信息
      */
+    @Operation(summary = "查询", description = "查询")
     @GetMapping(URL_PREFIX)
-    ServerResponse<UserResponse> getUserByUserName(@RequestParam(name = "userName") String userName);
+    ServerResponse<UserResponse> getUserByUserName(@RequestParam(name = "userName", required = false) String userName);
 
     /**
      * 按照用户id查询菜单树
@@ -39,6 +48,7 @@ public interface UserFeign {
      * @param id 用户id
      * @return 菜单树
      */
+    @Operation(summary = "查询用户菜单树", description = "查询用户菜单树")
     @GetMapping(URL_PREFIX + "/menu-trees/{id}")
     ServerResponse<List<MenuResponse>> getMenuTreesById(@PathVariable("id") Long id);
 
@@ -48,6 +58,7 @@ public interface UserFeign {
      * @param id 用户id
      * @return 用户信息
      */
+    @Operation(summary = "查询用户权限集", description = "查询用户权限集")
     @GetMapping(URL_PREFIX + "/menu-permissions/{id}")
     ServerResponse<List<String>> getMenuPermissionsById(@PathVariable("id") Long id);
 

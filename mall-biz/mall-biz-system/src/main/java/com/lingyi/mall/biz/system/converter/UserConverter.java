@@ -2,7 +2,6 @@ package com.lingyi.mall.biz.system.converter;
 
 import com.lingyi.mall.api.system.request.UserPartRequest;
 import com.lingyi.mall.biz.system.model.entity.UserDO;
-import org.apache.catalina.User;
 
 /**
  * @Author maweiyan

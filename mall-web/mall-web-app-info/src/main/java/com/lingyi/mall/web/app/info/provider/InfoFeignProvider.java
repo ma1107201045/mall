@@ -1,5 +1,6 @@
 package com.lingyi.mall.web.app.info.provider;
 
+import cn.dev33.satoken.annotation.SaIgnore;
 import com.lingyi.mall.api.info.feign.InfoFeign;
 import com.lingyi.mall.api.info.request.InfoCaptchaSendRequest;
 import com.lingyi.mall.api.info.request.InfoCaptchaVerifyRequest;
@@ -19,28 +20,27 @@ import org.springframework.web.bind.annotation.RestController;
  * @description
  */
 @Tag(name = "provider-信息服务", description = "provider-信息服务")
-@RequiredArgsConstructor
 @RestController
+@SaIgnore
+@RequiredArgsConstructor
 public class InfoFeignProvider implements InfoFeign {
 
     private final InfoService infoService;
 
 
-    @Operation(summary = "发送", description = "发送")
     @Override
     public ServerResponse<Void> send(InfoRequest infoRequest) {
         infoService.send(infoRequest);
         return ServerResponse.success();
     }
 
-    @Operation(summary = "发送验证码", description = "发送验证码")
+
     @Override
     public ServerResponse<Void> sendCaptcha(InfoCaptchaSendRequest captchaReqDTO) {
         infoService.sendCaptcha(captchaReqDTO);
         return ServerResponse.success();
     }
 
-    @Operation(summary = "校验验证码", description = "校验验证码")
     @Override
     public ServerResponse<Void> verifyCaptcha(InfoCaptchaVerifyRequest infoCaptchaVerifyRequest) {
         infoService.verifyCaptcha(infoCaptchaVerifyRequest);

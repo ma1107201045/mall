@@ -25,6 +25,7 @@ import java.util.List;
 @Tag(name = "商品分类", description = "商品分类")
 @RestController
 @RequestMapping("/categories")
+@SaCheckLogin
 @RequiredArgsConstructor
 public class CategoryController {
 
@@ -32,7 +33,6 @@ public class CategoryController {
 
     @Operation(summary = "保存", description = "保存")
     @PostMapping
-    @SaCheckLogin
     @SaCheckPermission("admin:product:categories:save")
     public ServerResponse<Void> save(@Valid @RequestBody CategoryDTO categoryDTO) {
         categoryService.create(categoryDTO);
@@ -41,7 +41,6 @@ public class CategoryController {
 
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
-    @SaCheckLogin
     @SaCheckPermission("admin:product:categories:delete")
     public ServerResponse<Void> deleteByIds(@PathVariable List<Long> ids) {
         categoryService.deleteByIds(ids);
@@ -50,7 +49,6 @@ public class CategoryController {
 
     @Operation(summary = "更新", description = "更新")
     @PutMapping("/{id}")
-    @SaCheckLogin
     @SaCheckPermission("admin:product:categories:update")
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody CategoryDTO categoryDTO) {
         categoryDTO.setId(id);
@@ -60,7 +58,6 @@ public class CategoryController {
 
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
-    @SaCheckLogin
     @SaCheckPermission("admin:product:categories:get")
     public ServerResponse<CategoryVO> getById(@PathVariable Long id) {
         var categoryVO = categoryService.readById(id);
@@ -69,7 +66,6 @@ public class CategoryController {
 
     @Operation(summary = "查询树", description = "查询树")
     @GetMapping("/get-tree")
-    @SaCheckLogin
     @SaCheckPermission("admin:product:categories:getTree")
     public ServerResponse<List<CategoryVO>> getTree() {
         var categories = categoryService.readTree();
@@ -78,7 +74,6 @@ public class CategoryController {
 
     @Operation(summary = "查询属性值", description = "查询属性值")
     @GetMapping("/attributes")
-    @SaCheckLogin
     @SaCheckPermission("admin:product:categories:attributes:getList")
     public ServerResponse<List<AttributeVO>> getAttributesList() {
         var attributes = categoryService.readAttributeList();

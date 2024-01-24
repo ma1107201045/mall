@@ -19,14 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description:
  */
 @Slf4j
-@Hidden
-@RequiredArgsConstructor
 @RestController
+@RequiredArgsConstructor
 public class LogFeignProvider implements LogFeign {
 
     private final LogService logService;
 
-    @Operation(summary = "保存", description = "保存")
     @Override
     public ServerResponse<Void> save(LogRequest logRequest, Request.Options options) {
         logService.create(logRequest, LogDO.class);

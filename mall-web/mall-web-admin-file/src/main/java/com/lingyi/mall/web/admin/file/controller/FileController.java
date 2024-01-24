@@ -26,6 +26,7 @@ import java.io.IOException;
 @Tag(name = "文件接口", description = "文件接口")
 @RestController
 @RequestMapping("/files")
+@SaCheckLogin
 @RequiredArgsConstructor
 public class FileController {
 
@@ -35,7 +36,6 @@ public class FileController {
     @Operation(summary = "上传", description = "保存")
     @Parameter(name = "file", description = "文件")
     @PostMapping
-    @SaCheckLogin
     public ServerResponse<FileVO> upload(MultipartFile file) throws IOException {
         var directoryName = FileUtil.getDirectoryName("", "admin");
         var fileVO = fileService.upload(directoryName, file.getOriginalFilename(), file.getInputStream());
@@ -45,7 +45,6 @@ public class FileController {
     @Operation(summary = "删除", description = "删除")
     @Parameter(name = "name", description = "名称")
     @DeleteMapping("/{name}")
-    @SaCheckLogin
     public ServerResponse<Void> delete(@PathVariable String name) {
         fileService.delete(name);
         return ServerResponse.success();
@@ -54,7 +53,6 @@ public class FileController {
     @Operation(summary = "上传图片", description = "上传图片")
     @Parameter(name = "file", description = "文件")
     @PostMapping("/image")
-    @SaCheckLogin
     public ServerResponse<FileVO> uploadImage(MultipartFile file) throws IOException {
         var directoryName = FileUtil.getDirectoryName("", "admin");
         var name = file.getOriginalFilename();

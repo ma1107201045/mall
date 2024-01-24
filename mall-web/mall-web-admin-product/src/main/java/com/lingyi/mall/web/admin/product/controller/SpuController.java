@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,7 @@ import java.util.List;
 @Tag(name = "SPU", description = "SPU")
 @RestController
 @RequestMapping("/spus")
+@SaCheckLogin
 @RequiredArgsConstructor
 public class SpuController {
 
@@ -32,7 +34,6 @@ public class SpuController {
 
     @Operation(summary = "保存", description = "保存")
     @PostMapping
-    @SaCheckLogin
     @SaCheckPermission("admin:product:spus:save")
     public void save(@Valid @RequestBody SpuDTO spuDTO) {
         spuService.add(spuDTO);
@@ -40,7 +41,6 @@ public class SpuController {
 
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
-    @SaCheckLogin
     @SaCheckPermission("admin:product:spus:delete")
     public void deleteByIds(@PathVariable List<Long> ids) {
         spuService.deleteByIds(ids);
@@ -48,7 +48,6 @@ public class SpuController {
 
     @Operation(summary = "保存", description = "保存")
     @PostMapping
-    @SaCheckLogin
     @SaCheckPermission("admin:product:spus:update")
     public void updateById(@Valid @RequestBody SpuDTO spuDTO) {
         spuService.editById(spuDTO);
@@ -56,11 +55,10 @@ public class SpuController {
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
-    @SaCheckLogin
     @SaCheckPermission("admin:product:spus:getList")
-    public PageVO<List<SpuVO>> getListByPageAndParam(@Valid SpuQuery spuParam) {
-        var page = PageHelper.startPage(spuParam.getCurrentPage(), spuParam.getPageSize());
-        var spus = spuService.readListByParam(spuParam);
+    public PageVO<List<SpuVO>> getListByPageAndParam(@ParameterObject @Valid SpuQuery spuQuery) {
+        var page = PageHelper.startPage(spuQuery.getCurrentPage(), spuQuery.getPageSize());
+        var spus = spuService.readListByParam(spuQuery);
         return PageVO.build(page.getTotal(), spus);
     }
 }

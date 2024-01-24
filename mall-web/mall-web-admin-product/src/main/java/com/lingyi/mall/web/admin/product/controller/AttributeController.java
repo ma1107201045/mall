@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,7 @@ import java.util.List;
 @Tag(name = "商品属性", description = "商品属性")
 @RestController
 @RequestMapping("/attributes")
+@SaCheckLogin
 @RequiredArgsConstructor
 public class AttributeController {
 
@@ -32,7 +34,6 @@ public class AttributeController {
 
     @Operation(summary = "保存", description = "保存")
     @PostMapping
-    @SaCheckLogin
     @SaCheckPermission("admin:product:attributes:save")
     public ServerResponse<Void> save(@Valid @RequestBody AttributeDTO attributeDTO) {
         attributeService.create(attributeDTO);
@@ -41,7 +42,6 @@ public class AttributeController {
 
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
-    @SaCheckLogin
     @SaCheckPermission("admin:product:attributes:delete")
     public ServerResponse<Void> deleteByIds(@PathVariable List<Long> ids) {
         attributeService.deleteByIds(ids);
@@ -50,7 +50,6 @@ public class AttributeController {
 
     @Operation(summary = "更新", description = "更新")
     @PutMapping("/{id}")
-    @SaCheckLogin
     @SaCheckPermission("admin:product:attributes:update")
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody AttributeDTO attributeDTO) {
         attributeDTO.setId(id);
@@ -60,7 +59,6 @@ public class AttributeController {
 
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
-    @SaCheckLogin
     @SaCheckPermission("admin:product:attributes:get")
     public ServerResponse<AttributeVO> getById(@PathVariable Long id) {
         var attributeVO = attributeService.readById(id);
@@ -69,9 +67,8 @@ public class AttributeController {
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
-    @SaCheckLogin
     @SaCheckPermission("admin:product:attributes:getList")
-    public ServerResponse<List<AttributeVO>> getListByPageAndParam(@Valid AttributeQuery attributeParam) {
+    public ServerResponse<List<AttributeVO>> getListByPageAndParam(@ParameterObject @Valid AttributeQuery attributeParam) {
         var total = attributeService.totalByParam(attributeParam);
         var attributes = attributeService.readListByParam(attributeParam);
         return ServerResponse.success(attributes, total);

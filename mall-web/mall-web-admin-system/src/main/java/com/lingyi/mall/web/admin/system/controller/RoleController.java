@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +28,7 @@ import java.util.List;
 @Tag(name = "系统角色", description = "系统角色")
 @RestController
 @RequestMapping("/roles")
+@SaCheckLogin
 @RequiredArgsConstructor
 public class RoleController {
 
@@ -34,7 +36,6 @@ public class RoleController {
 
     @Operation(summary = "保存", description = "保存")
     @PostMapping
-    @SaCheckLogin
     @SaCheckPermission("admin:system:roles:save")
     public ServerResponse<Void> save(@Valid @RequestBody RoleDTO roleDTO) {
         roleService.create(roleDTO);
@@ -43,7 +44,6 @@ public class RoleController {
 
     @Operation(summary = "删除", description = "删除")
     @DeleteMapping("/{ids}")
-    @SaCheckLogin
     @SaCheckPermission("admin:system:roles:delete")
     public ServerResponse<Void> deleteByIds(@PathVariable List<Long> ids) {
         roleService.deleteByIds(ids);
@@ -52,7 +52,6 @@ public class RoleController {
 
     @Operation(summary = "更新", description = "更新")
     @PutMapping("/{id}")
-    @SaCheckLogin
     @SaCheckPermission("admin:system:roles:update")
     public ServerResponse<Void> updateById(@PathVariable Long id, @Valid @RequestBody RoleDTO roleDTO) {
         roleDTO.setId(id);
@@ -62,7 +61,6 @@ public class RoleController {
 
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
-    @SaCheckLogin
     @SaCheckPermission("admin:system:roles:get")
     public ServerResponse<RoleVO> getById(@PathVariable Long id) {
         var roleVO = roleService.readById(id);
@@ -71,9 +69,8 @@ public class RoleController {
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
-    @SaCheckLogin
     @SaCheckPermission("admin:system:roles:getList")
-    public ServerResponse<List<RoleVO>> getListByPageAndParam(@Valid RoleQuery roleQuery) {
+    public ServerResponse<List<RoleVO>> getListByPageAndParam(@ParameterObject @Valid RoleQuery roleQuery) {
         var total = roleService.totalByParam(roleQuery);
         var roles = roleService.readListByParam(roleQuery);
         return ServerResponse.success(roles, total);
@@ -81,7 +78,6 @@ public class RoleController {
 
     @Operation(summary = "查询菜单树", description = "查询菜单树")
     @GetMapping("/menu-tree")
-    @SaCheckLogin
     @SaCheckPermission("admin:system:roles:menus:getTree")
     public ServerResponse<List<MenuVO>> getMenuTree() {
         var menuTree = roleService.readMenuTree();

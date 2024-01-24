@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,7 @@ import java.util.List;
 @Tag(name = "短信日志", description = "短信日志")
 @RestController
 @RequestMapping("/info-logs")
+@SaCheckLogin
 @RequiredArgsConstructor
 public class LogController {
 
@@ -32,7 +34,6 @@ public class LogController {
 
     @Operation(summary = "删除/批量删除", description = "删除/批量删除")
     @DeleteMapping("/{ids}")
-    @SaCheckLogin
     @SaCheckPermission("admin:info:logs:delete")
     public ServerResponse<InfoLogDO> deleteByIds(@PathVariable List<Long> ids) {
         infoLogService.deleteByIds(ids);
@@ -41,7 +42,6 @@ public class LogController {
 
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
-    @SaCheckLogin
     @SaCheckPermission("admin:info:logs:get")
     public ServerResponse<InfoLogVO> getById(@PathVariable Long id) {
         var logVO = infoLogService.readById(id);
@@ -50,11 +50,10 @@ public class LogController {
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
-    @SaCheckLogin
     @SaCheckPermission("admin:info:logs:getList")
-    public ServerResponse<List<InfoLogVO>> getListByPageAndParam(@Valid InfoLogQuery infoLogParam) {
-        var page = PageHelper.startPage(infoLogParam.getCurrentPage(), infoLogParam.getPageSize(), infoLogParam.getSort());
-        var logs = infoLogService.readListByParam(infoLogParam);
+    public ServerResponse<List<InfoLogVO>> getListByPageAndParam(@ParameterObject @Valid InfoLogQuery infoLogQuery) {
+        var page = PageHelper.startPage(infoLogQuery.getCurrentPage(), infoLogQuery.getPageSize(), infoLogQuery.getSort());
+        var logs = infoLogService.readListByParam(infoLogQuery);
         return ServerResponse.success(logs, page.getTotal());
     }
 }

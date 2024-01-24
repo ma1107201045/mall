@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,7 @@ import java.util.List;
 @Tag(name = "会员接口", description = "会员接口")
 @RequestMapping("/members")
 @RestController
+@SaCheckLogin
 @RequiredArgsConstructor
 public class MemberController {
 
@@ -32,7 +34,6 @@ public class MemberController {
 
     @Operation(summary = "更新状态", description = "更新状态")
     @PatchMapping("/{id}")
-    @SaCheckLogin
     @SaCheckPermission("admin:member:members:updateIsEnable")
     public ServerResponse<Void> updateIsEnableById(@PathVariable Long id, @Valid @RequestBody MemberPartDTO memberPartDTO) {
         memberPartDTO.setId(id);
@@ -42,9 +43,8 @@ public class MemberController {
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
-    @SaCheckLogin
     @SaCheckPermission("admin:member:members:getList")
-    public ServerResponse<List<MemberVO>> getList(@Valid MemberQuery memberParam) {
+    public ServerResponse<List<MemberVO>> getList(@ParameterObject @Valid MemberQuery memberParam) {
         var page = PageHelper.startPage(memberParam.getCurrentPage(), memberParam.getPageSize(), memberParam.getSort());
         var members = memberService.readListByParam(memberParam);
         return ServerResponse.success(members, page.getTotal());

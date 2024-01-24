@@ -1,6 +1,8 @@
 package com.lingyi.mall.api.system.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.io.Serial;
@@ -20,12 +22,15 @@ public class UserPartRequest implements Serializable {
     @Serial
     private static final long serialVersionUID = 2571778543426443661L;
 
-    @Schema(description = "用户id", requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "id", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotNull(message = "id不能为空")
     private Long id;
 
-    @Schema(description = "昵称")
+    @Schema(description = "昵称", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotBlank(message = "昵称不能为空")
     private String nickname;
 
     @Schema(description = "密码", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotBlank(message = "密码不能为空")
     private String password;
 }
