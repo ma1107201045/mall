@@ -8,6 +8,7 @@ import com.lingyi.mall.api.system.request.UserPartRequest;
 import com.lingyi.mall.api.system.fallbackfactory.UserFeignFallbackFactory;
 import com.lingyi.mall.common.web.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -40,8 +41,9 @@ public interface UserFeign {
      * @return 用户信息
      */
     @Operation(summary = "查询用户信息", description = "查询用户信息")
+    @Parameter(description = "用户名称", required = true)
     @GetMapping(URL_PREFIX)
-    ServerResponse<UserResponse> getUserByUserName(@RequestParam(name = "userName", required = false) @Validated @NotBlank(message = "用户名不能为空") String userName);
+    ServerResponse<UserResponse> getUserByUserName(@RequestParam(name = "userName", required = false) @Validated @NotBlank(message = "用户名称不能为空") String userName);
 
     /**
      * 按照用户id查询菜单树
