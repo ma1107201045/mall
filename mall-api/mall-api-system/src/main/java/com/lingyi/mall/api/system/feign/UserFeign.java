@@ -28,7 +28,7 @@ public interface UserFeign {
 
     String URL_PREFIX = "/provider/users";
 
-    @Operation(summary = "更新部分用户信息", description = "更新部分用户信息")
+    @Operation(summary = "更新用户部分信息", description = "更新用户部分信息")
     @PatchMapping(URL_PREFIX + "/{id}")
     ServerResponse<Void> updatePartById(@PathVariable("id") Long id, @RequestBody UserPartRequest userPartRequest);
 
@@ -38,7 +38,7 @@ public interface UserFeign {
      * @param userName 用户名称
      * @return 用户信息
      */
-    @Operation(summary = "查询", description = "查询")
+    @Operation(summary = "根据用户名查询信息", description = "根据用户名查询信息")
     @GetMapping(URL_PREFIX)
     ServerResponse<UserResponse> getUserByUserName(@RequestParam(name = "userName", required = false) String userName);
 
