@@ -12,7 +12,7 @@
         <result column="email" jdbcType="VARCHAR" property="email"/>
         <result column="phone_number" jdbcType="CHAR" property="phoneNumber"/>
         <result column="last_login_ip" jdbcType="VARCHAR" property="lastLoginIp"/>
-        <result column="is_enable" jdbcType="TINYINT" property="isEnable"/>
+        <result column="is_disable" jdbcType="TINYINT" property="isDisable"/>
         <result column="remark" jdbcType="VARCHAR" property="remark"/>
         <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
         <result column="create_date_time" jdbcType="TIMESTAMP" property="createDateTime"/>
@@ -24,7 +24,7 @@
     </resultMap>
     <sql id="Base_Column_List">
         id, user_name, real_name, nickname, `password`, sex, head_portrait, email, phone_number,
-        last_login_ip, is_enable, remark, create_by, create_date_time, last_modify_by, last_modify_date_time
+        last_login_ip, is_disable, remark, create_by, create_date_time, last_modify_by, last_modify_date_time
     </sql>
     <sql id="Base_Condition">
         <if test="userName != null and userName !=''">
@@ -68,7 +68,7 @@
         <id column="mu_id" property="userId"/>
         <result column="mu_user_name" property="userName"/>
         <result column="mu_password" property="password"/>
-        <result column="mu_is_enable" property="isEnable"/>
+        <result column="mu_is_disable" property="isDisable"/>
     </resultMap>
     <select id="selectByUserName" resultMap="SelectByUserNameMap">
         SELECT mu.id            mu_id,
@@ -81,7 +81,7 @@
                mu.email         mu_email,
                mu.phone_number  mu_phone_number,
                mu.last_login_ip mu_last_login_ip,
-               mu.is_enable     mu_is_enable,
+               mu.is_disable    mu_is_disable,
                mu.remark        mu_remark
         FROM ms_user mu
         WHERE mu.user_name = #{userName}

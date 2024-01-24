@@ -66,7 +66,7 @@ public class UserVO extends BaseIdVO<Long> {
     private String lastLoginIp;
 
     @Schema(description = "是否启用 1 是 0 否")
-    private Integer isEnable;
+    private Integer isDisable;
 
     @Schema(description = "备注")
     private String remark;

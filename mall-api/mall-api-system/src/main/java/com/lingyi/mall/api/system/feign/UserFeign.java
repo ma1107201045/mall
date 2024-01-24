@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +25,7 @@ import java.util.List;
  */
 @Tag(name = "provider-系统用户", description = "provider-系统日志")
 @FeignClient(value = "mall-web-admin-system", fallbackFactory = UserFeignFallbackFactory.class)
+@Validated
 public interface UserFeign {
 
     String URL_PREFIX = "/provider/users";
@@ -38,9 +40,9 @@ public interface UserFeign {
      * @param userName 用户名称
      * @return 用户信息
      */
-    @Operation(summary = "根据用户名查询信息", description = "根据用户名查询信息")
+    @Operation(summary = "查询用户信息", description = "查询用户信息")
     @GetMapping(URL_PREFIX)
-    ServerResponse<UserResponse> getUserByUserName(@RequestParam(name = "userName", required = false) String userName);
+    ServerResponse<UserResponse> getUserByUserName(@RequestParam(name = "userName", required = false) @NotBlank(message = "用户名不能为空") String userName);
 
     /**
      * 按照用户id查询菜单树

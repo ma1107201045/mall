@@ -15,7 +15,7 @@ import java.io.Serializable;
  * @description 用户
  */
 @Data
-@Schema(description = "部分用户")
+@Schema(description = "系统用户")
 public class UserPartRequest implements Serializable {
 
 
