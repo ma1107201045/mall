@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @datetime 2023/7/13 16:18
  * @description
  */
-@Tag(name = "验证码", description = "验证码")
+@Tag(name = "provider-信息服务", description = "provider-信息服务")
 @RequiredArgsConstructor
 @RestController
 public class InfoFeignProvider implements InfoFeign {

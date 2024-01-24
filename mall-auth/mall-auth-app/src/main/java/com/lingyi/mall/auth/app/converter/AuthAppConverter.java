@@ -2,6 +2,7 @@ package com.lingyi.mall.auth.app.converter;
 
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
+import com.lingyi.mall.api.info.enums.InfoTypeEnum;
 import com.lingyi.mall.api.member.reqeust.MemberLoginLogRequest;
 import com.lingyi.mall.api.member.reqeust.MemberRequest;
 import com.lingyi.mall.api.member.response.MemberResponse;
@@ -33,28 +34,29 @@ public class AuthAppConverter {
     }
 
     public InfoCaptchaSendRequest to(String number, InfoCaptchaProperties properties) {
-        var captchaSendReqDTO = new InfoCaptchaSendRequest();
-        captchaSendReqDTO.setServiceType(properties.getService().getCode());
-        captchaSendReqDTO.setBusinessType(properties.getBusiness().getCode());
-        captchaSendReqDTO.setType(properties.getType().getCode());
-        captchaSendReqDTO.setNumber(number);
-        captchaSendReqDTO.setIntervalTime(properties.getIntervalTime());
-        captchaSendReqDTO.setUpperLimit(properties.getUpperLimit());
-        captchaSendReqDTO.setCaptcha(RandomUtil.randomNumbers(properties.getCaptchaLength()));
-        captchaSendReqDTO.setCaptchaLength(properties.getCaptchaLength());
-        captchaSendReqDTO.setCaptchaExpiryDate(properties.getCaptchaExpiryDate());
-        captchaSendReqDTO.setRemark(InfoServiceEnum.MALL_AUTH_APP.getMessage() + BaseConstant.COLON_CHAR + InfoBusinessEnum.LOGIN.getMessage());
-        return captchaSendReqDTO;
+        var infoCaptchaSendRequest = new InfoCaptchaSendRequest();
+        infoCaptchaSendRequest.setServiceType(properties.getService().getCode());
+        infoCaptchaSendRequest.setBusinessType(properties.getBusiness().getCode());
+        infoCaptchaSendRequest.setType(properties.getType().getCode());
+        infoCaptchaSendRequest.setNumber(number);
+        infoCaptchaSendRequest.setIntervalTime(properties.getIntervalTime());
+        infoCaptchaSendRequest.setUpperLimit(properties.getUpperLimit());
+        infoCaptchaSendRequest.setCaptcha(RandomUtil.randomNumbers(properties.getCaptchaLength()));
+        infoCaptchaSendRequest.setCaptchaLength(properties.getCaptchaLength());
+        infoCaptchaSendRequest.setCaptchaExpiryDate(properties.getCaptchaExpiryDate());
+        infoCaptchaSendRequest.setRemark(InfoServiceEnum.MALL_AUTH_APP.getMessage() + BaseConstant.COLON_CHAR + InfoBusinessEnum.LOGIN.getMessage());
+        return infoCaptchaSendRequest;
     }
 
     public InfoCaptchaVerifyRequest to(AuthAppSmsLoginDTO authAppSmsLoginDTO, InfoCaptchaProperties properties) {
         var phoneNumber = authAppSmsLoginDTO.getPhoneNumber();
-        InfoCaptchaVerifyRequest captchaVerifyReqDTO = new InfoCaptchaVerifyRequest();
-        captchaVerifyReqDTO.setNumber(phoneNumber);
-        captchaVerifyReqDTO.setServiceType(properties.getService().getCode());
-        captchaVerifyReqDTO.setBusinessType(properties.getBusiness().getCode());
-        captchaVerifyReqDTO.setCaptcha(authAppSmsLoginDTO.getSmsCaptcha());
-        return captchaVerifyReqDTO;
+        var infoCaptchaVerifyRequest = new InfoCaptchaVerifyRequest();
+        infoCaptchaVerifyRequest.setNumber(phoneNumber);
+        infoCaptchaVerifyRequest.setServiceType(properties.getService().getCode());
+        infoCaptchaVerifyRequest.setBusinessType(properties.getBusiness().getCode());
+        infoCaptchaVerifyRequest.setCaptcha(authAppSmsLoginDTO.getSmsCaptcha());
+        infoCaptchaVerifyRequest.setType(InfoTypeEnum.SMS_CAPTCHA.getCode());
+        return infoCaptchaVerifyRequest;
     }
 
     public MemberRequest to(AuthAppSmsLoginDTO authAppSmsLoginDTO, Long memberLevelId) {

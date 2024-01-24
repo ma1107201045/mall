@@ -3,11 +3,6 @@ server:
 spring:
   application:
     name: mall-web-app-info
-  main:
-    allow-bean-definition-overriding: true
-  threads:
-    virtual:
-      enabled: true
   cloud:
     inetutils:
       preferred-networks:
@@ -28,6 +23,9 @@ spring:
         group: MALL-INFO
         extension-configs:
           - data-id: mall-web-common-info.yaml
+            group: MALL-INFO
+            refresh: false
+          - data-id: mall-web-app-info.yaml
             group: MALL-INFO
             refresh: false
           - data-id: mysql.yaml

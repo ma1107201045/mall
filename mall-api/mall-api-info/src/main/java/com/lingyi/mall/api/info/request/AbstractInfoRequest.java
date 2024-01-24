@@ -38,7 +38,7 @@ public abstract class AbstractInfoRequest {
     /**
      * 短信类型 1.短信 2.短信验证码
      */
-    @Schema(description = " 短信类型 1.短信 2.短信验证码", requiredMode = Schema.RequiredMode.REQUIRED)
-    @NotNull(message = "短信类型不能为空")
+    @Schema(description = " 类型 1.短信 2.短信验证码 3.邮箱 4.邮箱验证码", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotNull(message = "类型不能为空")
     private Integer type;
 }
