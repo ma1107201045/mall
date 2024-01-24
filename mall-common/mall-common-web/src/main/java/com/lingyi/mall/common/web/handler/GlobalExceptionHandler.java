@@ -38,26 +38,15 @@ public class GlobalExceptionHandler {
     private static final Integer PARAMETER_CODE = 1001;
     private static final Integer FILE_SIZE_CODE = 2001;
 
-    @ExceptionHandler(BusinessException.class)
-    @ResponseStatus(HttpStatus.OK)
-    public ServerResponse<Void> bizException(BusinessException e) {
-        log.error("BizException：", e);
-        return ServerResponse.fail(e.getCode(), e.getMessage());
-    }
-
-    @ExceptionHandler(OpenFeignException.class)
-    @ResponseStatus(HttpStatus.OK)
-    public ServerResponse<Void> openFeignException(OpenFeignException e) {
-        log.error("OpenFeignException：", e);
-        return ServerResponse.fail(e.getCode(), e.getMessage());
-    }
-
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.OK)
     public ServerResponse<Void> constraintViolationException(ConstraintViolationException e) {
         log.error("ConstraintViolationException：", e);
         var constraintViolations = e.getConstraintViolations();
-        return ServerResponse.fail(PARAMETER_CODE, constraintViolations.stream().map(ConstraintViolation::getMessage).toList().toString());
+        return ServerResponse.fail(PARAMETER_CODE, constraintViolations
+                .stream()
+                .map(ConstraintViolation::getMessage)
+                .toList().toString());
     }
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
@@ -65,7 +54,17 @@ public class GlobalExceptionHandler {
     public ServerResponse<Void> methodArgumentNotValidException(MethodArgumentNotValidException e) {
         log.error("MethodArgumentNotValidException：", e);
         var objectErrors = e.getBindingResult().getAllErrors();
-        return ServerResponse.fail(PARAMETER_CODE, objectErrors.stream().map(ObjectError::getDefaultMessage).toList().toString());
+        return ServerResponse.fail(PARAMETER_CODE, objectErrors.stream()
+                .map(ObjectError::getDefaultMessage)
+                .toList()
+                .toString());
+    }
+
+    @ExceptionHandler(value = MissingRequestHeaderException.class)
+    @ResponseStatus(HttpStatus.OK)
+    public ServerResponse<Void> missingRequestHeaderException(MissingRequestHeaderException e) {
+        log.error("MissingPathVariableException：{}", e.getMessage(), e);
+        return ServerResponse.fail(PARAMETER_CODE, "请求头参数" + e.getHeaderName() + "不能为空");
     }
 
     @ExceptionHandler(value = MissingPathVariableException.class)
@@ -73,14 +72,6 @@ public class GlobalExceptionHandler {
     public ServerResponse<Void> missingPathVariableException(MissingPathVariableException e) {
         log.error("MissingPathVariableException：", e);
         return ServerResponse.fail(PARAMETER_CODE, "请求路径参数" + e.getVariableName() + "不能为空");
-    }
-
-
-    @ExceptionHandler(value = MissingRequestHeaderException.class)
-    @ResponseStatus(HttpStatus.OK)
-    public ServerResponse<Void> missingRequestHeaderException(MissingRequestHeaderException e) {
-        log.error("MissingPathVariableException：{}", e.getMessage(), e);
-        return ServerResponse.fail(PARAMETER_CODE, "请求头参数" + e.getHeaderName() + "不能为空");
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
@@ -97,6 +88,19 @@ public class GlobalExceptionHandler {
         return ServerResponse.fail(FILE_SIZE_CODE, String.format("上传文件超过最大值%dB", e.getMaxUploadSize()));
     }
 
+    @ExceptionHandler(BusinessException.class)
+    @ResponseStatus(HttpStatus.OK)
+    public ServerResponse<Void> businessException(BusinessException e) {
+        log.error("businessException：", e);
+        return ServerResponse.fail(e.getCode(), e.getMessage());
+    }
+
+    @ExceptionHandler(OpenFeignException.class)
+    @ResponseStatus(HttpStatus.OK)
+    public ServerResponse<Void> openFeignException(OpenFeignException e) {
+        log.error("OpenFeignException：", e);
+        return ServerResponse.fail(e.getCode(), e.getMessage());
+    }
 
     @ExceptionHandler(NotLoginException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
@@ -121,6 +125,7 @@ public class GlobalExceptionHandler {
         log.error("暂无权限,错误原因:", exception);
         return ServerResponse.fail(HttpStatus.FORBIDDEN.value(), exception.getMessage());
     }
+
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)

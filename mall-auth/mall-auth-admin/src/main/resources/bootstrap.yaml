@@ -22,10 +22,10 @@ spring:
         file-extension: yaml
         group: MALL-AUTH-ADMIN
         extension-configs:
-          - data-id: sa-token-admin.yaml
-            group: COMMON
-            refresh: false
           - data-id: mall-auth-admin.yaml
+            group: MALL-AUTH
+            refresh: false
+          - data-id: sa-token-admin.yaml
             group: COMMON
             refresh: false
           - data-id: redis.yaml

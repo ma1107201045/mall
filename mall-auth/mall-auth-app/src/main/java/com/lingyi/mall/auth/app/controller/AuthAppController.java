@@ -58,7 +58,7 @@ public class AuthAppController {
     @Operation(summary = "发送验证码（短信或者邮箱）", description = "发送验证码（短信或者邮箱）")
     @PostMapping("/send-captcha")
     @SaIgnore
-    public ServerResponse<Void> sendCaptcha(AuthAppSendDTO authAppSendDTO) {
+    public ServerResponse<Void> sendCaptcha(@Valid @RequestBody AuthAppSendDTO authAppSendDTO) {
         authAppService.sendCaptcha(authAppSendDTO);
         return ServerResponse.success();
     }

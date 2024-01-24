@@ -1,5 +1,6 @@
 package com.lingyi.mall.auth.app.service.impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.RandomUtil;
@@ -57,35 +58,35 @@ public class AuthAppServiceImpl implements AuthAppService {
     @Override
     public AuthAppLoginVO smsLogin(AuthAppSmsLoginDTO authAppSmsLoginDTO) {
         //转换数据并且校验短信验证码
-        var captchaVerifyReqDTO = AuthAppConverter.INSTANCE.to(authAppSmsLoginDTO, properties);
-        smsFeignConsumer.verifyCaptcha(captchaVerifyReqDTO);
+        var infoCaptchaVerifyRequest = AuthAppConverter.INSTANCE.to(authAppSmsLoginDTO, properties);
+        smsFeignConsumer.verifyCaptcha(infoCaptchaVerifyRequest);
 
         //通过手机号校验用户是否存在，不存在注册
-        var memberRespDTO = memberFeignConsumer.getByPhoneNumber(authAppSmsLoginDTO.getPhoneNumber());
-        if (Objects.isNull(memberRespDTO)) {
+        var memberResponse = memberFeignConsumer.getByPhoneNumber(authAppSmsLoginDTO.getPhoneNumber());
+        if (Objects.isNull(memberResponse)) {
             //校验会员等级是否设置
             var memberLevelId = levelFeignConsumer.getDefaultLevelId();
             AssertUtil.notNull(memberLevelId, AuthAppFailEnum.MEMBER_DEFAULT_LEVEL_ID_NULL_ERROR);
 
             //组装会员信息
             var memberReqDTO = AuthAppConverter.INSTANCE.to(authAppSmsLoginDTO, memberLevelId);
-            memberRespDTO = ConverterUtil.to(memberReqDTO, MemberResponse.class);
+            memberResponse = ConverterUtil.to(memberReqDTO, MemberResponse.class);
 
             //注册会员
             Long id = memberFeignConsumer.register(memberReqDTO);
-            memberRespDTO.setId(id);
+            memberResponse.setId(id);
         }
 
         //组装会员登录日志
-        var loginLogReqDTO = AuthAppConverter.INSTANCE.to(memberRespDTO);
+        var memberLoginLogRequest = AuthAppConverter.INSTANCE.to(memberResponse);
         //保存会员登录日志
-        memberLoginLogFeignConsumer.save(loginLogReqDTO);
-        //创建token
-        var token = JwtUtil.createToken(memberRespDTO);
-
-        //设置返回头token
-        HttpUtil.setHeader(AuthAppConstant.AUTHORIZATION, token);
-        return ConverterUtil.to(memberRespDTO, AuthAppLoginVO.class);
+        memberLoginLogFeignConsumer.save(memberLoginLogRequest);
+//        //创建token
+//        var token = JwtUtil.createToken(memberRespDTO);
+//        //设置返回头token
+//        HttpUtil.setHeader(AuthAppConstant.AUTHORIZATION, token);
+        StpUtil.login(memberResponse.getId());
+        return ConverterUtil.to(memberResponse, AuthAppLoginVO.class);
     }
 
     @Override
