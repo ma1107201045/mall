@@ -22,6 +22,9 @@ spring:
         file-extension: yaml
         group: MALL-PRODUCT
         extension-configs:
+          - data-id: sa-token-admin.yaml
+            group: COMMON
+            refresh: false
           - data-id: mall-web-common-product.yaml
             group: MALL-PRODUCT
             refresh: false

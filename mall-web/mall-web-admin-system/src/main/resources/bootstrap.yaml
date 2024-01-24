@@ -22,6 +22,9 @@ spring:
         file-extension: yaml
         group: MALL-SYSTEM
         extension-configs:
+          - data-id: sa-token-admin.yaml
+            group: COMMON
+            refresh: false
           - data-id: mysql.yaml
             group: COMMON
             refresh: false

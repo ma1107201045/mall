@@ -36,6 +36,7 @@
         <rocketmq.version>2.2.3</rocketmq.version>
         <!-- mall security -->
         <sa-token.version>1.37.0</sa-token.version>
+        <commons-pool2.version>2.12.0</commons-pool2.version>
         <!-- mall biz -->
         <mybatis.version>3.0.3</mybatis.version>
         <mapper.version>4.2.3</mapper.version>
@@ -283,17 +284,27 @@
             </dependency>
             <dependency>
                 <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-core</artifactId>
+                <version>${sa-token.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.dev33</groupId>
                 <artifactId>sa-token-redis</artifactId>
                 <version>${sa-token.version}</version>
             </dependency>
             <dependency>
                 <groupId>cn.dev33</groupId>
-                <artifactId>sa-token-alone-redis</artifactId>
+                <artifactId>sa-token-redis-jackson</artifactId>
                 <version>${sa-token.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-pool2</artifactId>
+                <version>${commons-pool2.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>cn.dev33</groupId>
-                <artifactId>sa-token-redis-jackson</artifactId>
+                <artifactId>sa-token-alone-redis</artifactId>
                 <version>${sa-token.version}</version>
             </dependency>
             <dependency>

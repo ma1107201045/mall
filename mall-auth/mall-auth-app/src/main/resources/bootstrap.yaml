@@ -3,65 +3,34 @@ server:
 spring:
   application:
     name: mall-auth-app
-  main:
-    allow-bean-definition-overriding: true
-  threads:
-    virtual:
-      enabled: true
-  data:
-    redis:
-      host: 36.137.103.166
-      password: j53BDRarSwtWvdDZ
-      client-type: lettuce
-      database: 1
-      jedis:
-        pool:
-          enabled: true
-          min-idle: 2
   cloud:
+    inetutils:
+      preferred-networks:
+        - 192.168.111
     nacos:
       discovery:
-        # 服务注册地址
         server-addr: 36.137.103.166:8848
         username: nacos
         password: nacos
         access-key: ThisIsMyCustomSecretKey012345678
       config:
-        # 配置中心地址
         server-addr: 36.137.103.166:8848
         username: nacos
         password: nacos
         access-key: ThisIsMyCustomSecretKey012345678
-    openfeign:
-      client:
-        config:
-          mall-auth-admin:
-            loggerLevel: FULL
-            connectTimeout: 5000
-            readTimeout: 5000
-    stream:
-      binding-retry-interval: 7200
-      rocketmq:
-        binder:
-          name-server: 36.137.103.166:9876
-# springdoc-openapi config
-springdoc:
-  swagger-ui:
-    tags-sorter: alpha
-    operations-sorter: alpha
-  group-configs:
-    - group: 'APP-认证服务'
-      paths-to-match: '/**'
-      packages-to-scan: com.lingyi.mall.auth.app.controller
-info-captcha:
-  service:
-  business:
-  type: sms_captcha
-  upper-limit: 10
-  interval-time: 1
-  captcha-length: 6
-  captcha-expiry-date: 30
-
-
-
-
+        name: ${spring.application.name}
+        file-extension: yaml
+        group: MALL-AUTH-ADMIN
+        extension-configs:
+          - data-id: sa-token-app.yaml
+            group: COMMON
+            refresh: false
+          - data-id: mall-auth-app.yaml
+            group: COMMON
+            refresh: false
+          - data-id: sentinel.yaml
+            group: COMMON
+            refresh: false
+          - data-id: stream.yaml
+            group: COMMON
+            refresh: false
