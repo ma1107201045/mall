@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+
 import java.io.Serial;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +54,7 @@ public final class TreeUtil {
         Map<ID, N> map = MapUtil.newHashMap();
         return nodes.stream().reduce(new ArrayList<>(), (tree, node) -> {
             map.put(node.getId(), node);
-            add(tree, map, node);
+            add(node, map, tree);
             return tree;
         }, (tree01, tree02) -> tree01);
     }
@@ -61,13 +62,11 @@ public final class TreeUtil {
     public static <ID extends Number, N extends Tree<ID, N>> List<N> buildOfMap(List<N> nodes) {
         Map<ID, N> map = nodes.stream().collect(Collectors.toMap(Tree::getId, tree -> tree));
         List<N> tree = CollUtil.newArrayList();
-        map.values().forEach(node -> {
-            add(tree, map, node);
-        });
+        map.values().forEach(node -> add(node, map, tree));
         return tree;
     }
 
-    private static <ID extends Number, N extends Tree<ID, N>> void add(List<N> tree, Map<ID, N> map, N node) {
+    private static <ID extends Number, N extends Tree<ID, N>> void add(N node, Map<ID, N> map, List<N> tree) {
         if (BaseConstant.TREE_ROOT_PARENT_ID.equals(node.getParentId())) {
             tree.add(node);
         } else {
