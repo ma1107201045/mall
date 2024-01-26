@@ -26,8 +26,9 @@
         <spring-cloud-dependencies.version>2023.0.0</spring-cloud-dependencies.version>
         <spring-cloud-alibaba-dependencies.version>2022.0.0.0</spring-cloud-alibaba-dependencies.version>
         <!-- mall common -->
-        <hutool-all.version>5.8.24</hutool-all.version>
+        <hutool-all.version>5.8.25</hutool-all.version>
         <fastjson2.verson>2.0.25</fastjson2.verson>
+        <mapstruct.version>1.6.0.Beta1</mapstruct.version>
         <velocity.version>1.5</velocity.version>
         <velocity-tools.version>2.0</velocity-tools.version>
         <springdoc-openapi-starter.version>2.2.0</springdoc-openapi-starter.version>
@@ -227,6 +228,16 @@
                 <version>${fastjson2.verson}</version>
             </dependency>
             <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity</artifactId>
                 <version>${velocity.version}</version>
@@ -363,6 +374,14 @@
         <dependency>
             <groupId>com.alibaba.fastjson2</groupId>
             <artifactId>fastjson2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
         </dependency>
     </dependencies>
 </project>
