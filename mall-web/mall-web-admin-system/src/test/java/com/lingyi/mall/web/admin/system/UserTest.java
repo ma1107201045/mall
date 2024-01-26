@@ -35,7 +35,7 @@ public class UserTest implements MallBizSystemApplicationTest {
         UserDO userDO = new UserDO();
         userDO.setUserName(RandomUtil.randomString(6));
         userDO.setPassword(passwordEncoder.encode(RandomUtil.randomString(6)));
-        userDO.setIsEnable(WhetherEnum.Y.getCode());
+        userDO.setIsDisable(WhetherEnum.Y.getCode());
         userDO = userRepository.save(userDO);
         System.out.println(userDO);
     }
@@ -54,7 +54,7 @@ public class UserTest implements MallBizSystemApplicationTest {
         userDO.setId(5308839368929536L);
         userDO.setUserName(RandomUtil.randomString(6));
         userDO.setPassword(passwordEncoder.encode(RandomUtil.randomString(6)));
-        userDO.setIsEnable(WhetherEnum.Y.getCode());
+        userDO.setIsDisable(WhetherEnum.Y.getCode());
         userDO = userRepository.save(userDO);
         System.out.println(userDO);
     }
