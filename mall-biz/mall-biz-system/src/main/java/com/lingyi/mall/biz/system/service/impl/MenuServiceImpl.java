@@ -13,12 +13,14 @@ import com.lingyi.mall.biz.system.service.MenuService;
 import com.lingyi.mall.biz.system.model.vo.MenuVO;
 import com.lingyi.mall.common.core.constant.BaseConstant;
 import com.lingyi.mall.common.core.util.AssertUtil;
+import com.lingyi.mall.common.core.util.TreeUtil;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -71,7 +73,7 @@ public class MenuServiceImpl extends BaseServiceProImpl<MenuRepository, MenuMapp
         menuParam.setSortField("sort");
         menuParam.setSortDirection("ASC");
         var menus = readListByParam(menuParam);
-        return toTree(BaseConstant.TREE_ROOT_ID, menus);
+        return TreeUtil.buildOfMap(menus);
     }
 
 
@@ -104,14 +106,6 @@ public class MenuServiceImpl extends BaseServiceProImpl<MenuRepository, MenuMapp
             var result = Objects.equals(MenuTypeEnum.MENU.getCode(), newType);
             AssertUtil.isTrue(result, SystemFailEnum.MENU_BUTTON_PARENT_ERROR);
         }
-    }
-
-
-    private List<MenuVO> toTree(Long parentId, List<MenuVO> menus) {
-        return menus.stream()
-                .filter(menu -> menu.getParentId().equals(parentId))
-                .peek(menu -> menu.setChildren(toTree(menu.getId(), menus)))
-                .collect(Collectors.toList());
     }
 }
 

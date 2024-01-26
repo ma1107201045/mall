@@ -24,6 +24,11 @@ public interface CategoryService extends BaseServicePro<CategoryDTO, CategoryVO,
     void create(CategoryDTO categoryDTO);
 
     /**
+     * @param categoryDTO ..
+     */
+    void updateByDTO(CategoryDTO categoryDTO);
+
+    /**
      * 通过父级id查询分类树
      *
      * @return List<MenuVO>

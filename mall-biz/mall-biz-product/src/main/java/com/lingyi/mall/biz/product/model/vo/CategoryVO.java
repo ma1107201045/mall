@@ -1,6 +1,7 @@
 package com.lingyi.mall.biz.product.model.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.lingyi.mall.common.core.util.TreeUtil;
 import com.lingyi.mall.common.core.vo.BaseIdVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -21,7 +22,7 @@ import java.util.List;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Schema(description = "分类")
-public class CategoryVO extends BaseIdVO<Long> {
+public class CategoryVO extends TreeUtil.Tree<Long, CategoryVO> {
     @Serial
     private static final long serialVersionUID = -1128091138999932809L;
 
@@ -70,9 +71,6 @@ public class CategoryVO extends BaseIdVO<Long> {
 
     @Schema(description = "最后一次更新时间")
     private LocalDateTime lastModifyDateTime;
-
-    @Schema(description = "菜单子级")
-    private List<CategoryVO> children;
 
     @Schema(description = "属性Id集")
     @JsonFormat(shape = JsonFormat.Shape.STRING)

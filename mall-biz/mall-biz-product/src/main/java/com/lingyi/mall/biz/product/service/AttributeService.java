@@ -20,4 +20,11 @@ public interface AttributeService extends BaseServicePro<AttributeDTO, Attribute
      * @param attributeDTO 。。
      */
     void create(AttributeDTO attributeDTO);
+
+    /**
+     * 更新属性以及属性值
+     *
+     * @param attributeDTO ..
+     */
+    void updateByDTO(AttributeDTO attributeDTO);
 }

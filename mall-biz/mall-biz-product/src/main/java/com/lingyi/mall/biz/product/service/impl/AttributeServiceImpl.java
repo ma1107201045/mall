@@ -48,7 +48,7 @@ public class AttributeServiceImpl extends BaseServiceProImpl<AttributeRepository
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void updateById(AttributeDTO attributeDTO) {
+    public void updateByDTO(AttributeDTO attributeDTO) {
         Long id = attributeDTO.getId();
         //更新属性
         super.updateById(attributeDTO);

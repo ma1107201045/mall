@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @Description:
  */
 @Data
-public abstract class BaseIdVO<ID extends Serializable> implements Serializable {
+public abstract class BaseIdVO<ID extends Number> implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -3848680408431067011L;

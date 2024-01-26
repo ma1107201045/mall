@@ -1,21 +1,21 @@
 package com.lingyi.mall.biz.product.service.impl;
 
 import com.lingyi.mall.biz.product.constant.ProductConstant;
+import com.lingyi.mall.biz.product.dao.mapper.CategoryMapper;
+import com.lingyi.mall.biz.product.dao.repository.CategoryRepository;
+import com.lingyi.mall.biz.product.enums.ProductFailEnum;
 import com.lingyi.mall.biz.product.model.dto.CategoryDTO;
 import com.lingyi.mall.biz.product.model.entity.CategoryDO;
-import com.lingyi.mall.biz.product.enums.ProductFailEnum;
-import com.lingyi.mall.biz.product.dao.mapper.CategoryMapper;
 import com.lingyi.mall.biz.product.model.query.AttributeQuery;
 import com.lingyi.mall.biz.product.model.query.CategoryQuery;
-import com.lingyi.mall.biz.product.dao.repository.CategoryRepository;
+import com.lingyi.mall.biz.product.model.vo.AttributeVO;
+import com.lingyi.mall.biz.product.model.vo.CategoryVO;
 import com.lingyi.mall.biz.product.service.AttributeService;
 import com.lingyi.mall.biz.product.service.CategoryAttributeService;
 import com.lingyi.mall.biz.product.service.CategoryService;
-import com.lingyi.mall.biz.product.model.vo.AttributeVO;
-import com.lingyi.mall.biz.product.model.vo.CategoryVO;
-import com.lingyi.mall.common.core.constant.BaseConstant;
 import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ObjectUtil;
+import com.lingyi.mall.common.core.util.TreeUtil;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @Author: maweiyan
@@ -56,7 +55,7 @@ public class CategoryServiceImpl extends BaseServiceProImpl<CategoryRepository, 
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void updateById(CategoryDTO categoryDTO) {
+    public void updateByDTO(CategoryDTO categoryDTO) {
         verifyData(categoryDTO);
         var id = categoryDTO.getId();
         super.updateById(categoryDTO);
@@ -72,7 +71,7 @@ public class CategoryServiceImpl extends BaseServiceProImpl<CategoryRepository, 
         categoryParam.setSortField("sort");
         categoryParam.setSortDirection("ASC");
         var categories = readListByParam(categoryParam);
-        return toTree(BaseConstant.TREE_ROOT_ID, categories);
+        return TreeUtil.buildOfMap(categories);
     }
 
     @Override
@@ -83,12 +82,5 @@ public class CategoryServiceImpl extends BaseServiceProImpl<CategoryRepository, 
     private void verifyData(CategoryDTO categoryDTO) {
         boolean flag = categoryDTO.getLevel() > ProductConstant.MAX_CATEGORY_LEVEL;
         AssertUtil.isFalse(flag, ProductFailEnum.CATEGORY_LEVEL_ERROR);
-    }
-
-    private List<CategoryVO> toTree(Long parentId, List<CategoryVO> categories) {
-        return categories.stream()
-                .filter(category -> category.getParentId().equals(parentId))
-                .peek(category -> category.setChildren(toTree(category.getId(), categories)))
-                .collect(Collectors.toList());
     }
 }

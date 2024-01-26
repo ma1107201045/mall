@@ -29,7 +29,7 @@ public class BaseServiceProImpl<
         VO extends BaseIdVO<ID>,
         QUERY extends BasePageQuery,
         DO extends BaseIdDO<ID>,
-        ID extends Serializable> implements BaseServicePro<DTO, VO, QUERY, DO, ID> {
+        ID extends Number> implements BaseServicePro<DTO, VO, QUERY, DO, ID> {
 
     private final static String DATA_NOT_EXIST_MESSAGE = "数据不存在";
 

@@ -64,9 +64,9 @@ public class InfoServiceImpl implements InfoService {
 
     @Override
     @RedisLock(keySuffix = "#infoCaptchaSendReqDTO.serviceType + ':' + #infoCaptchaSendReqDTO.businessType + ':' +#infoCaptchaSendReqDTO.type + ':' + #infoCaptchaSendReqDTO.number")
-    public void sendCaptcha(InfoCaptchaSendRequest infoCaptchaSendReqDTO) {
+    public void sendCaptcha(InfoCaptchaSendRequest infoCaptchaSendRequest) {
         //校验数据
-        verifyData(infoCaptchaSendReqDTO);
+        verifyData(infoCaptchaSendRequest);
         //操作redis
         redisUtil.execPipelined(new SessionCallback<>() {
             @SuppressWarnings("unchecked")
@@ -74,23 +74,23 @@ public class InfoServiceImpl implements InfoService {
             public <K, V> Object execute(@NotNull RedisOperations<K, V> redisOperations) throws DataAccessException {
                 RedisOperations<String, Object> operations = (RedisOperations<String, Object>) redisOperations;
                 //设置上线跟失效时间
-                setUpperLimitAndIntervalTime(operations, infoCaptchaSendReqDTO);
+                setUpperLimitAndIntervalTime(operations, infoCaptchaSendRequest);
                 //设置验证码
-                setCaptcha(operations, infoCaptchaSendReqDTO);
+                setCaptcha(operations, infoCaptchaSendRequest);
 
                 return ObjectUtil.getNull();
             }
         });
         //TODO 发送mq消息
         //保存日志
-        createLog(infoCaptchaSendReqDTO);
+        createLog(infoCaptchaSendRequest);
     }
 
     @Override
-    public void verifyCaptcha(InfoCaptchaVerifyRequest infoCaptchaVerifyReqDTO) {
-        var smsCaptchaKey = infoRedisKeyUtil.getCaptchaKey(infoCaptchaVerifyReqDTO);
+    public void verifyCaptcha(InfoCaptchaVerifyRequest infoCaptchaVerifyRequest) {
+        var smsCaptchaKey = infoRedisKeyUtil.getCaptchaKey(infoCaptchaVerifyRequest);
         var sourceCaptcha = redisUtil.get(smsCaptchaKey, String.class);
-        var targetCaptcha = infoCaptchaVerifyReqDTO.getCaptcha();
+        var targetCaptcha = infoCaptchaVerifyRequest.getCaptcha();
         AssertUtil.isEquals(targetCaptcha, sourceCaptcha, InfoFailEnum.CAPTCHA_EXPIRY_DATE_ERROR);
         redisUtil.delete(smsCaptchaKey);
     }
@@ -120,9 +120,9 @@ public class InfoServiceImpl implements InfoService {
     }
 
 
-    private void setCaptcha(RedisOperations<String, Object> operations, InfoCaptchaSendRequest captchaSendReqDTO) {
-        var captchaKey = infoRedisKeyUtil.getCaptchaKey(captchaSendReqDTO);
-        operations.opsForValue().set(captchaKey, captchaSendReqDTO.getCaptcha(), captchaSendReqDTO.getCaptchaExpiryDate(), TimeUnit.MINUTES);
+    private void setCaptcha(RedisOperations<String, Object> operations, InfoCaptchaSendRequest infoCaptchaSendRequest) {
+        var captchaKey = infoRedisKeyUtil.getCaptchaKey(infoCaptchaSendRequest);
+        operations.opsForValue().set(captchaKey, infoCaptchaSendRequest.getCaptcha(), infoCaptchaSendRequest.getCaptchaExpiryDate(), TimeUnit.MINUTES);
     }
 
     /**
@@ -136,9 +136,9 @@ public class InfoServiceImpl implements InfoService {
         return endDateTime.toInstant(ZoneOffset.ofHours(8)).toEpochMilli() - startDateTime.toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
     }
 
-    private void createLog(InfoRequest infoReqDTO) {
+    private void createLog(InfoRequest infoRequest) {
         //转换成验证码日志信息
-        var captchaLogDTO = CaptchaConverter.INSTANCE.to(infoReqDTO);
+        var captchaLogDTO = CaptchaConverter.INSTANCE.to(infoRequest);
         //保存短信日志
         infoLogService.create(captchaLogDTO, InfoLogDO.class);
     }

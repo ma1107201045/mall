@@ -1,6 +1,7 @@
 package com.lingyi.mall.biz.system.model.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.lingyi.mall.common.core.util.TreeUtil;
 import com.lingyi.mall.common.core.vo.BaseIdVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -21,7 +22,7 @@ import java.util.List;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Schema(description = "菜单")
-public class MenuVO extends BaseIdVO<Long> {
+public class MenuVO extends TreeUtil.Tree<Long, MenuVO> {
 
     @Serial
     private static final long serialVersionUID = -7797871902157113255L;
@@ -71,7 +72,4 @@ public class MenuVO extends BaseIdVO<Long> {
 
     @Schema(description = "最后一次更新时间")
     private LocalDateTime lastModifyDateTime;
-
-    @Schema(description = "菜单子级")
-    private List<MenuVO> children;
 }

@@ -1,7 +1,10 @@
 package com.lingyi.mall.api.system.response;
 
+import com.lingyi.mall.common.core.util.TreeUtil;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -15,19 +18,14 @@ import java.util.List;
  * @description 菜单
  */
 @Data
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @Schema(description = "按钮")
-public class MenuResponse implements Serializable {
+public class MenuResponse extends TreeUtil.Tree<Long, MenuResponse> implements Serializable {
 
 
     @Serial
     private static final long serialVersionUID = -6547543624077153061L;
-
-    @Schema(description = "菜单id")
-    private Long id;
-    /**
-     * 父级菜单id
-     */
-    private Long parentId;
     /**
      * 菜单名称
      */

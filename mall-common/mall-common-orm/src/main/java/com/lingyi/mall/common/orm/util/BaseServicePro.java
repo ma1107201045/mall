@@ -21,7 +21,7 @@ public interface BaseServicePro<
         VO extends BaseIdVO<ID>,
         QUERY extends BasePageQuery,
         DO extends BaseIdDO<ID>,
-        ID extends Serializable> {
+        ID extends Number> {
 
     /**
      * 增

@@ -20,10 +20,10 @@ public final class CaptchaConverter {
 
     }
 
-    public InfoLogDTO to(InfoRequest infoReqDTO) {
-        var captchaLogDTO = ConverterUtil.to(infoReqDTO, InfoLogDTO.class);
-        captchaLogDTO.setServiceName(InfoServiceEnum.getMessageByCode(infoReqDTO.getServiceType()));
-        captchaLogDTO.setBusinessName(InfoBusinessEnum.getMessageByCode(infoReqDTO.getBusinessType()));
+    public InfoLogDTO to(InfoRequest infoRequest) {
+        var captchaLogDTO = ConverterUtil.to(infoRequest, InfoLogDTO.class);
+        captchaLogDTO.setServiceName(InfoServiceEnum.getMessageByCode(infoRequest.getServiceType()));
+        captchaLogDTO.setBusinessName(InfoBusinessEnum.getMessageByCode(infoRequest.getBusinessType()));
         return captchaLogDTO;
     }
 }

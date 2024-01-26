@@ -1,6 +1,7 @@
 package com.lingyi.mall.biz.system.service.impl;
 
 import cn.dev33.satoken.stp.StpUtil;
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.lingyi.mall.api.system.response.MenuResponse;
@@ -27,16 +28,15 @@ import com.lingyi.mall.common.core.enums.WhetherEnum;
 import com.lingyi.mall.common.core.util.AssertUtil;
 import com.lingyi.mall.common.core.util.ConverterUtil;
 import com.lingyi.mall.common.core.util.ObjectUtil;
+import com.lingyi.mall.common.core.util.TreeUtil;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @Author: maweiyan
@@ -133,7 +133,7 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
         } else {
             menus = menuService.readListByTypes(menuTypes);
         }
-        return toMenuTree(SystemConstant.MENU_ROOT_ID, menus);
+        return TreeUtil.buildOfMap(menus);
     }
 
     @Override
@@ -184,14 +184,6 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
             StpUtil.kickout(id);
             StpUtil.disable(id, SystemConstant.USER_DISABLE_TIME);
         }
-    }
-
-
-    private List<MenuResponse> toMenuTree(Long menuParentId, List<MenuResponse> menus) {
-        return menus.stream()
-                .filter(menu -> menu.getParentId().equals(menuParentId))
-                .peek(menu -> menu.setChildren(toMenuTree(menu.getId(), menus)))
-                .toList();
     }
 
 
