@@ -2,8 +2,8 @@ package com.lingyi.mall.auth.admin.controller;
 
 import cn.dev33.satoken.annotation.SaCheckLogin;
 import cn.dev33.satoken.annotation.SaIgnore;
-import com.lingyi.mall.auth.admin.model.dto.AuthenticatorDTO;
-import com.lingyi.mall.auth.admin.model.vo.AuthenticatorVO;
+import com.lingyi.mall.auth.admin.model.dto.AuthAdminDTO;
+import com.lingyi.mall.auth.admin.model.vo.AuthAdminVO;
 import com.lingyi.mall.auth.admin.service.AuthAdminService;
 import com.lingyi.mall.common.web.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -28,8 +28,8 @@ public class AuthAdminController {
     @Operation(summary = "登录", description = "登录")
     @PostMapping("/login")
     @SaIgnore
-    public ServerResponse<AuthenticatorVO> login(@Valid @RequestBody AuthenticatorDTO authenticatorDTO) {
-        var authenticatorVO = authAdminService.login(authenticatorDTO);
+    public ServerResponse<AuthAdminVO> login(@Valid @RequestBody AuthAdminDTO authAdminDTO) {
+        var authenticatorVO = authAdminService.login(authAdminDTO);
         return ServerResponse.success(authenticatorVO);
     }
 

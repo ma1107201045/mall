@@ -1,7 +1,7 @@
 package com.lingyi.mall.auth.admin.service;
 
-import com.lingyi.mall.auth.admin.model.dto.AuthenticatorDTO;
-import com.lingyi.mall.auth.admin.model.vo.AuthenticatorVO;
+import com.lingyi.mall.auth.admin.model.dto.AuthAdminDTO;
+import com.lingyi.mall.auth.admin.model.vo.AuthAdminVO;
 
 /**
  * @author maweiyan
@@ -14,10 +14,10 @@ public interface AuthAdminService {
     /**
      * 登录
      *
-     * @param authenticatorDTO 认证信息
+     * @param authAdminDTO 认证信息
      * @return 认证信息
      */
-    AuthenticatorVO login(AuthenticatorDTO authenticatorDTO);
+    AuthAdminVO login(AuthAdminDTO authAdminDTO);
 
     /**
      * 读取图形验证码

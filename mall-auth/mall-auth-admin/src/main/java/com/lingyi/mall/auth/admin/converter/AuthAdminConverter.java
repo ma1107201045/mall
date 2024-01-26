@@ -1,7 +1,7 @@
 package com.lingyi.mall.auth.admin.converter;
 
 import com.lingyi.mall.api.system.response.UserResponse;
-import com.lingyi.mall.auth.admin.model.vo.AuthenticatorVO;
+import com.lingyi.mall.auth.admin.model.vo.AuthAdminVO;
 import com.lingyi.mall.security.admin.bean.AdminAuthenticator;
 
 /**
@@ -27,8 +27,8 @@ public class AuthAdminConverter {
         return adminAuthenticator;
     }
 
-    public AuthenticatorVO toAuthenticatorVO(UserResponse response) {
-        var adminAuthenticator = new AuthenticatorVO();
+    public AuthAdminVO toAuthenticatorVO(UserResponse response) {
+        var adminAuthenticator = new AuthAdminVO();
         adminAuthenticator.setUserId(response.getUserId());
         return adminAuthenticator;
     }

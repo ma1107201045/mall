@@ -9,8 +9,8 @@ import com.lingyi.mall.api.system.consumer.UserFeignConsumer;
 import com.lingyi.mall.auth.admin.constant.AuthAdminConstant;
 import com.lingyi.mall.auth.admin.converter.AuthAdminConverter;
 import com.lingyi.mall.auth.admin.enums.AdminFailEnum;
-import com.lingyi.mall.auth.admin.model.dto.AuthenticatorDTO;
-import com.lingyi.mall.auth.admin.model.vo.AuthenticatorVO;
+import com.lingyi.mall.auth.admin.model.dto.AuthAdminDTO;
+import com.lingyi.mall.auth.admin.model.vo.AuthAdminVO;
 import com.lingyi.mall.auth.admin.properties.ImageCaptchaProperties;
 import com.lingyi.mall.auth.admin.properties.enums.CodeGeneratorType;
 import com.lingyi.mall.auth.admin.service.AuthAdminService;
@@ -44,20 +44,20 @@ public class AuthAdminServiceImpl implements AuthAdminService {
     private final UserFeignConsumer userFeignConsumer;
 
     @Override
-    public AuthenticatorVO login(AuthenticatorDTO authenticatorDTO) {
+    public AuthAdminVO login(AuthAdminDTO authAdminDTO) {
         //校验验证码是否过期
         var anonTokenSession = StpUtil.getAnonTokenSession();
         var imageCaptcha = anonTokenSession.get(AuthAdminConstant.IMAGE_CAPTCHA_SESSION_KEY);
         AssertUtil.notNull(imageCaptcha, AdminFailEnum.IMAGE_CAPTCHA_STALE_DATED_ERROR);
         //校验验证码是否错误
-        var flag = imageCaptcha.equals(authenticatorDTO.getImageCaptcha());
+        var flag = imageCaptcha.equals(authAdminDTO.getImageCaptcha());
         AssertUtil.isTrue(flag, AdminFailEnum.IMAGE_CAPTCHA_ERROR);
         anonTokenSession.clear();
         //校验用户
-        var response = userFeignConsumer.getUserByUserName(authenticatorDTO.getUserName());
+        var response = userFeignConsumer.getUserByUserName(authAdminDTO.getUserName());
         AssertUtil.notNull(response, AdminFailEnum.USER_NAME_NOT_EXIST_ERROR);
         //校验用户密码
-        var encodedPassword = SecureUtil.md5(authenticatorDTO.getPassword());
+        var encodedPassword = SecureUtil.md5(authAdminDTO.getPassword());
         AssertUtil.isEquals(response.getPassword(), encodedPassword, AdminFailEnum.PASSWORD_ERROR);
         //用户信息转换到AdminAuthenticator
         var adminAuthenticator = AuthAdminConverter.INSTANCE.toAdminAuthenticator(response);
@@ -74,7 +74,7 @@ public class AuthAdminServiceImpl implements AuthAdminService {
             StpUtil.logout();
         }
         //登录
-        StpUtil.login(userId, WhetherEnum.Y.getCode().equals(authenticatorDTO.getIsRememberMe()));
+        StpUtil.login(userId, WhetherEnum.Y.getCode().equals(authAdminDTO.getIsRememberMe()));
         //session保存信息
         StpUtil.getSession().set(AdminConstant.USER_SESSION_KEY, adminAuthenticator);
         //用户信息转换到AuthenticatorVO

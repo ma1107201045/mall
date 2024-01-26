@@ -64,10 +64,10 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
         userDTO.setPassword(SecureUtil.md5(userDTO.getPassword()));
         //保存
         var id = create(userDTO, UserDO.class);
-        //校验账号是否禁用，如果满足先踢下线+封禁账号
-        verifyAndKickoutAndDisable(userDTO, id);
         //保存用户角色信息
         userRoleService.createList(id, userDTO.getRoleIds());
+        //校验账号是否禁用，如果满足先踢下线+封禁账号
+        kickoutAndDisable(userDTO, id);
     }
 
     @Override
@@ -93,12 +93,12 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
         userDTO.setPassword(SecureUtil.md5(userDTO.getPassword()));
         //更新
         Long id = updateById(userDTO);
-        //校验账号是否禁用，如果满足先踢下线+封禁账号
-        verifyAndKickoutAndDisable(userDTO, id);
         //删除用户角色集
         userRoleService.deleteByUserIds(Collections.singletonList(id));
         //保存用户角色信息
         userRoleService.createList(id, userDTO.getRoleIds());
+        //校验账号是否禁用，如果满足先踢下线+封禁账号
+        kickoutAndDisable(userDTO, id);
     }
 
     @Override
@@ -179,7 +179,7 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
         }
     }
 
-    private void verifyAndKickoutAndDisable(UserDTO userDTO, Long id) {
+    private void kickoutAndDisable(UserDTO userDTO, Long id) {
         if (WhetherEnum.Y.getCode().equals(userDTO.getIsDisable())) {
             if (StpUtil.isLogin(id)) {
                 StpUtil.kickout(id);

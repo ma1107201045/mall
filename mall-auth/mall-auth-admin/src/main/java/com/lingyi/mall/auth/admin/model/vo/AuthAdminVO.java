@@ -11,7 +11,7 @@ import lombok.Data;
  */
 @Data
 @Schema(description = "认证完整信息")
-public class AuthenticatorVO {
+public class AuthAdminVO {
 
     @Schema(description = "用户id")
     private Long userId;
