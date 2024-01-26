@@ -10,6 +10,9 @@ import cn.hutool.core.util.ReflectUtil;
  */
 public class ObjectUtil {
 
+    private ObjectUtil() {
+
+    }
 
     public static <T> T getNull() {
         return null;

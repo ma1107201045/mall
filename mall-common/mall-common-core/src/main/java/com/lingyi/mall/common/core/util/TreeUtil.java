@@ -22,8 +22,12 @@ import java.util.stream.Collectors;
  * @DateTime: 2024/1/26 12:13
  * @Description:
  */
-public class TreeUtil {
+public final class TreeUtil {
 
+
+    private TreeUtil() {
+
+    }
 
     @Data
     @ToString(callSuper = true)

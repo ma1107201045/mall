@@ -11,7 +11,11 @@ import java.util.List;
  * @datetime 2023/5/30 15:19
  * @description
  */
-public class ConverterUtil {
+public final class ConverterUtil {
+
+
+    private ConverterUtil() {
+    }
 
     public static <S, T> void to(S source, T target) {
         BeanUtil.copyProperties(source, target, CopyOptions.create().setIgnoreNullValue(true));
