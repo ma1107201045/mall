@@ -69,6 +69,10 @@ public class AuthAdminServiceImpl implements AuthAdminService {
         }
         // 校验指定账号是否已被封禁，如果被封禁则抛出异常 `DisableServiceException`
         StpUtil.checkDisable(userId);
+        //重复登录需要注销上一个账号
+        if (StpUtil.isLogin()) {
+            StpUtil.logout();
+        }
         //登录
         StpUtil.login(userId, WhetherEnum.Y.getCode().equals(authenticatorDTO.getIsRememberMe()));
         //session保存信息

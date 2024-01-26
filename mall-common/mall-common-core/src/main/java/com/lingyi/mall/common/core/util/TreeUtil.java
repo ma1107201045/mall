@@ -42,7 +42,6 @@ public final class TreeUtil {
         @Schema(description = "子节点")
         private List<N> children;
 
-
     }
 
     public static <ID extends Number, N extends Tree<ID, N>> List<N> build(ID parentId, List<N> nodes) {

@@ -181,7 +181,9 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
 
     private void verifyAndKickoutAndDisable(UserDTO userDTO, Long id) {
         if (WhetherEnum.Y.getCode().equals(userDTO.getIsDisable())) {
-            StpUtil.kickout(id);
+            if (StpUtil.isLogin(id)) {
+                StpUtil.kickout(id);
+            }
             StpUtil.disable(id, SystemConstant.USER_DISABLE_TIME);
         }
     }
