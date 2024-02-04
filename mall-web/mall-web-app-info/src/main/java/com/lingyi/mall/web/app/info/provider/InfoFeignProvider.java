@@ -36,8 +36,8 @@ public class InfoFeignProvider implements InfoFeign {
 
 
     @Override
-    public ServerResponse<Void> sendCaptcha(InfoCaptchaSendRequest captchaReqDTO) {
-        infoService.sendCaptcha(captchaReqDTO);
+    public ServerResponse<Void> sendCaptcha(InfoCaptchaSendRequest infoCaptchaSendRequest) {
+        infoService.sendCaptcha(infoCaptchaSendRequest);
         return ServerResponse.success();
     }
 

@@ -70,9 +70,9 @@ public class BrandController {
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
     @SaCheckPermission("admin:product:brands:getList")
-    public ServerResponse<List<BrandVO>> getListByPageAndParam(@ParameterObject @Valid BrandQuery brandParam) {
-        var page = PageHelper.startPage(brandParam.getCurrentPage(), brandParam.getPageSize());
-        var brands = brandService.readListByParam(brandParam);
+    public ServerResponse<List<BrandVO>> getListByPageAndParam(@ParameterObject @Valid BrandQuery brandQuery) {
+        var page = PageHelper.startPage(brandQuery.getCurrentPage(), brandQuery.getPageSize());
+        var brands = brandService.readListByParam(brandQuery);
         return ServerResponse.success(brands, page.getTotal());
     }
 

@@ -68,9 +68,9 @@ public class AttributeController {
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
     @SaCheckPermission("admin:product:attributes:getList")
-    public ServerResponse<List<AttributeVO>> getListByPageAndParam(@ParameterObject @Valid AttributeQuery attributeParam) {
-        var total = attributeService.totalByParam(attributeParam);
-        var attributes = attributeService.readListByParam(attributeParam);
+    public ServerResponse<List<AttributeVO>> getListByPageAndParam(@ParameterObject @Valid AttributeQuery attributeQuery) {
+        var total = attributeService.totalByParam(attributeQuery);
+        var attributes = attributeService.readListByParam(attributeQuery);
         return ServerResponse.success(attributes, total);
     }
 }

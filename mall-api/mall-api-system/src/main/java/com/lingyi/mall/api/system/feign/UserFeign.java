@@ -30,6 +30,7 @@ public interface UserFeign {
 
     String URL_PREFIX = "/provider/users";
 
+
     @Operation(summary = "更新用户部分信息", description = "更新用户部分信息")
     @PatchMapping(URL_PREFIX + "/{id}")
     ServerResponse<Void> updatePartById(@PathVariable("id") Long id, @RequestBody UserPartRequest userPartRequest);
