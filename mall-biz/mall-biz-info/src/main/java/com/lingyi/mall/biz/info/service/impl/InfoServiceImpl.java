@@ -45,28 +45,28 @@ public class InfoServiceImpl implements InfoService {
 
     @Override
     @RedisLock(keySuffix = "#infoReqDTO.serviceType + ':' + #infoReqDTO.businessType + ':' +#infoReqDTO.type + ':' + #infoReqDTO.number")
-    public void send(InfoRequest infoReqDTO) {
+    public void send(InfoRequest request) {
         //校验数据
-        verifyData(infoReqDTO);
+        verifyData(request);
         //操作redis
         redisUtil.execPipelined(new SessionCallback<>() {
             @SuppressWarnings("unchecked")
             @Override
             public <K, V> Object execute(@NotNull RedisOperations<K, V> redisOperations) throws DataAccessException {
-                setUpperLimitAndIntervalTime((RedisOperations<String, Object>) redisOperations, infoReqDTO);
+                setUpperLimitAndIntervalTime((RedisOperations<String, Object>) redisOperations, request);
                 return ObjectUtil.getNull();
             }
         });
         //TODO 发送mq消息
         //保存日志
-        createLog(infoReqDTO);
+        createLog(request);
     }
 
     @Override
     @RedisLock(keySuffix = "#infoCaptchaSendReqDTO.serviceType + ':' + #infoCaptchaSendReqDTO.businessType + ':' +#infoCaptchaSendReqDTO.type + ':' + #infoCaptchaSendReqDTO.number")
-    public void sendCaptcha(InfoCaptchaSendRequest infoCaptchaSendRequest) {
+    public void sendCaptcha(InfoCaptchaSendRequest request) {
         //校验数据
-        verifyData(infoCaptchaSendRequest);
+        verifyData(request);
         //操作redis
         redisUtil.execPipelined(new SessionCallback<>() {
             @SuppressWarnings("unchecked")
@@ -74,55 +74,55 @@ public class InfoServiceImpl implements InfoService {
             public <K, V> Object execute(@NotNull RedisOperations<K, V> redisOperations) throws DataAccessException {
                 RedisOperations<String, Object> operations = (RedisOperations<String, Object>) redisOperations;
                 //设置上线跟失效时间
-                setUpperLimitAndIntervalTime(operations, infoCaptchaSendRequest);
+                setUpperLimitAndIntervalTime(operations, request);
                 //设置验证码
-                setCaptcha(operations, infoCaptchaSendRequest);
+                setCaptcha(operations, request);
 
                 return ObjectUtil.getNull();
             }
         });
         //TODO 发送mq消息
         //保存日志
-        createLog(infoCaptchaSendRequest);
+        createLog(request);
     }
 
     @Override
-    public void verifyCaptcha(InfoCaptchaVerifyRequest infoCaptchaVerifyRequest) {
-        var smsCaptchaKey = infoRedisKeyUtil.getCaptchaKey(infoCaptchaVerifyRequest);
+    public void verifyCaptcha(InfoCaptchaVerifyRequest request) {
+        var smsCaptchaKey = infoRedisKeyUtil.getCaptchaKey(request);
         var sourceCaptcha = redisUtil.get(smsCaptchaKey, String.class);
-        var targetCaptcha = infoCaptchaVerifyRequest.getCaptcha();
+        var targetCaptcha = request.getCaptcha();
         AssertUtil.isEquals(targetCaptcha, sourceCaptcha, InfoFailEnum.CAPTCHA_EXPIRY_DATE_ERROR);
         redisUtil.delete(smsCaptchaKey);
     }
 
-    private void verifyData(InfoRequest infoReqDTO) {
+    private void verifyData(InfoRequest request) {
         //校验发送上限
-        var upperLimitKey = infoRedisKeyUtil.getUpperLimitKey(infoReqDTO);
+        var upperLimitKey = infoRedisKeyUtil.getUpperLimitKey(request);
         var upperLimitValue = redisUtil.get(upperLimitKey, Integer.class);
-        var flag = Objects.nonNull(upperLimitValue) && infoReqDTO.getUpperLimit().equals(upperLimitValue);
+        var flag = Objects.nonNull(upperLimitValue) && request.getUpperLimit().equals(upperLimitValue);
         AssertUtil.isFalse(flag, InfoFailEnum.SMS_UPPER_LIMIT_ERROR);
 
         //校验发送间隔
-        var intervalTimeKey = infoRedisKeyUtil.getIntervalTimeKey(infoReqDTO);
+        var intervalTimeKey = infoRedisKeyUtil.getIntervalTimeKey(request);
         var intervalTimeValue = redisUtil.get(intervalTimeKey, Integer.class);
         AssertUtil.isNull(intervalTimeValue, InfoFailEnum.SMS_INTERVAL_ERROR);
     }
 
-    private void setUpperLimitAndIntervalTime(RedisOperations<String, Object> operations, InfoRequest infoReqDTO) {
-        var upperLimitKey = infoRedisKeyUtil.getUpperLimitKey(infoReqDTO);
+    private void setUpperLimitAndIntervalTime(RedisOperations<String, Object> operations, InfoRequest request) {
+        var upperLimitKey = infoRedisKeyUtil.getUpperLimitKey(request);
         //设置发送间隔标记,并且第二天凌晨失效
         operations.opsForValue().increment(upperLimitKey);
         operations.expire(upperLimitKey, getSubTimestamp(), TimeUnit.MILLISECONDS);
 
         //设置发送标记
-        var intervalTimeKey = infoRedisKeyUtil.getIntervalTimeKey(infoReqDTO);
-        operations.opsForValue().set(intervalTimeKey, RandomUtil.randomInt(), infoReqDTO.getIntervalTime(), TimeUnit.MINUTES);
+        var intervalTimeKey = infoRedisKeyUtil.getIntervalTimeKey(request);
+        operations.opsForValue().set(intervalTimeKey, RandomUtil.randomInt(), request.getIntervalTime(), TimeUnit.MINUTES);
     }
 
 
-    private void setCaptcha(RedisOperations<String, Object> operations, InfoCaptchaSendRequest infoCaptchaSendRequest) {
-        var captchaKey = infoRedisKeyUtil.getCaptchaKey(infoCaptchaSendRequest);
-        operations.opsForValue().set(captchaKey, infoCaptchaSendRequest.getCaptcha(), infoCaptchaSendRequest.getCaptchaExpiryDate(), TimeUnit.MINUTES);
+    private void setCaptcha(RedisOperations<String, Object> operations, InfoCaptchaSendRequest request) {
+        var captchaKey = infoRedisKeyUtil.getCaptchaKey(request);
+        operations.opsForValue().set(captchaKey, request.getCaptcha(), request.getCaptchaExpiryDate(), TimeUnit.MINUTES);
     }
 
     /**
@@ -136,9 +136,9 @@ public class InfoServiceImpl implements InfoService {
         return endDateTime.toInstant(ZoneOffset.ofHours(8)).toEpochMilli() - startDateTime.toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
     }
 
-    private void createLog(InfoRequest infoRequest) {
+    private void createLog(InfoRequest request) {
         //转换成验证码日志信息
-        var captchaLogDTO = CaptchaConverter.INSTANCE.to(infoRequest);
+        var captchaLogDTO = CaptchaConverter.INSTANCE.to(request);
         //保存短信日志
         infoLogService.create(captchaLogDTO, InfoLogDO.class);
     }
