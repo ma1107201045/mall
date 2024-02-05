@@ -23,7 +23,7 @@ public class RoleMenuServiceImpl implements RoleMenuService {
 
     @Override
     public void saveList(Long roleId, List<Long> menuIds) {
-        var roleMenus = RoleMenuConverter.INSTANCE.of(roleId, menuIds);
+        var roleMenus = RoleMenuConverter.INSTANCE.toRoleMenuDOList(roleId, menuIds);
         roleMenuRepository.saveAll(roleMenus);
     }
 

@@ -55,6 +55,8 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
 
     private final MenuService menuService;
 
+    private final com.lingyi.mall.biz.system.converter.mapper.UserMapper userMapper;
+
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void create(UserDTO userDTO) {
@@ -113,7 +115,7 @@ public class UserServiceImpl extends BaseServiceProImpl<UserRepository, UserMapp
         // 密码作哈希
         userPartRequest.setPassword(SecureUtil.md5(userPartRequest.getPassword()));
         //  更新数据
-        var userDO = UserConverter.INSTANCE.to(userPartRequest);
+        var userDO = userMapper.toUserDO(userPartRequest);
         //更新
         updateById(userDO);
     }

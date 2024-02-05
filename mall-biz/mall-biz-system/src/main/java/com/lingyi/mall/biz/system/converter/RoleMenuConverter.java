@@ -20,7 +20,7 @@ public final class RoleMenuConverter {
 
     }
 
-    public RoleMenuDO of(Long roleId, Long menuId) {
+    public RoleMenuDO toRoleMenuDO(Long roleId, Long menuId) {
         RoleDO roleDO = new RoleDO();
         roleDO.setId(roleId);
         MenuDO menuDO = new MenuDO();
@@ -31,9 +31,9 @@ public final class RoleMenuConverter {
         return roleMenuDO;
     }
 
-    public List<RoleMenuDO> of(Long roleId, List<Long> menuIds) {
+    public List<RoleMenuDO> toRoleMenuDOList(Long roleId, List<Long> menuIds) {
         return menuIds.stream()
-                .map(menuId -> of(roleId, menuId))
+                .map(menuId -> toRoleMenuDO(roleId, menuId))
                 .toList();
     }
 }

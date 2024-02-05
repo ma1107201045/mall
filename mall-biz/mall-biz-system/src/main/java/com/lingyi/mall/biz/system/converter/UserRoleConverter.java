@@ -21,7 +21,7 @@ public final class UserRoleConverter {
     }
 
 
-    public UserRoleDO of(Long userId, Long roleId) {
+    public UserRoleDO toUserRoleDO(Long userId, Long roleId) {
         UserDO userDO = new UserDO();
         userDO.setId(userId);
         RoleDO roleDO = new RoleDO();
@@ -32,9 +32,9 @@ public final class UserRoleConverter {
         return userRoleDO;
     }
 
-    public List<UserRoleDO> of(Long userId, List<Long> roleIds) {
+    public List<UserRoleDO> toUserRoleDOList(Long userId, List<Long> roleIds) {
         return roleIds.stream()
-                .map(roleId -> of(userId, roleId))
+                .map(roleId -> toUserRoleDO(userId, roleId))
                 .toList();
     }
 }

@@ -25,7 +25,7 @@ public class AttributeValueServiceImpl extends BaseServiceProImpl<AttributeValue
 
     @Override
     public void createList(Long attributeId, List<String> names) {
-        var attributeValues = AttributeValueConverter.INSTANCE.of(attributeId, names);
+        var attributeValues = AttributeValueConverter.INSTANCE.toAttributeValueDOList(attributeId, names);
         jpaRepository.saveAll(attributeValues);
     }
 

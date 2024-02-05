@@ -54,8 +54,10 @@ public class MenuServiceImpl extends BaseServiceProImpl<MenuRepository, MenuMapp
         if (CollUtil.isEmpty(ids)) {
             return;
         }
-        menuRepository.deleteAllById(ids);
-        super.deleteByIds(menuMapper.selectIdsByParentIds(ids));
+        List<Long> newIds = menuMapper.selectIdsByParentIds(ids);
+        AssertUtil.isEmpty(newIds, SystemFailEnum.MENU_EXIST_CHILDREN_ERROR);
+        super.deleteByIds(ids);
+        deleteByIds(newIds);
     }
 
     @Override
@@ -69,10 +71,10 @@ public class MenuServiceImpl extends BaseServiceProImpl<MenuRepository, MenuMapp
 
     @Override
     public List<MenuVO> readTree() {
-        var menuParam = new MenuQuery();
-        menuParam.setSortField("sort");
-        menuParam.setSortDirection("ASC");
-        var menus = readListByParam(menuParam);
+        var menuQuery = new MenuQuery();
+        menuQuery.setSortField("sort");
+        menuQuery.setSortDirection("ASC");
+        var menus = readListByParam(menuQuery);
         return TreeUtil.buildOfMap(menus);
     }
 

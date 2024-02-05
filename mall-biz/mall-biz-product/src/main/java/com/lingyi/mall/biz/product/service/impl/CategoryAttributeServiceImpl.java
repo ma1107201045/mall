@@ -25,7 +25,7 @@ public class CategoryAttributeServiceImpl extends BaseServiceProImpl<CategoryAtt
 
     @Override
     public void createList(Long categoryId, List<Long> attributeIds) {
-        var categoryAttributes = CategoryAttributeConverter.INSTANCE.of(categoryId, attributeIds);
+        var categoryAttributes = CategoryAttributeConverter.INSTANCE.toCategoryAttributeDOList(categoryId, attributeIds);
         jpaRepository.saveAll(categoryAttributes);
     }
 

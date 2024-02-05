@@ -19,7 +19,7 @@ public final class AttributeValueConverter {
 
     }
 
-    public AttributeValueDO of(Long attributeId, String name) {
+    public AttributeValueDO toAttributeValueDO(Long attributeId, String name) {
         var attributeDO = new AttributeDO();
         attributeDO.setId(attributeId);
         var attributeValueDO = new AttributeValueDO();
@@ -28,9 +28,9 @@ public final class AttributeValueConverter {
         return attributeValueDO;
     }
 
-    public List<AttributeValueDO> of(Long attributeId, List<String> names) {
+    public List<AttributeValueDO> toAttributeValueDOList(Long attributeId, List<String> names) {
         return names.stream()
-                .map(name -> of(attributeId, name))
+                .map(name -> toAttributeValueDO(attributeId, name))
                 .toList();
     }
 

@@ -20,7 +20,7 @@ public final class CategoryAttributeConverter {
     }
 
 
-    public CategoryAttributeDO of(Long categoryId, Long attributeId) {
+    public CategoryAttributeDO toCategoryAttributeDO(Long categoryId, Long attributeId) {
         var categoryDO = new CategoryDO();
         categoryDO.setId(categoryId);
 
@@ -33,9 +33,9 @@ public final class CategoryAttributeConverter {
         return categoryAttributeDO;
     }
 
-    public List<CategoryAttributeDO> of(Long categoryId, List<Long> attributeIds) {
+    public List<CategoryAttributeDO> toCategoryAttributeDOList(Long categoryId, List<Long> attributeIds) {
         return attributeIds.stream()
-                .map(attributeId -> of(categoryId, attributeId))
+                .map(attributeId -> toCategoryAttributeDO(categoryId, attributeId))
                 .toList();
     }
 }

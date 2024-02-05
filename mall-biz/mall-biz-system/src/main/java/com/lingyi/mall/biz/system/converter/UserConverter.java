@@ -17,7 +17,7 @@ public final class UserConverter {
 
     }
 
-    public UserDO to(UserPartRequest userPartRequest) {
+    public UserDO toUserDO(UserPartRequest userPartRequest) {
         var userDO = new UserDO();
         userDO.setId(userPartRequest.getId());
         userDO.setNickname(userPartRequest.getNickname());

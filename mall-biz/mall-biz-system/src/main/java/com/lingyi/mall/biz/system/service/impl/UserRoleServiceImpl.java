@@ -22,7 +22,7 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     @Override
     public void createList(Long userId, List<Long> roleIds) {
-        var userRoles = UserRoleConverter.INSTANCE.of(userId, roleIds);
+        var userRoles = UserRoleConverter.INSTANCE.toUserRoleDOList(userId, roleIds);
         userRoleRepository.saveAll(userRoles);
     }
 
