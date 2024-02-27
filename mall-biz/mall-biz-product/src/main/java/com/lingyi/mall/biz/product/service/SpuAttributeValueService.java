@@ -1,10 +1,13 @@
 package com.lingyi.mall.biz.product.service;
 
+import com.lingyi.mall.biz.product.model.dto.SpuAttributeDTO;
 import com.lingyi.mall.biz.product.model.dto.SpuAttributeValueDTO;
 import com.lingyi.mall.biz.product.model.entity.SpuAttributeValueDO;
 import com.lingyi.mall.biz.product.model.query.SpuAttributeValueQuery;
 import com.lingyi.mall.biz.product.model.vo.SpuAttributeValueVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
+
+import java.util.List;
 
 /**
  * @Author: maweiyan
@@ -13,4 +16,7 @@ import com.lingyi.mall.common.orm.util.BaseServicePro;
  * @Description:
  */
 public interface SpuAttributeValueService extends BaseServicePro<SpuAttributeValueDTO, SpuAttributeValueVO, SpuAttributeValueQuery, SpuAttributeValueDO, Long> {
+
+
+    void createBatch(List<Long> spuAttributeIdList, List<SpuAttributeDTO> spuAttributeDTOList);
 }

@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.product.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.lingyi.mall.common.core.dto.BaseIdDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
@@ -41,13 +42,15 @@ public class SpuDTO extends BaseIdDTO<Long> {
     @Valid
     @NotNull(message = "属性集不能为空")
     @Size(min = 1, message = "属性集长度不能为0")
-    private List<SpuAttributeDTO> spuAttributes;
+    @JsonProperty("spuAttributes")
+    private List<SpuAttributeDTO> spuAttributeDTOList;
 
     @Schema(description = "SKU集", requiredMode = Schema.RequiredMode.REQUIRED)
     @Valid
     @NotNull(message = "SKU集不能为空")
     @Size(min = 1, message = "SKU集长度不能为0")
-    private List<SkuDTO> skus;
+    @JsonProperty("skus")
+    private List<SkuDTO> skuDTOList;
 
     @Schema(description = "商品名称", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank(message = "商品名称不能为空")

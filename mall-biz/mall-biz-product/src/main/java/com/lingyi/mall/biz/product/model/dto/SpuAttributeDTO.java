@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.product.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.lingyi.mall.common.core.dto.BaseIdDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
@@ -36,5 +37,6 @@ public class SpuAttributeDTO extends BaseIdDTO<Long> {
     @Valid
     @NotNull(message = "属性值集不能为空")
     @Size(min = 1, message = "属性值集长度不能为0")
-    private List<SpuAttributeValueDTO> spuAttributeValues;
+    @JsonProperty("spuAttributeValues")
+    private List<SpuAttributeValueDTO> spuAttributeValueDTOList;
 }

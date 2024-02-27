@@ -10,6 +10,8 @@ import com.lingyi.mall.biz.product.model.vo.SkuVO;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Author: maweiyan
  * @Email: 1107201045@qq.com
@@ -20,4 +22,8 @@ import org.springframework.stereotype.Service;
 public class SkuServiceImpl extends BaseServiceProImpl<SkuRepository, SkuMapper, SkuDTO, SkuVO, SkuQuery, SkuDO, Long> implements SkuService {
 
 
+    @Override
+    public void createBatch(Long spuId, List<SkuDTO> skuDTOList) {
+
+    }
 }

@@ -6,6 +6,8 @@ import com.lingyi.mall.biz.product.model.query.SkuQuery;
 import com.lingyi.mall.biz.product.model.vo.SkuVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
 
+import java.util.List;
+
 /**
  * @Author: maweiyan
  * @Email: 1107201045@qq.com
@@ -14,4 +16,6 @@ import com.lingyi.mall.common.orm.util.BaseServicePro;
  */
 public interface SkuService extends BaseServicePro<SkuDTO, SkuVO, SkuQuery, SkuDO, Long> {
 
+
+    void createBatch(Long spuId, List<SkuDTO> skuDTOList);
 }
