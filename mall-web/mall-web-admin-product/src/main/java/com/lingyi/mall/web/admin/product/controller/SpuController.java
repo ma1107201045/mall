@@ -46,8 +46,8 @@ public class SpuController {
         spuService.deleteByIds(ids);
     }
 
-    @Operation(summary = "保存", description = "保存")
-    @PostMapping
+    @Operation(summary = "更新", description = "更新")
+    @PutMapping
     @SaCheckPermission("admin:product:spus:update")
     public void updateById(@Valid @RequestBody SpuDTO spuDTO) {
         spuService.editById(spuDTO);

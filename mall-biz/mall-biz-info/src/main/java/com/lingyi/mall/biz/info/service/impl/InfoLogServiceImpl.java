@@ -4,7 +4,7 @@ import com.lingyi.mall.biz.info.model.dto.InfoLogDTO;
 import com.lingyi.mall.biz.info.model.entity.InfoLogDO;
 import com.lingyi.mall.biz.info.dao.mapper.InfoLogMapper;
 import com.lingyi.mall.biz.info.model.param.InfoLogQuery;
-import com.lingyi.mall.biz.info.dao.repositroy.InfoLogRepository;
+import com.lingyi.mall.biz.info.dao.repository.InfoLogRepository;
 import com.lingyi.mall.biz.info.service.InfoLogService;
 import com.lingyi.mall.biz.info.model.vo.InfoLogVO;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;

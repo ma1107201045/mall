@@ -1,4 +1,4 @@
-package com.lingyi.mall.biz.info.dao.repositroy;
+package com.lingyi.mall.biz.info.dao.repository;
 
 import com.lingyi.mall.biz.info.model.entity.InfoLogDO;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
