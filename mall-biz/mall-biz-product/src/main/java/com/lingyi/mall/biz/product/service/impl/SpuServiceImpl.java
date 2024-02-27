@@ -37,6 +37,7 @@ public class SpuServiceImpl extends BaseServiceProImpl<SpuRepository, SpuMapper,
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void create(SpuDTO spuDTO) {
+
         verifyData(spuDTO);
 
         var id = create(spuDTO, SpuDO.class);
