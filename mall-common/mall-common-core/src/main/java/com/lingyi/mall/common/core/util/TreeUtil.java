@@ -43,10 +43,10 @@ public final class TreeUtil {
 
     }
 
-    public static <ID extends Number, N extends Tree<ID, N>> List<N> build(ID parentId, List<N> nodes) {
+    public static <ID extends Number, N extends Tree<ID, N>> List<N> buildOfRecursive(ID parentId, List<N> nodes) {
         return nodes.stream()
                 .filter(tree -> tree.getParentId().equals(parentId))
-                .peek(tree -> tree.setChildren(build(tree.getId(), nodes)))
+                .peek(tree -> tree.setChildren(buildOfRecursive(tree.getId(), nodes)))
                 .toList();
     }
 
