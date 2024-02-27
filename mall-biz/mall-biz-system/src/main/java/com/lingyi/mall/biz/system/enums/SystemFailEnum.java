@@ -39,7 +39,7 @@ public enum SystemFailEnum implements BaseFailEnum {
 
     MENU_EXIST_CHILDREN_ERROR(8011, "菜单子级错误"),
 
-    LOG_NULL_ERROR(8011, "日志不能为空");
+    LOG_NULL_ERROR(8012, "日志不能为空");
 
 
     private final Integer code;
