@@ -21,8 +21,8 @@ public final class AttributeValueConverter {
 
     public AttributeValueDO toAttributeValueDO(Long attributeId, String name) {
         var attributeDO = new AttributeDO();
-        attributeDO.setId(attributeId);
         var attributeValueDO = new AttributeValueDO();
+        attributeDO.setId(attributeId);
         attributeValueDO.setAttribute(attributeDO);
         attributeValueDO.setName(name);
         return attributeValueDO;

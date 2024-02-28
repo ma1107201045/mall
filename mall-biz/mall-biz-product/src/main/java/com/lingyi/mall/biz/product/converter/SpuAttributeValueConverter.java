@@ -25,8 +25,8 @@ public final class SpuAttributeValueConverter {
 
     public SpuAttributeValueDO toSpuAttributeValueDO(Long spuAttributeId, String name) {
         var spuAttributeDO = new SpuAttributeDO();
-        spuAttributeDO.setId(spuAttributeId);
         var spuAttributeValueDO = new SpuAttributeValueDO();
+        spuAttributeDO.setId(spuAttributeId);
         spuAttributeValueDO.setSpuAttribute(spuAttributeDO);
         spuAttributeValueDO.setName(name);
         return spuAttributeValueDO;

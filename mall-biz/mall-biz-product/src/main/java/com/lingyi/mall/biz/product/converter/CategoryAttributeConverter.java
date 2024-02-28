@@ -22,12 +22,10 @@ public final class CategoryAttributeConverter {
 
     public CategoryAttributeDO toCategoryAttributeDO(Long categoryId, Long attributeId) {
         var categoryDO = new CategoryDO();
-        categoryDO.setId(categoryId);
-
         var attributeDO = new AttributeDO();
-        attributeDO.setId(attributeId);
-
         var categoryAttributeDO = new CategoryAttributeDO();
+        categoryDO.setId(categoryId);
+        attributeDO.setId(attributeId);
         categoryAttributeDO.setCategory(categoryDO);
         categoryAttributeDO.setAttribute(attributeDO);
         return categoryAttributeDO;
