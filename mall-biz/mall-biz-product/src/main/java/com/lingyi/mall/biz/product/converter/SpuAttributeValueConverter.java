@@ -34,7 +34,7 @@ public final class SpuAttributeValueConverter {
 
     public List<SpuAttributeValueDO> toSpuAttributeValueDOList(List<SpuAttributeDTO> spuAttributeDTOList) {
         return spuAttributeDTOList.stream()
-                .flatMap(spuAttributeDTO -> spuAttributeDTO.getSpuAttributeValues()
+                .flatMap(spuAttributeDTO -> spuAttributeDTO.getSpuAttributeValueDTOList()
                         .stream()
                         .map(spuAttributeValueDTO -> toSpuAttributeValueDO(spuAttributeDTO.getId(), spuAttributeValueDTO.getName())))
                 .collect(Collectors.toList());

@@ -13,4 +13,9 @@ import com.lingyi.mall.common.orm.util.BaseServicePro;
  * @Description:
  */
 public interface SpuDetailsService extends BaseServicePro<SpuDetailsDTO, SpuDetailsVO, SpuDetailsQuery, SpuDetailsDO, Long> {
+
+
+    void add(String content);
+
+
 }

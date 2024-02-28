@@ -19,7 +19,7 @@ public interface SpuAttributeService {
      * @param spuId               spuId
      * @param spuAttributeDTOList spuAttributeDTOList
      */
-    List<Long> createBatch(Long spuId, List<SpuAttributeDTO> spuAttributeDTOList);
+    List<Long> addBatch(Long spuId, List<SpuAttributeDTO> spuAttributeDTOList);
 
 
     /**
@@ -27,5 +27,5 @@ public interface SpuAttributeService {
      *
      * @param spuAttributeIds ..
      */
-    void deleteBySpuAttributeIds(List<Long> spuAttributeIds);
+    void removeBySpuAttributeIds(List<Long> spuAttributeIds);
 }

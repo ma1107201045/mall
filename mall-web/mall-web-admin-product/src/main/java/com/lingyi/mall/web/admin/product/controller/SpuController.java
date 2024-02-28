@@ -8,6 +8,7 @@ import com.lingyi.mall.biz.product.model.query.SpuQuery;
 import com.lingyi.mall.biz.product.model.vo.SpuVO;
 import com.lingyi.mall.biz.product.service.SpuService;
 import com.lingyi.mall.common.core.vo.PageVO;
+import com.lingyi.mall.common.web.util.ServerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -43,22 +44,32 @@ public class SpuController {
     @DeleteMapping("/{ids}")
     @SaCheckPermission("admin:product:spus:delete")
     public void deleteByIds(@PathVariable List<Long> ids) {
-        spuService.deleteByIds(ids);
+        spuService.removeByIds(ids);
     }
 
     @Operation(summary = "更新", description = "更新")
-    @PutMapping
+    @PutMapping("/{id}")
     @SaCheckPermission("admin:product:spus:update")
-    public void updateById(@Valid @RequestBody SpuDTO spuDTO) {
+    public void updateById(@PathVariable Long id, @Valid @RequestBody SpuDTO spuDTO) {
+        spuDTO.setId(id);
         spuService.editById(spuDTO);
+    }
+
+    @Operation(summary = "查询", description = "查询")
+    @GetMapping("/{id}")
+    @SaCheckLogin
+    @SaCheckPermission("admin:system:spus:get")
+    public ServerResponse<SpuVO> getById(@PathVariable Long id) {
+        var userVO = spuService.getById(id);
+        return ServerResponse.success(userVO);
     }
 
     @Operation(summary = "查询列表", description = "查询列表")
     @GetMapping
     @SaCheckPermission("admin:product:spus:getList")
-    public PageVO<List<SpuVO>> getListByPageAndParam(@ParameterObject @Valid SpuQuery spuQuery) {
+    public ServerResponse<PageVO<List<SpuVO>>> getListByPageAndParam(@ParameterObject @Valid SpuQuery spuQuery) {
         var page = PageHelper.startPage(spuQuery.getCurrentPage(), spuQuery.getPageSize());
-        var spus = spuService.readListByParam(spuQuery);
-        return PageVO.build(page.getTotal(), spus);
+        var spus = spuService.getListByQuery(spuQuery);
+        return ServerResponse.success(PageVO.build(page.getTotal(), spus));
     }
 }

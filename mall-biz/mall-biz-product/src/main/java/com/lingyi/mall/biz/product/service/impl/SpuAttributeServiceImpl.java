@@ -27,17 +27,15 @@ import java.util.List;
 public class SpuAttributeServiceImpl extends BaseServiceProImpl<SpuAttributeRepository, SpuAttributeMapper, SpuAttributeDTO,
         SpuAttributeVO, SpuAttributeQuery, SpuAttributeDO, Long> implements SpuAttributeService {
 
-    private SpuAttributeValueService spuAttributeValueService;
-
 
     @Override
-    public List<Long> createBatch(Long spuId, List<SpuAttributeDTO> spuAttributeDTOList) {
+    public List<Long> addBatch(Long spuId, List<SpuAttributeDTO> spuAttributeDTOList) {
         var spuAttributes = SpuAttributeConverter.INSTANCE.toSpuAttributeDOList(spuId, spuAttributeDTOList);
         return createList(spuAttributes);
     }
 
     @Override
-    public void deleteBySpuAttributeIds(List<Long> spuAttributeIds) {
+    public void removeBySpuAttributeIds(List<Long> spuAttributeIds) {
 
     }
 }

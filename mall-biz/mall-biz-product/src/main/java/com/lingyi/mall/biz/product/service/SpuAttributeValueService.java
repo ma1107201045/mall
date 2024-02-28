@@ -18,5 +18,5 @@ import java.util.List;
 public interface SpuAttributeValueService extends BaseServicePro<SpuAttributeValueDTO, SpuAttributeValueVO, SpuAttributeValueQuery, SpuAttributeValueDO, Long> {
 
 
-    void createBatch(List<Long> spuAttributeIdList, List<SpuAttributeDTO> spuAttributeDTOList);
+    void addBatch(List<Long> spuAttributeIdList, List<SpuAttributeDTO> spuAttributeDTOList);
 }

@@ -1,5 +1,6 @@
 package com.lingyi.mall.biz.product.service.impl;
 
+import com.lingyi.mall.biz.product.converter.SpuDetailsConverter;
 import com.lingyi.mall.biz.product.dao.mapper.SpuDetailsMapper;
 import com.lingyi.mall.biz.product.dao.repository.SpuDetailsRepository;
 import com.lingyi.mall.biz.product.model.dto.SpuDetailsDTO;
@@ -21,4 +22,9 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SpuDetailsServiceImpl extends BaseServiceProImpl<SpuDetailsRepository, SpuDetailsMapper,
         SpuDetailsDTO, SpuDetailsVO, SpuDetailsQuery, SpuDetailsDO, Long> implements SpuDetailsService {
+    @Override
+    public void add(String content) {
+        SpuDetailsDO spuDetailsDO = SpuDetailsConverter.INSTANCE.toSpuDetailsDO(content);
+        create(spuDetailsDO);
+    }
 }

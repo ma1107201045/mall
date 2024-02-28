@@ -17,5 +17,5 @@ import java.util.List;
 public interface SkuService extends BaseServicePro<SkuDTO, SkuVO, SkuQuery, SkuDO, Long> {
 
 
-    void createBatch(Long spuId, List<SkuDTO> skuDTOList);
+    void addBatch(Long spuId, List<SkuDTO> skuDTOList);
 }

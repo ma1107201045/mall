@@ -6,10 +6,7 @@ import com.lingyi.mall.biz.product.model.entity.SpuDO;
 import com.lingyi.mall.biz.product.dao.mapper.SpuMapper;
 import com.lingyi.mall.biz.product.model.query.SpuQuery;
 import com.lingyi.mall.biz.product.dao.repository.SpuRepository;
-import com.lingyi.mall.biz.product.service.SkuService;
-import com.lingyi.mall.biz.product.service.SpuAttributeService;
-import com.lingyi.mall.biz.product.service.SpuAttributeValueService;
-import com.lingyi.mall.biz.product.service.SpuService;
+import com.lingyi.mall.biz.product.service.*;
 import com.lingyi.mall.biz.product.model.vo.SpuVO;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +25,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SpuServiceImpl extends BaseServiceProImpl<SpuRepository, SpuMapper, SpuDTO, SpuVO, SpuQuery, SpuDO, Long> implements SpuService {
 
+    private final SpuDetailsService spuDetailsService;
+
     private final SpuAttributeService spuAttributeService;
 
     private final SpuAttributeValueService spuAttributeValueService;
@@ -36,24 +35,39 @@ public class SpuServiceImpl extends BaseServiceProImpl<SpuRepository, SpuMapper,
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void create(SpuDTO spuDTO) {
+    public void add(SpuDTO spuDTO) {
 
         verifyData(spuDTO);
 
         var id = create(spuDTO, SpuDO.class);
 
-        var spuAttributeDtoList = spuDTO.getSpuAttributeDTOList();
+        spuDetailsService.add(spuDTO.getContent());
 
-        var spuAttributeIdList = spuAttributeService.createBatch(id, spuAttributeDtoList);
+        var spuAttributeIdList = spuAttributeService.addBatch(id, spuDTO.getSpuAttributeDTOList());
 
-        spuAttributeValueService.createBatch(spuAttributeIdList, spuAttributeDtoList);
+        spuAttributeValueService.addBatch(spuAttributeIdList, spuDTO.getSpuAttributeDTOList());
 
-        skuService.createBatch(id, spuDTO.getSkuDTOList());
+        skuService.addBatch(id, spuDTO.getSkuDTOList());
     }
 
     @Override
-    public void updateByDTO(SpuDTO spuDTO) {
+    public void editById(SpuDTO spuDTO) {
 
+    }
+
+    @Override
+    public void removeByIds(List<Long> ids) {
+
+    }
+
+    @Override
+    public SpuVO getById(Long id) {
+        return null;
+    }
+
+    @Override
+    public List<SpuVO> getListByQuery(SpuQuery spuQuery) {
+        return null;
     }
 
 

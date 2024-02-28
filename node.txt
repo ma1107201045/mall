@@ -12,5 +12,5 @@
 三、笔记
 admin端
 controller save delete update get
-service create delete update read
+service create(add) delete(remove) update(edit) read(get)
 dao(mapper or repository) insert delete update select
