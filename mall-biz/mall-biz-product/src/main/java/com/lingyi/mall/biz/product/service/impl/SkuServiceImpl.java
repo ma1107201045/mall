@@ -23,7 +23,7 @@ public class SkuServiceImpl extends BaseServiceProImpl<SkuRepository, SkuMapper,
 
 
     @Override
-    public void createBatch(Long spuId, List<SkuDTO> skuDTOList) {
+    public void addBatch(Long spuId, List<SkuDTO> skuDTOList) {
 
     }
 }
