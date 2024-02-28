@@ -11,6 +11,7 @@ import com.lingyi.mall.biz.product.model.vo.SpuAttributeValueVO;
 import com.lingyi.mall.biz.product.service.SpuAttributeValueService;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class SpuAttributeValueServiceImpl extends BaseServiceProImpl<SpuAttribut
         SpuAttributeValueVO, SpuAttributeValueQuery, SpuAttributeValueDO, Long> implements SpuAttributeValueService {
 
     @Override
-    public void addBatch(List<Long> spuAttributeIdList, List<SpuAttributeDTO> spuAttributeDTOList) {
+    public void addBatch(List<Long> spuAttributeIdList, @NotNull List<SpuAttributeDTO> spuAttributeDTOList) {
         IntStream.range(0, spuAttributeDTOList.size())
                 .forEach(i -> spuAttributeDTOList.get(i).setId(spuAttributeIdList.get(i)));
 
