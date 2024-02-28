@@ -27,7 +27,7 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = PhoneNumberValidator.class)
 public @interface PhoneNumber {
 
-    String message() default "{mall.validation.constraints.NotNull.message}";
+    String message() default "{mall.validation.constraints.PhoneNumber.message}";
 
     Class<?>[] groups() default {};
 
