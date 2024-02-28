@@ -1,8 +1,10 @@
 package com.lingyi.mall.biz.product.service.impl;
 
+import com.lingyi.mall.biz.product.converter.SkuConverter;
 import com.lingyi.mall.biz.product.model.dto.SkuDTO;
 import com.lingyi.mall.biz.product.model.entity.SkuDO;
 import com.lingyi.mall.biz.product.dao.mapper.SkuMapper;
+import com.lingyi.mall.biz.product.model.entity.SpuAttributeValueDO;
 import com.lingyi.mall.biz.product.model.query.SkuQuery;
 import com.lingyi.mall.biz.product.dao.repository.SkuRepository;
 import com.lingyi.mall.biz.product.service.SkuService;
@@ -24,6 +26,12 @@ public class SkuServiceImpl extends BaseServiceProImpl<SkuRepository, SkuMapper,
 
     @Override
     public void addBatch(Long spuId, List<SkuDTO> skuDTOList) {
+        List<SkuDO> skuDOList = SkuConverter.INSTANCE.toSkuDOList(spuId, skuDTOList);
+        createList(skuDOList);
+    }
 
+    @Override
+    public void removeBySpuIds(List<Long> spuIds) {
+        jpaRepository.deleteBySpuIds(spuIds);
     }
 }

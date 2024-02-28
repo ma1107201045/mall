@@ -23,9 +23,6 @@ public class SpuAttributeValueDTO extends BaseIdDTO<Long> {
     @Serial
     private static final long serialVersionUID = -703421601638555304L;
 
-    @Schema(description = "属性值id", requiredMode = Schema.RequiredMode.REQUIRED)
-    @NotNull(message = "属性值id不能为空")
-    private String spuAttributeId;
 
     @Schema(description = "属性值名称", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank(message = "属性值名称不能为空")

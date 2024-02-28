@@ -63,7 +63,8 @@ public class SpuDTO extends BaseIdDTO<Long> {
     private String keywords;
 
     @Schema(description = "商品内容")
-    private String content;
+    @JsonProperty("spuDetails")
+    private SpuDetailsDTO spuDetailsDTO;
 
     @Schema(description = "商品主图", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank(message = "商品主图不能为空")

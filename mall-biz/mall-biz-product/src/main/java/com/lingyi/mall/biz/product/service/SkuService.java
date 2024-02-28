@@ -18,4 +18,7 @@ public interface SkuService extends BaseServicePro<SkuDTO, SkuVO, SkuQuery, SkuD
 
 
     void addBatch(Long spuId, List<SkuDTO> skuDTOList);
+
+
+    void removeBySpuIds(List<Long> spuIds);
 }

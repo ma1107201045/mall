@@ -1,18 +1,19 @@
 package com.lingyi.mall.biz.product.service.impl;
 
-import com.lingyi.mall.biz.product.model.dto.SpuAttributeDTO;
+import com.lingyi.mall.biz.product.dao.mapper.SpuMapper;
+import com.lingyi.mall.biz.product.dao.repository.SpuRepository;
 import com.lingyi.mall.biz.product.model.dto.SpuDTO;
 import com.lingyi.mall.biz.product.model.entity.SpuDO;
-import com.lingyi.mall.biz.product.dao.mapper.SpuMapper;
+import com.lingyi.mall.biz.product.model.entity.SpuDetailsDO;
 import com.lingyi.mall.biz.product.model.query.SpuQuery;
-import com.lingyi.mall.biz.product.dao.repository.SpuRepository;
-import com.lingyi.mall.biz.product.service.*;
 import com.lingyi.mall.biz.product.model.vo.SpuVO;
+import com.lingyi.mall.biz.product.service.*;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -41,23 +42,46 @@ public class SpuServiceImpl extends BaseServiceProImpl<SpuRepository, SpuMapper,
 
         var id = create(spuDTO, SpuDO.class);
 
-        spuDetailsService.add(spuDTO.getContent());
+        spuDetailsService.add(spuDTO.getSpuDetailsDTO());
 
         var spuAttributeIds = spuAttributeService.addBatch(id, spuDTO.getSpuAttributeDTOList());
 
-        spuAttributeValueService.addBatch(spuAttributeIds, spuDTO.getSpuAttributeDTOList());
+        spuAttributeValueService.addBatch(id, spuAttributeIds, spuDTO.getSpuAttributeDTOList());
 
         skuService.addBatch(id, spuDTO.getSkuDTOList());
 
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void editById(SpuDTO spuDTO) {
+        verifyData(spuDTO);
 
+        var id = updateById(spuDTO, SpuDO.class);
+        spuDetailsService.editById(spuDTO.getSpuDetailsDTO());
+
+        spuAttributeService.removeBySpuIds(Collections.singletonList(id));
+        var spuAttributeIds = spuAttributeService.addBatch(id, spuDTO.getSpuAttributeDTOList());
+
+        spuAttributeValueService.removeBySpuIds(Collections.singletonList(id));
+        spuAttributeValueService.addBatch(id, spuAttributeIds, spuDTO.getSpuAttributeDTOList());
+
+        skuService.removeBySpuIds(Collections.singletonList(id));
+        skuService.addBatch(id, spuDTO.getSkuDTOList());
     }
 
     @Override
     public void removeByIds(List<Long> ids) {
+
+        deleteByIds(ids);
+
+        spuDetailsService.removeBySpuIds(ids);
+
+        spuAttributeService.removeBySpuIds(ids);
+
+        spuAttributeValueService.removeBySpuIds(ids);
+
+        skuService.removeBySpuIds(ids);
 
     }
 

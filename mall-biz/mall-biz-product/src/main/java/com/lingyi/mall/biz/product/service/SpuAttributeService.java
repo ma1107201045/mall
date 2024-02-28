@@ -23,9 +23,9 @@ public interface SpuAttributeService {
 
 
     /**
-     * 批量删除
+     * 删除
      *
-     * @param spuAttributeIds ..
+     * @param spuIds ..
      */
-    void removeBySpuAttributeIds(List<Long> spuAttributeIds);
+    void removeBySpuIds(List<Long> spuIds);
 }

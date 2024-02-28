@@ -1,5 +1,7 @@
 package com.lingyi.mall.biz.product.converter;
 
+import com.lingyi.mall.biz.product.model.dto.SpuDetailsDTO;
+import com.lingyi.mall.biz.product.model.entity.SpuDO;
 import com.lingyi.mall.biz.product.model.entity.SpuDetailsDO;
 
 /**
@@ -16,9 +18,13 @@ public final class SpuDetailsConverter {
 
     }
 
-    public SpuDetailsDO toSpuDetailsDO(String content) {
+    public SpuDetailsDO toSpuDetailsDO(SpuDetailsDTO spuDetailsDTO) {
+        var spudDO = new SpuDO();
         var spuDetailsDO = new SpuDetailsDO();
-        spuDetailsDO.setContent(content);
+        spudDO.setId(spuDetailsDTO.getSpuId());
+        spuDetailsDO.setId(spuDetailsDTO.getId());
+        spuDetailsDO.setSpuDO(spudDO);
+        spuDetailsDO.setContent(spuDetailsDTO.getContent());
         return spuDetailsDO;
     }
 }

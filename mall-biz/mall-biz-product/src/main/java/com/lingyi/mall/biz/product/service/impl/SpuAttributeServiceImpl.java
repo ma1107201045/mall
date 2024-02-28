@@ -1,17 +1,13 @@
 package com.lingyi.mall.biz.product.service.impl;
 
-import com.lingyi.mall.biz.product.converter.CategoryAttributeConverter;
 import com.lingyi.mall.biz.product.converter.SpuAttributeConverter;
 import com.lingyi.mall.biz.product.dao.mapper.SpuAttributeMapper;
 import com.lingyi.mall.biz.product.dao.repository.SpuAttributeRepository;
 import com.lingyi.mall.biz.product.model.dto.SpuAttributeDTO;
-import com.lingyi.mall.biz.product.model.entity.AttributeDO;
 import com.lingyi.mall.biz.product.model.entity.SpuAttributeDO;
-import com.lingyi.mall.biz.product.model.entity.SpuAttributeValueDO;
 import com.lingyi.mall.biz.product.model.query.SpuAttributeQuery;
 import com.lingyi.mall.biz.product.model.vo.SpuAttributeVO;
 import com.lingyi.mall.biz.product.service.SpuAttributeService;
-import com.lingyi.mall.biz.product.service.SpuAttributeValueService;
 import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +31,7 @@ public class SpuAttributeServiceImpl extends BaseServiceProImpl<SpuAttributeRepo
     }
 
     @Override
-    public void removeBySpuAttributeIds(List<Long> spuAttributeIds) {
-
+    public void removeBySpuIds(List<Long> spuIds) {
+        jpaRepository.deleteBySpuIds(spuIds);
     }
 }

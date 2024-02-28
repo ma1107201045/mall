@@ -1,6 +1,7 @@
 package com.lingyi.mall.biz.product.model.dto;
 
 import com.lingyi.mall.common.core.dto.BaseIdDTO;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -20,5 +21,11 @@ public class SpuDetailsDTO extends BaseIdDTO<Long> {
 
     @Serial
     private static final long serialVersionUID = 5286694061016006137L;
+
+    @Schema(description = "商品id")
+    private Long spuId;
+
+    @Schema(description = "商品内容")
+    private String content;
 
 }

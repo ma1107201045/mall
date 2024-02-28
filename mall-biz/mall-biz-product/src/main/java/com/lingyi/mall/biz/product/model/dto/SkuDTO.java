@@ -30,12 +30,8 @@ public class SkuDTO extends BaseIdDTO<Long> {
     private static final long serialVersionUID = -7399959444673481949L;
 
 
-    @Schema(description = "spuId", requiredMode = Schema.RequiredMode.REQUIRED)
-    @NotNull(message = "spuId不能为空")
-    private Long spuId;
-
     @Schema(description = "SKU编号", requiredMode = Schema.RequiredMode.REQUIRED)
-    @NotBlank(message = "spuId不能为空")
+    @NotBlank(message = "SKU编号不能为空")
     private String sn;
 
     @Schema(description = "SKU名称", requiredMode = Schema.RequiredMode.REQUIRED)

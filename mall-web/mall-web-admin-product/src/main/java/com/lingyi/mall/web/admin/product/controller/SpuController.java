@@ -57,7 +57,6 @@ public class SpuController {
 
     @Operation(summary = "查询", description = "查询")
     @GetMapping("/{id}")
-    @SaCheckLogin
     @SaCheckPermission("admin:system:spus:get")
     public ServerResponse<SpuVO> getById(@PathVariable Long id) {
         var userVO = spuService.getById(id);

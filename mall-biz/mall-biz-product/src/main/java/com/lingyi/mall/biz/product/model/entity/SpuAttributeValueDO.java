@@ -38,6 +38,12 @@ public class SpuAttributeValueDO extends BaseCommonDO implements Serializable {
     private Long shopId;
 
     @ManyToOne(cascade = {CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "spu_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '商品id'",
+            foreignKey = @ForeignKey(name = "mp_spu_attribute_value_fk_spu_id"))
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private SpuDO spu;
+
+    @ManyToOne(cascade = {CascadeType.REMOVE}, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "spu_attribute_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '属性id'",
             foreignKey = @ForeignKey(name = "mp_spu_attribute_value_fk_spu_attribute_id"))
     @OnDelete(action = OnDeleteAction.CASCADE)

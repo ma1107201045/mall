@@ -31,7 +31,7 @@ public class SpuDetailsDO extends BaseCommonDO implements Serializable {
     @ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "spu_id", columnDefinition = "BIGINT(20) UNSIGNED NOT NULL COMMENT '商品id'", foreignKey = @ForeignKey(name = "mp_spu_details_fk_spu_id"))
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private SpuDO spuDO;
+    private SpuDO spu;
 
     @Column(name = "content", columnDefinition = "LONGTEXT COMMENT '内容'")
     private String content;

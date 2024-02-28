@@ -6,6 +6,8 @@ import com.lingyi.mall.biz.product.model.query.SpuDetailsQuery;
 import com.lingyi.mall.biz.product.model.vo.SpuDetailsVO;
 import com.lingyi.mall.common.orm.util.BaseServicePro;
 
+import java.util.List;
+
 /**
  * @Author: maweiyan
  * @Email: 1107201045@qq.com
@@ -15,7 +17,12 @@ import com.lingyi.mall.common.orm.util.BaseServicePro;
 public interface SpuDetailsService extends BaseServicePro<SpuDetailsDTO, SpuDetailsVO, SpuDetailsQuery, SpuDetailsDO, Long> {
 
 
-    void add(String content);
+    void add(SpuDetailsDTO spuDetailsDTO);
 
+
+    void removeBySpuIds(List<Long> spuIds);
+
+
+    void editById(SpuDetailsDTO spuDetailsDTO);
 
 }

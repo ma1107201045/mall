@@ -32,7 +32,6 @@ public class SpuAttributeDTO extends BaseIdDTO<Long> {
     @NotBlank(message = "属性名称不能为空")
     private String name;
 
-
     @Schema(description = "属性值集", requiredMode = Schema.RequiredMode.REQUIRED)
     @Valid
     @NotNull(message = "属性值集不能为空")

@@ -29,12 +29,17 @@ public class SpuAttributeValueServiceImpl extends BaseServiceProImpl<SpuAttribut
         SpuAttributeValueVO, SpuAttributeValueQuery, SpuAttributeValueDO, Long> implements SpuAttributeValueService {
 
     @Override
-    public void addBatch(List<Long> spuAttributeIdList, @NotNull List<SpuAttributeDTO> spuAttributeDTOList) {
+    public void addBatch(Long spuId, List<Long> spuAttributeIdList, List<SpuAttributeDTO> spuAttributeDTOList) {
         IntStream.range(0, spuAttributeDTOList.size())
                 .forEach(i -> spuAttributeDTOList.get(i).setId(spuAttributeIdList.get(i)));
 
-        var spuAttributeValues = SpuAttributeValueConverter.INSTANCE.toSpuAttributeValueDOList(spuAttributeDTOList);
+        var spuAttributeValues = SpuAttributeValueConverter.INSTANCE.toSpuAttributeValueDOList(spuId, spuAttributeDTOList);
 
         createList(spuAttributeValues);
+    }
+
+    @Override
+    public void removeBySpuIds(List<Long> supId) {
+        jpaRepository.deleteBySpuIds(supId);
     }
 }

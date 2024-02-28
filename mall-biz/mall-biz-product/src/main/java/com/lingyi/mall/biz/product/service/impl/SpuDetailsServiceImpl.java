@@ -12,6 +12,8 @@ import com.lingyi.mall.common.orm.util.BaseServiceProImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Author: maweiyan
  * @Email: 1107201045@qq.com
@@ -22,9 +24,22 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SpuDetailsServiceImpl extends BaseServiceProImpl<SpuDetailsRepository, SpuDetailsMapper,
         SpuDetailsDTO, SpuDetailsVO, SpuDetailsQuery, SpuDetailsDO, Long> implements SpuDetailsService {
+
     @Override
-    public void add(String content) {
-        SpuDetailsDO spuDetailsDO = SpuDetailsConverter.INSTANCE.toSpuDetailsDO(content);
+    public void add(SpuDetailsDTO spuDetailsDTO) {
+        var spuDetailsDO = SpuDetailsConverter.INSTANCE.toSpuDetailsDO(spuDetailsDTO);
         create(spuDetailsDO);
     }
+
+    @Override
+    public void removeBySpuIds(List<Long> spuIds) {
+        jpaRepository.deleteBySpuIds(spuIds);
+    }
+
+    @Override
+    public void editById(SpuDetailsDTO spuDetailsDTO) {
+        var spuDetailsDO = SpuDetailsConverter.INSTANCE.toSpuDetailsDO(spuDetailsDTO);
+        updateById(spuDetailsDO);
+    }
+
 }
