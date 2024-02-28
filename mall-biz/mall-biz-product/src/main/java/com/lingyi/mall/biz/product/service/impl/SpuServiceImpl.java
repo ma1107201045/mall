@@ -27,12 +27,11 @@ public class SpuServiceImpl extends BaseServiceProImpl<SpuRepository, SpuMapper,
 
     private final SpuDetailsService spuDetailsService;
 
-    private final SkuService skuService;
-
     private final SpuAttributeService spuAttributeService;
 
     private final SpuAttributeValueService spuAttributeValueService;
 
+    private final SkuService skuService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -44,11 +43,11 @@ public class SpuServiceImpl extends BaseServiceProImpl<SpuRepository, SpuMapper,
 
         spuDetailsService.add(spuDTO.getContent());
 
-        skuService.addBatch(id, spuDTO.getSkuDTOList());
-
         var spuAttributeIds = spuAttributeService.addBatch(id, spuDTO.getSpuAttributeDTOList());
 
         spuAttributeValueService.addBatch(spuAttributeIds, spuDTO.getSpuAttributeDTOList());
+
+        skuService.addBatch(id, spuDTO.getSkuDTOList());
 
     }
 
